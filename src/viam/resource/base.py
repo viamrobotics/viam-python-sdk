@@ -81,6 +81,6 @@ class ResourceBase(Protocol):
             kwargs (Mapping[str, Any]): The kwargs object containing the operation
 
         Returns:
-            Operation: The operation associated with this function
+            viam.operations.Operation: The operation associated with this function
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())

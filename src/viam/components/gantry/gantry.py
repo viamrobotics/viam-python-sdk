@@ -42,8 +42,6 @@ class Gantry(ComponentBase):
         Args:
             positions (List[float]): List of positions for the axes to move to,
                 in millimeters.
-            world_state (Optional[WorldState]): Object describing
-                obstacles for the gantry to avoid on its way to ``positions``.
         """
         ...
 

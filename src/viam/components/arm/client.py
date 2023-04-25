@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, WorldState
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -19,7 +19,7 @@ from viam.proto.component.arm import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .arm import Arm
+from . import Arm, Pose
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
@@ -49,7 +49,6 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

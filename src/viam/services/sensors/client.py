@@ -23,7 +23,7 @@ class SensorsServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBas
         """Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
         Returns:
-            List[ResourceName]: The list of all Sensors
+            List[viam.proto.common.ResourceName]: The list of all Sensors
         """
         if extra is None:
             extra = {}
@@ -37,10 +37,10 @@ class SensorsServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBas
         """Get the readings from the specific sensors provided
 
         Args:
-            sensors (List[ResourceName]): The ``ResourceName`` of the the ``Sensor`` resources to get readings from
+            sensors (List[viam.proto.common.ResourceName]): The ``ResourceName`` of the the ``Sensor`` resources to get readings from
 
         Returns:
-            Mapping[ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by ``ResourceName``
+            Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]: The readings from the sensors, mapped by ``ResourceName``
         """
         if extra is None:
             extra = {}

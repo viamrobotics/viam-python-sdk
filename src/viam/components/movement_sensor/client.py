@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint, Orientation, Vector3
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -25,6 +25,8 @@ from viam.proto.component.movementsensor import (
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+
+from . import GeoPoint, Orientation, Vector3
 
 
 class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
@@ -82,7 +84,7 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return response
+        return MovementSensor.Properties.from_proto(response)
 
     async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, float]:
         if extra is None:

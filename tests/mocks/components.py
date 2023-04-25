@@ -42,7 +42,6 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     Vector3,
-    WorldState,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
@@ -75,7 +74,6 @@ class MockArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -474,7 +472,6 @@ class MockGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

@@ -1,15 +1,18 @@
 import abc
 import asyncio
+from dataclasses import dataclass
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
+from typing_extensions import Self
 
 from grpclib import GRPCError
 
 from viam.errors import MethodNotImplementedError, NotSupportedError
-from viam.proto.common import GeoPoint, Orientation, Vector3
+
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..sensor import Sensor
+from . import GeoPoint, Orientation, Vector3
 
 
 class MovementSensor(Sensor):
@@ -21,7 +24,36 @@ class MovementSensor(Sensor):
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
 
-    Properties = GetPropertiesResponse
+    @dataclass
+    class Properties:
+        linear_acceleration_supported: bool
+        angular_velocity_supported: bool
+        orientation_supported: bool
+        position_supported: bool
+        compass_heading_supported: bool
+        linear_velocity_supported: bool
+
+        @property
+        def proto(self) -> GetPropertiesResponse:
+            return GetPropertiesResponse(
+                linear_acceleration_supported=self.linear_velocity_supported,
+                angular_velocity_supported=self.angular_velocity_supported,
+                orientation_supported=self.orientation_supported,
+                position_supported=self.position_supported,
+                compass_heading_supported=self.compass_heading_supported,
+                linear_velocity_supported=self.linear_acceleration_supported,
+            )
+
+        @classmethod
+        def from_proto(cls, proto: GetPropertiesResponse) -> Self:
+            return cls(
+                linear_acceleration_supported=proto.linear_acceleration_supported,
+                angular_velocity_supported=proto.angular_velocity_supported,
+                orientation_supported=proto.orientation_supported,
+                position_supported=proto.position_supported,
+                compass_heading_supported=proto.compass_heading_supported,
+                linear_velocity_supported=proto.linear_acceleration_supported,
+            )
 
     @abc.abstractmethod
     async def get_position(
@@ -86,7 +118,7 @@ class MovementSensor(Sensor):
         """Get the supported properties of this sensor
 
         Returns:
-            Properties: The properties
+            MovementSensor.Properties: The properties
         """
         ...
 

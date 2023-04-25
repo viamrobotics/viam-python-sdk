@@ -1,11 +1,10 @@
 import abc
 from typing import Any, Dict, Final, Optional
 
-from viam.proto.common import Pose
-from viam.proto.component.arm import JointPositions
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Pose, JointPositions
 
 
 class Arm(ComponentBase):
@@ -30,7 +29,8 @@ class Arm(ComponentBase):
         """
         Get the current position of the end of the arm expressed as a Pose.
 
-        Returns: The location and orientation of the arm described as a Pose.
+        Returns:
+            Pose: The location and orientation of the arm described as a Pose.
         """
         ...
 

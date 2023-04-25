@@ -1,6 +1,8 @@
+from viam.media.video import RawImage
+from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
 from viam.resource.registry import Registry, ResourceRegistration
 
-from .camera import Camera, DistortionParameters, IntrinsicParameters, RawImage
+from .camera import Camera
 from .client import CameraClient
 from .service import CameraService
 
