@@ -187,7 +187,9 @@ class ComponentConfig(google.protobuf.message.Message):
     API_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
+    'deprecated; use api'
     type: builtins.str
+    'deprecated; use api'
     model: builtins.str
 
     @property
@@ -285,9 +287,12 @@ class ServiceConfig(google.protobuf.message.Message):
     ATTRIBUTES_FIELD_NUMBER: builtins.int
     DEPENDS_ON_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
+    API_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
+    'deprecated; use api'
     type: builtins.str
+    'deprecated; use api'
 
     @property
     def attributes(self) -> google.protobuf.struct_pb2.Struct:
@@ -297,14 +302,15 @@ class ServiceConfig(google.protobuf.message.Message):
     def depends_on(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
     model: builtins.str
+    api: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=..., api: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'depends_on', b'depends_on', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'type', b'type']) -> None:
         ...
 global___ServiceConfig = ServiceConfig
 

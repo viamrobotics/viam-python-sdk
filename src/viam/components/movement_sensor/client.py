@@ -42,7 +42,7 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
-        return response.coordinate, response.altitude_mm
+        return response.coordinate, response.altitude_m
 
     async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Vector3:
         if extra is None:
@@ -91,7 +91,7 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetAccuracyRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetAccuracyResponse = await self.client.GetAccuracy(request, timeout=timeout)
-        return response.accuracy_mm
+        return response.accuracy
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
         if extra is None:
