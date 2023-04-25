@@ -26,8 +26,6 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, S
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Classification, Detection
-
 
 class VisionServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
