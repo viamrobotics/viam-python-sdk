@@ -5,7 +5,7 @@ from grpclib.server import Stream
 
 from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -25,6 +25,15 @@ from viam.proto.service.sensors import (
     GetSensorsResponse,
     Readings,
     SensorsServiceBase,
+)
+from viam.proto.service.slam import (
+    GetInternalStateRequest,
+    GetInternalStateResponse,
+    GetPointCloudMapRequest,
+    GetPointCloudMapResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    SLAMServiceBase,
 )
 from viam.proto.service.vision import (
     AddClassifierRequest,
@@ -141,6 +150,42 @@ class MockSensorsService(SensorsServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         self.sensors_for_readings: List[ResourceName] = list(request.sensor_names)
         response = GetReadingsResponse(readings=self.readings)
+        await stream.send_message(response)
+
+    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(DoCommandResponse(result=request.command))
+
+
+class MockSLAMService(SLAMServiceBase):
+    def __init__(self, name: str, internal_state_chunk: bytes, point_cloud_pcd_chunk: bytes, position: Pose):
+        self.name = name
+        self.internal_state_chunk = internal_state_chunk
+        self.point_cloud_pcd_chunk = point_cloud_pcd_chunk
+        self.position = position
+        self.timeout: Optional[float] = None
+
+    async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        response = GetInternalStateResponse(internal_state_chunk=self.internal_state_chunk)
+        await stream.send_message(response)
+
+    async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        response = GetPointCloudMapResponse(point_cloud_pcd_chunk=self.point_cloud_pcd_chunk)
+        await stream.send_message(response)
+
+    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        response = GetPositionResponse(pose=self.position)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
