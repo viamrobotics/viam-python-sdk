@@ -140,11 +140,13 @@
 <span class="sd">            success = await MotionServiceClient.move(resource_name, ...)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): Name of a component on a given robot.</span>
-<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.</span>
-<span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
-<span class="sd">                WorldState message.</span>
-<span class="sd">            constraints (Constraints): When supplied, the motion service will create a plan that obeys any specified constraints</span>
+<span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.</span>
+<span class="sd">            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was</span>
+<span class="sd">                observed.</span>
+<span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints</span>
+<span class="sd">                expressed in the WorldState message.</span>
+<span class="sd">            constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any</span>
+<span class="sd">                specified constraints</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the move was successful</span>
@@ -178,10 +180,11 @@
 <span class="sd">        to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): Name of a component on a given robot.</span>
-<span class="sd">            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.</span>
-<span class="sd">            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the</span>
-<span class="sd">                WorldState message.</span>
+<span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.</span>
+<span class="sd">            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was</span>
+<span class="sd">                observed.</span>
+<span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints</span>
+<span class="sd">                expressed in the WorldState message.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the move was successful</span>
@@ -217,9 +220,10 @@
 
 
 <span class="sd">        Args:</span>
-<span class="sd">            component_name (ResourceName): Name of a component on a robot.</span>
+<span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a robot.</span>
 <span class="sd">            destination_frame (str): Name of the desired reference frame.</span>
-<span class="sd">            supplemental_transforms (Optional[List[Transforms]]): Transforms used to augment the robot&#39;s frame while calculating pose.</span>
+<span class="sd">            supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the robot&#39;s frame while</span>
+<span class="sd">                calculating pose.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>

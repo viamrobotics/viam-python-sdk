@@ -418,7 +418,7 @@
 <span class="sd">                end_pos = await arm.get_end_position()</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (ResourceName): The component&#39;s ResourceName</span>
+<span class="sd">            name (viam.proto.common.ResourceName): The component&#39;s ResourceName</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: Raised if the requested resource is not a component</span>
@@ -463,7 +463,7 @@
 <span class="sd">                service: MyService = robot.get_service(MyService.get_resource_name(&quot;my_service&quot;))  # type: ignore</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (ResourceName): The service&#39;s ResourceName</span>
+<span class="sd">            name (viam.proto.common.ResourceName): The service&#39;s ResourceName</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: Raised if the requested resource is not a component</span>
@@ -483,7 +483,7 @@
 <span class="sd">        Get a list of all resource names</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[ResourceName]: The list of resource names</span>
+<span class="sd">            List[viam.proto.common.ResourceName]: The list of resource names</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span><span class="p">]</span>
@@ -540,7 +540,7 @@
 <span class="sd">        provide a list of ``ResourceName`` for which you want statuses.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            components (Optional[List[ResourceName]]): Optional list of</span>
+<span class="sd">            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of</span>
 <span class="sd">                ``ResourceName`` for components you want statuses.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">names</span> <span class="o">=</span> <span class="n">components</span> <span class="k">if</span> <span class="n">components</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[]</span>
@@ -556,7 +556,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of operations currently running on the robot.</span>
 
-<span class="sd">        Returns (List[Operation]): The list of operations currently running on a given robot.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOperationsRequest</span><span class="p">()</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOperationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetOperations</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -591,7 +592,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the configuration of the frame system of a given robot.</span>
 
-<span class="sd">        Returns (Config): The configuration of a given robot&#39;s frame system.</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot&#39;s frame system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">FrameSystemConfigRequest</span><span class="p">(</span><span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">additional_transforms</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">FrameSystemConfigResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">FrameSystemConfig</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -605,7 +607,7 @@
 
 <span class="sd">        Args:</span>
 
-<span class="sd">            query (Pose): The pose that should be transformed.</span>
+<span class="sd">            query (viam.proto.common.PoseInFrame): The pose that should be transformed.</span>
 <span class="sd">            destination (str) : The name of the reference frame to transform the given pose to.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -629,7 +631,7 @@
 
 <span class="sd">        Args:</span>
 
-<span class="sd">            queries (List[DiscoveryQuery]): The list of component models to lookup configurations for.</span>
+<span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DiscoverComponentsRequest</span><span class="p">(</span><span class="n">queries</span><span class="o">=</span><span class="n">queries</span><span class="p">)</span>
@@ -645,8 +647,8 @@
 <span class="sd">        Cancel all current and outstanding operations for the robot and stop all actuators and movement</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            extra (Dict[ResourceName, Dict[str, Any]]): Any extra parameters to pass to the components&#39; ``stop`` methods, keyed on the</span>
-<span class="sd">                                                        component&#39;s ``ResourceName``</span>
+<span class="sd">            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources&#39; ``stop`` methods,</span>
+<span class="sd">                keyed on the resource&#39;s ``ResourceName``</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ep</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">StopExtraParameters</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>

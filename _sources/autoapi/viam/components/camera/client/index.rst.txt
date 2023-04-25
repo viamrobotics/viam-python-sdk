@@ -19,11 +19,11 @@ Classes
 
 .. py:class:: CameraClient(name: str, channel: grpclib.client.Channel)
 
-   Bases: :py:obj:`viam.components.camera.camera.Camera`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.components.camera.Camera`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.media.video.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
       :async:
 
       Get the next image from the camera as an Image or RawImage.
@@ -64,7 +64,7 @@ Classes
       :rtype: bytes
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.camera.camera.Camera.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.camera.Camera.Properties
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
@@ -122,7 +122,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

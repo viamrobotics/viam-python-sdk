@@ -19,7 +19,7 @@ Classes
 
 .. py:class:: BaseClient(name: str, channel: grpclib.client.Channel)
 
-   Bases: :py:obj:`viam.components.base.base.Base`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.components.base.Base`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
    gRPC client for the Base component.
 
@@ -55,7 +55,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: set_power(linear: viam.proto.common.Vector3, angular: viam.proto.common.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: set_power(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Set the linear and angular velocity of the Base
@@ -73,7 +73,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: set_velocity(linear: viam.proto.common.Vector3, angular: viam.proto.common.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Set the linear and angular velocities of the base.
@@ -149,7 +149,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

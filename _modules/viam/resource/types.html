@@ -142,7 +142,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert a ```ResourceName``` into a ```Subtype```</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            resource_name (ResourceName): The ResourceName to convert</span>
+<span class="sd">            resource_name (viam.proto.common.ResourceName): The ResourceName to convert</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Self: A new Subtype</span>
@@ -268,7 +268,7 @@
 <span class="sd">        ValueError: Raised if the provided string is not a valid ResourceName</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ResourceName: The new ResourceName</span>
+<span class="sd">        viam.proto.common.ResourceName: The new ResourceName</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([\w-]+:[\w-]+:(?:[\w-]+))\/?([\w-]+:(?:[\w-]+:)*)?(.+)?$&quot;</span><span class="p">)</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>

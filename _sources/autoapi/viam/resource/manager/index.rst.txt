@@ -48,7 +48,7 @@ Attributes
           with the name of an existing component
 
       :param component: The component to register
-      :type component: ComponentBase
+      :type component: ResourceBase
 
 
    .. py:method:: get_resource(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType
@@ -59,7 +59,7 @@ Attributes
       :param of_type: The type of the resource
       :type of_type: Type[ResourceType]
       :param name: The name of the resource
-      :type name: str
+      :type name: viam.proto.common.ResourceName
 
       :raises ResourceNotFoundError: Error if resource with the given type
           and name does not exist in the registry
@@ -73,7 +73,7 @@ Attributes
       Remove the resource with the specified ```ResourceName```.
 
       :param name: The ResourceName of the resource
-      :type name: ResourceName
+      :type name: viam.proto.common.ResourceName
 
 
 

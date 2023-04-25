@@ -86,7 +86,7 @@ Attributes
       Get a list of all resource names
 
       :returns: The list of resource names
-      :rtype: List[ResourceName]
+      :rtype: List[viam.proto.common.ResourceName]
 
    .. py:method:: at_address(address: str, options: Options) -> typing_extensions.Self
       :classmethod:
@@ -162,7 +162,7 @@ Attributes
               end_pos = await arm.get_end_position()
 
       :param name: The component's ResourceName
-      :type name: ResourceName
+      :type name: viam.proto.common.ResourceName
 
       :raises ValueError: Raised if the requested resource is not a component
       :raises ComponentNotFoundError: Error if component with the given type and name does not exist in the registry
@@ -203,7 +203,7 @@ Attributes
               service: MyService = robot.get_service(MyService.get_resource_name("my_service"))  # type: ignore
 
       :param name: The service's ResourceName
-      :type name: ResourceName
+      :type name: viam.proto.common.ResourceName
 
       :raises ValueError: Raised if the requested resource is not a component
       :raises ComponentNotFoundError: Error if component with the given type and name does not exist in the registry
@@ -234,7 +234,7 @@ Attributes
 
       :param components: Optional list of
                          ``ResourceName`` for components you want statuses.
-      :type components: Optional[List[ResourceName]]
+      :type components: Optional[List[viam.proto.common.ResourceName]]
 
 
    .. py:method:: get_operations() -> List[viam.proto.robot.Operation]
@@ -242,7 +242,8 @@ Attributes
 
       Get the list of operations currently running on the robot.
 
-      Returns (List[Operation]): The list of operations currently running on a given robot.
+      :returns: The list of operations currently running on a given robot.
+      :rtype: List[viam.proto.robot.Operation]
 
 
    .. py:method:: cancel_operation(id: str)
@@ -269,7 +270,8 @@ Attributes
 
       Get the configuration of the frame system of a given robot.
 
-      Returns (Config): The configuration of a given robot's frame system.
+      :returns: The configuration of a given robot's frame system.
+      :rtype: List[viam.proto.robot.FrameSystemConfig]
 
 
    .. py:method:: transform_pose(query: viam.proto.common.PoseInFrame, destination: str, additional_transforms: Optional[List[viam.proto.common.Transform]] = None) -> viam.proto.common.PoseInFrame
@@ -278,7 +280,7 @@ Attributes
       Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
 
       :param query: The pose that should be transformed.
-      :type query: Pose
+      :type query: viam.proto.common.PoseInFrame
       :param destination: The name of the reference frame to transform the given pose to.
       :type destination: str
 
@@ -294,7 +296,7 @@ Attributes
       Get the list of discovered component configurations.
 
       :param queries: The list of component models to lookup configurations for.
-      :type queries: List[DiscoveryQuery]
+      :type queries: List[viam.proto.robot.DiscoveryQuery]
 
 
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
@@ -302,9 +304,9 @@ Attributes
 
       Cancel all current and outstanding operations for the robot and stop all actuators and movement
 
-      :param extra: Any extra parameters to pass to the components' ``stop`` methods, keyed on the
-                    component's ``ResourceName``
-      :type extra: Dict[ResourceName, Dict[str, Any]]
+      :param extra: Any extra parameters to pass to the resources' ``stop`` methods,
+                    keyed on the resource's ``ResourceName``
+      :type extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]]
 
 
 

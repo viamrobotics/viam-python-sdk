@@ -39,12 +39,12 @@ Classes
          Whether the camera has a valid implementation of ``get_point_cloud``
 
       .. py:attribute:: intrinsic_parameters
-         :type: viam.proto.component.camera.IntrinsicParameters
+         :type: viam.components.camera.IntrinsicParameters
 
          The properties of the camera
 
       .. py:attribute:: distortion_parameters
-         :type: viam.proto.component.camera.DistortionParameters
+         :type: viam.components.camera.DistortionParameters
 
          The distortion parameters of the camera
 
@@ -54,7 +54,7 @@ Classes
 
       
 
-   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None, **kwargs) -> Union[PIL.Image.Image, viam.media.video.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None, **kwargs) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
       :abstractmethod:
       :async:
 
@@ -157,7 +157,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

@@ -144,7 +144,7 @@ Classes
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
                 from the given camera, with the given detector applied to it.
-      :rtype: List[Detection]
+      :rtype: List[viam.proto.service.vision.Detection]
 
 
    .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
@@ -158,7 +158,7 @@ Classes
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
                 from the given camera, with the given detector applied to it.
-      :rtype: List[Detection]
+      :rtype: List[viam.proto.service.vision.Detection]
 
 
    .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
@@ -172,7 +172,7 @@ Classes
       :type count: int
 
       :returns: The list of Classifications
-      :rtype: List[Classification]
+      :rtype: List[viam.proto.service.vision.Classification]
 
 
    .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
@@ -184,7 +184,7 @@ Classes
       :type image: Image
 
       :returns: The list of Classifications
-      :rtype: List[Classification]
+      :rtype: List[viam.proto.service.vision.Classification]
 
 
    .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
@@ -211,7 +211,7 @@ Classes
       :type camera_name: str
 
       :returns: The pointcloud objects with metadata
-      :rtype: List[PointCloudObject]
+      :rtype: List[viam.proto.common.PointCloudObject]
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
@@ -261,7 +261,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

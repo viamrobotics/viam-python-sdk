@@ -34,7 +34,7 @@ Classes
       Get the ``ResourceName`` of all the ``Sensor`` resources connected to this Robot
 
       :returns: The list of all Sensors
-      :rtype: List[ResourceName]
+      :rtype: List[viam.proto.common.ResourceName]
 
 
    .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]
@@ -43,10 +43,10 @@ Classes
       Get the readings from the specific sensors provided
 
       :param sensors: The ``ResourceName`` of the the ``Sensor`` resources to get readings from
-      :type sensors: List[ResourceName]
+      :type sensors: List[viam.proto.common.ResourceName]
 
       :returns: The readings from the sensors, mapped by ``ResourceName``
-      :rtype: Mapping[ResourceName, Mapping[str, Any]]
+      :rtype: Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
@@ -96,7 +96,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

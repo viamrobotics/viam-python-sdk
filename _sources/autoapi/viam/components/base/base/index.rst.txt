@@ -66,7 +66,7 @@ Classes
       :type velocity: float
 
 
-   .. py:method:: set_power(linear: viam.proto.common.Vector3, angular: viam.proto.common.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: set_power(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -85,7 +85,7 @@ Classes
       :type angular: Vector3
 
 
-   .. py:method:: set_velocity(linear: viam.proto.common.Vector3, angular: viam.proto.common.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -165,7 +165,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

@@ -26,16 +26,53 @@ Classes
    This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
 
+   .. py:class:: Properties
+
+      .. py:property:: proto
+         :type: viam.proto.component.movementsensor.GetPropertiesResponse
+
+
+      .. py:attribute:: linear_acceleration_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: angular_velocity_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: orientation_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: position_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: compass_heading_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: linear_velocity_supported
+         :type: bool
+
+         
+
+      .. py:method:: from_proto(proto: viam.proto.component.movementsensor.GetPropertiesResponse) -> typing_extensions.Self
+         :classmethod:
+
+
+
    .. py:attribute:: SUBTYPE
       :type: Final
 
       
 
-   .. py:attribute:: Properties
-
-      
-
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.proto.common.GeoPoint, float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :abstractmethod:
       :async:
 
@@ -45,7 +82,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :abstractmethod:
       :async:
 
@@ -55,7 +92,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :abstractmethod:
       :async:
 
@@ -65,7 +102,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
       :abstractmethod:
       :async:
 
@@ -85,7 +122,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Orientation
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Orientation
       :abstractmethod:
       :async:
 
@@ -102,7 +139,7 @@ Classes
       Get the supported properties of this sensor
 
       :returns: The properties
-      :rtype: Properties
+      :rtype: MovementSensor.Properties
 
 
    .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]
@@ -184,7 +221,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

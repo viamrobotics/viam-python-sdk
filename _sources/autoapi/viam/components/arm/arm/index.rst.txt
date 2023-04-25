@@ -32,16 +32,17 @@ Classes
 
       
 
-   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.Pose
+   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.Pose
       :abstractmethod:
       :async:
 
       Get the current position of the end of the arm expressed as a Pose.
 
-      Returns: The location and orientation of the arm described as a Pose.
+      :returns: The location and orientation of the arm described as a Pose.
+      :rtype: Pose
 
 
-   .. py:method:: move_to_position(pose: viam.proto.common.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -51,7 +52,7 @@ Classes
       :type pose: Pose
 
 
-   .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+   .. py:method:: move_to_joint_positions(positions: viam.components.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :abstractmethod:
       :async:
 
@@ -61,7 +62,7 @@ Classes
       :type positions: JointPositions
 
 
-   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.component.arm.JointPositions
+   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.JointPositions
       :abstractmethod:
       :async:
 
@@ -138,7 +139,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

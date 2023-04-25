@@ -23,7 +23,7 @@ Classes
 
    gRPC client for the MovementSensor component.
 
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[viam.proto.common.GeoPoint, float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :async:
 
       Get the current GeoPoint (latitude, longitude) and altitude (mm)
@@ -32,7 +32,7 @@ Classes
       :rtype: Tuple[GeoPoint, float]
 
 
-   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
       Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec
@@ -41,7 +41,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Vector3
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
       Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec
@@ -50,7 +50,7 @@ Classes
       :rtype: Vector3
 
 
-   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Vector3
+   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
       Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2
@@ -68,7 +68,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Orientation
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Orientation
       :async:
 
       Get the current orientation
@@ -83,7 +83,7 @@ Classes
       Get the supported properties of this sensor
 
       :returns: The properties
-      :rtype: Properties
+      :rtype: MovementSensor.Properties
 
 
    .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, float]
@@ -163,7 +163,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

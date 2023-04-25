@@ -32,7 +32,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(positions: List[float], world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_position(positions: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Move the gantry to a new position.
@@ -40,9 +40,6 @@ Classes
       :param positions: List of positions for the axes to move to,
                         in millimeters.
       :type positions: List[float]
-      :param world_state: Object describing
-                          obstacles for the gantry to avoid on its way to ``positions``.
-      :type world_state: Optional[WorldState]
 
 
    .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]
@@ -118,7 +115,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

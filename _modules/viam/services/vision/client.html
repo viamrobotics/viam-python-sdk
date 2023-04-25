@@ -136,7 +136,7 @@
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Detection]: A list of 2D bounding boxes, their labels, and the</span>
+<span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
 <span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
 <span class="sd">            from the given camera, with the given detector applied to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -159,7 +159,7 @@
 <span class="sd">            image (Image): The image to get detections from</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Detection]: A list of 2D bounding boxes, their labels, and the</span>
+<span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
 <span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
 <span class="sd">            from the given camera, with the given detector applied to it.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -195,7 +195,7 @@
 <span class="sd">            count (int): The number of classifications desired</span>
 
 <span class="sd">        returns:</span>
-<span class="sd">            List[Classification]: The list of Classifications</span>
+<span class="sd">            List[viam.proto.service.vision.Classification]: The list of Classifications</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -217,7 +217,7 @@
 <span class="sd">            image (Image): The image to get detections from</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Classification]: The list of Classifications</span>
+<span class="sd">            List[viam.proto.service.vision.Classification]: The list of Classifications</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -262,7 +262,7 @@
 <span class="sd">            camera_name (str): The name of the camera</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[PointCloudObject]: The pointcloud objects with metadata</span>
+<span class="sd">            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>

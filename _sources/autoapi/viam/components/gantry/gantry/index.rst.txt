@@ -51,9 +51,6 @@ Classes
       :param positions: List of positions for the axes to move to,
                         in millimeters.
       :type positions: List[float]
-      :param world_state: Object describing
-                          obstacles for the gantry to avoid on its way to ``positions``.
-      :type world_state: Optional[WorldState]
 
 
    .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]
@@ -133,7 +130,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

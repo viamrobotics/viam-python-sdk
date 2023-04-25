@@ -53,14 +53,16 @@ Classes
           success = await MotionServiceClient.move(resource_name, ...)
 
       :param component_name: Name of a component on a given robot.
-      :type component_name: ResourceName
-      :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.
-      :type destination: PoseInFrame
-      :param world_state: When supplied, the motion service will create a plan that obeys any contraints expressed in the
-                          WorldState message.
-      :type world_state: WorldState
-      :param constraints: When supplied, the motion service will create a plan that obeys any specified constraints
-      :type constraints: Constraints
+      :type component_name: viam.proto.common.ResourceName
+      :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was
+                          observed.
+      :type destination: viam.proto.common.PoseInFrame
+      :param world_state: When supplied, the motion service will create a plan that obeys any contraints
+                          expressed in the WorldState message.
+      :type world_state: viam.proto.common.WorldState
+      :param constraints: When supplied, the motion service will create a plan that obeys any
+                          specified constraints
+      :type constraints: viam.proto.service.motion.Constraints
 
       :returns: Whether the move was successful
       :rtype: bool
@@ -75,12 +77,13 @@ Classes
       to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
 
       :param component_name: Name of a component on a given robot.
-      :type component_name: ResourceName
-      :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.
-      :type destination: PoseInFrame
-      :param world_state: When supplied, the motion service will create a plan that obeys any contraints expressed in the
-                          WorldState message.
-      :type world_state: WorldState
+      :type component_name: viam.proto.common.ResourceName
+      :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was
+                          observed.
+      :type destination: viam.proto.common.PoseInFrame
+      :param world_state: When supplied, the motion service will create a plan that obeys any contraints
+                          expressed in the WorldState message.
+      :type world_state: viam.proto.common.WorldState
 
       :returns: Whether the move was successful
       :rtype: bool
@@ -98,11 +101,12 @@ Classes
 
 
       :param component_name: Name of a component on a robot.
-      :type component_name: ResourceName
+      :type component_name: viam.proto.common.ResourceName
       :param destination_frame: Name of the desired reference frame.
       :type destination_frame: str
-      :param supplemental_transforms: Transforms used to augment the robot's frame while calculating pose.
-      :type supplemental_transforms: Optional[List[Transforms]]
+      :param supplemental_transforms: Transforms used to augment the robot's frame while
+                                      calculating pose.
+      :type supplemental_transforms: Optional[List[viam.proto.common.Transform]]
 
       :returns: Pose of the given component and the frame in which it was observed.
       :rtype: ``Pose`` (PoseInFrame)
@@ -155,7 +159,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

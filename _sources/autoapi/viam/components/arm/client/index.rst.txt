@@ -19,21 +19,22 @@ Classes
 
 .. py:class:: ArmClient(name: str, channel: grpclib.client.Channel)
 
-   Bases: :py:obj:`viam.components.arm.arm.Arm`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.components.arm.Arm`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
    gRPC client for an Arm component.
 
    Used to communicate with an existing ``Arm`` implementation over gRPC.
 
-   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.common.Pose
+   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.arm.Pose
       :async:
 
       Get the current position of the end of the arm expressed as a Pose.
 
-      Returns: The location and orientation of the arm described as a Pose.
+      :returns: The location and orientation of the arm described as a Pose.
+      :rtype: Pose
 
 
-   .. py:method:: move_to_position(pose: viam.proto.common.Pose, world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
       Move the end of the arm to the Pose specified in ``pose``.
@@ -124,7 +125,7 @@ Classes
       :type kwargs: Mapping[str, Any]
 
       :returns: The operation associated with this function
-      :rtype: Operation
+      :rtype: viam.operations.Operation
 
 
 

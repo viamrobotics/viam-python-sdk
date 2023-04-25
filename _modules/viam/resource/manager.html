@@ -126,7 +126,7 @@
 <span class="sd">                                     with the name of an existing component</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            component (ComponentBase): The component to register</span>
+<span class="sd">            component (ResourceBase): The component to register</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">_BaseClasses</span> <span class="o">=</span> <span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">,</span> <span class="n">ServiceBase</span><span class="p">)</span>
         <span class="n">rnames</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -157,7 +157,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            of_type (Type[ResourceType]): The type of the resource</span>
-<span class="sd">            name (str): The name of the resource</span>
+<span class="sd">            name (viam.proto.common.ResourceName): The name of the resource</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ResourceNotFoundError: Error if resource with the given type</span>
@@ -179,7 +179,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the resource with the specified ```ResourceName```.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            name (ResourceName): The ResourceName of the resource</span>
+<span class="sd">            name (viam.proto.common.ResourceName): The ResourceName of the resource</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="p">:</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
