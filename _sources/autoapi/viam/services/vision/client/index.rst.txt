@@ -12,80 +12,9 @@ Classes
 
 .. autoapisummary::
 
-   viam.services.vision.client.VisModelType
-   viam.services.vision.client.VisModelConfig
    viam.services.vision.client.VisionServiceClient
 
 
-
-
-.. py:class:: VisModelType
-
-   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
-
-   str(object='') -> str
-   str(bytes_or_buffer[, encoding[, errors]]) -> str
-
-   Create a new string object from the given object. If encoding or
-   errors is specified, then the object must expose a data buffer
-   that will be decoded using the given encoding and error handler.
-   Otherwise, returns the result of object.__str__() (if defined)
-   or repr(object).
-   encoding defaults to sys.getdefaultencoding().
-   errors defaults to 'strict'.
-
-   .. py:attribute:: DETECTOR_TF_LITE
-      :value: 'tflite_detector'
-
-      
-
-   .. py:attribute:: DETECTOR_TENSORFLOW
-      :value: 'tf_detector'
-
-      
-
-   .. py:attribute:: DETECTOR_COLOR
-      :value: 'color_detector'
-
-      
-
-   .. py:attribute:: CLASSIFIER_TFLITE
-      :value: 'tflite_classifier'
-
-      
-
-   .. py:attribute:: CLASSIFIER_TENSORFLOW
-      :value: 'tf_classifier'
-
-      
-
-   .. py:attribute:: DETECTOR_SEGMENTER
-      :value: 'detector_segmenter'
-
-      
-
-   .. py:attribute:: RADIUS_CLUSTERING_SEGMENTER
-      :value: 'radius_clustering_segmenter'
-
-      
-
-
-.. py:class:: VisModelConfig
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: type
-      :type: VisModelType
-
-      
-
-   .. py:attribute:: parameters
-      :type: Mapping[str, Any]
-
-      
 
 
 .. py:class:: VisionServiceClient(name: str, channel: grpclib.client.Channel)
@@ -100,45 +29,13 @@ Classes
 
       
 
-   .. py:method:: get_detector_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
-      :async:
-
-      Get the list of detectors currently registered in the service.
-
-      :returns: The detector names
-      :rtype: List[str]
-
-
-   .. py:method:: add_detector(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Add a new detector to the service. Returns nothing if successful, and an error if not.
-      Registers a new detector just as if you had put it in the original "register_models" field
-      in the robot config. Available types and their parameters can be found in the
-      vision service documentation.
-
-      :param config: The configuration of the detector to add.
-      :type config: VisModelConfig
-
-
-   .. py:method:: remove_detector(detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Remove the detector with the given name from the service. Returns nothing if successful.
-
-      :param detector_name: The name of the detector to remove
-      :type detector_name: str
-
-
-   .. py:method:: get_detections_from_camera(camera_name: str, detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the next image given a camera and a detector
 
       :param camera_name: The name of the camera to use for detection
       :type camera_name: str
-      :param detector_name: The name of the detector to use for detection
-      :type detector_name: str
 
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
@@ -146,15 +43,13 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], detector_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
 
       :param image: The image to get detections from
       :type image: Image
-      :param detector_name: The name of the detector to use for detection
-      :type detector_name: str
 
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
@@ -162,42 +57,13 @@ Classes
       :rtype: List[Detection]
 
 
-   .. py:method:: get_classifier_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
-      :async:
-
-      Get the list of classifiers currently registered to the service
-
-      :returns: The list of classifier names
-      :rtype: List[str]
-
-
-   .. py:method:: add_classifier(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Add a classifier to the service.
-
-      :param config: The configuration of the classifier
-      :type config: VisModelConfig
-
-
-   .. py:method:: remove_classifier(classifier_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Remove the classifier with the given name from the service. Returns nothing if successful.
-
-      :param classifier_name: The name of the classifier to remove
-      :type classifier_name: str
-
-
-   .. py:method:: get_classifications_from_camera(camera_name: str, classifier_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of classifications in the next image given a camera and a classifier
 
       :param camera_name: The name of the camera to use for detection
       :type camera_name: str
-      :param classifier_name: The name of the classifier to use for classification
-      :type classifier_name: str
       :param count: The number of classifications desired
       :type count: int
 
@@ -205,60 +71,19 @@ Classes
       :rtype: List[Classification]
 
 
-   .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], classifier_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of detections in the given image using the specified detector
 
       :param image: The image to get detections from
       :type image: Image
-      :param classifier_name: The name of the detector to use for detection
-      :type classifier_name: str
 
       :returns: The list of Classifications
       :rtype: List[Classification]
 
 
-   .. py:method:: get_segmenter_names(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[str]
-      :async:
-
-      Get the list of segmenters currently registered in the service.
-
-      :returns: The segmenter names
-      :rtype: List[str]
-
-
-   .. py:method:: add_segmenter(config: VisModelConfig, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Add a segmenter to the service
-
-      :param config: The configuration of the segmenter
-      :type config: VisModelConfig
-
-
-   .. py:method:: remove_segmenter(segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
-      :async:
-
-      Remove the segmenter with the given name from the service. Returns nothing if successful.
-
-      :param segmenter_name: The name of the segmenter to remove
-      :type segmenter_name: str
-
-
-   .. py:method:: get_model_parameters_schema(model_type: VisModelType, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]
-      :async:
-
-      Get the parameters needed to add a model to the vision registry.
-
-      :param model_type: The name of model
-      :type model_type: VisModelType
-
-      :returns: A dictionary representing the parameters as JSONSchema
-      :rtype: Mapping[str, str | int | float | bool | Sequence | Mapping]
-
-
-   .. py:method:: get_object_point_clouds(camera_name: str, segmenter_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
+   .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
@@ -280,8 +105,6 @@ Classes
 
       :param camera_name: The name of the camera
       :type camera_name: str
-      :param segmenter_name: The name of the segmenter
-      :type segmenter_name: str
 
       :returns: The pointcloud objects with metadata
       :rtype: List[PointCloudObject]

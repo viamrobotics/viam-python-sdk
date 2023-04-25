@@ -20,38 +20,18 @@ Classes
 
    viam.proto.service.vision.VisionServiceBase
    viam.proto.service.vision.VisionServiceStub
-   viam.proto.service.vision.AddClassifierRequest
-   viam.proto.service.vision.AddClassifierResponse
-   viam.proto.service.vision.AddDetectorRequest
-   viam.proto.service.vision.AddDetectorResponse
-   viam.proto.service.vision.AddSegmenterRequest
-   viam.proto.service.vision.AddSegmenterResponse
    viam.proto.service.vision.Classification
    viam.proto.service.vision.Detection
    viam.proto.service.vision.GetClassificationsFromCameraRequest
    viam.proto.service.vision.GetClassificationsFromCameraResponse
    viam.proto.service.vision.GetClassificationsRequest
    viam.proto.service.vision.GetClassificationsResponse
-   viam.proto.service.vision.GetClassifierNamesRequest
-   viam.proto.service.vision.GetClassifierNamesResponse
    viam.proto.service.vision.GetDetectionsFromCameraRequest
    viam.proto.service.vision.GetDetectionsFromCameraResponse
    viam.proto.service.vision.GetDetectionsRequest
    viam.proto.service.vision.GetDetectionsResponse
-   viam.proto.service.vision.GetDetectorNamesRequest
-   viam.proto.service.vision.GetDetectorNamesResponse
-   viam.proto.service.vision.GetModelParameterSchemaRequest
-   viam.proto.service.vision.GetModelParameterSchemaResponse
    viam.proto.service.vision.GetObjectPointCloudsRequest
    viam.proto.service.vision.GetObjectPointCloudsResponse
-   viam.proto.service.vision.GetSegmenterNamesRequest
-   viam.proto.service.vision.GetSegmenterNamesResponse
-   viam.proto.service.vision.RemoveClassifierRequest
-   viam.proto.service.vision.RemoveClassifierResponse
-   viam.proto.service.vision.RemoveDetectorRequest
-   viam.proto.service.vision.RemoveDetectorResponse
-   viam.proto.service.vision.RemoveSegmenterRequest
-   viam.proto.service.vision.RemoveSegmenterResponse
 
 
 
@@ -63,26 +43,6 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
-   .. py:method:: GetModelParameterSchema(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetModelParameterSchemaRequest, service.vision.v1.vision_pb2.GetModelParameterSchemaResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: GetDetectorNames(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectorNamesRequest, service.vision.v1.vision_pb2.GetDetectorNamesResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: AddDetector(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.AddDetectorRequest, service.vision.v1.vision_pb2.AddDetectorResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: RemoveDetector(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.RemoveDetectorRequest, service.vision.v1.vision_pb2.RemoveDetectorResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
    .. py:method:: GetDetectionsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest, service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse]) -> None
       :abstractmethod:
       :async:
@@ -93,42 +53,12 @@ Classes
       :async:
 
 
-   .. py:method:: GetClassifierNames(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassifierNamesRequest, service.vision.v1.vision_pb2.GetClassifierNamesResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: AddClassifier(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.AddClassifierRequest, service.vision.v1.vision_pb2.AddClassifierResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: RemoveClassifier(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.RemoveClassifierRequest, service.vision.v1.vision_pb2.RemoveClassifierResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
    .. py:method:: GetClassificationsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest, service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse]) -> None
       :abstractmethod:
       :async:
 
 
    .. py:method:: GetClassifications(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsRequest, service.vision.v1.vision_pb2.GetClassificationsResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: GetSegmenterNames(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetSegmenterNamesRequest, service.vision.v1.vision_pb2.GetSegmenterNamesResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: AddSegmenter(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.AddSegmenterRequest, service.vision.v1.vision_pb2.AddSegmenterResponse]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: RemoveSegmenter(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.RemoveSegmenterRequest, service.vision.v1.vision_pb2.RemoveSegmenterResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -148,197 +78,6 @@ Classes
 
 
 .. py:class:: VisionServiceStub(channel: grpclib.client.Channel)
-
-
-.. py:class:: AddClassifierRequest(*, name: str = ..., classifier_name: str = ..., classifier_model_type: str = ..., classifier_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: classifier_parameters
-      :type: google.protobuf.struct_pb2.Struct
-
-      additional parameters
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: classifier_name
-      :type: str
-
-      name of classifier to add to registry
-
-   .. py:attribute:: classifier_model_type
-      :type: str
-
-      the type of classifier
-
-   .. py:method:: HasField(field_name: Literal[classifier_parameters, b'classifier_parameters', extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: AddClassifierResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-.. py:class:: AddDetectorRequest(*, name: str = ..., detector_name: str = ..., detector_model_type: str = ..., detector_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: detector_parameters
-      :type: google.protobuf.struct_pb2.Struct
-
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: detector_name
-      :type: str
-
-      
-
-   .. py:attribute:: detector_model_type
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[detector_parameters, b'detector_parameters', extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: AddDetectorResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-.. py:class:: AddSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., segmenter_model_type: str = ..., segmenter_parameters: google.protobuf.struct_pb2.Struct | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: segmenter_parameters
-      :type: google.protobuf.struct_pb2.Struct
-
-      parameters of the segmenter model
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: segmenter_name
-      :type: str
-
-      name of the segmenter
-
-   .. py:attribute:: segmenter_model_type
-      :type: str
-
-      name of the segmenter model
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra', segmenter_parameters, b'segmenter_parameters']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: AddSegmenterResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
 
 
 .. py:class:: Classification(*, class_name: str = ..., confidence: float = ...)
@@ -434,7 +173,7 @@ Classes
 
 
 
-.. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -458,11 +197,6 @@ Classes
       :type: str
 
       the image encoded as bytes
-
-   .. py:attribute:: classifier_name
-      :type: str
-
-      the name of the registered classifier
 
    .. py:attribute:: n
       :type: int
@@ -502,7 +236,7 @@ Classes
 
 
 
-.. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., classifier_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -542,11 +276,6 @@ Classes
 
       the actual MIME type of image
 
-   .. py:attribute:: classifier_name
-      :type: str
-
-      the name of the registered classifier
-
    .. py:attribute:: n
       :type: int
 
@@ -585,7 +314,7 @@ Classes
 
 
 
-.. py:class:: GetClassifierNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -598,60 +327,6 @@ Classes
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetClassifierNamesResponse(*, classifier_names: collections.abc.Iterable[builtins.str] | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: classifier_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-
-
-.. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
 
    .. py:attribute:: name
       :type: str
@@ -662,11 +337,6 @@ Classes
       :type: str
 
       name of camera source to use as input
-
-   .. py:attribute:: detector_name
-      :type: str
-
-      name of the registered detector to use
 
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
@@ -702,7 +372,7 @@ Classes
       the bounding boxes and labels
 
 
-.. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -742,11 +412,6 @@ Classes
 
       the actual MIME type of image
 
-   .. py:attribute:: detector_name
-      :type: str
-
-      name of the registered detector to use
-
    .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
 
       Checks if a certain field is set for the message.
@@ -781,120 +446,7 @@ Classes
       the bounding boxes and labels
 
 
-.. py:class:: GetDetectorNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetDetectorNamesResponse(*, detector_names: collections.abc.Iterable[builtins.str] | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: detector_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      detectors in the registry
-
-
-.. py:class:: GetModelParameterSchemaRequest(*, name: str = ..., model_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: model_type
-      :type: str
-
-      name of the type of vision model
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetModelParameterSchemaResponse(*, model_parameter_schema: bytes = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:attribute:: model_parameter_schema
-      :type: bytes
-
-      the parameters as JSON bytes of a jsonschema.Schema
-
-
-.. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., segmenter_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -918,11 +470,6 @@ Classes
       :type: str
 
       Name of a camera
-
-   .. py:attribute:: segmenter_name
-      :type: str
-
-      Name of the segmentation algorithm
 
    .. py:attribute:: mime_type
       :type: str
@@ -966,221 +513,5 @@ Classes
       :type: str
 
       Actual MIME type of response
-
-
-.. py:class:: GetSegmenterNamesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: GetSegmenterNamesResponse(*, segmenter_names: collections.abc.Iterable[builtins.str] | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: segmenter_names
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-      segmenters in the registry
-
-
-.. py:class:: RemoveClassifierRequest(*, name: str = ..., classifier_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: classifier_name
-      :type: str
-
-      name of the classifier in registry
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: RemoveClassifierResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-.. py:class:: RemoveDetectorRequest(*, name: str = ..., detector_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: detector_name
-      :type: str
-
-      name of detector in registry
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: RemoveDetectorResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-
-.. py:class:: RemoveSegmenterRequest(*, name: str = ..., segmenter_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional arguments to the method
-
-   .. py:attribute:: name
-      :type: str
-
-      name of the vision service
-
-   .. py:attribute:: segmenter_name
-      :type: str
-
-      name of segmenter in registry
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: RemoveSegmenterResponse
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
 
 
