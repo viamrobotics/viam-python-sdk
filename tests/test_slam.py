@@ -1,9 +1,18 @@
+from typing import List
 import pytest
 
 from grpclib.testing import ChannelFor
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
-from viam.proto.service.slam import GetInternalStateRequest, GetPointCloudMapRequest, GetPositionRequest, SLAMServiceStub
+from viam.proto.service.slam import (
+    GetInternalStateRequest,
+    GetInternalStateResponse,
+    GetPointCloudMapRequest,
+    GetPointCloudMapResponse,
+    GetPositionRequest,
+    GetPositionResponse,
+    SLAMServiceStub,
+)
 from viam.resource.manager import ResourceManager
 from viam.services.slam import SLAMServiceClient
 from viam.services.slam.service import SLAMService
@@ -55,24 +64,26 @@ class TestServer:
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
             request = GetInternalStateRequest(name=self.name)
-            await client.GetInternalState(request)
-            assert self.slam.internal_state_chunks == INTERNAL_STATE_CHUNKS
+            response: List[GetInternalStateResponse] = await client.GetInternalState(request)
+            for i, chunk in enumerate(response):
+                assert chunk.internal_state_chunk == INTERNAL_STATE_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
             request = GetPointCloudMapRequest(name=self.name)
-            await client.GetPointCloudMap(request)
-            assert self.slam.point_cloud_pcd_chunks == POINT_CLOUD_CHUNKS
+            response: List[GetPointCloudMapResponse] = await client.GetPointCloudMap(request)
+            for i, chunk in enumerate(response):
+                assert chunk.point_cloud_pcd_chunk == POINT_CLOUD_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
             request = GetPositionRequest(name=self.name)
-            await client.GetPosition(request)
-            assert self.slam.position == POSITION
+            response: GetPositionResponse = await client.GetPosition(request)
+            assert response.pose == POSITION
 
     @pytest.mark.asyncio
     async def test_do(self):
