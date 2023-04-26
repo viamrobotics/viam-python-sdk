@@ -30,43 +30,16 @@ class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         self.client = SLAMServiceStub(channel)
 
     async def get_position(self, name: str, *, timeout: Optional[float] = None) -> Pose:
-        """Get current position of the specified component in the SLAM Map
-
-        Args:
-            name (str): The name of the SLAM service
-
-        Returns:
-            Pose: The current position of the specified component
-        """
         request = GetPositionRequest(name=name)
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return response.pose
 
     async def get_point_cloud_map(self, name: str, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
-        """Get the point
-
-        Args:
-            name (str): _description_
-            timeout (Optional[float], optional): _description_. Defaults to None.
-
-        Returns:
-            List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
-                GetPointCloudMapResponse.point_cloud_pcd_chunk values
-        """
         request = GetPointCloudMapRequest(name=name)
         response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
         return response
 
     async def get_internal_state(self, name: str, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
-        """_summary_
-
-        Args:
-            name (str): The name of the SLAM service
-
-        Returns:
-            List[GetInternalStateResponse]: Chunks of the internal state of the SLAM algorithm required to continue mapping/localization
-
-        """
         request = GetInternalStateRequest(name=name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return response
