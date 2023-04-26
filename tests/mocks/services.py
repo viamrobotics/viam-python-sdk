@@ -26,15 +26,6 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.service.slam import (
-    GetInternalStateRequest,
-    GetInternalStateResponse,
-    GetPointCloudMapRequest,
-    GetPointCloudMapResponse,
-    GetPositionRequest,
-    GetPositionResponse,
-    SLAMServiceBase,
-)
 from viam.proto.service.vision import (
     AddClassifierRequest,
     AddClassifierResponse,
@@ -70,7 +61,8 @@ from viam.proto.service.vision import (
     RemoveSegmenterResponse,
     VisionServiceBase,
 )
-from viam.utils import struct_to_dict
+from viam.services.slam.slam import SLAM
+from viam.utils import ValueTypes, struct_to_dict
 
 
 class MockMotionService(MotionServiceBase):
@@ -159,42 +151,29 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSLAMService(SLAMServiceBase):
-    def __init__(self, name: str, internal_state_chunks: List[bytes], point_cloud_pcd_chunks: List[bytes], position: Pose):
+class MockSLAM(SLAM):
+    def __init__(self, name: str):
         self.name = name
-        self.internal_state_chunks = internal_state_chunks
-        self.point_cloud_pcd_chunks = point_cloud_pcd_chunks
-        self.position = position
+        self.internal_state_chunks = [bytes(5), bytes(2)]
+        self.point_cloud_pcd_chunks = [bytes(3), bytes(2)]
+        self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         self.timeout: Optional[float] = None
+        super().__init__(name)
 
-    async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        for chunk in self.internal_state_chunks:
-            response = GetInternalStateResponse(internal_state_chunk=chunk)
-            await stream.send_message(response)
+    async def get_internal_state(self, name: str, *, timeout: Optional[float] = None) -> List[bytes]:
+        self.timeout = timeout
+        return self.internal_state_chunks
 
-    async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        for chunk in self.point_cloud_pcd_chunks:
-            response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
-            await stream.send_message(response)
+    async def get_point_cloud_map(self, name: str, *, timeout: Optional[float] = None) -> List[bytes]:
+        self.timeout = timeout
+        return self.point_cloud_pcd_chunks
 
-    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetPositionResponse(pose=self.position)
-        await stream.send_message(response)
+    async def get_position(self, name: str, *, timeout: Optional[float] = None) -> Pose:
+        self.timeout = timeout
+        return self.position
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(DoCommandResponse(result=request.command))
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
 
 
 class MockVisionService(VisionServiceBase):
