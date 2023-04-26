@@ -48,14 +48,14 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = SLAMServiceClient(SLAM_SERVICE_NAME, channel)
             response = await client.get_internal_state(SLAM_SERVICE_NAME)
-            assert response
+            assert response[0].internal_state_chunk == INTERNAL_STATE_CHUNK
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self, service: MockSLAMService):
         async with ChannelFor([service]) as channel:
             client = SLAMServiceClient(SLAM_SERVICE_NAME, channel)
             response = await client.get_point_cloud_map(SLAM_SERVICE_NAME)
-            assert response
+            assert response[0].point_cloud_pcd_chunk == POINT_CLOUD_CHUNK
 
     @pytest.mark.asyncio
     async def test_do(self, service: MockSLAMService):
