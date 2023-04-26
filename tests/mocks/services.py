@@ -160,10 +160,10 @@ class MockSensorsService(SensorsServiceBase):
 
 
 class MockSLAMService(SLAMServiceBase):
-    def __init__(self, name: str, internal_state_chunk: bytes, point_cloud_pcd_chunk: bytes, position: Pose):
+    def __init__(self, name: str, internal_state_chunks: List[bytes], point_cloud_pcd_chunks: List[bytes], position: Pose):
         self.name = name
-        self.internal_state_chunk = internal_state_chunk
-        self.point_cloud_pcd_chunk = point_cloud_pcd_chunk
+        self.internal_state_chunks = internal_state_chunks
+        self.point_cloud_pcd_chunks = point_cloud_pcd_chunks
         self.position = position
         self.timeout: Optional[float] = None
 
@@ -171,15 +171,17 @@ class MockSLAMService(SLAMServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetInternalStateResponse(internal_state_chunk=self.internal_state_chunk)
-        await stream.send_message(response)
+        for chunk in self.internal_state_chunks:
+            response = GetInternalStateResponse(internal_state_chunk=chunk)
+            await stream.send_message(response)
 
     async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetPointCloudMapResponse(point_cloud_pcd_chunk=self.point_cloud_pcd_chunk)
-        await stream.send_message(response)
+        for chunk in self.point_cloud_pcd_chunks:
+            response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
+            await stream.send_message(response)
 
     async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
         request = await stream.recv_message()

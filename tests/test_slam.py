@@ -7,8 +7,8 @@ from viam.services.slam import SLAMServiceClient
 from . import loose_approx
 from .mocks.services import MockSLAMService
 
-INTERNAL_STATE_CHUNK = bytes(5)
-POINT_CLOUD_CHUNK = bytes(3)
+INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
+POINT_CLOUD_CHUNKS = [bytes(3), bytes(2)]
 POSITION = Pose(
     x=1,
     y=2,
@@ -26,8 +26,8 @@ SLAM_SERVICE_NAME = "slam1"
 def service() -> MockSLAMService:
     return MockSLAMService(
         name=SLAM_SERVICE_NAME,
-        internal_state_chunk=INTERNAL_STATE_CHUNK,
-        point_cloud_pcd_chunk=POINT_CLOUD_CHUNK,
+        internal_state_chunks=INTERNAL_STATE_CHUNKS,
+        point_cloud_pcd_chunks=POINT_CLOUD_CHUNKS,
         position=POSITION,
     )
 
@@ -48,14 +48,18 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = SLAMServiceClient(SLAM_SERVICE_NAME, channel)
             response = await client.get_internal_state(SLAM_SERVICE_NAME)
-            assert response[0].internal_state_chunk == INTERNAL_STATE_CHUNK
+            assert len(response) == len(INTERNAL_STATE_CHUNKS)
+            for i, chunk in enumerate(response):
+                assert chunk.internal_state_chunk == INTERNAL_STATE_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self, service: MockSLAMService):
         async with ChannelFor([service]) as channel:
             client = SLAMServiceClient(SLAM_SERVICE_NAME, channel)
             response = await client.get_point_cloud_map(SLAM_SERVICE_NAME)
-            assert response[0].point_cloud_pcd_chunk == POINT_CLOUD_CHUNK
+            assert len(response) == len(POINT_CLOUD_CHUNKS)
+            for i, chunk in enumerate(response):
+                assert chunk.point_cloud_pcd_chunk == POINT_CLOUD_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_do(self, service: MockSLAMService):

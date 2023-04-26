@@ -20,8 +20,7 @@ from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
-    Connect to the SLAMService, which allows the robot to create a map of its surroundings
-    and find its location in that map.
+    Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
