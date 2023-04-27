@@ -26,36 +26,36 @@ Classes
    .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :async:
 
-      Get the current GeoPoint (latitude, longitude) and altitude (mm)
+      Get the current GeoPoint (latitude, longitude) and altitude (m)
 
-      :returns: The current lat/long, along with the altitude in mm
+      :returns: The current lat/long, along with the altitude in m
       :rtype: Tuple[GeoPoint, float]
 
 
    .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
-      Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in mm/sec
+      Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
 
-      :returns: The linear velocity in mm/sec
+      :returns: The linear velocity in m/sec
       :rtype: Vector3
 
 
    .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
-      Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in radians/sec
+      Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
 
-      :returns: The angular velocity in rad/sec
+      :returns: The angular velocity in degrees/sec
       :rtype: Vector3
 
 
    .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.movement_sensor.Vector3
       :async:
 
-      Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in mm/sec^2
+      Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
 
-      :returns: The linear acceleration in mm/sec^2
+      :returns: The linear acceleration in m/sec^2
       :rtype: Vector3
 
 
@@ -91,7 +91,7 @@ Classes
 
       Get the accuracy of the various sensors
 
-      :returns: The accuracy in mm
+      :returns: The accuracy
       :rtype: Dict[str, float]
 
 
