@@ -20,7 +20,7 @@ from .encoder import Encoder
 
 class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
     """
-    gRPC client for the Ecoder component.
+    gRPC client for the Encoder component.
     """
 
     def __init__(self, name: str, channel: Channel):
