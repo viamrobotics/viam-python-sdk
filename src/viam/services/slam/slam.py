@@ -7,7 +7,7 @@ from . import Pose
 
 class SLAM(ServiceBase):
     """
-    SLAM repressents a SLAM service.
+    SLAM represents a SLAM service.
 
     This acts as an abstract base class for any drivers representing specific
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is

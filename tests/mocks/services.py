@@ -61,7 +61,7 @@ from viam.proto.service.vision import (
     RemoveSegmenterResponse,
     VisionServiceBase,
 )
-from viam.services.slam.slam import SLAM
+from viam.services.slam import SLAM
 from viam.utils import ValueTypes, struct_to_dict
 
 

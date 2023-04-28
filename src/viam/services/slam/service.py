@@ -19,7 +19,7 @@ from . import SLAM
 
 class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
     """
-    gRPC Service for an Arm
+    gRPC Service for a SLAM service
     """
 
     RESOURCE_TYPE = SLAM
