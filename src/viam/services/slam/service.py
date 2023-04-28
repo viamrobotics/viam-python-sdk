@@ -1,7 +1,6 @@
 from grpclib.server import Stream
 
 from viam.errors import ResourceNotFoundError
-from viam.gen.service.slam.v1.slam_grpc import SLAMServiceBase
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
@@ -10,6 +9,7 @@ from viam.proto.service.slam import (
     GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
+    SLAMServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
