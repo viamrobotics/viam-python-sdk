@@ -50,7 +50,7 @@ class TestSLAMService:
         assert resp == {"command": command}
 
 
-class TestServer:
+class TestService:
     @classmethod
     def setup_class(cls):
         cls.name = "slam"
