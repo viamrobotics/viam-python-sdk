@@ -1,8 +1,9 @@
 import abc
 from typing import Final, List, Optional
-from viam.proto.common import Pose
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.services.service_base import ServiceBase
+
+from . import Pose
 
 
 class SLAM(ServiceBase):

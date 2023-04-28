@@ -2,7 +2,7 @@ from typing import Final, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
@@ -16,6 +16,8 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
+
+from . import Pose
 
 
 class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):

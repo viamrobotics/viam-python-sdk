@@ -24,6 +24,7 @@ from .components import (
     ExampleServo,
     MovementSensor,
 )
+from .services import ExampleSLAM
 
 
 async def run(host: str, port: int, log_level: int):
@@ -68,6 +69,7 @@ async def run(host: str, port: int, log_level: int):
     my_pose_tracker = ExamplePoseTracker("pose_tracker0")
     my_sensor = ExampleSensor("sensor0")
     my_servo = ExampleServo("servo0")
+    my_slam = ExampleSLAM("slam0")
     server = Server(
         components=[
             my_arm,
@@ -83,6 +85,7 @@ async def run(host: str, port: int, log_level: int):
             my_pose_tracker,
             my_sensor,
             my_servo,
+            my_slam,
         ]
     )
     await server.serve(host=host, port=port, log_level=log_level)

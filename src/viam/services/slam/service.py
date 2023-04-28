@@ -14,7 +14,7 @@ from viam.proto.service.slam import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .slam import SLAM
+from . import SLAM
 
 
 class SLAMService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
