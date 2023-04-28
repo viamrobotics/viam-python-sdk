@@ -3,7 +3,7 @@ import pytest
 
 from grpclib.testing import ChannelFor
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
@@ -14,8 +14,7 @@ from viam.proto.service.slam import (
     SLAMServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.services.slam import SLAMServiceClient
-from viam.services.slam.service import SLAMServiceRPCService
+from viam.services.slam import Pose, SLAMServiceClient, SLAMServiceRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockSLAM
