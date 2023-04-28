@@ -2,12 +2,11 @@ import abc
 import asyncio
 from dataclasses import dataclass
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
-from typing_extensions import Self
 
 from grpclib import GRPCError
+from typing_extensions import Self
 
 from viam.errors import MethodNotImplementedError, NotSupportedError
-
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
