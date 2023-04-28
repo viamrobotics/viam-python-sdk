@@ -1,7 +1,7 @@
 import abc
 from typing import List, Optional
-from viam.services.service_base import ServiceBase
 
+from ..service_base import ServiceBase
 from . import Pose
 
 
