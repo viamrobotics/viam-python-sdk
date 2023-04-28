@@ -40,7 +40,21 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsResponse,
     VisionServiceBase,
 )
+from viam.services.mlmodel import Metadata, MLModelService
 from viam.utils import struct_to_dict
+
+
+class MockMLModelService(MLModelService):
+    def __init__(self, name: str):
+        self.output_data = {"thing": "thing"}
+        self.metadata_info = Metadata()
+        super().__init__(name)
+
+    async def infer(self, *, timeout: Optional[float] = None) -> Dict:
+        return self.output_data
+
+    async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
+        return self.metadata_info
 
 
 class MockMotionService(MotionServiceBase):
