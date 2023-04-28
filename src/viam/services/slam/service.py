@@ -12,8 +12,9 @@ from viam.proto.service.slam import (
     GetPositionResponse,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.services.slam.slam import SLAM
 from viam.utils import dict_to_struct, struct_to_dict
+
+from .slam import SLAM
 
 
 class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):

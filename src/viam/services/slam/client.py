@@ -13,10 +13,10 @@ from viam.proto.service.slam import (
     SLAMServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.services.slam.slam import SLAM
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from . import Pose
+from .slam import SLAM
 
 
 class SLAMServiceClient(SLAM, ReconfigurableResourceRPCClientBase):
