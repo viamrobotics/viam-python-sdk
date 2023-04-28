@@ -17,16 +17,16 @@ from viam.resource.manager import ResourceManager
 from viam.services.slam import Pose, SLAMServiceClient, SLAMServiceRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .mocks.services import MockSLAM
+from .mocks.services import MockSLAMService
 
 INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
 POINT_CLOUD_CHUNKS = [bytes(3), bytes(2)]
 POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
 
 
-class TestSLAM:
+class TestSLAMService:
     name = "slam"
-    slam = MockSLAM(name="slam")
+    slam = MockSLAMService(name="slam")
 
     @pytest.mark.asyncio
     async def test_get_internal_state_chunks(self):
@@ -54,7 +54,7 @@ class TestServer:
     @classmethod
     def setup_class(cls):
         cls.name = "slam"
-        cls.slam = MockSLAM(name=cls.name)
+        cls.slam = MockSLAMService(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
         cls.service = SLAMServiceRPCService(cls.manager)
 
@@ -99,7 +99,7 @@ class TestClient:
     @classmethod
     def setup_class(cls):
         cls.name = "slam"
-        cls.slam = MockSLAM(name=cls.name)
+        cls.slam = MockSLAMService(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
         cls.service = SLAMServiceRPCService(cls.manager)
 

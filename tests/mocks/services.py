@@ -151,7 +151,7 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSLAM(SLAMService):
+class MockSLAMService(SLAMService):
     def __init__(self, name: str):
         self.name = name
         self.internal_state_chunks = [bytes(5), bytes(2)]
