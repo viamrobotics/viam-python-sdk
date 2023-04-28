@@ -16,10 +16,10 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from . import Pose
-from .slam import SLAM
+from .slam import SLAMService
 
 
-class SLAMServiceClient(SLAM, ReconfigurableResourceRPCClientBase):
+class SLAMServiceClient(SLAMService, ReconfigurableResourceRPCClientBase):
     """
     Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
     """
@@ -45,14 +45,6 @@ class SLAMServiceClient(SLAM, ReconfigurableResourceRPCClientBase):
         return response
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
-        """Send/receive arbitrary commands
-
-        Args:
-            command (Dict[str, ValueTypes]): The command to execute
-
-        Returns:
-            Dict[str, ValueTypes]: Result of the executed command
-        """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

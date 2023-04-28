@@ -3,12 +3,12 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import SLAMServiceClient
 from .service import SLAMServiceRPCService
-from .slam import SLAM
+from .slam import SLAMService
 
 __all__ = [
     "Pose",
     "SLAMServiceClient",
-    "SLAM",
+    "SLAMService",
 ]
 
-Registry.register_subtype(ResourceRegistration(SLAM, SLAMServiceRPCService, lambda name, channel: SLAMServiceClient(name, channel)))
+Registry.register_subtype(ResourceRegistration(SLAMService, SLAMServiceRPCService, lambda name, channel: SLAMServiceClient(name, channel)))

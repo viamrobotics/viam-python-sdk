@@ -61,7 +61,7 @@ from viam.proto.service.vision import (
     RemoveSegmenterResponse,
     VisionServiceBase,
 )
-from viam.services.slam import SLAM
+from viam.services.slam import SLAMService
 from viam.utils import ValueTypes, struct_to_dict
 
 
@@ -151,7 +151,7 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSLAM(SLAM):
+class MockSLAM(SLAMService):
     def __init__(self, name: str):
         self.name = name
         self.internal_state_chunks = [bytes(5), bytes(2)]

@@ -14,15 +14,15 @@ from viam.proto.service.slam import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .slam import SLAM
+from .slam import SLAMService
 
 
-class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
+class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAMService]):
     """
     gRPC Service for a SLAM service
     """
 
-    RESOURCE_TYPE = SLAM
+    RESOURCE_TYPE = SLAMService
 
     async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
         request = await stream.recv_message()

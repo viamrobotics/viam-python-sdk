@@ -1,8 +1,8 @@
 from typing import List
-from viam.services.slam import Pose, SLAM
+from viam.services.slam import Pose, SLAMService
 
 
-class ExampleSLAM(SLAM):
+class ExampleSLAM(SLAMService):
     def __init__(self, name: str):
         self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         self.internal_chunks = [bytes(5), bytes(2)]

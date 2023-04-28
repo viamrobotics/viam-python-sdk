@@ -7,7 +7,7 @@ from ..service_base import ServiceBase
 from . import Pose
 
 
-class SLAM(ServiceBase):
+class SLAMService(ServiceBase):
     """
     SLAM represents a SLAM service.
 
