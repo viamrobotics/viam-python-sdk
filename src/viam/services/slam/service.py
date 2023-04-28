@@ -17,7 +17,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from . import SLAM
 
 
-class SLAMService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
+class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
     """
     gRPC Service for an Arm
     """

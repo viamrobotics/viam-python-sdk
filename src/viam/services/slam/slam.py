@@ -1,6 +1,5 @@
 import abc
-from typing import Final, List, Optional
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from typing import List, Optional
 from viam.services.service_base import ServiceBase
 
 from . import Pose
@@ -14,8 +13,6 @@ class SLAM(ServiceBase):
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
-
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "slam")
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:

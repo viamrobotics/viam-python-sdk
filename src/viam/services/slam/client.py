@@ -14,13 +14,12 @@ from viam.proto.service.slam import (
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
-from viam.services.service_client_base import ServiceClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
-from . import Pose
+from . import Pose, SLAM
 
 
-class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
+class SLAMServiceClient(SLAM, ReconfigurableResourceRPCClientBase):
     """
     Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
     """
@@ -28,8 +27,9 @@ class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
 
     def __init__(self, name: str, channel: Channel):
-        super().__init__(name, channel)
+        self.channel = channel
         self.client = SLAMServiceStub(channel)
+        super().__init__(name)
 
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         request = GetPositionRequest(name=self.name)

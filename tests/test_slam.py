@@ -15,7 +15,7 @@ from viam.proto.service.slam import (
 )
 from viam.resource.manager import ResourceManager
 from viam.services.slam import SLAMServiceClient
-from viam.services.slam.service import SLAMService
+from viam.services.slam.service import SLAMServiceRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockSLAM
@@ -57,7 +57,7 @@ class TestServer:
         cls.name = "slam"
         cls.slam = MockSLAM(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
-        cls.service = SLAMService(cls.manager)
+        cls.service = SLAMServiceRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_internal_state(self):
@@ -102,7 +102,7 @@ class TestClient:
         cls.name = "slam"
         cls.slam = MockSLAM(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
-        cls.service = SLAMService(cls.manager)
+        cls.service = SLAMServiceRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_internal_state(self):
