@@ -160,15 +160,15 @@ class MockSLAM(SLAM):
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def get_internal_state(self, name: str, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
         return self.internal_state_chunks
 
-    async def get_point_cloud_map(self, name: str, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
         return self.point_cloud_pcd_chunks
 
-    async def get_position(self, name: str, *, timeout: Optional[float] = None) -> Pose:
+    async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
         return self.position
 

@@ -33,7 +33,7 @@ class SLAMService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await slam.get_internal_state(name, timeout=timeout)
+        chunks = await slam.get_internal_state(timeout=timeout)
         for chunk in chunks:
             response = GetInternalStateResponse(internal_state_chunk=chunk)
             await stream.send_message(response)
@@ -47,7 +47,7 @@ class SLAMService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await slam.get_point_cloud_map(name, timeout=timeout)
+        chunks = await slam.get_point_cloud_map(timeout=timeout)
         for chunk in chunks:
             response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
             await stream.send_message(response)
@@ -61,7 +61,7 @@ class SLAMService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await slam.get_position(name, timeout=timeout)
+        position = await slam.get_position(timeout=timeout)
         response = GetPositionResponse(pose=position)
         await stream.send_message(response)
 

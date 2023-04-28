@@ -18,7 +18,7 @@ class SLAM(ServiceBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "slam")
 
     @abc.abstractmethod
-    async def get_internal_state(self, name: str, *, timeout: Optional[float]) -> List[bytes]:
+    async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
         """Get the internal state of the SLAM algorithm required to continue mapping/localization
 
         Args:
@@ -31,7 +31,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_point_cloud_map(self, name: str, *, timeout: Optional[float]) -> List[bytes]:
+    async def get_point_cloud_map(self, *, timeout: Optional[float]) -> List[bytes]:
         """
         Get the point cloud map
 
@@ -45,7 +45,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_position(self, name: str, *, timeout: Optional[float]) -> Pose:
+    async def get_position(self, *, timeout: Optional[float]) -> Pose:
         """
         Get current position of the specified component in the SLAM Map
 

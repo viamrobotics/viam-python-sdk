@@ -31,17 +31,17 @@ class TestSLAM:
 
     @pytest.mark.asyncio
     async def test_get_internal_state_chunks(self):
-        chunks = await self.slam.get_internal_state(self.name)
+        chunks = await self.slam.get_internal_state()
         assert chunks == INTERNAL_STATE_CHUNKS
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
-        chunks = await self.slam.get_point_cloud_map(self.name)
+        chunks = await self.slam.get_point_cloud_map()
         assert chunks == POINT_CLOUD_CHUNKS
 
     @pytest.mark.asyncio
     async def test_get_position(self):
-        pos = await self.slam.get_position(self.name)
+        pos = await self.slam.get_position()
         assert pos == POSITION
 
     @pytest.mark.asyncio
@@ -108,7 +108,7 @@ class TestClient:
     async def test_get_internal_state(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceClient(self.name, channel)
-            response = await client.get_internal_state(self.name)
+            response = await client.get_internal_state()
             assert len(response) == len(INTERNAL_STATE_CHUNKS)
             for i, chunk in enumerate(response):
                 assert chunk.internal_state_chunk == INTERNAL_STATE_CHUNKS[i]
@@ -117,7 +117,7 @@ class TestClient:
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceClient(self.name, channel)
-            response = await client.get_point_cloud_map(self.name)
+            response = await client.get_point_cloud_map()
             assert len(response) == len(POINT_CLOUD_CHUNKS)
             for i, chunk in enumerate(response):
                 assert chunk.point_cloud_pcd_chunk == POINT_CLOUD_CHUNKS[i]
@@ -126,7 +126,7 @@ class TestClient:
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceClient(self.name, channel)
-            response = await client.get_position(self.name)
+            response = await client.get_position()
             assert response == POSITION
 
     @pytest.mark.asyncio

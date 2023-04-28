@@ -31,18 +31,18 @@ class SLAMServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         super().__init__(name, channel)
         self.client = SLAMServiceStub(channel)
 
-    async def get_position(self, name: str, *, timeout: Optional[float] = None) -> Pose:
-        request = GetPositionRequest(name=name)
+    async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
+        request = GetPositionRequest(name=self.name)
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return response.pose
 
-    async def get_point_cloud_map(self, name: str, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
-        request = GetPointCloudMapRequest(name=name)
+    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
+        request = GetPointCloudMapRequest(name=self.name)
         response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
         return response
 
-    async def get_internal_state(self, name: str, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
-        request = GetInternalStateRequest(name=name)
+    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
+        request = GetInternalStateRequest(name=self.name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return response
 
