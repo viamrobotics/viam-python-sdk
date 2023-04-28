@@ -93,6 +93,11 @@ class RobotClient:
         The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
         """
 
+        sessions_disabled: bool = False
+        """
+        Whether sessions are disabled
+        """
+
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
