@@ -4,7 +4,7 @@ from typing import Any, Dict, Final, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import Pose, JointPositions
+from . import JointPositions, Pose
 
 
 class Arm(ComponentBase):
