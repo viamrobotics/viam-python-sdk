@@ -69,10 +69,10 @@ class SLAMServiceRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAMService]
         request = await stream.recv_message()
         assert request is not None
         try:
-            arm = self.get_resource(request.name)
+            slam = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await arm.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await slam.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
