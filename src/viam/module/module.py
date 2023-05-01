@@ -44,7 +44,7 @@ class Module:
 
     def __init__(self, address: str, *, log_level: int = logging.DEBUG) -> None:
         self._address = address
-        self.server = Server(components=[], module_service=ModuleRPCService(self))
+        self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
         self._ready = True
         self._lock = Lock()
