@@ -15,17 +15,17 @@ class MLModelServiceClient(MLModelService, ReconfigurableResourceRPCClientBase):
         self.client = MLModelServiceStub(channel)
         super().__init__(name)
 
-    async def infer(self, *, timeout: Optional[float] = None) -> Dict:
-        request = InferRequest(name=self.name)
-        response: InferResponse = self.client.infer(request)
+    async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+        request = InferRequest(name=self.name, input_data=dict_to_struct(input_data))
+        response: InferResponse = await self.client.Infer(request)
         return struct_to_dict(response.output_data)
 
     async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
         request = MetadataRequest(name=self.name)
-        response: MetadataResponse = self.client.metadata(request)
+        response: MetadataResponse = await self.client.Metadata(request)
         return response.metadata
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = self.client.do_command(request, tiemout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, tiemout=timeout)
         return struct_to_dict(response.result)

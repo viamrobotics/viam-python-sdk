@@ -3,6 +3,7 @@ import abc
 from typing import Dict, Final, Optional
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
 
@@ -19,7 +20,7 @@ class MLModelService(ServiceBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
 
     @abc.abstractmethod
-    async def infer(self, *, timeout: Optional[float]) -> Dict:
+    async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float]) -> Dict[str, ValueTypes]:
         ...
 
     @abc.abstractmethod
