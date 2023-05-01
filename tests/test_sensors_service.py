@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.proto.service.sensors import Readings
-from viam.services.sensors import SensorsServiceClient
+from viam.services.sensors import SensorsClient
 from viam.utils import primitive_to_value
 
 from . import loose_approx
@@ -62,7 +62,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_sensors(self, service: MockSensorsService):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             extra = {"foo": "get_sensors"}
             assert service.timeout is None
             timeout = 1.1
@@ -79,7 +79,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_readings(self, service: MockSensorsService):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             sensors = [
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor1"),
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor2"),
@@ -98,7 +98,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_do(self, service: MockSensorsService):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command

@@ -20,7 +20,7 @@ class SLAMService(ServiceBase):
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
-        """Get the internal state of the SLAM algorithm required to continue mapping/localization
+        """Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
         Returns:
             List[GetInternalStateResponse]: Chunks of the internal state of the SLAM algorithm
@@ -31,7 +31,7 @@ class SLAMService(ServiceBase):
     @abc.abstractmethod
     async def get_point_cloud_map(self, *, timeout: Optional[float]) -> List[bytes]:
         """
-        Get the point cloud map
+        Get the point cloud map.
 
         Returns:
             List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
@@ -42,7 +42,7 @@ class SLAMService(ServiceBase):
     @abc.abstractmethod
     async def get_position(self, *, timeout: Optional[float]) -> Pose:
         """
-        Get current position of the specified component in the SLAM Map
+        Get current position of the specified component in the SLAM Map.
 
         Returns:
             Pose: The current position of the specified component

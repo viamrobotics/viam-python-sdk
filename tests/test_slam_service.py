@@ -14,7 +14,7 @@ from viam.proto.service.slam import (
     SLAMServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.services.slam import Pose, SLAMServiceClient, SLAMServiceRPCService
+from viam.services.slam import Pose, SLAMClient, SLAMRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockSLAMService
@@ -56,7 +56,7 @@ class TestService:
         cls.name = "slam"
         cls.slam = MockSLAMService(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
-        cls.service = SLAMServiceRPCService(cls.manager)
+        cls.service = SLAMRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_internal_state(self):
@@ -101,12 +101,12 @@ class TestClient:
         cls.name = "slam"
         cls.slam = MockSLAMService(name=cls.name)
         cls.manager = ResourceManager([cls.slam])
-        cls.service = SLAMServiceRPCService(cls.manager)
+        cls.service = SLAMRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_internal_state(self):
         async with ChannelFor([self.service]) as channel:
-            client = SLAMServiceClient(self.name, channel)
+            client = SLAMClient(self.name, channel)
             response = await client.get_internal_state()
             assert len(response) == len(INTERNAL_STATE_CHUNKS)
             for i, chunk in enumerate(response):
@@ -115,7 +115,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
-            client = SLAMServiceClient(self.name, channel)
+            client = SLAMClient(self.name, channel)
             response = await client.get_point_cloud_map()
             assert len(response) == len(POINT_CLOUD_CHUNKS)
             for i, chunk in enumerate(response):
@@ -124,14 +124,14 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
-            client = SLAMServiceClient(self.name, channel)
+            client = SLAMClient(self.name, channel)
             response = await client.get_position()
             assert response == POSITION
 
     @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
-            client = SLAMServiceClient(self.name, channel)
+            client = SLAMClient(self.name, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == {"command": command}
