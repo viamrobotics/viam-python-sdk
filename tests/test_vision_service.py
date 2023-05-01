@@ -15,7 +15,7 @@ from viam.proto.common import (
 from viam.services.vision import (
     Detection,
     Classification,
-    VisionServiceClient,
+    VisionClient,
 )
 
 from .mocks.services import MockVision
