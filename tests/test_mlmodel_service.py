@@ -1,6 +1,6 @@
 import pytest
 
-from typing import Dict
+from typing import Dict, List
 from grpclib.testing import ChannelFor
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
@@ -14,7 +14,7 @@ OUTPUT_DATA = {
     "n_detections": [3],
     "confidence_scores": [[0.9084375, 0.7359375, 0.33984375]],
     "labels": [[0, 0, 4]],
-    "locations": [[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]],
+    "locations": [[[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]]],
 }
 META_INPUTS = [TensorInfo(name="image", description="i0", data_type="uint8", shape=[300, 200])]
 META_OUTPUTS = [
@@ -97,6 +97,16 @@ class TestClient:
         async with ChannelFor([self.service]) as channel:
             client = MLModelServiceClient(self.name, channel)
             response = await client.infer(INPUT_DATA)
+            assert "confidence_scores" in response.keys()
+            assert "labels" in response.keys()
+            assert "locations" in response.keys()
+            assert isinstance(response["confidence_scores"], List)
+            assert isinstance(response["labels"], List)
+            assert isinstance(response["locations"], List)
+            assert response["n_detections"] == OUTPUT_DATA["n_detections"]
+            assert len(response["confidence_scores"][0]) == len(OUTPUT_DATA["confidence_scores"][0])
+            assert len(response["labels"][0]) == len(OUTPUT_DATA["labels"][0])
+            assert response["locations"][0][0] == OUTPUT_DATA["locations"][0][0]
             assert response == OUTPUT_DATA
 
     @pytest.mark.asyncio

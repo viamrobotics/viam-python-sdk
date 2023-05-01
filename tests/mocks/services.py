@@ -51,7 +51,7 @@ class MockMLModelService(MLModelService):
             "n_detections": [3],
             "confidence_scores": [[0.9084375, 0.7359375, 0.33984375]],
             "labels": [[0, 0, 4]],
-            "locations": [[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]],
+            "locations": [[[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]]],
         }
 
         meta_inputs = [TensorInfo(name="image", description="i0", data_type="uint8", shape=[300, 200])]
