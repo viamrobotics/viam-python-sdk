@@ -14,14 +14,10 @@ from viam.proto.service.slam import (
     SLAMServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.services.slam import Pose, SLAMClient, SLAMRPCService
+from viam.services.slam import SLAMClient, SLAMRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockSLAM
-
-INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
-POINT_CLOUD_CHUNKS = [bytes(3), bytes(2)]
-POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
 
 
 class TestSLAMService:
@@ -31,17 +27,17 @@ class TestSLAMService:
     @pytest.mark.asyncio
     async def test_get_internal_state_chunks(self):
         chunks = await self.slam.get_internal_state()
-        assert chunks == INTERNAL_STATE_CHUNKS
+        assert chunks == MockSLAM.INTERNAL_STATE_CHUNKS
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         chunks = await self.slam.get_point_cloud_map()
-        assert chunks == POINT_CLOUD_CHUNKS
+        assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS
 
     @pytest.mark.asyncio
     async def test_get_position(self):
         pos = await self.slam.get_position()
-        assert pos == POSITION
+        assert pos == MockSLAM.POSITION
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -65,7 +61,7 @@ class TestService:
             request = GetInternalStateRequest(name=self.name)
             response: List[GetInternalStateResponse] = await client.GetInternalState(request)
             for i, chunk in enumerate(response):
-                assert chunk.internal_state_chunk == INTERNAL_STATE_CHUNKS[i]
+                assert chunk.internal_state_chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
@@ -74,7 +70,7 @@ class TestService:
             request = GetPointCloudMapRequest(name=self.name)
             response: List[GetPointCloudMapResponse] = await client.GetPointCloudMap(request)
             for i, chunk in enumerate(response):
-                assert chunk.point_cloud_pcd_chunk == POINT_CLOUD_CHUNKS[i]
+                assert chunk.point_cloud_pcd_chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_position(self):
@@ -82,7 +78,7 @@ class TestService:
             client = SLAMServiceStub(channel)
             request = GetPositionRequest(name=self.name)
             response: GetPositionResponse = await client.GetPosition(request)
-            assert response.pose == POSITION
+            assert response.pose == MockSLAM.POSITION
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -108,25 +104,25 @@ class TestClient:
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
             response = await client.get_internal_state()
-            assert len(response) == len(INTERNAL_STATE_CHUNKS)
+            assert len(response) == len(MockSLAM.INTERNAL_STATE_CHUNKS)
             for i, chunk in enumerate(response):
-                assert chunk.internal_state_chunk == INTERNAL_STATE_CHUNKS[i]
+                assert chunk.internal_state_chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
             response = await client.get_point_cloud_map()
-            assert len(response) == len(POINT_CLOUD_CHUNKS)
+            assert len(response) == len(MockSLAM.POINT_CLOUD_PCD_CHUNKS)
             for i, chunk in enumerate(response):
-                assert chunk.point_cloud_pcd_chunk == POINT_CLOUD_CHUNKS[i]
+                assert chunk.point_cloud_pcd_chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_position(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
             response = await client.get_position()
-            assert response == POSITION
+            assert response == MockSLAM.POSITION
 
     @pytest.mark.asyncio
     async def test_do(self):
