@@ -76,6 +76,7 @@ class MockMLModelService(MLModelService):
         self.meta = Metadata(
             name="fake_detector", type="object_detector", description="desc", input_info=meta_inputs, output_info=meta_outputs
         )
+        self.timeout: Optional[float] = None
 
         super().__init__(name)
 
