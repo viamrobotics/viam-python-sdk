@@ -29,15 +29,15 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, components: List[ResourceBase], *, module_service: Optional["ModuleRPCService"] = None):
+    def __init__(self, resources: List[ResourceBase], *, module_service: Optional["ModuleRPCService"] = None):
         """
-        Initialize the Server with a list of components
+        Initialize the Server with a list of resources
         to be managed.
 
         Args:
-            components (List[ComponentBase]): List of components to be managed
+            resources (List[ComponentBase]): List of resources to be managed
         """
-        super().__init__(components)
+        super().__init__(resources)
 
         services = [SignalingService(), RobotService(manager=self)]
         for registration in Registry.REGISTERED_SUBTYPES().values():

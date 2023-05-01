@@ -72,7 +72,7 @@ async def run(host: str, port: int, log_level: int):
     my_servo = ExampleServo("servo0")
     my_slam = ExampleSLAM("slam0")
     server = Server(
-        components=[
+        resources=[
             my_arm,
             my_audio_input,
             my_base,
