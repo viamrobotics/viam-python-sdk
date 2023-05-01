@@ -47,7 +47,7 @@ from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
-from viam.services.vision import VisionServiceClient
+from viam.services.vision import VisionClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
@@ -337,8 +337,8 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             client._resource_names.append(ResourceName(namespace="rdk", type="service", subtype="vision", name="vision1"))
             with pytest.raises(ResourceNotFoundError):
-                VisionServiceClient.from_robot(client)
-            VisionServiceClient.from_robot(client, "vision1")
+                VisionClient.from_robot(client)
+            VisionClient.from_robot(client, "vision1")
             await client.close()
 
     @pytest.mark.asyncio

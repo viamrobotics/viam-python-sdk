@@ -61,11 +61,11 @@ from viam.proto.service.vision import (
     RemoveSegmenterResponse,
     VisionServiceBase,
 )
-from viam.services.slam import SLAMService
+from viam.services.slam import SLAM
 from viam.utils import ValueTypes, struct_to_dict
 
 
-class MockMotionService(MotionServiceBase):
+class MockMotion(MotionServiceBase):
     def __init__(
         self,
         move_responses: Dict[str, bool],
@@ -120,7 +120,7 @@ class MockMotionService(MotionServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSensorsService(SensorsServiceBase):
+class MockSensors(SensorsServiceBase):
     def __init__(self, sensors: List[ResourceName], readings: List[Readings]):
         self.sensors = sensors
         self.readings = readings
@@ -151,7 +151,7 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSLAMService(SLAMService):
+class MockSLAM(SLAM):
     def __init__(self, name: str):
         self.name = name
         self.internal_state_chunks = [bytes(5), bytes(2)]
@@ -176,7 +176,7 @@ class MockSLAMService(SLAMService):
         return {"command": command}
 
 
-class MockVisionService(VisionServiceBase):
+class MockVision(VisionServiceBase):
     def __init__(
         self,
         detectors: List[str],

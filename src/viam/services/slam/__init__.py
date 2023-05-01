@@ -1,14 +1,14 @@
 from viam.proto.common import Pose
 from viam.resource.registry import Registry, ResourceRegistration
 
-from .client import SLAMServiceClient
-from .service import SLAMServiceRPCService
-from .slam import SLAMService
+from .client import SLAMClient
+from .service import SLAMRPCService
+from .slam import SLAM
 
 __all__ = [
     "Pose",
-    "SLAMServiceClient",
-    "SLAMService",
+    "SLAMClient",
+    "SLAM",
 ]
 
-Registry.register_subtype(ResourceRegistration(SLAMService, SLAMServiceRPCService, lambda name, channel: SLAMServiceClient(name, channel)))
+Registry.register_subtype(ResourceRegistration(SLAM, SLAMRPCService, lambda name, channel: SLAMClient(name, channel)))

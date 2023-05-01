@@ -16,10 +16,10 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import dict_to_struct, struct_to_dict, ValueTypes
 
 from . import Pose
-from .slam import SLAMService
+from .slam import SLAM
 
 
-class SLAMServiceClient(SLAMService, ReconfigurableResourceRPCClientBase):
+class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
     """
     Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
     """

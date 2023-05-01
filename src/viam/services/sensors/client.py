@@ -10,7 +10,7 @@ from viam.services.service_client_base import ServiceClientBase
 from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 
-class SensorsServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
+class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors")
