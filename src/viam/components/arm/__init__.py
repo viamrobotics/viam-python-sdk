@@ -1,11 +1,13 @@
 import asyncio
 
+from viam.proto.common import Pose
+from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
 
-from .arm import Arm, JointPositions, Pose
+from .arm import Arm
 from .client import ArmClient
 from .service import ArmRPCService
 

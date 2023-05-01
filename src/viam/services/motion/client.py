@@ -52,11 +52,13 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             success = await MotionServiceClient.move(resource_name, ...)
 
         Args:
-            component_name (ResourceName): Name of a component on a given robot.
-            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.
-            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the
-                WorldState message.
-            constraints (Constraints): When supplied, the motion service will create a plan that obeys any specified constraints
+            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
+            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
+                observed.
+            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints
+                expressed in the WorldState message.
+            constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any
+                specified constraints
 
         Returns:
             bool: Whether the move was successful
@@ -90,10 +92,11 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
 
         Args:
-            component_name (ResourceName): Name of a component on a given robot.
-            destination (PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was observed.
-            world_state (WorldState): When supplied, the motion service will create a plan that obeys any contraints expressed in the
-                WorldState message.
+            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
+            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
+                observed.
+            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints
+                expressed in the WorldState message.
 
         Returns:
             bool: Whether the move was successful
@@ -129,9 +132,10 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
 
         Args:
-            component_name (ResourceName): Name of a component on a robot.
+            component_name (viam.proto.common.ResourceName): Name of a component on a robot.
             destination_frame (str): Name of the desired reference frame.
-            supplemental_transforms (Optional[List[Transforms]]): Transforms used to augment the robot's frame while calculating pose.
+            supplemental_transforms (Optional[List[viam.proto.common.Transform]]): Transforms used to augment the robot's frame while
+                calculating pose.
 
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.

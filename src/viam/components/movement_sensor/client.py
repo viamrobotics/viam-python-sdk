@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint, Orientation, Vector3
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -26,6 +26,8 @@ from viam.proto.component.movementsensor import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
+from . import GeoPoint, Orientation, Vector3
+
 
 class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
     """gRPC client for the MovementSensor component."""
@@ -40,7 +42,7 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
-        return response.coordinate, response.altitude_mm
+        return response.coordinate, response.altitude_m
 
     async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Vector3:
         if extra is None:
@@ -82,14 +84,14 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return response
+        return MovementSensor.Properties.from_proto(response)
 
     async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, float]:
         if extra is None:
             extra = {}
         request = GetAccuracyRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetAccuracyResponse = await self.client.GetAccuracy(request, timeout=timeout)
-        return response.accuracy_mm
+        return response.accuracy
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
         if extra is None:

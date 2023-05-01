@@ -1,7 +1,8 @@
+from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import MovementSensorClient
-from .movement_sensor import GeoPoint, MovementSensor, Orientation, Vector3
+from .movement_sensor import MovementSensor
 from .service import MovementSensorRPCService
 
 __all__ = [

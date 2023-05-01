@@ -1,5 +1,4 @@
-import json
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.server import Stream
 
@@ -27,38 +26,18 @@ from viam.proto.service.sensors import (
     SensorsServiceBase,
 )
 from viam.proto.service.vision import (
-    AddClassifierRequest,
-    AddClassifierResponse,
-    AddDetectorRequest,
-    AddDetectorResponse,
-    AddSegmenterRequest,
-    AddSegmenterResponse,
     Classification,
     Detection,
     GetClassificationsFromCameraRequest,
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
     GetClassificationsResponse,
-    GetClassifierNamesRequest,
-    GetClassifierNamesResponse,
     GetDetectionsFromCameraRequest,
     GetDetectionsFromCameraResponse,
     GetDetectionsRequest,
     GetDetectionsResponse,
-    GetDetectorNamesRequest,
-    GetDetectorNamesResponse,
-    GetModelParameterSchemaRequest,
-    GetModelParameterSchemaResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
-    GetSegmenterNamesRequest,
-    GetSegmenterNamesResponse,
-    RemoveClassifierRequest,
-    RemoveClassifierResponse,
-    RemoveDetectorRequest,
-    RemoveDetectorResponse,
-    RemoveSegmenterRequest,
-    RemoveSegmenterResponse,
     VisionServiceBase,
 )
 from viam.services.slam import SLAM
@@ -185,7 +164,6 @@ class MockVision(VisionServiceBase):
         classifications: List[Classification],
         segmenters: List[str],
         point_clouds: List[PointCloudObject],
-        model_schema: Mapping[str, Mapping[str, Union[str, int, float, bool, Sequence, Mapping]]],
     ):
         self.detectors = detectors
         self.detections = detections
@@ -193,33 +171,8 @@ class MockVision(VisionServiceBase):
         self.classifications = classifications
         self.segmenters = segmenters
         self.point_clouds = point_clouds
-        self.model_schema = model_schema
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
-
-    async def GetDetectorNames(self, stream: Stream[GetDetectorNamesRequest, GetDetectorNamesResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetDetectorNamesResponse(detector_names=self.detectors)
-        await stream.send_message(response)
-
-    async def AddDetector(self, stream: Stream[AddDetectorRequest, AddDetectorResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.detectors.append(request.detector_name)
-        await stream.send_message(AddDetectorResponse())
-
-    async def RemoveDetector(self, stream: Stream[RemoveDetectorRequest, RemoveDetectorResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.detectors.remove(request.detector_name)
-        await stream.send_message(RemoveDetectorResponse())
 
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
         request = await stream.recv_message()
@@ -236,30 +189,6 @@ class MockVision(VisionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = GetDetectionsResponse(detections=self.detections)
         await stream.send_message(response)
-
-    async def GetClassifierNames(self, stream: Stream[GetClassifierNamesRequest, GetClassifierNamesResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetClassifierNamesResponse(classifier_names=self.classifiers)
-        await stream.send_message(response)
-
-    async def AddClassifier(self, stream: Stream[AddClassifierRequest, AddClassifierResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.classifiers.append(request.classifier_name)
-        await stream.send_message(AddClassifierResponse())
-
-    async def RemoveClassifier(self, stream: Stream[RemoveClassifierRequest, RemoveClassifierResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.classifiers.remove(request.classifier_name)
-        await stream.send_message(RemoveClassifierResponse())
 
     async def GetClassificationsFromCamera(
         self, stream: Stream[GetClassificationsFromCameraRequest, GetClassificationsFromCameraResponse]
@@ -286,39 +215,6 @@ class MockVision(VisionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=self.point_clouds)
         await stream.send_message(response)
-
-    async def GetModelParameterSchema(self, stream: Stream[GetModelParameterSchemaRequest, GetModelParameterSchemaResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        schema = self.model_schema[request.model_type]
-        response = GetModelParameterSchemaResponse(model_parameter_schema=json.dumps(schema).encode("utf-8"))
-        await stream.send_message(response)
-
-    async def GetSegmenterNames(self, stream: Stream[GetSegmenterNamesRequest, GetSegmenterNamesResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetSegmenterNamesResponse(segmenter_names=self.segmenters)
-        await stream.send_message(response)
-
-    async def AddSegmenter(self, stream: Stream[AddSegmenterRequest, AddSegmenterResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.segmenters.append(request.segmenter_name)
-        await stream.send_message(AddSegmenterResponse())
-
-    async def RemoveSegmenter(self, stream: Stream[RemoveSegmenterRequest, RemoveSegmenterResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.segmenters.remove(request.segmenter_name)
-        await stream.send_message(RemoveSegmenterResponse())
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

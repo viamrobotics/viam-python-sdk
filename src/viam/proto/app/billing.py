@@ -18,6 +18,7 @@ from ...gen.app.v1.billing_pb2 import (
     GetUnpaidBalanceResponse,
     Invoice,
     InvoiceSummary,
+    PaymentMethodCard,
 )
 
 __all__ = [
@@ -37,4 +38,5 @@ __all__ = [
     "GetUnpaidBalanceResponse",
     "Invoice",
     "InvoiceSummary",
+    "PaymentMethodCard",
 ]

@@ -1,9 +1,7 @@
-from .client import Classification, Detection, VisionClient, VisModelConfig, VisModelType
+from .client import Classification, Detection, VisionClient
 
 __all__ = [
     "Classification",
     "Detection",
     "VisionClient",
-    "VisModelConfig",
-    "VisModelType",
 ]

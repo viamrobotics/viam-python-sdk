@@ -54,7 +54,7 @@ class Subtype:
         """Convert a ```ResourceName``` into a ```Subtype```
 
         Args:
-            resource_name (ResourceName): The ResourceName to convert
+            resource_name (viam.proto.common.ResourceName): The ResourceName to convert
 
         Returns:
             Self: A new Subtype
@@ -180,7 +180,7 @@ def resource_name_from_string(string: str) -> ResourceName:
         ValueError: Raised if the provided string is not a valid ResourceName
 
     Returns:
-        ResourceName: The new ResourceName
+        viam.proto.common.ResourceName: The new ResourceName
     """
     regex = re.compile(r"^([\w-]+:[\w-]+:(?:[\w-]+))\/?([\w-]+:(?:[\w-]+:)*)?(.+)?$")
     match = regex.match(string)

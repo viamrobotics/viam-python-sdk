@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, WorldState
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
@@ -40,7 +40,6 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,

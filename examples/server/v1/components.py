@@ -44,7 +44,6 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     Vector3,
-    WorldState,
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
@@ -72,7 +71,6 @@ class ExampleArm(Arm):
     async def move_to_position(
         self,
         pose: Pose,
-        world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):
@@ -470,7 +468,6 @@ class ExampleGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
-        world_state: Optional[WorldState] = None,
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):

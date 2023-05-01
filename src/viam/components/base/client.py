@@ -2,7 +2,7 @@ from typing import Any, Dict, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Vector3
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceStub,
     IsMovingRequest,
@@ -16,7 +16,7 @@ from viam.proto.component.base import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .base import Base
+from . import Base, Vector3
 
 
 class BaseClient(Base, ReconfigurableResourceRPCClientBase):

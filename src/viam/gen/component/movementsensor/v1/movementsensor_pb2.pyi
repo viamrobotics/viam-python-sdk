@@ -45,7 +45,7 @@ class GetLinearVelocityResponse(google.protobuf.message.Message):
 
     @property
     def linear_velocity(self) -> common.v1.common_pb2.Vector3:
-        """linear velocity contains velocity in mm/s across x/y/z axes"""
+        """Linear velocity in m/s across x/y/z axes"""
 
     def __init__(self, *, linear_velocity: common.v1.common_pb2.Vector3 | None=...) -> None:
         ...
@@ -86,7 +86,7 @@ class GetAngularVelocityResponse(google.protobuf.message.Message):
 
     @property
     def angular_velocity(self) -> common.v1.common_pb2.Vector3:
-        """angular velocity contains velocity in degrees/s across x/y/z axes"""
+        """Angular velocity in degrees/s across x/y/z axes"""
 
     def __init__(self, *, angular_velocity: common.v1.common_pb2.Vector3 | None=...) -> None:
         ...
@@ -201,20 +201,20 @@ global___GetPositionRequest = GetPositionRequest
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     COORDINATE_FIELD_NUMBER: builtins.int
-    ALTITUDE_MM_FIELD_NUMBER: builtins.int
+    ALTITUDE_M_FIELD_NUMBER: builtins.int
 
     @property
     def coordinate(self) -> common.v1.common_pb2.GeoPoint:
         ...
-    altitude_mm: builtins.float
+    altitude_m: builtins.float
 
-    def __init__(self, *, coordinate: common.v1.common_pb2.GeoPoint | None=..., altitude_mm: builtins.float=...) -> None:
+    def __init__(self, *, coordinate: common.v1.common_pb2.GeoPoint | None=..., altitude_m: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['coordinate', b'coordinate']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['altitude_mm', b'altitude_mm', 'coordinate', b'coordinate']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['altitude_m', b'altitude_m', 'coordinate', b'coordinate']) -> None:
         ...
 global___GetPositionResponse = GetPositionResponse
 
@@ -290,7 +290,7 @@ class GetAccuracyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
-    class AccuracyMmEntry(google.protobuf.message.Message):
+    class AccuracyEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
@@ -302,16 +302,16 @@ class GetAccuracyResponse(google.protobuf.message.Message):
 
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
-    ACCURACY_MM_FIELD_NUMBER: builtins.int
+    ACCURACY_FIELD_NUMBER: builtins.int
 
     @property
-    def accuracy_mm(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.float]:
+    def accuracy(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.float]:
         ...
 
-    def __init__(self, *, accuracy_mm: collections.abc.Mapping[builtins.str, builtins.float] | None=...) -> None:
+    def __init__(self, *, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['accuracy_mm', b'accuracy_mm']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['accuracy', b'accuracy']) -> None:
         ...
 global___GetAccuracyResponse = GetAccuracyResponse
 
@@ -344,7 +344,7 @@ class GetLinearAccelerationResponse(google.protobuf.message.Message):
 
     @property
     def linear_acceleration(self) -> common.v1.common_pb2.Vector3:
-        ...
+        """Linear acceleration in m/s across x/y/z axes"""
 
     def __init__(self, *, linear_acceleration: common.v1.common_pb2.Vector3 | None=...) -> None:
         ...

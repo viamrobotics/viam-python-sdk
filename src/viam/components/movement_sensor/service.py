@@ -108,7 +108,7 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         point, alt = await sensor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetPositionResponse(coordinate=point, altitude_mm=alt)
+        response = GetPositionResponse(coordinate=point, altitude_m=alt)
         await stream.send_message(response)
 
     async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
@@ -121,7 +121,7 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = await sensor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        await stream.send_message(response)
+        await stream.send_message(response.proto)
 
     async def GetAccuracy(self, stream: Stream[GetAccuracyRequest, GetAccuracyResponse]) -> None:
         request = await stream.recv_message()
@@ -133,7 +133,7 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetAccuracyResponse(accuracy_mm=accuracy)
+        response = GetAccuracyResponse(accuracy=accuracy)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
