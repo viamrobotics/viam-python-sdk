@@ -2,8 +2,8 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.encoder import EncoderClient
-from viam.components.encoder.service import EncoderService
-from viam.components.generic.service import GenericService
+from viam.components.encoder.service import EncoderRPCService
+from viam.components.generic.service import GenericRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.encoder import (
     EncoderServiceStub,
@@ -27,15 +27,15 @@ def encoder() -> MockEncoder:
 
 
 @pytest.fixture(scope="function")
-def service(encoder: MockEncoder) -> EncoderService:
+def service(encoder: MockEncoder) -> EncoderRPCService:
     manager = ResourceManager([encoder])
-    return EncoderService(manager)
+    return EncoderRPCService(manager)
 
 
 @pytest.fixture(scope="function")
-def generic_service(encoder: MockEncoder) -> GenericService:
+def generic_service(encoder: MockEncoder) -> GenericRPCService:
     manager = ResourceManager([encoder])
-    return GenericService(manager)
+    return GenericRPCService(manager)
 
 
 class TestEncoder:
@@ -68,7 +68,7 @@ class TestEncoder:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_get_position(self, encoder: MockEncoder, service: EncoderService):
+    async def test_get_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
             request = GetPositionRequest(name=encoder.name)
@@ -78,7 +78,7 @@ class TestService:
             assert encoder.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_reset_position(self, encoder: MockEncoder, service: EncoderService):
+    async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
             request = ResetPositionRequest(name=encoder.name)
@@ -87,7 +87,7 @@ class TestService:
             assert encoder.timeout == loose_approx(5.67)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, encoder: MockEncoder, service: EncoderService):
+    async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
             request = GetPropertiesRequest(name=encoder.name)
@@ -97,7 +97,7 @@ class TestService:
             assert encoder.timeout == loose_approx(6.78)
 
     @pytest.mark.asyncio
-    async def test_do(self, encoder: MockEncoder, service: EncoderService):
+    async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderServiceStub(channel)
             command = {"command": "args"}
@@ -109,7 +109,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_position(self, encoder: MockEncoder, service: EncoderService):
+    async def test_get_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
             position, pos_type = await client.get_position(timeout=2.34)
@@ -118,7 +118,7 @@ class TestClient:
             assert encoder.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_reset_position(self, encoder: MockEncoder, service: EncoderService):
+    async def test_reset_position(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
             await client.reset_position(timeout=5.67)
@@ -126,7 +126,7 @@ class TestClient:
             assert encoder.position == 0
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, encoder: MockEncoder, service: EncoderService):
+    async def test_get_properties(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
             properties = await client.get_properties(timeout=6.78)
@@ -135,7 +135,7 @@ class TestClient:
             assert encoder.timeout == loose_approx(6.78)
 
     @pytest.mark.asyncio
-    async def test_do(self, encoder: MockEncoder, service: EncoderService):
+    async def test_do(self, encoder: MockEncoder, service: EncoderRPCService):
         async with ChannelFor([service]) as channel:
             client = EncoderClient(encoder.name, channel)
             command = {"command": "args"}

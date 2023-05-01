@@ -20,7 +20,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .camera import Camera
 
 
-class CameraService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
+class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     """
     gRPC Service for a generic Camera
     """

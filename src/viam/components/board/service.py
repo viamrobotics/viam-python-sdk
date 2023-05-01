@@ -31,7 +31,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .board import Board
 
 
-class BoardService(BoardServiceBase, ResourceRPCServiceBase[Board]):
+class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
     """
     gRPC Service for a Board
     """

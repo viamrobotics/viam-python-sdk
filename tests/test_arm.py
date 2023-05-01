@@ -2,7 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, create_status
-from viam.components.arm.service import ArmService
+from viam.components.arm.service import ArmRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
 from viam.proto.component.arm import (
@@ -87,7 +87,7 @@ class TestService:
         cls.name = "arm"
         cls.arm = MockArm(name=cls.name)
         cls.manager = ResourceManager([cls.arm])
-        cls.service = ArmService(cls.manager)
+        cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
 
@@ -170,7 +170,7 @@ class TestClient:
         cls.name = "arm"
         cls.arm = MockArm(name=cls.name)
         cls.manager = ResourceManager([cls.arm])
-        cls.service = ArmService(cls.manager)
+        cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
 

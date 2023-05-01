@@ -3,7 +3,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import GenericClient
 from .generic import Generic
-from .service import GenericService
+from .service import GenericRPCService
 
 __all__ = [
     "Generic",
@@ -12,7 +12,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         Generic,
-        GenericService,
+        GenericRPCService,
         lambda name, channel: GenericClient(name, channel),
     )
 )

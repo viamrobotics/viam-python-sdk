@@ -19,7 +19,7 @@ from viam.robot.service import RobotService
 from .signaling import SignalingService
 
 if TYPE_CHECKING:
-    from viam.module.service import ModuleService
+    from viam.module.service import ModuleRPCService
 
 LOGGER = logging.getLogger(__name__)
 
@@ -29,7 +29,7 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, components: List[ResourceBase], *, module_service: Optional["ModuleService"] = None):
+    def __init__(self, components: List[ResourceBase], *, module_service: Optional["ModuleRPCService"] = None):
         """
         Initialize the Server with a list of components
         to be managed.

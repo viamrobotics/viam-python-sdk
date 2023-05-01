@@ -2,7 +2,7 @@ import pytest
 from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
-from viam.components.gantry.service import GantryService
+from viam.components.gantry.service import GantryRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
@@ -95,7 +95,7 @@ class TestService:
     def setup_class(cls):
         cls.gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
         cls.manager = ResourceManager([cls.gantry])
-        cls.service = GantryService(cls.manager)
+        cls.service = GantryRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_position(self):
@@ -170,7 +170,7 @@ class TestClient:
     def setup_class(cls):
         cls.gantry = MockGantry("gantry", [1, 2, 3], [4, 5, 6])
         cls.manager = ResourceManager([cls.gantry])
-        cls.service = GantryService(cls.manager)
+        cls.service = GantryRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_get_position(self):

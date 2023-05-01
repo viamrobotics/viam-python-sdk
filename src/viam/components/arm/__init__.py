@@ -7,7 +7,7 @@ from viam.utils import message_to_struct
 
 from .arm import Arm, JointPositions, Pose
 from .client import ArmClient
-from .service import ArmService
+from .service import ArmRPCService
 
 __all__ = [
     "Arm",
@@ -17,11 +17,7 @@ __all__ = [
 
 
 async def create_status(component: Arm) -> Status:
-    (
-        end_position,
-        joint_positions,
-        is_moving,
-    ) = await asyncio.gather(
+    (end_position, joint_positions, is_moving,) = await asyncio.gather(
         component.get_end_position(),
         component.get_joint_positions(),
         component.is_moving(),
@@ -34,4 +30,4 @@ async def create_status(component: Arm) -> Status:
     return Status(name=Arm.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ResourceRegistration(Arm, ArmService, lambda name, channel: ArmClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Arm, ArmRPCService, lambda name, channel: ArmClient(name, channel), create_status))

@@ -5,7 +5,7 @@ from viam.utils import message_to_struct
 
 from .client import ControllerClient
 from .input import Control, ControlFunction, Controller, Event, EventType
-from .service import InputControllerService
+from .service import InputControllerRPCService
 
 __all__ = [
     "Controller",
@@ -24,5 +24,5 @@ async def create_status(component: Controller) -> Status:
 
 
 Registry.register_subtype(
-    ResourceRegistration(Controller, InputControllerService, lambda name, channel: ControllerClient(name, channel), create_status)
+    ResourceRegistration(Controller, InputControllerRPCService, lambda name, channel: ControllerClient(name, channel), create_status)
 )

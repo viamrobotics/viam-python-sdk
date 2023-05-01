@@ -2,7 +2,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import PoseTrackerClient
 from .pose_tracker import PoseTracker
-from .service import PoseTrackerService
+from .service import PoseTrackerRPCService
 
 __all__ = [
     "PoseTracker",
@@ -11,7 +11,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         PoseTracker,
-        PoseTrackerService,
+        PoseTrackerRPCService,
         lambda name, channel: PoseTrackerClient(name, channel),
     )
 )
