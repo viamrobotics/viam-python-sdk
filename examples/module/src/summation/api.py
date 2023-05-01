@@ -13,7 +13,7 @@ The ``SummationRPCService`` implements the gRPC service for the Summation servic
 requests of the Summation service. It extends both from ``SummationServiceBase`` and ``RPCServiceBase``.
 The former is the gRPC service as defined by the proto, and the latter is the class that all gRPC services must inherit from.
 
-Finally, the ``SummationServiceClient`` is the gRPC client for a Summation service. It inherits from SummationService since it implements
+Finally, the ``SummationClient`` is the gRPC client for a Summation service. It inherits from SummationService since it implements
  all the same functions. The implementations are simply gRPC calls to some remote Summation service.
 
 To see how this custom modular service is registered, see the __init__.py file.
