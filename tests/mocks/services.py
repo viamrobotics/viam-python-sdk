@@ -44,6 +44,11 @@ from viam.services.slam import SLAM
 from viam.utils import ValueTypes, struct_to_dict
 
 
+INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
+POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
+POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+
+
 class MockMotion(MotionServiceBase):
     def __init__(
         self,
@@ -133,9 +138,9 @@ class MockSensors(SensorsServiceBase):
 class MockSLAM(SLAM):
     def __init__(self, name: str):
         self.name = name
-        self.internal_state_chunks = [bytes(5), bytes(2)]
-        self.point_cloud_pcd_chunks = [bytes(3), bytes(2)]
-        self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+        self.internal_state_chunks = INTERNAL_STATE_CHUNKS
+        self.point_cloud_pcd_chunks = POINT_CLOUD_PCD_CHUNKS
+        self.position = POSITION
         self.timeout: Optional[float] = None
         super().__init__(name)
 
