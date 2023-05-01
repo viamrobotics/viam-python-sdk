@@ -44,11 +44,6 @@ from viam.services.slam import SLAM
 from viam.utils import ValueTypes, struct_to_dict
 
 
-INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
-POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
-POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
-
-
 class MockMotion(MotionServiceBase):
     def __init__(
         self,
@@ -136,25 +131,26 @@ class MockSensors(SensorsServiceBase):
 
 
 class MockSLAM(SLAM):
+    INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
+    POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
+    POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+
     def __init__(self, name: str):
         self.name = name
-        self.internal_state_chunks = INTERNAL_STATE_CHUNKS
-        self.point_cloud_pcd_chunks = POINT_CLOUD_PCD_CHUNKS
-        self.position = POSITION
         self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
-        return self.internal_state_chunks
+        return self.INTERNAL_STATE_CHUNKS
 
     async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
-        return self.point_cloud_pcd_chunks
+        return self.POINT_CLOUD_PCD_CHUNKS
 
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
-        return self.position
+        return self.POSITION
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

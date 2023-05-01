@@ -1,13 +1,13 @@
 from typing import List
 from viam.services.slam import Pose, SLAM
-from tests.mocks.services import INTERNAL_STATE_CHUNKS, POINT_CLOUD_PCD_CHUNKS, POSITION
+from tests.mocks.services import MockSLAM
 
 
 class ExampleSLAM(SLAM):
     def __init__(self, name: str):
-        self.position = POSITION
-        self.internal_chunks = INTERNAL_STATE_CHUNKS
-        self.point_cloud_chunks = POINT_CLOUD_PCD_CHUNKS
+        self.position = MockSLAM.POSITION
+        self.internal_chunks = MockSLAM.INTERNAL_STATE_CHUNKS
+        self.point_cloud_chunks = MockSLAM.POINT_CLOUD_PCD_CHUNKS
         super().__init__(name)
 
     async def get_internal_state(self, **kwargs) -> List[bytes]:
