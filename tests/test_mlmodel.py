@@ -1,41 +1,12 @@
 import pytest
 
-from typing import Dict, List
+from typing import List
 from grpclib.testing import ChannelFor
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
-from viam.services.mlmodel import File, LabelType, Metadata, MLModelClient, MLModelRPCService, TensorInfo
+from viam.services.mlmodel import MLModelClient, MLModelRPCService
 from viam.utils import struct_to_dict
 from .mocks.services import MockMLModel
-
-
-INPUT_DATA: Dict = {"image": [10, 10, 255, 0, 0, 255, 255, 0, 100]}
-OUTPUT_DATA = {
-    "n_detections": [3],
-    "confidence_scores": [[0.9084375, 0.7359375, 0.33984375]],
-    "labels": [[0, 0, 4]],
-    "locations": [[[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]]],
-}
-META_INPUTS = [TensorInfo(name="image", description="i0", data_type="uint8", shape=[300, 200])]
-META_OUTPUTS = [
-    TensorInfo(name="n_detections", description="o0", data_type="int32", shape=[1]),
-    TensorInfo(name="confidence_scores", description="o1", data_type="float32", shape=[3, 1]),
-    TensorInfo(
-        name="labels",
-        description="o2",
-        data_type="int32",
-        shape=[3, 1],
-        associated_files=[
-            File(
-                name="category_labels.txt",
-                description="these labels represent types of plants",
-                label_type=LabelType.LABEL_TYPE_TENSOR_VALUE,
-            )
-        ],
-    ),
-    TensorInfo(name="locations", description="o3", data_type="float32", shape=[4, 3, 1]),
-]
-META = Metadata(name="fake_detector", type="object_detector", description="desc", input_info=META_INPUTS, output_info=META_OUTPUTS)
 
 
 class TestMLModel:
@@ -44,13 +15,13 @@ class TestMLModel:
 
     @pytest.mark.asyncio
     async def test_infer(self):
-        resp = await self.mlmodel.infer(input_data=INPUT_DATA)
-        assert resp == OUTPUT_DATA
+        resp = await self.mlmodel.infer(input_data=MockMLModel.INPUT_DATA)
+        assert resp == MockMLModel.OUTPUT_DATA
 
     @pytest.mark.asyncio
     async def test_metadata(self):
         resp = await self.mlmodel.metadata()
-        assert resp == META
+        assert resp == MockMLModel.META
 
     @pytest.mark.asyncio
     async def do_command(self):
@@ -73,7 +44,7 @@ class TestService:
             client = MLModelServiceStub(channel)
             request = InferRequest(name=self.name)
             response: InferResponse = await client.Infer(request)
-            assert struct_to_dict(response.output_data) == OUTPUT_DATA
+            assert struct_to_dict(response.output_data) == MockMLModel.OUTPUT_DATA
 
     @pytest.mark.asyncio
     async def test_metadata(self):
@@ -81,7 +52,7 @@ class TestService:
             client = MLModelServiceStub(channel)
             request = MetadataRequest(name=self.name)
             response: MetadataResponse = await client.Metadata(request)
-            assert response.metadata == META
+            assert response.metadata == MockMLModel.META
 
 
 class TestClient:
@@ -94,9 +65,10 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_infer(self):
+        OUTPUT_DATA = MockMLModel.OUTPUT_DATA
         async with ChannelFor([self.service]) as channel:
             client = MLModelClient(self.name, channel)
-            response = await client.infer(INPUT_DATA)
+            response = await client.infer(MockMLModel.INPUT_DATA)
             assert "confidence_scores" in response.keys()
             assert "labels" in response.keys()
             assert "locations" in response.keys()
@@ -112,6 +84,9 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_metadata(self):
         async with ChannelFor([self.service]) as channel:
+            META = MockMLModel.META
+            META_INPUTS = MockMLModel.META_INPUTS
+            META_OUTPUTS = MockMLModel.META_OUTPUTS
             client = MLModelClient(self.name, channel)
             response = await client.metadata()
             assert response.name == META.name
