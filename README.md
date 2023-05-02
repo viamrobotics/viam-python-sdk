@@ -5,11 +5,6 @@
 ![build status](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE)
 
-## (In)stability Notice
-
-> **Warning**
-> This is a beta release of the Viam Python SDK. Stability is not guaranteed. Breaking changes are likely to occur, and occur often.
-
 ## Installation
 Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip
 
@@ -18,10 +13,6 @@ Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), 
 If your system is not supported, read further on how to install from source.
 
 ### Upgrading
-
-> **Note**
-> Because the SDK is under active development, we suggest that you upgrade the package frequently.
-
 To upgrade, simply run the `pip install` command with the `-U` option:
 `pip install -U viam-sdk`
 
