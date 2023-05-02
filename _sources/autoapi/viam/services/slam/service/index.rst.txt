@@ -1,0 +1,46 @@
+:py:mod:`viam.services.slam.service`
+====================================
+
+.. py:module:: viam.services.slam.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.slam.service.SLAMRPCService
+
+
+
+
+.. py:class:: SLAMRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.service.slam.SLAMServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`\ [\ :py:obj:`viam.services.slam.slam.SLAM`\ ]
+
+   gRPC Service for a SLAM service
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: GetInternalState(stream: grpclib.server.Stream[viam.proto.service.slam.GetInternalStateRequest, viam.proto.service.slam.GetInternalStateResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPointCloudMap(stream: grpclib.server.Stream[viam.proto.service.slam.GetPointCloudMapRequest, viam.proto.service.slam.GetPointCloudMapResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[viam.proto.service.slam.GetPositionRequest, viam.proto.service.slam.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+

@@ -213,6 +213,10 @@ name: &quot;sensor0&quot;
 type: &quot;component&quot;
 subtype: &quot;servo&quot;
 name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
 ]
 </pre></div>
 </div>
@@ -250,11 +254,11 @@ name: &quot;servo0&quot;
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> to make service calls to the connected robot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.vision</span> <span class="kn">import</span> <span class="n">VisionServiceClient</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.vision</span> <span class="kn">import</span> <span class="n">VisionClient</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
-    <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionServiceClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
+    <span class="n">vision</span> <span class="o">=</span> <span class="n">VisionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="p">)</span>
     <span class="n">detections</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections_from_camera</span><span class="p">(</span><span class="s2">&quot;camera_1&quot;</span><span class="p">,</span> <span class="s2">&quot;detector_1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
