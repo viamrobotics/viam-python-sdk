@@ -3,8 +3,9 @@ from typing import Dict, List, Type, TypeVar
 
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
-from viam.services.service_base import ServiceBase
+from viam.resource.registry import Registry
 
+from ..services.service_base import ServiceBase
 from ..components.component_base import ComponentBase
 from ..errors import DuplicateResourceError, ResourceNotFoundError
 
@@ -46,6 +47,7 @@ class ResourceManager:
             if subtype in _BaseClasses:
                 continue
             if hasattr(subtype, "get_resource_name"):
+                Registry.lookup_subtype(component.SUBTYPE)  # confirm the subtype is registered in Registry
                 rn = subtype.get_resource_name(component.name)  # type: ignore
                 rnames[rn] = component
         for rn in rnames:
