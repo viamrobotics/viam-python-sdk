@@ -8,7 +8,7 @@ from viam.utils import ValueTypes
 from ..service_base import ServiceBase
 
 
-class MLModelService(ServiceBase):
+class MLModel(ServiceBase):
     """
     MLModel represents a Machine Learning Model service.
 

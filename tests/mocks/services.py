@@ -40,11 +40,11 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsResponse,
     VisionServiceBase,
 )
-from viam.services.mlmodel import File, LabelType, Metadata, MLModelService, TensorInfo
+from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.utils import ValueTypes, struct_to_dict
 
 
-class MockMLModelService(MLModelService):
+class MockMLModel(MLModel):
     def __init__(self, name: str):
         self.input_data = {"image": [10, 10, 255, 0, 0, 255, 255, 0, 100]}
         self.output_data = {

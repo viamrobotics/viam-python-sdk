@@ -24,7 +24,7 @@ from .components import (
     ExampleServo,
     MovementSensor,
 )
-from .services import ExampleMLModelService
+from .services import ExampleMLModel
 
 
 async def run(host: str, port: int, log_level: int):
@@ -47,7 +47,7 @@ async def run(host: str, port: int, log_level: int):
     my_encoder = ExampleEncoder("encoder0")
     my_gantry = ExampleGantry("gantry0", [1, 2, 3], [4, 5, 6])
     my_gripper = ExampleGripper("gripper0")
-    my_mlmodel = ExampleMLModelService("mlmodel0")
+    my_mlmodel = ExampleMLModel("mlmodel0")
     my_motor = ExampleMotor("motor0")
     my_movement_sensor = ExampleMovementSensor(
         "movement_sensor0",

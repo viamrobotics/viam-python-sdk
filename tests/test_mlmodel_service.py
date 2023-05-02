@@ -4,9 +4,9 @@ from typing import Dict, List
 from grpclib.testing import ChannelFor
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
-from viam.services.mlmodel import File, LabelType, Metadata, MLModelServiceClient, MLModelServiceRPCService, TensorInfo
+from viam.services.mlmodel import File, LabelType, Metadata, MLModelClient, MLModelRPCService, TensorInfo
 from viam.utils import struct_to_dict
-from .mocks.services import MockMLModelService
+from .mocks.services import MockMLModel
 
 
 INPUT_DATA: Dict = {"image": [10, 10, 255, 0, 0, 255, 255, 0, 100]}
@@ -40,7 +40,7 @@ META = Metadata(name="fake_detector", type="object_detector", description="desc"
 
 class TestMLModel:
     name = "mlmodel"
-    mlmodel = MockMLModelService(name=name)
+    mlmodel = MockMLModel(name=name)
 
     @pytest.mark.asyncio
     async def test_infer(self):
@@ -63,9 +63,9 @@ class TestService:
     @classmethod
     def setup_class(cls):
         cls.name = "mlmodel"
-        cls.mlmodel = MockMLModelService(name=cls.name)
+        cls.mlmodel = MockMLModel(name=cls.name)
         cls.manager = ResourceManager([cls.mlmodel])
-        cls.service = MLModelServiceRPCService(cls.manager)
+        cls.service = MLModelRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_infer(self):
@@ -88,14 +88,14 @@ class TestClient:
     @classmethod
     def setup_class(cls):
         cls.name = "mlmodel"
-        cls.mlmodel = MockMLModelService(name=cls.name)
+        cls.mlmodel = MockMLModel(name=cls.name)
         cls.manager = ResourceManager([cls.mlmodel])
-        cls.service = MLModelServiceRPCService(cls.manager)
+        cls.service = MLModelRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_infer(self):
         async with ChannelFor([self.service]) as channel:
-            client = MLModelServiceClient(self.name, channel)
+            client = MLModelClient(self.name, channel)
             response = await client.infer(INPUT_DATA)
             assert "confidence_scores" in response.keys()
             assert "labels" in response.keys()
@@ -112,7 +112,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_metadata(self):
         async with ChannelFor([self.service]) as channel:
-            client = MLModelServiceClient(self.name, channel)
+            client = MLModelClient(self.name, channel)
             response = await client.metadata()
             assert response.name == META.name
             assert response.type == META.type

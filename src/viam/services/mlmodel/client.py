@@ -6,10 +6,10 @@ from viam.proto.service.mlmodel import InferRequest, InferResponse, Metadata, Me
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .mlmodel import MLModelService
+from .mlmodel import MLModel
 
 
-class MLModelServiceClient(MLModelService, ReconfigurableResourceRPCClientBase):
+class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = MLModelServiceStub(channel)

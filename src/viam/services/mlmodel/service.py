@@ -5,15 +5,15 @@ from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequ
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct
 
-from .mlmodel import MLModelService
+from .mlmodel import MLModel
 
 
-class MLModelServiceRPCService(MLModelServiceBase, ResourceRPCServiceBase):
+class MLModelRPCService(MLModelServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a ML Model service
     """
 
-    RESOURCE_TYPE = MLModelService
+    RESOURCE_TYPE = MLModel
 
     async def Infer(self, stream: Stream[InferRequest, InferResponse]) -> None:
         request = await stream.recv_message()
