@@ -3,7 +3,7 @@ import pytest
 from grpclib import Status
 from grpclib.testing import ChannelFor
 from tests.mocks.components import MockArm
-from viam.components.arm.service import ArmService
+from viam.components.arm.service import ArmRPCService
 
 from viam.errors import GRPCError, ViamGRPCError
 from viam.gen.component.arm.v1.arm_grpc import ArmServiceStub
@@ -57,7 +57,7 @@ class TestServer:
     async def test_patch_mappings(self):
         arm = MockArm("arm0")
         manager = ResourceManager([arm])
-        service = ArmService(manager)
+        service = ArmRPCService(manager)
         patched_service = _patch_mappings([service])[0]
         patched_is_moving_handler = patched_service.__mapping__()["/viam.component.arm.v1.ArmService/IsMoving"]
 

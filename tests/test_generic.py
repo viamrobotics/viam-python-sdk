@@ -1,7 +1,7 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic import GenericClient, GenericService
+from viam.components.generic import GenericClient, GenericRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.manager import ResourceManager
@@ -27,7 +27,7 @@ class TestService:
         cls.name = "generic"
         cls.generic = MockGeneric(name=cls.name)
         cls.manager = ResourceManager([cls.generic])
-        cls.service = GenericService(cls.manager)
+        cls.service = GenericRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -46,7 +46,7 @@ class TestClient:
         cls.name = "generic"
         cls.generic = MockGeneric(name=cls.name)
         cls.manager = ResourceManager([cls.generic])
-        cls.service = GenericService(cls.manager)
+        cls.service = GenericRPCService(cls.manager)
 
     @pytest.mark.asyncio
     async def test_do(self):

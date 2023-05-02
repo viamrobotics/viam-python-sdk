@@ -6,8 +6,8 @@ import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputService
-from viam.components.generic.service import GenericService
+from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputRPCService
+from viam.components.generic.service import GenericRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
@@ -41,15 +41,15 @@ def audio_input() -> MockAudioInput:
 
 
 @pytest.fixture(scope="function")
-def service(audio_input: MockAudioInput) -> AudioInputService:
+def service(audio_input: MockAudioInput) -> AudioInputRPCService:
     manager = ResourceManager([audio_input])
-    return AudioInputService(manager)
+    return AudioInputRPCService(manager)
 
 
 @pytest.fixture(scope="function")
-def generic_service(audio_input: MockAudioInput) -> GenericService:
+def generic_service(audio_input: MockAudioInput) -> GenericRPCService:
     manager = ResourceManager([audio_input])
-    return GenericService(manager)
+    return GenericRPCService(manager)
 
 
 class TestAudioInput:
@@ -79,7 +79,7 @@ class TestAudioInput:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_chunks(self, audio_input: AudioInput, service: AudioInputService):
+    async def test_chunks(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
             async with client.Chunks.open() as stream:
@@ -103,7 +103,7 @@ class TestService:
                     idx += 1
 
     @pytest.mark.asyncio
-    async def test_properties(self, audio_input: MockAudioInput, service: AudioInputService):
+    async def test_properties(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
@@ -112,14 +112,14 @@ class TestService:
             assert audio_input.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
-    async def test_record(self, service: AudioInputService):
+    async def test_record(self, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
             with pytest.raises(GRPCError, match=r".*Status.UNIMPLEMENTED.*"):
                 await client.Record(RecordRequest())
 
     @pytest.mark.asyncio
-    async def test_do(self, audio_input: MockAudioInput, service: AudioInputService):
+    async def test_do(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
             command = {"command": "args"}
@@ -131,7 +131,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_stream(self, audio_input: AudioInput, service: AudioInputService):
+    async def test_stream(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
 
@@ -147,7 +147,7 @@ class TestClient:
                 idx += 1
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, audio_input: MockAudioInput, service: AudioInputService):
+    async def test_get_properties(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         assert audio_input.timeout is None
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
@@ -155,7 +155,7 @@ class TestClient:
             assert audio_input.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_do(self, audio_input: AudioInput, service: AudioInputService):
+    async def test_do(self, audio_input: AudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputClient(audio_input.name, channel)
             command = {"command": "args"}

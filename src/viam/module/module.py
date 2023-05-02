@@ -27,7 +27,7 @@ from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
 
-from .service import ModuleService
+from .service import ModuleRPCService
 from .types import Reconfigurable, Stoppable
 
 LOGGER = logging.getLogger(__name__)
@@ -44,7 +44,7 @@ class Module:
 
     def __init__(self, address: str, *, log_level: int = logging.DEBUG) -> None:
         self._address = address
-        self.server = Server(components=[], module_service=ModuleService(self))
+        self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
         self._ready = True
         self._lock = Lock()

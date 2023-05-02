@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.resource.manager import ResourceManager
 from viam.components.servo import ServoClient, ServoStatus, create_status
-from viam.components.servo.service import ServoService
+from viam.components.servo.service import ServoRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
@@ -73,7 +73,7 @@ class TestService:
         cls.name = "servo"
         cls.servo = MockServo(name=cls.name)
         cls.manager = ResourceManager([cls.servo])
-        cls.service = ServoService(cls.manager)
+        cls.service = ServoRPCService(cls.manager)
         cls.pos = 42
 
     @pytest.mark.asyncio
@@ -134,7 +134,7 @@ class TestClient:
         cls.name = "servo"
         cls.servo = MockServo(name=cls.name)
         cls.manager = ResourceManager([cls.servo])
-        cls.service = ServoService(cls.manager)
+        cls.service = ServoRPCService(cls.manager)
         cls.pos = 42
 
     @pytest.mark.asyncio

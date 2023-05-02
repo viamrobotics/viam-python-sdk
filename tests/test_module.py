@@ -7,7 +7,7 @@ from grpclib.testing import ChannelFor
 
 from viam.errors import GRPCError
 from viam.module import Module
-from viam.module.service import ModuleService
+from viam.module.service import ModuleRPCService
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
     AddResourceRequest,
@@ -51,8 +51,8 @@ async def module(request, event_loop):
 
 
 @pytest.fixture
-def service(module: Module) -> ModuleService:
-    return ModuleService(module)
+def service(module: Module) -> ModuleRPCService:
+    return ModuleRPCService(module)
 
 
 @pytest.mark.usefixtures("module")
@@ -296,7 +296,7 @@ class TestModule:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_add_resource(self, service: ModuleService):
+    async def test_add_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
             with mock.patch("viam.module.module.Module.add_resource") as mocked:
@@ -304,7 +304,7 @@ class TestService:
                 mocked.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_reconfigure_resource(self, service: ModuleService):
+    async def test_reconfigure_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
             with mock.patch("viam.module.module.Module.reconfigure_resource") as mocked:
@@ -312,7 +312,7 @@ class TestService:
                 mocked.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_remove_resource(self, service: ModuleService):
+    async def test_remove_resource(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
             with mock.patch("viam.module.module.Module.remove_resource") as mocked:
@@ -320,7 +320,7 @@ class TestService:
                 mocked.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_ready(self, service: ModuleService):
+    async def test_ready(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
             with mock.patch("viam.module.module.Module.ready", return_value=ReadyResponse()) as mocked:
@@ -328,7 +328,7 @@ class TestService:
                 mocked.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_validate_config(self, service: ModuleService):
+    async def test_validate_config(self, service: ModuleRPCService):
         async with ChannelFor([service]) as channel:
             client = ModuleServiceStub(channel)
             with mock.patch("viam.module.module.Module.validate_config", return_value=ValidateConfigResponse()) as mocked:

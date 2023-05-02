@@ -1,9 +1,9 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
+from viam.components.generic.service import GenericRPCService
 from viam.components.motor import MotorClient, MotorStatus, create_status
-from viam.components.motor.service import MotorService
+from viam.components.motor.service import MotorRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.motor import (
@@ -34,15 +34,15 @@ def motor() -> MockMotor:
 
 
 @pytest.fixture(scope="function")
-def service(motor: MockMotor) -> MotorService:
+def service(motor: MockMotor) -> MotorRPCService:
     manager = ResourceManager([motor])
-    return MotorService(manager)
+    return MotorRPCService(manager)
 
 
 @pytest.fixture(scope="function")
-def generic_service(motor: MockMotor) -> GenericService:
+def generic_service(motor: MockMotor) -> GenericRPCService:
     manager = ResourceManager([motor])
-    return GenericService(manager)
+    return GenericRPCService(manager)
 
 
 class TestMotor:
@@ -147,7 +147,7 @@ class TestMotor:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_set_power(self, motor: MockMotor, service: MotorService):
+    async def test_set_power(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             request = SetPowerRequest(name=motor.name, power_pct=13)
@@ -156,7 +156,7 @@ class TestService:
             assert motor.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
-    async def test_get_position(self, motor: MockMotor, service: MotorService):
+    async def test_get_position(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             request = GetPositionRequest(name=motor.name)
@@ -165,7 +165,7 @@ class TestService:
             assert motor.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_go_for(self, motor: MockMotor, service: MotorService):
+    async def test_go_for(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
 
@@ -187,7 +187,7 @@ class TestService:
             assert motor.position == 15
 
     @pytest.mark.asyncio
-    async def test_go_to(self, motor: MockMotor, service: MotorService):
+    async def test_go_to(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
 
@@ -201,7 +201,7 @@ class TestService:
             assert motor.position == 50
 
     @pytest.mark.asyncio
-    async def test_reset_zero(self, motor: MockMotor, service: MotorService):
+    async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             request = ResetZeroPositionRequest(name=motor.name, offset=20)
@@ -210,7 +210,7 @@ class TestService:
             assert motor.timeout == loose_approx(5.67)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, motor: MockMotor, service: MotorService):
+    async def test_get_properties(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             request = GetPropertiesRequest(name=motor.name)
@@ -219,7 +219,7 @@ class TestService:
             assert motor.timeout == loose_approx(6.78)
 
     @pytest.mark.asyncio
-    async def test_stop(self, motor: MockMotor, service: MotorService):
+    async def test_stop(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             request = StopRequest(name=motor.name)
@@ -229,7 +229,7 @@ class TestService:
             assert motor.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
-    async def test_is_powered(self, motor: MockMotor, service: MotorService):
+    async def test_is_powered(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
 
@@ -249,7 +249,7 @@ class TestService:
             assert response.power_pct == 0
 
     @pytest.mark.asyncio
-    async def test_is_moving(self, motor: MockMotor, service: MotorService):
+    async def test_is_moving(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             assert motor.powered is False
             motor.powered = True
@@ -259,7 +259,7 @@ class TestService:
             assert response.is_moving is True
 
     @pytest.mark.asyncio
-    async def test_extra(self, motor: MockMotor, service: MotorService):
+    async def test_extra(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
 
@@ -270,7 +270,7 @@ class TestService:
             assert motor.extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, motor: MockMotor, service: MotorService):
+    async def test_do(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
             command = {"command": "args"}
@@ -282,7 +282,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_set_power(self, motor: MockMotor, service: MotorService):
+    async def test_set_power(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             await client.set_power(13, timeout=1.23)
@@ -290,7 +290,7 @@ class TestClient:
             assert motor.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
-    async def test_get_position(self, motor: MockMotor, service: MotorService):
+    async def test_get_position(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             position = await client.get_position(timeout=2.34)
@@ -298,7 +298,7 @@ class TestClient:
             assert motor.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_go_for(self, motor: MockMotor, service: MotorService):
+    async def test_go_for(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
 
@@ -316,7 +316,7 @@ class TestClient:
             assert motor.position == 15
 
     @pytest.mark.asyncio
-    async def test_go_to(self, motor: MockMotor, service: MotorService):
+    async def test_go_to(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
 
@@ -328,7 +328,7 @@ class TestClient:
             assert motor.position == 50
 
     @pytest.mark.asyncio
-    async def test_reset_zero(self, motor: MockMotor, service: MotorService):
+    async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             await client.reset_zero_position(20, timeout=5.67)
@@ -336,7 +336,7 @@ class TestClient:
             assert motor.offset == 20
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, motor: MockMotor, service: MotorService):
+    async def test_get_properties(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             properties = await client.get_properties(timeout=6.78)
@@ -344,7 +344,7 @@ class TestClient:
             assert motor.timeout == loose_approx(6.78)
 
     @pytest.mark.asyncio
-    async def test_stop(self, motor: MockMotor, service: MotorService):
+    async def test_stop(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             await client.stop(timeout=7.89)
@@ -353,7 +353,7 @@ class TestClient:
             assert motor.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
-    async def test_is_powered(self, motor: MockMotor, service: MotorService):
+    async def test_is_powered(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
 
@@ -369,7 +369,7 @@ class TestClient:
             assert power_pct == 0
 
     @pytest.mark.asyncio
-    async def test_is_moving(self, motor: MockMotor, service: MotorService):
+    async def test_is_moving(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             assert motor.powered is False
@@ -377,7 +377,7 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self, motor: MockMotor, service: MotorService):
+    async def test_do(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
             command = {"command": "args"}
@@ -385,7 +385,7 @@ class TestClient:
             assert resp == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_extra(self, motor: MockMotor, service: MotorService):
+    async def test_extra(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
 

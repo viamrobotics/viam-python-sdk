@@ -7,7 +7,7 @@ from viam.utils import message_to_struct
 
 from .client import MotorClient
 from .motor import Motor
-from .service import MotorService
+from .service import MotorRPCService
 
 __all__ = [
     "Motor",
@@ -28,4 +28,4 @@ async def create_status(component: Motor) -> Status:
     return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ResourceRegistration(Motor, MotorService, lambda name, channel: MotorClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Motor, MotorRPCService, lambda name, channel: MotorClient(name, channel), create_status))

@@ -23,7 +23,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .arm import Arm
 
 
-class ArmService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
+class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
     """
     gRPC Service for an Arm
     """

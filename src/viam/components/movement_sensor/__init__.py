@@ -3,7 +3,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import MovementSensorClient
 from .movement_sensor import MovementSensor
-from .service import MovementSensorService
+from .service import MovementSensorRPCService
 
 __all__ = [
     "MovementSensor",
@@ -15,7 +15,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         MovementSensor,
-        MovementSensorService,
+        MovementSensorRPCService,
         lambda name, channel: MovementSensorClient(name, channel),
     )
 )

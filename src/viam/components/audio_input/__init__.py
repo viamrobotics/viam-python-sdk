@@ -2,7 +2,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .audio_input import AudioInput
 from .client import AudioInputClient
-from .service import AudioInputService
+from .service import AudioInputRPCService
 
 __all__ = [
     "AudioInput",
@@ -12,7 +12,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         AudioInput,
-        AudioInputService,
+        AudioInputRPCService,
         lambda name, channel: AudioInputClient(name, channel),
     )
 )

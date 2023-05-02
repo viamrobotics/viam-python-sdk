@@ -5,10 +5,10 @@ from viam.components.arm import Arm
 from viam.components.gantry import Gantry
 from viam.proto.common import Pose, PoseInFrame
 from viam.proto.service.motion import Constraints, LinearConstraint
-from viam.services.motion import MotionServiceClient
+from viam.services.motion import MotionClient
 
 from . import loose_approx
-from .mocks.services import MockMotionService
+from .mocks.services import MockMotion
 
 MOVE_CONSTRAINTS = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
 MOVE_RESPONSES = {"arm": False, "gantry": True}
@@ -22,8 +22,8 @@ MOTION_SERVICE_NAME = "motion1"
 
 
 @pytest.fixture(scope="function")
-def service() -> MockMotionService:
-    return MockMotionService(
+def service() -> MockMotion:
+    return MockMotion(
         move_responses=MOVE_RESPONSES,
         move_single_component_responses=MOVE_SINGLE_COMPONENT_RESPONSES,
         get_pose_responses=GET_POSE_RESPONSES,
@@ -32,9 +32,9 @@ def service() -> MockMotionService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_plan_and_move(self, service: MockMotionService):
+    async def test_plan_and_move(self, service: MockMotion):
         async with ChannelFor([service]) as channel:
-            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
             assert service.timeout is None
             assert service.constraints is None
             timeout = 1.4
@@ -52,9 +52,9 @@ class TestClient:
             assert service.timeout is None
 
     @pytest.mark.asyncio
-    async def test_move_single_component(self, service: MockMotionService):
+    async def test_move_single_component(self, service: MockMotion):
         async with ChannelFor([service]) as channel:
-            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
             success = await client.move_single_component(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"})
             assert success == MOVE_SINGLE_COMPONENT_RESPONSES["arm"]
             assert service.extra == {"foo": "bar"}
@@ -63,9 +63,9 @@ class TestClient:
             assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_get_pose(self, service: MockMotionService):
+    async def test_get_pose(self, service: MockMotion):
         async with ChannelFor([service]) as channel:
-            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
             pose = await client.get_pose(Arm.get_resource_name("arm"), "x", extra={"foo": "bar"})
             assert pose == GET_POSE_RESPONSES["arm"]
             assert service.extra == {"foo": "bar"}
@@ -74,9 +74,9 @@ class TestClient:
             assert service.extra == {}
 
     @pytest.mark.asyncio
-    async def test_do(self, service: MockMotionService):
+    async def test_do(self, service: MockMotion):
         async with ChannelFor([service]) as channel:
-            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command

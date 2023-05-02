@@ -4,7 +4,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .camera import Camera
 from .client import CameraClient
-from .service import CameraService
+from .service import CameraRPCService
 
 __all__ = [
     "Camera",
@@ -16,7 +16,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         Camera,
-        CameraService,
+        CameraRPCService,
         lambda name, channel: CameraClient(name, channel),
     )
 )

@@ -1,9 +1,9 @@
 import pytest
 from grpclib.testing import ChannelFor
 
-from viam.components.generic.service import GenericService
+from viam.components.generic.service import GenericRPCService
 from viam.components.gripper import Gripper, GripperClient, create_status
-from viam.components.gripper.service import GripperService
+from viam.components.gripper.service import GripperRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
@@ -27,15 +27,15 @@ def gripper() -> MockGripper:
 
 
 @pytest.fixture(scope="function")
-def service(gripper: Gripper) -> GripperService:
+def service(gripper: Gripper) -> GripperRPCService:
     rm = ResourceManager([gripper])
-    return GripperService(rm)
+    return GripperRPCService(rm)
 
 
 @pytest.fixture(scope="function")
-def generic_service(gripper: Gripper) -> GenericService:
+def generic_service(gripper: Gripper) -> GenericRPCService:
     manager = ResourceManager([gripper])
-    return GenericService(manager)
+    return GenericRPCService(manager)
 
 
 class TestGripper:
@@ -91,7 +91,7 @@ class TestGripper:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_open(self, gripper: MockGripper, service: GripperService):
+    async def test_open(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
             request = OpenRequest(name=gripper.name)
@@ -100,7 +100,7 @@ class TestService:
             assert gripper.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
-    async def test_grab(self, gripper: MockGripper, service: GripperService):
+    async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
             request = GrabRequest(name=gripper.name)
@@ -110,7 +110,7 @@ class TestService:
             assert gripper.timeout == loose_approx(4.56)
 
     @pytest.mark.asyncio
-    async def test_stop(self, gripper: MockGripper, service: GripperService):
+    async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
 
@@ -125,7 +125,7 @@ class TestService:
             assert gripper.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
-    async def test_is_moving(self, gripper: MockGripper, service: GripperService):
+    async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
             gripper.is_stopped = False
@@ -135,7 +135,7 @@ class TestService:
             assert response.is_moving is True
 
     @pytest.mark.asyncio
-    async def test_extra(self, gripper: MockGripper, service: GripperService):
+    async def test_extra(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.extra is None
             client = GripperServiceStub(channel)
@@ -145,7 +145,7 @@ class TestService:
             assert gripper.extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, gripper: MockGripper, service: GripperService):
+    async def test_do(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperServiceStub(channel)
             command = {"command": "args"}
@@ -157,7 +157,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_open(self, gripper: MockGripper, service: GripperService):
+    async def test_open(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
             await client.open(timeout=1.23)
@@ -165,7 +165,7 @@ class TestClient:
             assert gripper.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
-    async def test_grab(self, gripper: MockGripper, service: GripperService):
+    async def test_grab(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
             grabbed = await client.grab(timeout=2.34)
@@ -174,7 +174,7 @@ class TestClient:
             assert gripper.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_stop(self, gripper: MockGripper, service: GripperService):
+    async def test_stop(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
 
@@ -186,7 +186,7 @@ class TestClient:
             assert gripper.timeout == loose_approx(3.45)
 
     @pytest.mark.asyncio
-    async def test_is_moving(self, gripper: MockGripper, service: GripperService):
+    async def test_is_moving(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.is_stopped is True
             gripper.is_stopped = False
@@ -194,7 +194,7 @@ class TestClient:
             assert await client.is_moving() is True
 
     @pytest.mark.asyncio
-    async def test_do(self, gripper: MockGripper, service: GripperService):
+    async def test_do(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             client = GripperClient(gripper.name, channel)
             command = {"command": "args"}
@@ -202,7 +202,7 @@ class TestClient:
             assert resp == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_extra(self, gripper: MockGripper, service: GripperService):
+    async def test_extra(self, gripper: MockGripper, service: GripperRPCService):
         async with ChannelFor([service]) as channel:
             assert gripper.extra is None
             client = GripperClient(gripper.name, channel)

@@ -2,7 +2,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import EncoderClient
 from .encoder import Encoder
-from .service import EncoderService
+from .service import EncoderRPCService
 
 __all__ = [
     "Encoder",
@@ -12,7 +12,7 @@ __all__ = [
 Registry.register_subtype(
     ResourceRegistration(
         Encoder,
-        EncoderService,
+        EncoderRPCService,
         lambda name, channel: EncoderClient(name, channel),
     )
 )

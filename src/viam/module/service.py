@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from .module import Module
 
 
-class ModuleService(ModuleServiceBase):
+class ModuleRPCService(ModuleServiceBase):
     _module: "Module"
 
     def __init__(self, module: "Module") -> None:
