@@ -17,7 +17,7 @@ class MLModel(ServiceBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel")
 
     @abc.abstractmethod
     async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float]) -> Dict[str, ValueTypes]:
