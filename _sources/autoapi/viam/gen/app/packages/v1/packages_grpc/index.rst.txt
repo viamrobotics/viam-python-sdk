@@ -1,0 +1,54 @@
+:py:mod:`viam.gen.app.packages.v1.packages_grpc`
+================================================
+
+.. py:module:: viam.gen.app.packages.v1.packages_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.packages.v1.packages_grpc.PackageServiceBase
+   viam.gen.app.packages.v1.packages_grpc.PackageServiceStub
+
+
+
+
+.. py:class:: PackageServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: CreatePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.CreatePackageRequest, app.packages.v1.packages_pb2.CreatePackageResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: DeletePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.DeletePackageRequest, app.packages.v1.packages_pb2.DeletePackageResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetPackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.GetPackageRequest, app.packages.v1.packages_pb2.GetPackageResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ListPackages(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.ListPackagesRequest, app.packages.v1.packages_pb2.ListPackagesResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: PackageServiceStub(channel: grpclib.client.Channel)
+
+

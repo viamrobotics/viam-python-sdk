@@ -1,0 +1,54 @@
+:py:mod:`viam.gen.app.mltraining.v1.ml_training_grpc`
+=====================================================
+
+.. py:module:: viam.gen.app.mltraining.v1.ml_training_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.mltraining.v1.ml_training_grpc.MLTrainingServiceBase
+   viam.gen.app.mltraining.v1.ml_training_grpc.MLTrainingServiceStub
+
+
+
+
+.. py:class:: MLTrainingServiceBase
+
+   Bases: :py:obj:`abc.ABC`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: SubmitTrainingJob(stream: grpclib.server.Stream[app.mltraining.v1.ml_training_pb2.SubmitTrainingJobRequest, app.mltraining.v1.ml_training_pb2.SubmitTrainingJobResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetTrainingJob(stream: grpclib.server.Stream[app.mltraining.v1.ml_training_pb2.GetTrainingJobRequest, app.mltraining.v1.ml_training_pb2.GetTrainingJobResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ListTrainingJobs(stream: grpclib.server.Stream[app.mltraining.v1.ml_training_pb2.ListTrainingJobsRequest, app.mltraining.v1.ml_training_pb2.ListTrainingJobsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: CancelTrainingJob(stream: grpclib.server.Stream[app.mltraining.v1.ml_training_pb2.CancelTrainingJobRequest, app.mltraining.v1.ml_training_pb2.CancelTrainingJobResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: MLTrainingServiceStub(channel: grpclib.client.Channel)
+
+
