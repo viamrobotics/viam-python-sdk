@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.resource.manager import ResourceManager
 from viam.components.sensor import SensorClient
-from viam.components.sensor.service import SensorService
+from viam.components.sensor.service import SensorRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import (
     GetReadingsRequest,
@@ -46,8 +46,8 @@ def manager(sensor) -> ResourceManager:
 
 
 @pytest.fixture(scope="function")
-def service(manager) -> SensorService:
-    return SensorService(manager)
+def service(manager) -> SensorRPCService:
+    return SensorRPCService(manager)
 
 
 class TestService:
@@ -63,7 +63,7 @@ class TestService:
             assert sensor.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
-    async def test_do(self, sensor: MockSensor, service: SensorService):
+    async def test_do(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
             command = {"command": "args"}

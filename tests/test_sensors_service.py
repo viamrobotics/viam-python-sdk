@@ -3,11 +3,11 @@ from grpclib.testing import ChannelFor
 
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.proto.service.sensors import Readings
-from viam.services.sensors import SensorsServiceClient
+from viam.services.sensors import SensorsClient
 from viam.utils import primitive_to_value
 
 from . import loose_approx
-from .mocks.services import MockSensorsService
+from .mocks.services import MockSensors
 
 SENSORS = [
     ResourceName(namespace="test", type="component", subtype="sensor", name="sensor0"),
@@ -54,15 +54,15 @@ SENSOR_SERVICE_NAME = "sensors1"
 
 
 @pytest.fixture(scope="function")
-def service() -> MockSensorsService:
-    return MockSensorsService(SENSORS, READINGS)
+def service() -> MockSensors:
+    return MockSensors(SENSORS, READINGS)
 
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_sensors(self, service: MockSensorsService):
+    async def test_get_sensors(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             extra = {"foo": "get_sensors"}
             assert service.timeout is None
             timeout = 1.1
@@ -77,9 +77,9 @@ class TestClient:
             assert service.timeout is None
 
     @pytest.mark.asyncio
-    async def test_get_readings(self, service: MockSensorsService):
+    async def test_get_readings(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             sensors = [
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor1"),
                 ResourceName(namespace="test", type="component", subtype="sensor", name="sensor2"),
@@ -96,9 +96,9 @@ class TestClient:
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, service: MockSensorsService):
+    async def test_do(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
+            client = SensorsClient(SENSOR_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command

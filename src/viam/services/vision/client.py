@@ -27,7 +27,7 @@ from viam.services.service_client_base import ServiceClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
-class VisionServiceClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
+class VisionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
     Connect to the Vision service, which allows you to access various computer vision algorithms
     (like detection, segmentation, tracking, etc) that usually only require a camera or image input.

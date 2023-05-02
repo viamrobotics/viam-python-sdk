@@ -2,75 +2,77 @@ from grpclib.server import Stream
 
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.component.encoder import (
-    EncoderServiceBase,
+from viam.proto.service.slam import (
+    GetInternalStateRequest,
+    GetInternalStateResponse,
+    GetPointCloudMapRequest,
+    GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
-    GetPropertiesRequest,
-    GetPropertiesResponse,
-    ResetPositionRequest,
-    ResetPositionResponse,
+    SLAMServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .encoder import Encoder
+from .slam import SLAM
 
 
-class EncoderRPCService(EncoderServiceBase, ResourceRPCServiceBase[Encoder]):
+class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
     """
-    gRPC Service for an Encoder
+    gRPC Service for a SLAM service
     """
 
-    RESOURCE_TYPE = Encoder
+    RESOURCE_TYPE = SLAM
 
-    async def ResetPosition(self, stream: Stream[ResetPositionRequest, ResetPositionResponse]) -> None:
+    async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         try:
-            encoder = self.get_resource(name)
+            slam = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await encoder.reset_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        await stream.send_message(ResetPositionResponse())
+        chunks = await slam.get_internal_state(timeout=timeout)
+        for chunk in chunks:
+            response = GetInternalStateResponse(internal_state_chunk=chunk)
+            await stream.send_message(response)
+
+    async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        try:
+            slam = self.get_resource(name)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        chunks = await slam.get_point_cloud_map(timeout=timeout)
+        for chunk in chunks:
+            response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
+            await stream.send_message(response)
 
     async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         try:
-            encoder = self.get_resource(name)
+            slam = self.get_resource(name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position, pos_type = await encoder.get_position(
-            position_type=request.position_type, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
-        )
-        await stream.send_message(GetPositionResponse(value=position, position_type=pos_type))
-
-    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        try:
-            encoder = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        properties = await encoder.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetPropertiesResponse(**properties.__dict__)
+        position = await slam.get_position(timeout=timeout)
+        response = GetPositionResponse(pose=position)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         try:
-            encoder = self.get_resource(request.name)
+            slam = self.get_resource(request.name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await encoder.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await slam.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

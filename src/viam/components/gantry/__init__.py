@@ -7,7 +7,7 @@ from viam.utils import message_to_struct
 
 from .client import GantryClient
 from .gantry import Gantry
-from .service import GantryService
+from .service import GantryRPCService
 
 __all__ = [
     "Gantry",
@@ -20,4 +20,4 @@ async def create_status(component: Gantry) -> Status:
     return Status(name=Gantry.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ResourceRegistration(Gantry, GantryService, lambda name, channel: GantryClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Gantry, GantryRPCService, lambda name, channel: GantryClient(name, channel), create_status))

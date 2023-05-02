@@ -15,10 +15,10 @@ from viam.proto.common import (
 from viam.services.vision import (
     Detection,
     Classification,
-    VisionServiceClient,
+    VisionClient,
 )
 
-from .mocks.services import MockVisionService
+from .mocks.services import MockVision
 
 DETECTORS = [
     "detector-0",
@@ -86,8 +86,8 @@ VISION_SERVICE_NAME = "vision1"
 
 
 @pytest.fixture(scope="function")
-def service() -> MockVisionService:
-    return MockVisionService(
+def service() -> MockVision:
+    return MockVision(
         detectors=DETECTORS,
         detections=DETECTIONS,
         classifiers=CLASSIFIERS,
@@ -99,18 +99,18 @@ def service() -> MockVisionService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_detections_from_camera(self, service: MockVisionService):
+    async def test_get_detections_from_camera(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_detections_from_camera"}
             response = await client.get_detections_from_camera("fake-camera", extra=extra)
             assert response == DETECTIONS
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_detections(self, service: MockVisionService):
+    async def test_get_detections(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_detections"}
             response = await client.get_detections(image, extra=extra)
@@ -118,18 +118,18 @@ class TestClient:
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_classifications_from_camera(self, service: MockVisionService):
+    async def test_get_classifications_from_camera(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_classifications_from_camera"}
             response = await client.get_classifications_from_camera("fake-camera", 1, extra=extra)
             assert response == CLASSIFICATIONS
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_classifications(self, service: MockVisionService):
+    async def test_get_classifications(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_classifications"}
             response = await client.get_classifications(image, 1, extra=extra)
@@ -137,18 +137,18 @@ class TestClient:
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_get_object_point_clouds(self, service: MockVisionService):
+    async def test_get_object_point_clouds(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "get_object_point_clouds"}
             response = await client.get_object_point_clouds("camera", extra=extra)
             assert response == POINT_CLOUDS
             assert service.extra == extra
 
     @pytest.mark.asyncio
-    async def test_do(self, service: MockVisionService):
+    async def test_do(self, service: MockVision):
         async with ChannelFor([service]) as channel:
-            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
+            client = VisionClient(VISION_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command

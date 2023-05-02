@@ -6,7 +6,7 @@ from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
 
 from .client import ServoClient
-from .service import ServoService
+from .service import ServoRPCService
 from .servo import Servo
 
 __all__ = [
@@ -20,4 +20,4 @@ async def create_status(component: Servo) -> Status:
     return Status(name=Servo.get_resource_name(component.name), status=message_to_struct(s))
 
 
-Registry.register_subtype(ResourceRegistration(Servo, ServoService, lambda name, channel: ServoClient(name, channel), create_status))
+Registry.register_subtype(ResourceRegistration(Servo, ServoRPCService, lambda name, channel: ServoClient(name, channel), create_status))

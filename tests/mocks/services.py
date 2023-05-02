@@ -4,7 +4,7 @@ from grpclib.server import Stream
 
 from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, PoseInFrame, ResourceName
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -40,10 +40,11 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsResponse,
     VisionServiceBase,
 )
-from viam.utils import struct_to_dict
+from viam.services.slam import SLAM
+from viam.utils import ValueTypes, struct_to_dict
 
 
-class MockMotionService(MotionServiceBase):
+class MockMotion(MotionServiceBase):
     def __init__(
         self,
         move_responses: Dict[str, bool],
@@ -98,7 +99,7 @@ class MockMotionService(MotionServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockSensorsService(SensorsServiceBase):
+class MockSensors(SensorsServiceBase):
     def __init__(self, sensors: List[ResourceName], readings: List[Readings]):
         self.sensors = sensors
         self.readings = readings
@@ -129,7 +130,33 @@ class MockSensorsService(SensorsServiceBase):
         await stream.send_message(DoCommandResponse(result=request.command))
 
 
-class MockVisionService(VisionServiceBase):
+class MockSLAM(SLAM):
+    INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
+    POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
+    POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+
+    def __init__(self, name: str):
+        self.name = name
+        self.timeout: Optional[float] = None
+        super().__init__(name)
+
+    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
+        self.timeout = timeout
+        return self.INTERNAL_STATE_CHUNKS
+
+    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
+        self.timeout = timeout
+        return self.POINT_CLOUD_PCD_CHUNKS
+
+    async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
+        self.timeout = timeout
+        return self.POSITION
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
+class MockVision(VisionServiceBase):
     def __init__(
         self,
         detectors: List[str],

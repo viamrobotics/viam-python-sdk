@@ -7,8 +7,8 @@ from grpclib.testing import ChannelFor
 from PIL import Image
 
 from viam.components.camera import Camera, CameraClient
-from viam.components.camera.service import CameraService
-from viam.components.generic.service import GenericService
+from viam.components.camera.service import CameraRPCService
+from viam.components.generic.service import GenericRPCService
 from viam.resource.manager import ResourceManager
 from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
 from viam.proto.common import DoCommandRequest, DoCommandResponse
@@ -61,15 +61,15 @@ def camera() -> MockCamera:
 
 
 @pytest.fixture(scope="function")
-def service(camera: Camera) -> CameraService:
+def service(camera: Camera) -> CameraRPCService:
     rm = ResourceManager([camera])
-    return CameraService(rm)
+    return CameraRPCService(rm)
 
 
 @pytest.fixture(scope="function")
-def generic_service(camera: Camera) -> GenericService:
+def generic_service(camera: Camera) -> GenericRPCService:
     manager = ResourceManager([camera])
-    return GenericService(manager)
+    return GenericRPCService(manager)
 
 
 class TestCamera:
@@ -116,7 +116,7 @@ class TestCamera:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_get_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+    async def test_get_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -143,7 +143,7 @@ class TestService:
             assert response.mime_type == "unknown"
 
     @pytest.mark.asyncio
-    async def test_render_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+    async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -156,7 +156,7 @@ class TestService:
             assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(self, camera: MockCamera, service: CameraService, point_cloud: bytes):
+    async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -166,7 +166,7 @@ class TestService:
             assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
+    async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -177,7 +177,7 @@ class TestService:
             assert camera.timeout == loose_approx(5.43)
 
     @pytest.mark.asyncio
-    async def test_do(self, camera: MockCamera, service: CameraService):
+    async def test_do(self, camera: MockCamera, service: CameraRPCService):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             command = {"command": "args"}
@@ -189,7 +189,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_frame(self, camera: MockCamera, service: CameraService, image: Image.Image):
+    async def test_get_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
@@ -219,7 +219,7 @@ class TestClient:
             assert raw_img.mime_type == "unknown"
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(self, camera: MockCamera, service: CameraService, point_cloud: bytes):
+    async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
@@ -228,7 +228,7 @@ class TestClient:
             assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
-    async def test_get_properties(self, camera: MockCamera, service: CameraService, properties: Camera.Properties):
+    async def test_get_properties(self, camera: MockCamera, service: CameraRPCService, properties: Camera.Properties):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
@@ -237,7 +237,7 @@ class TestClient:
             assert camera.timeout == loose_approx(7.86)
 
     @pytest.mark.asyncio
-    async def test_do(self, service: CameraService):
+    async def test_do(self, service: CameraRPCService):
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
             command = {"command": "args"}
