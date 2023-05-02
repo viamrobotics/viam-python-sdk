@@ -61,7 +61,7 @@ class Server(ResourceManager):
             host = address[0]
             port = address[1]
         msg = f"[gRPC Request] {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
-        LOGGER.info(msg)
+        LOGGER.debug(msg)
 
     async def serve(
         self,
