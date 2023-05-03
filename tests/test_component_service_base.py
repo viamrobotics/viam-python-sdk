@@ -4,9 +4,13 @@ from typing import Mapping
 
 import pytest
 from grpclib import const
+from grpclib.client import Channel
 
 from viam.components.component_base import ComponentBase
+from viam.errors import ResourceNotFoundError
 from viam.operations import run_with_operation
+from viam.resource.registry import Registry, ResourceRegistration
+from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.rpc_service_base import ResourceManager, ResourceRPCServiceBase
 from viam.resource.types import Subtype
 
@@ -29,6 +33,10 @@ async def test_cancellation_propagation():
             self.long_running_task_cancelled = False
             return self.long_running_task_cancelled
 
+    class TestClient(TestComponent, ReconfigurableResourceRPCClientBase):
+        def __init__(self, name: str, channel: Channel):
+            ...
+
     class TestService(ResourceRPCServiceBase[TestComponent]):
         RESOURCE_TYPE = TestComponent
 
@@ -37,9 +45,15 @@ async def test_cancellation_propagation():
             return await component.long_running()
 
         def __mapping__(self) -> Mapping[str, const.Handler]:
-            return {}
+            return {
+                "/TestService/long_running": const.Handler(self.long_running, const.Cardinality.UNARY_UNARY, "TestRequest", "TestResponse")
+            }
 
     component = TestComponent("test")
+    with pytest.raises(ResourceNotFoundError):
+        service = TestService(ResourceManager([component]))
+
+    Registry.register_subtype(ResourceRegistration(TestComponent, TestService, lambda name, channel: TestClient(name, channel)))
     service = TestService(ResourceManager([component]))
 
     # Test bare functions
