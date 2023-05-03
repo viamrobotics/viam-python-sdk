@@ -2,11 +2,11 @@ from typing import Dict, Mapping, Optional
 from grpclib.client import Channel
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
-from viam.proto.service.mlmodel import InferRequest, InferResponse, Metadata, MetadataRequest, MetadataResponse, MLModelServiceStub
+from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .mlmodel import MLModel
+from .mlmodel import Metadata, MLModel
 
 
 class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
