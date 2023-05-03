@@ -41,13 +41,14 @@ class ResourceManager:
         Args:
             component (ResourceBase): The component to register
         """
+        Registry.lookup_subtype(component.SUBTYPE)  # confirm the subtype is registered in Registry
+
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
         for subtype in component.__class__.mro():
             if subtype in _BaseClasses:
                 continue
             if hasattr(subtype, "get_resource_name"):
-                Registry.lookup_subtype(component.SUBTYPE)  # confirm the subtype is registered in Registry
                 rn = subtype.get_resource_name(component.name)  # type: ignore
                 rnames[rn] = component
         for rn in rnames:
