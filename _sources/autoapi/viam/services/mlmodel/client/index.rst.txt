@@ -1,0 +1,103 @@
+:py:mod:`viam.services.mlmodel.client`
+======================================
+
+.. py:module:: viam.services.mlmodel.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.mlmodel.client.MLModelClient
+
+
+
+
+.. py:class:: MLModelClient(name: str, channel: grpclib.client.Channel)
+
+   Bases: :py:obj:`viam.services.mlmodel.mlmodel.MLModel`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+   MLModel represents a Machine Learning Model service.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:method:: infer(input_data: Dict[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, viam.utils.ValueTypes]
+      :async:
+
+      Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
+
+      :param input_data: A dictionary of input arrays/tensors as specified in the metadata
+      :type input_data: Dict[str, ValueTypes]
+
+      :returns: A dictionary of output arrays/tensors as specified in the metadata
+      :rtype: Dict[str, ValueTypes]
+
+
+   .. py:method:: metadata(*, timeout: Optional[float] = None) -> viam.services.mlmodel.mlmodel.Metadata
+      :async:
+
+      Get the metadata (such as name, type, expected tensor/array shape, inputs, and outputs) associated with the ML model.
+
+      :returns: The metadata
+      :rtype: Metadata
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the service named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+

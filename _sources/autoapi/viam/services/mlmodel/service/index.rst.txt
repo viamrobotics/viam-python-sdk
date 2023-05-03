@@ -1,0 +1,38 @@
+:py:mod:`viam.services.mlmodel.service`
+=======================================
+
+.. py:module:: viam.services.mlmodel.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.mlmodel.service.MLModelRPCService
+
+
+
+
+.. py:class:: MLModelRPCService(manager: viam.resource.manager.ResourceManager)
+
+   Bases: :py:obj:`viam.proto.service.mlmodel.MLModelServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
+   gRPC service for a ML Model service
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: Infer(stream: grpclib.server.Stream[viam.proto.service.mlmodel.InferRequest, viam.proto.service.mlmodel.InferResponse]) -> None
+      :async:
+
+
+   .. py:method:: Metadata(stream: grpclib.server.Stream[viam.proto.service.mlmodel.MetadataRequest, viam.proto.service.mlmodel.MetadataResponse]) -> None
+      :async:
+
+
+

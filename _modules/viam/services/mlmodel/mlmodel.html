@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.services.slam.slam &mdash; Viam Python SDK  documentation</title>
+  <title>viam.services.mlmodel.mlmodel &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -76,7 +76,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">viam.services.slam.slam</li>
+      <li class="breadcrumb-item active">viam.services.mlmodel.mlmodel</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -85,55 +85,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for viam.services.slam.slam</h1><div class="highlight"><pre>
+  <h1>Source code for viam.services.mlmodel.mlmodel</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">viam.proto.service.mlmodel</span> <span class="kn">import</span> <span class="n">Metadata</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span>
 
 <span class="kn">from</span> <span class="nn">..service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Pose</span>
 
 
-<div class="viewcode-block" id="SLAM"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM">[docs]</a><span class="k">class</span> <span class="nc">SLAM</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
+<div class="viewcode-block" id="MLModel"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.MLModel">[docs]</a><span class="k">class</span> <span class="nc">MLModel</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    SLAM represents a SLAM service.</span>
+<span class="sd">    MLModel represents a Machine Learning Model service.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    arm implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;slam&quot;</span><span class="p">)</span>
+    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;mlmodel&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SLAM.get_internal_state"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_internal_state">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_internal_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the internal state of the SLAM algorithm required to continue mapping/localization.</span>
+<div class="viewcode-block" id="MLModel.infer"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.MLModel.infer">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">infer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input_data (Dict[str, ValueTypes]): A dictionary of input arrays/tensors as specified in the metadata</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[GetInternalStateResponse]: Chunks of the internal state of the SLAM algorithm</span>
-
+<span class="sd">            Dict[str, ValueTypes]: A dictionary of output arrays/tensors as specified in the metadata</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="SLAM.get_point_cloud_map"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_point_cloud_map">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_point_cloud_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the point cloud map.</span>
+<div class="viewcode-block" id="MLModel.metadata"><a class="viewcode-back" href="../../../../autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.MLModel.metadata">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Metadata</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the metadata (such as name, type, expected tensor/array shape, inputs, and outputs) associated with the ML model.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all</span>
-<span class="sd">                GetPointCloudMapResponse.point_cloud_pcd_chunk values</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div>
-
-<div class="viewcode-block" id="SLAM.get_position"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get current position of the specified component in the SLAM Map.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Pose: The current position of the specified component</span>
+<span class="sd">            Metadata: The metadata</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>
