@@ -1,5 +1,7 @@
+from array import array
 from io import BytesIO
 
+import os
 import pytest
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.testing import ChannelFor
@@ -83,6 +85,20 @@ class TestCamera:
 
         img = await camera.get_image(CameraMimeType.PNG.with_lazy_suffix)
         assert isinstance(img, RawImage)
+
+    @pytest.mark.asyncio
+    async def test_bytes_to_depth_array(self, camera: Camera):
+        with open(f"{os.path.dirname(__file__)}/mocks/fakeDM.vnd.viam.dep", "rb") as depth_map:
+            camera.image = RawImage(depth_map.read(), "image/vnd.viam.dep")
+        assert isinstance(camera.image, RawImage)
+        image_standard = camera.image.bytes_to_depth_array()
+        print(int.from_bytes(camera.image.data[8:16], "big"))
+        assert len(image_standard) == int.from_bytes(camera.image.data[16:24], "big")
+        assert len(image_standard[0]) == int.from_bytes(camera.image.data[8:16], "big")
+        arr = array("H", camera.image.data[24:])
+        assert len(arr) == 200
+        assert arr[0] == image_standard[0][0]
+        assert arr[183] == image_standard[-1][3]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
