@@ -3,8 +3,9 @@ from typing import Dict, List, Type, TypeVar
 
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
-from viam.services.service_base import ServiceBase
+from viam.resource.registry import Registry
 
+from ..services.service_base import ServiceBase
 from ..components.component_base import ComponentBase
 from ..errors import DuplicateResourceError, ResourceNotFoundError
 
@@ -40,6 +41,8 @@ class ResourceManager:
         Args:
             component (ResourceBase): The component to register
         """
+        Registry.lookup_subtype(component.SUBTYPE)  # confirm the subtype is registered in Registry
+
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
         for subtype in component.__class__.mro():
