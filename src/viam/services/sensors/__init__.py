@@ -1,6 +1,5 @@
-from .client import SensorsClient, SensorsClient as SensorsServiceClient
+from .client import SensorsClient
 
 __all__ = [
     "SensorsClient",
-    "SensorsServiceClient",
 ]

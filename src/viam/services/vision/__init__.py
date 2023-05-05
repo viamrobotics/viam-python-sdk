@@ -1,8 +1,7 @@
-from .client import Classification, Detection, VisionClient, VisionClient as VisionServiceClient
+from .client import Classification, Detection, VisionClient
 
 __all__ = [
     "Classification",
     "Detection",
     "VisionClient",
-    "VisionServiceClient",
 ]

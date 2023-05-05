@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.proto.common import GeoPoint, Orientation, ResourceName, Vector3
 from viam.proto.service.sensors import Readings
-from viam.services.sensors import SensorsClient, SensorsServiceClient
+from viam.services.sensors import SensorsClient
 from viam.utils import primitive_to_value
 
 from . import loose_approx
@@ -99,14 +99,6 @@ class TestClient:
     async def test_do(self, service: MockSensors):
         async with ChannelFor([service]) as channel:
             client = SensorsClient(SENSOR_SERVICE_NAME, channel)
-            command = {"command": "args"}
-            response = await client.do_command(command)
-            assert response == command
-
-    @pytest.mark.asyncio
-    async def test_alias(self, service: MockSensors):
-        async with ChannelFor([service]) as channel:
-            client = SensorsServiceClient(SENSOR_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command
