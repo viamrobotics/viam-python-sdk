@@ -382,6 +382,33 @@ class GeoPoint(google.protobuf.message.Message):
 global___GeoPoint = GeoPoint
 
 @typing_extensions.final
+class GeoObstacle(google.protobuf.message.Message):
+    """GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
+    captured in latitude and longitude.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOCATION_FIELD_NUMBER: builtins.int
+    GEOMETRIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def location(self) -> global___GeoPoint:
+        """Location of the obstacle"""
+
+    @property
+    def geometries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]:
+        """Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location"""
+
+    def __init__(self, *, location: global___GeoPoint | None=..., geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'location', b'location']) -> None:
+        ...
+global___GeoObstacle = GeoObstacle
+
+@typing_extensions.final
 class Transform(google.protobuf.message.Message):
     """Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
     frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
