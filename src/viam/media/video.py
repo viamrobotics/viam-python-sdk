@@ -37,7 +37,7 @@ class RawImage(NamedTuple):
         return
 
     def bytes_to_depth_array(self) -> List[array]:
-        """Decode an image that has the custom depth MIME type `image/vnd.viam.dep` into a standard representation.
+        """Decode an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
 
         Raises:
             NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
