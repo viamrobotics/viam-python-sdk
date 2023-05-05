@@ -1,6 +1,5 @@
-from .client import MotionClient, MotionClient as MotionServiceClient
+from .client import MotionClient
 
 __all__ = [
     "MotionClient",
-    "MotionServiceClient",
 ]
