@@ -16,6 +16,7 @@ from viam.services.vision import (
     Detection,
     Classification,
     VisionClient,
+    VisionServiceClient,
 )
 
 from .mocks.services import MockVision
@@ -149,6 +150,14 @@ class TestClient:
     async def test_do(self, service: MockVision):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
+            command = {"command": "args"}
+            response = await client.do_command(command)
+            assert response == command
+
+    @pytest.mark.asyncio
+    async def test_alias(self, service: MockVision):
+        async with ChannelFor([service]) as channel:
+            client = VisionServiceClient(VISION_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command

@@ -5,7 +5,7 @@ from viam.components.arm import Arm
 from viam.components.gantry import Gantry
 from viam.proto.common import Pose, PoseInFrame
 from viam.proto.service.motion import Constraints, LinearConstraint
-from viam.services.motion import MotionClient
+from viam.services.motion import MotionClient, MotionServiceClient
 
 from . import loose_approx
 from .mocks.services import MockMotion
@@ -77,6 +77,14 @@ class TestClient:
     async def test_do(self, service: MockMotion):
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
+            command = {"command": "args"}
+            response = await client.do_command(command)
+            assert response == command
+
+    @pytest.mark.asyncio
+    async def test_alias(self, service: MockMotion):
+        async with ChannelFor([service]) as channel:
+            client = MotionServiceClient(MOTION_SERVICE_NAME, channel)
             command = {"command": "args"}
             response = await client.do_command(command)
             assert response == command
