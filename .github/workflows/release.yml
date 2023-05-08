@@ -20,9 +20,8 @@ on:
 
 jobs:
   prepare:
-    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
-    # runs-on: [self-hosted, x64]
-    runs-on: [ubuntu-latest]
+    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     outputs:
@@ -86,9 +85,8 @@ jobs:
 
   build:
     needs: prepare
-    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
-    # runs-on: [self-hosted, x64]
-    runs-on: [ubuntu-latest]
+    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     strategy:
@@ -138,9 +136,8 @@ jobs:
 
   release:
     needs: [prepare, build]
-    # if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
-    # runs-on: [self-hosted, x64]
-    runs-on: [ubuntu-latest]
+    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
 
