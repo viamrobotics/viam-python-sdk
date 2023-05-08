@@ -63,6 +63,8 @@ jobs:
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4
         id: release_exists
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           name: v${{ env.version }}
           doNotFailIfNotFound: 'true'
