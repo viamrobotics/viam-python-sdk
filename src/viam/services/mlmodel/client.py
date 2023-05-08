@@ -1,4 +1,5 @@
 from typing import Dict, Mapping, Optional
+
 from grpclib.client import Channel
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse

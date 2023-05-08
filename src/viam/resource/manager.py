@@ -5,9 +5,9 @@ from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 
-from ..services.service_base import ServiceBase
 from ..components.component_base import ComponentBase
 from ..errors import DuplicateResourceError, ResourceNotFoundError
+from ..services.service_base import ServiceBase
 
 ResourceType = TypeVar("ResourceType", bound=ResourceBase)
 
