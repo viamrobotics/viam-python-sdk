@@ -1,8 +1,18 @@
-from typing import Any, Final, List, Mapping, Optional
+from typing import Any, Final, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, PoseInFrame, ResourceName, Transform, WorldState
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    PoseInFrame,
+    ResourceName,
+    Transform,
+    WorldState,
+    Pose,
+    GeoPoint,
+    GeoObstacle,
+)
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -12,6 +22,10 @@ from viam.proto.service.motion import (
     MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
+    MoveOnGlobeRequest,
+    MoveOnGlobeResponse,
+    MoveOnMapRequest,
+    MoveOnMapResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -27,6 +41,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion")
+    client: MotionServiceStub
 
     def __init__(self, name: str, channel: Channel):
         super().__init__(name, channel)
@@ -113,6 +128,80 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request, timeout=timeout)
         return response.success
 
+    async def move_on_globe(
+        self,
+        component_name: ResourceName,
+        destination: GeoPoint,
+        movement_sensor_name: ResourceName,
+        obstacles: Optional[Sequence[GeoObstacle]] = None,
+        heading: Optional[float] = None,
+        linear_meters_per_sec: Optional[float] = None,
+        angular_deg_per_sec: Optional[float] = None,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> bool:
+        """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
+
+        Args:
+            component_name (ResourceName): The component to move
+            destination (GeoPoint): The destination point
+            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location
+            obstacles (Optional[Sequence[GeoObstacle]], optional): Obstacles to be considered for motion planning. Defaults to None.
+            heading (Optional[float], optional): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
+            linear_meters_per_sec (Optional[float], optional): Linear velocity to target when moving. Defaults to None.
+            angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.
+
+        Returns:
+            bool: Whether the request was successful
+        """
+        if extra is None:
+            extra = {}
+        request = MoveOnGlobeRequest(
+            name=self.name,
+            component_name=component_name,
+            destination=destination,
+            movement_sensor_name=movement_sensor_name,
+            obstacles=obstacles,
+            heading=heading,
+            linear_meters_per_sec=linear_meters_per_sec,
+            angular_deg_per_sec=angular_deg_per_sec,
+            extra=dict_to_struct(extra),
+        )
+        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
+        return response.success
+
+    async def move_on_map(
+        self,
+        component_name: ResourceName,
+        destination: Pose,
+        slam_service_name: ResourceName,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> bool:
+        """Move a component to a specific pose, using a ``SlamService`` for the SLAM map
+
+        Args:
+            component_name (ResourceName): The component to move
+            destination (Pose): The destination, which can be any pose with respect to the SLAM map's origin
+            slam_service_name (ResourceName): The slam service from which the SLAM map is requested
+
+        Returns:
+            bool: Whether the request was successful
+        """
+        if extra is None:
+            extra = {}
+        request = MoveOnMapRequest(
+            name=self.name,
+            destination=destination,
+            component_name=component_name,
+            slam_service_name=slam_service_name,
+            extra=dict_to_struct(extra),
+        )
+        response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
+        return response.success
+
     async def get_pose(
         self,
         component_name: ResourceName,
@@ -140,8 +229,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Returns:
             ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.
         """
-        if supplemental_transforms is None:
-            supplemental_transforms = []
         if extra is None:
             extra = {}
         request = GetPoseRequest(

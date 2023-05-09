@@ -34,6 +34,7 @@ class VisionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision")
+    client: VisionServiceStub
 
     def __init__(self, name: str, channel: Channel):
         super().__init__(name, channel)
