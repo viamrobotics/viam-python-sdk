@@ -88,7 +88,7 @@ class TestCamera:
 
     @pytest.mark.asyncio
     async def test_bytes_to_depth_array(self):
-        with open(f"{os.path.dirname(__file__)}/mocks/fakeDM.vnd.viam.dep", "rb") as depth_map:
+        with open(f"{os.path.dirname(__file__)}/../data/fakeDM.vnd.viam.dep", "rb") as depth_map:
             image = RawImage(depth_map.read(), "image/vnd.viam.dep")
         assert isinstance(image, RawImage)
         standard_data = image.bytes_to_depth_array()
