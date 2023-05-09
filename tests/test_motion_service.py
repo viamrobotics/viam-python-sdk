@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
-from viam.proto.common import Pose, PoseInFrame
+from viam.proto.common import Pose, PoseInFrame, ResourceName, GeoPoint, GeoObstacle
 from viam.proto.service.motion import Constraints, LinearConstraint
 from viam.services.motion import MotionClient
 
@@ -72,6 +72,43 @@ class TestClient:
             pose = await client.get_pose(Gantry.get_resource_name("gantry"), "y")
             assert pose == GET_POSE_RESPONSES["gantry"]
             assert service.extra == {}
+
+    @pytest.mark.asyncio
+    async def test_move_on_map(self, service: MockMotion):
+        component_rn = Arm.get_resource_name("move_on_map_arm")
+        slam_rn = ResourceName(namespace="rdk", type="service", subtype="slam", name="move_on_map_slam")
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            success = await client.move_on_map(component_rn, Pose(), slam_service_name=slam_rn)
+            assert service.component_name == component_rn
+            assert service.slam_service == slam_rn
+            assert success
+
+    @pytest.mark.asyncio
+    async def test_move_on_globe(self, service: MockMotion):
+        component_rn = Arm.get_resource_name("move_on_globe_arm")
+        movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
+        destination = GeoPoint(latitude=123, longitude=456)
+        obstacles = [GeoObstacle(location=GeoPoint(latitude=111, longitude=222))]
+        async with ChannelFor([service]) as channel:
+            client = MotionClient(MOTION_SERVICE_NAME, channel)
+            success = await client.move_on_globe(
+                component_rn,
+                destination,
+                movement_rn,
+                obstacles,
+                heading=182,
+                linear_meters_per_sec=44,
+                angular_deg_per_sec=786,
+            )
+            assert service.component_name == component_rn
+            assert service.movement_sensor == movement_rn
+            assert service.destination == destination
+            assert service.obstacles == obstacles
+            assert service.heading == 182
+            assert service.linear_meters_per_sec == 44
+            assert service.angular_deg_per_sec == 786
+            assert success
 
     @pytest.mark.asyncio
     async def test_do(self, service: MockMotion):

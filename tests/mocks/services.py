@@ -2,7 +2,6 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.server import Stream
 
-from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
@@ -16,6 +15,8 @@ from viam.proto.service.motion import (
     MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
+    MoveOnGlobeRequest,
+    MoveOnGlobeResponse,
 )
 from viam.proto.service.sensors import (
     GetReadingsRequest,
@@ -76,7 +77,6 @@ class MockMLModel(MLModel):
     META = Metadata(name="fake_detector", type="object_detector", description="desc", input_info=META_INPUTS, output_info=META_OUTPUTS)
 
     def __init__(self, name: str):
-
         self.timeout: Optional[float] = None
 
         super().__init__(name)
@@ -116,7 +116,28 @@ class MockMotion(MotionServiceBase):
         await stream.send_message(response)
 
     async def MoveOnMap(self, stream: Stream[MoveOnMapRequest, MoveOnMapResponse]) -> None:
-        raise MethodNotImplementedError("MoveOnMap")
+        request = await stream.recv_message()
+        assert request is not None
+        self.component_name = request.component_name
+        self.destination = request.destination
+        self.slam_service = request.slam_service_name
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(MoveOnMapResponse(success=True))
+
+    async def MoveOnGlobe(self, stream: Stream[MoveOnGlobeRequest, MoveOnGlobeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.component_name = request.component_name
+        self.destination = request.destination
+        self.movement_sensor = request.movement_sensor_name
+        self.obstacles = request.obstacles
+        self.heading = request.heading
+        self.linear_meters_per_sec = request.linear_meters_per_sec
+        self.angular_deg_per_sec = request.angular_deg_per_sec
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(MoveOnGlobeResponse(success=True))
 
     async def MoveSingleComponent(self, stream: Stream[MoveSingleComponentRequest, MoveSingleComponentResponse]) -> None:
         request = await stream.recv_message()

@@ -14,6 +14,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors")
+    client: SensorsServiceStub
 
     def __init__(self, name: str, channel: Channel):
         super().__init__(name, channel)

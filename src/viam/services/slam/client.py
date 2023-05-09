@@ -24,6 +24,8 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
     Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
     """
 
+    client: SLAMServiceStub
+
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = SLAMServiceStub(channel)

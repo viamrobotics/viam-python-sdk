@@ -134,6 +134,82 @@ class MoveOnMapResponse(google.protobuf.message.Message):
 global___MoveOnMapResponse = MoveOnMapResponse
 
 @typing_extensions.final
+class MoveOnGlobeRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    HEADING_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
+    OBSTACLES_FIELD_NUMBER: builtins.int
+    LINEAR_METERS_PER_SEC_FIELD_NUMBER: builtins.int
+    ANGULAR_DEG_PER_SEC_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the motion service'
+
+    @property
+    def destination(self) -> common.v1.common_pb2.GeoPoint:
+        """Destination, encoded as a GeoPoint"""
+    heading: builtins.float
+    'Optional compass heading to achieve at the destination, in degrees [0-360)'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """Component on the robot to move to the specified destination"""
+
+    @property
+    def movement_sensor_name(self) -> common.v1.common_pb2.ResourceName:
+        """Name of the movement sensor which will be used to check robot location"""
+
+    @property
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
+        """Obstacles to be considered for motion planning"""
+    linear_meters_per_sec: builtins.float
+    'Optional linear velocity to target when moving'
+    angular_deg_per_sec: builtins.float
+    'Optional angular velocity to target when turning'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., linear_meters_per_sec: builtins.float | None=..., angular_deg_per_sec: builtins.float | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec', '_heading', b'_heading', '_linear_meters_per_sec', b'_linear_meters_per_sec', 'angular_deg_per_sec', b'angular_deg_per_sec', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'linear_meters_per_sec', b'linear_meters_per_sec', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec', '_heading', b'_heading', '_linear_meters_per_sec', b'_linear_meters_per_sec', 'angular_deg_per_sec', b'angular_deg_per_sec', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'linear_meters_per_sec', b'linear_meters_per_sec', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec']) -> typing_extensions.Literal['angular_deg_per_sec'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_heading', b'_heading']) -> typing_extensions.Literal['heading'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_linear_meters_per_sec', b'_linear_meters_per_sec']) -> typing_extensions.Literal['linear_meters_per_sec'] | None:
+        ...
+global___MoveOnGlobeRequest = MoveOnGlobeRequest
+
+@typing_extensions.final
+class MoveOnGlobeResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SUCCESS_FIELD_NUMBER: builtins.int
+    success: builtins.bool
+
+    def __init__(self, *, success: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+        ...
+global___MoveOnGlobeResponse = MoveOnGlobeResponse
+
+@typing_extensions.final
 class MoveSingleComponentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
