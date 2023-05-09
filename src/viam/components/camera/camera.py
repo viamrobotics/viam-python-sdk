@@ -38,7 +38,7 @@ class Camera(ComponentBase):
         Be sure to close the image when finished.
 
         NOTE: If the mime type is ``Image/VND.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
-        to convert to a standard representation.
+        to convert the data to a standard representation.
 
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
