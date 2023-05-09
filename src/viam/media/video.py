@@ -36,7 +36,7 @@ class RawImage(NamedTuple):
         """Close the image and release resources. For RawImage, this is a noop."""
         return
 
-    def bytes_to_depth_array(self) -> List[array]:
+    def bytes_to_depth_array(self) -> List[List[int]]:
         """Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
         a standard representation.
 
@@ -44,7 +44,7 @@ class RawImage(NamedTuple):
             NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
 
         Returns:
-            List[array]: The standard representation of the image.
+            List[List[int]]: The standard representation of the image.
         """
         if self.mime_type != "image/vnd.viam.dep":
             raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
@@ -54,7 +54,6 @@ class RawImage(NamedTuple):
         depth_arr = array("H", self.data[24:])
 
         depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
-        depth_arr_2d = [array("H", row) for row in depth_arr_2d]
         return depth_arr_2d
 
 
