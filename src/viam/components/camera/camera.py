@@ -37,7 +37,7 @@ class Camera(ComponentBase):
         """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 
-        NOTE: If the mime type is ``Image/VND.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
+        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
         to convert the data to a standard representation.
 
         Args:
