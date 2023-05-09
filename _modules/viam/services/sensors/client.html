@@ -102,6 +102,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Connect to the SensorService, which centralizes all Sensors in a single place&quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;sensors&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">SensorsServiceStub</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>

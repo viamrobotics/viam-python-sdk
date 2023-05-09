@@ -108,6 +108,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnMapResponse" title="viam.gen.service.motion.v1.motion_pb2.MoveOnMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnMapResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest" title="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse" title="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.MoveSingleComponentRequest" title="viam.gen.service.motion.v1.motion_pb2.MoveSingleComponentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveSingleComponentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -152,6 +158,12 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapResponse" title="viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MoveOnMapResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest" title="viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MoveOnGlobeRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse" title="viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MoveOnGlobeResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveSingleComponentRequest" title="viam.gen.service.motion.v1.motion_pb2.global___MoveSingleComponentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MoveSingleComponentRequest</span></code></a></p></td>
@@ -386,6 +398,143 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MoveOnMapResponse</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">MoveOnGlobeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">common.v1.common_pb2.GeoPoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">movement_sensor_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><span class="pre">common.v1.common_pb2.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_meters_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_deg_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.destination">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.destination" title="Permalink to this definition"></a></dt>
+<dd><p>Destination, encoded as a GeoPoint</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>Component on the robot to move to the specified destination</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.movement_sensor_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">movement_sensor_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.movement_sensor_name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the movement sensor which will be used to check robot location</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.obstacles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><span class="pre">viam.gen.common.v1.common_pb2.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.obstacles" title="Permalink to this definition"></a></dt>
+<dd><p>Obstacles to be considered for motion planning</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the motion service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.heading">
+<span class="sig-name descname"><span class="pre">heading</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.heading" title="Permalink to this definition"></a></dt>
+<dd><p>Optional compass heading to achieve at the destination, in degrees [0-360)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.linear_meters_per_sec">
+<span class="sig-name descname"><span class="pre">linear_meters_per_sec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.linear_meters_per_sec" title="Permalink to this definition"></a></dt>
+<dd><p>Optional linear velocity to target when moving</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.angular_deg_per_sec">
+<span class="sig-name descname"><span class="pre">angular_deg_per_sec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.angular_deg_per_sec" title="Permalink to this definition"></a></dt>
+<dd><p>Optional angular velocity to target when turning</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_angular_deg_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_angular_deg_per_sec'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_heading'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_linear_meters_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_linear_meters_per_sec'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">angular_deg_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'angular_deg_per_sec'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'heading'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">linear_meters_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'linear_meters_per_sec'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">movement_sensor_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'movement_sensor_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_angular_deg_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_angular_deg_per_sec'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'angular_deg_per_sec'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_heading'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'heading'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_linear_meters_per_sec</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_linear_meters_per_sec'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'linear_meters_per_sec'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MoveOnGlobeRequest</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">MoveOnGlobeResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse.success">
+<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse.success" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.motion.v1.motion_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MoveOnGlobeResponse</span></span><a class="headerlink" href="#viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">

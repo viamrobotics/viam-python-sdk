@@ -31,6 +31,11 @@ Classes
 
       
 
+   .. py:attribute:: client
+      :type: viam.proto.service.motion.MotionServiceStub
+
+      
+
    .. py:method:: move(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, constraints: Optional[viam.proto.service.motion.Constraints] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
       :async:
 
@@ -77,6 +82,46 @@ Classes
       :type world_state: viam.proto.common.WorldState
 
       :returns: Whether the move was successful
+      :rtype: bool
+
+
+   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, linear_meters_per_sec: Optional[float] = None, angular_deg_per_sec: Optional[float] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> bool
+      :async:
+
+      Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
+
+      :param component_name: The component to move
+      :type component_name: ResourceName
+      :param destination: The destination point
+      :type destination: GeoPoint
+      :param movement_sensor_name: The ``MovementSensor`` which will be used to check robot location
+      :type movement_sensor_name: ResourceName
+      :param obstacles: Obstacles to be considered for motion planning. Defaults to None.
+      :type obstacles: Optional[Sequence[GeoObstacle]], optional
+      :param heading: Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
+      :type heading: Optional[float], optional
+      :param linear_meters_per_sec: Linear velocity to target when moving. Defaults to None.
+      :type linear_meters_per_sec: Optional[float], optional
+      :param angular_deg_per_sec: Angular velocity to target when turning. Defaults to None.
+      :type angular_deg_per_sec: Optional[float], optional
+
+      :returns: Whether the request was successful
+      :rtype: bool
+
+
+   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> bool
+      :async:
+
+      Move a component to a specific pose, using a ``SlamService`` for the SLAM map
+
+      :param component_name: The component to move
+      :type component_name: ResourceName
+      :param destination: The destination, which can be any pose with respect to the SLAM map's origin
+      :type destination: Pose
+      :param slam_service_name: The slam service from which the SLAM map is requested
+      :type slam_service_name: ResourceName
+
+      :returns: Whether the request was successful
       :rtype: bool
 
 

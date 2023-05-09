@@ -86,11 +86,21 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.motion.client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PoseInFrame</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">WorldState</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DoCommandRequest</span><span class="p">,</span>
+    <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">PoseInFrame</span><span class="p">,</span>
+    <span class="n">ResourceName</span><span class="p">,</span>
+    <span class="n">Transform</span><span class="p">,</span>
+    <span class="n">WorldState</span><span class="p">,</span>
+    <span class="n">Pose</span><span class="p">,</span>
+    <span class="n">GeoPoint</span><span class="p">,</span>
+    <span class="n">GeoObstacle</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Constraints</span><span class="p">,</span>
     <span class="n">GetPoseRequest</span><span class="p">,</span>
@@ -100,6 +110,10 @@
     <span class="n">MoveResponse</span><span class="p">,</span>
     <span class="n">MoveSingleComponentRequest</span><span class="p">,</span>
     <span class="n">MoveSingleComponentResponse</span><span class="p">,</span>
+    <span class="n">MoveOnGlobeRequest</span><span class="p">,</span>
+    <span class="n">MoveOnGlobeResponse</span><span class="p">,</span>
+    <span class="n">MoveOnMapRequest</span><span class="p">,</span>
+    <span class="n">MoveOnMapResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
@@ -115,6 +129,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;motion&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">MotionServiceStub</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
@@ -201,6 +216,80 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveSingleComponentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveSingleComponent</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
+<div class="viewcode-block" id="MotionClient.move_on_globe"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.move_on_globe">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_globe</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span>
+        <span class="n">movement_sensor_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoObstacle</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heading</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">linear_meters_per_sec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">angular_deg_per_sec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (ResourceName): The component to move</span>
+<span class="sd">            destination (GeoPoint): The destination point</span>
+<span class="sd">            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location</span>
+<span class="sd">            obstacles (Optional[Sequence[GeoObstacle]], optional): Obstacles to be considered for motion planning. Defaults to None.</span>
+<span class="sd">            heading (Optional[float], optional): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.</span>
+<span class="sd">            linear_meters_per_sec (Optional[float], optional): Linear velocity to target when moving. Defaults to None.</span>
+<span class="sd">            angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the request was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveOnGlobeRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="n">movement_sensor_name</span><span class="o">=</span><span class="n">movement_sensor_name</span><span class="p">,</span>
+            <span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">,</span>
+            <span class="n">heading</span><span class="o">=</span><span class="n">heading</span><span class="p">,</span>
+            <span class="n">linear_meters_per_sec</span><span class="o">=</span><span class="n">linear_meters_per_sec</span><span class="p">,</span>
+            <span class="n">angular_deg_per_sec</span><span class="o">=</span><span class="n">angular_deg_per_sec</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnGlobeResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnGlobe</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
+
+<div class="viewcode-block" id="MotionClient.move_on_map"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.move_on_map">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_map</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span>
+        <span class="n">slam_service_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move a component to a specific pose, using a ``SlamService`` for the SLAM map</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (ResourceName): The component to move</span>
+<span class="sd">            destination (Pose): The destination, which can be any pose with respect to the SLAM map&#39;s origin</span>
+<span class="sd">            slam_service_name (ResourceName): The slam service from which the SLAM map is requested</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Whether the request was successful</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveOnMapRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">slam_service_name</span><span class="o">=</span><span class="n">slam_service_name</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnMapResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnMap</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
+
 <div class="viewcode-block" id="MotionClient.get_pose"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.get_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
@@ -228,8 +317,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            ``Pose`` (PoseInFrame): Pose of the given component and the frame in which it was observed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">supplemental_transforms</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">supplemental_transforms</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetPoseRequest</span><span class="p">(</span>
