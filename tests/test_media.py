@@ -12,9 +12,12 @@ class TestRawImage:
             image = RawImage(depth_map.read(), "image/vnd.viam.dep")
         assert isinstance(image, RawImage)
         standard_data = image.bytes_to_depth_array()
-        assert len(standard_data) == int.from_bytes(image.data[16:24], "big")
-        assert len(standard_data[0]) == int.from_bytes(image.data[8:16], "big")
+        assert len(standard_data) == 10
+        assert len(standard_data[0]) == 20
         data_arr = array("H", image.data[24:])
+        data_arr.byteswap()
         assert len(data_arr) == 200
-        assert data_arr[0] == standard_data[0][0]
-        assert data_arr[183] == standard_data[-1][3]
+        assert standard_data[0][0] == data_arr[0]
+        assert standard_data[-1][3] == data_arr[183]
+        assert standard_data[-1][3] == 9 * 3
+        assert standard_data[4][4] == 4 * 4

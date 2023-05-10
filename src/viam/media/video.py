@@ -52,6 +52,7 @@ class RawImage(NamedTuple):
         width = int.from_bytes(self.data[8:16], "big")
         height = int.from_bytes(self.data[16:24], "big")
         depth_arr = array("H", self.data[24:])
+        depth_arr.byteswap()
 
         depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
         return depth_arr_2d
