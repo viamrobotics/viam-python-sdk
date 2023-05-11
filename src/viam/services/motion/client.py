@@ -5,27 +5,27 @@ from grpclib.client import Channel
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    GeoObstacle,
+    GeoPoint,
+    Pose,
     PoseInFrame,
     ResourceName,
     Transform,
     WorldState,
-    Pose,
-    GeoPoint,
-    GeoObstacle,
 )
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceStub,
-    MoveRequest,
-    MoveResponse,
-    MoveSingleComponentRequest,
-    MoveSingleComponentResponse,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
+    MoveRequest,
+    MoveResponse,
+    MoveSingleComponentRequest,
+    MoveSingleComponentResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
