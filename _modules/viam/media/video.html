@@ -86,12 +86,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.media.video</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+<span></span><span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
-
 <span class="kn">from</span> <span class="nn">PIL.Image</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
+
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
 
 <span class="kn">from</span> <span class="nn">.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">RGBA_FORMAT_LABEL</span>
 
@@ -120,7 +122,28 @@
 
 <div class="viewcode-block" id="RawImage.close"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the image and release resources. For RawImage, this is a noop.&quot;&quot;&quot;</span>
-        <span class="k">return</span></div></div>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="RawImage.bytes_to_depth_array"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.bytes_to_depth_array">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_depth_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into</span>
+<span class="sd">        a standard representation.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[List[int]]: The standard representation of the image.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">!=</span> <span class="s2">&quot;image/vnd.viam.dep&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="s2">&quot;Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()&quot;</span><span class="p">)</span>
+
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="n">depth_arr</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">24</span><span class="p">:])</span>
+        <span class="n">depth_arr</span><span class="o">.</span><span class="n">byteswap</span><span class="p">()</span>
+
+        <span class="n">depth_arr_2d</span> <span class="o">=</span> <span class="p">[[</span><span class="n">depth_arr</span><span class="p">[</span><span class="n">row</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">depth_arr_2d</span></div></div>
 
 
 <div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>

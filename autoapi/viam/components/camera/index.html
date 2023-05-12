@@ -73,6 +73,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.data"><code class="docutils literal notranslate"><span class="pre">RawImage.data</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.mime_type"><code class="docutils literal notranslate"><span class="pre">RawImage.mime_type</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.close"><code class="docutils literal notranslate"><span class="pre">RawImage.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.bytes_to_depth_array"><code class="docutils literal notranslate"><span class="pre">RawImage.bytes_to_depth_array()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
@@ -223,6 +224,24 @@ Python SDK</p>
 <dd><p>Close the image and release resources. For RawImage, this is a noop.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.RawImage.bytes_to_depth_array">
+<span class="sig-name descname"><span class="pre">bytes_to_depth_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#RawImage.bytes_to_depth_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.RawImage.bytes_to_depth_array" title="Permalink to this definition"></a></dt>
+<dd><p>Decode the data of an image that has the custom depth MIME type <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> into
+a standard representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../errors/index.html#viam.errors.NotSupportedError" title="viam.errors.NotSupportedError"><strong>NotSupportedError</strong></a> – Raised if given an image that is not of MIME type <cite>image/vnd.viam.dep</cite>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The standard representation of the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -328,6 +347,8 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><span class="pre">viam.components.camera.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_image" title="Permalink to this definition"></a></dt>
 <dd><p>Get the next image from the camera as an Image or RawImage.
 Be sure to close the image when finished.</p>
+<p>NOTE: If the mime type is <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> you can use <a class="reference internal" href="../../media/video/index.html#viam.media.video.RawImage.bytes_to_depth_array" title="viam.media.video.RawImage.bytes_to_depth_array"><code class="xref py py-func docutils literal notranslate"><span class="pre">viam.media.video.RawImage.bytes_to_depth_array()</span></code></a>
+to convert the data to a standard representation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mime_type</strong> (<em>str</em>) – The desired mime type of the image. This does not guarantee output type</p>

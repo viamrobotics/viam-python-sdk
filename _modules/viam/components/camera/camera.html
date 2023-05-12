@@ -125,6 +125,9 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the next image from the camera as an Image or RawImage.</span>
 <span class="sd">        Be sure to close the image when finished.</span>
 
+<span class="sd">        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`</span>
+<span class="sd">        to convert the data to a standard representation.</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            mime_type (str): The desired mime type of the image. This does not guarantee output type</span>
 

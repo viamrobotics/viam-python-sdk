@@ -64,6 +64,17 @@ Attributes
       Close the image and release resources. For RawImage, this is a noop.
 
 
+   .. py:method:: bytes_to_depth_array() -> List[List[int]]
+
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
+      a standard representation.
+
+      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+
+      :returns: The standard representation of the image.
+      :rtype: List[List[int]]
+
+
 
 .. py:class:: CameraMimeType
 
