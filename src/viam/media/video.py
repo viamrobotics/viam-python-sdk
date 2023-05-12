@@ -1,9 +1,11 @@
+from array import array
 from enum import Enum
 from io import BytesIO
-from typing import NamedTuple, Tuple, Union
-
 from PIL.Image import Image
+from typing import List, NamedTuple, Tuple, Union
 from typing_extensions import Self
+
+from viam.errors import NotSupportedError
 
 from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 
@@ -33,6 +35,27 @@ class RawImage(NamedTuple):
     def close(self):
         """Close the image and release resources. For RawImage, this is a noop."""
         return
+
+    def bytes_to_depth_array(self) -> List[List[int]]:
+        """Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
+        a standard representation.
+
+        Raises:
+            NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+
+        Returns:
+            List[List[int]]: The standard representation of the image.
+        """
+        if self.mime_type != "image/vnd.viam.dep":
+            raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
+
+        width = int.from_bytes(self.data[8:16], "big")
+        height = int.from_bytes(self.data[16:24], "big")
+        depth_arr = array("H", self.data[24:])
+        depth_arr.byteswap()
+
+        depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
+        return depth_arr_2d
 
 
 class CameraMimeType(str, Enum):
