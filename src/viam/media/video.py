@@ -1,8 +1,9 @@
 from array import array
 from enum import Enum
 from io import BytesIO
-from PIL.Image import Image
 from typing import List, NamedTuple, Tuple, Union
+
+from PIL.Image import Image
 from typing_extensions import Self
 
 from viam.errors import NotSupportedError
