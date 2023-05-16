@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The type of version bump. Select "-s" for no version change. See https://python-poetry.org/docs/cli/#version'
+        description: 'The type of version bump. All versions will have `rc*` appended. Use `prerelease` to bump the `rc` version only. Use `-s` for no change.'
         type: choice
         required: true
         default: '-s'

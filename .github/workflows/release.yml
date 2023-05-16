@@ -2,25 +2,10 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'The type of version bump. Select "-s" for no version change. See https://python-poetry.org/docs/cli/#version'
-        type: choice
-        required: true
-        default: '-s'
-        options:
-        - major
-        - minor
-        - patch
-        - premajor
-        - preminor
-        - prepatch
-        - prerelease
-        - '-s'
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref, 'rc-')
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -55,7 +40,7 @@ jobs:
       - name: Bump Version
         id: bump_version
         run: |
-          poetry version ${{ inputs.version }}
+          poetry version ${$(poetry version -s)%rc*}
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
 
@@ -150,5 +135,5 @@ jobs:
           tag_name: v${{ needs.prepare.outputs.version }}
           files: dist/*
           draft: true
-          prerelease: ${{ contains(inputs.version, 'pre') }}
+          prerelease: false
           fail_on_unmatched_files: true
