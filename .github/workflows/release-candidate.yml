@@ -156,7 +156,7 @@ jobs:
         with:
           tag_name: v${{ needs.prepare.outputs.rc_version }}
           files: dist/*
-          draft: true
+          draft: false
           prerelease: true
           fail_on_unmatched_files: true
           target_commitish: rc-${{ needs.prepare.outputs.version }}
