@@ -1,17 +1,33 @@
-name: Release
+name: Release Candidate
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'The type of version bump. All versions will have `rc*` appended. Use `prerelease` to bump the `rc` version only. Use `-s` for no change.'
+        type: choice
+        required: true
+        default: '-s'
+        options:
+        - major
+        - minor
+        - patch
+        - prerelease
+        - '-s'
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref, 'rc-')
+    if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
     outputs:
+      rc_version: ${{ steps.bump_version.outputs.rc_version }}
       version: ${{ steps.bump_version.outputs.version }}
     steps:
+      - name: Output Event
+        run: echo "${{ toJSON(github.event) }}"
+
       - name: Check if organization member
         id: is_organization_member
         uses: jamessingleton/is-organization-member@1.0.1
@@ -40,9 +56,15 @@ jobs:
       - name: Bump Version
         id: bump_version
         run: |
-          poetry version ${$(poetry version -s)%rc*}
-          echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
-          echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
+          if [[ $(poetry version) == *"rc"* ]]; then
+            poetry version prerelease
+          else
+            poetry version "$(poetry version ${{ inputs.version }} -s --dry-run)"rc1
+          fi
+          echo "SDK_RC_VERSION=$(poetry version -s)" >> $GITHUB_ENV
+          echo "SDK_VERSION=$(poetry version ${{ inputs.version }} -s --dry-run)" >> $GITHUB_ENV
+          echo "version=$(poetry rc_version -s)" >> $GITHUB_OUTPUT
+          echo "version=$(poetry version ${{ inputs.version }} -s --dry-run)" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
         uses: cardinalby/git-get-release-action@1.2.4
@@ -50,7 +72,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseName: v${{ env.SDK_VERSION }}
+          releaseName: v${{ env.RC_SDK_VERSION }}
           doNotFailIfNotFound: 'true'
 
       - name: Cancelling - release already exists
@@ -61,7 +83,7 @@ jobs:
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: Bump version to ${{ env.SDK_VERSION }}
+          commit-message: Bump version to ${{ env.RC_SDK_VERSION }}
           branch: rc-${{ env.SDK_VERSION }}
           delete-branch: true
           base: main
@@ -70,7 +92,7 @@ jobs:
 
   build:
     needs: prepare
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -121,7 +143,7 @@ jobs:
 
   release:
     needs: [prepare, build]
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -132,8 +154,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ needs.prepare.outputs.version }}
+          tag_name: v${{ needs.prepare.outputs.rc_version }}
           files: dist/*
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
           fail_on_unmatched_files: true
+          target_commitish: rc-${{ needs.prepare.outputs.version }}
