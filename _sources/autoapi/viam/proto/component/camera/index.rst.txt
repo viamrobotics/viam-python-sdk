@@ -279,7 +279,7 @@ Classes
       
 
 
-.. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ...)
+.. py:class:: Property(*, width_px: int = ..., height_px: int = ..., frame_format: str = ..., frame_rate: float = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -303,6 +303,11 @@ Classes
       :type: str
 
       Video frame format
+
+   .. py:attribute:: frame_rate
+      :type: float
+
+      Video frame rate in fps
 
 
 .. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ...)
