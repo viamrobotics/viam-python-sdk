@@ -6,17 +6,35 @@ import builtins
 import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _PaymentMethodType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _PaymentMethodTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PaymentMethodType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    PAYMENT_METHOD_TYPE_UNSPECIFIED: _PaymentMethodType.ValueType
+    PAYMENT_METHOD_TYPE_CARD: _PaymentMethodType.ValueType
+
+class PaymentMethodType(_PaymentMethodType, metaclass=_PaymentMethodTypeEnumTypeWrapper):
+    ...
+PAYMENT_METHOD_TYPE_UNSPECIFIED: PaymentMethodType.ValueType
+PAYMENT_METHOD_TYPE_CARD: PaymentMethodType.ValueType
+global___PaymentMethodType = PaymentMethodType
+
 @typing_extensions.final
 class CurrentMonthUsageSummary(google.protobuf.message.Message):
+    """TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLOUD_STORAGE_USAGE_FIELD_NUMBER: builtins.int
     CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
@@ -170,6 +188,7 @@ global___PaymentMethodCard = PaymentMethodCard
 
 @typing_extensions.final
 class GetCurrentMonthUsageSummaryRequest(google.protobuf.message.Message):
+    """TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
@@ -183,6 +202,7 @@ global___GetCurrentMonthUsageSummaryRequest = GetCurrentMonthUsageSummaryRequest
 
 @typing_extensions.final
 class GetCurrentMonthUsageSummaryResponse(google.protobuf.message.Message):
+    """TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLOUD_STORAGE_USAGE_FIELD_NUMBER: builtins.int
     CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
@@ -217,7 +237,61 @@ class GetCurrentMonthUsageSummaryResponse(google.protobuf.message.Message):
 global___GetCurrentMonthUsageSummaryResponse = GetCurrentMonthUsageSummaryResponse
 
 @typing_extensions.final
+class GetCurrentMonthUsageRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+        ...
+global___GetCurrentMonthUsageRequest = GetCurrentMonthUsageRequest
+
+@typing_extensions.final
+class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    START_DATE_FIELD_NUMBER: builtins.int
+    END_DATE_FIELD_NUMBER: builtins.int
+    CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
+    DATA_UPLOAD_USAGE_COST_FIELD_NUMBER: builtins.int
+    DATA_EGRES_USAGE_COST_FIELD_NUMBER: builtins.int
+    REMOTE_CONTROL_USAGE_COST_FIELD_NUMBER: builtins.int
+    STANDARD_COMPUTE_USAGE_COST_FIELD_NUMBER: builtins.int
+    DISCOUNT_AMOUNT_FIELD_NUMBER: builtins.int
+    TOTAL_USAGE_WITH_DISCOUNT_FIELD_NUMBER: builtins.int
+    TOTAL_USAGE_WITHOUT_DISCOUNT_FIELD_NUMBER: builtins.int
+
+    @property
+    def start_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def end_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+    cloud_storage_usage_cost: builtins.float
+    data_upload_usage_cost: builtins.float
+    data_egres_usage_cost: builtins.float
+    remote_control_usage_cost: builtins.float
+    standard_compute_usage_cost: builtins.float
+    discount_amount: builtins.float
+    total_usage_with_discount: builtins.float
+    total_usage_without_discount: builtins.float
+
+    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['end_date', b'end_date', 'start_date', b'start_date']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'remote_control_usage_cost', b'remote_control_usage_cost', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
+        ...
+global___GetCurrentMonthUsageResponse = GetCurrentMonthUsageResponse
+
+@typing_extensions.final
 class GetUnpaidBalanceRequest(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
@@ -231,6 +305,7 @@ global___GetUnpaidBalanceRequest = GetUnpaidBalanceRequest
 
 @typing_extensions.final
 class GetUnpaidBalanceResponse(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UNPAID_BALANCE_FIELD_NUMBER: builtins.int
     UNPAID_BALANCE_DUE_DATE_FIELD_NUMBER: builtins.int
@@ -252,6 +327,7 @@ global___GetUnpaidBalanceResponse = GetUnpaidBalanceResponse
 
 @typing_extensions.final
 class GetInvoiceHistoryRequest(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
@@ -265,6 +341,7 @@ global___GetInvoiceHistoryRequest = GetInvoiceHistoryRequest
 
 @typing_extensions.final
 class GetInvoiceHistoryResponse(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVOICES_FIELD_NUMBER: builtins.int
 
@@ -281,6 +358,7 @@ global___GetInvoiceHistoryResponse = GetInvoiceHistoryResponse
 
 @typing_extensions.final
 class GetItemizedInvoiceRequest(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
@@ -294,6 +372,7 @@ global___GetItemizedInvoiceRequest = GetItemizedInvoiceRequest
 
 @typing_extensions.final
 class GetItemizedInvoiceResponse(google.protobuf.message.Message):
+    """TODO(APP-1865) may want to remove"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVOICE_FIELD_NUMBER: builtins.int
 
@@ -312,7 +391,79 @@ class GetItemizedInvoiceResponse(google.protobuf.message.Message):
 global___GetItemizedInvoiceResponse = GetItemizedInvoiceResponse
 
 @typing_extensions.final
+class GetOrgBillingInformationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+        ...
+global___GetOrgBillingInformationRequest = GetOrgBillingInformationRequest
+
+@typing_extensions.final
+class GetOrgBillingInformationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    TYPE_FIELD_NUMBER: builtins.int
+    BILLING_EMAIL_FIELD_NUMBER: builtins.int
+    METHOD_FIELD_NUMBER: builtins.int
+    type: global___PaymentMethodType.ValueType
+    billing_email: builtins.str
+
+    @property
+    def method(self) -> global___PaymentMethodCard:
+        """defined if type is PAYMENT_METHOD_TYPE_CARD"""
+
+    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_method', b'_method', 'method', b'method']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_method', b'_method', 'billing_email', b'billing_email', 'method', b'method', 'type', b'type']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_method', b'_method']) -> typing_extensions.Literal['method'] | None:
+        ...
+global___GetOrgBillingInformationResponse = GetOrgBillingInformationResponse
+
+@typing_extensions.final
+class GetInvoicesSummaryRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+        ...
+global___GetInvoicesSummaryRequest = GetInvoicesSummaryRequest
+
+@typing_extensions.final
+class GetInvoicesSummaryResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    OUTSTANDING_BALANCE_FIELD_NUMBER: builtins.int
+    INVOICES_FIELD_NUMBER: builtins.int
+    outstanding_balance: builtins.float
+    'all unpaid balances at the end of the last billing cycle'
+
+    @property
+    def invoices(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]:
+        """all previous invoices"""
+
+    def __init__(self, *, outstanding_balance: builtins.float=..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['invoices', b'invoices', 'outstanding_balance', b'outstanding_balance']) -> None:
+        ...
+global___GetInvoicesSummaryResponse = GetInvoicesSummaryResponse
+
+@typing_extensions.final
 class GetBillingSummaryRequest(google.protobuf.message.Message):
+    """TODO(APP-1865) should be deprecated/removed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
@@ -326,6 +477,7 @@ global___GetBillingSummaryRequest = GetBillingSummaryRequest
 
 @typing_extensions.final
 class GetBillingSummaryResponse(google.protobuf.message.Message):
+    """TODO(APP-1865) should be deprecated/removed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     USAGE_SUMMARY_FIELD_NUMBER: builtins.int
     INVOICES_FIELD_NUMBER: builtins.int

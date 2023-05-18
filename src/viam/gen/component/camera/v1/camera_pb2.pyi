@@ -190,17 +190,20 @@ class Property(google.protobuf.message.Message):
     WIDTH_PX_FIELD_NUMBER: builtins.int
     HEIGHT_PX_FIELD_NUMBER: builtins.int
     FRAME_FORMAT_FIELD_NUMBER: builtins.int
+    FRAME_RATE_FIELD_NUMBER: builtins.int
     width_px: builtins.int
     'Video resolution width in px'
     height_px: builtins.int
     'Video resolution height in px'
     frame_format: builtins.str
     'Video frame format'
+    frame_rate: builtins.float
+    'Video frame rate in fps'
 
-    def __init__(self, *, width_px: builtins.int=..., height_px: builtins.int=..., frame_format: builtins.str=...) -> None:
+    def __init__(self, *, width_px: builtins.int=..., height_px: builtins.int=..., frame_format: builtins.str=..., frame_rate: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'height_px', b'height_px', 'width_px', b'width_px']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['frame_format', b'frame_format', 'frame_rate', b'frame_rate', 'height_px', b'height_px', 'width_px', b'width_px']) -> None:
         ...
 global___Property = Property
 
