@@ -45,7 +45,7 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
-        LOGGER.info("DEBUG: requested metadata")
+        LOGGER.debug("requested metadata")
 
         if self._supported is False:
             return await self._metadata
@@ -54,6 +54,7 @@ class SessionsClient:
         response: Optional[StartSessionResponse] = None
         try:
             response = await self.client.StartSession(request)
+            LOGGER.debug(f"heartbeat terminated | response: {response}")
         except GRPCError as error:
             if error.status == Status.UNIMPLEMENTED:
                 self._supported = False
@@ -78,21 +79,21 @@ class SessionsClient:
         return await self._metadata
 
     async def _heartbeat_tick(self):
-        LOGGER.info(f"DEBUG: session id: {self.session_id}")
+        LOGGER.debug(f"session id: {self.session_id}")
         request = SendSessionHeartbeatRequest(id=self.session_id)
 
         if self._heartbeat_interval is None:
             raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
 
         try:
-            await self.client.SendSessionHeartbeat(request)
-            LOGGER.info("DEBUG: got heartbeat")
-        except (GRPCError, StreamTerminatedError) as error:
+            response = await self.client.SendSessionHeartbeat(request)
+            LOGGER.debug(f"got heartbeat | response {response}")
+        except GRPCError as error:
             # reset
-            LOGGER.info(f"DEBUG: heartbeat terminated | error: {error}")
+            LOGGER.debug(f"heartbeat terminated | error: {error}")
             self._supported = None
         else:
-            LOGGER.info("DEBUG: schedule next heartbeat")
+            LOGGER.debug("Schedule next heartbeat")
             wait = self._heartbeat_interval.total_seconds()
             asyncio.create_task(delay(self._heartbeat_tick(), wait), name="heartbeat")
 
