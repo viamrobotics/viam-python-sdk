@@ -33,6 +33,8 @@ class SessionsClient:
         self.channel = channel
         self.client = RobotServiceStub(channel)
 
+        asyncio.create_task(self.metadata)
+
     @property
     def session_id(self):
         return self._current_id
@@ -43,6 +45,8 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
+        LOGGER.info("DEBUG: requested metadata")
+
         if self._supported is False:
             return await self._metadata
 
@@ -74,6 +78,7 @@ class SessionsClient:
         return await self._metadata
 
     async def _heartbeat_tick(self):
+        LOGGER.info(f"DEBUG: session id: {self.session_id}")
         request = SendSessionHeartbeatRequest(id=self.session_id)
 
         if self._heartbeat_interval is None:
@@ -81,11 +86,13 @@ class SessionsClient:
 
         try:
             await self.client.SendSessionHeartbeat(request)
-            LOGGER.debug("got heartbeat")
-        except (GRPCError, StreamTerminatedError):
+            LOGGER.info("DEBUG: got heartbeat")
+        except (GRPCError, StreamTerminatedError) as error:
             # reset
+            LOGGER.info(f"DEBUG: heartbeat terminated | error: {error}")
             self._supported = None
         else:
+            LOGGER.info("DEBUG: schedule next heartbeat")
             wait = self._heartbeat_interval.total_seconds()
             asyncio.create_task(delay(self._heartbeat_tick(), wait), name="heartbeat")
 

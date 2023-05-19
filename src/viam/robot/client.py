@@ -41,6 +41,7 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, R
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
+from viam.sessions_client import SessionsClient
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -143,9 +144,12 @@ class RobotClient:
         else:
             self._channel = channel.channel
             self._viam_channel = channel
+
         self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
+        self._client = RobotServiceStub(self._channel)
+        self._sessions_client = SessionsClient(self._channel)
         self._lock = RLock()
         self._resource_names = []
         self._should_close_channel = close_channel
@@ -177,6 +181,7 @@ class RobotClient:
     _lock: RLock
     _manager: ResourceManager
     _client: RobotServiceStub
+    _sessions_client: SessionsClient
     _connected: bool
     _address: str
     _options: Options
