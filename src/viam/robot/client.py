@@ -147,7 +147,6 @@ class RobotClient:
         self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
-        self._client = RobotServiceStub(self._channel)
         self._lock = RLock()
         self._resource_names = []
         self._should_close_channel = close_channel
