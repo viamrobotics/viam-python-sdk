@@ -1,3 +1,4 @@
+import asyncio
 import ctypes
 import pathlib
 import re
@@ -160,6 +161,9 @@ class ViamChannel:
 
     def __post_init__(self):
         self.sessions_client = SessionsClient(self.channel)
+        # TODO: patch/hook into request function to make sure we always pass
+        # along session metadata.
+        asyncio.create_task(self.sessions_client.metadata)
 
     def close(self):
         if not self._closed:

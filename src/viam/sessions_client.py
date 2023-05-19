@@ -33,8 +33,6 @@ class SessionsClient:
         self.channel = channel
         self.client = RobotServiceStub(channel)
 
-        asyncio.create_task(self.metadata)
-
     @property
     def session_id(self):
         return self._current_id
