@@ -160,6 +160,12 @@ class ViamChannel:
         if not self._closed:
             try:
                 self.channel.close()
+            except RuntimeError as e:
+                # ignore event loop is closed errors - robot is getting shutdown
+                if len(e.args) > 0 and e.args[0] == "Event loop is closed":
+                    LOGGER.debug("ViamChannel might not have shut down cleanly - Event loop was closed")
+                    return
+                raise
             finally:
                 self.release()
                 self._closed = True
