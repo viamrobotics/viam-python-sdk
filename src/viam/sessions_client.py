@@ -25,12 +25,6 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
-    class Heartbeat(Timer):
-        def run(self):
-            while not self.finished.is_set():
-                asyncio.ensure_future(self.function(*self.args, **self.kwargs))
-                self.finished.wait(self.interval)
-
     _current_id: str = ""
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
