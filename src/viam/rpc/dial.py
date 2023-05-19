@@ -5,7 +5,7 @@ import socket
 import ssl
 import sys
 import warnings
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable, Literal, Optional, Tuple, Type, Union
 
 from grpclib.client import Channel, Stream
@@ -18,6 +18,7 @@ from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
 from viam.proto.rpc.auth import AuthenticateRequest, AuthServiceStub
 from viam.proto.rpc.auth import Credentials as PBCredentials
+from viam.sessions_client import SessionsClient
 from viam.utils import to_thread
 
 LOGGER = logging.getLogger(__name__)
@@ -155,6 +156,10 @@ class ViamChannel:
     channel: Channel
     release: Callable[[], None]
     _closed: bool = False
+    sessions_client: SessionsClient = field(init=False)
+
+    def __post_init__(self):
+        self.sessions_client = SessionsClient(self.channel)
 
     def close(self):
         if not self._closed:
