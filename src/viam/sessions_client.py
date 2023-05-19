@@ -1,6 +1,5 @@
 import asyncio
 from datetime import timedelta
-from threading import Timer
 from typing import Optional
 
 from grpclib import Status
@@ -46,7 +45,7 @@ class SessionsClient:
         LOGGER.debug("requested metadata")
 
         if self._supported is False:
-            return await self._metadata
+            return self._metadata
 
         request = StartSessionRequest(resume=self.session_id)
         response: Optional[StartSessionResponse] = None
@@ -60,7 +59,7 @@ class SessionsClient:
                 raise
 
         if self._supported is False:
-            return await self._metadata
+            return self._metadata
 
         if response is None:
             raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
@@ -74,7 +73,7 @@ class SessionsClient:
 
         await self._heartbeat_tick()
 
-        return await self._metadata
+        return self._metadata
 
     async def _heartbeat_tick(self):
         LOGGER.debug(f"session id: {self.session_id}")
@@ -98,7 +97,7 @@ class SessionsClient:
             asyncio.create_task(delay(self._heartbeat_tick(), wait), name=f"{_TASK_PREFIX}-heartbeat")
 
     @property
-    async def _metadata(self) -> _MetadataLike:
+    def _metadata(self) -> _MetadataLike:
         if self._supported and self.session_id != "":
             return {"viam-sid": self.session_id}
 
