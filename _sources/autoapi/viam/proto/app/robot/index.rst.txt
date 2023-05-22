@@ -628,7 +628,7 @@ Classes
    shown below.
 
 
-.. py:class:: ModuleConfig(*, name: str = ..., path: str = ...)
+.. py:class:: ModuleConfig(*, name: str = ..., path: str = ..., log_level: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -643,6 +643,11 @@ Classes
       :type: str
 
       path to the executable
+
+   .. py:attribute:: log_level
+      :type: str
+
+      log level for module
 
 
 .. py:class:: NeedsRestartRequest(*, id: str = ...)
