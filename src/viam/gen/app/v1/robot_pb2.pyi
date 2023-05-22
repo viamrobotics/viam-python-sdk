@@ -913,14 +913,17 @@ class ModuleConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     PATH_FIELD_NUMBER: builtins.int
+    LOG_LEVEL_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
+    log_level: builtins.str
+    'log level for module'
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'path', b'path']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['log_level', b'log_level', 'name', b'name', 'path', b'path']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
