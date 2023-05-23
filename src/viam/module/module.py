@@ -46,7 +46,10 @@ class Module:
 
     @classmethod
     def from_args(cls) -> Self:
-        """Create a new Module with the args provided in the command line
+        """Create a new Module with the args provided in the command line. The first argument after the command must be
+        the socket path. If the second argument after the command is "--log-level=debug", the Module's logger will be
+        DEBUG level. Otherwise, it will be INFO level. See LogLevel documentation in the RDK for more information on how
+        to start modules with a "log-level" commandline argument.
 
         Raises:
             Exception: If there is no socket path provided in the command line argument
