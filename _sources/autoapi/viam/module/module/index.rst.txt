@@ -29,7 +29,7 @@ Attributes
 
    
 
-.. py:class:: Module(address: str, *, log_level: int = logging.DEBUG)
+.. py:class:: Module(address: str, *, log_level: int = logging.INFO)
 
    .. py:attribute:: parent
       :type: Optional[viam.robot.client.RobotClient]
@@ -40,6 +40,20 @@ Attributes
       :type: viam.rpc.server.Server
 
       
+
+   .. py:method:: from_args() -> typing_extensions.Self
+      :classmethod:
+
+      Create a new Module with the args provided in the command line. The first argument after the command must be
+      the socket path. If the second argument after the command is "--log-level=debug", the Module's logger will be
+      DEBUG level. Otherwise, it will be INFO level. See LogLevel documentation in the RDK for more information on how
+      to start modules with a "log-level" commandline argument.
+
+      :raises Exception: If there is no socket path provided in the command line argument
+
+      :returns: a new Module instance
+      :rtype: Module
+
 
    .. py:method:: start()
       :async:
