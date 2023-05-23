@@ -168,33 +168,6 @@ class MockBase(Base):
         self.extra = extra
         self.timeout = timeout
 
-    async def move_arc(
-        self,
-        distance: int,
-        velocity: float,
-        angle: float,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs,
-    ):
-        if distance == 0:
-            return await self.spin(angle, velocity)
-
-        if velocity == 0:
-            return await self.stop()
-
-        if velocity > 0:
-            self.position += distance
-            self.angle += angle
-        else:
-            self.position -= distance
-            self.angle -= angle
-
-        self.stopped = False
-        self.extra = extra
-        self.timeout = timeout
-
     async def spin(
         self, angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ):

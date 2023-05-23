@@ -1,6 +1,8 @@
+import sys
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
+from typing_extensions import Self
 
 from grpclib.utils import _service_name
 
@@ -42,7 +44,24 @@ class Module:
     parent: Optional[RobotClient] = None
     server: Server
 
-    def __init__(self, address: str, *, log_level: int = logging.DEBUG) -> None:
+    @classmethod
+    def from_args(cls) -> Self:
+        """Create a new Module with the args provided in the command line
+
+        Raises:
+            Exception: If there is no socket path provided in the command line argument
+
+        Returns:
+            Module: a new Module instance
+        """
+        args = sys.argv
+        if len(args) < 2:
+            raise Exception("Need socket path as command line argument")
+        address = args[1]
+        log_level = logging.DEBUG if (len(args) == 3 and "=debug" in args[2].lower()) else logging.INFO
+        return cls(address, log_level=log_level)
+
+    def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
         self._address = address
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
