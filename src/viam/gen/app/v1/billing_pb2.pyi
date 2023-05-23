@@ -520,3 +520,29 @@ class GetBillingSummaryResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['current_balance', b'current_balance', 'current_month_balance', b'current_month_balance', 'current_month_due_date', b'current_month_due_date', 'invoice_email', b'invoice_email', 'invoices', b'invoices', 'payment_method', b'payment_method', 'statement_balance', b'statement_balance', 'usage_summary', b'usage_summary']) -> None:
         ...
 global___GetBillingSummaryResponse = GetBillingSummaryResponse
+
+@typing_extensions.final
+class GetInvoicePdfRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+        ...
+global___GetInvoicePdfRequest = GetInvoicePdfRequest
+
+@typing_extensions.final
+class GetInvoicePdfResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CHUNK_FIELD_NUMBER: builtins.int
+    chunk: builtins.bytes
+
+    def __init__(self, *, chunk: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['chunk', b'chunk']) -> None:
+        ...
+global___GetInvoicePdfResponse = GetInvoicePdfResponse
