@@ -74,11 +74,6 @@ class TestBase:
         await base.move_straight(0, 0)
         assert base.stopped is True
 
-        await base.move_arc(1, 1, 1)
-        assert base.stopped is False
-        await base.move_arc(0, 0, 0)
-        assert base.stopped is True
-
         await base.spin(1, 1)
         assert base.stopped is False
         await base.spin(0, 0)
