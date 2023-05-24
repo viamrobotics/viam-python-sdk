@@ -1,5 +1,6 @@
 import asyncio
 from datetime import timedelta
+from threading import Lock
 from typing import Optional
 
 from grpclib import Status
@@ -28,7 +29,7 @@ class SessionsClient:
 
     _current_id: str = ""
     _disabled: bool = False
-    # TODO: lock?
+    _lock = Lock()
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
@@ -77,32 +78,33 @@ class SessionsClient:
         if self._disabled:
             return self._metadata
 
-        if self._supported is False:
-            return self._metadata
+        with self._lock:
+            if self._supported is False:
+                return self._metadata
 
-        request = StartSessionRequest(resume=self.session_id)
-        response: Optional[StartSessionResponse] = None
-        try:
-            response = await self.client.StartSession(request)
-            LOGGER.debug(f"heartbeat terminated | response: {response}")
-        except GRPCError as error:
-            if error.status == Status.UNIMPLEMENTED:
-                self._supported = False
-            else:
-                raise
+            request = StartSessionRequest(resume=self.session_id)
+            response: Optional[StartSessionResponse] = None
+            try:
+                response = await self.client.StartSession(request)
+                LOGGER.debug(f"heartbeat terminated | response: {response}")
+            except GRPCError as error:
+                if error.status == Status.UNIMPLEMENTED:
+                    self._supported = False
+                else:
+                    raise
 
-        if self._supported is False:
-            return self._metadata
+            if self._supported is False:
+                return self._metadata
 
-        if response is None:
-            raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
+            if response is None:
+                raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
 
-        if response.heartbeat_window is None:
-            raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
+            if response.heartbeat_window is None:
+                raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
 
-        self._supported = True
-        self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
-        self._current_id = response.id
+            self._supported = True
+            self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
+            self._current_id = response.id
 
         await self._heartbeat_tick()
 
@@ -112,24 +114,25 @@ class SessionsClient:
         if not self._supported:
             return
 
-        LOGGER.debug(f"session id: {self.session_id}")
-        request = SendSessionHeartbeatRequest(id=self.session_id)
+        with self._lock:
+            LOGGER.debug(f"session id: {self.session_id}")
+            request = SendSessionHeartbeatRequest(id=self.session_id)
 
-        if self._heartbeat_interval is None:
-            raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
+            if self._heartbeat_interval is None:
+                raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
 
-        try:
-            response = await self.client.SendSessionHeartbeat(request)
-            LOGGER.debug(f"got heartbeat | response {response}")
-        except (GRPCError, StreamTerminatedError) as error:
-            LOGGER.debug(f"heartbeat terminated | error: {error}")
-            self.reset()
-        else:
-            LOGGER.debug("Schedule next heartbeat")
-            # We send heartbeats slightly faster than the interval window to
-            # ensure that we don't fall outside of it and expire the session.
-            wait = self._heartbeat_interval.total_seconds() * 0.95
-            asyncio.create_task(delay(self._heartbeat_tick(), wait), name=f"{_TASK_PREFIX}-heartbeat")
+            try:
+                response = await self.client.SendSessionHeartbeat(request)
+                LOGGER.debug(f"got heartbeat | response {response}")
+            except (GRPCError, StreamTerminatedError) as error:
+                LOGGER.debug(f"heartbeat terminated | error: {error}")
+                self.reset()
+            else:
+                LOGGER.debug("Schedule next heartbeat")
+                # We send heartbeats slightly faster than the interval window to
+                # ensure that we don't fall outside of it and expire the session.
+                wait = self._heartbeat_interval.total_seconds() * 0.95
+                asyncio.create_task(delay(self._heartbeat_tick(), wait), name=f"{_TASK_PREFIX}-heartbeat")
 
     @property
     def _metadata(self) -> _MetadataLike:
