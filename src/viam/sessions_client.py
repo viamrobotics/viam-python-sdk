@@ -32,8 +32,12 @@ class SessionsClient:
     _heartbeat_interval: Optional[timedelta] = None
 
     def __init__(self, channel: Channel):
+        LOGGER.debug("here I go initializing sessions again")
         self.channel = channel
         self.client = RobotServiceStub(channel)
+
+        # TODO: change this function to just initialize instead
+        asyncio.create_task(self.metadata)
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)

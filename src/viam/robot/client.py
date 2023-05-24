@@ -147,6 +147,7 @@ class RobotClient:
 
         self._connected = True
         self._client = RobotServiceStub(self._channel)
+        self._sessions_client = SessionsClient(self._channel)
         self._manager = ResourceManager()
         self._lock = RLock()
         self._resource_names = []
@@ -278,6 +279,9 @@ class RobotClient:
 
             while not self._connected:
                 try:
+                    if self._sessions_client:
+                        self._sessions_client.reset()
+
                     channel = await dial(self._address, self._options.dial_options)
 
                     client: RobotServiceStub
