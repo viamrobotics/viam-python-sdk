@@ -52,7 +52,8 @@ class SessionsClient:
 
     async def _recv_trailers(self, event: RecvTrailingMetadata):
         LOGGER.debug("session client intercepted received trailers")
-        if event.status == Status.INVALID_ARGUMENT and event.metadata.get("grpc-message") == "SESSION_EXPIRED":
+        if event.status == Status.INVALID_ARGUMENT and event.status_message == "SESSION_EXPIRED":
+            LOGGER.debug("session expired - resetting session")
             self.reset()
 
     @property
