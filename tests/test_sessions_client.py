@@ -10,7 +10,7 @@ from grpclib.testing import ChannelFor
 from viam.proto.robot import SendSessionHeartbeatRequest, SendSessionHeartbeatResponse, StartSessionRequest, StartSessionResponse
 from viam.resource.manager import ResourceManager
 from viam.robot.service import RobotService
-from viam.sessions_client import SessionsClient
+from viam.sessions_client import SessionsClient, SESSION_METADATA_KEY
 
 SESSION_ID = "sid"
 HEARTBEAT_INTERVAL = 2
@@ -101,7 +101,7 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotSer
 async def test_sessions_heartbeat(service: RobotService):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel)
-        assert await client.metadata == {"viam-sid": SESSION_ID}
+        assert await client.metadata == {SESSION_METADATA_KEY: SESSION_ID}
         assert client.supported
         assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == HEARTBEAT_INTERVAL
         assert client.session_id == SESSION_ID

@@ -4,6 +4,7 @@ from typing import Optional
 
 from grpclib import Status
 from grpclib.client import Channel
+from grpclib.events import RecvTrailingMetadata, SendRequest, listen
 from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
@@ -11,6 +12,7 @@ from viam import _TASK_PREFIX, logging
 from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
 
 LOGGER = logging.getLogger(__name__)
+SESSION_METADATA_KEY = "viam-sid"
 
 
 async def delay(coro, seconds):
@@ -25,12 +27,29 @@ class SessionsClient:
     """
 
     _current_id: str = ""
+    # TODO: lock?
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
     def __init__(self, channel: Channel):
         self.channel = channel
         self.client = RobotServiceStub(channel)
+
+        listen(self.channel, SendRequest, self._send_request)
+        listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
+
+    def reset(self):
+        self._supported = None
+
+    async def _send_request(self, event: SendRequest):
+        LOGGER.debug("session client intercepted request")
+        if self.supported:
+            event.metadata.update(self._metadata)
+
+    async def _recv_trailers(self, event: RecvTrailingMetadata):
+        LOGGER.debug("session client intercepted received trailers")
+        if event.status == Status.INVALID_ARGUMENT and event.metadata.get("grpc-message") == "SESSION_EXPIRED":
+            self.reset()
 
     @property
     def session_id(self):
@@ -76,6 +95,9 @@ class SessionsClient:
         return self._metadata
 
     async def _heartbeat_tick(self):
+        if not self._supported:
+            return
+
         LOGGER.debug(f"session id: {self.session_id}")
         request = SendSessionHeartbeatRequest(id=self.session_id)
 
@@ -86,9 +108,8 @@ class SessionsClient:
             response = await self.client.SendSessionHeartbeat(request)
             LOGGER.debug(f"got heartbeat | response {response}")
         except (GRPCError, StreamTerminatedError) as error:
-            # reset
             LOGGER.debug(f"heartbeat terminated | error: {error}")
-            self._supported = None
+            self.reset()
         else:
             LOGGER.debug("Schedule next heartbeat")
             # We send heartbeats slightly faster than the interval window to
@@ -99,6 +120,6 @@ class SessionsClient:
     @property
     def _metadata(self) -> _MetadataLike:
         if self._supported and self.session_id != "":
-            return {"viam-sid": self.session_id}
+            return {SESSION_METADATA_KEY: self.session_id}
 
         return {}

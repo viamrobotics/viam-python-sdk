@@ -41,6 +41,7 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, R
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
+from viam.sessions_client import SessionsClient
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -186,6 +187,7 @@ class RobotClient:
     _resource_names: List[ResourceName]
     _should_close_channel: bool
     _closed: bool = False
+    _sessions_client: SessionsClient
 
     async def refresh(self):
         """
@@ -292,12 +294,14 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
+                    self._sessions_client = SessionsClient(channel=self._channel)
 
                     await self.refresh()
                     self._connected = True
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
+                    self._sessions_client.reset()
                     self._close_channel()
                     await asyncio.sleep(reconnect_every)
 
