@@ -437,6 +437,9 @@ class RobotClient:
         except RuntimeError:
             pass
 
+        if self._sessions_client:
+            self._sessions_client.reset()
+
         # Cancel all tasks created by VIAM
         LOGGER.debug("Closing tasks spawned by Viam")
         tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
