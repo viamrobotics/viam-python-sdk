@@ -27,14 +27,17 @@ class SessionsClient:
     """
 
     _current_id: str = ""
+    _disabled: bool = False
     # TODO: lock?
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
-    def __init__(self, channel: Channel):
+    def __init__(self, channel: Channel, *, disabled: bool):
         LOGGER.debug("here I go initializing sessions again")
         self.channel = channel
         self.client = RobotServiceStub(channel)
+
+        self._disabled = disabled
 
         # TODO: change this function to just initialize instead
         asyncio.create_task(self.metadata)
@@ -67,6 +70,9 @@ class SessionsClient:
     @property
     async def metadata(self) -> _MetadataLike:
         LOGGER.debug("requested metadata")
+
+        if self._disabled:
+            return self._metadata
 
         if self._supported is False:
             return self._metadata

@@ -147,13 +147,13 @@ class RobotClient:
 
         self._connected = True
         self._client = RobotServiceStub(self._channel)
-        self._sessions_client = SessionsClient(self._channel)
         self._manager = ResourceManager()
         self._lock = RLock()
         self._resource_names = []
         self._should_close_channel = close_channel
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
+        self._sessions_client = SessionsClient(self._channel, disabled=self._options.sessions_disabled)
 
         try:
             await self.refresh()
@@ -279,8 +279,7 @@ class RobotClient:
 
             while not self._connected:
                 try:
-                    if self._sessions_client:
-                        self._sessions_client.reset()
+                    self._sessions_client.reset()
 
                     channel = await dial(self._address, self._options.dial_options)
 
@@ -298,7 +297,7 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
-                    self._sessions_client = SessionsClient(channel=self._channel)
+                    self._sessions_client = SessionsClient(channel=self._channel, disabled=self._options.sessions_disabled)
 
                     await self.refresh()
                     self._connected = True
@@ -437,8 +436,7 @@ class RobotClient:
         except RuntimeError:
             pass
 
-        if self._sessions_client:
-            self._sessions_client.reset()
+        self._sessions_client.reset()
 
         # Cancel all tasks created by VIAM
         LOGGER.debug("Closing tasks spawned by Viam")
