@@ -94,7 +94,7 @@ class RobotClient:
         The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
         """
 
-        sessions_disabled: bool = False
+        disable_sessions: bool = False
         """
         Whether sessions are disabled
         """
@@ -153,7 +153,7 @@ class RobotClient:
         self._should_close_channel = close_channel
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
-        self._sessions_client = SessionsClient(self._channel, disabled=self._options.sessions_disabled)
+        self._sessions_client = SessionsClient(self._channel, disabled=self._options.disable_sessions)
 
         try:
             await self.refresh()
@@ -297,7 +297,7 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
-                    self._sessions_client = SessionsClient(channel=self._channel, disabled=self._options.sessions_disabled)
+                    self._sessions_client = SessionsClient(channel=self._channel, disabled=self._options.disable_sessions)
 
                     await self.refresh()
                     self._connected = True
