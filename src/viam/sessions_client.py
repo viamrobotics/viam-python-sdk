@@ -32,15 +32,11 @@ class SessionsClient:
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
-    def __init__(self, channel: Channel, *, disabled: bool):
-        LOGGER.debug("here I go initializing sessions again")
+    def __init__(self, channel: Channel, *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
 
         self._disabled = disabled
-
-        # TODO: change this function to just initialize instead
-        asyncio.create_task(self.metadata)
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
@@ -50,8 +46,15 @@ class SessionsClient:
 
     async def _send_request(self, event: SendRequest):
         LOGGER.debug("session client intercepted request")
-        if self.supported:
-            event.metadata.update(self._metadata)
+        if self._disabled:
+            LOGGER.debug("sessions are disabled - do nothing")
+            return
+
+        if event.method_name in [self.client.StartSession.name, self.client.SendSessionHeartbeat.name]:
+            LOGGER.debug("excluding session metadata from session-specific calls")
+            return
+
+        event.metadata.update(await self.metadata)
 
     async def _recv_trailers(self, event: RecvTrailingMetadata):
         LOGGER.debug("session client intercepted received trailers")
