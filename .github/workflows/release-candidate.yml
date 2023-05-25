@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The type of version bump. All versions will have `rc*` appended. Use `prerelease` to bump the `rc` version only. Use `-s` for no change.'
+        description: 'The type of version bump. All versions will have `rc*` appended. `rc` version bumps will happen automatically, so select the type of version bump for the final release. Use `-s` for no change.'
         type: choice
         required: true
         default: '-s'
@@ -12,7 +12,6 @@ on:
         - major
         - minor
         - patch
-        - prerelease
         - '-s'
 
 jobs:
@@ -55,6 +54,7 @@ jobs:
 
       - name: Bump Version
         id: bump_version
+        shell: bash
         run: |
           if [[ $(poetry version) == *"rc"* ]]; then
             poetry version prerelease
@@ -72,7 +72,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseName: v${{ env.RC_SDK_VERSION }}
+          releaseName: v${{ env.SDK_RC_VERSION }}
           doNotFailIfNotFound: 'true'
 
       - name: Cancelling - release already exists
@@ -83,7 +83,7 @@ jobs:
       - name: Add + Commit + Open PR
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: Bump version to ${{ env.RC_SDK_VERSION }}
+          commit-message: Bump version to ${{ env.SDK_RC_VERSION }}
           branch: rc-${{ env.SDK_VERSION }}
           delete-branch: false
           base: main
