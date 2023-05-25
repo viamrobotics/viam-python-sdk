@@ -2,9 +2,9 @@ import sys
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
-from typing_extensions import Self
 
 from grpclib.utils import _service_name
+from typing_extensions import Self
 
 from viam import logging
 from viam.components.component_base import ComponentBase
