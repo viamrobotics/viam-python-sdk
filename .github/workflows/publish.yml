@@ -12,8 +12,6 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
 
     steps:
-      - name: Output Event
-        run: echo "${{ toJSON(github.event) }}"
       - name: Check if organization member
         id: is_organization_member
         if: github.event_name == 'workflow_dispatch'
