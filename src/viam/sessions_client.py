@@ -53,7 +53,7 @@ class SessionsClient:
             LOGGER.debug("sessions are disabled - do nothing")
             return
 
-        if event.method_name in [self.client.StartSession.name, self.client.SendSessionHeartbeat.name]:
+        if event.method_name in [self.client.StartSession.name]:
             LOGGER.debug("excluding session metadata from session-specific calls")
             return
 
