@@ -63,7 +63,7 @@ jobs:
           fi
           echo "SDK_RC_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "SDK_VERSION=$(poetry version ${{ inputs.version }} -s --dry-run)" >> $GITHUB_ENV
-          echo "version=$(poetry rc_version -s)" >> $GITHUB_OUTPUT
+          echo "rc_version=$(poetry version -s)" >> $GITHUB_OUTPUT
           echo "version=$(poetry version ${{ inputs.version }} -s --dry-run)" >> $GITHUB_OUTPUT
 
       - name: Check if release exists
@@ -85,7 +85,7 @@ jobs:
         with:
           commit-message: Bump version to ${{ env.RC_SDK_VERSION }}
           branch: rc-${{ env.SDK_VERSION }}
-          delete-branch: true
+          delete-branch: false
           base: main
           title: rc-${{ env.SDK_VERSION }}
           body: This is an auto-generated PR to merge the rc branch back into main upon successful release.

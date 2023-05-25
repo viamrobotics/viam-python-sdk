@@ -70,7 +70,7 @@ jobs:
 
   build:
     needs: prepare
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref, 'rc-')
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -121,7 +121,7 @@ jobs:
 
   release:
     needs: [prepare, build]
-    if: github.repository_owner == 'viamrobotics' && github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'viamrobotics' && startsWith(github.ref, 'rc-')
     runs-on: [self-hosted, x64]
     container:
       image: ghcr.io/viamrobotics/canon:amd64
@@ -137,3 +137,4 @@ jobs:
           draft: true
           prerelease: false
           fail_on_unmatched_files: true
+          target_commitish: rc-${{ needs.prepare.outputs.version }}
