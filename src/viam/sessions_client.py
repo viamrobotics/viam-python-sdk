@@ -89,21 +89,19 @@ class SessionsClient:
             except GRPCError as error:
                 if error.status == Status.UNIMPLEMENTED:
                     self._supported = False
+                    return self._metadata
                 else:
                     raise
+            else:
+                if response is None:
+                    raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
 
-            if self._supported is False:
-                return self._metadata
+                if response.heartbeat_window is None:
+                    raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
 
-            if response is None:
-                raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
-
-            if response.heartbeat_window is None:
-                raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
-
-            self._supported = True
-            self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
-            self._current_id = response.id
+                self._supported = True
+                self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
+                self._current_id = response.id
 
         await self._heartbeat_tick()
 
