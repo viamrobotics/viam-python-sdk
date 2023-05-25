@@ -56,8 +56,8 @@ def service_without_heartbeat(service: RobotService) -> RobotService:
 async def test_init_client():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel)
-        assert client.session_id == ""
-        assert client.supported is None
+        assert client._current_id == ""
+        assert client._supported is None
 
 
 @pytest.mark.asyncio
@@ -77,7 +77,7 @@ async def test_sessions_not_supported():
         client = SessionsClient(channel)
         client._supported = False
         assert await client.metadata == {}
-        assert client.supported is False
+        assert client._supported is False
 
 
 @pytest.mark.asyncio
@@ -85,7 +85,7 @@ async def test_sessions_not_implemented(service_without_session: RobotService):
     async with ChannelFor([service_without_session]) as channel:
         client = SessionsClient(channel)
         assert await client.metadata == {}
-        assert client.supported is False
+        assert client._supported is False
 
 
 @pytest.mark.asyncio
@@ -93,8 +93,7 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotSer
     async with ChannelFor([service_without_heartbeat]) as channel:
         client = SessionsClient(channel)
         assert await client.metadata == {}
-        assert client.supported is None
-        # TODO: reset everything else too?
+        assert client._supported is None
 
 
 @pytest.mark.asyncio
@@ -102,9 +101,6 @@ async def test_sessions_heartbeat(service: RobotService):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel)
         assert await client.metadata == {SESSION_METADATA_KEY: SESSION_ID}
-        assert client.supported
+        assert client._supported
         assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == HEARTBEAT_INTERVAL
-        assert client.session_id == SESSION_ID
-
-        # TODO: remove this sleep!
-        await asyncio.sleep(HEARTBEAT_INTERVAL)
+        assert client._current_id == SESSION_ID

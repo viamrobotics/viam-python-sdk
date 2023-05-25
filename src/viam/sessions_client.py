@@ -62,14 +62,6 @@ class SessionsClient:
             self.reset()
 
     @property
-    def session_id(self):
-        return self._current_id
-
-    @property
-    def supported(self):
-        return self._supported
-
-    @property
     async def metadata(self) -> _MetadataLike:
         if self._disabled:
             return self._metadata
@@ -81,7 +73,7 @@ class SessionsClient:
             if self._supported is False:
                 return self._metadata
 
-            request = StartSessionRequest(resume=self.session_id)
+            request = StartSessionRequest(resume=self._current_id)
             response: Optional[StartSessionResponse] = None
 
             try:
@@ -114,7 +106,7 @@ class SessionsClient:
         while self._lock.locked():
             pass
 
-        request = SendSessionHeartbeatRequest(id=self.session_id)
+        request = SendSessionHeartbeatRequest(id=self._current_id)
 
         if self._heartbeat_interval is None:
             raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
@@ -133,7 +125,7 @@ class SessionsClient:
 
     @property
     def _metadata(self) -> _MetadataLike:
-        if self._supported and self.session_id != "":
-            return {SESSION_METADATA_KEY: self.session_id}
+        if self._supported and self._current_id != "":
+            return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
