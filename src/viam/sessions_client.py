@@ -35,7 +35,6 @@ class SessionsClient:
     def __init__(self, channel: Channel, *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
-
         self._disabled = disabled
 
         listen(self.channel, SendRequest, self._send_request)
@@ -45,24 +44,21 @@ class SessionsClient:
         if self._lock.locked():
             return
 
+        LOGGER.debug("resetting session")
         self._supported = None
 
     async def _send_request(self, event: SendRequest):
-        LOGGER.debug("session client intercepted request")
         if self._disabled:
-            LOGGER.debug("sessions are disabled - do nothing")
             return
 
         if event.method_name in [self.client.StartSession.name]:
-            LOGGER.debug("excluding session metadata from session-specific calls")
             return
 
         event.metadata.update(await self.metadata)
 
     async def _recv_trailers(self, event: RecvTrailingMetadata):
-        LOGGER.debug("session client intercepted received trailers")
         if event.status == Status.INVALID_ARGUMENT and event.status_message == "SESSION_EXPIRED":
-            LOGGER.debug("session expired - resetting session")
+            LOGGER.debug("session expired")
             self.reset()
 
     @property
@@ -75,8 +71,6 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
-        LOGGER.debug("requested metadata")
-
         if self._disabled:
             return self._metadata
 
@@ -89,9 +83,9 @@ class SessionsClient:
 
             request = StartSessionRequest(resume=self.session_id)
             response: Optional[StartSessionResponse] = None
+
             try:
                 response = await self.client.StartSession(request)
-                LOGGER.debug(f"heartbeat terminated | response: {response}")
             except GRPCError as error:
                 if error.status == Status.UNIMPLEMENTED:
                     self._supported = False
@@ -122,20 +116,18 @@ class SessionsClient:
         while self._lock.locked():
             pass
 
-        LOGGER.debug(f"session id: {self.session_id}")
         request = SendSessionHeartbeatRequest(id=self.session_id)
 
         if self._heartbeat_interval is None:
             raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
 
         try:
-            response = await self.client.SendSessionHeartbeat(request)
-            LOGGER.debug(f"got heartbeat | response {response}")
-        except (GRPCError, StreamTerminatedError) as error:
-            LOGGER.debug(f"heartbeat terminated | error: {error}")
+            await self.client.SendSessionHeartbeat(request)
+        except (GRPCError, StreamTerminatedError):
+            LOGGER.debug("heartbeat terminated", exc_info=True)
             self.reset()
         else:
-            LOGGER.debug("Schedule next heartbeat")
+            LOGGER.debug("sent heartbeat successfully")
             # We send heartbeats slightly faster than the interval window to
             # ensure that we don't fall outside of it and expire the session.
             wait = self._heartbeat_interval.total_seconds() / 5
