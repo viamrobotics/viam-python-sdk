@@ -34,7 +34,7 @@ jobs:
           file: "viam_sdk.*\\.whl"
           regex: true
           target: 'dist/'
-          version: github.event.id
+          version: tags/${{ github.event.release.tag_name }}
 
       - name: Publish
         uses: pypa/gh-action-pypi-publish@release/v1
