@@ -14,6 +14,20 @@ from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, Star
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
 
+EXEMPT_METADATA_METHODS = frozenset(
+    [
+        "/grpc.reflection.v1alpha.ServerReflection/ServerReflectionInfo",
+        "/proto.rpc.webrtc.v1.SignalingService/Call",
+        "/proto.rpc.webrtc.v1.SignalingService/CallUpdate",
+        "/proto.rpc.webrtc.v1.SignalingService/OptionalWebRTCConfig",
+        "/proto.rpc.v1.AuthService/Authenticate",
+        "/viam.robot.v1.RobotService/ResourceNames",
+        "/viam.robot.v1.RobotService/ResourceRPCSubtypes",
+        "/viam.robot.v1.RobotService/StartSession",
+        "/viam.robot.v1.RobotService/SendSessionHeartbeat",
+    ]
+)
+
 
 async def delay(coro, seconds):
     await asyncio.sleep(seconds)
@@ -51,7 +65,7 @@ class SessionsClient:
         if self._disabled:
             return
 
-        if event.method_name in [self.client.StartSession.name]:
+        if event.method_name in EXEMPT_METADATA_METHODS:
             return
 
         event.metadata.update(await self.metadata)
