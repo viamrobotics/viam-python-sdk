@@ -1,3 +1,4 @@
+from typing import Dict
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
@@ -26,6 +27,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     """
 
     RESOURCE_TYPE = Camera
+    _camera_mime_types: Dict[str, CameraMimeType] = {}
 
     async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
         request = await stream.recv_message()
@@ -39,6 +41,16 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
         try:
+            if not request.mime_type:
+                if camera.name not in self._camera_mime_types:
+                    props = await camera.get_properties()
+                    if props.supports_pcd:
+                        self._camera_mime_types[camera.name] = CameraMimeType.PCD
+                    else:
+                        self._camera_mime_types[camera.name] = CameraMimeType.JPEG
+
+                request.mime_type = self._camera_mime_types[camera.name]
+
             mimetype, is_lazy = CameraMimeType.from_lazy(request.mime_type)
             if CameraMimeType.is_supported(mimetype):
                 response_mime = mimetype

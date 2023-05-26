@@ -353,7 +353,7 @@ class MockCamera(Camera):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = Camera.Properties(
-            True,
+            False,
             IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
             DistortionParameters(model="no_distortion"),
         )
@@ -372,7 +372,7 @@ class MockCamera(Camera):
 
     async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
         self.timeout = timeout
-        return self.point_cloud, CameraMimeType.PCD.value
+        return self.point_cloud, CameraMimeType.PCD
 
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Camera.Properties:
         self.timeout = timeout
