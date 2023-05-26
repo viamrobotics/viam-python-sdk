@@ -2,6 +2,7 @@ import abc
 from typing import Generic, Type
 
 from viam.components.component_base import ComponentBase
+from viam.errors import ResourceNotFoundError
 from viam.resource.manager import ResourceManager, ResourceType
 from viam.rpc.types import RPCServiceBase
 from viam.services.service_base import ServiceBase
@@ -31,11 +32,14 @@ class ResourceRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
             name (str): Name of the resource
 
         Raises:
-            ResourceNotFoundError
+            GRPCError with the status code Status.NOT_FOUND
 
         Returns:
             ResourceType: The resource
         """
-        if self.RESOURCE_TYPE == ComponentBase or self.RESOURCE_TYPE == ResourceBase or self.RESOURCE_TYPE == ServiceBase:
-            return self.manager._resource_by_name_only(name)  # type: ignore
-        return self.manager.get_resource(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
+        try:
+            if self.RESOURCE_TYPE == ComponentBase or self.RESOURCE_TYPE == ResourceBase or self.RESOURCE_TYPE == ServiceBase:
+                return self.manager._resource_by_name_only(name)  # type: ignore
+            return self.manager.get_resource(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
+        except ResourceNotFoundError as e:
+            raise e.grpc_error

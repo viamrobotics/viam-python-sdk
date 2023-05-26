@@ -42,10 +42,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            board = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        board = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         status = await board.status(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StatusResponse(status=status)
@@ -55,8 +52,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -69,8 +66,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -83,8 +80,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -97,8 +94,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -111,8 +108,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -125,8 +122,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             pin = await board.gpio_pin_by_name(request.pin)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -139,8 +136,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.board_name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             analog_reader = await board.analog_reader_by_name(request.analog_reader_name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -153,8 +150,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.board_name
+        board = self.get_resource(name)
         try:
-            board = self.get_resource(name)
             interrupt = await board.digital_interrupt_by_name(request.digital_interrupt_name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
@@ -167,10 +164,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            board = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        board = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await board.set_power_mode(
             mode=request.power_mode,
@@ -184,10 +178,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            board = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        board = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await board.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

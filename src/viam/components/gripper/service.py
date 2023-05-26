@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gripper import (
     GrabRequest,
@@ -30,10 +29,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gripper = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gripper = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.open(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = OpenResponse()
@@ -43,10 +39,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gripper = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gripper = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         grabbed = await gripper.grab(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GrabResponse(success=grabbed)
@@ -55,10 +48,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
     async def Stop(self, stream: Stream[StopRequest, StopResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            gripper = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gripper.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(StopResponse())
@@ -67,10 +57,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gripper = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gripper = self.get_resource(name)
         is_moving = await gripper.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
@@ -78,10 +65,7 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            gripper = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await gripper.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

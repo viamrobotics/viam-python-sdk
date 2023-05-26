@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
@@ -28,10 +27,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            slam = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        slam = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         chunks = await slam.get_internal_state(timeout=timeout)
         for chunk in chunks:
@@ -42,10 +38,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            slam = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        slam = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         chunks = await slam.get_point_cloud_map(timeout=timeout)
         for chunk in chunks:
@@ -56,10 +49,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            slam = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        slam = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await slam.get_position(timeout=timeout)
         response = GetPositionResponse(pose=position)
@@ -68,10 +58,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase[SLAM]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            slam = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await slam.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

@@ -6,7 +6,7 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.errors import NotSupportedError, ResourceNotFoundError
+from viam.errors import NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
@@ -33,11 +33,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
     async def Chunks(self, stream: Stream[ChunksRequest, ChunksResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            audio_input = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
-
+        audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         audio_stream = await audio_input.stream(timeout=timeout, metadata=stream.metadata)
         first_chunk = await audio_stream.__anext__()
@@ -50,10 +46,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
     async def Properties(self, stream: Stream[PropertiesRequest, PropertiesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            audio_input = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = (await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)).proto
         await stream.send_message(response)
@@ -70,10 +63,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         if duration.total_seconds() > 5:
             raise GRPCError(Status.INVALID_ARGUMENT, "Can only record up to 5 seconds")
 
-        try:
-            audio_input = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        audio_input = self.get_resource(request.name)
         audio_stream = await audio_input.stream()
         first_chunk = await audio_stream.__anext__()
         num_chunks = int(duration.total_seconds() * float(first_chunk.info.sampling_rate / first_chunk.chunk.length))
@@ -108,10 +98,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            audio_input = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await audio_input.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

@@ -26,7 +26,6 @@ from typing import Final, Sequence
 from grpclib.client import Channel
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.resource.types import RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_base import ServiceBase
@@ -54,10 +53,7 @@ class SummationRPCService(SummationServiceBase, ResourceRPCServiceBase[Summation
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            service = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        service = self.get_resource(name)
         resp = await service.sum(request.numbers)
         await stream.send_message(SumResponse(sum=resp))
 

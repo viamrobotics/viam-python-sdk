@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -20,10 +19,7 @@ class SensorRPCService(SensorServiceBase, ResourceRPCServiceBase[Sensor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            sensor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetReadingsResponse(readings=sensor_readings_native_to_value(readings))
@@ -32,10 +28,7 @@ class SensorRPCService(SensorServiceBase, ResourceRPCServiceBase[Sensor]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            sensor = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        sensor = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await sensor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
