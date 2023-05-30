@@ -41,6 +41,7 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, R
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
+from viam.sessions_client import SessionsClient
 from viam.utils import dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
@@ -93,6 +94,11 @@ class RobotClient:
         The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts
         """
 
+        disable_sessions: bool = False
+        """
+        Whether sessions are disabled
+        """
+
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
@@ -138,6 +144,7 @@ class RobotClient:
         else:
             self._channel = channel.channel
             self._viam_channel = channel
+
         self._connected = True
         self._client = RobotServiceStub(self._channel)
         self._manager = ResourceManager()
@@ -146,6 +153,7 @@ class RobotClient:
         self._should_close_channel = close_channel
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
+        self._sessions_client = SessionsClient(self._channel, disabled=self._options.disable_sessions)
 
         try:
             await self.refresh()
@@ -180,6 +188,7 @@ class RobotClient:
     _resource_names: List[ResourceName]
     _should_close_channel: bool
     _closed: bool = False
+    _sessions_client: SessionsClient
 
     async def refresh(self):
         """
@@ -270,6 +279,8 @@ class RobotClient:
 
             while not self._connected:
                 try:
+                    self._sessions_client.reset()
+
                     channel = await dial(self._address, self._options.dial_options)
 
                     client: RobotServiceStub
@@ -286,12 +297,14 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
+                    self._sessions_client = SessionsClient(channel=self._channel, disabled=self._options.disable_sessions)
 
                     await self.refresh()
                     self._connected = True
                     LOGGER.debug("Successfully reconnected robot")
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
+                    self._sessions_client.reset()
                     self._close_channel()
                     await asyncio.sleep(reconnect_every)
 
@@ -422,6 +435,8 @@ class RobotClient:
             self._lock.release()
         except RuntimeError:
             pass
+
+        self._sessions_client.reset()
 
         # Cancel all tasks created by VIAM
         LOGGER.debug("Closing tasks spawned by Viam")
