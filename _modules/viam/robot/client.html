@@ -129,6 +129,7 @@
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">,</span> <span class="n">dial</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
+<span class="kn">from</span> <span class="nn">viam.sessions_client</span> <span class="kn">import</span> <span class="n">SessionsClient</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -179,6 +180,11 @@
         <span class="n">attempt_reconnect_interval</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The frequency (in seconds) at which to attempt to reconnect a disconnected robot. 0 (zero) signifies no reconnection attempts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">disable_sessions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Whether sessions are disabled</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="RobotClient.at_address"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.at_address">[docs]</a>    <span class="nd">@classmethod</span>
@@ -226,6 +232,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">channel</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span> <span class="o">=</span> <span class="n">channel</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span> <span class="o">=</span> <span class="n">ResourceManager</span><span class="p">()</span>
@@ -234,6 +241,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_should_close_channel</span> <span class="o">=</span> <span class="n">close_channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="n">options</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_path</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_path</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">_port</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span> <span class="o">=</span> <span class="n">SessionsClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">disable_sessions</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
@@ -268,6 +276,7 @@
     <span class="n">_resource_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span>
     <span class="n">_should_close_channel</span><span class="p">:</span> <span class="nb">bool</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_sessions_client</span><span class="p">:</span> <span class="n">SessionsClient</span>
 
 <div class="viewcode-block" id="RobotClient.refresh"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.refresh">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -358,6 +367,8 @@
 
             <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
                     <span class="n">channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_address</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">dial_options</span><span class="p">)</span>
 
                     <span class="n">client</span><span class="p">:</span> <span class="n">RobotServiceStub</span>
@@ -374,12 +385,14 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">channel</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">_viam_channel</span> <span class="o">=</span> <span class="n">channel</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">RobotServiceStub</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span> <span class="o">=</span> <span class="n">SessionsClient</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_options</span><span class="o">.</span><span class="n">disable_sessions</span><span class="p">)</span>
 
                     <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_connected</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Successfully reconnected robot&quot;</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to reconnect, trying again in </span><span class="si">{</span><span class="n">reconnect_every</span><span class="si">}</span><span class="s2">sec&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_close_channel</span><span class="p">()</span>
                     <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">reconnect_every</span><span class="p">)</span>
 
@@ -510,6 +523,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
             <span class="k">pass</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sessions_client</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
 
         <span class="c1"># Cancel all tasks created by VIAM</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing tasks spawned by Viam&quot;</span><span class="p">)</span>

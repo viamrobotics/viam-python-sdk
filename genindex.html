@@ -784,12 +784,8 @@
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.Operation.arguments">(viam.proto.robot.Operation property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm">Arm (class in viam.components.arm)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm">(class in viam.components.arm.arm)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm">Arm (class in viam.components.arm.arm)</a>
 </li>
-      </ul></li>
       <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient">ArmClient (class in viam.components.arm.client)</a>
 </li>
       <li><a href="autoapi/viam/components/arm/service/index.html#viam.components.arm.service.ArmRPCService">ArmRPCService (class in viam.components.arm.service)</a>
@@ -1795,6 +1791,8 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.client">(viam.services.slam.client.SLAMClient attribute)</a>
 </li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.client">(viam.services.slam.SLAMClient attribute)</a>
+</li>
         <li><a href="autoapi/viam/services/vision/client/index.html#viam.services.vision.client.VisionClient.client">(viam.services.vision.client.VisionClient attribute)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.client">(viam.services.vision.VisionClient attribute)</a>
@@ -2686,6 +2684,8 @@
         <li><a href="autoapi/viam/proto/component/base/index.html#viam.proto.component.base.SpinRequest.degs_per_sec">(viam.proto.component.base.SpinRequest attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.delay">delay() (in module viam.sessions_client)</a>
+</li>
       <li><a href="autoapi/viam/gen/app/model/v1/model_grpc/index.html#viam.gen.app.model.v1.model_grpc.ModelServiceBase.Delete">Delete() (viam.gen.app.model.v1.model_grpc.ModelServiceBase method)</a>
 
       <ul>
@@ -3206,6 +3206,8 @@
         <li><a href="autoapi/viam/proto/app/robot/index.html#viam.proto.app.robot.RobotConfig.disable_partial_start">(viam.proto.app.robot.RobotConfig attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.Options.disable_sessions">disable_sessions (viam.robot.client.RobotClient.Options attribute)</a>
+</li>
       <li><a href="autoapi/viam/proto/rpc/webrtc/signaling/index.html#viam.proto.rpc.webrtc.signaling.CallRequest.disable_trickle">disable_trickle (viam.proto.rpc.webrtc.signaling.CallRequest attribute)</a>
 
       <ul>
@@ -3299,8 +3301,6 @@
       <li><a href="autoapi/viam/components/generic/client/index.html#viam.components.generic.client.do_command">do_command() (in module viam.components.generic.client)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.do_command">(viam.components.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.do_command">(viam.components.arm.arm.Arm method)</a>
 </li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.do_command">(viam.components.arm.client.ArmClient method)</a>
@@ -3431,9 +3431,9 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.do_command">(viam.services.slam.client.SLAMClient method)</a>
 </li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.do_command">(viam.services.slam.SLAM method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.do_command">(viam.services.slam.slam.SLAM method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.do_command">(viam.services.slam.SLAMClient method)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/client/index.html#viam.services.vision.client.VisionClient.do_command">(viam.services.vision.client.VisionClient method)</a>
 </li>
@@ -3906,6 +3906,8 @@
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.StreamStatusRequest.every">(viam.proto.robot.StreamStatusRequest property)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.EXEMPT_METADATA_METHODS">EXEMPT_METADATA_METHODS (in module viam.sessions_client)</a>
+</li>
       <li><a href="autoapi/viam/gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.AuthConfig.external_auth_config">external_auth_config (viam.gen.app.v1.robot_pb2.AuthConfig property)</a>
 
       <ul>
@@ -4644,11 +4646,9 @@
       </ul></li>
       <li><a href="autoapi/viam/resource/types/index.html#viam.resource.types.Subtype.from_resource_name">from_resource_name() (viam.resource.types.Subtype class method)</a>
 </li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.from_robot">from_robot() (viam.components.arm.Arm class method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.from_robot">from_robot() (viam.components.arm.arm.Arm class method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.from_robot">(viam.components.arm.arm.Arm class method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.from_robot">(viam.components.arm.client.ArmClient class method)</a>
 </li>
         <li><a href="autoapi/viam/components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.from_robot">(viam.components.audio_input.audio_input.AudioInput class method)</a>
@@ -4777,9 +4777,9 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.from_robot">(viam.services.slam.client.SLAMClient class method)</a>
 </li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.from_robot">(viam.services.slam.SLAM class method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.from_robot">(viam.services.slam.slam.SLAM class method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.from_robot">(viam.services.slam.SLAMClient class method)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/client/index.html#viam.services.vision.client.VisionClient.from_robot">(viam.services.vision.client.VisionClient class method)</a>
 </li>
@@ -4948,11 +4948,9 @@
         <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_detections_from_camera">(viam.services.vision.VisionClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.get_end_position">get_end_position() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_end_position">get_end_position() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_end_position">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_end_position">(viam.components.arm.client.ArmClient method)</a>
 </li>
       </ul></li>
@@ -4977,16 +4975,14 @@
       <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.get_internal_state">get_internal_state() (viam.services.slam.client.SLAMClient method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.get_internal_state">(viam.services.slam.SLAM method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_internal_state">(viam.services.slam.slam.SLAM method)</a>
 </li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.get_internal_state">(viam.services.slam.SLAMClient method)</a>
+</li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.get_joint_positions">get_joint_positions() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_joint_positions">get_joint_positions() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_joint_positions">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_joint_positions">(viam.components.arm.client.ArmClient method)</a>
 </li>
       </ul></li>
@@ -5016,11 +5012,9 @@
         <li><a href="autoapi/viam/services/vision/index.html#viam.services.vision.VisionClient.get_object_point_clouds">(viam.services.vision.VisionClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.get_operation">get_operation() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_operation">get_operation() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_operation">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_operation">(viam.components.arm.client.ArmClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.get_operation">(viam.components.audio_input.audio_input.AudioInput method)</a>
@@ -5149,9 +5143,9 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.get_operation">(viam.services.slam.client.SLAMClient method)</a>
 </li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.get_operation">(viam.services.slam.SLAM method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_operation">(viam.services.slam.slam.SLAM method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.get_operation">(viam.services.slam.SLAMClient method)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/client/index.html#viam.services.vision.client.VisionClient.get_operation">(viam.services.vision.client.VisionClient method)</a>
 </li>
@@ -5177,9 +5171,9 @@
       <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.get_point_cloud_map">get_point_cloud_map() (viam.services.slam.client.SLAMClient method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.get_point_cloud_map">(viam.services.slam.SLAM method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_point_cloud_map">(viam.services.slam.slam.SLAM method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.get_point_cloud_map">(viam.services.slam.SLAMClient method)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/services/motion/client/index.html#viam.services.motion.client.MotionClient.get_pose">get_pose() (viam.services.motion.client.MotionClient method)</a>
@@ -5227,9 +5221,9 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.get_position">(viam.services.slam.client.SLAMClient method)</a>
 </li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.get_position">(viam.services.slam.SLAM method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_position">(viam.services.slam.slam.SLAM method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.get_position">(viam.services.slam.SLAMClient method)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.get_properties">get_properties() (viam.components.audio_input.audio_input.AudioInput method)</a>
@@ -5300,11 +5294,9 @@
         <li><a href="autoapi/viam/resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource">(viam.resource.rpc_service_base.ResourceRPCServiceBase method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.get_resource_name">get_resource_name() (viam.components.arm.Arm class method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_resource_name">get_resource_name() (viam.components.arm.arm.Arm class method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.get_resource_name">(viam.components.arm.arm.Arm class method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.get_resource_name">(viam.components.arm.client.ArmClient class method)</a>
 </li>
         <li><a href="autoapi/viam/components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.get_resource_name">(viam.components.audio_input.audio_input.AudioInput class method)</a>
@@ -5433,9 +5425,9 @@
 </li>
         <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient.get_resource_name">(viam.services.slam.client.SLAMClient class method)</a>
 </li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.get_resource_name">(viam.services.slam.SLAM class method)</a>
-</li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.get_resource_name">(viam.services.slam.slam.SLAM class method)</a>
+</li>
+        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient.get_resource_name">(viam.services.slam.SLAMClient class method)</a>
 </li>
         <li><a href="autoapi/viam/services/vision/client/index.html#viam.services.vision.client.VisionClient.get_resource_name">(viam.services.vision.client.VisionClient class method)</a>
 </li>
@@ -6456,14 +6448,14 @@
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.AppServiceBase.GetRobotParts">(viam.proto.app.AppServiceBase method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.GetRobotPartsRequest">GetRobotPartsRequest (class in viam.gen.app.v1.app_pb2)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.GetRobotPartsRequest">(class in viam.proto.app)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.GetRobotPartsResponse">GetRobotPartsResponse (class in viam.gen.app.v1.app_pb2)</a>
 
       <ul>
@@ -9572,11 +9564,9 @@
         <li><a href="autoapi/viam/proto/component/servo/index.html#viam.proto.component.servo.Status.is_moving">(viam.proto.component.servo.Status attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.is_moving">is_moving() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.is_moving">is_moving() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.is_moving">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.is_moving">(viam.components.arm.client.ArmClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/base/index.html#viam.components.base.Base.is_moving">(viam.components.base.Base method)</a>
@@ -10445,6 +10435,8 @@
 </li>
         <li><a href="autoapi/viam/rpc/server/index.html#viam.rpc.server.LOGGER">(in module viam.rpc.server)</a>
 </li>
+        <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.LOGGER">(in module viam.sessions_client)</a>
+</li>
       </ul></li>
       <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.LogEntry.logger_name">logger_name (viam.gen.app.v1.app_pb2.LogEntry attribute)</a>
 
@@ -10734,6 +10726,8 @@
         <li><a href="autoapi/viam/proto/rpc/webrtc/grpc/index.html#viam.proto.rpc.webrtc.grpc.ResponseTrailers.metadata">(viam.proto.rpc.webrtc.grpc.ResponseTrailers property)</a>
 </li>
         <li><a href="autoapi/viam/proto/service/mlmodel/index.html#viam.proto.service.mlmodel.MetadataResponse.metadata">(viam.proto.service.mlmodel.MetadataResponse property)</a>
+</li>
+        <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.SessionsClient.metadata">(viam.sessions_client.SessionsClient property)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/service/mlmodel/v1/mlmodel_grpc/index.html#viam.gen.service.mlmodel.v1.mlmodel_grpc.MLModelServiceBase.Metadata">Metadata() (viam.gen.service.mlmodel.v1.mlmodel_grpc.MLModelServiceBase method)</a>
@@ -11724,6 +11718,8 @@
 </li>
         <li><a href="autoapi/viam/services/vision/client/index.html#module-viam.services.vision.client">viam.services.vision.client</a>
 </li>
+        <li><a href="autoapi/viam/sessions_client/index.html#module-viam.sessions_client">viam.sessions_client</a>
+</li>
         <li><a href="autoapi/viam/utils/index.html#module-viam.utils">viam.utils</a>
 </li>
       </ul></li>
@@ -11859,19 +11855,15 @@
         <li><a href="autoapi/viam/components/base/client/index.html#viam.components.base.client.BaseClient.move_straight">(viam.components.base.client.BaseClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.move_to_joint_positions">move_to_joint_positions() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.move_to_joint_positions">move_to_joint_positions() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.move_to_joint_positions">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.move_to_joint_positions">(viam.components.arm.client.ArmClient method)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.move_to_position">move_to_position() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.move_to_position">move_to_position() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.move_to_position">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.move_to_position">(viam.components.arm.client.ArmClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/gantry/client/index.html#viam.components.gantry.client.GantryClient.move_to_position">(viam.components.gantry.client.GantryClient method)</a>
@@ -14385,6 +14377,8 @@
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.ResendOrganizationInviteResponse">(class in viam.proto.app)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.SessionsClient.reset">reset() (viam.sessions_client.SessionsClient method)</a>
+</li>
       <li><a href="autoapi/viam/components/input/client/index.html#viam.components.input.client.ControllerClient.reset_channel">reset_channel() (viam.components.input.client.ControllerClient method)</a>
 
       <ul>
@@ -15213,12 +15207,16 @@
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.Operation.session_id">(viam.proto.robot.Operation attribute)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.SESSION_METADATA_KEY">SESSION_METADATA_KEY (in module viam.sessions_client)</a>
+</li>
       <li><a href="autoapi/viam/gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetSessionsResponse.sessions">sessions (viam.gen.robot.v1.robot_pb2.GetSessionsResponse property)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.GetSessionsResponse.sessions">(viam.proto.robot.GetSessionsResponse property)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/sessions_client/index.html#viam.sessions_client.SessionsClient">SessionsClient (class in viam.sessions_client)</a>
+</li>
       <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board.GPIOPin.set">set() (viam.components.board.board.Board.GPIOPin method)</a>
 
       <ul>
@@ -15557,20 +15555,20 @@
         <li><a href="autoapi/viam/proto/app/model/index.html#viam.proto.app.model.SyncedModel.size_bytes">(viam.proto.app.model.SyncedModel attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM">SLAM (class in viam.services.slam)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM">(class in viam.services.slam.slam)</a>
+      <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM">SLAM (class in viam.services.slam.slam)</a>
 </li>
-      </ul></li>
       <li><a href="autoapi/viam/gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest.slam_service_name">slam_service_name (viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest property)</a>
 
       <ul>
         <li><a href="autoapi/viam/proto/service/motion/index.html#viam.proto.service.motion.MoveOnMapRequest.slam_service_name">(viam.proto.service.motion.MoveOnMapRequest property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient">SLAMClient (class in viam.services.slam.client)</a>
+      <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAMClient">SLAMClient (class in viam.services.slam)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/services/slam/client/index.html#viam.services.slam.client.SLAMClient">(class in viam.services.slam.client)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/services/slam/service/index.html#viam.services.slam.service.SLAMRPCService">SLAMRPCService (class in viam.services.slam.service)</a>
 </li>
       <li><a href="autoapi/viam/gen/service/slam/v1/slam_grpc/index.html#viam.gen.service.slam.v1.slam_grpc.SLAMServiceBase">SLAMServiceBase (class in viam.gen.service.slam.v1.slam_grpc)</a>
@@ -15879,11 +15877,9 @@
         <li><a href="autoapi/viam/proto/component/board/index.html#viam.proto.component.board.StatusResponse">(class in viam.proto.component.board)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.stop">stop() (viam.components.arm.Arm method)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.stop">stop() (viam.components.arm.arm.Arm method)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.stop">(viam.components.arm.arm.Arm method)</a>
-</li>
         <li><a href="autoapi/viam/components/arm/client/index.html#viam.components.arm.client.ArmClient.stop">(viam.components.arm.client.ArmClient method)</a>
 </li>
       </ul></li>
@@ -16179,11 +16175,9 @@
       </ul></li>
       <li><a href="autoapi/viam/resource/types/index.html#viam.resource.types.Subtype">Subtype (class in viam.resource.types)</a>
 </li>
-      <li><a href="autoapi/viam/components/arm/index.html#viam.components.arm.Arm.SUBTYPE">SUBTYPE (viam.components.arm.Arm attribute)</a>
+      <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.SUBTYPE">SUBTYPE (viam.components.arm.arm.Arm attribute)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/arm/arm/index.html#viam.components.arm.arm.Arm.SUBTYPE">(viam.components.arm.arm.Arm attribute)</a>
-</li>
         <li><a href="autoapi/viam/components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.SUBTYPE">(viam.components.audio_input.audio_input.AudioInput attribute)</a>
 </li>
         <li><a href="autoapi/viam/components/audio_input/index.html#viam.components.audio_input.AudioInput.SUBTYPE">(viam.components.audio_input.AudioInput attribute)</a>
@@ -16277,8 +16271,6 @@
         <li><a href="autoapi/viam/services/service_base/index.html#viam.services.service_base.ServiceBase.SUBTYPE">(viam.services.service_base.ServiceBase attribute)</a>
 </li>
         <li><a href="autoapi/viam/services/service_client_base/index.html#viam.services.service_client_base.ServiceClientBase.SUBTYPE">(viam.services.service_client_base.ServiceClientBase attribute)</a>
-</li>
-        <li><a href="autoapi/viam/services/slam/index.html#viam.services.slam.SLAM.SUBTYPE">(viam.services.slam.SLAM attribute)</a>
 </li>
         <li><a href="autoapi/viam/services/slam/slam/index.html#viam.services.slam.slam.SLAM.SUBTYPE">(viam.services.slam.slam.SLAM attribute)</a>
 </li>
@@ -18392,8 +18384,6 @@
         <li><a href="autoapi/viam/gen/component/motor/v1/motor_pb2/index.html#module-viam.gen.component.motor.v1.motor_pb2">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.component.movementsensor
 
@@ -18401,6 +18391,8 @@
         <li><a href="autoapi/viam/gen/component/movementsensor/index.html#module-viam.gen.component.movementsensor">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     viam.gen.component.movementsensor.v1
 
@@ -19652,6 +19644,13 @@
 
       <ul>
         <li><a href="autoapi/viam/services/vision/client/index.html#module-viam.services.vision.client">module</a>
+</li>
+      </ul></li>
+      <li>
+    viam.sessions_client
+
+      <ul>
+        <li><a href="autoapi/viam/sessions_client/index.html#module-viam.sessions_client">module</a>
 </li>
       </ul></li>
       <li>

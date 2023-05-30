@@ -1,0 +1,67 @@
+:py:mod:`viam.sessions_client`
+==============================
+
+.. py:module:: viam.sessions_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.sessions_client.SessionsClient
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.sessions_client.delay
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.sessions_client.LOGGER
+   viam.sessions_client.SESSION_METADATA_KEY
+   viam.sessions_client.EXEMPT_METADATA_METHODS
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:data:: SESSION_METADATA_KEY
+   :value: 'viam-sid'
+
+   
+
+.. py:data:: EXEMPT_METADATA_METHODS
+
+   
+
+.. py:function:: delay(coro, seconds)
+   :async:
+
+
+.. py:class:: SessionsClient(channel: grpclib.client.Channel, *, disabled: bool = False)
+
+   A Session allows a client to express that it is actively connected and
+   supports stopping actuating components when it's not.
+
+   .. py:property:: metadata
+      :type: grpclib.metadata._MetadataLike
+
+
+   .. py:method:: reset()
+
+
+
