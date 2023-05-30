@@ -52,11 +52,17 @@ jobs:
       - name: Clean Format Test
         run: make clean better_imports format test
 
+      - name: Current version
+        id: current_version
+        shell: bash
+        run: |
+          echo "current_version=$(poetry version)" >> $GITHUB_OUTPUT
+
       - name: Bump Version
         id: bump_version
         shell: bash
         run: |
-          if [[ $(poetry version) == *"rc"* ]]; then
+          if [ ${{ contains(steps.current_version.outputs.current_version, 'rc') }} ]; then
             poetry version prerelease
           else
             poetry version "$(poetry version ${{ inputs.version }} -s --dry-run)"rc1
@@ -80,15 +86,18 @@ jobs:
         if: |
           steps.release_exists.outputs.id != ''
 
-      - name: Add + Commit + Open PR
-        uses: peter-evans/create-pull-request@v5
+      - name: Add + Commit
+        uses: EndBug/add-and-commit@v9
         with:
-          commit-message: Bump version to ${{ env.SDK_RC_VERSION }}
-          branch: rc-${{ env.SDK_VERSION }}
-          delete-branch: false
-          base: main
-          title: rc-${{ env.SDK_VERSION }}
-          body: This is an auto-generated PR to merge the rc branch back into main upon successful release.
+          new_branch: rc-${{ env.SDK_VERSION }}
+          message: Bump version to ${{ env.SDK_RC_VERSION }}
+
+      - name: Open PR
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "main"
+          pr_title: rc-${{ env.SDK_VERSION }}
+          pr_body: This is an auto-generated PR to merge the rc branch back into main upon successful release.
 
   build:
     needs: prepare
