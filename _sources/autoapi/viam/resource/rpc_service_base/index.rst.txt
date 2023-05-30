@@ -42,7 +42,7 @@ Classes
       :param name: Name of the resource
       :type name: str
 
-      :raises ResourceNotFoundError:
+      :raises GRPCError with the status code Status.NOT_FOUND:
 
       :returns: The resource
       :rtype: ResourceType
