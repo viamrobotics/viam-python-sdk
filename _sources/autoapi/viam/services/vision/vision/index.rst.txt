@@ -1,7 +1,7 @@
-:py:mod:`viam.services.vision.client`
+:py:mod:`viam.services.vision.vision`
 =====================================
 
-.. py:module:: viam.services.vision.client
+.. py:module:: viam.services.vision.vision
 
 
 Module Contents
@@ -12,24 +12,28 @@ Classes
 
 .. autoapisummary::
 
-   viam.services.vision.client.VisionClient
+   viam.services.vision.vision.Vision
 
 
 
 
-.. py:class:: VisionClient(name: str, channel: grpclib.client.Channel)
+.. py:class:: Vision(name: str)
 
-   Bases: :py:obj:`viam.services.vision.vision.Vision`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`, :py:obj:`abc.ABC`
 
-   Connect to the Vision service, which allows you to access various computer vision algorithms
-   (like detection, segmentation, tracking, etc) that usually only require a camera or image input.
+   Vision represents a Vision service.
 
-   .. py:attribute:: client
-      :type: viam.proto.service.vision.VisionServiceStub
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
 
       
 
    .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+      :abstractmethod:
       :async:
 
       Get a list of detections in the next image given a camera and a detector
@@ -43,7 +47,8 @@ Classes
       :rtype: List[viam.proto.service.vision.Detection]
 
 
-   .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: Union[PIL.Image.Image, viam.media.video.RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+      :abstractmethod:
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -58,6 +63,7 @@ Classes
 
 
    .. py:method:: get_classifications_from_camera(camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+      :abstractmethod:
       :async:
 
       Get a list of classifications in the next image given a camera and a classifier
@@ -71,7 +77,8 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
-   .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: Union[PIL.Image.Image, viam.media.video.RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+      :abstractmethod:
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -84,6 +91,7 @@ Classes
 
 
    .. py:method:: get_object_point_clouds(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.PointCloudObject]
+      :abstractmethod:
       :async:
 
       Returns a list of the 3D point cloud objects and associated metadata in the latest
@@ -111,6 +119,7 @@ Classes
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
       :async:
 
       Send/receive arbitrary commands

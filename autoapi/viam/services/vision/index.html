@@ -64,6 +64,8 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.client</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.service</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.vision</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
@@ -85,7 +87,6 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.VisionClient"><code class="docutils literal notranslate"><span class="pre">VisionClient</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">VisionClient.SUBTYPE</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.client"><code class="docutils literal notranslate"><span class="pre">VisionClient.client</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_detections_from_camera"><code class="docutils literal notranslate"><span class="pre">VisionClient.get_detections_from_camera()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_detections"><code class="docutils literal notranslate"><span class="pre">VisionClient.get_detections()</span></code></a></li>
@@ -96,6 +97,19 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.from_robot"><code class="docutils literal notranslate"><span class="pre">VisionClient.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">VisionClient.get_resource_name()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.VisionClient.get_operation"><code class="docutils literal notranslate"><span class="pre">VisionClient.get_operation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.vision.Vision"><code class="docutils literal notranslate"><span class="pre">Vision</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Vision.SUBTYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_detections_from_camera"><code class="docutils literal notranslate"><span class="pre">Vision.get_detections_from_camera()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_detections"><code class="docutils literal notranslate"><span class="pre">Vision.get_detections()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_classifications_from_camera"><code class="docutils literal notranslate"><span class="pre">Vision.get_classifications_from_camera()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_classifications"><code class="docutils literal notranslate"><span class="pre">Vision.get_classifications()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_object_point_clouds"><code class="docutils literal notranslate"><span class="pre">Vision.get_object_point_clouds()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.do_command"><code class="docutils literal notranslate"><span class="pre">Vision.do_command()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.from_robot"><code class="docutils literal notranslate"><span class="pre">Vision.from_robot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Vision.get_resource_name()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.vision.Vision.get_operation"><code class="docutils literal notranslate"><span class="pre">Vision.get_operation()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -149,6 +163,8 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.client</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.service</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.vision</span></code></a></li>
 </ul>
 </div>
 </section>
@@ -166,6 +182,9 @@
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.vision.VisionClient" title="viam.services.vision.VisionClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionClient</span></code></a></p></td>
 <td><p>Connect to the Vision service, which allows you to access various computer vision algorithms</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.vision.Vision" title="viam.services.vision.Vision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vision</span></code></a></p></td>
+<td><p>Vision represents a Vision service.</p></td>
 </tr>
 </tbody>
 </table>
@@ -284,14 +303,9 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.vision.</span></span><span class="sig-name descname"><span class="pre">VisionClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision/client.html#VisionClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.VisionClient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="../service_client_base/index.html#viam.services.service_client_base.ServiceClientBase" title="viam.services.service_client_base.ServiceClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_client_base.ServiceClientBase</span></code></a>, <a class="reference internal" href="../../resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="vision/index.html#viam.services.vision.vision.Vision" title="viam.services.vision.vision.Vision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.vision.vision.Vision</span></code></a>, <a class="reference internal" href="../../resource/rpc_client_base/index.html#viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase" title="viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase</span></code></a></p>
 <p>Connect to the Vision service, which allows you to access various computer vision algorithms
 (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.services.vision.VisionClient.SUBTYPE">
-<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.vision.VisionClient.SUBTYPE" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.client">
 <span class="sig-name descname"><span class="pre">client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.VisionServiceStub" title="viam.proto.service.vision.VisionServiceStub"><span class="pre">viam.proto.service.vision.VisionServiceStub</span></a></em><a class="headerlink" href="#viam.services.vision.VisionClient.client" title="Permalink to this definition"></a></dt>
@@ -422,17 +436,17 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.from_robot">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'builtin'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.vision.VisionClient.from_robot" title="Permalink to this definition"></a></dt>
-<dd><p>Get the service client named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.vision.VisionClient.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
-<li><p><strong>name</strong> (<em>str</em>) – The name of the service client</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The service client, if it exists on the robot</p>
+<dd class="field-even"><p>The service, if it exists on the robot</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Self</p>
@@ -454,6 +468,195 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.vision.VisionClient.get_operation">
 <span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.vision.VisionClient.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.vision.Vision">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.vision.</span></span><span class="sig-name descname"><span class="pre">Vision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Vision represents a Vision service.</p>
+<p>This acts as an abstract base class for any drivers representing specific
+arm implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
+overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.vision.Vision.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_detections_from_camera">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections_from_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Detection" title="viam.proto.service.vision.Detection"><span class="pre">viam.proto.service.vision.Detection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.get_detections_from_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.get_detections_from_camera" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of detections in the next image given a camera and a detector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera to use for detection</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
+confidence score of the labels, around the found objects in the next 2D image
+from the given camera, with the given detector applied to it.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Detection" title="viam.proto.service.vision.Detection">viam.proto.service.vision.Detection</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_detections">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_detections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../media/video/index.html#viam.media.video.RawImage" title="viam.media.video.RawImage"><span class="pre">viam.media.video.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Detection" title="viam.proto.service.vision.Detection"><span class="pre">viam.proto.service.vision.Detection</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.get_detections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.get_detections" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of detections in the given image using the specified detector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>Image</em>) – The image to get detections from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
+confidence score of the labels, around the found objects in the next 2D image
+from the given camera, with the given detector applied to it.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Detection" title="viam.proto.service.vision.Detection">viam.proto.service.vision.Detection</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_classifications_from_camera">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_classifications_from_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Classification" title="viam.proto.service.vision.Classification"><span class="pre">viam.proto.service.vision.Classification</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.get_classifications_from_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.get_classifications_from_camera" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of classifications in the next image given a camera and a classifier</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera to use for detection</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – The number of classifications desired</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of Classifications</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Classification" title="viam.proto.service.vision.Classification">viam.proto.service.vision.Classification</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_classifications">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_classifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../media/video/index.html#viam.media.video.RawImage" title="viam.media.video.RawImage"><span class="pre">viam.media.video.RawImage</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Classification" title="viam.proto.service.vision.Classification"><span class="pre">viam.proto.service.vision.Classification</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.get_classifications"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.get_classifications" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of detections in the given image using the specified detector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>Image</em>) – The image to get detections from</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The list of Classifications</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/service/vision/index.html#viam.proto.service.vision.Classification" title="viam.proto.service.vision.Classification">viam.proto.service.vision.Classification</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_object_point_clouds">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_object_point_clouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject"><span class="pre">viam.proto.common.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.get_object_point_clouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.get_object_point_clouds" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of the 3D point cloud objects and associated metadata in the latest
+picture obtained from the specified 3D camera (using the specified segmenter).</p>
+<p>To deserialize the returned information into a numpy array, use the Open3D library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">open3d</span> <span class="k">as</span> <span class="nn">o3d</span>
+
+<span class="n">object_point_clouds</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_object_point_clouds</span><span class="p">(</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">segmenter_name</span><span class="p">)</span>
+
+<span class="c1"># write the first object point cloud into a temporary file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/tmp/pointcloud_data.pcd&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">object_point_clouds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">point_cloud</span><span class="p">)</span>
+<span class="n">pcd</span> <span class="o">=</span> <span class="n">o3d</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_point_cloud</span><span class="p">(</span><span class="s2">&quot;/tmp/pointcloud_data.pcd&quot;</span><span class="p">)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pcd</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>camera_name</strong> (<em>str</em>) – The name of the camera</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The pointcloud objects with metadata</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PointCloudObject" title="viam.proto.common.PointCloudObject">viam.proto.common.PointCloudObject</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/vision/vision.html#Vision.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.Vision.do_command" title="Permalink to this definition"></a></dt>
+<dd><p>Send/receive arbitrary commands</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the executed command</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.services.vision.Vision.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the service named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the service</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The service, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.services.vision.Vision.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.Vision.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.services.vision.Vision.get_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
 <p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
 If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.

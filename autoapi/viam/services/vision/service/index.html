@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.services.vision.service &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.services.vision.vision" href="../vision/index.html" />
+    <link rel="prev" title="viam.services.vision.client" href="../client/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../mlmodel/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.mlmodel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motion/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.motion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensors/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.sensors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../slam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.slam</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.client</span></code></a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.service</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService"><code class="docutils literal notranslate"><span class="pre">VisionRPCService</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.GetDetectionsFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.GetDetectionsFromCamera()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.GetDetections"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.GetDetections()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.GetClassificationsFromCamera"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.GetClassificationsFromCamera()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.GetClassifications"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.GetClassifications()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.GetObjectPointClouds"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.GetObjectPointClouds()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.vision.service.VisionRPCService.DoCommand"><code class="docutils literal notranslate"><span class="pre">VisionRPCService.DoCommand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../vision/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.vision</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.service</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/services/vision/service/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.services.vision.service">
+<span id="viam-services-vision-service"></span><h1><a class="reference internal" href="#module-viam.services.vision.service" title="viam.services.vision.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services.vision.service</span></code></a><a class="headerlink" href="#module-viam.services.vision.service" title="Permalink to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.vision.service.VisionRPCService" title="viam.services.vision.service.VisionRPCService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VisionRPCService</span></code></a></p></td>
+<td><p>gRPC service for a Vision service</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.vision.service.</span></span><span class="sig-name descname"><span class="pre">VisionRPCService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.VisionServiceBase" title="viam.proto.service.vision.VisionServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.proto.service.vision.VisionServiceBase</span></code></a>, <a class="reference internal" href="../../../resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base.ResourceRPCServiceBase</span></code></a>[<a class="reference internal" href="../vision/index.html#viam.services.vision.vision.Vision" title="viam.services.vision.vision.Vision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.vision.vision.Vision</span></code></a>]</p>
+<p>gRPC service for a Vision service</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.GetDetectionsFromCamera">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetectionsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetDetectionsFromCameraRequest" title="viam.proto.service.vision.GetDetectionsFromCameraRequest"><span class="pre">viam.proto.service.vision.GetDetectionsFromCameraRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetDetectionsFromCameraResponse" title="viam.proto.service.vision.GetDetectionsFromCameraResponse"><span class="pre">viam.proto.service.vision.GetDetectionsFromCameraResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.GetDetectionsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.GetDetectionsFromCamera" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.GetDetections">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDetections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetDetectionsRequest" title="viam.proto.service.vision.GetDetectionsRequest"><span class="pre">viam.proto.service.vision.GetDetectionsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetDetectionsResponse" title="viam.proto.service.vision.GetDetectionsResponse"><span class="pre">viam.proto.service.vision.GetDetectionsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.GetDetections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.GetDetections" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.GetClassificationsFromCamera">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassificationsFromCamera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetClassificationsFromCameraRequest" title="viam.proto.service.vision.GetClassificationsFromCameraRequest"><span class="pre">viam.proto.service.vision.GetClassificationsFromCameraRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetClassificationsFromCameraResponse" title="viam.proto.service.vision.GetClassificationsFromCameraResponse"><span class="pre">viam.proto.service.vision.GetClassificationsFromCameraResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.GetClassificationsFromCamera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.GetClassificationsFromCamera" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.GetClassifications">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetClassifications</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetClassificationsRequest" title="viam.proto.service.vision.GetClassificationsRequest"><span class="pre">viam.proto.service.vision.GetClassificationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetClassificationsResponse" title="viam.proto.service.vision.GetClassificationsResponse"><span class="pre">viam.proto.service.vision.GetClassificationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.GetClassifications"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.GetClassifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.GetObjectPointClouds">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetObjectPointClouds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetObjectPointCloudsRequest" title="viam.proto.service.vision.GetObjectPointCloudsRequest"><span class="pre">viam.proto.service.vision.GetObjectPointCloudsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/service/vision/index.html#viam.proto.service.vision.GetObjectPointCloudsResponse" title="viam.proto.service.vision.GetObjectPointCloudsResponse"><span class="pre">viam.proto.service.vision.GetObjectPointCloudsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.GetObjectPointClouds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.GetObjectPointClouds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.vision.service.VisionRPCService.DoCommand">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><span class="pre">viam.proto.common.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><span class="pre">viam.proto.common.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/vision/service.html#VisionRPCService.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.vision.service.VisionRPCService.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../client/index.html" class="btn btn-neutral float-left" title="viam.services.vision.client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../vision/index.html" class="btn btn-neutral float-right" title="viam.services.vision.vision" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

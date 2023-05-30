@@ -87,7 +87,7 @@
              
   <h1>Source code for viam.services.vision.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
@@ -110,37 +110,27 @@
     <span class="n">VisionServiceStub</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
-<span class="kn">from</span> <span class="nn">viam.services.service_client_base</span> <span class="kn">import</span> <span class="n">ServiceClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
+<span class="kn">from</span> <span class="nn">.vision</span> <span class="kn">import</span> <span class="n">Vision</span>
 
-<div class="viewcode-block" id="VisionClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient">[docs]</a><span class="k">class</span> <span class="nc">VisionClient</span><span class="p">(</span><span class="n">ServiceClientBase</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="VisionClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient">[docs]</a><span class="k">class</span> <span class="nc">VisionClient</span><span class="p">(</span><span class="n">Vision</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Connect to the Vision service, which allows you to access various computer vision algorithms</span>
 <span class="sd">    (like detection, segmentation, tracking, etc) that usually only require a camera or image input.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;vision&quot;</span><span class="p">)</span>
     <span class="n">client</span><span class="p">:</span> <span class="n">VisionServiceStub</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
 
 <div class="viewcode-block" id="VisionClient.get_detections_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the next image given a camera and a detector</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            camera_name (str): The name of the camera to use for detection</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
-<span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
-<span class="sd">            from the given camera, with the given detector applied to it.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsFromCameraRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
@@ -154,16 +144,6 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            image (Image): The image to get detections from</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
-<span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
-<span class="sd">            from the given camera, with the given detector applied to it.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
@@ -189,15 +169,6 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of classifications in the next image given a camera and a classifier</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            camera_name (str): The name of the camera to use for detection</span>
-<span class="sd">            count (int): The number of classifications desired</span>
-
-<span class="sd">        returns:</span>
-<span class="sd">            List[viam.proto.service.vision.Classification]: The list of Classifications</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetClassificationsFromCameraRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">count</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
@@ -212,14 +183,6 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of detections in the given image using the specified detector</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            image (Image): The image to get detections from</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.service.vision.Classification]: The list of Classifications</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
@@ -241,30 +204,6 @@
 <div class="viewcode-block" id="VisionClient.get_object_point_clouds"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_object_point_clouds">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_object_point_clouds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns a list of the 3D point cloud objects and associated metadata in the latest</span>
-<span class="sd">        picture obtained from the specified 3D camera (using the specified segmenter).</span>
-
-<span class="sd">        To deserialize the returned information into a numpy array, use the Open3D library.</span>
-<span class="sd">        ::</span>
-
-<span class="sd">            import numpy as np</span>
-<span class="sd">            import open3d as o3d</span>
-
-<span class="sd">            object_point_clouds = await vision.get_object_point_clouds(camera_name, segmenter_name)</span>
-
-<span class="sd">            # write the first object point cloud into a temporary file</span>
-<span class="sd">            with open(&quot;/tmp/pointcloud_data.pcd&quot;, &quot;wb&quot;) as f:</span>
-<span class="sd">                f.write(object_point_clouds[0].point_cloud)</span>
-<span class="sd">            pcd = o3d.io.read_point_cloud(&quot;/tmp/pointcloud_data.pcd&quot;)</span>
-<span class="sd">            points = np.asarray(pcd.points)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            camera_name (str): The name of the camera</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetObjectPointCloudsRequest</span><span class="p">(</span>
@@ -277,14 +216,6 @@
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/receive arbitrary commands</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            command (Dict[str, ValueTypes]): The command to execute</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Dict[str, ValueTypes]: Result of the executed command</span>
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div></div>
