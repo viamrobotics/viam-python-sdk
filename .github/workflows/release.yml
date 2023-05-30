@@ -41,7 +41,7 @@ jobs:
         id: bump_version
         shell: bash
         run: |
-          poetry version ${$(poetry version -s)%rc*}
+          poetry version $(poetry version -s | sed -e 's/\"//g' -e 's/rc.*//g')
           echo "SDK_VERSION=$(poetry version -s)" >> $GITHUB_ENV
           echo "version=$(poetry version -s)" >> $GITHUB_OUTPUT
 
