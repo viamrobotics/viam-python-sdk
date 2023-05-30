@@ -62,7 +62,7 @@ jobs:
         id: bump_version
         shell: bash
         run: |
-          if [ ${{ contains(steps.current_version.outputs.current_version, 'rc') }} ]; then
+          if ${{ contains(steps.current_version.outputs.current_version, 'rc') }} ; then
             poetry version prerelease
           else
             poetry version "$(poetry version ${{ inputs.version }} -s --dry-run)"rc1
