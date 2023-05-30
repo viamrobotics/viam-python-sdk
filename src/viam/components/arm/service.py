@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.arm import (
     ArmServiceBase,
@@ -34,10 +33,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await arm.get_end_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetEndPositionResponse(pose=position)
@@ -47,10 +43,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await arm.move_to_position(request.to, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToPositionResponse()
@@ -60,10 +53,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         positions = await arm.get_joint_positions(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetJointPositionsResponse(positions=positions)
@@ -73,10 +63,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await arm.move_to_joint_positions(request.positions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = MoveToJointPositionsResponse()
@@ -86,10 +73,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await arm.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
@@ -99,10 +83,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            arm = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(name)
         is_moving = await arm.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
@@ -110,10 +91,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase[Arm]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            arm = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await arm.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

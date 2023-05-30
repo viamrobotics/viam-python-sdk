@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.motor import (
     GetPositionRequest,
@@ -40,10 +39,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.set_power(request.power_pct, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(SetPowerResponse())
@@ -52,10 +48,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.go_for(request.rpm, request.revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(GoForResponse())
@@ -64,10 +57,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.go_to(
             request.rpm, request.position_revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
@@ -78,10 +68,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.reset_zero_position(request.offset, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(ResetZeroPositionResponse())
@@ -90,10 +77,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await motor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(GetPositionResponse(position=position))
@@ -102,10 +86,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await motor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetPropertiesResponse(**properties.__dict__)
@@ -115,10 +96,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
@@ -128,10 +106,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         is_powered, power_pct = await motor.is_powered(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         await stream.send_message(IsPoweredResponse(is_on=is_powered, power_pct=power_pct))
@@ -140,10 +115,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            motor = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(name)
         is_moving = await motor.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
@@ -151,10 +123,7 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            motor = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        motor = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await motor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

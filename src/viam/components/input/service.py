@@ -6,7 +6,7 @@ from grpclib.server import Stream
 from h2.exceptions import StreamClosedError
 
 import viam
-from viam.errors import NotSupportedError, ResourceNotFoundError
+from viam.errors import NotSupportedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
@@ -38,10 +38,7 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
-        try:
-            controller = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        controller = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetControlsResponse(controls=[c.value for c in controls])
@@ -51,10 +48,7 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
-        try:
-            controller = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        controller = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         pb_events = [e.proto for e in events.values()]
@@ -65,10 +59,7 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
-        try:
-            controller = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        controller = self.get_resource(name)
 
         loop = asyncio.get_running_loop()
         # Using Pipes to send event data back to this function so it can be streamed to clients
@@ -154,13 +145,11 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         assert request is not None
         name = request.controller
         timeout = stream.deadline.time_remaining() if stream.deadline else None
+        controller = self.get_resource(name)
         try:
-            controller = self.get_resource(name)
             pb_event = request.event
             event = Event.from_proto(pb_event)
             await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
         except NotSupportedError as e:
             raise e.grpc_error
 
@@ -170,10 +159,7 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            controller = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        controller = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await controller.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

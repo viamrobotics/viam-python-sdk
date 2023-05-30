@@ -2,7 +2,6 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.components.component_base import ComponentBase
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.generic import GenericServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -22,10 +21,7 @@ class GenericRPCService(GenericServiceBase, ResourceRPCServiceBase[ComponentBase
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            component = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        component = self.get_resource(name)
         try:
             timeout = stream.deadline.time_remaining() if stream.deadline else None
             result = await component.do_command(struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)

@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceBase,
@@ -34,10 +33,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.move_straight(
             distance=request.distance_mm,
@@ -53,10 +49,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.spin(
             angle=request.angle_deg,
@@ -72,10 +65,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_power(
             request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
@@ -87,10 +77,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_velocity(
             request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
@@ -101,10 +88,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
@@ -114,10 +98,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            base = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(name)
         is_moving = await base.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
@@ -125,10 +106,7 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            base = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        base = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await base.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

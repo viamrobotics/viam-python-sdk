@@ -1,7 +1,6 @@
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.camera import (
@@ -31,10 +30,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            camera = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        camera = self.get_resource(name)
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
@@ -55,10 +51,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            camera = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        camera = self.get_resource(name)
         try:
             mimetype = CameraMimeType(request.mime_type)
         except ValueError:
@@ -76,10 +69,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            camera = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        camera = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         pc, mimetype = await camera.get_point_cloud(timeout=timeout, metadata=stream.metadata)
         response = GetPointCloudResponse(mime_type=mimetype, point_cloud=pc)
@@ -89,10 +79,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            camera = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        camera = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await camera.get_properties(timeout=timeout, metadata=stream.metadata)
         response = GetPropertiesResponse(
@@ -105,10 +92,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            camera = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        camera = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await camera.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

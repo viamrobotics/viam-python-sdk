@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -20,10 +19,7 @@ class PoseTrackerRPCService(PoseTrackerServiceBase, ResourceRPCServiceBase[PoseT
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            pose_tracker = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        pose_tracker = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         poses = await pose_tracker.get_poses(
             list(request.body_names), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
@@ -33,10 +29,7 @@ class PoseTrackerRPCService(PoseTrackerServiceBase, ResourceRPCServiceBase[PoseT
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            pose_tracker = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        pose_tracker = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await pose_tracker.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))

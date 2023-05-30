@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.gantry import (
     GantryServiceBase,
@@ -32,10 +31,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gantry = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await gantry.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetPositionResponse(positions_mm=position)
@@ -45,10 +41,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gantry = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.move_to_position(
             list(request.positions_mm), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
@@ -60,10 +53,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gantry = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = GetLengthsResponse(lengths_mm=lengths)
@@ -73,10 +63,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gantry = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
         response = StopResponse()
@@ -86,10 +73,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         request = await stream.recv_message()
         assert request is not None
         name = request.name
-        try:
-            gantry = self.get_resource(name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(name)
         is_moving = await gantry.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
@@ -97,10 +81,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        try:
-            gantry = self.get_resource(request.name)
-        except ResourceNotFoundError as e:
-            raise e.grpc_error
+        gantry = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await gantry.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
