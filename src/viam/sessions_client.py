@@ -72,7 +72,7 @@ class SessionsClient:
 
     async def _recv_trailers(self, event: RecvTrailingMetadata):
         if event.status == Status.INVALID_ARGUMENT and event.status_message == "SESSION_EXPIRED":
-            LOGGER.debug("session expired")
+            LOGGER.debug("Session expired")
             self.reset()
 
     @property
@@ -100,10 +100,10 @@ class SessionsClient:
                     raise
             else:
                 if response is None:
-                    raise GRPCError(status=Status.INTERNAL, message="expected response to start session")
+                    raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
 
                 if response.heartbeat_window is None:
-                    raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
+                    raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
 
                 self._supported = True
                 self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
@@ -123,15 +123,15 @@ class SessionsClient:
         request = SendSessionHeartbeatRequest(id=self._current_id)
 
         if self._heartbeat_interval is None:
-            raise GRPCError(status=Status.INTERNAL, message="expected heartbeat window in response to start session")
+            raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
 
         try:
             await self.client.SendSessionHeartbeat(request)
         except (GRPCError, StreamTerminatedError):
-            LOGGER.debug("heartbeat terminated", exc_info=True)
+            LOGGER.debug("Heartbeat terminated", exc_info=True)
             self.reset()
         else:
-            LOGGER.debug("sent heartbeat successfully")
+            LOGGER.debug("Sent heartbeat successfully")
             # We send heartbeats slightly faster than the interval window to
             # ensure that we don't fall outside of it and expire the session.
             wait = self._heartbeat_interval.total_seconds() / 5
