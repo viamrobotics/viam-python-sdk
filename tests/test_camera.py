@@ -49,7 +49,7 @@ def point_cloud() -> bytes:
 @pytest.fixture(scope="function")
 def properties() -> Camera.Properties:
     return Camera.Properties(
-        True,
+        False,
         IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
         DistortionParameters(model="no_distortion"),
     )
@@ -141,6 +141,11 @@ class TestService:
             img = Image.frombytes("RGBA", (100, 100), response.image, "raw")
             assert img == image
             assert response.mime_type == "unknown"
+
+            # Test empty mime type. Empty mime type should default to JPEG for non-depth cameras
+            request = GetImageRequest(name="camera")
+            response: GetImageResponse = await client.GetImage(request)
+            assert service._camera_mime_types["camera"] == CameraMimeType.JPEG
 
     @pytest.mark.asyncio
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
