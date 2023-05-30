@@ -9,7 +9,7 @@ from grpclib.testing import ChannelFor
 from viam.proto.robot import SendSessionHeartbeatRequest, SendSessionHeartbeatResponse, StartSessionRequest, StartSessionResponse
 from viam.resource.manager import ResourceManager
 from viam.robot.service import RobotService
-from viam.sessions_client import SessionsClient, SESSION_METADATA_KEY
+from viam.sessions_client import SESSION_METADATA_KEY, SessionsClient
 
 SESSION_ID = "sid"
 HEARTBEAT_INTERVAL = 2
@@ -103,3 +103,12 @@ async def test_sessions_heartbeat(service: RobotService):
         assert client._supported
         assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == HEARTBEAT_INTERVAL
         assert client._current_id == SESSION_ID
+
+
+@pytest.mark.asyncio
+async def test_sessions_disabled(service: RobotService):
+    async with ChannelFor([service]) as channel:
+        client = SessionsClient(channel, disabled=True)
+        assert await client.metadata == {}
+        assert client._supported is None
+        assert not client._heartbeat_interval
