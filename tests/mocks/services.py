@@ -1,9 +1,12 @@
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional, Union
+from PIL import Image
 
 from grpclib.server import Stream
+from viam.media.video import RawImage
+from viam.proto.common import PointCloudObject
+from viam.proto.service.vision import Classification, Detection
 
-from viam.media.video import CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -26,25 +29,71 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.service.vision import (
-    Classification,
-    Detection,
-    GetClassificationsFromCameraRequest,
-    GetClassificationsFromCameraResponse,
-    GetClassificationsRequest,
-    GetClassificationsResponse,
-    GetDetectionsFromCameraRequest,
-    GetDetectionsFromCameraResponse,
-    GetDetectionsRequest,
-    GetDetectionsResponse,
-    GetObjectPointCloudsRequest,
-    GetObjectPointCloudsResponse,
-    VisionServiceBase,
-)
-
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.slam import SLAM
+from viam.services.vision import Vision
 from viam.utils import ValueTypes, struct_to_dict
+
+
+class MockVision(Vision):
+    def __init__(
+        self,
+        name: str,
+        detectors: List[str],
+        detections: List[Detection],
+        classifiers: List[str],
+        classifications: List[Classification],
+        segmenters: List[str],
+        point_clouds: List[PointCloudObject],
+    ):
+        self.detectors = detectors
+        self.detections = detections
+        self.classifiers = classifiers
+        self.classifications = classifications
+        self.segmenters = segmenters
+        self.point_clouds = point_clouds
+        self.extra: Optional[Mapping[str, Any]] = None
+        self.timeout: Optional[float] = None
+        super().__init__(name)
+
+    async def get_detections_from_camera(
+        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Detection]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.detections
+
+    async def get_detections(
+        self, image: Union[Image.Image, RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Detection]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.detections
+
+    async def get_classifications_from_camera(
+        self, camera_name: str, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Classification]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.classifications
+
+    async def get_classifications(
+        self, image: Union[Image.Image, RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Classification]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.classifications
+
+    async def get_object_point_clouds(
+        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[PointCloudObject]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.point_clouds
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {"cmd": command}
 
 
 class MockMLModel(MLModel):
@@ -221,71 +270,3 @@ class MockSLAM(SLAM):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
-
-
-class MockVision(VisionServiceBase):
-    def __init__(
-        self,
-        detectors: List[str],
-        detections: List[Detection],
-        classifiers: List[str],
-        classifications: List[Classification],
-        segmenters: List[str],
-        point_clouds: List[PointCloudObject],
-    ):
-        self.detectors = detectors
-        self.detections = detections
-        self.classifiers = classifiers
-        self.classifications = classifications
-        self.segmenters = segmenters
-        self.point_clouds = point_clouds
-        self.extra: Optional[Mapping[str, Any]] = None
-        self.timeout: Optional[float] = None
-
-    async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetDetectionsFromCameraResponse(detections=self.detections)
-        await stream.send_message(response)
-
-    async def GetDetections(self, stream: Stream[GetDetectionsRequest, GetDetectionsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetDetectionsResponse(detections=self.detections)
-        await stream.send_message(response)
-
-    async def GetClassificationsFromCamera(
-        self, stream: Stream[GetClassificationsFromCameraRequest, GetClassificationsFromCameraResponse]
-    ) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetClassificationsFromCameraResponse(classifications=self.classifications)
-        await stream.send_message(response)
-
-    async def GetClassifications(self, stream: Stream[GetClassificationsRequest, GetClassificationsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetClassificationsResponse(classifications=self.classifications)
-        await stream.send_message(response)
-
-    async def GetObjectPointClouds(self, stream: Stream[GetObjectPointCloudsRequest, GetObjectPointCloudsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=self.point_clouds)
-        await stream.send_message(response)
-
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(DoCommandResponse(result=request.command))
