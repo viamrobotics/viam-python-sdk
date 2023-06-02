@@ -57,7 +57,6 @@ RESOURCE_NAMES = [
     ResourceName(namespace="rdk", type="component", subtype="arm", name="arm1"),
     ResourceName(namespace="rdk", type="component", subtype="camera", name="camera1"),
     ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
-    # ResourceName(namespace="rdk", type="component", subtype="sensor", name="movement_sensor1"),
 ]
 
 ARM_STATUS = ArmStatus(
