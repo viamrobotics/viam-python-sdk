@@ -1,5 +1,5 @@
 import asyncio
-from typing import Any, Dict, Iterable, List
+from typing import Any, Dict, Iterable, List, Set
 
 from grpclib.server import Stream
 
@@ -49,12 +49,12 @@ LOGGER = logging.getLogger(__name__)
 
 class RobotService(RobotServiceBase, ResourceRPCServiceBase):
     def _generate_metadata(self) -> List[ResourceName]:
-        md: List[ResourceName] = []
+        md: Set[ResourceName] = set()
 
         for component in self.manager.resources.values():
-            md.extend(resource_names_for_resource(component))
+            md.update(resource_names_for_resource(component))
 
-        return md
+        return list(md)
 
     async def _generate_status(self, resource_names: Iterable[ResourceName]) -> List[Status]:
         statuses: List[Status] = []
