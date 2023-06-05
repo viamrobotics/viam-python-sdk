@@ -1,6 +1,7 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import MethodNotImplementedError
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
@@ -33,3 +34,6 @@ class SensorRPCService(SensorServiceBase, ResourceRPCServiceBase[Sensor]):
         result = await sensor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error

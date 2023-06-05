@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceBase,
     GetDigitalInterruptValueRequest,
@@ -183,3 +183,6 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         result = await board.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error

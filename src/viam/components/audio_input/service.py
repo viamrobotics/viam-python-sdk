@@ -6,8 +6,8 @@ from google.api.httpbody_pb2 import HttpBody
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import MethodNotImplementedError, NotSupportedError
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
     ChunksRequest,
@@ -103,3 +103,6 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         result = await audio_input.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error
