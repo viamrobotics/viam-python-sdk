@@ -3,13 +3,14 @@ from datetime import datetime, timedelta
 from time import time
 
 import pytest
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -215,6 +216,14 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: InputControllerRPCService):
+        async with ChannelFor([service]) as channel:
+            client = InputControllerServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
 
 class TestClient:

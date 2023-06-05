@@ -2,6 +2,7 @@ from io import BytesIO
 
 import pytest
 from google.api.httpbody_pb2 import HttpBody
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from PIL import Image
@@ -11,7 +12,7 @@ from viam.components.camera.service import CameraRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.resource.manager import ResourceManager
 from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
@@ -190,6 +191,14 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: CameraRPCService):
+        async with ChannelFor([service]) as channel:
+            client = CameraServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
 
 class TestClient:

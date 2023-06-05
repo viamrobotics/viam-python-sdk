@@ -12,7 +12,7 @@ from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse
+from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -290,6 +290,14 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
     @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard, service: BoardRPCService):
