@@ -204,7 +204,7 @@ class TestRobotService:
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
             response: GetStatusResponse = await client.GetStatus(GetStatusRequest())
-            assert list(response.status) == (STATUSES)
+            assert list(response.status) == STATUSES
 
             request = GetStatusRequest(resource_names=[MockArm.get_resource_name("arm1"), MockCamera.get_resource_name("camera1")])
             response: GetStatusResponse = await client.GetStatus(request)
