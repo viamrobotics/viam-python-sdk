@@ -58,6 +58,7 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
 
     async def _generate_status(self, resource_names: Iterable[ResourceName]) -> List[Status]:
         statuses: List[Status] = []
+        seen_resource_names: Set[ResourceName] = set()
 
         for component in self.manager.resources.values():
             for registration in Registry.REGISTERED_SUBTYPES().values():
@@ -66,7 +67,9 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
                         continue
                     try:
                         status = await registration.create_status(component)
-                        statuses.append(status)
+                        if status.name not in seen_resource_names:
+                            seen_resource_names.add(status.name)
+                            statuses.append(status)
                     except ViamGRPCError as e:
                         raise e.grpc_error
 
