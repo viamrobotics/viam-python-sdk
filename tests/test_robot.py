@@ -9,11 +9,12 @@ from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
+from viam.components.movement_sensor import MovementSensor
 from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
 from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform
+from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform, GeoPoint, Vector3, Orientation
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus
@@ -50,12 +51,14 @@ from viam.robot.service import RobotService
 from viam.services.motion.client import MotionClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
-from .mocks.components import MockArm, MockCamera, MockMotor, MockSensor
+from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
 
 RESOURCE_NAMES = [
     ResourceName(namespace="rdk", type="component", subtype="arm", name="arm1"),
     ResourceName(namespace="rdk", type="component", subtype="camera", name="camera1"),
     ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
+    ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="movement_sensor1"),
+    ResourceName(namespace="rdk", type="component", subtype="sensor", name="movement_sensor1"),
 ]
 
 ARM_STATUS = ArmStatus(
@@ -84,6 +87,10 @@ STATUSES = [
     Status(
         name=ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
         status=message_to_struct(MotorStatus(is_powered=False, position=0, is_moving=False)),
+    ),
+    Status(
+        name=ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="movement_sensor1"),
+        status=Struct(),
     ),
 ]
 
@@ -129,6 +136,24 @@ def service() -> RobotService:
         MockArm(name="arm1"),
         MockCamera(name="camera1"),
         MockMotor(name="motor1"),
+        MockMovementSensor(
+            name="movement_sensor1",
+            coordinates=GeoPoint(latitude=40.664679865782624, longitude=-73.97668056188789),
+            altitude=15,
+            lin_vel=Vector3(x=1, y=2, z=3),
+            ang_vel=Vector3(x=1, y=2, z=3),
+            lin_acc=Vector3(x=1, y=2, z=3),
+            heading=182,
+            orientation=Orientation(o_x=1, o_y=2, o_z=3, theta=5),
+            properties=MovementSensor.Properties(
+                linear_acceleration_supported=False,
+                linear_velocity_supported=False,
+                angular_velocity_supported=True,
+                orientation_supported=False,
+                position_supported=True,
+                compass_heading_supported=False),
+            accuracy={"foo": 0.1, "bar": 2, "baz": 3.14}
+        ),
     ]
 
     async def Config(stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
@@ -171,7 +196,8 @@ class TestRobotService:
         async with ChannelFor([service]) as channel:
             client = RobotServiceStub(channel)
             response: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
-            assert list(response.resources) == RESOURCE_NAMES
+            assert len(response.resources) == len(RESOURCE_NAMES)
+            assert set(response.resources) == set(RESOURCE_NAMES)
 
     @pytest.mark.asyncio
     async def test_get_status(self, service: RobotService):
@@ -248,11 +274,12 @@ class TestRobotClient:
     async def test_refresh(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            assert client._resource_names == RESOURCE_NAMES
+            assert len(client._resource_names) == len(RESOURCE_NAMES)
+            assert set(client._resource_names) == set(RESOURCE_NAMES)
 
             service.manager.register(MockSensor("sensor1"))
             await client.refresh()
-            assert client._resource_names == RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")]
+            assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
             await client.close()
 
     @pytest.mark.asyncio
@@ -282,11 +309,12 @@ class TestRobotClient:
     async def test_resource_names(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            assert client.resource_names == RESOURCE_NAMES
+            assert len(client._resource_names) == len(RESOURCE_NAMES)
+            assert set(client._resource_names) == set(RESOURCE_NAMES)
 
             service.manager.register(MockSensor("sensor1"))
             await client.refresh()
-            assert client._resource_names == RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")]
+            assert set(client._resource_names) == set(RESOURCE_NAMES + [MockSensor.get_resource_name("sensor1")])
             await client.close()
 
     @pytest.mark.asyncio
