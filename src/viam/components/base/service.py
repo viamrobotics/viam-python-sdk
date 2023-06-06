@@ -22,7 +22,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .base import Base
 
 
-class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
+class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a robotic Base
     """

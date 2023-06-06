@@ -18,7 +18,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .servo import Servo
 
 
-class ServoRPCService(ServoServiceBase, ResourceRPCServiceBase[Servo]):
+class ServoRPCService(ServoServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for a Servo
     """

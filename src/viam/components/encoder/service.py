@@ -16,7 +16,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .encoder import Encoder
 
 
-class EncoderRPCService(EncoderServiceBase, ResourceRPCServiceBase[Encoder]):
+class EncoderRPCService(EncoderServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for an Encoder
     """

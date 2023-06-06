@@ -28,29 +28,30 @@ class ResourceManager:
         for component in components:
             self.register(component)
 
-    def register(self, component: ResourceBase):
+    def register(self, resource: ResourceBase):
         """
-        Register a new component with the registry.
-        Components may not have the same name.
-        If a component is remote and the short name is unique, save a short name version.
+        Register a new resource with the registry.
+        Resources may not have the same name.
+        If a resource is remote and the short name is unique, save a short name version.
 
         Raises:
-            DuplicateComponentError: Error if attempting to register component
-                                     with the name of an existing component
+            DuplicateResourceError: Error if attempting to register resource
+                                     with the name of an existing resource
+            ResourceNotFoundError: Raised if the subtype of the resource is not registered
 
         Args:
-            component (ResourceBase): The component to register
+            resource (ResourceBase): The resource to register
         """
-        Registry.lookup_subtype(component.SUBTYPE)  # confirm the subtype is registered in Registry
+        Registry.lookup_subtype(resource.SUBTYPE)  # confirm the subtype is registered in Registry
 
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
-        for subtype in component.__class__.mro():
+        for subtype in resource.__class__.mro():
             if subtype in _BaseClasses:
                 continue
             if hasattr(subtype, "get_resource_name"):
-                rn = subtype.get_resource_name(component.name)  # type: ignore
-                rnames[rn] = component
+                rn = subtype.get_resource_name(resource.name)  # type: ignore
+                rnames[rn] = resource
         for rn in rnames:
             if ":" in rn.name:
                 short_name = rn.name.split(":")[-1]
@@ -60,7 +61,7 @@ class ResourceManager:
                     self._short_to_long_name[short_name] = [rn]
 
         if rnames.keys() & self.resources.keys():
-            raise DuplicateResourceError(component.name)
+            raise DuplicateResourceError(resource.name)
 
         with self._lock:
             self.resources.update(rnames)

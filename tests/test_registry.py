@@ -20,7 +20,7 @@ class FakeComponent(ComponentBase):
     SUBTYPE = Subtype("fake", "fake", "fake")
 
 
-class FakeComponentService(ResourceRPCServiceBase[FakeComponent]):
+class FakeComponentService(ResourceRPCServiceBase):
     pass
 
 
