@@ -7,7 +7,6 @@ from grpclib.utils import _service_name
 from typing_extensions import Self
 
 from viam import logging
-from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError, ValidationError
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
@@ -24,7 +23,7 @@ from viam.proto.module import (
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import Model, ResourceName, Subtype, resource_name_from_string
+from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, Subtype, resource_name_from_string
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
@@ -83,17 +82,21 @@ class Module:
                 ),
             )
 
-    async def _get_component(self, name: ResourceName) -> ComponentBase:
+    async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()
         assert self.parent is not None
         await self.parent.refresh()
-        return self.parent.get_component(name)
+        if name.type == RESOURCE_TYPE_COMPONENT:
+            return self.parent.get_component(name)
+        elif name.type == RESOURCE_TYPE_SERVICE:
+            return self.parent.get_service(name)
+        raise ValueError("Dependency does not describe a component nor a service")
 
-    async def _get_dependencies(self, dependencies: Sequence[str]) -> Mapping[ResourceName, ComponentBase]:
-        deps: Mapping[ResourceName, ComponentBase] = {}
+    async def _get_dependencies(self, dependencies: Sequence[str]) -> Mapping[ResourceName, ResourceBase]:
+        deps: Mapping[ResourceName, ResourceBase] = {}
         for dep in dependencies:
             rn = resource_name_from_string(dep)
-            component = await self._get_component(rn)
+            component = await self._get_resource(rn)
             deps[rn] = component
         return deps
 
