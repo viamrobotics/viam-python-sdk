@@ -38,17 +38,18 @@ Attributes
 
       
 
-   .. py:method:: register(component: viam.resource.base.ResourceBase)
+   .. py:method:: register(resource: viam.resource.base.ResourceBase)
 
-      Register a new component with the registry.
-      Components may not have the same name.
-      If a component is remote and the short name is unique, save a short name version.
+      Register a new resource with the registry.
+      Resources may not have the same name.
+      If a resource is remote and the short name is unique, save a short name version.
 
-      :raises DuplicateComponentError: Error if attempting to register component
-          with the name of an existing component
+      :raises DuplicateResourceError: Error if attempting to register resource
+          with the name of an existing resource
+      :raises ResourceNotFoundError: Raised if the subtype of the resource is not registered
 
-      :param component: The component to register
-      :type component: ResourceBase
+      :param resource: The resource to register
+      :type resource: ResourceBase
 
 
    .. py:method:: get_resource(of_type: Type[ResourceType], name: viam.proto.common.ResourceName) -> ResourceType

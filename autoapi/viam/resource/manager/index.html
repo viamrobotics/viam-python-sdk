@@ -156,17 +156,20 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.resource.manager.ResourceManager.register">
-<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.manager.ResourceManager.register" title="Permalink to this definition"></a></dt>
-<dd><p>Register a new component with the registry.
-Components may not have the same name.
-If a component is remote and the short name is unique, save a short name version.</p>
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/manager.html#ResourceManager.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.resource.manager.ResourceManager.register" title="Permalink to this definition"></a></dt>
+<dd><p>Register a new resource with the registry.
+Resources may not have the same name.
+If a resource is remote and the short name is unique, save a short name version.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>DuplicateComponentError</strong> – Error if attempting to register component
-with the name of an existing component</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.DuplicateResourceError" title="viam.errors.DuplicateResourceError"><strong>DuplicateResourceError</strong></a> – Error if attempting to register resource
+with the name of an existing resource</p></li>
+<li><p><a class="reference internal" href="../../errors/index.html#viam.errors.ResourceNotFoundError" title="viam.errors.ResourceNotFoundError"><strong>ResourceNotFoundError</strong></a> – Raised if the subtype of the resource is not registered</p></li>
+</ul>
 </dd>
 <dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>component</strong> (<a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><em>ResourceBase</em></a>) – The component to register</p>
+<dd class="field-even"><p><strong>resource</strong> (<a class="reference internal" href="../base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><em>ResourceBase</em></a>) – The resource to register</p>
 </dd>
 </dl>
 </dd></dl>

@@ -95,7 +95,6 @@
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span><span class="p">,</span> <span class="n">ValidationError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.module</span> <span class="kn">import</span> <span class="p">(</span>
@@ -112,7 +111,7 @@
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="n">ResourceRPCSubtype</span>
 <span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">resource_name_from_string</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">resource_name_from_string</span>
 <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
@@ -171,18 +170,21 @@
                 <span class="p">),</span>
             <span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_component</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComponentBase</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceBase</span><span class="p">:</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_to_parent</span><span class="p">()</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get_component</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">get_service</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Dependency does not describe a component nor a service&quot;</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]:</span>
-        <span class="n">deps</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ComponentBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]:</span>
+        <span class="n">deps</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">dependencies</span><span class="p">:</span>
             <span class="n">rn</span> <span class="o">=</span> <span class="n">resource_name_from_string</span><span class="p">(</span><span class="n">dep</span><span class="p">)</span>
-            <span class="n">component</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_component</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
-            <span class="n">deps</span><span class="p">[</span><span class="n">rn</span><span class="p">]</span> <span class="o">=</span> <span class="n">component</span>
+            <span class="n">deps</span><span class="p">[</span><span class="n">rn</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">deps</span>
 
 <div class="viewcode-block" id="Module.start"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.start">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

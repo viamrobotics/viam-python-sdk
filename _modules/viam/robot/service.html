@@ -131,6 +131,8 @@
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">resource_names_for_resource</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">viam.components.movement_sensor</span> <span class="kn">import</span> <span class="n">MovementSensor</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -139,8 +141,12 @@
     <span class="k">def</span> <span class="nf">_generate_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]:</span>
         <span class="n">md</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">resource_names_for_resource</span><span class="p">(</span><span class="n">component</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="c1"># If the resource is a MovementSensor, DO NOT include Sensor as well (it will get added via MovementSensor)</span>
+            <span class="k">if</span> <span class="n">resource</span><span class="o">.</span><span class="n">SUBTYPE</span> <span class="o">==</span> <span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span> <span class="ow">and</span> <span class="n">MovementSensor</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">md</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">resource_names_for_resource</span><span class="p">(</span><span class="n">resource</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">md</span><span class="p">)</span>
 
@@ -148,13 +154,13 @@
         <span class="n">statuses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Status</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">seen_resource_names</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">registration</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_SUBTYPES</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">component</span><span class="p">,</span> <span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">resource_names</span> <span class="ow">and</span> <span class="n">component</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">component</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">registration</span><span class="o">.</span><span class="n">resource_type</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">resource_names</span> <span class="ow">and</span> <span class="n">resource</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">resource</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
                         <span class="k">continue</span>
                     <span class="k">try</span><span class="p">:</span>
-                        <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">registration</span><span class="o">.</span><span class="n">create_status</span><span class="p">(</span><span class="n">component</span><span class="p">)</span>
+                        <span class="n">status</span> <span class="o">=</span> <span class="k">await</span> <span class="n">registration</span><span class="o">.</span><span class="n">create_status</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen_resource_names</span><span class="p">:</span>
                             <span class="n">seen_resource_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">status</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
                             <span class="n">statuses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>

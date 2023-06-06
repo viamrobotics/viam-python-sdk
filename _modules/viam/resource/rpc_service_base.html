@@ -87,30 +87,32 @@
              
   <h1>Source code for viam.resource.rpc_service_base</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
-<span class="kn">from</span> <span class="nn">viam.resource.manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span><span class="p">,</span> <span class="n">ResourceType</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.types</span> <span class="kn">import</span> <span class="n">RPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
 
 <span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">viam.resource.manager</span> <span class="kn">import</span> <span class="n">ResourceManager</span>
 
-<div class="viewcode-block" id="ResourceRPCServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ResourceRPCServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">RPCServiceBase</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">ResourceType</span><span class="p">]):</span>
+
+<div class="viewcode-block" id="ResourceRPCServiceBase"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase">[docs]</a><span class="k">class</span> <span class="nc">ResourceRPCServiceBase</span><span class="p">(</span><span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">,</span> <span class="n">RPCServiceBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Base RPC service for a resource.</span>
 <span class="sd">    All resource RPC services must inherit from this class.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Type</span>
-    <span class="n">manager</span><span class="p">:</span> <span class="n">ResourceManager</span>
+    <span class="n">manager</span><span class="p">:</span> <span class="s2">&quot;ResourceManager&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="n">ResourceManager</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manager</span><span class="p">:</span> <span class="s2">&quot;ResourceManager&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">manager</span> <span class="o">=</span> <span class="n">manager</span>
 
-<div class="viewcode-block" id="ResourceRPCServiceBase.get_resource"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource">[docs]</a>    <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceType</span><span class="p">:</span>
+<div class="viewcode-block" id="ResourceRPCServiceBase.get_resource"><a class="viewcode-back" href="../../../autoapi/viam/resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase.get_resource">[docs]</a>    <span class="k">def</span> <span class="nf">get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RESOURCE_TYPE</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return the resource with the given name if it exists in the registry.</span>
 <span class="sd">        If the resource does not exist in the registry,</span>
