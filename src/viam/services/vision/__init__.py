@@ -1,5 +1,6 @@
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.services.vision.service import VisionRPCService
+
 from .client import Classification, Detection, VisionClient
 from .vision import Vision
 

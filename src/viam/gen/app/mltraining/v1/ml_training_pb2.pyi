@@ -10,6 +10,7 @@ import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
+import google.rpc.status_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -180,6 +181,7 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     SYNCED_MODEL_ID_FIELD_NUMBER: builtins.int
     USER_EMAIL_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
+    ERROR_STATUS_FIELD_NUMBER: builtins.int
 
     @property
     def request(self) -> global___SubmitTrainingJobRequest:
@@ -197,13 +199,17 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     user_email: builtins.str
     id: builtins.str
 
-    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., status: global___TrainingStatus.ValueType=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., user_email: builtins.str=..., id: builtins.str=...) -> None:
+    @property
+    def error_status(self) -> google.rpc.status_pb2.Status:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_modified', b'last_modified', 'request', b'request']) -> builtins.bool:
+    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., status: global___TrainingStatus.ValueType=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., user_email: builtins.str=..., id: builtins.str=..., error_status: google.rpc.status_pb2.Status | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'last_modified', b'last_modified', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id', 'user_email', b'user_email']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'request', b'request']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'id', b'id', 'last_modified', b'last_modified', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id', 'user_email', b'user_email']) -> None:
         ...
 global___TrainingJobMetadata = TrainingJobMetadata
 

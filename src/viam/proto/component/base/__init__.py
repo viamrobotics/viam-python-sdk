@@ -4,6 +4,8 @@ Do not edit manually!
 """
 from ....gen.component.base.v1.base_grpc import BaseServiceBase, BaseServiceStub
 from ....gen.component.base.v1.base_pb2 import (
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveStraightRequest,
@@ -21,6 +23,8 @@ from ....gen.component.base.v1.base_pb2 import (
 __all__ = [
     "BaseServiceBase",
     "BaseServiceStub",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
     "IsMovingRequest",
     "IsMovingResponse",
     "MoveStraightRequest",

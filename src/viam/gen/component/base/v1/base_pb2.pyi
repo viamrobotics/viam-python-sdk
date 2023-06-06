@@ -221,3 +221,40 @@ class IsMovingResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___IsMovingResponse = IsMovingResponse
+
+@typing_extensions.final
+class GetPropertiesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the base'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+@typing_extensions.final
+class GetPropertiesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    WIDTH_METERS_FIELD_NUMBER: builtins.int
+    TURNING_RADIUS_METERS_FIELD_NUMBER: builtins.int
+    width_meters: builtins.float
+    turning_radius_meters: builtins.float
+
+    def __init__(self, *, width_meters: builtins.float=..., turning_radius_meters: builtins.float=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['turning_radius_meters', b'turning_radius_meters', 'width_meters', b'width_meters']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse

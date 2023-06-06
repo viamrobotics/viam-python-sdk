@@ -7,15 +7,34 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.descriptor_pb2
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.internal.extension_dict
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _KinematicsFileFormat:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _KinematicsFileFormatEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_KinematicsFileFormat.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    KINEMATICS_FILE_FORMAT_UNSPECIFIED: _KinematicsFileFormat.ValueType
+    KINEMATICS_FILE_FORMAT_SVA: _KinematicsFileFormat.ValueType
+    KINEMATICS_FILE_FORMAT_URDF: _KinematicsFileFormat.ValueType
+
+class KinematicsFileFormat(_KinematicsFileFormat, metaclass=_KinematicsFileFormatEnumTypeWrapper):
+    ...
+KINEMATICS_FILE_FORMAT_UNSPECIFIED: KinematicsFileFormat.ValueType
+KINEMATICS_FILE_FORMAT_SVA: KinematicsFileFormat.ValueType
+KINEMATICS_FILE_FORMAT_URDF: KinematicsFileFormat.ValueType
+global___KinematicsFileFormat = KinematicsFileFormat
 
 @typing_extensions.final
 class ResourceName(google.protobuf.message.Message):
@@ -522,6 +541,67 @@ class DoCommandResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['result', b'result']) -> None:
         ...
 global___DoCommandResponse = DoCommandResponse
+
+@typing_extensions.final
+class GetKinematicsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The component name'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetKinematicsRequest = GetKinematicsRequest
+
+@typing_extensions.final
+class GetKinematicsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FORMAT_FIELD_NUMBER: builtins.int
+    KINEMATICS_DATA_FIELD_NUMBER: builtins.int
+    format: global___KinematicsFileFormat.ValueType
+    'The kinematics of the component, in either URDF format or in Viam’s kinematic parameter format (spatial vector algebra)\n    https://docs.viam.com/internals/kinematic-chain-config/#kinematic-parameters\n    '
+    kinematics_data: builtins.bytes
+    'The byte contents of the file'
+
+    def __init__(self, *, format: global___KinematicsFileFormat.ValueType=..., kinematics_data: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['format', b'format', 'kinematics_data', b'kinematics_data']) -> None:
+        ...
+global___GetKinematicsResponse = GetKinematicsResponse
+
+@typing_extensions.final
+class GetGeometriesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The component name'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetGeometriesRequest = GetGeometriesRequest
+
+@typing_extensions.final
+class GetGeometriesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    GEOMETRIES_FIELD_NUMBER: builtins.int
+
+    @property
+    def geometries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]:
+        """All geometries associated with the component, in their current configuration, in the frame of that component."""
+
+    def __init__(self, *, geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries']) -> None:
+        ...
+global___GetGeometriesResponse = GetGeometriesResponse
 SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int
 safety_heartbeat_monitored: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, builtins.bool]
 'safety_heartbeat_monitored is used on methods to signify that if a session is in use\nand the session was the last to call this method, the resource associated with the\nmethod will be stopped.\n'
