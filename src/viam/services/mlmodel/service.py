@@ -7,7 +7,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .mlmodel import MLModel
 
 
-class MLModelRPCService(MLModelServiceBase, ResourceRPCServiceBase[MLModel]):
+class MLModelRPCService(MLModelServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a ML Model service
     """

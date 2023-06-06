@@ -43,6 +43,8 @@ from viam.proto.robot import (
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import resource_names_for_resource, struct_to_dict
+from viam.components.sensor import Sensor
+from viam.components.movement_sensor import MovementSensor
 
 LOGGER = logging.getLogger(__name__)
 
@@ -51,8 +53,12 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
     def _generate_metadata(self) -> List[ResourceName]:
         md: Set[ResourceName] = set()
 
-        for component in self.manager.resources.values():
-            md.update(resource_names_for_resource(component))
+        for resource in self.manager.resources.values():
+            # If the resource is a MovementSensor, DO NOT include Sensor as well (it will get added via MovementSensor)
+            if resource.SUBTYPE == Sensor.SUBTYPE and MovementSensor.get_resource_name(resource.name) in self.manager.resources:
+                continue
+
+            md.update(resource_names_for_resource(resource))
 
         return list(md)
 
@@ -60,13 +66,13 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
         statuses: List[Status] = []
         seen_resource_names: Set[ResourceName] = set()
 
-        for component in self.manager.resources.values():
+        for resource in self.manager.resources.values():
             for registration in Registry.REGISTERED_SUBTYPES().values():
-                if isinstance(component, registration.resource_type):
-                    if resource_names and component.get_resource_name(component.name) not in resource_names:
+                if isinstance(resource, registration.resource_type):
+                    if resource_names and resource.get_resource_name(resource.name) not in resource_names:
                         continue
                     try:
-                        status = await registration.create_status(component)
+                        status = await registration.create_status(resource)
                         if status.name not in seen_resource_names:
                             seen_resource_names.add(status.name)
                             statuses.append(status)

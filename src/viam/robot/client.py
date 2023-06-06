@@ -9,6 +9,8 @@ from typing_extensions import Self
 import viam
 from viam import logging
 from viam.components.component_base import ComponentBase
+from viam.components.movement_sensor import MovementSensor
+from viam.components.sensor import Sensor
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import PoseInFrame, ResourceName, Transform
 from viam.proto.robot import (
@@ -203,6 +205,10 @@ class RobotClient:
                 if rname.type not in [RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE]:
                     continue
                 if rname.subtype == "remote":
+                    continue
+
+                # If the resource is a MovementSensor, DO NOT include Sensor as well (it will get added via MovementSensor)
+                if rname.subtype == Sensor.SUBTYPE.resource_subtype and MovementSensor.get_resource_name(rname.name) in resource_names:
                     continue
 
                 self._create_or_reset_client(rname)

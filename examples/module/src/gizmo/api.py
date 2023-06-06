@@ -9,7 +9,7 @@ In this example, the ``Gizmo`` abstract class defines what functionality is requ
 as all component types must. It also defines its specific ``SUBTYPE``, which is used internally to keep track of supported types.
 
 The ``GizmoService`` implements the gRPC service for the Gizmo. This will allow other robots and clients to make requests of the Gizmo.
-It extends both from ``GizmoServiceBase`` and ``ResourceRPCServiceBase[Gizmo]``. The former is the gRPC service as defined by the proto,
+It extends both from ``GizmoServiceBase`` and ``ResourceRPCServiceBase``. The former is the gRPC service as defined by the proto,
 and the latter is the class that all gRPC services for components must inherit from.
 
 Finally, the ``GizmoClient`` is the gRPC client for a Gizmo. It inherits from Gizmo since it implements all the same functions. The
@@ -72,7 +72,7 @@ class Gizmo(ComponentBase):
         ...
 
 
-class GizmoService(GizmoServiceBase, ResourceRPCServiceBase[Gizmo]):
+class GizmoService(GizmoServiceBase, ResourceRPCServiceBase):
     """Example gRPC service for the Gizmo component"""
 
     RESOURCE_TYPE = Gizmo

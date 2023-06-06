@@ -11,7 +11,8 @@ from viam.errors import ResourceNotFoundError
 from viam.operations import run_with_operation
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.resource.rpc_service_base import ResourceManager, ResourceRPCServiceBase
+from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.resource.manager import ResourceManager
 from viam.resource.types import Subtype
 
 
@@ -37,7 +38,7 @@ async def test_cancellation_propagation():
         def __init__(self, name: str, channel: Channel):
             ...
 
-    class TestService(ResourceRPCServiceBase[TestComponent]):
+    class TestService(ResourceRPCServiceBase):
         RESOURCE_TYPE = TestComponent
 
         async def long_running(self) -> bool:
