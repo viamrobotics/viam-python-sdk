@@ -1,7 +1,6 @@
 from grpclib.server import Stream
 
 from viam.errors import MethodNotImplementedError
-from viam.gen import component
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.base import (
     BaseServiceBase,
