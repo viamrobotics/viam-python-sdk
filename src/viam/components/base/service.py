@@ -1,9 +1,12 @@
 from grpclib.server import Stream
 
 from viam.errors import MethodNotImplementedError
+from viam.gen import component
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.base import (
     BaseServiceBase,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveStraightRequest,
@@ -102,6 +105,16 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         base = self.get_resource(name)
         is_moving = await base.is_moving()
         response = IsMovingResponse(is_moving=is_moving)
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        base = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await base.get_properties(timeout=timeout, metadata=stream.metadata)
+        response = GetPropertiesResponse(width_meters=properties.width_meters, turning_radius_meters=properties.turning_radius_meters)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
