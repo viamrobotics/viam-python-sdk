@@ -96,8 +96,7 @@ class Module:
         deps: Mapping[ResourceName, ResourceBase] = {}
         for dep in dependencies:
             rn = resource_name_from_string(dep)
-            component = await self._get_resource(rn)
-            deps[rn] = component
+            deps[rn] = await self._get_resource(rn)
         return deps
 
     async def start(self):

@@ -135,7 +135,7 @@ class TestModule:
                     attributes=dict_to_struct({"arg1": "arg2", "motor": "motor1"}),
                     api="acme:component:gizmo",
                 ),
-                dependencies=["rdk:component:arm/arm1"],
+                dependencies=["rdk:component:arm/arm1", "rdk:service:mlmodel/mlmodel1"],
             )
             await self.module.add_resource(req)
             assert Gizmo.get_resource_name("gizmo2") in self.module.server.resources
