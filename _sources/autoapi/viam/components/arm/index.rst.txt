@@ -25,6 +25,7 @@ Classes
 
    viam.components.arm.Pose
    viam.components.arm.JointPositions
+   viam.components.arm.Arm
 
 
 
@@ -94,5 +95,131 @@ Classes
       A list of joint positions. Rotations values are in degrees, translational values in mm.
       The numbers are ordered spatially from the base toward the end effector
       This is used in GetJointPositionsResponse and MoveToJointPositionsRequest
+
+
+.. py:class:: Arm(name: str)
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Arm represents a physical robot arm that exists in three-dimensional space.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.Pose
+      :abstractmethod:
+      :async:
+
+      Get the current position of the end of the arm expressed as a Pose.
+
+      :returns: The location and orientation of the arm described as a Pose.
+      :rtype: Pose
+
+
+   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Move the end of the arm to the Pose specified in ``pose``.
+
+      :param pose: The destination Pose for the arm.
+      :type pose: Pose
+
+
+   .. py:method:: move_to_joint_positions(positions: viam.components.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Move each joint on the arm to the corresponding angle specified in ``positions``.
+
+      :param positions: The destination ``JointPositions`` for the arm.
+      :type positions: JointPositions
+
+
+   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.arm.JointPositions
+      :abstractmethod:
+      :async:
+
+      Get the JointPositions representing the current position of the arm.
+
+      :returns: The current JointPositions for the arm.
+      :rtype: JointPositions
+
+
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Stop all motion of the arm. It is assumed that the arm stops immediately.
+
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+      :async:
+
+      Get if the arm is currently moving.
+
+      :returns: Whether the arm is moving.
+      :rtype: bool
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
 
 

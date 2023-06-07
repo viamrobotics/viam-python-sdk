@@ -165,20 +165,19 @@
 <p>Next, select the <code class="docutils literal notranslate"><span class="pre">CODE</span> <span class="pre">SAMPLE</span></code> tab in the Viam Web UI, and copy the boilerplate code from the section labeled <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">SDK</span></code>.</p>
 <p>To ensure the installation succeeded and the systems are functional, save and run this simple program. If the program runs successfully, the python-sdk is properly installed, the <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> instance on your robot is alive, and the computer running the program is able to connect to that instance.</p>
 </section>
+<section id="the-robotclient-connectivity">
+<h2>The <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> &amp; connectivity<a class="headerlink" href="#the-robotclient-connectivity" title="Permalink to this heading"></a></h2>
+<p>The main entry point for using the SDK as a client is the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> class. This class can manage resources, operations, frames, etc., for the robot. It can also manage connectivity and behavior around sessions and reconnection through the <code class="docutils literal notranslate"><span class="pre">RobotClient.Options</span></code> nested class.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> will attempt to refresh its resources at a set interval (customizable via <code class="docutils literal notranslate"><span class="pre">Options</span></code>).</p>
+<p>In the event that connection is lost to the robot, the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> will attempt to reconnect at a set interval. There are two options available for customizing this behavior: how often the client checks the connection status (<code class="docutils literal notranslate"><span class="pre">RobotClient.Options.check_connection_interval</span></code>), and how often the client attempts to reconnect upon detecting a loss of connection (<code class="docutils literal notranslate"><span class="pre">RobotClient.Options.attempt_reconnect_interval</span></code>).</p>
+<p>Upon a loss of connection, outstanding requests are <strong>NOT</strong> terminated and can possibly error with a <code class="docutils literal notranslate"><span class="pre">GRPCError</span></code> whose status is <code class="docutils literal notranslate"><span class="pre">DEADLINE_EXCEEDED</span></code>. When connection is restored, existing built-in clients will automatically receive the new connection - no need to re-obtain the client. Tasks initiated by Viam will automatically resume, but any user-defined tasks that depend on the connection should be checked and potentially restarted.</p>
+<p>The Viam Python SDK utilizes gRPC and, optionally WebRTC (defaults to on). gRPC is provided purely in python, but WebRTC is provided by the external <a class="reference external" href="https://github.com/viamrobotics/rust-utils">viam Rust utils</a> library. WebRTC settings can be changed using the appropriate attributes in <code class="docutils literal notranslate"><span class="pre">viam.rpc.dial.DialOptions</span></code>. These options can be passed to the <code class="docutils literal notranslate"><span class="pre">RobotClient</span></code> through <code class="docutils literal notranslate"><span class="pre">RobotClient.Options.dial_options</span></code>.</p>
+</section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>Read the <a class="reference external" href="https://python.viam.dev/examples/example.html">Example Usage</a> page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.</p>
 <p>More examples can be found in the <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">examples</span></code></span> directory.</p>
-</section>
-<section id="the-do-method">
-<h2>The <code class="docutils literal notranslate"><span class="pre">do</span></code> method<a class="headerlink" href="#the-do-method" title="Permalink to this heading"></a></h2>
-<p>Every component provided by the SDK includes a generic <code class="docutils literal notranslate"><span class="pre">do</span></code> method which is useful to execute commands that are not already defined on the component.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">do</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>If this is not generic enough, you can also create your own custom component by subclassing the <a class="reference external" href="https://python.viam.dev/autoapi/viam/components/generic/index.html"><code class="docutils literal notranslate"><span class="pre">viam.components.generic.Generic</span></code></a> component
-class. For more details, you can view the documentation for the <a class="reference external" href="https://python.viam.dev/autoapi/viam/components/generic/index.html"><code class="docutils literal notranslate"><span class="pre">Generic</span></code></a> component.</p>
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading"></a></h2>
@@ -188,22 +187,21 @@ class. For more details, you can view the documentation for the <a class="refere
 <section id="development">
 <h2>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h2>
 <p>To contribute to the python SDK, please see the <a class="reference external" href="https://python.viam.dev/contributing.html">contribution guidelines</a>.</p>
-<section id="adding-new-component-types">
-<h3>Adding new component types<a class="headerlink" href="#adding-new-component-types" title="Permalink to this heading"></a></h3>
-<p>The SDK provides a number of abstract base components. To add more abstract base components, follow these steps:</p>
+<section id="adding-new-resource-types">
+<h3>Adding new resource types<a class="headerlink" href="#adding-new-resource-types" title="Permalink to this heading"></a></h3>
+<p>The SDK provides a number of abstract base components and services (collectively: resources). To add more abstract resources, follow these steps:</p>
 <ol class="arabic simple">
-<li><p>Create a new directory in <code class="docutils literal notranslate"><span class="pre">viam.components</span></code> with the name of the new component</p></li>
-<li><p>Create 3 new files in the newly created directory:</p>
+<li><p>Create a new directory in <code class="docutils literal notranslate"><span class="pre">viam.components</span></code> or <code class="docutils literal notranslate"><span class="pre">viam.services</span></code> with the name of the new component</p></li>
+<li><p>Create 4 new files in the newly created directory:</p>
 <ol class="arabic simple">
-<li><p>Add all imports for the package in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
-<li><p>Define all requirements of the component in <code class="docutils literal notranslate"><span class="pre">{COMPONENT}.py</span></code></p></li>
-<li><p>Implement the gRPC service for the new component in <code class="docutils literal notranslate"><span class="pre">service.py</span></code></p></li>
+<li><p>Define all requirements of the resource in <code class="docutils literal notranslate"><span class="pre">{RESOURCE_NAME}.py</span></code></p></li>
+<li><p>Implement the gRPC service for the new resource in <code class="docutils literal notranslate"><span class="pre">service.py</span></code></p></li>
+<li><p>Create a gRPC client for the new resource in <code class="docutils literal notranslate"><span class="pre">client.py</span></code></p></li>
+<li><p>Register the subtype and define package exports in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code></p></li>
 </ol>
 </li>
-<li><p>Add the new service to <a class="reference external" href="https://python.viam.dev/autoapi/viam/rpc/server/index.html"><code class="docutils literal notranslate"><span class="pre">viam.rpc.server</span></code></a> to expose the gRPC service</p></li>
-<li><p>If the component needs to be included in the robot/status service, add it in <a class="reference external" href="https://python.viam.dev/autoapi/viam/robot/service/index.html"><code class="docutils literal notranslate"><span class="pre">viam.robot.service</span></code></a></p></li>
-<li><p>Write tests for the new component and add the component to <code class="docutils literal notranslate"><span class="pre">tests.mocks.components</span></code></p></li>
-<li><p>Add the component to <code class="docutils literal notranslate"><span class="pre">examples.server.v1.components</span></code> and its corresponding concrete type in <code class="docutils literal notranslate"><span class="pre">examples.server.v1.server</span></code></p></li>
+<li><p>Write tests for the new resource and add the resource to <code class="docutils literal notranslate"><span class="pre">tests.mocks.{components|services}</span></code></p></li>
+<li><p>If the resource is a component, add the component to <code class="docutils literal notranslate"><span class="pre">examples.server.v1.components</span></code> and its corresponding concrete type in <code class="docutils literal notranslate"><span class="pre">examples.server.v1.server</span></code></p></li>
 </ol>
 </section>
 </section>
