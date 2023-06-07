@@ -60,20 +60,24 @@ Next, select the `CODE SAMPLE` tab in the Viam Web UI, and copy the boilerplate 
 
 To ensure the installation succeeded and the systems are functional, save and run this simple program. If the program runs successfully, the python-sdk is properly installed, the `viam-server` instance on your robot is alive, and the computer running the program is able to connect to that instance.
 
+## The `RobotClient` & connectivity
+
+The main entry point for using the SDK as a client is the `RobotClient` class. This class can manage resources, operations, frames, etc., for the robot. It can also manage connectivity and behavior around sessions and reconnection through the `RobotClient.Options` nested class.
+
+The `RobotClient` will attempt to refresh its resources at a set interval (customizable via `Options`).
+
+In the event that connection is lost to the robot, the `RobotClient` will attempt to reconnect at a set interval. There are two options available for customizing this behavior: how often the client checks the connection status (`RobotClient.Options.check_connection_interval`), and how often the client attempts to reconnect upon detecting a loss of connection (`RobotClient.Options.attempt_reconnect_interval`).
+
+Upon a loss of connection, outstanding requests are **NOT** terminated and can possibly error with a `GRPCError` whose status is `DEADLINE_EXCEEDED`. When connection is restored, existing built-in clients will automatically receive the new connection - no need to re-obtain the client. Tasks initiated by Viam will automatically resume, but any user-defined tasks that depend on the connection should be checked and potentially restarted.
+
+The Viam Python SDK utilizes gRPC and, optionally WebRTC (defaults to on). gRPC is provided purely in python, but WebRTC is provided by the external [viam Rust utils](https://github.com/viamrobotics/rust-utils) library. WebRTC settings can be changed using the appropriate attributes in `viam.rpc.dial.DialOptions`. These options can be passed to the `RobotClient` through `RobotClient.Options.dial_options`.
+
+
 ## Examples
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
 
 More examples can be found in the [`examples`](/examples) directory.
-
-## The `do` method
-Every component provided by the SDK includes a generic `do` method which is useful to execute commands that are not already defined on the component.
-```python
-async def do(self, command: Dict[str, Any]) -> Dict[str, Any]
-```
-
-If this is not generic enough, you can also create your own custom component by subclassing the [`viam.components.generic.Generic`](https://python.viam.dev/autoapi/viam/components/generic/index.html) component
-class. For more details, you can view the documentation for the [`Generic`](https://python.viam.dev/autoapi/viam/components/generic/index.html) component.
 
 ## Documentation
 Documentation, like this entire project, is under active development, and can be found at [python.viam.dev](https://python.viam.dev).
@@ -82,18 +86,17 @@ Documentation, like this entire project, is under active development, and can be
 ## Development
 To contribute to the python SDK, please see the [contribution guidelines](https://python.viam.dev/contributing.html).
 
-### Adding new component types
-The SDK provides a number of abstract base components. To add more abstract base components, follow these steps:
+### Adding new resource types
+The SDK provides a number of abstract base components and services (collectively: resources). To add more abstract resources, follow these steps:
 
-1. Create a new directory in `viam.components` with the name of the new component
-2. Create 3 new files in the newly created directory:
-    1. Add all imports for the package in `__init__.py`
-    2. Define all requirements of the component in `{COMPONENT}.py`
-    3. Implement the gRPC service for the new component in `service.py`
-3. Add the new service to [`viam.rpc.server`](https://python.viam.dev/autoapi/viam/rpc/server/index.html) to expose the gRPC service
-4. If the component needs to be included in the robot/status service, add it in [`viam.robot.service`](https://python.viam.dev/autoapi/viam/robot/service/index.html)
-5. Write tests for the new component and add the component to `tests.mocks.components`
-6. Add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
+1. Create a new directory in `viam.components` or `viam.services` with the name of the new component
+1. Create 4 new files in the newly created directory:
+    1. Define all requirements of the resource in `{RESOURCE_NAME}.py`
+    1. Implement the gRPC service for the new resource in `service.py`
+    1. Create a gRPC client for the new resource in `client.py`
+    1. Register the subtype and define package exports in `__init__.py`
+1. Write tests for the new resource and add the resource to `tests.mocks.{components|services}`
+1. If the resource is a component, add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
 
 ## License
 Copyright 2021-2023 Viam Inc.
