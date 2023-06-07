@@ -27,7 +27,7 @@ from .input import Control, Controller, Event, EventType
 LOGGER = viam.logging.getLogger(__name__)
 
 
-class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBase[Controller]):
+class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for an input controller
     """

@@ -51,7 +51,7 @@ class Gizmo(ComponentBase):
         ...
 
 
-class GizmoService(GizmoServiceBase, ResourceRPCServiceBase[Gizmo]):
+class GizmoService(GizmoServiceBase, ResourceRPCServiceBase):
     """Example gRPC service for the Gizmo component"""
 
     RESOURCE_TYPE = Gizmo

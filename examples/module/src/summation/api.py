@@ -44,7 +44,7 @@ class SummationService(ServiceBase):
         ...
 
 
-class SummationRPCService(SummationServiceBase, ResourceRPCServiceBase[SummationService]):
+class SummationRPCService(SummationServiceBase, ResourceRPCServiceBase):
     """Example gRPC service for the Summation service"""
 
     RESOURCE_TYPE = SummationService

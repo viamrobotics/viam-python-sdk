@@ -19,7 +19,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .gripper import Gripper
 
 
-class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
+class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for a Gripper
     """

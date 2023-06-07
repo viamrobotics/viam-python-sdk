@@ -46,19 +46,22 @@ from viam.proto.robot import (
 )
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
 from viam.robot.client import RobotClient
 from viam.robot.service import RobotService
 from viam.services.motion.client import MotionClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
 
 from .mocks.components import MockArm, MockCamera, MockMotor, MockMovementSensor, MockSensor
+from .mocks.services import MockMLModel
 
 RESOURCE_NAMES = [
-    ResourceName(namespace="rdk", type="component", subtype="arm", name="arm1"),
-    ResourceName(namespace="rdk", type="component", subtype="camera", name="camera1"),
-    ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
-    ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="movement_sensor1"),
-    ResourceName(namespace="rdk", type="component", subtype="sensor", name="movement_sensor1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="arm1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="camera", name="camera1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="motor", name="motor1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="movement_sensor1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="sensor", name="movement_sensor1"),
+    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="mlmodel", name="mlmodel1"),
 ]
 
 ARM_STATUS = ArmStatus(
@@ -76,20 +79,29 @@ ARM_STATUS = ArmStatus(
 )
 
 ARM_STATUS_MSG = Status(
-    name=ResourceName(namespace="rdk", type="component", subtype="arm", name="arm1"), status=message_to_struct(ARM_STATUS)
+    name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="arm", name="arm1"),
+    status=message_to_struct(ARM_STATUS),
 )
 
-CAMERA_STATUS_MSG = Status(name=ResourceName(namespace="rdk", type="component", subtype="camera", name="camera1"), status=Struct())
+CAMERA_STATUS_MSG = Status(
+    name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="camera", name="camera1"), status=Struct()
+)
 
 STATUSES = [
     ARM_STATUS_MSG,
     CAMERA_STATUS_MSG,
     Status(
-        name=ResourceName(namespace="rdk", type="component", subtype="motor", name="motor1"),
+        name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="motor", name="motor1"),
         status=message_to_struct(MotorStatus(is_powered=False, position=0, is_moving=False)),
     ),
     Status(
-        name=ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="movement_sensor1"),
+        name=ResourceName(
+            namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="movement_sensor1"
+        ),
+        status=Struct(),
+    ),
+    Status(
+        name=ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="mlmodel", name="mlmodel1"),
         status=Struct(),
     ),
 ]
@@ -151,9 +163,11 @@ def service() -> RobotService:
                 angular_velocity_supported=True,
                 orientation_supported=False,
                 position_supported=True,
-                compass_heading_supported=False),
-            accuracy={"foo": 0.1, "bar": 2, "baz": 3.14}
+                compass_heading_supported=False,
+            ),
+            accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
         ),
+        MockMLModel("mlmodel1"),
     ]
 
     async def Config(stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
@@ -330,7 +344,7 @@ class TestRobotClient:
             with pytest.raises(ValueError):
                 client.get_component(
                     ResourceName(
-                        namespace="rdk",
+                        namespace=RESOURCE_NAMESPACE_RDK,
                         type="service",
                         subtype="vision",
                     )
@@ -363,7 +377,7 @@ class TestRobotClient:
     async def test_get_service(self, service: RobotService):
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            client._resource_names.append(ResourceName(namespace="rdk", type="service", subtype="motion", name="motion1"))
+            client._resource_names.append(ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type="service", subtype="motion", name="motion1"))
             with pytest.raises(ResourceNotFoundError):
                 MotionClient.from_robot(client)
             MotionClient.from_robot(client, "motion1")

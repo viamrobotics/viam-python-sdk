@@ -9,7 +9,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .pose_tracker import PoseTracker
 
 
-class PoseTrackerRPCService(PoseTrackerServiceBase, ResourceRPCServiceBase[PoseTracker]):
+class PoseTrackerRPCService(PoseTrackerServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a pose tracker
     """

@@ -24,7 +24,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .vision import Vision
 
 
-class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase[Vision]):
+class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a Vision service
     """

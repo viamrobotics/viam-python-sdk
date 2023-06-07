@@ -11,7 +11,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 # from .generic import Generic
 
 
-class GenericRPCService(GenericServiceBase, ResourceRPCServiceBase[ComponentBase]):
+class GenericRPCService(GenericServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for a Generic component
     """

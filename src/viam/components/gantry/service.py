@@ -21,7 +21,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .gantry import Gantry
 
 
-class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
+class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for a Gantry
     """
