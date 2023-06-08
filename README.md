@@ -72,6 +72,9 @@ Upon a loss of connection, outstanding requests are **NOT** terminated and can p
 
 The Viam Python SDK utilizes gRPC and, optionally WebRTC (defaults to on). gRPC is provided purely in python, but WebRTC is provided by the external [viam Rust utils](https://github.com/viamrobotics/rust-utils) library. WebRTC settings can be changed using the appropriate attributes in `viam.rpc.dial.DialOptions`. These options can be passed to the `RobotClient` through `RobotClient.Options.dial_options`.
 
+### Sessions
+
+Sessions are a safety feature that automatically cancel operations made by the python client if it loses connection to a robot. Sessions are enabled by default but can be disabled by setting `RobotClient.Options.disable_sessions = True`. Please see the [RDK session documentation](https://pkg.go.dev/go.viam.com/rdk/session) for more details and server-side configuration options.
 
 ## Examples
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
