@@ -1,6 +1,6 @@
 from grpclib.server import Stream
-from viam.errors import MethodNotImplementedError
 
+from viam.errors import MethodNotImplementedError
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,

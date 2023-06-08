@@ -4,6 +4,8 @@ from typing import Any, Dict, Iterable, List, Set
 from grpclib.server import Stream
 
 from viam import logging
+from viam.components.movement_sensor import MovementSensor
+from viam.components.sensor import Sensor
 from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.common import ResourceName
 from viam.proto.robot import (
@@ -43,8 +45,6 @@ from viam.proto.robot import (
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import resource_names_for_resource, struct_to_dict
-from viam.components.sensor import Sensor
-from viam.components.movement_sensor import MovementSensor
 
 LOGGER = logging.getLogger(__name__)
 

@@ -1,5 +1,5 @@
 import abc
-from typing import Type, TYPE_CHECKING
+from typing import TYPE_CHECKING, Type
 
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
