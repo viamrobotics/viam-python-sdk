@@ -1,4 +1,5 @@
 import abc
+from dataclasses import dataclass
 from typing import Any, Dict, Final, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
@@ -17,6 +18,11 @@ class Base(ComponentBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "base")
+
+    @dataclass
+    class Properties:
+        width_meters: float
+        turning_radius_meters: float
 
     @abc.abstractmethod
     async def move_straight(
@@ -130,5 +136,15 @@ class Base(ComponentBase):
 
         Returns:
             bool: Whether the base is moving.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
+        """
+        Get the base width and turning radius
+
+        Returns:
+            Properties: The properties of the base
         """
         ...

@@ -1,6 +1,14 @@
 from grpclib.server import Stream
+from viam.errors import MethodNotImplementedError
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.arm import (
     ArmServiceBase,
     GetEndPositionRequest,
@@ -96,3 +104,9 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase):
         result = await arm.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetKinematics(self, stream: Stream[GetKinematicsRequest, GetKinematicsResponse]) -> None:
+        raise MethodNotImplementedError("GetKinematics").grpc_error
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error

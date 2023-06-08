@@ -5,6 +5,8 @@ from grpclib.client import Channel
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.base import (
     BaseServiceStub,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveStraightRequest,
@@ -107,12 +109,17 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout)
 
-    async def is_moving(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
-        if extra is None:
-            extra = {}
+    async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
+
+    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
+        if extra is None:
+            extra = {}
+        request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        return Base.Properties(width_meters=response.width_meters, turning_radius_meters=response.turning_radius_meters)
 
     async def do_command(
         self,

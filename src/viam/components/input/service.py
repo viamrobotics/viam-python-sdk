@@ -6,8 +6,8 @@ from grpclib.server import Stream
 from h2.exceptions import StreamClosedError
 
 import viam
-from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import MethodNotImplementedError, NotSupportedError
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -164,3 +164,6 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         result = await controller.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error

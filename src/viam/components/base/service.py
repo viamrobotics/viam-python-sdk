@@ -1,8 +1,11 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.errors import MethodNotImplementedError
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.base import (
     BaseServiceBase,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveStraightRequest,
@@ -103,6 +106,16 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase):
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
 
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        base = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await base.get_properties(timeout=timeout, metadata=stream.metadata)
+        response = GetPropertiesResponse(width_meters=properties.width_meters, turning_radius_meters=properties.turning_radius_meters)
+        await stream.send_message(response)
+
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -111,3 +124,6 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase):
         result = await base.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error

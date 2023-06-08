@@ -151,6 +151,7 @@ class MockBase(Base):
         self.angular_vel = Vector3(x=0, y=0, z=0)
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
+        self.props = Base.Properties(1.0, 1.0)
         super().__init__(name)
 
     async def move_straight(
@@ -205,6 +206,10 @@ class MockBase(Base):
 
     async def is_moving(self) -> bool:
         return not self.stopped
+
+    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
+        self.timeout = timeout
+        return self.props
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

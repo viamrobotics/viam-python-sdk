@@ -6,6 +6,7 @@ if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import app
 import google.protobuf.timestamp_pb2
+import google.rpc.status_pb2
 from .... import tagger
 
 class MLTrainingServiceBase(abc.ABC):

@@ -1,10 +1,11 @@
 import pytest
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.resource.manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.sensor import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -71,6 +72,14 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: SensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = SensorServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
 
 class TestClient:

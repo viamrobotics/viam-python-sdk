@@ -1,10 +1,17 @@
 import pytest
+from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmRPCService
 from viam.resource.manager import ResourceManager
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetKinematicsRequest,
+    Pose,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -153,6 +160,22 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_kinematics(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetKinematicsRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetKinematics(request)
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
     @pytest.mark.asyncio
     async def test_extra(self):

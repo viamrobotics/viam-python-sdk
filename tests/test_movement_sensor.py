@@ -1,17 +1,13 @@
 import pytest
-from grpclib.testing import ChannelFor
 from grpclib import GRPCError, Status
+from grpclib.testing import ChannelFor
 
 from typing import Any, Dict, Optional
 
 from viam.components.generic.service import GenericRPCService
-from viam.components.movement_sensor import (
-    MovementSensor,
-    MovementSensorClient,
-    MovementSensorRPCService,
-)
+from viam.components.movement_sensor import MovementSensor, MovementSensorClient, MovementSensorRPCService
 from viam.resource.manager import ResourceManager
-from viam.proto.common import GeoPoint, Orientation, Vector3, DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint, GetGeometriesRequest, Orientation, Vector3
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -319,6 +315,14 @@ class TestService:
             response: DoCommandResponse = await client.DoCommand(request)
             result = struct_to_dict(response.result)
             assert result == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: MovementSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            request = GetGeometriesRequest()
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetGeometries(request)
 
 
 class TestClient:

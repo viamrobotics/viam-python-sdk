@@ -1,9 +1,11 @@
 from typing import Dict
+
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
+from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
     GetImageRequest,
@@ -109,3 +111,6 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         result = await camera.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
+
+    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+        raise MethodNotImplementedError("GetGeometries").grpc_error
