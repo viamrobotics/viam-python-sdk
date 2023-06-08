@@ -91,13 +91,22 @@ Classes
       Stop the base.
 
 
-   .. py:method:: is_moving(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
       :async:
 
       Get if the base is currently moving.
 
       :returns: Whether the base is moving.
       :rtype: bool
+
+
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.base.Base.Properties
+      :async:
+
+      Get the base width and turning radius
+
+      :returns: The properties of the base
+      :rtype: Properties
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]

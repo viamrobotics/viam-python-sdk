@@ -321,7 +321,7 @@ Attributes
 
    
 
-.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., status: global___TrainingStatus = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., user_email: str = ..., id: str = ...)
+.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., status: global___TrainingStatus = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., user_email: str = ..., id: str = ..., error_status: google.rpc.status_pb2.Status | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -341,6 +341,10 @@ Attributes
 
    .. py:property:: last_modified
       :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:property:: error_status
+      :type: google.rpc.status_pb2.Status
 
 
    .. py:attribute:: status
@@ -363,7 +367,7 @@ Attributes
 
       
 
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', last_modified, b'last_modified', request, b'request']) -> bool
+   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', error_status, b'error_status', last_modified, b'last_modified', request, b'request']) -> bool
 
       Checks if a certain field is set for the message.
 

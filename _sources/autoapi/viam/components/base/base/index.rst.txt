@@ -27,6 +27,19 @@ Classes
    base implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
+   .. py:class:: Properties
+
+      .. py:attribute:: width_meters
+         :type: float
+
+         
+
+      .. py:attribute:: turning_radius_meters
+         :type: float
+
+         
+
+
    .. py:attribute:: SUBTYPE
       :type: Final
 
@@ -113,6 +126,16 @@ Classes
 
       :returns: Whether the base is moving.
       :rtype: bool
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
+      :abstractmethod:
+      :async:
+
+      Get the base width and turning radius
+
+      :returns: The properties of the base
+      :rtype: Properties
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
