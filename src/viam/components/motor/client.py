@@ -132,9 +132,7 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         response: IsPoweredResponse = await self.client.IsPowered(request, timeout=timeout)
         return response.is_on, response.power_pct
 
-    async def is_moving(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
-        if extra is None:
-            extra = {}
+    async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
