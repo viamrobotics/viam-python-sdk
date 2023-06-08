@@ -74,7 +74,7 @@ The Viam Python SDK utilizes gRPC and, optionally WebRTC (defaults to on). gRPC 
 
 ### Sessions
 
-Sessions are a safety feature that automatically cancel operations made by the python client if it loses connection to a robot. Sessions are enabled by default but can be disabled by setting `RobotClient.Options.disable_sessions = True`. Please see https://pkg.go.dev/go.viam.com/rdk/session for more details and server-side configuration options.
+Sessions are a safety feature that automatically cancel operations made by the python client if it loses connection to a robot. Sessions are enabled by default but can be disabled by setting `RobotClient.Options.disable_sessions = True`. Please see the [RDK session documentation](https://pkg.go.dev/go.viam.com/rdk/session) for more details and server-side configuration options.
 
 ## Examples
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
