@@ -92,6 +92,8 @@
 <span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.components.movement_sensor</span> <span class="kn">import</span> <span class="n">MovementSensor</span>
+<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">ViamGRPCError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 <span class="kn">from</span> <span class="nn">viam.proto.robot</span> <span class="kn">import</span> <span class="p">(</span>
@@ -131,8 +133,6 @@
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">resource_names_for_resource</span><span class="p">,</span> <span class="n">struct_to_dict</span>
-<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">viam.components.movement_sensor</span> <span class="kn">import</span> <span class="n">MovementSensor</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
