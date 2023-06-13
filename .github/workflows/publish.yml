@@ -45,7 +45,7 @@ jobs:
         with:
           payload: |
             {
-              "text": "${{ github.event.release.tag_name }} of the Viam Python SKD was released.\n${{ github.event.release.html_url }}"
+              "text": "${{ github.event.release.tag_name }} was released.\n${{ github.event.release.html_url }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
