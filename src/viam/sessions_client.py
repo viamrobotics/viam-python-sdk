@@ -31,8 +31,9 @@ EXEMPT_METADATA_METHODS = frozenset(
 
 
 def loop_kwargs():
-    loop = asyncio.get_running_loop()
-    return {"loop": loop} if sys.version_info[:2] <= (3, 9) else {}
+    if sys.version_info[:2] <= (3, 9):
+        return {"loop": asyncio.get_running_loop()}
+    return {}
 
 
 async def delay(coro, seconds):
