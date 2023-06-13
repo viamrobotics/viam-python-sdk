@@ -1,4 +1,5 @@
 import asyncio
+import sys
 from datetime import timedelta
 from typing import Optional
 
@@ -29,8 +30,13 @@ EXEMPT_METADATA_METHODS = frozenset(
 )
 
 
+def loop_kwargs():
+    loop = asyncio.get_running_loop()
+    return {"loop": loop} if sys.version_info[:2] <= (3, 9) else {}
+
+
 async def delay(coro, seconds):
-    await asyncio.sleep(seconds)
+    await asyncio.sleep(seconds, **loop_kwargs())
     await coro
 
 
@@ -42,7 +48,7 @@ class SessionsClient:
 
     _current_id: str = ""
     _disabled: bool = False
-    _lock = asyncio.Lock()
+    _lock = asyncio.Lock(**loop_kwargs())
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
