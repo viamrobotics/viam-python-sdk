@@ -40,15 +40,12 @@ jobs:
           password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Notify Slack
-        uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.24.0
         if: ${{ !contains(github.event.release.tag_name, 'rc') && !contains(github.event.release.tag_name, 'a') && !contains(github.event.release.tag_name, 'b')}}
         with:
           payload: |
             {
-              "channel_id": "U02E1NSJG2J",
-              "link": "https://github.com/viamrobotics/viam-python-sdk/releases/tag/${{ github.event.release.tag_name }}",
-              "sdk_name": "Viam Python SDK",
-              "version": "${{ github.event.release.tag_name }}"
+              "text": "${{ github.event.release.tag_name }} of the Viam Python SKD was released.\n${{ github.event.release.html_url }}"
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
