@@ -38,3 +38,14 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.24.0
+        if: ${{ !contains(github.event.release.tag_name, 'rc') && !contains(github.event.release.tag_name, 'a') && !contains(github.event.release.tag_name, 'b')}}
+        with:
+          payload: |
+            {
+              "text": "${{ github.event.release.tag_name }} was released.\n${{ github.event.release.html_url }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
