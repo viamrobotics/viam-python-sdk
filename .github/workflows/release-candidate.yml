@@ -93,11 +93,8 @@ jobs:
           message: Bump version to ${{ env.SDK_RC_VERSION }}
 
       - name: Open PR
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: "main"
-          pr_title: rc-${{ env.SDK_VERSION }}
-          pr_body: This is an auto-generated PR to merge the rc branch back into main upon successful release.
+        run: |
+          gh pr create -t "rc-${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the RC branch back into main upon successful release" -B "main" -H "rc-${{ env.SDK_VERSION }}"
 
   build:
     needs: prepare
