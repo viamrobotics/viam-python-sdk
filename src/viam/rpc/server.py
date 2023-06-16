@@ -5,7 +5,7 @@ from grpclib._typing import IServable
 from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
-from grpclib.server import Server as GRPCServer
+from grpclib.server import Stream, Server as GRPCServer
 from grpclib.utils import graceful_exit
 
 from viam import logging
@@ -53,15 +53,33 @@ class Server(ResourceManager):
 
         self._server = GRPCServer(services)
 
-    async def _grpc_event_handler(self, event: RecvRequest):
+    async def _grpc_recvrequest_handler(self, event: RecvRequest):
         host = None
         port = None
         address = event.peer.addr()
         if address:
             host = address[0]
             port = address[1]
-        msg = f"[gRPC Request] {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
-        LOGGER.debug(msg)
+        method_func = event.method_func
+
+        async def log_resource_name(stream: Stream):
+            recv_msg = stream.recv_message
+
+            async def rcv_and_log_msg():
+                msg = await recv_msg()
+                log_msg = f"[gRPC] Received message from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
+                if msg and hasattr(msg, "name"):
+                    log_msg += f" for resource named: {msg.name}"
+                LOGGER.debug(log_msg)
+                return msg
+
+            stream.recv_message = rcv_and_log_msg
+            try:
+                return await method_func(stream)
+            finally:
+                LOGGER.debug(f"[gRPC] Finished call from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}")
+
+        event.method_func = log_resource_name
 
     async def serve(
         self,
@@ -84,7 +102,7 @@ class Server(ResourceManager):
             logging.silence()
         else:
             logging.setLevel(log_level)
-        listen(self._server, RecvRequest, self._grpc_event_handler)
+        listen(self._server, RecvRequest, self._grpc_recvrequest_handler)
 
         with graceful_exit([self._server]):
             if path:
