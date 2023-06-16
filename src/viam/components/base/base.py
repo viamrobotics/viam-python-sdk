@@ -66,9 +66,9 @@ class Base(ComponentBase):
 
         Args:
             angle (float): The angle (in degrees) to spin.
-                Negative implies backwards.
-            velocity (float): The angular velocity (in degrees per second).
-                to spin. Negative implies backwards.
+                A positive angle is measured in degrees to the left.
+            velocity (float): The angular velocity (in degrees per second)
+                to spin. Positive implies turning to the left.
         """
         ...
 
@@ -91,7 +91,7 @@ class Base(ComponentBase):
 
         Args:
             linear (Vector3): The linear component. Only the Y component is used
-                for wheeled base. Negative implies backwards.
+                for wheeled base. Positive implies forwards.
             angular (Vector3): The angular component. Only the Z component is used
                 for wheeled base. Positive turns left; negative turns right.
         """
