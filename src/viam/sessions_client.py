@@ -1,4 +1,5 @@
 import asyncio
+import sys
 from datetime import timedelta
 from typing import Optional
 
@@ -29,8 +30,14 @@ EXEMPT_METADATA_METHODS = frozenset(
 )
 
 
+def loop_kwargs():
+    if sys.version_info <= (3, 9):
+        return {"loop": asyncio.get_running_loop()}
+    return {}
+
+
 async def delay(coro, seconds):
-    await asyncio.sleep(seconds)
+    await asyncio.sleep(seconds, **loop_kwargs())
     await coro
 
 
@@ -42,7 +49,6 @@ class SessionsClient:
 
     _current_id: str = ""
     _disabled: bool = False
-    _lock = asyncio.Lock()
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
 
@@ -50,6 +56,7 @@ class SessionsClient:
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._disabled = disabled
+        self._lock = asyncio.Lock(**loop_kwargs())
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
