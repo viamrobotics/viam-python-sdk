@@ -35,12 +35,12 @@ class MovementSensor(Sensor):
         @property
         def proto(self) -> GetPropertiesResponse:
             return GetPropertiesResponse(
-                linear_acceleration_supported=self.linear_velocity_supported,
+                linear_acceleration_supported=self.linear_acceleration_supported,
                 angular_velocity_supported=self.angular_velocity_supported,
                 orientation_supported=self.orientation_supported,
                 position_supported=self.position_supported,
                 compass_heading_supported=self.compass_heading_supported,
-                linear_velocity_supported=self.linear_acceleration_supported,
+                linear_velocity_supported=self.linear_velocity_supported,
             )
 
         @classmethod
@@ -51,7 +51,7 @@ class MovementSensor(Sensor):
                 orientation_supported=proto.orientation_supported,
                 position_supported=proto.position_supported,
                 compass_heading_supported=proto.compass_heading_supported,
-                linear_velocity_supported=proto.linear_acceleration_supported,
+                linear_velocity_supported=proto.linear_velocity_supported,
             )
 
     @abc.abstractmethod
