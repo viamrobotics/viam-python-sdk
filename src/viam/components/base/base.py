@@ -66,9 +66,9 @@ class Base(ComponentBase):
 
         Args:
             angle (float): The angle (in degrees) to spin.
-                A positive angle is measured in degrees to the left.
             velocity (float): The angular velocity (in degrees per second)
-                to spin. Positive implies turning to the left.
+                to spin.
+                Given a positive angle and a positive velocity, the base will turn to the left.
         """
         ...
 
