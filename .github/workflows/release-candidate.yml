@@ -104,6 +104,8 @@ jobs:
       - name: Open PR
         run: |
           gh pr create -t "rc-${{ env.SDK_VERSION }}" -b "This is an auto-generated PR to merge the RC branch back into main upon successful release" -B "main" -H "rc-${{ env.SDK_VERSION }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
     needs: prepare
