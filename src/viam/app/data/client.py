@@ -47,10 +47,23 @@ class DataClient:
     async def close(self):
         raise NotImplementedError()
 
-    async def tabular_data_by_filter(self, filter: Optional[Filter], limit: int, count_only: bool, dest: Optional[str]) -> List[Mapping[str, Any]]:
+    async def tabular_data_by_filter(
+        self,
+        filter: Optional[Filter],
+        limit: int,
+        count_only: bool,
+        dest: Optional[str]
+    ) -> List[Mapping[str, Any]]:
         raise NotImplementedError()
 
-    async def binary_data_by_filter(self, data_request: Optional[Filter], limit: int, include_binary: bool, count_only: bool, dest: Optional[str]) -> List[bytes]:
+    async def binary_data_by_filter(
+        self,
+        data_request: Optional[Filter],
+        limit: int,
+        include_binary: bool,
+        count_only: bool,
+        dest: Optional[str]
+    ) -> List[bytes]:
         raise NotImplementedError()
 
     async def binary_data_by_ids(self, file_ids: Optional[List[str]], include_binary: bool) -> List[bytes]:
