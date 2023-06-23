@@ -63,7 +63,9 @@ class SessionsClient:
 
     def reset(self):
         if self._lock.locked():
+            print("psss")
             return
+        print("psss1")
 
         LOGGER.debug("resetting session")
         self._supported = None
@@ -116,9 +118,21 @@ class SessionsClient:
                 self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
                 self._current_id = response.id
 
+        # tick once to ensure heartbeats are supported
         await self._heartbeat_tick()
 
+        if self._supported:
+            # We send heartbeats slightly faster than the interval window to
+            # ensure that we don't fall outside of it and expire the session.
+            wait = self._heartbeat_interval.total_seconds() / 5
+            asyncio.create_task(self._heartbeat_task(wait), name=f"{_TASK_PREFIX}-heartbeat")
+
         return self._metadata
+
+    async def _heartbeat_task(self, wait: float):
+        while True:
+            await asyncio.sleep(wait)
+            await self._heartbeat_tick()
 
     async def _heartbeat_tick(self):
         if not self._supported:
@@ -139,10 +153,6 @@ class SessionsClient:
             self.reset()
         else:
             LOGGER.debug("Sent heartbeat successfully")
-            # We send heartbeats slightly faster than the interval window to
-            # ensure that we don't fall outside of it and expire the session.
-            wait = self._heartbeat_interval.total_seconds() / 5
-            asyncio.create_task(delay(self._heartbeat_tick(), wait), name=f"{_TASK_PREFIX}-heartbeat")
 
     @property
     def _metadata(self) -> _MetadataLike:
