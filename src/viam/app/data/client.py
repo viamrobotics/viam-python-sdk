@@ -20,14 +20,26 @@ LOGGER = logging.getLogger(__name__)
 
 
 class DataClient:
-    """
-    gRPC client for uploading and retreiving data from app
+    """gRPC client for uploading and retreiving data from app
 
+    Use connect() to instantiate a DataClient::
+
+            DataClient.connect(...)
+
+    You must ``close()`` a DataClient after its use.
     """
 
-    # no tests have been written for this method, but it has been tested locally
     @classmethod
     async def connect(cls, dial_options: DialOptions) -> Self:
+        """
+        Create a data client that establishes a connection to app.
+
+        Args:
+            dial_options (DialOptions): Required information for authorization and connected to app, creds and auth_entity must be provided.
+
+        Returns:
+            Self: the DataClient.
+        """
         self = cls()
         self._channel = await _dial_app(dial_options)
         self._connected = True
@@ -50,8 +62,6 @@ class DataClient:
     async def tabular_data_by_filter(
         self,
         filter: Optional[Filter],
-        limit: int,
-        count_only: bool,
         dest: Optional[str]
     ) -> List[Mapping[str, Any]]:
         raise NotImplementedError()
@@ -59,14 +69,11 @@ class DataClient:
     async def binary_data_by_filter(
         self,
         data_request: Optional[Filter],
-        limit: int,
-        include_binary: bool,
-        count_only: bool,
         dest: Optional[str]
     ) -> List[bytes]:
         raise NotImplementedError()
 
-    async def binary_data_by_ids(self, file_ids: Optional[List[str]], include_binary: bool) -> List[bytes]:
+    async def binary_data_by_ids(self, file_ids: Optional[List[str]]) -> List[bytes]:
         raise NotImplementedError()
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> None:
@@ -93,11 +100,11 @@ class DataClient:
     async def tags_by_filter(self, filter: Optional[Filter]) -> List[str]:
         raise NotImplementedError()
 
-    # later
+    # to be defined and implemented last
     async def add_bounding_box_to_image_by_id(self):
         raise NotImplementedError()
 
-    # later
+    # to be defined and implemented last
     async def remove_bounding_box_from_image_by_id(self):
         raise NotImplementedError()
 
