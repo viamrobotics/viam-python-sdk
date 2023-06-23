@@ -42,7 +42,6 @@ class DataClient:
         """
         self = cls()
         self._channel = await _dial_app(dial_options)
-        self._connected = True
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
         self._data_client = DataServiceStub(self._channel)
@@ -53,7 +52,6 @@ class DataClient:
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
     _metadata: str
-    _connected: bool
     _closed: bool = False
 
     async def close(self):
