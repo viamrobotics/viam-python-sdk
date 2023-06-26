@@ -93,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">grpclib.const</span> <span class="kn">import</span> <span class="n">Handler</span>
 <span class="kn">from</span> <span class="nn">grpclib.events</span> <span class="kn">import</span> <span class="n">RecvRequest</span><span class="p">,</span> <span class="n">listen</span>
 <span class="kn">from</span> <span class="nn">grpclib.reflection.service</span> <span class="kn">import</span> <span class="n">ServerReflection</span>
-<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Server</span> <span class="k">as</span> <span class="n">GRPCServer</span>
+<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span><span class="p">,</span> <span class="n">Server</span> <span class="k">as</span> <span class="n">GRPCServer</span>
 <span class="kn">from</span> <span class="nn">grpclib.utils</span> <span class="kn">import</span> <span class="n">graceful_exit</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
@@ -141,15 +141,33 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_server</span> <span class="o">=</span> <span class="n">GRPCServer</span><span class="p">(</span><span class="n">services</span><span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_grpc_event_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">RecvRequest</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_grpc_recvrequest_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span> <span class="n">RecvRequest</span><span class="p">):</span>
         <span class="n">host</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">port</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">address</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">peer</span><span class="o">.</span><span class="n">addr</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">address</span><span class="p">:</span>
             <span class="n">host</span> <span class="o">=</span> <span class="n">address</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">port</span> <span class="o">=</span> <span class="n">address</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[gRPC Request] </span><span class="si">{</span><span class="n">host</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">method_func</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">method_func</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">log_resource_name</span><span class="p">(</span><span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">):</span>
+            <span class="n">recv_msg</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span>
+
+            <span class="k">async</span> <span class="k">def</span> <span class="nf">rcv_and_log_msg</span><span class="p">():</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">recv_msg</span><span class="p">()</span>
+                <span class="n">log_msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[gRPC] Received message from </span><span class="si">{</span><span class="n">host</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="n">msg</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">):</span>
+                    <span class="n">log_msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; for resource named: </span><span class="si">{</span><span class="n">msg</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">log_msg</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">msg</span>
+
+            <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span> <span class="o">=</span> <span class="n">rcv_and_log_msg</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">await</span> <span class="n">method_func</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[gRPC] Finished call from </span><span class="si">{</span><span class="n">host</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="s1">&#39;xxxx&#39;</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">event</span><span class="o">.</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">event</span><span class="o">.</span><span class="n">method_func</span> <span class="o">=</span> <span class="n">log_resource_name</span>
 
 <div class="viewcode-block" id="Server.serve"><a class="viewcode-back" href="../../../autoapi/viam/rpc/server/index.html#viam.rpc.server.Server.serve">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -172,7 +190,7 @@
             <span class="n">logging</span><span class="o">.</span><span class="n">silence</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">logging</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">log_level</span><span class="p">)</span>
-        <span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="n">RecvRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grpc_event_handler</span><span class="p">)</span>
+        <span class="n">listen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">,</span> <span class="n">RecvRequest</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grpc_recvrequest_handler</span><span class="p">)</span>
 
         <span class="k">with</span> <span class="n">graceful_exit</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_server</span><span class="p">]):</span>
             <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
