@@ -20,7 +20,7 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retreiving data from app
 
-    Constructor must be passed a channel to app, along with the required metadata.
+    Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient.
     """
 
     def __init__(self, channel: Channel, metadata: str):

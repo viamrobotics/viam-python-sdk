@@ -15,14 +15,12 @@ class AppClient:
     Use create() to instantiate an AppClient::
 
         AppClient.create(...)
-
-    You may ``close()`` an AppClient after its use.
     """
 
     @classmethod
     async def create(cls, dial_options: DialOptions) -> Self:
         """
-        Create an app client that establishes a connection to viam.app.com.
+        Create an app client that establishes a connection to app.viam.com.
 
         Args:
             dial_options (DialOptions): Required information for authorization and connection to app, creds and auth_entity are necessary.
