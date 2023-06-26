@@ -1,5 +1,4 @@
 from typing import List, Optional, Mapping, Any
-from typing_extensions import Self
 
 from grpclib.client import Channel
 
@@ -13,7 +12,6 @@ from viam.proto.app.datasync import (
     FileData
 )
 from viam.proto.app.datasync import DataSyncServiceStub
-from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 from viam import logging
 
 LOGGER = logging.getLogger(__name__)
@@ -22,40 +20,24 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retreiving data from app
 
-    Use connect() to instantiate a DataClient::
-
-            DataClient.connect(...)
-
-    You must ``close()`` a DataClient after its use.
+    Constructor must be passed a channel to app, along with the required metadata.
     """
 
-    @classmethod
-    async def connect(cls, dial_options: DialOptions) -> Self:
+    def __init__(self, channel: Channel, metadata: str):
         """
         Create a data client that establishes a connection to app.
 
         Args:
-            dial_options (DialOptions): Required information for authorization and connected to app, creds and auth_entity must be provided.
-
-        Returns:
-            Self: the DataClient.
+            channel (Channel): an already-established connection to app.
+            metadata (str): the required authorization token to send requests to app.
         """
-        self = cls()
-        self._channel = await _dial_app(dial_options)
-        access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
-        self._metadata = {"authorization": f"Bearer {access_token}"}
-        self._data_client = DataServiceStub(self._channel)
-        self._data_sync_client = DataSyncServiceStub(self._channel)
-        return self
+        self._metadata = metadata
+        self._data_client = DataServiceStub(channel)
+        self._data_sync_client = DataSyncServiceStub(channel)
 
-    _channel: Channel
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
     _metadata: str
-    _closed: bool = False
-
-    async def close(self):
-        raise NotImplementedError()
 
     async def tabular_data_by_filter(
         self,
