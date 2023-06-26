@@ -35,12 +35,6 @@ def loop_kwargs():
         return {"loop": asyncio.get_running_loop()}
     return {}
 
-
-async def delay(coro, seconds):
-    await asyncio.sleep(seconds, **loop_kwargs())
-    await coro
-
-
 class SessionsClient:
     """
     A Session allows a client to express that it is actively connected and
@@ -63,9 +57,7 @@ class SessionsClient:
 
     def reset(self):
         if self._lock.locked():
-            print("psss")
             return
-        print("psss1")
 
         LOGGER.debug("resetting session")
         self._supported = None
