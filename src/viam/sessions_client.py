@@ -122,7 +122,7 @@ class SessionsClient:
         return self._metadata
 
     async def _heartbeat_task(self, wait: float):
-        while True:
+        while self._supported:
             await asyncio.sleep(wait)
             await self._heartbeat_tick()
 
