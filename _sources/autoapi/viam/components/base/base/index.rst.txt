@@ -72,10 +72,10 @@ Classes
       This method blocks until completed or cancelled.
 
       :param angle: The angle (in degrees) to spin.
-                    Negative implies backwards.
       :type angle: float
-      :param velocity: The angular velocity (in degrees per second).
-                       to spin. Negative implies backwards.
+      :param velocity: The angular velocity (in degrees per second)
+                       to spin.
+                       Given a positive angle and a positive velocity, the base will turn to the left.
       :type velocity: float
 
 
@@ -91,7 +91,7 @@ Classes
       with a tighter radius if angular power is greater than linear power.
 
       :param linear: The linear component. Only the Y component is used
-                     for wheeled base. Negative implies backwards.
+                     for wheeled base. Positive implies forwards.
       :type linear: Vector3
       :param angular: The angular component. Only the Z component is used
                       for wheeled base. Positive turns left; negative turns right.

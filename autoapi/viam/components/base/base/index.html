@@ -218,10 +218,10 @@ This method blocks until completed or cancelled.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to spin.
-Negative implies backwards.</p></li>
-<li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second).
-to spin. Negative implies backwards.</p></li>
+<li><p><strong>angle</strong> (<em>float</em>) – The angle (in degrees) to spin.</p></li>
+<li><p><strong>velocity</strong> (<em>float</em>) – The angular velocity (in degrees per second)
+to spin.
+Given a positive angle and a positive velocity, the base will turn to the left.</p></li>
 </ul>
 </dd>
 </dl>
@@ -240,7 +240,7 @@ with a tighter radius if angular power is greater than linear power.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>linear</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The linear component. Only the Y component is used
-for wheeled base. Negative implies backwards.</p></li>
+for wheeled base. Positive implies forwards.</p></li>
 <li><p><strong>angular</strong> (<a class="reference internal" href="../index.html#viam.components.base.Vector3" title="viam.components.base.Vector3"><em>Vector3</em></a>) – The angular component. Only the Z component is used
 for wheeled base. Positive turns left; negative turns right.</p></li>
 </ul>
