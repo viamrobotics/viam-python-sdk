@@ -124,11 +124,6 @@
     <span class="k">return</span> <span class="p">{}</span></div>
 
 
-<div class="viewcode-block" id="delay"><a class="viewcode-back" href="../../autoapi/viam/sessions_client/index.html#viam.sessions_client.delay">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">delay</span><span class="p">(</span><span class="n">coro</span><span class="p">,</span> <span class="n">seconds</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="o">**</span><span class="n">loop_kwargs</span><span class="p">())</span>
-    <span class="k">await</span> <span class="n">coro</span></div>
-
-
 <div class="viewcode-block" id="SessionsClient"><a class="viewcode-back" href="../../autoapi/viam/sessions_client/index.html#viam.sessions_client.SessionsClient">[docs]</a><span class="k">class</span> <span class="nc">SessionsClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A Session allows a client to express that it is actively connected and</span>
@@ -204,9 +199,21 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">heartbeat_window</span><span class="o">.</span><span class="n">ToTimedelta</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_current_id</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span>
 
+        <span class="c1"># tick once to ensure heartbeats are supported</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span><span class="p">:</span>
+            <span class="c1"># We send heartbeats slightly faster than the interval window to</span>
+            <span class="c1"># ensure that we don&#39;t fall outside of it and expire the session.</span>
+            <span class="n">wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">5</span>
+            <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_task</span><span class="p">(</span><span class="n">wait</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-heartbeat&quot;</span><span class="p">)</span>
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_heartbeat_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">()</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_heartbeat_tick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_supported</span><span class="p">:</span>
@@ -227,10 +234,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sent heartbeat successfully&quot;</span><span class="p">)</span>
-            <span class="c1"># We send heartbeats slightly faster than the interval window to</span>
-            <span class="c1"># ensure that we don&#39;t fall outside of it and expire the session.</span>
-            <span class="n">wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_interval</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">5</span>
-            <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">delay</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heartbeat_tick</span><span class="p">(),</span> <span class="n">wait</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_TASK_PREFIX</span><span class="si">}</span><span class="s2">-heartbeat&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_MetadataLike</span><span class="p">:</span>
