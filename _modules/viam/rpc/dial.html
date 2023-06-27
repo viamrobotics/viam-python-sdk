@@ -394,6 +394,10 @@
 <div class="viewcode-block" id="dial_direct"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.dial_direct">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DialOptions</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;dial_direct is deprecated. Use rpc.dial.dial instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></div>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_dial_app</span><span class="p">(</span><span class="n">options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="s2">&quot;app.viam.com:443&quot;</span><span class="p">)</span>
 </pre></div>
 
            </div>

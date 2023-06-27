@@ -1,0 +1,118 @@
+:py:mod:`client`
+================
+
+.. py:module:: client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   client.DataClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: DataClient(channel: grpclib.client.Channel, metadata: str)
+
+   gRPC client for uploading and retreiving data from app
+
+   Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient.
+
+   .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter], dest: Optional[str]) -> List[Mapping[str, Any]]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: binary_data_by_filter(data_request: Optional[viam.proto.app.data.Filter], dest: Optional[str]) -> List[bytes]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: binary_data_by_ids(file_ids: Optional[List[str]]) -> List[bytes]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_binary_data_by_ids(file_ids: Optional[List[str]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: add_tags_to_binary_data_by_file_ids(file_ids: Optional[List[str]], tags: Optional[List[str]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: add_tags_to_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter], tags: Optional[List[str]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: remove_tags_from_binary_data_by_file_ids(file_ids: Optional[List[str]], tags: Optional[List[str]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: remove_tags_from_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter], tags: Optional[List[str]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> List[str]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: add_bounding_box_to_image_by_id()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: remove_bounding_box_from_image_by_id()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> List[str]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: data_capture_upload(metadata: Optional[viam.proto.app.datasync.UploadMetadata], sensor_contents: Optional[List[viam.proto.app.datasync.SensorData]]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: file_upload(metadata: Optional[viam.proto.app.datasync.UploadMetadata], file_contents: Optional[viam.proto.app.datasync.FileData]) -> None
+      :abstractmethod:
+      :async:
+
+
+
