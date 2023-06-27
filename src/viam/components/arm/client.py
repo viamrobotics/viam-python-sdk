@@ -108,7 +108,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
 
-    async def get_kinematics(self, *, timeout: Optional[float]) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, *, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         request = GetKinematicsRequest(name=self.name)
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout)
         return (response.format, response.kinematics_data)
