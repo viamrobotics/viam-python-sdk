@@ -37,6 +37,7 @@ from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
     DigitalInterruptStatus,
+    KinematicsFileFormat,
     GeoPoint,
     Orientation,
     Pose,
