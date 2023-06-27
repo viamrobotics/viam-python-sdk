@@ -35,6 +35,7 @@ def loop_kwargs():
         return {"loop": asyncio.get_running_loop()}
     return {}
 
+
 class SessionsClient:
     """
     A Session allows a client to express that it is actively connected and
