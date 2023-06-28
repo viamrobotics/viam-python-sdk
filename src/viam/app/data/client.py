@@ -151,12 +151,11 @@ class DataClient:
         request = DeleteBinaryDataByFilterRequest(filter=filter)
         response: DeleteBinaryDataByFilterResponse = await self._data_client.DeleteBinaryDataByFilter(request, metadata=self._metadata)
 
-    async def delete_binary_data_by_ids(self, file_ids: Optional[List[str]]) -> None:
+    async def delete_binary_data_by_ids(self, file_ids: List[str]) -> None:
         """Delete binary data
 
         Args:
-            file_ids (List[str]): When supplied, only the binary data matching the file_ids will be deleted. If not provided,
-                all data will be deleted. Exercise caution before using this option.
+            file_ids (List[str]): The file IDs of the data to be deleted.
         """
         file_ids = file_ids if file_ids else []
         request = DeleteBinaryDataByIDsRequest(file_ids=file_ids)
