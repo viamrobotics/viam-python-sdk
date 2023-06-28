@@ -15,7 +15,7 @@ from viam.proto.app.data import (
     DeleteBinaryDataByFilterResponse,
     DeleteTabularDataByFilterRequest,
     DeleteTabularDataByFilterResponse,
-    Filter as _Filter,
+    Filter,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
 )
@@ -60,7 +60,8 @@ class DataClient:
         """Filter and download tabular data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the tabular data will be filtered based on the provided constraints
+            filter (viam.app.data.Filter): When supplied, the tabular data will be filtered based on the provided constraints.
+                If not provided, all data will be returned.
             dest (str): When supplied, the tabular data will be saved to the provided file path
 
         Returns:
@@ -88,7 +89,8 @@ class DataClient:
         """Filter and download binary data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the binary data will be filtered based on the provided constraints
+            filter (viam.app.data.Filter): When supplied, the binary data will be filtered based on the provided constraints.
+                If not provided, all data will be returned.
             dest (str): When supplied, the binary data will be saved to the provided file path
 
         Returns:
@@ -110,7 +112,7 @@ class DataClient:
         """Filter and download binary data
 
         Args:
-            file_ids (List[str]): When supplied, limits binary data to the provided file IDs
+            file_ids (List[str]): When supplied, limits binary data to the provided file IDs. If not provided, all data will be returned.
             dest (str): When supplied, the binary data will be saved to the provided file path
 
         Returns:
@@ -122,7 +124,7 @@ class DataClient:
         if dest:
             try:
                 file = open(dest, 'w')
-                file.write(f"{bytes}\n" for bytes in response.data)
+                file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return response.data
@@ -131,7 +133,8 @@ class DataClient:
         """Delete tabular data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the tabular data to delete will be filtered based on the provided constraints
+            filter (viam.app.data.Filter): When supplied, the tabular data to delete will be filtered based on the provided constraints.
+                If not provided, all data will be deleted. Exercise caution before using this option.
         """
         filter = filter if filter else Filter()
         request = DeleteTabularDataByFilterRequest(filter=filter)
@@ -141,7 +144,8 @@ class DataClient:
         """Delete binary data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the binary data to delete will be filtered based on the provided constraints
+            filter (viam.app.data.Filter): When supplied, the binary data to delete will be filtered based on the provided constraints.
+                If not provided, all data will be deleted. Exercise caution before using this option.
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
@@ -151,7 +155,8 @@ class DataClient:
         """Delete binary data
 
         Args:
-            file_ids (List[str]): When supplied, only the binary data matching the file_ids will be deleted
+            file_ids (List[str]): When supplied, only the binary data matching the file_ids will be deleted. If not provided,
+                all data will be deleted. Exercise caution before using this option.
         """
         file_ids = file_ids if file_ids else []
         request = DeleteBinaryDataByIDsRequest(file_ids=file_ids)
