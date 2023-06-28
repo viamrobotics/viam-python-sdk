@@ -79,6 +79,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.MoveToPosition"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.MoveToPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.Home"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.Home()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.GetLengths"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.GetLengths()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.Stop"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.Stop()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GantryServiceBase.IsMoving"><code class="docutils literal notranslate"><span class="pre">GantryServiceBase.IsMoving()</span></code></a></li>
@@ -108,6 +109,16 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.GetPositionResponse.positions_mm"><code class="docutils literal notranslate"><span class="pre">GetPositionResponse.positions_mm</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.HomeRequest"><code class="docutils literal notranslate"><span class="pre">HomeRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.HomeRequest.extra"><code class="docutils literal notranslate"><span class="pre">HomeRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.HomeRequest.name"><code class="docutils literal notranslate"><span class="pre">HomeRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.HomeRequest.HasField"><code class="docutils literal notranslate"><span class="pre">HomeRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.HomeResponse"><code class="docutils literal notranslate"><span class="pre">HomeResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.HomeResponse.homed"><code class="docutils literal notranslate"><span class="pre">HomeResponse.homed</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.IsMovingRequest"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.IsMovingRequest.name"><code class="docutils literal notranslate"><span class="pre">IsMovingRequest.name</span></code></a></li>
 </ul>
@@ -118,6 +129,7 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.positions_mm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.speeds_mm_per_sec"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.speeds_mm_per_sec</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.gantry.MoveToPositionRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveToPositionRequest.HasField()</span></code></a></li>
@@ -221,6 +233,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gantry.GetPositionResponse" title="viam.proto.component.gantry.GetPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gantry.HomeRequest" title="viam.proto.component.gantry.HomeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HomeRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.gantry.HomeResponse" title="viam.proto.component.gantry.HomeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HomeResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.gantry.IsMovingRequest" title="viam.proto.component.gantry.IsMovingRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IsMovingRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -258,6 +276,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceBase.MoveToPosition">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveToPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.MoveToPositionRequest" title="viam.gen.component.gantry.v1.gantry_pb2.MoveToPositionRequest"><span class="pre">component.gantry.v1.gantry_pb2.MoveToPositionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.MoveToPositionResponse" title="viam.gen.component.gantry.v1.gantry_pb2.MoveToPositionResponse"><span class="pre">component.gantry.v1.gantry_pb2.MoveToPositionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#GantryServiceBase.MoveToPosition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceBase.MoveToPosition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.GantryServiceBase.Home">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Home</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.HomeRequest" title="viam.gen.component.gantry.v1.gantry_pb2.HomeRequest"><span class="pre">component.gantry.v1.gantry_pb2.HomeRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/gantry/v1/gantry_pb2/index.html#viam.gen.component.gantry.v1.gantry_pb2.HomeResponse" title="viam.gen.component.gantry.v1.gantry_pb2.HomeResponse"><span class="pre">component.gantry.v1.gantry_pb2.HomeResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/gantry/v1/gantry_grpc.html#GantryServiceBase.Home"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.gantry.GantryServiceBase.Home" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -416,6 +439,66 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">HomeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.HomeRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.gantry.HomeRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.gantry.HomeRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.gantry.HomeRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">HomeResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">homed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.HomeResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.HomeResponse.homed">
+<span class="sig-name descname"><span class="pre">homed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.component.gantry.HomeResponse.homed" title="Permalink to this definition"></a></dt>
+<dd><p>A bool describing whether the gantry has completed homing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.IsMovingRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">IsMovingRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.IsMovingRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -447,7 +530,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">MoveToPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.gantry.</span></span><span class="sig-name descname"><span class="pre">MoveToPositionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speeds_mm_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -457,6 +540,12 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.positions_mm">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">positions_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.positions_mm" title="Permalink to this definition"></a></dt>
 <dd><p>Number of millimeters to move the gantry by respective to each axis.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.gantry.MoveToPositionRequest.speeds_mm_per_sec">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">speeds_mm_per_sec</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.gantry.MoveToPositionRequest.speeds_mm_per_sec" title="Permalink to this definition"></a></dt>
+<dd><p>Speeds to move each gantry axis must match length and order of positions_mm.</p>
 </dd></dl>
 
 <dl class="py property">

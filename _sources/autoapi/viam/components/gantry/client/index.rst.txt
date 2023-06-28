@@ -32,14 +32,23 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(positions: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_position(positions: List[float], speeds: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
       :async:
 
-      Move the gantry to a new position.
+      Move the gantry to a new position at the requested speeds.
 
       :param positions: List of positions for the axes to move to,
                         in millimeters.
       :type positions: List[float]
+
+
+   .. py:method:: home(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool
+      :async:
+
+      Home the gantry to find it's starting and ending positions
+
+      :returns: whether the gantry has run the homing sequence successfully
+      :rtype: bool
 
 
    .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]
