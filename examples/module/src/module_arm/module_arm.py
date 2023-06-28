@@ -10,7 +10,7 @@ from viam.resource.types import Model, ModelFamily
 
 class ModuleArm(Arm):
     # Subclass the Viam Arm component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "arm"), "module-arm")
+    MODEL: ClassVar[Model] = Model(ModelFamily("rdk", "arm"), "module-arm")
 
     def __init__(self, name: str):
         # Starting position
