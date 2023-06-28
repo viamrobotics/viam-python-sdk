@@ -439,6 +439,8 @@ class MockGantry(Gantry):
         self.lengths = lengths
         self.is_stopped = True
         self.extra = None
+        self.homed = True
+        self.speeds = Optional[List[float]]
         self.timeout: Optional[float] = None
         super().__init__(name)
 
@@ -450,15 +452,24 @@ class MockGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
+        speeds: List[float],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
         self.position = positions
+        self.speeds = speeds
         self.is_stopped = False
         self.extra = extra
         self.timeout = timeout
+
+    async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+        self.homed = True
+        self.extra = extra
+        self.timeout = timeout
+        print("called home")
+        return self.homed
 
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         self.extra = extra

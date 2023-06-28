@@ -57,6 +57,7 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     POSITIONS_MM_FIELD_NUMBER: builtins.int
+    SPEEDS_MM_PER_SEC_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
 
@@ -65,16 +66,20 @@ class MoveToPositionRequest(google.protobuf.message.Message):
         """Number of millimeters to move the gantry by respective to each axis."""
 
     @property
+    def speeds_mm_per_sec(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        """Speeds to move each gantry axis must match length and order of positions_mm."""
+
+    @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., speeds_mm_per_sec: collections.abc.Iterable[builtins.float] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm', 'speeds_mm_per_sec', b'speeds_mm_per_sec']) -> None:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
@@ -85,6 +90,41 @@ class MoveToPositionResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___MoveToPositionResponse = MoveToPositionResponse
+
+@typing_extensions.final
+class HomeRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___HomeRequest = HomeRequest
+
+@typing_extensions.final
+class HomeResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HOMED_FIELD_NUMBER: builtins.int
+    homed: builtins.bool
+    'A bool describing whether the gantry has completed homing'
+
+    def __init__(self, *, homed: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['homed', b'homed']) -> None:
+        ...
+global___HomeResponse = HomeResponse
 
 @typing_extensions.final
 class GetLengthsRequest(google.protobuf.message.Message):

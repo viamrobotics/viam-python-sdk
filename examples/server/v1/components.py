@@ -472,6 +472,7 @@ class ExampleGantry(Gantry):
     async def move_to_position(
         self,
         positions: List[float],
+        speeds: List[float],
         extra: Optional[Dict[str, Any]] = None,
         **kwargs,
     ):
@@ -480,6 +481,9 @@ class ExampleGantry(Gantry):
 
     async def get_lengths(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[float]:
         return self.lengths
+
+    async def home(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> bool:
+        return True
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
         self.is_stopped = True

@@ -31,19 +31,29 @@ class Gantry(ComponentBase):
     async def move_to_position(
         self,
         positions: List[float],
+        speeds: List[float],
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **kwargs,
     ):
         """
-        Move the gantry to a new position.
+        Move the gantry to a new position at the requested speeds.
 
         Args:
             positions (List[float]): List of positions for the axes to move to,
                 in millimeters.
         """
         ...
+
+    @abc.abstractmethod
+    async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+        """
+        Home the gantry to find it's starting and ending positions
+
+        Returns:
+            bool : whether the gantry has run the homing sequence successfully
+        """
 
     @abc.abstractmethod
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:

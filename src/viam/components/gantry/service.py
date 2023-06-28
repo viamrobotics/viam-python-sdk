@@ -8,6 +8,8 @@ from viam.proto.component.gantry import (
     GetLengthsResponse,
     GetPositionRequest,
     GetPositionResponse,
+    HomeRequest,
+    HomeResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveToPositionRequest,
@@ -45,9 +47,23 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase):
         gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await gantry.move_to_position(
-            list(request.positions_mm), extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+            list(request.positions_mm),
+            list(request.speeds_mm_per_sec),
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata
         )
         response = MoveToPositionResponse()
+        await stream.send_message(response)
+
+    async def Home(self, stream: Stream[HomeRequest, HomeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        gantry = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        homed = await gantry.home(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = HomeResponse(homed=homed)
         await stream.send_message(response)
 
     async def GetLengths(self, stream: Stream[GetLengthsRequest, GetLengthsResponse]) -> None:

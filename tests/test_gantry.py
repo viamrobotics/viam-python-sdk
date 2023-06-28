@@ -12,6 +12,8 @@ from viam.proto.component.gantry import (
     GetLengthsResponse,
     GetPositionRequest,
     GetPositionResponse,
+    HomeRequest,
+    HomeResponse,
     IsMovingRequest,
     IsMovingResponse,
     MoveToPositionRequest,
@@ -33,13 +35,18 @@ class TestGantry:
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
-        await self.gantry.move_to_position([1, 8, 2])
+        await self.gantry.move_to_position([1, 8, 2], [3, 9, 12])
         assert self.gantry.position == [1, 8, 2]
 
     @pytest.mark.asyncio
     async def test_get_lengths(self):
         lengths = await self.gantry.get_lengths()
         assert lengths == [4, 5, 6]
+
+    @pytest.mark.asyncio
+    async def test_home(self):
+        homed = await self.gantry.home()
+        assert homed is True
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -55,14 +62,14 @@ class TestGantry:
 
     @pytest.mark.asyncio
     async def test_is_moving(self):
-        await self.gantry.move_to_position([1, 8, 2])
+        await self.gantry.move_to_position([1, 8, 2], [3, 9, 12])
         assert await self.gantry.is_moving()
         await self.gantry.stop()
         assert not await self.gantry.is_moving()
 
     @pytest.mark.asyncio
     async def test_status(self):
-        await self.gantry.move_to_position([1, 2, 3])
+        await self.gantry.move_to_position([1, 2, 3], [4, 5, 6])
         status = await create_status(self.gantry)
         assert status.name == MockGantry.get_resource_name(self.gantry.name)
         assert status.status == message_to_struct(GantryStatus(lengths_mm=[4, 5, 6], positions_mm=[1, 2, 3], is_moving=True))
@@ -71,7 +78,7 @@ class TestGantry:
     async def test_extra(self):
         assert self.gantry.extra is None or len(self.gantry.extra) == 0
         extra = {"foo": "bar", "baz": [1, 2, 3]}
-        await self.gantry.move_to_position([1, 2, 3], extra=extra)
+        await self.gantry.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
         assert self.gantry.extra == extra
 
     @pytest.mark.asyncio
@@ -81,7 +88,7 @@ class TestGantry:
         await self.gantry.get_position(timeout=5.5)
         assert self.gantry.timeout == loose_approx(5.5)
 
-        await self.gantry.move_to_position([1, 2, 3], timeout=1.82)
+        await self.gantry.move_to_position([1, 2, 3], [4, 5, 6], timeout=1.82)
         assert self.gantry.timeout == loose_approx(1.82)
 
         await self.gantry.get_lengths(timeout=7.86)
@@ -111,9 +118,19 @@ class TestService:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
-            request = MoveToPositionRequest(name=self.gantry.name, positions_mm=[1, 8, 2])
+            request = MoveToPositionRequest(name=self.gantry.name, positions_mm=[1, 8, 2], speeds_mm_per_sec=[3, 9, 12])
             await client.MoveToPosition(request, timeout=18.2)
             assert self.gantry.position == [1, 8, 2]
+            assert self.gantry.speeds == [3, 9, 12]
+            assert self.gantry.timeout == loose_approx(18.2)
+
+    @pytest.mark.asyncio
+    async def test_home(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryServiceStub(channel)
+            request = HomeRequest(name=self.gantry.name)
+            response: HomeResponse = await client.Home(request, timeout=18.2)
+            assert response.homed is True
             assert self.gantry.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
@@ -193,9 +210,18 @@ class TestClient:
     async def test_move_to_position(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryClient(self.gantry.name, channel)
-            await client.move_to_position([1, 8, 2], timeout=4.4)
+            await client.move_to_position([1, 8, 2], [3, 9, 12], timeout=4.4)
             assert self.gantry.position == [1, 8, 2]
+            assert self.gantry.speeds == [3, 9, 12]
             assert self.gantry.timeout == loose_approx(4.4)
+
+    @pytest.mark.asyncio
+    async def test_home(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            homed = await client.home(timeout=5.5)
+            assert homed is True
+            assert self.gantry.timeout == loose_approx(5.5)
 
     @pytest.mark.asyncio
     async def test_get_lengths(self):
@@ -236,5 +262,5 @@ class TestClient:
             assert self.gantry.extra is None or len(self.gantry.extra) == 0
             client = GantryClient(self.gantry.name, channel)
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.move_to_position([1, 2, 3], extra=extra)
+            await client.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
             assert self.gantry.extra == extra
