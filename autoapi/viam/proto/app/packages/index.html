@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="viam.proto.app.billing" href="../billing/index.html" />
-    <link rel="prev" title="viam.proto.app.model" href="../model/index.html" /> 
+    <link rel="prev" title="viam.proto.app.mltraining" href="../mltraining/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,7 +68,6 @@
 <li class="toctree-l5"><a class="reference internal" href="../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../datasync/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../mltraining/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.mltraining</span></code></a></li>
-<li class="toctree-l5"><a class="reference internal" href="../model/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.model</span></code></a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.packages</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
@@ -115,20 +114,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse"><code class="docutils literal notranslate"><span class="pre">GetPackageResponse</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse.package"><code class="docutils literal notranslate"><span class="pre">GetPackageResponse.package</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPackageResponse.HasField()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage"><code class="docutils literal notranslate"><span class="pre">InternalPackage</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.files"><code class="docutils literal notranslate"><span class="pre">InternalPackage.files</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.metadata"><code class="docutils literal notranslate"><span class="pre">InternalPackage.metadata</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.created_on"><code class="docutils literal notranslate"><span class="pre">InternalPackage.created_on</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.organization_id"><code class="docutils literal notranslate"><span class="pre">InternalPackage.organization_id</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.name"><code class="docutils literal notranslate"><span class="pre">InternalPackage.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.version"><code class="docutils literal notranslate"><span class="pre">InternalPackage.version</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.type"><code class="docutils literal notranslate"><span class="pre">InternalPackage.type</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.blob_path"><code class="docutils literal notranslate"><span class="pre">InternalPackage.blob_path</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.checksum"><code class="docutils literal notranslate"><span class="pre">InternalPackage.checksum</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.latest"><code class="docutils literal notranslate"><span class="pre">InternalPackage.latest</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.InternalPackage.HasField"><code class="docutils literal notranslate"><span class="pre">InternalPackage.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.ListPackagesRequest"><code class="docutils literal notranslate"><span class="pre">ListPackagesRequest</span></code></a><ul>
@@ -253,22 +238,19 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse" title="viam.proto.app.packages.GetPackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPackageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.InternalPackage" title="viam.proto.app.packages.InternalPackage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InternalPackage</span></code></a></p></td>
-<td><p>InternalPackage is stored in the packages database and represents our interval view of the uploaded package</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesRequest" title="viam.proto.app.packages.ListPackagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesRequest" title="viam.proto.app.packages.ListPackagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesResponse" title="viam.proto.app.packages.ListPackagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesResponse" title="viam.proto.app.packages.ListPackagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.Package" title="viam.proto.app.packages.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.Package" title="viam.proto.app.packages.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageInfo" title="viam.proto.app.packages.PackageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageInfo</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageInfo" title="viam.proto.app.packages.PackageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageType" title="viam.proto.app.packages.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageType" title="viam.proto.app.packages.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -552,86 +534,6 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.packages.</span></span><span class="sig-name descname"><span class="pre">InternalPackage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PackageType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FileInfo</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blob_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_on</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checksum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.packages.InternalPackage" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>InternalPackage is stored in the packages database and represents our interval view of the uploaded package</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.files">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">files</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FileInfo</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.files" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.metadata">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.metadata" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.created_on">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">created_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.created_on" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.organization_id">
-<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.organization_id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.version">
-<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.version" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.type">
-<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PackageType</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.blob_path">
-<span class="sig-name descname"><span class="pre">blob_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.blob_path" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.checksum">
-<span class="sig-name descname"><span class="pre">checksum</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.checksum" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.latest">
-<span class="sig-name descname"><span class="pre">latest</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.latest" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.packages.InternalPackage.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">created_on</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'created_on'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.packages.InternalPackage.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.packages.ListPackagesRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.packages.</span></span><span class="sig-name descname"><span class="pre">ListPackagesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PackageType.ValueType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">builtins.bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.packages.ListPackagesRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -866,7 +768,7 @@ be raised.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../model/index.html" class="btn btn-neutral float-left" title="viam.proto.app.model" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mltraining/index.html" class="btn btn-neutral float-left" title="viam.proto.app.mltraining" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../billing/index.html" class="btn btn-neutral float-right" title="viam.proto.app.billing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

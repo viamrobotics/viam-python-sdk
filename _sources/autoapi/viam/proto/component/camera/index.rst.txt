@@ -214,11 +214,15 @@ Classes
       :type: global___IntrinsicParameters
 
       Parameters for doing a perspective of a 3D scene to a 2D plane
+      If camera does not provide intrinsic parameters, leave the field empty
+      Initializing the parameters with 0-values is considered an error
 
    .. py:property:: distortion_parameters
       :type: global___DistortionParameters
 
       Parameters for modeling lens distortion in cameras
+      If camera does not provide distortion parameters, leave the field empty
+      Initializing the parameters with 0-values is considered an error
 
    .. py:attribute:: supports_pcd
       :type: bool

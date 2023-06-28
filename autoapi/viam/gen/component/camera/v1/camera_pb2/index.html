@@ -352,13 +352,17 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.intrinsic_parameters">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">intrinsic_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___IntrinsicParameters</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.intrinsic_parameters" title="Permalink to this definition"></a></dt>
-<dd><p>Parameters for doing a perspective of a 3D scene to a 2D plane</p>
+<dd><p>Parameters for doing a perspective of a 3D scene to a 2D plane
+If camera does not provide intrinsic parameters, leave the field empty
+Initializing the parameters with 0-values is considered an error</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.distortion_parameters">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">distortion_parameters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DistortionParameters</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.distortion_parameters" title="Permalink to this definition"></a></dt>
-<dd><p>Parameters for modeling lens distortion in cameras</p>
+<dd><p>Parameters for modeling lens distortion in cameras
+If camera does not provide distortion parameters, leave the field empty
+Initializing the parameters with 0-values is considered an error</p>
 </dd></dl>
 
 <dl class="py attribute">

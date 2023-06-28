@@ -99,14 +99,8 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Order" title="viam.gen.app.data.v1.data_pb2.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Status" title="viam.gen.app.data.v1.data_pb2.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsFilterType" title="viam.gen.app.data.v1.data_pb2.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsFilterType" title="viam.gen.app.data.v1.data_pb2.TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsFilterType</span></code></a></p></td>
 <td><p>TagsFilterType specifies how data can be filtered based on tags</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Result" title="viam.gen.app.data.v1.data_pb2.Result"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Result</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DataRequest" title="viam.gen.app.data.v1.data_pb2.DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -141,85 +135,88 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest" title="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryDataByIDsRequest</span></code></a></p></td>
-<td><p>BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryID</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse" title="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryDataByIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest" title="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryDataByIDsRequest</span></code></a></p></td>
+<td><p>BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse" title="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryDataByIDsResponse</span></code></a></p></td>
 <td><p>BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBox" title="viam.gen.app.data.v1.data_pb2.BoundingBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBox</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBox" title="viam.gen.app.data.v1.data_pb2.BoundingBox"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBox</span></code></a></p></td>
 <td><p>BoundingBox represents a labeled bounding box on an image.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Annotations" title="viam.gen.app.data.v1.data_pb2.Annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Annotations</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Annotations" title="viam.gen.app.data.v1.data_pb2.Annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Annotations</span></code></a></p></td>
 <td><p>Annotations are data annotations used for machine learning.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryMetadata" title="viam.gen.app.data.v1.data_pb2.BinaryMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BinaryMetadata" title="viam.gen.app.data.v1.data_pb2.BinaryMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BinaryMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterRequest</span></code></a></p></td>
 <td><p>DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsRequest</span></code></a></p></td>
-<td><p>DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsRequest</span></code></a></p></td>
+<td><p>DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse</span></code></a></p></td>
-<td><p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteBinaryDataByIDsResponse</span></code></a></p></td>
+<td><p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFileIDsRequest</span></code></a></p></td>
-<td><p>AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFileIDsRequest</span></code></a></p></td>
+<td><p>AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsResponse" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFileIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsResponse" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFileIDsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddTagsToBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFileIDsRequest</span></code></a></p></td>
-<td><p>RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFileIDsRequest</span></code></a></p></td>
+<td><p>RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsResponse" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFileIDsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsResponse" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFileIDsResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterRequest</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveTagsFromBinaryDataByFilterResponse</span></code></a></p></td>
 <td><p>RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TagsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.TagsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterResponse</span></code></a></p></td>
 <td><p>TagsByFilterResponse returns the unique tags from data based on given filter</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest" title="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest" title="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDResponse" title="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDResponse" title="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddBoundingBoxToImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest" title="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest" title="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse" title="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse" title="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveBoundingBoxFromImageByIDResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBoxLabelsByFilterRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBoxLabelsByFilterRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBoxLabelsByFilterResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BoundingBoxLabelsByFilterResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -244,18 +241,6 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___Order" title="viam.gen.app.data.v1.data_pb2.global___Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Order</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.STATUS_UNSPECIFIED" title="viam.gen.app.data.v1.data_pb2.STATUS_UNSPECIFIED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STATUS_UNSPECIFIED</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.STATUS_PARTIAL_SUCCESS" title="viam.gen.app.data.v1.data_pb2.STATUS_PARTIAL_SUCCESS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STATUS_PARTIAL_SUCCESS</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.STATUS_SUCCESS" title="viam.gen.app.data.v1.data_pb2.STATUS_SUCCESS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STATUS_SUCCESS</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___Status" title="viam.gen.app.data.v1.data_pb2.global___Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Status</span></code></a></p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.TAGS_FILTER_TYPE_UNSPECIFIED" title="viam.gen.app.data.v1.data_pb2.TAGS_FILTER_TYPE_UNSPECIFIED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TAGS_FILTER_TYPE_UNSPECIFIED</span></code></a></p></td>
 <td><p></p></td>
 </tr>
@@ -271,40 +256,40 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TagsFilterType" title="viam.gen.app.data.v1.data_pb2.global___TagsFilterType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TagsFilterType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___Result" title="viam.gen.app.data.v1.data_pb2.global___Result"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Result</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___DataRequest" title="viam.gen.app.data.v1.data_pb2.global___DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DataRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___DataRequest" title="viam.gen.app.data.v1.data_pb2.global___DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DataRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___Filter" title="viam.gen.app.data.v1.data_pb2.global___Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Filter</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___Filter" title="viam.gen.app.data.v1.data_pb2.global___Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Filter</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TagsFilter" title="viam.gen.app.data.v1.data_pb2.global___TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TagsFilter</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TagsFilter" title="viam.gen.app.data.v1.data_pb2.global___TagsFilter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TagsFilter</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___CaptureMetadata" title="viam.gen.app.data.v1.data_pb2.global___CaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureMetadata</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___CaptureMetadata" title="viam.gen.app.data.v1.data_pb2.global___CaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___CaptureInterval" title="viam.gen.app.data.v1.data_pb2.global___CaptureInterval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureInterval</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___CaptureInterval" title="viam.gen.app.data.v1.data_pb2.global___CaptureInterval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureInterval</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularDataByFilterRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularDataByFilterResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.global___TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularData" title="viam.gen.app.data.v1.data_pb2.global___TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularData</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___TabularData" title="viam.gen.app.data.v1.data_pb2.global___TabularData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___TabularData</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryData" title="viam.gen.app.data.v1.data_pb2.global___BinaryData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryData</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryData" title="viam.gen.app.data.v1.data_pb2.global___BinaryData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryData</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryDataByFilterRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryDataByFilterRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryDataByFilterResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.global___BinaryDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryDataByFilterResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryID" title="viam.gen.app.data.v1.data_pb2.global___BinaryID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryID</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsRequest" title="viam.gen.app.data.v1.data_pb2.global___BinaryDataByIDsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___BinaryDataByIDsRequest</span></code></a></p></td>
@@ -422,32 +407,6 @@ isort:skip_file</p>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Status">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Status" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_Status</span></code></p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.STATUS_UNSPECIFIED">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">STATUS_UNSPECIFIED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Status" title="viam.gen.app.data.v1.data_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.STATUS_UNSPECIFIED" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.STATUS_PARTIAL_SUCCESS">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">STATUS_PARTIAL_SUCCESS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Status" title="viam.gen.app.data.v1.data_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.STATUS_PARTIAL_SUCCESS" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.STATUS_SUCCESS">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">STATUS_SUCCESS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.app.data.v1.data_pb2.Status" title="viam.gen.app.data.v1.data_pb2.Status"><span class="pre">Status</span></a></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.STATUS_SUCCESS" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.global___Status">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Status</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.global___Status" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.TagsFilterType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">TagsFilterType</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.TagsFilterType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_TagsFilterType</span></code></p>
@@ -480,32 +439,6 @@ isort:skip_file</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.global___TagsFilterType">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">global___TagsFilterType</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.global___TagsFilterType" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Result">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Status</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Result" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Result.status">
-<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Status</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Result.status" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Result.message">
-<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Result.message" title="Permalink to this definition"></a></dt>
-<dd><p>message is an aggregated error message string</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.global___Result">
-<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Result</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.global___Result" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -568,7 +501,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Filter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CaptureInterval</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TagsFilter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CaptureInterval</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TagsFilter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -604,11 +537,6 @@ shown below.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bbox_labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter.bbox_labels" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Filter.tags">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter.tags" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Filter.component_name">
 <span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter.component_name" title="Permalink to this definition"></a></dt>
@@ -617,11 +545,6 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Filter.component_type">
 <span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter.component_type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.Filter.component_model">
-<span class="sig-name descname"><span class="pre">component_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.Filter.component_model" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -707,7 +630,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.CaptureMetadata">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">CaptureMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.any_pb2.Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.CaptureMetadata" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">CaptureMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.any_pb2.Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.CaptureMetadata" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>CaptureMetadata contains information on the settings used for the data capture</p>
 <dl class="py class">
@@ -796,11 +719,6 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.CaptureMetadata.component_type">
 <span class="sig-name descname"><span class="pre">component_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.CaptureMetadata.component_type" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.CaptureMetadata.component_model">
-<span class="sig-name descname"><span class="pre">component_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.CaptureMetadata.component_model" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1136,20 +1054,55 @@ be raised.</p>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">BinaryDataByIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">BinaryID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryID" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids</p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryID.file_id">
+<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryID.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryID.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryID.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryID.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryID.location_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.global___BinaryID">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">global___BinaryID</span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.global___BinaryID" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">BinaryDataByIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.binary_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.binary_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.file_ids">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Replaced by binary_ids</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.include_binary">
 <span class="sig-name descname"><span class="pre">include_binary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.BinaryDataByIDsRequest.include_binary" title="Permalink to this definition"></a></dt>
-<dd><p>by default</p>
-</dd></dl>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1360,41 +1313,13 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataByFilterResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Result</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataByFilterResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.result">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Result</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.result" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.deleted_count">
 <span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.deleted_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 
@@ -1445,41 +1370,13 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByFilterResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Result</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByFilterResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.result">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Result</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.result" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.deleted_count">
 <span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.deleted_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 
@@ -1490,13 +1387,19 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided</p>
+<p>DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest.binary_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest.binary_ids" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest.file_ids">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Replaced by binary_ids</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1507,41 +1410,13 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByIDsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Result</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByIDsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.result">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Result</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.result" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
+<p>DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.deleted_count">
 <span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.deleted_count" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">result</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'result'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 
@@ -1552,18 +1427,24 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">AddTagsToBinaryDataByFileIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">AddTagsToBinaryDataByFileIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided</p>
+<p>AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.file_ids">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.binary_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.binary_ids" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.tags">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.tags" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.file_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
+<dd><p>Replaced by binary_ids</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1649,18 +1530,24 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">RemoveTagsFromBinaryDataByFileIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">RemoveTagsFromBinaryDataByFileIDsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided</p>
+<p>RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.file_ids">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.binary_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___BinaryID</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.binary_ids" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.tags">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.tags" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.file_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest.file_ids" title="Permalink to this definition"></a></dt>
+<dd><p>Replaced by binary_ids</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -1807,15 +1694,15 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">AddBoundingBoxToImageByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">AddBoundingBoxToImageByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___BinaryID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.file_id" title="Permalink to this definition"></a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.binary_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___BinaryID</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.binary_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -1842,6 +1729,35 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.y_max_normalized">
 <span class="sig-name descname"><span class="pre">y_max_normalized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.y_max_normalized" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.file_id">
+<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.file_id" title="Permalink to this definition"></a></dt>
+<dd><p>Replaced by binary_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">binary_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'binary_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -1872,21 +1788,50 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.data.v1.data_pb2.</span></span><span class="sig-name descname"><span class="pre">RemoveBoundingBoxFromImageByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___BinaryID</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.file_id">
-<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.file_id" title="Permalink to this definition"></a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.binary_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___BinaryID</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.binary_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.bbox_id">
 <span class="sig-name descname"><span class="pre">bbox_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.bbox_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.file_id">
+<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.file_id" title="Permalink to this definition"></a></dt>
+<dd><p>Replaced by binary_id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">binary_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'binary_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

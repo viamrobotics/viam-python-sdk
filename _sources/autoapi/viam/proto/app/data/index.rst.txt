@@ -32,6 +32,7 @@ Classes
    viam.proto.app.data.BinaryDataByFilterResponse
    viam.proto.app.data.BinaryDataByIDsRequest
    viam.proto.app.data.BinaryDataByIDsResponse
+   viam.proto.app.data.BinaryID
    viam.proto.app.data.BinaryMetadata
    viam.proto.app.data.BoundingBox
    viam.proto.app.data.BoundingBoxLabelsByFilterRequest
@@ -53,8 +54,6 @@ Classes
    viam.proto.app.data.RemoveTagsFromBinaryDataByFileIDsResponse
    viam.proto.app.data.RemoveTagsFromBinaryDataByFilterRequest
    viam.proto.app.data.RemoveTagsFromBinaryDataByFilterResponse
-   viam.proto.app.data.Result
-   viam.proto.app.data.Status
    viam.proto.app.data.TabularData
    viam.proto.app.data.TabularDataByFilterRequest
    viam.proto.app.data.TabularDataByFilterResponse
@@ -150,7 +149,7 @@ Classes
 .. py:class:: DataServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: AddBoundingBoxToImageByIDRequest(*, file_id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
+.. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., file_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -160,10 +159,9 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: file_id
-      :type: str
+   .. py:property:: binary_id
+      :type: global___BinaryID
 
-      
 
    .. py:attribute:: label
       :type: str
@@ -190,6 +188,28 @@ Classes
 
       
 
+   .. py:attribute:: file_id
+      :type: str
+
+      Replaced by binary_id
+
+   .. py:method:: HasField(field_name: Literal[binary_id, b'binary_id']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
 
 .. py:class:: AddBoundingBoxToImageByIDResponse(*, bbox_id: str = ...)
 
@@ -207,19 +227,24 @@ Classes
       
 
 
-.. py:class:: AddTagsToBinaryDataByFileIDsRequest(*, file_ids: collections.abc.Iterable[builtins.str] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByFileIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when file IDs are provided
+   AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
 
-   .. py:property:: file_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
 
 
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+
+   .. py:property:: file_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Replaced by binary_ids
 
 
 .. py:class:: AddTagsToBinaryDataByFileIDsResponse
@@ -383,20 +408,25 @@ Classes
       
 
 
-.. py:class:: BinaryDataByIDsRequest(*, file_ids: collections.abc.Iterable[builtins.str] | None = ..., include_binary: bool = ...)
+.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by file ids
+   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids
+
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
 
    .. py:property:: file_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+      Replaced by binary_ids
 
    .. py:attribute:: include_binary
       :type: bool
 
-      by default
+      
 
 
 .. py:class:: BinaryDataByIDsResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
@@ -411,6 +441,32 @@ Classes
 
    .. py:attribute:: count
       :type: int
+
+      
+
+
+.. py:class:: BinaryID(*, file_id: str = ..., organization_id: str = ..., location_id: str = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: file_id
+      :type: str
+
+      
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: location_id
+      :type: str
 
       
 
@@ -596,7 +652,7 @@ Classes
 
 
 
-.. py:class:: CaptureMetadata(*, org_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_model: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
+.. py:class:: CaptureMetadata(*, org_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -678,11 +734,6 @@ Classes
       
 
    .. py:attribute:: component_type
-      :type: str
-
-      
-
-   .. py:attribute:: component_model
       :type: str
 
       
@@ -778,81 +829,44 @@ Classes
 
 
 
-.. py:class:: DeleteBinaryDataByFilterResponse(*, deleted_count: int = ..., result: global___Result | None = ...)
+.. py:class:: DeleteBinaryDataByFilterResponse(*, deleted_count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
 
-   .. py:property:: result
-      :type: global___Result
-
-
    .. py:attribute:: deleted_count
       :type: int
 
       
 
-   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
 
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: DeleteBinaryDataByIDsRequest(*, file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when file ids are provided
+   DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
+
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
 
    .. py:property:: file_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+      Replaced by binary_ids
 
 
-.. py:class:: DeleteBinaryDataByIDsResponse(*, deleted_count: int = ..., result: global___Result | None = ...)
+.. py:class:: DeleteBinaryDataByIDsResponse(*, deleted_count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByIDsResponse returns the number of binary files deleted when file ids are provided
-
-   .. py:property:: result
-      :type: global___Result
-
+   DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
 
    .. py:attribute:: deleted_count
       :type: int
 
       
-
-   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
 
 
 .. py:class:: DeleteTabularDataByFilterRequest(*, filter: global___Filter | None = ...)
@@ -883,40 +897,19 @@ Classes
 
 
 
-.. py:class:: DeleteTabularDataByFilterResponse(*, deleted_count: int = ..., result: global___Result | None = ...)
+.. py:class:: DeleteTabularDataByFilterResponse(*, deleted_count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
-
-   .. py:property:: result
-      :type: global___Result
-
 
    .. py:attribute:: deleted_count
       :type: int
 
       
 
-   .. py:method:: HasField(field_name: Literal[result, b'result']) -> bool
 
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., component_model: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[builtins.str] | None = ..., org_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[builtins.str] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[builtins.str] | None = ..., org_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -950,21 +943,12 @@ Classes
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:property:: tags
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
-
-
    .. py:attribute:: component_name
       :type: str
 
       
 
    .. py:attribute:: component_type
-      :type: str
-
-      
-
-   .. py:attribute:: component_model
       :type: str
 
       
@@ -1017,7 +1001,7 @@ Classes
    Bases: :py:obj:`_Order`
 
 
-.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, file_id: str = ..., bbox_id: str = ...)
+.. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: global___BinaryID | None = ..., bbox_id: str = ..., file_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1027,15 +1011,36 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: file_id
-      :type: str
+   .. py:property:: binary_id
+      :type: global___BinaryID
 
-      
 
    .. py:attribute:: bbox_id
       :type: str
 
       
+
+   .. py:attribute:: file_id
+      :type: str
+
+      Replaced by binary_id
+
+   .. py:method:: HasField(field_name: Literal[binary_id, b'binary_id']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: RemoveBoundingBoxFromImageByIDResponse
@@ -1049,19 +1054,24 @@ Classes
    shown below.
 
 
-.. py:class:: RemoveTagsFromBinaryDataByFileIDsRequest(*, file_ids: collections.abc.Iterable[builtins.str] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByFileIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when file IDs are provided
+   RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided
 
-   .. py:property:: file_ids
-      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
 
 
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+
+   .. py:property:: file_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Replaced by binary_ids
 
 
 .. py:class:: RemoveTagsFromBinaryDataByFileIDsResponse(*, deleted_count: int = ...)
@@ -1118,32 +1128,6 @@ Classes
       :type: int
 
       
-
-
-.. py:class:: Result(*, status: global___Status = ..., message: str = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
-
-   .. py:attribute:: status
-      :type: global___Status
-
-      
-
-   .. py:attribute:: message
-      :type: str
-
-      message is an aggregated error message string
-
-
-.. py:class:: Status
-
-   Bases: :py:obj:`_Status`
 
 
 .. py:class:: TabularData(*, data: google.protobuf.struct_pb2.Struct | None = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)

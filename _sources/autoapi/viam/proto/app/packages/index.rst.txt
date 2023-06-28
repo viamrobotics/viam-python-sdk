@@ -27,7 +27,6 @@ Classes
    viam.proto.app.packages.FileInfo
    viam.proto.app.packages.GetPackageRequest
    viam.proto.app.packages.GetPackageResponse
-   viam.proto.app.packages.InternalPackage
    viam.proto.app.packages.ListPackagesRequest
    viam.proto.app.packages.ListPackagesResponse
    viam.proto.app.packages.Package
@@ -267,77 +266,6 @@ Classes
 
 
    .. py:method:: HasField(field_name: Literal[package, b'package']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:class:: InternalPackage(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ..., blob_path: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., checksum: str = ..., latest: bool = ...)
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   InternalPackage is stored in the packages database and represents our interval view of the uploaded package
-
-   .. py:property:: files
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileInfo]
-
-
-   .. py:property:: metadata
-      :type: google.protobuf.struct_pb2.Struct
-
-
-   .. py:property:: created_on
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
-
-   .. py:attribute:: organization_id
-      :type: str
-
-      
-
-   .. py:attribute:: name
-      :type: str
-
-      
-
-   .. py:attribute:: version
-      :type: str
-
-      
-
-   .. py:attribute:: type
-      :type: global___PackageType
-
-      
-
-   .. py:attribute:: blob_path
-      :type: str
-
-      
-
-   .. py:attribute:: checksum
-      :type: str
-
-      
-
-   .. py:attribute:: latest
-      :type: bool
-
-      
-
-   .. py:method:: HasField(field_name: Literal[created_on, b'created_on', metadata, b'metadata']) -> bool
 
       Checks if a certain field is set for the message.
 
