@@ -1,11 +1,16 @@
 import asyncio
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, ClassVar, Dict, Mapping, Optional, Self, Tuple
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
+from viam.proto.app.robot import ComponentConfig
+from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
+from viam.resource.types import Model, ModelFamily
 
 
 class ModuleArm(Arm):
     # Subclass the Viam Arm component and implement the required functions
+    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "arm"), "module-arm")
 
     def __init__(self, name: str):
         # Starting position
@@ -23,6 +28,11 @@ class ModuleArm(Arm):
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         super().__init__(name)
+
+    @classmethod
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
+        arm = cls(config.name)
+        return arm
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
         return self.position
