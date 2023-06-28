@@ -4,7 +4,6 @@ Do not edit manually!
 """
 from ....gen.app.datasync.v1.data_sync_grpc import DataSyncServiceBase, DataSyncServiceStub
 from ....gen.app.datasync.v1.data_sync_pb2 import (
-    BinaryCapture,
     CaptureInterval,
     DataCaptureMetadata,
     DataCaptureUploadRequest,
@@ -15,14 +14,12 @@ from ....gen.app.datasync.v1.data_sync_pb2 import (
     FileUploadResponse,
     SensorData,
     SensorMetadata,
-    TabularCapture,
     UploadMetadata,
 )
 
 __all__ = [
     "DataSyncServiceBase",
     "DataSyncServiceStub",
-    "BinaryCapture",
     "CaptureInterval",
     "DataCaptureMetadata",
     "DataCaptureUploadRequest",
@@ -33,6 +30,5 @@ __all__ = [
     "FileUploadResponse",
     "SensorData",
     "SensorMetadata",
-    "TabularCapture",
     "UploadMetadata",
 ]

@@ -124,11 +124,17 @@ class GetPropertiesResponse(google.protobuf.message.Message):
 
     @property
     def intrinsic_parameters(self) -> global___IntrinsicParameters:
-        """Parameters for doing a perspective of a 3D scene to a 2D plane"""
+        """Parameters for doing a perspective of a 3D scene to a 2D plane
+        If camera does not provide intrinsic parameters, leave the field empty
+        Initializing the parameters with 0-values is considered an error
+        """
 
     @property
     def distortion_parameters(self) -> global___DistortionParameters:
-        """Parameters for modeling lens distortion in cameras"""
+        """Parameters for modeling lens distortion in cameras
+        If camera does not provide distortion parameters, leave the field empty
+        Initializing the parameters with 0-values is considered an error
+        """
 
     def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=...) -> None:
         ...

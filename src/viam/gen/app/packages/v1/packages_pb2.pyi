@@ -179,50 +179,6 @@ class Package(google.protobuf.message.Message):
 global___Package = Package
 
 @typing_extensions.final
-class InternalPackage(google.protobuf.message.Message):
-    """InternalPackage is stored in the packages database and represents our interval view of the uploaded package"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
-    NAME_FIELD_NUMBER: builtins.int
-    VERSION_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
-    FILES_FIELD_NUMBER: builtins.int
-    METADATA_FIELD_NUMBER: builtins.int
-    BLOB_PATH_FIELD_NUMBER: builtins.int
-    CREATED_ON_FIELD_NUMBER: builtins.int
-    CHECKSUM_FIELD_NUMBER: builtins.int
-    LATEST_FIELD_NUMBER: builtins.int
-    organization_id: builtins.str
-    name: builtins.str
-    version: builtins.str
-    type: global___PackageType.ValueType
-
-    @property
-    def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileInfo]:
-        ...
-
-    @property
-    def metadata(self) -> google.protobuf.struct_pb2.Struct:
-        ...
-    blob_path: builtins.str
-
-    @property
-    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-    checksum: builtins.str
-    latest: builtins.bool
-
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., version: builtins.str=..., type: global___PackageType.ValueType=..., files: collections.abc.Iterable[global___FileInfo] | None=..., metadata: google.protobuf.struct_pb2.Struct | None=..., blob_path: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., checksum: builtins.str=..., latest: builtins.bool=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'metadata', b'metadata']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['blob_path', b'blob_path', 'checksum', b'checksum', 'created_on', b'created_on', 'files', b'files', 'latest', b'latest', 'metadata', b'metadata', 'name', b'name', 'organization_id', b'organization_id', 'type', b'type', 'version', b'version']) -> None:
-        ...
-global___InternalPackage = InternalPackage
-
-@typing_extensions.final
 class GetPackageRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int

@@ -321,17 +321,44 @@ class NetworkConfig(google.protobuf.message.Message):
     BIND_ADDRESS_FIELD_NUMBER: builtins.int
     TLS_CERT_FILE_FIELD_NUMBER: builtins.int
     TLS_KEY_FILE_FIELD_NUMBER: builtins.int
+    SESSIONS_FIELD_NUMBER: builtins.int
     fqdn: builtins.str
     bind_address: builtins.str
     tls_cert_file: builtins.str
     tls_key_file: builtins.str
 
-    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=...) -> None:
+    @property
+    def sessions(self) -> global___SessionsConfig:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file']) -> None:
+    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['sessions', b'sessions']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file']) -> None:
         ...
 global___NetworkConfig = NetworkConfig
+
+@typing_extensions.final
+class SessionsConfig(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HEARTBEAT_WINDOW_FIELD_NUMBER: builtins.int
+
+    @property
+    def heartbeat_window(self) -> google.protobuf.duration_pb2.Duration:
+        ...
+
+    def __init__(self, *, heartbeat_window: google.protobuf.duration_pb2.Duration | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['heartbeat_window', b'heartbeat_window']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['heartbeat_window', b'heartbeat_window']) -> None:
+        ...
+global___SessionsConfig = SessionsConfig
 
 @typing_extensions.final
 class AuthConfig(google.protobuf.message.Message):

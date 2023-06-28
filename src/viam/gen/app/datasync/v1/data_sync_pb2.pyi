@@ -197,18 +197,15 @@ class UploadMetadata(google.protobuf.message.Message):
     PART_ID_FIELD_NUMBER: builtins.int
     COMPONENT_TYPE_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_MODEL_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     FILE_NAME_FIELD_NUMBER: builtins.int
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
     FILE_EXTENSION_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
-    SESSION_ID_FIELD_NUMBER: builtins.int
     part_id: builtins.str
     component_type: builtins.str
     component_name: builtins.str
-    component_model: builtins.str
     method_name: builtins.str
     type: global___DataType.ValueType
     file_name: builtins.str
@@ -221,12 +218,11 @@ class UploadMetadata(google.protobuf.message.Message):
     @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
-    session_id: builtins.str
 
-    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., component_model: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., session_id: builtins.str=...) -> None:
+    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'part_id', b'part_id', 'session_id', b'session_id', 'tags', b'tags', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
         ...
 global___UploadMetadata = UploadMetadata
 
@@ -279,16 +275,13 @@ class DataCaptureMetadata(google.protobuf.message.Message):
             ...
     COMPONENT_TYPE_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_MODEL_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
     FILE_EXTENSION_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
-    SESSION_ID_FIELD_NUMBER: builtins.int
     component_type: builtins.str
     component_name: builtins.str
-    component_model: builtins.str
     method_name: builtins.str
     type: global___DataType.ValueType
 
@@ -300,176 +293,10 @@ class DataCaptureMetadata(google.protobuf.message.Message):
     @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
-    session_id: builtins.str
 
-    def __init__(self, *, component_type: builtins.str=..., component_name: builtins.str=..., component_model: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., session_id: builtins.str=...) -> None:
+    def __init__(self, *, component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'session_id', b'session_id', 'tags', b'tags', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'tags', b'tags', 'type', b'type']) -> None:
         ...
 global___DataCaptureMetadata = DataCaptureMetadata
-
-@typing_extensions.final
-class TabularCapture(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    @typing_extensions.final
-    class MethodParametersEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-        KEY_FIELD_NUMBER: builtins.int
-        VALUE_FIELD_NUMBER: builtins.int
-        key: builtins.str
-
-        @property
-        def value(self) -> google.protobuf.any_pb2.Any:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
-    INTERVAL_FIELD_NUMBER: builtins.int
-    ORG_ID_FIELD_NUMBER: builtins.int
-    ROBOT_ID_FIELD_NUMBER: builtins.int
-    PART_ID_FIELD_NUMBER: builtins.int
-    LOCATION_ID_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_TYPE_FIELD_NUMBER: builtins.int
-    COMPONENT_MODEL_FIELD_NUMBER: builtins.int
-    METHOD_NAME_FIELD_NUMBER: builtins.int
-    BLOB_PATH_FIELD_NUMBER: builtins.int
-    COLUMN_NAMES_FIELD_NUMBER: builtins.int
-    METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
-    FILE_ID_FIELD_NUMBER: builtins.int
-    TAGS_FIELD_NUMBER: builtins.int
-    MESSAGE_COUNT_FIELD_NUMBER: builtins.int
-    FILE_SIZE_BYTES_FIELD_NUMBER: builtins.int
-    SESSION_ID_FIELD_NUMBER: builtins.int
-    MIME_TYPE_FIELD_NUMBER: builtins.int
-    ID_FIELD_NUMBER: builtins.int
-
-    @property
-    def interval(self) -> global___CaptureInterval:
-        ...
-    org_id: builtins.str
-    robot_id: builtins.str
-    part_id: builtins.str
-    location_id: builtins.str
-    component_name: builtins.str
-    component_type: builtins.str
-    component_model: builtins.str
-    method_name: builtins.str
-    blob_path: builtins.str
-
-    @property
-    def column_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
-    @property
-    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
-        ...
-    file_id: builtins.str
-
-    @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-    message_count: builtins.int
-    file_size_bytes: builtins.int
-    session_id: builtins.str
-    mime_type: builtins.str
-    id: builtins.str
-
-    def __init__(self, *, interval: global___CaptureInterval | None=..., org_id: builtins.str=..., robot_id: builtins.str=..., part_id: builtins.str=..., location_id: builtins.str=..., component_name: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., method_name: builtins.str=..., blob_path: builtins.str=..., column_names: collections.abc.Iterable[builtins.str] | None=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., message_count: builtins.int=..., file_size_bytes: builtins.int=..., session_id: builtins.str=..., mime_type: builtins.str=..., id: builtins.str=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['interval', b'interval']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['blob_path', b'blob_path', 'column_names', b'column_names', 'component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'file_id', b'file_id', 'file_size_bytes', b'file_size_bytes', 'id', b'id', 'interval', b'interval', 'location_id', b'location_id', 'message_count', b'message_count', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'org_id', b'org_id', 'part_id', b'part_id', 'robot_id', b'robot_id', 'session_id', b'session_id', 'tags', b'tags']) -> None:
-        ...
-global___TabularCapture = TabularCapture
-
-@typing_extensions.final
-class BinaryCapture(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    @typing_extensions.final
-    class MethodParametersEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-        KEY_FIELD_NUMBER: builtins.int
-        VALUE_FIELD_NUMBER: builtins.int
-        key: builtins.str
-
-        @property
-        def value(self) -> google.protobuf.any_pb2.Any:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
-    INTERVAL_FIELD_NUMBER: builtins.int
-    ORG_ID_FIELD_NUMBER: builtins.int
-    ROBOT_ID_FIELD_NUMBER: builtins.int
-    PART_ID_FIELD_NUMBER: builtins.int
-    LOCATION_ID_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    COMPONENT_TYPE_FIELD_NUMBER: builtins.int
-    COMPONENT_MODEL_FIELD_NUMBER: builtins.int
-    METHOD_NAME_FIELD_NUMBER: builtins.int
-    BLOB_PATH_FIELD_NUMBER: builtins.int
-    METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
-    FILE_ID_FIELD_NUMBER: builtins.int
-    TAGS_FIELD_NUMBER: builtins.int
-    FILE_SIZE_BYTES_FIELD_NUMBER: builtins.int
-    SESSION_ID_FIELD_NUMBER: builtins.int
-    MIME_TYPE_FIELD_NUMBER: builtins.int
-    FILE_NAME_FIELD_NUMBER: builtins.int
-    FILE_EXT_FIELD_NUMBER: builtins.int
-    ID_FIELD_NUMBER: builtins.int
-
-    @property
-    def interval(self) -> global___CaptureInterval:
-        ...
-    org_id: builtins.str
-    robot_id: builtins.str
-    part_id: builtins.str
-    location_id: builtins.str
-    component_name: builtins.str
-    component_type: builtins.str
-    component_model: builtins.str
-    method_name: builtins.str
-    blob_path: builtins.str
-
-    @property
-    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
-        ...
-    file_id: builtins.str
-
-    @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-    file_size_bytes: builtins.int
-    session_id: builtins.str
-    mime_type: builtins.str
-    file_name: builtins.str
-    file_ext: builtins.str
-    id: builtins.str
-
-    def __init__(self, *, interval: global___CaptureInterval | None=..., org_id: builtins.str=..., robot_id: builtins.str=..., part_id: builtins.str=..., location_id: builtins.str=..., component_name: builtins.str=..., component_type: builtins.str=..., component_model: builtins.str=..., method_name: builtins.str=..., blob_path: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=..., file_size_bytes: builtins.int=..., session_id: builtins.str=..., mime_type: builtins.str=..., file_name: builtins.str=..., file_ext: builtins.str=..., id: builtins.str=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['interval', b'interval']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['blob_path', b'blob_path', 'component_model', b'component_model', 'component_name', b'component_name', 'component_type', b'component_type', 'file_ext', b'file_ext', 'file_id', b'file_id', 'file_name', b'file_name', 'file_size_bytes', b'file_size_bytes', 'id', b'id', 'interval', b'interval', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'org_id', b'org_id', 'part_id', b'part_id', 'robot_id', b'robot_id', 'session_id', b'session_id', 'tags', b'tags']) -> None:
-        ...
-global___BinaryCapture = BinaryCapture

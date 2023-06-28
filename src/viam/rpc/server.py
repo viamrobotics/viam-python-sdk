@@ -5,7 +5,8 @@ from grpclib._typing import IServable
 from grpclib.const import Handler
 from grpclib.events import RecvRequest, listen
 from grpclib.reflection.service import ServerReflection
-from grpclib.server import Stream, Server as GRPCServer
+from grpclib.server import Server as GRPCServer
+from grpclib.server import Stream
 from grpclib.utils import graceful_exit
 
 from viam import logging

@@ -32,6 +32,7 @@ from ...gen.app.v1.robot_pb2 import (
     ResourceLevelServiceConfig,
     RobotConfig,
     ServiceConfig,
+    SessionsConfig,
     Translation,
 )
 
@@ -66,5 +67,6 @@ __all__ = [
     "ResourceLevelServiceConfig",
     "RobotConfig",
     "ServiceConfig",
+    "SessionsConfig",
     "Translation",
 ]

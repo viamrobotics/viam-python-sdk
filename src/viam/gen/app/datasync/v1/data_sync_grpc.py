@@ -7,7 +7,6 @@ if typing.TYPE_CHECKING:
 import google.protobuf.any_pb2
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
-from .... import tagger
 from .... import app
 
 class DataSyncServiceBase(abc.ABC):

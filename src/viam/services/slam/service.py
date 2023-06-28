@@ -1,9 +1,12 @@
 from grpclib.server import Stream
 
+from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
+    GetLatestMapInfoRequest,
+    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -54,6 +57,9 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         position = await slam.get_position(timeout=timeout)
         response = GetPositionResponse(pose=position)
         await stream.send_message(response)
+
+    async def GetLatestMapInfo(self, stream: Stream[GetLatestMapInfoRequest, GetLatestMapInfoResponse]) -> None:
+        raise MethodNotImplementedError("GetLatestMapInfo").grpc_error
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
