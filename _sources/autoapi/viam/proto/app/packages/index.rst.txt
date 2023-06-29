@@ -193,7 +193,7 @@ Classes
       
 
 
-.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ...)
+.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ..., type: builtins.str | None = ..., platform: builtins.str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -218,7 +218,17 @@ Classes
 
       
 
-   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', include_url, b'include_url']) -> bool
+   .. py:attribute:: type
+      :type: str
+
+      
+
+   .. py:attribute:: platform
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', _platform, b'_platform', _type, b'_type', include_url, b'include_url', platform, b'platform', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -236,6 +246,8 @@ Classes
 
 
    .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> typing_extensions.Literal['include_url'] | None
+               WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> typing_extensions.Literal['platform'] | None
+               WhichOneof(oneof_group: Literal[_type, b'_type']) -> typing_extensions.Literal['type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 

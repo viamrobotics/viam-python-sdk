@@ -43,6 +43,7 @@ Attributes
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_UNSPECIFIED
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_ARCHIVE
    viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_ML_MODEL
+   viam.gen.app.packages.v1.packages_pb2.PACKAGE_TYPE_MODULE
    viam.gen.app.packages.v1.packages_pb2.global___PackageType
    viam.gen.app.packages.v1.packages_pb2.global___FileInfo
    viam.gen.app.packages.v1.packages_pb2.global___PackageInfo
@@ -78,6 +79,11 @@ Attributes
    
 
 .. py:data:: PACKAGE_TYPE_ML_MODEL
+   :type: PackageType
+
+   
+
+.. py:data:: PACKAGE_TYPE_MODULE
    :type: PackageType
 
    
@@ -344,7 +350,7 @@ Attributes
 
    
 
-.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ...)
+.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ..., type: builtins.str | None = ..., platform: builtins.str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -369,7 +375,17 @@ Attributes
 
       
 
-   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', include_url, b'include_url']) -> bool
+   .. py:attribute:: type
+      :type: str
+
+      
+
+   .. py:attribute:: platform
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_include_url, b'_include_url', _platform, b'_platform', _type, b'_type', include_url, b'include_url', platform, b'platform', type, b'type']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -387,6 +403,8 @@ Attributes
 
 
    .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> typing_extensions.Literal['include_url'] | None
+               WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> typing_extensions.Literal['platform'] | None
+               WhichOneof(oneof_group: Literal[_type, b'_type']) -> typing_extensions.Literal['type'] | None
 
       Returns the name of the field that is set inside a oneof group.
 

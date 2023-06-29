@@ -43,12 +43,12 @@ Classes
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse
-   viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsRequest
-   viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFileIDsResponse
+   viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByIDsRequest
+   viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse
-   viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsRequest
-   viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFileIDsResponse
+   viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByIDsRequest
+   viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.TagsByFilterRequest
@@ -101,12 +101,12 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByIDsRequest
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByIDsResponse
-   viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByFileIDsRequest
-   viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByFileIDsResponse
+   viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByIDsRequest
+   viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___AddTagsToBinaryDataByFilterResponse
-   viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByFileIDsRequest
-   viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByFileIDsResponse
+   viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByIDsRequest
+   viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByIDsResponse
    viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___RemoveTagsFromBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.global___TagsByFilterRequest
@@ -230,7 +230,7 @@ Attributes
 
    
 
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[builtins.str] | None = ..., org_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[builtins.str] | None = ..., organization_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -244,7 +244,7 @@ Attributes
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:property:: org_ids
+   .. py:property:: organization_ids
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
@@ -346,7 +346,7 @@ Attributes
 
    
 
-.. py:class:: CaptureMetadata(*, org_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
+.. py:class:: CaptureMetadata(*, organization_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -397,7 +397,7 @@ Attributes
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
-   .. py:attribute:: org_id
+   .. py:attribute:: organization_id
       :type: str
 
       
@@ -1048,11 +1048,11 @@ Attributes
 
    
 
-.. py:class:: AddTagsToBinaryDataByFileIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided
+   AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -1068,11 +1068,11 @@ Attributes
       Replaced by binary_ids
 
 
-.. py:data:: global___AddTagsToBinaryDataByFileIDsRequest
+.. py:data:: global___AddTagsToBinaryDataByIDsRequest
 
    
 
-.. py:class:: AddTagsToBinaryDataByFileIDsResponse
+.. py:class:: AddTagsToBinaryDataByIDsResponse
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1083,7 +1083,7 @@ Attributes
    shown below.
 
 
-.. py:data:: global___AddTagsToBinaryDataByFileIDsResponse
+.. py:data:: global___AddTagsToBinaryDataByIDsResponse
 
    
 
@@ -1138,11 +1138,11 @@ Attributes
 
    
 
-.. py:class:: RemoveTagsFromBinaryDataByFileIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided
+   RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -1158,15 +1158,15 @@ Attributes
       Replaced by binary_ids
 
 
-.. py:data:: global___RemoveTagsFromBinaryDataByFileIDsRequest
+.. py:data:: global___RemoveTagsFromBinaryDataByIDsRequest
 
    
 
-.. py:class:: RemoveTagsFromBinaryDataByFileIDsResponse(*, deleted_count: int = ...)
+.. py:class:: RemoveTagsFromBinaryDataByIDsResponse(*, deleted_count: int = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed
+   RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed
 
    .. py:attribute:: deleted_count
       :type: int
@@ -1174,7 +1174,7 @@ Attributes
       
 
 
-.. py:data:: global___RemoveTagsFromBinaryDataByFileIDsResponse
+.. py:data:: global___RemoveTagsFromBinaryDataByIDsResponse
 
    
 
