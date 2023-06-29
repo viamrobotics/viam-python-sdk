@@ -51,7 +51,7 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase):
             list(request.speeds_mm_per_sec),
             extra=struct_to_dict(request.extra),
             timeout=timeout,
-            metadata=stream.metadata
+            metadata=stream.metadata,
         )
         response = MoveToPositionResponse()
         await stream.send_message(response)

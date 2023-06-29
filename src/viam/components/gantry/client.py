@@ -49,18 +49,14 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = MoveToPositionRequest(
-            name=self.name,
-            positions_mm=positions,
-            speeds_mm_per_sec=speeds,
-            extra=dict_to_struct(extra))
+        request = MoveToPositionRequest(name=self.name, positions_mm=positions, speeds_mm_per_sec=speeds, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request, timeout=timeout)
 
     async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
         if extra is None:
             extra = {}
         request = HomeRequest(name=self.name, extra=dict_to_struct(extra))
-        response : HomeResponse = await self.client.Home(request, timeout=timeout)
+        response: HomeResponse = await self.client.Home(request, timeout=timeout)
         return response.homed
 
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:
