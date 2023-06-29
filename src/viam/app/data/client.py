@@ -164,7 +164,7 @@ class DataClient:
         """
         filter = filter if filter else Filter()
         request = DeleteTabularDataByFilterRequest(filter=filter)
-        response: DeleteTabularDataByFilterResponse = await self._data_client.DeleteTabularDataByFilter(request, metadata=self._metadata)
+        _: DeleteTabularDataByFilterResponse = await self._data_client.DeleteTabularDataByFilter(request, metadata=self._metadata)
 
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> None:
         """Delete binary data
@@ -175,7 +175,7 @@ class DataClient:
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
-        response: DeleteBinaryDataByFilterResponse = await self._data_client.DeleteBinaryDataByFilter(request, metadata=self._metadata)
+        _: DeleteBinaryDataByFilterResponse = await self._data_client.DeleteBinaryDataByFilter(request, metadata=self._metadata)
 
     async def delete_binary_data_by_ids(self, binary_ids: List[BinaryID]) -> None:
         """Delete binary data
@@ -187,7 +187,7 @@ class DataClient:
             GRPCError: if no binary_ids are provided.
         """
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
-        response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
+        _: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
 
     async def add_tags_to_binary_data_by_binary_ids(self, binary_ids: Optional[List[str]], tags: Optional[List[str]]) -> None:
         raise NotImplementedError()
