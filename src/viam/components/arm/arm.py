@@ -110,14 +110,13 @@ class Arm(ComponentBase):
     @abc.abstractmethod
     async def get_kinematics(self, *, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         """
-                Get the kinematics information associated with the arm.
+        Get the kinematics information associated with the arm.
 
-                Returns:
-        <<<<<<< HEAD
-                    Tuple[KinematicsFileFormat.ValueType, bytes]:
-                        - KinematicsFileFormat.ValueType:
-                          The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
+        Returns:
+            Tuple[KinematicsFileFormat.ValueType, bytes]:
+                - KinematicsFileFormat.ValueType:
+                  The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
 
-                        - bytes: The byte contents of the file.
+                - bytes: The byte contents of the file.
         """
         ...
