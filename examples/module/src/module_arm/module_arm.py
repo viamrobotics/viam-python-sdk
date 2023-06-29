@@ -1,4 +1,5 @@
 import asyncio
+import os
 from typing import Any, ClassVar, Dict, Mapping, Optional, Self, Tuple
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
@@ -87,7 +88,9 @@ class ModuleArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    def get_kinematics(self) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
-        with open("./xarm6_kinematics.json", mode="rb") as f:
+    async def get_kinematics(self, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        dirname = os.path.dirname(__file__)
+        filepath = os.path.join(dirname, "./xarm6_kinematics.json")
+        with open(filepath, mode="rb") as f:
             file_data = f.read()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
