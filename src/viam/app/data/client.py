@@ -1,4 +1,4 @@
-from typing import List, Optional, Mapping, Any
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -27,6 +27,8 @@ from viam.proto.app.datasync import (
 )
 from viam.proto.app.datasync import DataSyncServiceStub
 from viam import logging
+from viam.proto.app.data import DataServiceStub, Filter
+from viam.proto.app.datasync import DataSyncServiceStub, FileData, SensorData, UploadMetadata
 
 LOGGER = logging.getLogger(__name__)
 

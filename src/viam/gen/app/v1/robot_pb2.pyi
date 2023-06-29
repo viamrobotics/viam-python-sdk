@@ -776,8 +776,10 @@ class AgentInfo(google.protobuf.message.Message):
     IPS_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     GIT_REVISION_FIELD_NUMBER: builtins.int
+    PLATFORM_FIELD_NUMBER: builtins.int
     host: builtins.str
     os: builtins.str
+    'Replaced by platform'
 
     @property
     def ips(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -785,11 +787,19 @@ class AgentInfo(google.protobuf.message.Message):
     version: builtins.str
     'RDK version'
     git_revision: builtins.str
+    platform: builtins.str
+    'The platform the RDK is running on. For example linux/amd64'
 
-    def __init__(self, *, host: builtins.str=..., os: builtins.str=..., ips: collections.abc.Iterable[builtins.str] | None=..., version: builtins.str=..., git_revision: builtins.str=...) -> None:
+    def __init__(self, *, host: builtins.str=..., os: builtins.str=..., ips: collections.abc.Iterable[builtins.str] | None=..., version: builtins.str=..., git_revision: builtins.str=..., platform: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'platform', b'platform']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'platform', b'platform', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_platform', b'_platform']) -> typing_extensions.Literal['platform'] | None:
         ...
 global___AgentInfo = AgentInfo
 
@@ -961,16 +971,19 @@ class PackageConfig(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PACKAGE_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.'
     package: builtins.str
     'Package is the unique package name hosted by Viam. Must not be empty.'
     version: builtins.str
     'version of the package ID hosted by Viam. If not specified "latest" is assumed.'
+    type: builtins.str
+    'type of the package'
 
-    def __init__(self, *, name: builtins.str=..., package: builtins.str=..., version: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., package: builtins.str=..., version: builtins.str=..., type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'package', b'package', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'package', b'package', 'type', b'type', 'version', b'version']) -> None:
         ...
 global___PackageConfig = PackageConfig

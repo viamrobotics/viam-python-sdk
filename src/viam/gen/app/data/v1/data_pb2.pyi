@@ -97,7 +97,7 @@ class Filter(google.protobuf.message.Message):
     PART_NAME_FIELD_NUMBER: builtins.int
     PART_ID_FIELD_NUMBER: builtins.int
     LOCATION_IDS_FIELD_NUMBER: builtins.int
-    ORG_IDS_FIELD_NUMBER: builtins.int
+    ORGANIZATION_IDS_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
     INTERVAL_FIELD_NUMBER: builtins.int
     TAGS_FILTER_FIELD_NUMBER: builtins.int
@@ -115,7 +115,7 @@ class Filter(google.protobuf.message.Message):
         ...
 
     @property
-    def org_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def organization_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
     @property
@@ -134,13 +134,13 @@ class Filter(google.protobuf.message.Message):
     def bbox_labels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., method: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., org_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=..., tags_filter: global___TagsFilter | None=..., bbox_labels: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., method: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., organization_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=..., tags_filter: global___TagsFilter | None=..., bbox_labels: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['interval', b'interval', 'tags_filter', b'tags_filter']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['bbox_labels', b'bbox_labels', 'component_name', b'component_name', 'component_type', b'component_type', 'interval', b'interval', 'location_ids', b'location_ids', 'method', b'method', 'mime_type', b'mime_type', 'org_ids', b'org_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags_filter', b'tags_filter']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['bbox_labels', b'bbox_labels', 'component_name', b'component_name', 'component_type', b'component_type', 'interval', b'interval', 'location_ids', b'location_ids', 'method', b'method', 'mime_type', b'mime_type', 'organization_ids', b'organization_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags_filter', b'tags_filter']) -> None:
         ...
 global___Filter = Filter
 
@@ -186,7 +186,7 @@ class CaptureMetadata(google.protobuf.message.Message):
 
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
-    ORG_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_NAME_FIELD_NUMBER: builtins.int
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -198,7 +198,7 @@ class CaptureMetadata(google.protobuf.message.Message):
     METHOD_PARAMETERS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     MIME_TYPE_FIELD_NUMBER: builtins.int
-    org_id: builtins.str
+    organization_id: builtins.str
     location_id: builtins.str
     robot_name: builtins.str
     robot_id: builtins.str
@@ -217,10 +217,10 @@ class CaptureMetadata(google.protobuf.message.Message):
         ...
     mime_type: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'org_id', b'org_id', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'organization_id', b'organization_id', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
         ...
 global___CaptureMetadata = CaptureMetadata
 
@@ -646,8 +646,8 @@ class DeleteBinaryDataByIDsResponse(google.protobuf.message.Message):
 global___DeleteBinaryDataByIDsResponse = DeleteBinaryDataByIDsResponse
 
 @typing_extensions.final
-class AddTagsToBinaryDataByFileIDsRequest(google.protobuf.message.Message):
-    """AddTagsToBinaryDataByFileIDsRequest requests adding all specified tags to each of the files when binary ids are provided"""
+class AddTagsToBinaryDataByIDsRequest(google.protobuf.message.Message):
+    """AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -670,15 +670,15 @@ class AddTagsToBinaryDataByFileIDsRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'file_ids', b'file_ids', 'tags', b'tags']) -> None:
         ...
-global___AddTagsToBinaryDataByFileIDsRequest = AddTagsToBinaryDataByFileIDsRequest
+global___AddTagsToBinaryDataByIDsRequest = AddTagsToBinaryDataByIDsRequest
 
 @typing_extensions.final
-class AddTagsToBinaryDataByFileIDsResponse(google.protobuf.message.Message):
+class AddTagsToBinaryDataByIDsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(self) -> None:
         ...
-global___AddTagsToBinaryDataByFileIDsResponse = AddTagsToBinaryDataByFileIDsResponse
+global___AddTagsToBinaryDataByIDsResponse = AddTagsToBinaryDataByIDsResponse
 
 @typing_extensions.final
 class AddTagsToBinaryDataByFilterRequest(google.protobuf.message.Message):
@@ -714,8 +714,8 @@ class AddTagsToBinaryDataByFilterResponse(google.protobuf.message.Message):
 global___AddTagsToBinaryDataByFilterResponse = AddTagsToBinaryDataByFilterResponse
 
 @typing_extensions.final
-class RemoveTagsFromBinaryDataByFileIDsRequest(google.protobuf.message.Message):
-    """RemoveTagsFromBinaryDataByFileIDsRequest requests removing the given tags value from each file when binary ids are provided"""
+class RemoveTagsFromBinaryDataByIDsRequest(google.protobuf.message.Message):
+    """RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -738,11 +738,11 @@ class RemoveTagsFromBinaryDataByFileIDsRequest(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'file_ids', b'file_ids', 'tags', b'tags']) -> None:
         ...
-global___RemoveTagsFromBinaryDataByFileIDsRequest = RemoveTagsFromBinaryDataByFileIDsRequest
+global___RemoveTagsFromBinaryDataByIDsRequest = RemoveTagsFromBinaryDataByIDsRequest
 
 @typing_extensions.final
-class RemoveTagsFromBinaryDataByFileIDsResponse(google.protobuf.message.Message):
-    """RemoveTagsFromBinaryDataByFileIDsResponse returns the number of binary files which had tags removed"""
+class RemoveTagsFromBinaryDataByIDsResponse(google.protobuf.message.Message):
+    """RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
@@ -752,7 +752,7 @@ class RemoveTagsFromBinaryDataByFileIDsResponse(google.protobuf.message.Message)
 
     def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
         ...
-global___RemoveTagsFromBinaryDataByFileIDsResponse = RemoveTagsFromBinaryDataByFileIDsResponse
+global___RemoveTagsFromBinaryDataByIDsResponse = RemoveTagsFromBinaryDataByIDsResponse
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByFilterRequest(google.protobuf.message.Message):
