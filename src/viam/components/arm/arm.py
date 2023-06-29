@@ -108,7 +108,7 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_kinematics(self, timeout: Optional[float]) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, *, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         """
         Get the kinematics information associated with the arm.
 
