@@ -27,12 +27,14 @@ class _PackageTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._En
     PACKAGE_TYPE_UNSPECIFIED: _PackageType.ValueType
     PACKAGE_TYPE_ARCHIVE: _PackageType.ValueType
     PACKAGE_TYPE_ML_MODEL: _PackageType.ValueType
+    PACKAGE_TYPE_MODULE: _PackageType.ValueType
 
 class PackageType(_PackageType, metaclass=_PackageTypeEnumTypeWrapper):
     ...
 PACKAGE_TYPE_UNSPECIFIED: PackageType.ValueType
 PACKAGE_TYPE_ARCHIVE: PackageType.ValueType
 PACKAGE_TYPE_ML_MODEL: PackageType.ValueType
+PACKAGE_TYPE_MODULE: PackageType.ValueType
 global___PackageType = PackageType
 
 @typing_extensions.final
@@ -184,20 +186,33 @@ class GetPackageRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     INCLUDE_URL_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    PLATFORM_FIELD_NUMBER: builtins.int
     id: builtins.str
     version: builtins.str
     include_url: builtins.bool
+    type: builtins.str
+    platform: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., version: builtins.str=..., include_url: builtins.bool | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., version: builtins.str=..., include_url: builtins.bool | None=..., type: builtins.str | None=..., platform: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_include_url', b'_include_url', 'include_url', b'include_url']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_include_url', b'_include_url', '_platform', b'_platform', '_type', b'_type', 'include_url', b'include_url', 'platform', b'platform', 'type', b'type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_include_url', b'_include_url', 'id', b'id', 'include_url', b'include_url', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_include_url', b'_include_url', '_platform', b'_platform', '_type', b'_type', 'id', b'id', 'include_url', b'include_url', 'platform', b'platform', 'type', b'type', 'version', b'version']) -> None:
         ...
 
+    @typing.overload
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_include_url', b'_include_url']) -> typing_extensions.Literal['include_url'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_platform', b'_platform']) -> typing_extensions.Literal['platform'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_type', b'_type']) -> typing_extensions.Literal['type'] | None:
         ...
 global___GetPackageRequest = GetPackageRequest
 

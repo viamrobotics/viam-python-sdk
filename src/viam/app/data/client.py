@@ -1,18 +1,10 @@
-from typing import List, Optional, Mapping, Any
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.app.data import (
-    DataServiceStub,
-    Filter,
-)
-from viam.proto.app.datasync import (
-    UploadMetadata,
-    SensorData,
-    FileData
-)
-from viam.proto.app.datasync import DataSyncServiceStub
 from viam import logging
+from viam.proto.app.data import DataServiceStub, Filter
+from viam.proto.app.datasync import DataSyncServiceStub, FileData, SensorData, UploadMetadata
 
 LOGGER = logging.getLogger(__name__)
 
@@ -39,18 +31,10 @@ class DataClient:
     _data_sync_client: DataSyncServiceStub
     _metadata: str
 
-    async def tabular_data_by_filter(
-        self,
-        filter: Optional[Filter],
-        dest: Optional[str]
-    ) -> List[Mapping[str, Any]]:
+    async def tabular_data_by_filter(self, filter: Optional[Filter], dest: Optional[str]) -> List[Mapping[str, Any]]:
         raise NotImplementedError()
 
-    async def binary_data_by_filter(
-        self,
-        data_request: Optional[Filter],
-        dest: Optional[str]
-    ) -> List[bytes]:
+    async def binary_data_by_filter(self, data_request: Optional[Filter], dest: Optional[str]) -> List[bytes]:
         raise NotImplementedError()
 
     async def binary_data_by_ids(self, file_ids: Optional[List[str]]) -> List[bytes]:
