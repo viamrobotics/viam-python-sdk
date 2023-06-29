@@ -9,9 +9,9 @@ from viam.resource.base import ResourceBase
 from viam.resource.types import Model, ModelFamily
 
 
-class ModuleArm(Arm):
+class MyArm(Arm):
     # Subclass the Viam Arm component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("rdk", "arm"), "module-arm")
+    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "myarm")
 
     def __init__(self, name: str):
         # Starting position
@@ -25,7 +25,7 @@ class ModuleArm(Arm):
             theta=0,
         )
 
-        # Starting joint positions
+        # Startinjoint positions
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         super().__init__(name)
@@ -48,7 +48,6 @@ class ModuleArm(Arm):
         operation = self.get_operation(kwargs)
 
         self.is_stopped = False
-        self.position = pose
 
         # Simulate the length of time it takes for the arm to move to its new position
         for x in range(10):
@@ -59,6 +58,7 @@ class ModuleArm(Arm):
                 await self.stop()
                 break
 
+        self.position = pose
         self.is_stopped = True
 
     async def get_joint_positions(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> JointPositions:
@@ -69,7 +69,6 @@ class ModuleArm(Arm):
         operation = self.get_operation(kwargs)
 
         self.is_stopped = False
-        self.joint_positions = positions
 
         # Simulate the length of time it takes for the arm to move to its new joint position
         for x in range(10):
@@ -80,6 +79,7 @@ class ModuleArm(Arm):
                 await self.stop()
                 break
 
+        self.joint_positions = positions
         self.is_stopped = True
 
     async def stop(self, extra: Optional[Dict[str, Any]] = None, **kwargs):
@@ -94,3 +94,9 @@ class ModuleArm(Arm):
         with open(filepath, mode="rb") as f:
             file_data = f.read()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
+
+
+if __name__ == "__main__":
+    arm = MyArm("hi")
+    response = asyncio.run(arm.get_kinematics())
+    print(response)
