@@ -4,7 +4,7 @@ from viam.module.module import Module
 from viam.components.arm import Arm
 
 from .gizmo import Gizmo, MyGizmo
-from .module_arm import MyArm
+from .arm import MyArm
 from .summation import MySummationService, SummationService
 
 
