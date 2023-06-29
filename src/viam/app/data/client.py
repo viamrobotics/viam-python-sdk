@@ -2,6 +2,7 @@ from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
+from viam import logging
 from viam.proto.app.data import (
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
@@ -20,14 +21,6 @@ from viam.proto.app.data import (
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
 )
-from viam.proto.app.datasync import (
-    UploadMetadata,
-    SensorData,
-    FileData
-)
-from viam.proto.app.datasync import DataSyncServiceStub
-from viam import logging
-from viam.proto.app.data import DataServiceStub, Filter
 from viam.proto.app.datasync import DataSyncServiceStub, FileData, SensorData, UploadMetadata
 
 LOGGER = logging.getLogger(__name__)
