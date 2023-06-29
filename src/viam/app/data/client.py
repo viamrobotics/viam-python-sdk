@@ -61,7 +61,8 @@ class DataClient:
         """Filter and download tabular data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the tabular data will be filtered based on the provided constraints. Otherwise, all data is returned.
+            filter (viam.app.data.Filter): When supplied, the tabular data will be
+            filtered based on the provided constraints. Otherwise, all data is returned.
             dest (str): When supplied, the tabular data will be saved to the provided file path.
 
         Returns:
@@ -98,7 +99,8 @@ class DataClient:
         """Filter and download binary data
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the binary data will be filtered based on the provided constraints. Otherwise, all data is returned.
+            filter (viam.app.data.Filter): When supplied, the binary data will be
+            filtered based on the provided constraints. Otherwise, all data is returned.
             dest (str): When supplied, the binary data will be saved to the provided file path
 
         Returns:
