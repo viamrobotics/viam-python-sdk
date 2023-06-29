@@ -94,9 +94,3 @@ class MyArm(Arm):
         with open(filepath, mode="rb") as f:
             file_data = f.read()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
-
-
-if __name__ == "__main__":
-    arm = MyArm("hi")
-    response = asyncio.run(arm.get_kinematics())
-    print(response)
