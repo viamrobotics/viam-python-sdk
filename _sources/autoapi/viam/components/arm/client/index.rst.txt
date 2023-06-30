@@ -90,6 +90,20 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_kinematics(*, timeout: Optional[float] = None) -> Tuple[viam.components.arm.KinematicsFileFormat.ValueType, bytes]
+      :async:
+
+      Get the kinematics information associated with the arm.
+
+      :returns:
+
+                    - KinematicsFileFormat.ValueType:
+                      The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
+
+                    - bytes: The byte contents of the file.
+      :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
