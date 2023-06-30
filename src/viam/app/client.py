@@ -1,5 +1,7 @@
-from grpclib.client import Channel
+from typing import Mapping
 from typing_extensions import Self
+
+from grpclib.client import Channel
 
 from viam import logging
 from viam.app.data.client import DataClient
@@ -9,11 +11,13 @@ LOGGER = logging.getLogger(__name__)
 
 
 class AppClient:
-    """gRPC client for all communication and interaction with app.
+    """
+    gRPC client for all communication and interaction with app.
 
     Use create() to instantiate an AppClient::
 
         AppClient.create(...)
+
     """
 
     @classmethod
@@ -34,12 +38,17 @@ class AppClient:
         return self
 
     _channel: Channel
-    _metadata: str
+    _metadata: Mapping[str, str]
     _closed: bool = False
 
     @property
     def data_client(self) -> DataClient:
         return DataClient(self._channel, self._metadata)
 
-    async def close(self):
-        raise NotImplementedError()
+    def close(self):
+        if self._closed:
+            LOGGER.debug("AppClient is already closed")
+            return
+        LOGGER.debug("Closing gRPC channel to app")
+        self._channel.close()
+        self._closed = True

@@ -4,6 +4,18 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
+    AddTagsToBinaryDataByIDsRequest,
+    AddTagsToBinaryDataByIDsResponse,
+    AddTagsToBinaryDataByFilterRequest,
+    AddTagsToBinaryDataByFilterResponse,
+    RemoveTagsFromBinaryDataByIDsRequest,
+    RemoveTagsFromBinaryDataByIDsResponse,
+    RemoveTagsFromBinaryDataByFilterRequest,
+    RemoveTagsFromBinaryDataByFilterResponse,
+    TagsByFilterRequest,
+    TagsByFilterResponse,
+    BoundingBoxLabelsByFilterRequest,
+    BoundingBoxLabelsByFilterResponse,
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
@@ -29,10 +41,10 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retreiving data from app
 
-    Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient.
+    Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient
     """
 
-    def __init__(self, channel: Channel, metadata: str):
+    def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """
         Create a data client that establishes a connection to app.
 
@@ -46,7 +58,7 @@ class DataClient:
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
-    _metadata: str
+    _metadata: Mapping[str, str]
 
     async def tabular_data_by_filter(
         self,
@@ -186,36 +198,103 @@ class DataClient:
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
         _: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
 
-    async def add_tags_to_binary_data_by_binary_ids(self, binary_ids: Optional[List[str]], tags: Optional[List[str]]) -> None:
-        raise NotImplementedError()
+    async def add_tags_to_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> None:
+        """Add tags to binary data using BinaryIDs
 
-    async def add_tags_to_binary_data_by_filter(self, filter: Optional[Filter], tags: Optional[List[str]]) -> None:
-        raise NotImplementedError()
+        Args:
+            tags (List[str]): List of tags to add to specified binary data. Must be non-empty
+            binary_ids (List[viam.app.proto.BinaryID]): List of BinaryIDs specifying binary data to tag. Must be non-empty
 
-    async def remove_tags_from_binary_data_by_binary_ids(self, binary_ids: Optional[List[str]], tags: Optional[List[str]]) -> None:
-        raise NotImplementedError()
+        Raises:
+            GRPCError: if no binary_ids or tags are provided
+        """
+        request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
+        _: AddTagsToBinaryDataByIDsResponse = await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
 
-    async def remove_tags_from_binary_data_by_filter(self, filter: Optional[Filter], tags: Optional[List[str]]) -> None:
-        raise NotImplementedError()
+    async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
+        """Add tags to binary data using a filter
 
-    async def tags_by_filter(self, filter: Optional[Filter]) -> List[str]:
-        raise NotImplementedError()
+        Args:
+            tags (List[str]): List of tags to add to specified binary data. Must be non-empty
+            filter (viam.app.proto.Filter): Filter specifying binary data to tag. If no filter is provided, all data will be tagged
 
-    # to be defined and implemented last
+        Raises:
+            GRPCError: if no tags are provided
+        """
+        filter = filter if filter else Filter()
+        request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
+        _: AddTagsToBinaryDataByFilterResponse = await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
+
+    async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> None:
+        """Remove tags from binary data using BinaryIDs
+
+        Args:
+            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty
+            file_ids (List[str]): List of BinaryIDs specifying binary data to untag. Must be non-empty
+
+        Raises:
+            GRPCError: if no binary_ids or tags are provided
+        """
+        request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
+        _: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(request, metadata=self._metadata)
+
+    async def remove_tags_from_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
+        """Remove tags from binary data using a filter
+
+        Args:
+            tags (List[str]): List of tags to remove from specified binary data
+            filter (viam.app.proto.Filter): Filter specifying binary data to untag. If no filter is provided, all data will be tagged
+
+        Raises:
+            GRPCError: if no tags are provided
+        """
+        filter = filter if filter else Filter()
+        request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
+        _: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
+            request,
+            metadata=self._metadata
+        )
+
+    async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
+        """Get a list of tags using a filter
+
+        Args:
+            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all data tags will return
+
+        Returns:
+            List[str]: The list of tags
+        """
+        filter = filter if filter else Filter()
+        request = TagsByFilterRequest(filter=filter)
+        response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
+        return response.tags
+
+    # later
     async def add_bounding_box_to_image_by_id(self):
         raise NotImplementedError()
 
-    # to be defined and implemented last
+    # later
     async def remove_bounding_box_from_image_by_id(self):
         raise NotImplementedError()
 
-    async def bounding_box_labels_by_filter(self, filter: Optional[Filter]) -> List[str]:
+    async def bounding_box_labels_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
+        """Get a list of bounding box labels using a filter
+
+        Args:
+            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all labels will return
+
+        Returns:
+            List[str]: The list of bounding box labels
+        """
+        filter = filter if filter else Filter()
+        request = BoundingBoxLabelsByFilterRequest(filter=filter)
+        response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
+        return response.labels
+
+    # TODO(RSDK-3637): Implement
+    async def data_capture_upload(self, metadata: UploadMetadata , sensor_contents: Optional[List[SensorData]] = None) -> None:
         raise NotImplementedError()
 
-    # TODO (RSDK-3637): confirm arguments
-    async def data_capture_upload(self, metadata: Optional[UploadMetadata], sensor_contents: Optional[List[SensorData]]) -> None:
-        raise NotImplementedError()
-
-    # TODO (RSDK-3637): confirm arguments
-    async def file_upload(self, metadata: Optional[UploadMetadata], file_contents: Optional[FileData]) -> None:
+    # TODO(RSDK-3637): Implement
+    async def file_upload(self, metadata: UploadMetadata, file_contents: Optional[FileData]) -> None:
         raise NotImplementedError()
