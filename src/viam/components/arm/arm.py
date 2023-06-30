@@ -113,10 +113,10 @@ class Arm(ComponentBase):
         Get the kinematics information associated with the arm.
 
         Returns:
-            (Tuple): tuple containing:
-                format (KinematicsFileFormat.ValueType): The format of the file, either in URDF format or Viam's kinematic parameter format
-                (spatial vector algebra)
+            Tuple[KinematicsFileFormat.ValueType, bytes]:
+                - KinematicsFileFormat.ValueType:
+                  The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
 
-                data (bytes): The byte contents of the file.
+                - bytes: The byte contents of the file.
         """
         ...

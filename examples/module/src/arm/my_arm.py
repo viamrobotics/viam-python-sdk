@@ -25,7 +25,7 @@ class MyArm(Arm):
             theta=0,
         )
 
-        # Startinjoint positions
+        # Starting joint positions
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         super().__init__(name)
