@@ -29,11 +29,11 @@ Attributes
 
    
 
-.. py:class:: DataClient(channel: grpclib.client.Channel, metadata: str)
+.. py:class:: DataClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
 
    gRPC client for uploading and retreiving data from app
 
-   Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient.
+   Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient
 
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[Mapping[str, Any]]
       :async:
@@ -115,29 +115,68 @@ Attributes
       :raises GRPCError: if no binary_ids are provided.
 
 
-   .. py:method:: add_tags_to_binary_data_by_binary_ids(binary_ids: Optional[List[str]], tags: Optional[List[str]]) -> None
-      :abstractmethod:
+   .. py:method:: add_tags_to_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> None
       :async:
 
+      Add tags to binary data using BinaryIDs
 
-   .. py:method:: add_tags_to_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter], tags: Optional[List[str]]) -> None
-      :abstractmethod:
+      :param tags: List of tags to add to specified binary data. Must be non-empty
+      :type tags: List[str]
+      :param binary_ids: List of BinaryIDs specifying binary data to tag. Must be non-empty
+      :type binary_ids: List[viam.app.proto.BinaryID]
+
+      :raises GRPCError: if no binary_ids or tags are provided
+
+
+   .. py:method:: add_tags_to_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> None
       :async:
 
+      Add tags to binary data using a filter
 
-   .. py:method:: remove_tags_from_binary_data_by_binary_ids(binary_ids: Optional[List[str]], tags: Optional[List[str]]) -> None
-      :abstractmethod:
+      :param tags: List of tags to add to specified binary data. Must be non-empty
+      :type tags: List[str]
+      :param filter: Filter specifying binary data to tag. If no filter is provided, all data will be tagged
+      :type filter: viam.app.proto.Filter
+
+      :raises GRPCError: if no tags are provided
+
+
+   .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> None
       :async:
 
+      Remove tags from binary data using BinaryIDs
 
-   .. py:method:: remove_tags_from_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter], tags: Optional[List[str]]) -> None
-      :abstractmethod:
+      :param tags: List of tags to remove from specified binary data. Must be non-empty
+      :type tags: List[str]
+      :param file_ids: List of BinaryIDs specifying binary data to untag. Must be non-empty
+      :type file_ids: List[str]
+
+      :raises GRPCError: if no binary_ids or tags are provided
+
+
+   .. py:method:: remove_tags_from_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> None
       :async:
 
+      Remove tags from binary data using a filter
 
-   .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> List[str]
-      :abstractmethod:
+      :param tags: List of tags to remove from specified binary data
+      :type tags: List[str]
+      :param filter: Filter specifying binary data to untag. If no filter is provided, all data will be tagged
+      :type filter: viam.app.proto.Filter
+
+      :raises GRPCError: if no tags are provided
+
+
+   .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
       :async:
+
+      Get a list of tags using a filter
+
+      :param filter: Filter specifying data to retreive from. If no filter is provided, all data tags will return
+      :type filter: viam.app.proto.Filter
+
+      :returns: The list of tags
+      :rtype: List[str]
 
 
    .. py:method:: add_bounding_box_to_image_by_id()
@@ -150,17 +189,24 @@ Attributes
       :async:
 
 
-   .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> List[str]
+   .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
+      :async:
+
+      Get a list of bounding box labels using a filter
+
+      :param filter: Filter specifying data to retreive from. If no filter is provided, all labels will return
+      :type filter: viam.app.proto.Filter
+
+      :returns: The list of bounding box labels
+      :rtype: List[str]
+
+
+   .. py:method:: data_capture_upload(metadata: viam.proto.app.datasync.UploadMetadata, sensor_contents: Optional[List[viam.proto.app.datasync.SensorData]] = None) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: data_capture_upload(metadata: Optional[viam.proto.app.datasync.UploadMetadata], sensor_contents: Optional[List[viam.proto.app.datasync.SensorData]]) -> None
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: file_upload(metadata: Optional[viam.proto.app.datasync.UploadMetadata], file_contents: Optional[viam.proto.app.datasync.FileData]) -> None
+   .. py:method:: file_upload(metadata: viam.proto.app.datasync.UploadMetadata, file_contents: Optional[viam.proto.app.datasync.FileData]) -> None
       :abstractmethod:
       :async:
 
