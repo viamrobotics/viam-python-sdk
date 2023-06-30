@@ -9,4 +9,5 @@ with open("code-samples-warning.md", "w") as f:
     f.write("|component|function|\n")
     f.write("|-|-|\n")
     for k, v in data.items():
-        f.write(f"|{k}|{v}|\n")
+        func = v["func"]
+        f.write(f"|{k}|{func}|\n")
