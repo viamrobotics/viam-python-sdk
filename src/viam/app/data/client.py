@@ -4,34 +4,34 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
-    AddTagsToBinaryDataByIDsRequest,
-    AddTagsToBinaryDataByIDsResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
-    RemoveTagsFromBinaryDataByIDsRequest,
-    RemoveTagsFromBinaryDataByIDsResponse,
-    RemoveTagsFromBinaryDataByFilterRequest,
-    RemoveTagsFromBinaryDataByFilterResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
-    BoundingBoxLabelsByFilterRequest,
-    BoundingBoxLabelsByFilterResponse,
+    AddTagsToBinaryDataByIDsRequest,
+    AddTagsToBinaryDataByIDsResponse,
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
     BinaryDataByIDsResponse,
     BinaryID,
-    DataServiceStub,
+    BoundingBoxLabelsByFilterRequest,
+    BoundingBoxLabelsByFilterResponse,
     DataRequest,
-    DeleteBinaryDataByIDsRequest,
-    DeleteBinaryDataByIDsResponse,
+    DataServiceStub,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
+    DeleteBinaryDataByIDsRequest,
+    DeleteBinaryDataByIDsResponse,
     DeleteTabularDataByFilterRequest,
     DeleteTabularDataByFilterResponse,
     Filter,
+    RemoveTagsFromBinaryDataByFilterRequest,
+    RemoveTagsFromBinaryDataByFilterResponse,
+    RemoveTagsFromBinaryDataByIDsRequest,
+    RemoveTagsFromBinaryDataByIDsResponse,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
+    TagsByFilterRequest,
+    TagsByFilterResponse,
 )
 from viam.proto.app.datasync import DataSyncServiceStub, FileData, SensorData, UploadMetadata
 
@@ -92,7 +92,7 @@ class DataClient:
 
         if dest:
             try:
-                file = open(dest, 'w')
+                file = open(dest, "w")
                 file.write(f"{data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
@@ -130,7 +130,7 @@ class DataClient:
 
         if dest:
             try:
-                file = open(dest, 'w')
+                file = open(dest, "w")
                 file.write(f"{data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
@@ -158,7 +158,7 @@ class DataClient:
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
         if dest:
             try:
-                file = open(dest, 'w')
+                file = open(dest, "w")
                 file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
@@ -251,8 +251,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
         _: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
-            request,
-            metadata=self._metadata
+            request, metadata=self._metadata
         )
 
     async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
@@ -292,7 +291,7 @@ class DataClient:
         return response.labels
 
     # TODO(RSDK-3637): Implement
-    async def data_capture_upload(self, metadata: UploadMetadata , sensor_contents: Optional[List[SensorData]] = None) -> None:
+    async def data_capture_upload(self, metadata: UploadMetadata, sensor_contents: Optional[List[SensorData]] = None) -> None:
         raise NotImplementedError()
 
     # TODO(RSDK-3637): Implement
