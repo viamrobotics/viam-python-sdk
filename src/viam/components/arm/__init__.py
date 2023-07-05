@@ -20,7 +20,11 @@ __all__ = [
 
 
 async def create_status(component: Arm) -> Status:
-    (end_position, joint_positions, is_moving,) = await asyncio.gather(
+    (
+        end_position,
+        joint_positions,
+        is_moving,
+    ) = await asyncio.gather(
         component.get_end_position(),
         component.get_joint_positions(),
         component.is_moving(),

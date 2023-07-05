@@ -1,7 +1,7 @@
 from typing import Mapping
-from typing_extensions import Self
 
 from grpclib.client import Channel
+from typing_extensions import Self
 
 from viam import logging
 from viam.app.data.client import DataClient
