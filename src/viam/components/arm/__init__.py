@@ -1,6 +1,6 @@
 import asyncio
 
-from viam.proto.common import KinematicsFileFormat, Pose
+from viam.proto.common import Pose
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.robot import Status
@@ -14,7 +14,6 @@ from .service import ArmRPCService
 __all__ = [
     "Arm",
     "JointPositions",
-    "KinematicsFileFormat",
     "Pose",
 ]
 

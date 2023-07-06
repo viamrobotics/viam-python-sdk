@@ -2,7 +2,7 @@ import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
+from viam.components.arm import ArmClient, ArmStatus, create_status
 from viam.components.arm.service import ArmRPCService
 from viam.resource.manager import ResourceManager
 from viam.proto.common import (
@@ -10,7 +10,6 @@ from viam.proto.common import (
     DoCommandResponse,
     GetGeometriesRequest,
     GetKinematicsRequest,
-    GetKinematicsResponse,
     Pose,
 )
 from viam.proto.component.arm import (
@@ -36,7 +35,6 @@ class TestArm:
     arm = MockArm(name="arm")
     pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
-    kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -72,11 +70,6 @@ class TestArm:
         assert not await self.arm.is_moving()
 
     @pytest.mark.asyncio
-    async def test_get_kinematics(self):
-        kd = await self.arm.get_kinematics()
-        assert kd == self.kinematics
-
-    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
@@ -104,7 +97,6 @@ class TestService:
         cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
-        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -174,8 +166,8 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
             request = GetKinematicsRequest(name=self.name)
-            response: GetKinematicsResponse = await client.GetKinematics(request)
-            assert (response.format, response.kinematics_data) == self.kinematics
+            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
+                await client.GetKinematics(request)
 
     @pytest.mark.asyncio
     async def test_get_geometries(self):
@@ -204,7 +196,6 @@ class TestClient:
         cls.service = ArmRPCService(cls.manager)
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
-        cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -251,13 +242,6 @@ class TestClient:
             assert self.arm.is_stopped is True
             self.arm.is_stopped = False
             assert await client.is_moving() is True
-
-    @pytest.mark.asyncio
-    async def test_get_kinematics(self):
-        async with ChannelFor([self.service]) as channel:
-            client = ArmClient(self.name, channel)
-            kd = await client.get_kinematics()
-            assert kd == self.kinematics
 
     @pytest.mark.asyncio
     async def test_do(self):

@@ -106,13 +106,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase):
         await stream.send_message(response)
 
     async def GetKinematics(self, stream: Stream[GetKinematicsRequest, GetKinematicsResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        arm = self.get_resource(request.name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        format, kinematics_data = await arm.get_kinematics(timeout=timeout)
-        response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data)
-        await stream.send_message(response)
+        raise MethodNotImplementedError("GetKinematics").grpc_error
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
         raise MethodNotImplementedError("GetGeometries").grpc_error
