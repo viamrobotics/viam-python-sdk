@@ -165,7 +165,7 @@ class TestService:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            request = GetKinematicsRequest(name=self.name)
+            request = GetKinematicsRequest()
             with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
                 await client.GetKinematics(request)
 
