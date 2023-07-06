@@ -6,7 +6,7 @@ import ssl
 import sys
 import warnings
 from dataclasses import dataclass
-from typing import Callable, Literal, Optional, Tuple, Type, Union
+from typing import Callable, Optional, Tuple, Type, Union
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
@@ -30,7 +30,7 @@ class Credentials:
     Currently only supports robot location secret.
     """
 
-    type: Literal["robot-location-secret"]
+    type: str
     """The type of credential
     """
 
@@ -191,7 +191,7 @@ class _Runtime:
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
+        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
         self._lib.dial.restype = ctypes.c_void_p
 
         self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
@@ -203,20 +203,21 @@ class _Runtime:
         self._ptr = self._lib.init_rust_runtime()
 
     async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
-        creds = options.credentials.payload if options.credentials else ""
-        insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not creds and options.allow_insecure_downgrade)
+        type = options.credentials.type if options.credentials else ""
+        payload = options.credentials.payload if options.credentials else ""
+        insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (not type and not payload and options.allow_insecure_downgrade)
 
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
         path_ptr = await to_thread(
             self._lib.dial,
             address.encode("utf-8"),
-            creds.encode("utf-8") if creds else None,
+            type.encode("utf-8") if type else None,
+            payload.encode("utf-8") if payload else None,
             insecure,
             self._ptr,
         )
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
         path = path.decode("utf-8") if path else ""
-
         return (path, path_ptr)
 
     def release(self):
