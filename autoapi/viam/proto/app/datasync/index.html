@@ -65,6 +65,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app</span></code></a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../cloudslam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.cloudslam</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
@@ -104,7 +105,10 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadRequest.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse.file_id"><code class="docutils literal notranslate"><span class="pre">DataCaptureUploadResponse.file_id</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataType"><code class="docutils literal notranslate"><span class="pre">DataType</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileData"><code class="docutils literal notranslate"><span class="pre">FileData</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.FileData.data"><code class="docutils literal notranslate"><span class="pre">FileData.data</span></code></a></li>
@@ -117,7 +121,10 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">FileUploadRequest.WhichOneof()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse.file_id"><code class="docutils literal notranslate"><span class="pre">FileUploadResponse.file_id</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.SensorData"><code class="docutils literal notranslate"><span class="pre">SensorData</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.metadata"><code class="docutils literal notranslate"><span class="pre">SensorData.metadata</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.SensorData.struct"><code class="docutils literal notranslate"><span class="pre">SensorData.struct</span></code></a></li>
@@ -458,12 +465,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadResponse</span></span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse.file_id">
+<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -553,12 +565,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadResponse</span></span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse.file_id">
+<span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse.file_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">

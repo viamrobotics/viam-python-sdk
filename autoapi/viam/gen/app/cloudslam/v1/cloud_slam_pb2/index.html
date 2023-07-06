@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.gen.app.cloudslam.v1.cloud_slam_pb2 &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../../../" id="documentation_options" src="../../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../../_sources/autoapi/viam/gen/app/cloudslam/v1/cloud_slam_pb2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.gen.app.cloudslam.v1.cloud_slam_pb2">
+<span id="viam-gen-app-cloudslam-v1-cloud-slam-pb2"></span><h1><a class="reference internal" href="#module-viam.gen.app.cloudslam.v1.cloud_slam_pb2" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2</span></code></a><a class="headerlink" href="#module-viam.gen.app.cloudslam.v1.cloud_slam_pb2" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by mypy-protobuf.  Do not edit manually!
+isort:skip_file</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StartMappingSessionRequest</span></code></a></p></td>
+<td><p>StartMappingSession</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StartMappingSessionResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetActiveMappingSessionsForRobotRequest</span></code></a></p></td>
+<td><p>GetActiveMappingSessionsForRobot</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetActiveMappingSessionsForRobotResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMappingSessionPointCloudRequest</span></code></a></p></td>
+<td><p>GetMappingSessionPointCloud</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetMappingSessionPointCloudResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMappingSessionsRequest</span></code></a></p></td>
+<td><p>ListMappingSessions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListMappingSessionsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopMappingSessionRequest</span></code></a></p></td>
+<td><p>StopMappingSession</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopMappingSessionResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MappingMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.DESCRIPTOR" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.DESCRIPTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTOR</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StartMappingSessionRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StartMappingSessionResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetActiveMappingSessionsForRobotRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetActiveMappingSessionsForRobotResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetMappingSessionPointCloudRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetMappingSessionPointCloudResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListMappingSessionsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ListMappingSessionsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StopMappingSessionRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StopMappingSessionResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___MappingMetadata" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___MappingMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___MappingMetadata</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.DESCRIPTOR">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.descriptor.FileDescriptor</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.DESCRIPTOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">StartMappingSessionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slam_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slam_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>StartMappingSession</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.slam_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slam_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.slam_config" title="Permalink to this definition"></a></dt>
+<dd><p>The given config contains details such as sensor, map package and algorithm-specific fields required to run slam.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.slam_version">
+<span class="sig-name descname"><span class="pre">slam_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.slam_version" title="Permalink to this definition"></a></dt>
+<dd><p>Version to use for slam, defaults stable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.map_name">
+<span class="sig-name descname"><span class="pre">map_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.map_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.org_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.location_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.robot_id">
+<span class="sig-name descname"><span class="pre">robot_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.robot_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">slam_config</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'slam_config'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StartMappingSessionRequest</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">StartMappingSessionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse.session_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StartMappingSessionResponse</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StartMappingSessionResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">GetActiveMappingSessionsForRobotRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetActiveMappingSessionsForRobot</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest.robot_id">
+<span class="sig-name descname"><span class="pre">robot_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest.robot_id" title="Permalink to this definition"></a></dt>
+<dd><p>assumes only one active mapping session on a robot</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetActiveMappingSessionsForRobotRequest</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">GetActiveMappingSessionsForRobotResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse.session_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetActiveMappingSessionsForRobotResponse</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetActiveMappingSessionsForRobotResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">GetMappingSessionPointCloudRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GetMappingSessionPointCloud</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest.session_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetMappingSessionPointCloudRequest</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">GetMappingSessionPointCloudResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">common.v1.common_pb2.Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.pose" title="Permalink to this definition"></a></dt>
+<dd><p>Current position within the SLAM Map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.map_url">
+<span class="sig-name descname"><span class="pre">map_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.map_url" title="Permalink to this definition"></a></dt>
+<dd><p>url to the pointcloud map</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetMappingSessionPointCloudResponse</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___GetMappingSessionPointCloudResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">ListMappingSessionsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ListMappingSessions</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest.org_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest.location_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListMappingSessionsRequest</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">ListMappingSessionsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___MappingMetadata</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse.session">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">session</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___MappingMetadata</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse.session" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ListMappingSessionsResponse</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___ListMappingSessionsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">StopMappingSessionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>StopMappingSession</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest.session_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest.save_map">
+<span class="sig-name descname"><span class="pre">save_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest.save_map" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StopMappingSessionRequest</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">StopMappingSessionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">package_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse.package_id">
+<span class="sig-name descname"><span class="pre">package_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse.package_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse.version" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StopMappingSessionResponse</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___StopMappingSessionResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">MappingMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_start_submitted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_cloud_run_job_started</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_end_submitted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_cloud_run_job_ended</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_run_job_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viam_server_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slam_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_start_submitted">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_start_submitted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_start_submitted" title="Permalink to this definition"></a></dt>
+<dd><p>time this document was created</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_cloud_run_job_started">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_cloud_run_job_started</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_cloud_run_job_started" title="Permalink to this definition"></a></dt>
+<dd><p>time the cloud run job started</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_end_submitted">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_end_submitted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_end_submitted" title="Permalink to this definition"></a></dt>
+<dd><p>time StopSlamSession was called</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_cloud_run_job_ended">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_cloud_run_job_ended</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.time_cloud_run_job_ended" title="Permalink to this definition"></a></dt>
+<dd><p>time the cloud run job ended</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.org_id" title="Permalink to this definition"></a></dt>
+<dd><p>org associated with the slam session</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.location_id" title="Permalink to this definition"></a></dt>
+<dd><p>location associated with the slam session</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.robot_id">
+<span class="sig-name descname"><span class="pre">robot_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.robot_id" title="Permalink to this definition"></a></dt>
+<dd><p>robot associated with slam session</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.end_status">
+<span class="sig-name descname"><span class="pre">end_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.end_status" title="Permalink to this definition"></a></dt>
+<dd><p>“success”, “failed to start”, etc</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.cloud_run_job_id">
+<span class="sig-name descname"><span class="pre">cloud_run_job_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.cloud_run_job_id" title="Permalink to this definition"></a></dt>
+<dd><p>initially unset</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.viam_server_version">
+<span class="sig-name descname"><span class="pre">viam_server_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.viam_server_version" title="Permalink to this definition"></a></dt>
+<dd><p>version tag from request, defaults to stable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.map_name">
+<span class="sig-name descname"><span class="pre">map_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.map_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the map package</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.slam_version">
+<span class="sig-name descname"><span class="pre">slam_version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.slam_version" title="Permalink to this definition"></a></dt>
+<dd><p>version tag from request, defaults to stable</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.config">
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.config" title="Permalink to this definition"></a></dt>
+<dd><p>a robot config for a slam session</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">time_cloud_run_job_ended</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_cloud_run_job_ended'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">time_cloud_run_job_started</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_cloud_run_job_started'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">time_end_submitted</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_end_submitted'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">time_start_submitted</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_start_submitted'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.MappingMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___MappingMetadata">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.app.cloudslam.v1.cloud_slam_pb2.</span></span><span class="sig-name descname"><span class="pre">global___MappingMetadata</span></span><a class="headerlink" href="#viam.gen.app.cloudslam.v1.cloud_slam_pb2.global___MappingMetadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

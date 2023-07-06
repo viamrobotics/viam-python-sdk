@@ -25,12 +25,22 @@ Classes
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
+   .. py:method:: GetUserIDByEmail(stream: grpclib.server.Stream[app.v1.app_pb2.GetUserIDByEmailRequest, app.v1.app_pb2.GetUserIDByEmailResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: CreateOrganization(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationRequest, app.v1.app_pb2.CreateOrganizationResponse]) -> None
       :abstractmethod:
       :async:
 
 
    .. py:method:: ListOrganizations(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsRequest, app.v1.app_pb2.ListOrganizationsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ListOrganizationsByUser(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsByUserRequest, app.v1.app_pb2.ListOrganizationsByUserResponse]) -> None
       :abstractmethod:
       :async:
 
