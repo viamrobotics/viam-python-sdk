@@ -33,7 +33,16 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
-from viam.proto.app.datasync import DataSyncServiceStub, FileData, SensorData, UploadMetadata
+from viam.proto.app.datasync import (
+    DataSyncServiceStub,
+    FileData,
+    SensorData,
+    UploadMetadata,
+    DataCaptureUploadRequest,
+    DataCaptureUploadResponse,
+    FileUploadRequest,
+    FileUploadResponse
+)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -164,29 +173,37 @@ class DataClient:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return response.data
 
-    async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> None:
+    async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Delete tabular data
 
         Args:
             filter (viam.app.data.Filter): When supplied, the tabular data to delete will be filtered based on the provided constraints.
                 If not provided, all data will be deleted. Exercise caution before using this option.
+
+        Returns:
+            int: The number of items deleted
         """
         filter = filter if filter else Filter()
         request = DeleteTabularDataByFilterRequest(filter=filter)
-        _: DeleteTabularDataByFilterResponse = await self._data_client.DeleteTabularDataByFilter(request, metadata=self._metadata)
+        response: DeleteTabularDataByFilterResponse = await self._data_client.DeleteTabularDataByFilter(request, metadata=self._metadata)
+        return response.deleted_count
 
-    async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> None:
+    async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Delete binary data
 
         Args:
             filter (viam.app.data.Filter): When supplied, the binary data to delete will be filtered based on the provided constraints.
             If not provided, all data will be deleted. Exercise caution before using this option.
+
+        Returns:
+            int: the number of items deleted
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
-        _: DeleteBinaryDataByFilterResponse = await self._data_client.DeleteBinaryDataByFilter(request, metadata=self._metadata)
+        response: DeleteBinaryDataByFilterResponse = await self._data_client.DeleteBinaryDataByFilter(request, metadata=self._metadata)
+        return response.deleted_count
 
-    async def delete_binary_data_by_ids(self, binary_ids: List[BinaryID]) -> None:
+    async def delete_binary_data_by_ids(self, binary_ids: List[BinaryID]) -> int:
         """Delete binary data
 
         Args:
@@ -196,7 +213,8 @@ class DataClient:
             GRPCError: if no binary_ids are provided.
         """
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
-        _: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
+        response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
+        return response.deleted_count
 
     async def add_tags_to_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> None:
         """Add tags to binary data using BinaryIDs
@@ -234,9 +252,16 @@ class DataClient:
 
         Raises:
             GRPCError: if no binary_ids or tags are provided
+
+        Returns:
+            int: the number of tags removed
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
-        _: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(request, metadata=self._metadata)
+        response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
+            request,
+            metadata=self._metadata
+        )
+        return response.deleted_count
 
     async def remove_tags_from_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
         """Remove tags from binary data using a filter
@@ -247,12 +272,17 @@ class DataClient:
 
         Raises:
             GRPCError: if no tags are provided
+
+        Returns:
+            int: the number of tags removed
         """
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
-        _: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
-            request, metadata=self._metadata
+        response: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
+            request,
+            metadata=self._metadata
         )
+        return response.deleted_count
 
     async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
         """Get a list of tags using a filter
@@ -268,11 +298,11 @@ class DataClient:
         response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
         return response.tags
 
-    # later
+    # TODO: implement
     async def add_bounding_box_to_image_by_id(self):
         raise NotImplementedError()
 
-    # later
+    # TODO: implement
     async def remove_bounding_box_from_image_by_id(self):
         raise NotImplementedError()
 
@@ -290,10 +320,41 @@ class DataClient:
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
         return response.labels
 
-    # TODO(RSDK-3637): Implement
-    async def data_capture_upload(self, metadata: UploadMetadata, sensor_contents: Optional[List[SensorData]] = None) -> None:
-        raise NotImplementedError()
+    async def data_capture_upload(self, metadata: UploadMetadata , sensor_contents: List[SensorData]) -> None:
+        """Upload binary or tabular sensor data.
 
-    # TODO(RSDK-3637): Implement
+        Sync binary or tabular data collected on a robot through a specific component (i.e. a motor) along with the relevant metadata with
+        app.viam.com.
+
+        Args:
+            metadata (viam.app.proto.datasync.UploadMetaData): Metadata relating the data collected with the corresponding robot part. Must
+                specify a part ID, component type, component name, method name, and data type.
+            sensor_contents (List[viam.app.proto.datasync.SensorData]): A list of the data to be uploaded. If the metadata specifies a
+                binary data type, the "binary" field of sensor_contents will be uploaded. Alternatively, the "struct" field will be uploaded
+                if the data type is tabular. Length of sensor_contents must be 1 if uploading a binary data capture. Otherwise, must simply
+                be nonempty.
+
+        Raises:
+            GRPCError: If a required data field is not defined.
+        """
+        request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
+        _: DataCaptureUploadResponse = await self._data_sync_client.DataCaptureUpload(request, metadata=self._metadata)
+
     async def file_upload(self, metadata: UploadMetadata, file_contents: Optional[FileData]) -> None:
-        raise NotImplementedError()
+        """Upload arbitrary file data.
+
+        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+
+        Args:
+            metadata (viam.app.proto.datasync.UploadMetaData): Metadata for the file to be uploaded. Must specify a part ID.
+            file_contents (List[viam.app.proto.datasync.FileData]): A FileData object containing binary data to upload as a file.
+
+        Raises:
+            GRPCError: If an invalid part ID is provided as metadata.
+        """
+        request_metadata = FileUploadRequest(metadata=metadata)
+        request_file_contents = FileUploadRequest(file_contents=file_contents)
+        async with self._data_sync_client.FileUpload.open(metadata=self._metadata, timeout=10) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(request_file_contents, end=True)
+            _: FileUploadResponse = await stream.recv_message()
