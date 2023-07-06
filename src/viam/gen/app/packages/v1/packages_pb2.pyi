@@ -28,6 +28,7 @@ class _PackageTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._En
     PACKAGE_TYPE_ARCHIVE: _PackageType.ValueType
     PACKAGE_TYPE_ML_MODEL: _PackageType.ValueType
     PACKAGE_TYPE_MODULE: _PackageType.ValueType
+    PACKAGE_TYPE_SLAM_MAP: _PackageType.ValueType
 
 class PackageType(_PackageType, metaclass=_PackageTypeEnumTypeWrapper):
     ...
@@ -35,6 +36,7 @@ PACKAGE_TYPE_UNSPECIFIED: PackageType.ValueType
 PACKAGE_TYPE_ARCHIVE: PackageType.ValueType
 PACKAGE_TYPE_ML_MODEL: PackageType.ValueType
 PACKAGE_TYPE_MODULE: PackageType.ValueType
+PACKAGE_TYPE_SLAM_MAP: PackageType.ValueType
 global___PackageType = PackageType
 
 @typing_extensions.final

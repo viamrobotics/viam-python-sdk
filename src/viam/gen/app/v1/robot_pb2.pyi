@@ -779,7 +779,7 @@ class AgentInfo(google.protobuf.message.Message):
     PLATFORM_FIELD_NUMBER: builtins.int
     host: builtins.str
     os: builtins.str
-    'Replaced by platform'
+    'Will soon be deprecated, use platform instead'
 
     @property
     def ips(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
