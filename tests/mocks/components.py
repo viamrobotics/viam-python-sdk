@@ -13,7 +13,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from PIL import Image
 
-from viam.components.arm import Arm, JointPositions
+from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
@@ -64,6 +64,7 @@ class MockArm(Arm):
         self.is_stopped = True
         self.extra = None
         self.timeout: Optional[float] = None
+        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         super().__init__(name)
 
     async def get_end_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Pose:
@@ -106,6 +107,9 @@ class MockArm(Arm):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def get_kinematics(self, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        return self.kinematics
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

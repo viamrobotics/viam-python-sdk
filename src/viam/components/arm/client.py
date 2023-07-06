@@ -1,8 +1,8 @@
-from typing import Any, Dict, Mapping, Optional
+from typing import Any, Dict, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetKinematicsRequest, GetKinematicsResponse
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -19,7 +19,7 @@ from viam.proto.component.arm import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Arm, Pose
+from . import Arm, KinematicsFileFormat, Pose
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
@@ -107,3 +107,8 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
+
+    async def get_kinematics(self, *, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        request = GetKinematicsRequest(name=self.name)
+        response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout)
+        return (response.format, response.kinematics_data)

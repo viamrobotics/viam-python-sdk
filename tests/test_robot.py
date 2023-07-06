@@ -1,6 +1,6 @@
 from grpclib.client import Channel
 import asyncio
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
@@ -8,7 +8,7 @@ from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import Arm
+from viam.components.arm import Arm, KinematicsFileFormat
 from viam.components.movement_sensor import MovementSensor
 from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
@@ -551,6 +551,9 @@ class TestRobotClient:
 
                 async def is_moving(self) -> bool:
                     return await self.actual_client.is_moving()
+
+                async def get_kinematics(self, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+                    return await self.actual_client.get_kinematics(timeout=timeout)
 
             old_create_client = Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client
             Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = lambda name, channel: FakeArmClient(name, channel)

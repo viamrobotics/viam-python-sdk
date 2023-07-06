@@ -1,10 +1,10 @@
 import abc
-from typing import Any, Dict, Final, Optional
+from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import JointPositions, Pose
+from . import JointPositions, KinematicsFileFormat, Pose
 
 
 class Arm(ComponentBase):
@@ -104,5 +104,19 @@ class Arm(ComponentBase):
 
         Returns:
             bool: Whether the arm is moving.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_kinematics(self, *, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        """
+        Get the kinematics information associated with the arm.
+
+        Returns:
+            Tuple[KinematicsFileFormat.ValueType, bytes]:
+                - KinematicsFileFormat.ValueType:
+                The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
+
+                - bytes: The byte contents of the file.
         """
         ...
