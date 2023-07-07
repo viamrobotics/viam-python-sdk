@@ -30,7 +30,7 @@ class Credentials:
     Currently only supports robot location secret.
     """
 
-    type: Literal["robot-location-secret", "robot-secret"]
+    type: Union[Literal["robot-location-secret"], Literal["robot-secret"]]
     """The type of credential
     """
 
