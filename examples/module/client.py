@@ -9,8 +9,11 @@ from viam.rpc.dial import Credentials, DialOptions
 
 
 async def connect():
-    creds = Credentials(type="<your authentication type here>", payload="<your authentication payload here>")
-    opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(credentials=creds), log_level=logging.DEBUG)
+    creds = Credentials(type="<your authentication type here>",
+                        payload="<your authentication payload here>")
+    opts = RobotClient.Options(refresh_interval=0,
+                               dial_options=DialOptions(credentials=creds),
+                               log_level=logging.DEBUG)
     return await RobotClient.at_address("<your robot uri here>", opts)
 
 
