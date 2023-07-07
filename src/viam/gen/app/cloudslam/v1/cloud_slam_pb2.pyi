@@ -24,9 +24,10 @@ class StartMappingSessionRequest(google.protobuf.message.Message):
     SLAM_CONFIG_FIELD_NUMBER: builtins.int
     SLAM_VERSION_FIELD_NUMBER: builtins.int
     MAP_NAME_FIELD_NUMBER: builtins.int
-    ORG_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_ID_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
 
     @property
     def slam_config(self) -> google.protobuf.struct_pb2.Struct:
@@ -34,17 +35,19 @@ class StartMappingSessionRequest(google.protobuf.message.Message):
     slam_version: builtins.str
     'Version to use for slam, defaults stable'
     map_name: builtins.str
-    org_id: builtins.str
+    organization_id: builtins.str
     location_id: builtins.str
     robot_id: builtins.str
+    viam_server_version: builtins.str
+    'Version to use for viam, defaults stable'
 
-    def __init__(self, *, slam_config: google.protobuf.struct_pb2.Struct | None=..., slam_version: builtins.str=..., map_name: builtins.str=..., org_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=...) -> None:
+    def __init__(self, *, slam_config: google.protobuf.struct_pb2.Struct | None=..., slam_version: builtins.str=..., map_name: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., viam_server_version: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['slam_config', b'slam_config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'map_name', b'map_name', 'org_id', b'org_id', 'robot_id', b'robot_id', 'slam_config', b'slam_config', 'slam_version', b'slam_version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'map_name', b'map_name', 'organization_id', b'organization_id', 'robot_id', b'robot_id', 'slam_config', b'slam_config', 'slam_version', b'slam_version', 'viam_server_version', b'viam_server_version']) -> None:
         ...
 global___StartMappingSessionRequest = StartMappingSessionRequest
 
@@ -129,15 +132,15 @@ global___GetMappingSessionPointCloudResponse = GetMappingSessionPointCloudRespon
 class ListMappingSessionsRequest(google.protobuf.message.Message):
     """ListMappingSessions"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    ORG_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
-    org_id: builtins.str
+    organization_id: builtins.str
     location_id: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'org_id', b'org_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
         ...
 global___ListMappingSessionsRequest = ListMappingSessionsRequest
 
