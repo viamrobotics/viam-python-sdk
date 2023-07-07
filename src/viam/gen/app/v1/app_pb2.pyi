@@ -1454,14 +1454,12 @@ global___ListFragmentsResponse = ListFragmentsResponse
 class GetFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
-    organization_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
         ...
 global___GetFragmentRequest = GetFragmentRequest
 
@@ -1489,21 +1487,19 @@ class CreateFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     name: builtins.str
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
-    organization_id: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'name', b'name', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'name', b'name']) -> None:
         ...
 global___CreateFragmentRequest = CreateFragmentRequest
 
@@ -1533,7 +1529,6 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     PUBLIC_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -1541,15 +1536,14 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
     public: builtins.bool
-    organization_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'public', b'public']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'organization_id', b'organization_id', 'public', b'public']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public']) -> None:
         ...
 
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_public', b'_public']) -> typing_extensions.Literal['public'] | None:
@@ -1579,14 +1573,12 @@ global___UpdateFragmentResponse = UpdateFragmentResponse
 class DeleteFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
-    organization_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
         ...
 global___DeleteFragmentRequest = DeleteFragmentRequest
 
@@ -2023,13 +2015,16 @@ global___CreateModuleRequest = CreateModuleRequest
 class CreateModuleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
+    URL_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     'The id of the module containing the namespace and name'
+    url: builtins.str
+    'The detail page of the module'
 
-    def __init__(self, *, module_id: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., url: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id', 'url', b'url']) -> None:
         ...
 global___CreateModuleResponse = CreateModuleResponse
 
@@ -2041,6 +2036,7 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     URL_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     'The id of the module being updated, containing the namespace and name'
     visibility: global___Visibility.ValueType
@@ -2053,19 +2049,27 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
+    entrypoint: builtins.str
+    'The executable to run to start the module program'
 
-    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
 
 @typing_extensions.final
 class UpdateModuleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    URL_FIELD_NUMBER: builtins.int
+    url: builtins.str
+    'The detail page of the module'
 
-    def __init__(self) -> None:
+    def __init__(self, *, url: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['url', b'url']) -> None:
         ...
 global___UpdateModuleResponse = UpdateModuleResponse
 
@@ -2134,8 +2138,14 @@ global___UploadModuleFileRequest = UploadModuleFileRequest
 @typing_extensions.final
 class UploadModuleFileResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    URL_FIELD_NUMBER: builtins.int
+    url: builtins.str
+    'The detail page of the module'
 
-    def __init__(self) -> None:
+    def __init__(self, *, url: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['url', b'url']) -> None:
         ...
 global___UploadModuleFileResponse = UploadModuleFileResponse
 
@@ -2176,6 +2186,7 @@ global___GetModuleResponse = GetModuleResponse
 class Module(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     VERSIONS_FIELD_NUMBER: builtins.int
@@ -2186,6 +2197,8 @@ class Module(google.protobuf.message.Message):
     TOTAL_ORGANIZATION_USAGE_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     'The id of the module, containing the namespace and name'
+    organization_id: builtins.str
+    'The id of the organization that owns the module'
     name: builtins.str
     'The name of the module'
     visibility: global___Visibility.ValueType
@@ -2207,10 +2220,10 @@ class Module(google.protobuf.message.Message):
     total_organization_usage: builtins.int
     'The total number of organizations using this module'
 
-    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., organization_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
         ...
 global___Module = Module
 
