@@ -6,6 +6,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from google.protobuf.struct_pb2 import Struct
 
 from viam import logging
+from viam.utils import struct_to_dict
 from viam.proto.app.data import (
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
@@ -101,7 +102,7 @@ class DataClient:
             response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [struct.data for struct in response.data]
+            data += [struct_to_dict(struct.data) for struct in response.data]
             last = response.last
 
         if dest:
@@ -343,17 +344,17 @@ class DataClient:
     ) -> None:
         """Upload binary sensor data.
 
-        Sync binary data collected on a robot through a specific component (i.e., a motor) along with the relevant metadata with
+        Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
         app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
 
         Args:
             part_id (str): Part ID of the component used to captuer the data.
-            component_type (str): Type of the component used to capture the data (i.e., "movement_sensor").
+            component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension of data being uploaded.
-            tags (Optional[List[str]]): (Optional) Optional list of tags to allow for tag-based data filtering.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering.
             timestamps (Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]): Optional tuple
                 containing Timestamps denoting the times this data was requested[0] and received[1] by the appropriate sensor.
             binary_data (bytes): The data to be uploaded, respresented in bytes.
@@ -397,12 +398,12 @@ class DataClient:
     ) -> None:
         """Upload tabular sensor data.
 
-        Sync tabular data collected on a robot through a specific component (i.e., a motor) along with the relevant metadata with
+        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
         app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
 
         Args:
             part_id (str): Part ID of the component used to captuer the data.
-            component_type (str): Type of the component used to capture the data (i.e., "movement_sensor").
+            component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
@@ -470,8 +471,8 @@ class DataClient:
         Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
 
         Args:
-            part_id (str): Part ID of the component associated with the file.
-            component_type (Optional[str]): Optional type of the component associated with the file (i.e., "movement_sensor").
+            part_id (str): Part ID of the resource associated with the file.
+            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             file_name (Optional[str]): Optional name of the file.
@@ -512,7 +513,7 @@ class DataClient:
 
         Args:
             part_id (str): Part ID of the component associated with the file.
-            component_type (Optional[str]): Optional type of the component associated with the file (i.e., "movement_sensor").
+            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
