@@ -361,6 +361,14 @@ class DataClient:
         Raises:
             GRPCError: If an invalid part ID is passed.
         """
+        sensor_contents = SensorData(
+            metadata=SensorMetadata(
+                time_requested=timestamps[0] if timestamps[0] else None,
+                time_received=timestamps[1] if timestamps[1] else None,
+            ),
+            struct=None,  # Used for tabular data.
+            binary=binary_data
+        )
         metadata = UploadMetadata(
             part_id=part_id,
             component_type=component_type,
@@ -371,14 +379,6 @@ class DataClient:
             method_parameters=method_parameters if method_parameters else None,
             file_extension=file_extension if file_extension else None,
             tags=tags if tags else None,
-        )
-        sensor_contents = SensorData(
-            metadata=SensorMetadata(
-                time_requested=timestamps[0] if timestamps[0] else None,
-                time_received=timestamps[1] if timestamps[1] else None,
-            ),
-            struct=None,  # Used for tabular data.
-            binary=binary_data
         )
         _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
 
@@ -446,7 +446,7 @@ class DataClient:
             file_extension=file_extension if file_extension else None,
             tags=tags if tags else None,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
+        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
 
     async def _data_capture_upload(self, metadata: UploadMetadata, sensor_contents: List[SensorData]) -> DataCaptureUploadResponse:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
@@ -475,7 +475,7 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             file_name (Optional[str]): Optional name of the file.
-            method_parameters (Optional[str]): Optoinal dicitonary of the method parameters. No longer in active use.
+            method_parameters (Optional[str]): Optional dicitonary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering.
             data: (Optional[bytes]): Optional bytes representing file data to upload.
