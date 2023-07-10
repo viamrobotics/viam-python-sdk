@@ -446,7 +446,7 @@ class DataClient:
             file_extension=file_extension if file_extension else None,
             tags=tags if tags else None,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
+        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
 
     async def _data_capture_upload(self, metadata: UploadMetadata, sensor_contents: List[SensorData]) -> DataCaptureUploadResponse:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
