@@ -23,6 +23,7 @@ class AppClient:
         """Create an AppClient that establishes a connection to app.viam.com.
 
         Args:
+
             dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and
                 `auth_entity` fields are required.
 
