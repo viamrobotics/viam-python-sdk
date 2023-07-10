@@ -329,7 +329,6 @@ class DataClient:
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
         return response.labels
 
-    # TODO [DATA-1663]: Fix Timestamps bug.
     async def binary_data_capture_upload(
         self,
         part_id: str,
@@ -337,7 +336,6 @@ class DataClient:
         component_name: str,
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
-        file_extension: Optional[str],
         tags: Optional[List[str]],
         timestamps: Optional[tuple[Timestamp, Timestamp]],
         binary_data: bytes
@@ -353,10 +351,9 @@ class DataClient:
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
-            file_extension (Optional[str]): Optional file extension of data being uploaded.
-            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             timestamps (Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]): Optional tuple
-                containing Timestamps denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
             binary_data (bytes): The data to be uploaded, respresented in bytes.
 
         Raises:
@@ -378,12 +375,11 @@ class DataClient:
             type=DataType.DATA_TYPE_BINARY_SENSOR,
             file_name=None,  # Not used in app.
             method_parameters=method_parameters if method_parameters else None,
-            file_extension=file_extension if file_extension else None,
+            file_extension=None,  # Will be stored as empty string "".
             tags=tags if tags else None,
         )
         _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
 
-    # TODO [DATA-1663]: Fix Timestamps bug.
     async def tabular_data_capture_upload(
         self,
         part_id: str,
@@ -391,7 +387,6 @@ class DataClient:
         component_name: str,
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
-        file_extension: Optional[str],
         tags: Optional[List[str]],
         timestamps: Optional[List[tuple[Timestamp, Timestamp]]],
         tabular_data: List[Mapping[str, Any]]
@@ -407,11 +402,10 @@ class DataClient:
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
-            file_extension (Optional[str]): Optional file extension of data being uploaded.
-            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             timestamps (Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]]): Optional
-                list of tuples, each containing Timestamps denoting the times this data was requested[0] and received[1] by the appropriate
-                sensor.
+                list of tuples, each containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the
+                appropriate sensor.
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
 
         Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
@@ -419,7 +413,7 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            AssertionError: If a list of Timestamps is provided and its length does not match the length of the list of tabular data.
+            AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.
         """
         sensor_contents = [None] * len(tabular_data)
         if timestamps:
@@ -444,7 +438,7 @@ class DataClient:
             type=DataType.DATA_TYPE_TABULAR_SENSOR,
             file_name=None,  # Not used in app.
             method_parameters=method_parameters if method_parameters else None,
-            file_extension=file_extension if file_extension else None,
+            file_extension=None,  # Will be stored as empty string "".
             tags=tags if tags else None,
         )
         _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
@@ -475,10 +469,12 @@ class DataClient:
             component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            file_name (Optional[str]): Optional name of the file.
+            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
+                provided.
             method_parameters (Optional[str]): Optional dicitonary of the method parameters. No longer in active use.
-            file_extension (Optional[str]): Optional file extension.
-            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering.
+            file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
+                provided.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             data: (Optional[bytes]): Optional bytes representing file data to upload.
 
         Raises:
@@ -517,7 +513,7 @@ class DataClient:
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
-            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             filepath (str): Absolute filepath of file to be uploaded.
 
         Raises:
