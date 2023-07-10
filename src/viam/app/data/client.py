@@ -515,7 +515,7 @@ class DataClient:
             component_type (Optional[str]): Optional type of the component associated with the file (i.e., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            method_parameters (Optional[str]): Optional dicitonary of the method parameters. No longer in active use.
+            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering.
             filepath (str): Absolute filepath of file to be uploaded.
 
