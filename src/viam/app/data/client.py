@@ -54,7 +54,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 class DataClient:
-    """gRPC client for uploading and retreiving data from app
+    """gRPC client for uploading and retrieving data from app
 
     Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient
     """
@@ -177,7 +177,7 @@ class DataClient:
                 file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
-        return response.data
+        return [binary_data.binary for binary_data in response.data]
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Delete tabular data
@@ -297,7 +297,7 @@ class DataClient:
         """Get a list of tags using a filter
 
         Args:
-            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all data tags will return
+            filter (viam.app.proto.Filter): Filter specifying data to retrieve from. If no filter is provided, all data tags will return
 
         Returns:
             List[str]: The list of tags
@@ -319,7 +319,7 @@ class DataClient:
         """Get a list of bounding box labels using a filter
 
         Args:
-            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all labels will return
+            filter (viam.app.proto.Filter): Filter specifying data to retrieve from. If no filter is provided, all labels will return
 
         Returns:
             List[str]: The list of bounding box labels
