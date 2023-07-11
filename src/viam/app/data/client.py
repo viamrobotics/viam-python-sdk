@@ -4,8 +4,11 @@ from typing import Any, List, Mapping, Optional
 from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
+from google.protobuf.timestamp_pb2 import Timestamp
+from google.protobuf.struct_pb2 import Struct
 
 from viam import logging
+from viam.utils import struct_to_dict
 from viam.proto.app.data import (
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
@@ -267,7 +270,8 @@ class DataClient:
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
-            request, metadata=self._metadata
+            request,
+            metadata=self._metadata
         )
         return response.deleted_count
 
@@ -287,7 +291,8 @@ class DataClient:
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
         response: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
-            request, metadata=self._metadata
+            request,
+            metadata=self._metadata
         )
         return response.deleted_count
 
