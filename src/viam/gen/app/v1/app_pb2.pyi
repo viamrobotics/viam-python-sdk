@@ -1384,7 +1384,6 @@ class Fragment(google.protobuf.message.Message):
     PUBLIC_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
     ORGANIZATION_NAME_FIELD_NUMBER: builtins.int
-    READONLY_FIELD_NUMBER: builtins.int
     ROBOT_PART_COUNT_FIELD_NUMBER: builtins.int
     ORGANIZATION_COUNT_FIELD_NUMBER: builtins.int
     ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
@@ -1401,7 +1400,6 @@ class Fragment(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
     organization_name: builtins.str
-    readonly: builtins.bool
     robot_part_count: builtins.int
     'number of robot parts using this fragment'
     organization_count: builtins.int
@@ -1409,13 +1407,13 @@ class Fragment(google.protobuf.message.Message):
     only_used_by_owner: builtins.bool
     'whether the organization(s) using this fragment is the same as the fragment org'
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., readonly: builtins.bool=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'readonly', b'readonly', 'robot_part_count', b'robot_part_count']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count']) -> None:
         ...
 global___Fragment = Fragment
 
@@ -1487,19 +1485,21 @@ class CreateFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     name: builtins.str
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
+    organization_id: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., organization_id: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'name', b'name', 'organization_id', b'organization_id']) -> None:
         ...
 global___CreateFragmentRequest = CreateFragmentRequest
 
