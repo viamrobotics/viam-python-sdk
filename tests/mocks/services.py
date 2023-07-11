@@ -5,6 +5,44 @@ from PIL import Image
 
 from viam.media.video import RawImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
+from viam.proto.app.data import (
+    AddBoundingBoxToImageByIDRequest,
+    AddBoundingBoxToImageByIDResponse,
+    AddTagsToBinaryDataByFilterRequest,
+    AddTagsToBinaryDataByFilterResponse,
+    AddTagsToBinaryDataByIDsRequest,
+    AddTagsToBinaryDataByIDsResponse,
+    BinaryDataByFilterRequest,
+    BinaryDataByFilterResponse,
+    BinaryDataByIDsRequest,
+    BinaryDataByIDsResponse,
+    BoundingBoxLabelsByFilterRequest,
+    BoundingBoxLabelsByFilterResponse,
+    DeleteBinaryDataByFilterRequest,
+    DeleteBinaryDataByFilterResponse,
+    DeleteBinaryDataByIDsRequest,
+    DeleteBinaryDataByIDsResponse,
+    DeleteTabularDataByFilterRequest,
+    DeleteTabularDataByFilterResponse,
+    RemoveBoundingBoxFromImageByIDRequest,
+    RemoveBoundingBoxFromImageByIDResponse,
+    RemoveTagsFromBinaryDataByFilterRequest,
+    RemoveTagsFromBinaryDataByFilterResponse,
+    RemoveTagsFromBinaryDataByIDsRequest,
+    RemoveTagsFromBinaryDataByIDsResponse,
+    TabularDataByFilterRequest,
+    TabularDataByFilterResponse,
+    TagsByFilterRequest,
+    TagsByFilterResponse,
+    DataServiceBase
+)
+from viam.proto.app.datasync import (
+    DataCaptureUploadRequest,
+    DataCaptureUploadResponse,
+    FileUploadRequest,
+    FileUploadResponse,
+    DataSyncServiceBase
+)
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -269,3 +307,70 @@ class MockSLAM(SLAM):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+
+class MockData(DataServiceBase, DataSyncServiceBase):
+    def __init__(
+        self,
+    ):
+        pass
+
+    async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
+        pass
+
+    async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
+        pass
+
+    async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
+        pass
+
+    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
+        pass
+
+    async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
+        pass
+
+    async def DeleteBinaryDataByIDs(self, stream: Stream[DeleteBinaryDataByIDsRequest, DeleteBinaryDataByIDsResponse]) -> None:
+        pass
+
+    async def AddTagsToBinaryDataByIDs(self, stream: Stream[AddTagsToBinaryDataByIDsRequest, AddTagsToBinaryDataByIDsResponse]) -> None:
+        pass
+
+    async def AddTagsToBinaryDataByFilter(
+        self,
+        stream: Stream[AddTagsToBinaryDataByFilterRequest, AddTagsToBinaryDataByFilterResponse]
+    ) -> None:
+        pass
+
+    async def RemoveTagsFromBinaryDataByIDs(
+        self,
+        stream: Stream[RemoveTagsFromBinaryDataByIDsRequest, RemoveTagsFromBinaryDataByIDsResponse]
+    ) -> None:
+        pass
+
+    async def RemoveTagsFromBinaryDataByFilter(
+        self,
+        stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
+    ) -> None:
+        pass
+
+    async def TagsByFilter(self, stream: Stream[TagsByFilterRequest, TagsByFilterResponse]) -> None:
+        pass
+
+    async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
+        pass
+
+    async def RemoveBoundingBoxFromImageByID(
+        self,
+        stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
+    ) -> None:
+        pass
+
+    async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
+        pass
+
+    async def DataCaptureUpload(self, stream: Stream[DataCaptureUploadRequest, DataCaptureUploadResponse]) -> None:
+        pass
+
+    async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
+        pass
