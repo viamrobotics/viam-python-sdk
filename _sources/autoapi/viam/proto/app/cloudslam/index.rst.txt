@@ -152,13 +152,13 @@ Classes
 
 
 
-.. py:class:: ListMappingSessionsRequest(*, org_id: str = ..., location_id: str = ...)
+.. py:class:: ListMappingSessionsRequest(*, organization_id: str = ..., location_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    ListMappingSessions
 
-   .. py:attribute:: org_id
+   .. py:attribute:: organization_id
       :type: str
 
       
@@ -277,7 +277,7 @@ Classes
 
 
 
-.. py:class:: StartMappingSessionRequest(*, slam_config: google.protobuf.struct_pb2.Struct | None = ..., slam_version: str = ..., map_name: str = ..., org_id: str = ..., location_id: str = ..., robot_id: str = ...)
+.. py:class:: StartMappingSessionRequest(*, slam_config: google.protobuf.struct_pb2.Struct | None = ..., slam_version: str = ..., map_name: str = ..., organization_id: str = ..., location_id: str = ..., robot_id: str = ..., viam_server_version: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -298,7 +298,7 @@ Classes
 
       
 
-   .. py:attribute:: org_id
+   .. py:attribute:: organization_id
       :type: str
 
       
@@ -312,6 +312,11 @@ Classes
       :type: str
 
       
+
+   .. py:attribute:: viam_server_version
+      :type: str
+
+      Version to use for viam, defaults stable
 
    .. py:method:: HasField(field_name: Literal[slam_config, b'slam_config']) -> bool
 
