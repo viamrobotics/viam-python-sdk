@@ -83,7 +83,7 @@ Attributes
       :raises GRPCError: if no binary_ids are provided.
 
 
-   .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> None
+   .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
       :async:
 
       Delete tabular data
@@ -92,8 +92,11 @@ Attributes
                      If not provided, all data will be deleted. Exercise caution before using this option.
       :type filter: viam.app.data.Filter
 
+      :returns: The number of items deleted
+      :rtype: int
 
-   .. py:method:: delete_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> None
+
+   .. py:method:: delete_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
       :async:
 
       Delete binary data
@@ -103,14 +106,20 @@ Attributes
       :param If not provided:
       :param all data will be deleted. Exercise caution before using this option.:
 
+      :returns: the number of items deleted
+      :rtype: int
 
-   .. py:method:: delete_binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID]) -> None
+
+   .. py:method:: delete_binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID]) -> int
       :async:
 
       Delete binary data
 
       :param binary_ids: The binary IDs of the data to be deleted. Must be non-empty.
       :type binary_ids: List[viam.proto.app.BinaryID]
+
+      :returns: the number of items deleted
+      :rtype: int
 
       :raises GRPCError: if no binary_ids are provided.
 
@@ -141,7 +150,7 @@ Attributes
       :raises GRPCError: if no tags are provided
 
 
-   .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> None
+   .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> int
       :async:
 
       Remove tags from binary data using BinaryIDs
@@ -153,8 +162,11 @@ Attributes
 
       :raises GRPCError: if no binary_ids or tags are provided
 
+      :returns: the number of tags removed
+      :rtype: int
 
-   .. py:method:: remove_tags_from_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> None
+
+   .. py:method:: remove_tags_from_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> int
       :async:
 
       Remove tags from binary data using a filter
@@ -165,6 +177,9 @@ Attributes
       :type filter: viam.app.proto.Filter
 
       :raises GRPCError: if no tags are provided
+
+      :returns: the number of tags removed
+      :rtype: int
 
 
    .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
@@ -201,14 +216,123 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: data_capture_upload(metadata: viam.proto.app.datasync.UploadMetadata, sensor_contents: Optional[List[viam.proto.app.datasync.SensorData]] = None) -> None
-      :abstractmethod:
+   .. py:method:: binary_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], timestamps: Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]], binary_data: bytes) -> None
       :async:
 
+      Upload binary sensor data.
 
-   .. py:method:: file_upload(metadata: viam.proto.app.datasync.UploadMetadata, file_contents: Optional[viam.proto.app.datasync.FileData]) -> None
-      :abstractmethod:
+      Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
+      app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
+
+      :param part_id: Part ID of the component used to capture the data.
+      :type part_id: str
+      :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
+      :type component_type: str
+      :param component_name: Name of the component used to capture the data.
+      :type component_name: str
+      :param method_name: Name of the method used to capture the data.
+      :type method_name: str
+      :param method_parameters: Optional dictionary of method parameters. No longer in active use.
+      :type method_parameters: Optional[Mapping[str, Any]]
+      :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
+      :type tags: Optional[List[str]]
+      :param timestamps: Optional tuple
+                         containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+      :type timestamps: Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]
+      :param binary_data: The data to be uploaded, respresented in bytes.
+      :type binary_data: bytes
+
+      :raises GRPCError: If an invalid part ID is passed.
+
+
+   .. py:method:: tabular_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], timestamps: Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]], tabular_data: List[Mapping[str, Any]]) -> None
       :async:
+
+      Upload tabular sensor data.
+
+      Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
+      app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
+
+      :param part_id: Part ID of the component used to capture the data.
+      :type part_id: str
+      :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
+      :type component_type: str
+      :param component_name: Name of the component used to capture the data.
+      :type component_name: str
+      :param method_name: Name of the method used to capture the data.
+      :type method_name: str
+      :param method_parameters: Optional dictionary of method parameters. No longer in active use.
+      :type method_parameters: Optional[Mapping[str, Any]]
+      :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
+      :type tags: Optional[List[str]]
+      :param timestamps: Optional
+                         list of tuples, each containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the
+                         appropriate sensor.
+      :type timestamps: Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]]
+      :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
+      :type tabular_data: List[Mapping[str, Any]]
+
+      Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
+      metadata.
+
+      :raises GRPCError: If an invalid part ID is passed.
+      :raises AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.
+
+
+   .. py:method:: file_upload(part_id: str, component_type: Optional[str], component_name: Optional[str], method_name: Optional[str], file_name: Optional[str], method_parameters: Optional[Mapping[str, Any]], file_extension: Optional[str], tags: Optional[List[str]], data: Optional[bytes]) -> None
+      :async:
+
+      Upload arbitrary file data.
+
+      Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+
+      :param part_id: Part ID of the resource associated with the file.
+      :type part_id: str
+      :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
+      :type component_type: Optional[str]
+      :param component_name: Optional name of the component associated with the file.
+      :type component_name: Optional[str]
+      :param method_name: Optional name of the method associated with the file.
+      :type method_name: Optional[str]
+      :param file_name: Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
+                        provided.
+      :type file_name: Optional[str]
+      :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
+      :type method_parameters: Optional[str]
+      :param file_extension: Optional file extension. The empty string "" will be assigned as the file extension if one isn't
+                             provided.
+      :type file_extension: Optional[str]
+      :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
+      :type tags: Optional[List[str]]
+      :param data: (Optional[bytes]): Optional bytes representing file data to upload.
+
+      :raises GRPCError: If an invalid part ID is passed.
+
+
+   .. py:method:: file_upload_from_path(part_id: str, component_type: Optional[str], component_name: Optional[str], method_name: Optional[str], method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], filepath: str) -> None
+      :async:
+
+      Upload arbitrary file data.
+
+      Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+
+      :param part_id: Part ID of the component associated with the file.
+      :type part_id: str
+      :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
+      :type component_type: Optional[str]
+      :param component_name: Optional name of the component associated with the file.
+      :type component_name: Optional[str]
+      :param method_name: Optional name of the method associated with the file.
+      :type method_name: Optional[str]
+      :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
+      :type method_parameters: Optional[str]
+      :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
+      :type tags: Optional[List[str]]
+      :param filepath: Absolute filepath of file to be uploaded.
+      :type filepath: str
+
+      :raises GRPCError: If an invalid part ID is passed.
+      :raises FileNotFoundError: If the provided filepath is not found.
 
 
 
