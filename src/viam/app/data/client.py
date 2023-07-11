@@ -66,7 +66,7 @@ class DataClient:
 
         Args:
             channel (Channel): Connection to app.
-            metadata (str): Required authorization token to send requests to app.
+            metadata (Mapping[str, str]): Required authorization token to send requests to app.
         """
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
@@ -207,7 +207,7 @@ class DataClient:
         """Filter and delete binary data.
 
         Args:
-            binary_ids (List[viam.proto.app.data.BinaryID]): The `BinarID`s of the data to be deleted. Must be non-empty.
+            binary_ids (List[viam.proto.app.data.BinaryID]): The `BinaryID`s of the data to be deleted. Must be non-empty.
 
         Returns:
             int: the number of items deleted
@@ -223,8 +223,8 @@ class DataClient:
         """Add tags to binary data.
 
         Args:
-            tags (List[str]): List of tags to add to specified binary data. Must be non-empty
-            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID`s specifying binary data to tag. Must be non-empty
+            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
+            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID`s specifying binary data to tag. Must be non-empty.
 
         Raises:
             GRPCError: If no `BinaryID`s or tags are provided.
