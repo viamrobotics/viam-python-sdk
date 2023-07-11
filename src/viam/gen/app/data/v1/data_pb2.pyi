@@ -382,17 +382,19 @@ class BinaryDataByFilterResponse(google.protobuf.message.Message):
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
     LAST_FIELD_NUMBER: builtins.int
+    TOTAL_SIZE_BYTES_FIELD_NUMBER: builtins.int
 
     @property
     def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]:
         ...
     count: builtins.int
     last: builtins.str
+    total_size_bytes: builtins.int
 
-    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=..., last: builtins.str=...) -> None:
+    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=..., last: builtins.str=..., total_size_bytes: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'last', b'last']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'last', b'last', 'total_size_bytes', b'total_size_bytes']) -> None:
         ...
 global___BinaryDataByFilterResponse = BinaryDataByFilterResponse
 

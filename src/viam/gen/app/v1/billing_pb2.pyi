@@ -525,12 +525,14 @@ global___GetBillingSummaryResponse = GetBillingSummaryResponse
 class GetInvoicePdfRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
+    ORG_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
+    org_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., org_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'org_id', b'org_id']) -> None:
         ...
 global___GetInvoicePdfRequest = GetInvoicePdfRequest
 

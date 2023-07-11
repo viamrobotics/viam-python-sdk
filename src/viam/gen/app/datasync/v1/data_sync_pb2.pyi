@@ -65,8 +65,13 @@ global___DataCaptureUploadRequest = DataCaptureUploadRequest
 @typing_extensions.final
 class DataCaptureUploadResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FILE_ID_FIELD_NUMBER: builtins.int
+    file_id: builtins.str
 
-    def __init__(self) -> None:
+    def __init__(self, *, file_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id']) -> None:
         ...
 global___DataCaptureUploadResponse = DataCaptureUploadResponse
 
@@ -100,8 +105,13 @@ global___FileUploadRequest = FileUploadRequest
 @typing_extensions.final
 class FileUploadResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    FILE_ID_FIELD_NUMBER: builtins.int
+    file_id: builtins.str
 
-    def __init__(self) -> None:
+    def __init__(self, *, file_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id']) -> None:
         ...
 global___FileUploadResponse = FileUploadResponse
 
