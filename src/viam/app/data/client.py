@@ -1,12 +1,11 @@
 from pathlib import Path
 from typing import Any, List, Mapping, Optional
 
-from grpclib.client import Channel
-from google.protobuf.timestamp_pb2 import Timestamp
 from google.protobuf.struct_pb2 import Struct
+from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.client import Channel
 
 from viam import logging
-from viam.utils import struct_to_dict
 from viam.proto.app.data import (
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
@@ -38,17 +37,18 @@ from viam.proto.app.data import (
     TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
-    DataSyncServiceStub,
-    FileData,
-    SensorData,
-    UploadMetadata,
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
+    DataSyncServiceStub,
+    DataType,
+    FileData,
     FileUploadRequest,
     FileUploadResponse,
-    DataType,
-    SensorMetadata
+    SensorData,
+    SensorMetadata,
+    UploadMetadata,
 )
+from viam.utils import struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -267,8 +267,7 @@ class DataClient:
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
-            request,
-            metadata=self._metadata
+            request, metadata=self._metadata
         )
         return response.deleted_count
 
@@ -288,8 +287,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
         response: RemoveTagsFromBinaryDataByFilterResponse = await self._data_client.RemoveTagsFromBinaryDataByFilter(
-            request,
-            metadata=self._metadata
+            request, metadata=self._metadata
         )
         return response.deleted_count
 
@@ -338,7 +336,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
         timestamps: Optional[tuple[Timestamp, Timestamp]],
-        binary_data: bytes
+        binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
 
@@ -365,7 +363,7 @@ class DataClient:
                 time_received=timestamps[1] if timestamps[1] else None,
             ),
             struct=None,  # Used for tabular data.
-            binary=binary_data
+            binary=binary_data,
         )
         metadata = UploadMetadata(
             part_id=part_id,
@@ -389,7 +387,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
         timestamps: Optional[List[tuple[Timestamp, Timestamp]]],
-        tabular_data: List[Mapping[str, Any]]
+        tabular_data: List[Mapping[str, Any]],
     ) -> None:
         """Upload tabular sensor data.
 
@@ -425,9 +423,9 @@ class DataClient:
             sensor_contents[i] = SensorData(
                 metadata=SensorMetadata(
                     time_requested=timestamps[i][0] if timestamps and timestamps[i][0] else None,
-                    time_received=timestamps[i][1] if timestamps and timestamps[i][1] else None
+                    time_received=timestamps[i][1] if timestamps and timestamps[i][1] else None,
                 ),
-                struct=s
+                struct=s,
             )
 
         metadata = UploadMetadata(
@@ -458,7 +456,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]],
         file_extension: Optional[str],
         tags: Optional[List[str]],
-        data: Optional[bytes]
+        data: Optional[bytes],
     ) -> None:
         """Upload arbitrary file data.
 
@@ -501,7 +499,7 @@ class DataClient:
         method_name: Optional[str],
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        filepath: str
+        filepath: str,
     ) -> None:
         """Upload arbitrary file data.
 
