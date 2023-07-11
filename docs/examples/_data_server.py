@@ -30,16 +30,12 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
-from viam.proto.app.data_sync import (
-    AddBoundingBoxToImageByIDRequest,
-    AddBoundingBoxToImageByIDResponse,
+from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
     DataSyncServiceBase,
     FileUploadRequest,
     FileUploadResponse,
-    RemoveBoundingBoxFromImageByIDRequest,
-    RemoveBoundingBoxFromImageByIDResponse
 )
 
 
@@ -88,12 +84,15 @@ class DataServer(DataServiceBase, DataSyncServiceBase):
     async def TagsByFilter(self, stream: Stream[TagsByFilterRequest, TagsByFilterResponse]) -> None:
         pass
 
-    async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
+    async def AddBoundingBoxToImageByID(
+        self,
+        stream: 'Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]'
+    ) -> None:
         pass
 
     async def RemoveBoundingBoxFromImageByID(
         self,
-        stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
+        stream: 'Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]'
     ) -> None:
         pass
 
