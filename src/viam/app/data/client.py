@@ -346,7 +346,7 @@ class DataClient:
         app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
 
         Args:
-            part_id (str): Part ID of the component used to captuer the data.
+            part_id (str): Part ID of the component used to capture the data.
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
@@ -397,7 +397,7 @@ class DataClient:
         app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
 
         Args:
-            part_id (str): Part ID of the component used to captuer the data.
+            part_id (str): Part ID of the component used to capture the data.
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
@@ -471,7 +471,7 @@ class DataClient:
             method_name (Optional[str]): Optional name of the method associated with the file.
             file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
                 provided.
-            method_parameters (Optional[str]): Optional dicitonary of the method parameters. No longer in active use.
+            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
                 provided.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
