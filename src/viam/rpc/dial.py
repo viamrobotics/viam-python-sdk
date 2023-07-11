@@ -98,13 +98,11 @@ def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
     return (host, port)
 
 
-async def _get_access_token(channel: Channel, address: str,
-                            opts: DialOptions) -> str:
-    entity = opts.auth_entity if opts.auth_entity else re.sub(
-        r"^(.*:\/\/)/", "", address)
+async def _get_access_token(channel: Channel, address: str, opts: DialOptions) -> str:
+    entity = opts.auth_entity if opts.auth_entity else re.sub(r"^(.*:\/\/)/", "", address)
     creds = PBCredentials(
-        type=opts.credentials.type if opts.credentials else "",
-        payload=opts.credentials.payload if opts.credentials else "")
+        type=opts.credentials.type if opts.credentials else "", payload=opts.credentials.payload if opts.credentials else ""
+    )
     request = AuthenticateRequest(entity=entity, credentials=creds)
 
     auth_service = AuthServiceStub(channel=channel)
@@ -149,13 +147,7 @@ class AuthenticatedChannel(Channel):
     ) -> Stream[_SendType, _RecvType]:
         if not metadata and hasattr(self, "_metadata"):
             metadata = self._metadata
-        return super().request(name,
-                               cardinality,
-                               request_type,
-                               reply_type,
-                               timeout=timeout,
-                               deadline=deadline,
-                               metadata=metadata)
+        return super().request(name, cardinality, request_type, reply_type, timeout=timeout, deadline=deadline, metadata=metadata)
 
 
 @dataclass
@@ -171,9 +163,7 @@ class ViamChannel:
             except RuntimeError as e:
                 # ignore event loop is closed errors - robot is getting shutdown
                 if len(e.args) > 0 and e.args[0] == "Event loop is closed":
-                    LOGGER.debug(
-                        "ViamChannel might not have shut down cleanly - Event loop was closed"
-                    )
+                    LOGGER.debug("ViamChannel might not have shut down cleanly - Event loop was closed")
                     return
                 raise
             finally:
@@ -196,32 +186,30 @@ class _Runtime:
 
     def __init__(self) -> None:
         LOGGER.debug("Creating new viam-rust-utils runtime")
-        libname = pathlib.Path(__file__).parent.absolute(
-        ) / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
         self._lib = ctypes.CDLL(libname.__str__())
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p,
-                                   ctypes.c_char_p, ctypes.c_bool,
-                                   ctypes.c_void_p)
+        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
         self._lib.dial.restype = ctypes.c_void_p
 
-        self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p, )
+        self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
         self._lib.free_rust_runtime.restype = None
 
-        self._lib.free_string.argtypes = (ctypes.c_void_p, )
+        self._lib.free_string.argtypes = (ctypes.c_void_p,)
         self._lib.free_string.restype = None
 
         self._ptr = self._lib.init_rust_runtime()
 
-    async def dial(
-            self, address: str,
-            options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
+    async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
         type = options.credentials.type if options.credentials else ""
         payload = options.credentials.payload if options.credentials else ""
-        insecure = options.insecure or options.allow_insecure_with_creds_downgrade or (
-            not type and not payload and options.allow_insecure_downgrade)
+        insecure = (
+            options.insecure
+            or options.allow_insecure_with_creds_downgrade
+            or (not type and not payload and options.allow_insecure_downgrade)
+        )
 
         LOGGER.debug(f"Dialing {address} using viam-rust-utils library")
         path_ptr = await to_thread(
@@ -245,8 +233,7 @@ class _Runtime:
         self._lib.free_string(ptr)
 
 
-async def dial(address: str,
-               options: Optional[DialOptions] = None) -> ViamChannel:
+async def dial(address: str, options: Optional[DialOptions] = None) -> ViamChannel:
     opts = options if options else DialOptions()
     if opts.disable_webrtc:
         channel = await _dial_direct(address, options)
@@ -268,8 +255,7 @@ async def dial(address: str,
     raise ViamError(f"Unable to establish a connection to {address}")
 
 
-async def _dial_direct(address: str,
-                       options: Optional[DialOptions] = None) -> Channel:
+async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
     opts = options if options else DialOptions()
     insecure = opts.insecure
 
@@ -296,8 +282,7 @@ async def _dial_direct(address: str,
         downgrade = False
         with socket.create_connection((host, port)) as sock:
             try:
-                with ctx.wrap_socket(sock,
-                                     server_hostname=server_hostname) as ssock:
+                with ctx.wrap_socket(sock, server_hostname=server_hostname) as ssock:
                     _ = ssock.version()
             except ssl.SSLError as e:
                 if e.reason != "WRONG_VERSION_NUMBER":
@@ -313,10 +298,7 @@ async def _dial_direct(address: str,
             ctx = None
 
     if opts.credentials:
-        channel = AuthenticatedChannel(host,
-                                       port,
-                                       ssl=ctx,
-                                       server_hostname=server_hostname)
+        channel = AuthenticatedChannel(host, port, ssl=ctx, server_hostname=server_hostname)
         access_token = await _get_access_token(channel, address, opts)
         metadata = {"authorization": f"Bearer {access_token}"}
         channel._metadata = metadata
@@ -326,11 +308,8 @@ async def _dial_direct(address: str,
     return channel
 
 
-async def dial_direct(address: str,
-                      options: Optional[DialOptions] = None) -> Channel:
-    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.",
-                  DeprecationWarning,
-                  stacklevel=2)
+async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
+    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.", DeprecationWarning, stacklevel=2)
     return await _dial_direct(address, options)
 
 
