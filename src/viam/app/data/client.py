@@ -177,7 +177,7 @@ class DataClient:
                 file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
-        return response.data
+        return [binary_data.binary for binary_data in response.data]
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Delete tabular data
