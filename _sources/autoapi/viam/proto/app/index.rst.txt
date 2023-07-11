@@ -636,7 +636,7 @@ Classes
 
 
 
-.. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -651,6 +651,11 @@ Classes
 
 
    .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: organization_id
       :type: str
 
       
@@ -1300,7 +1305,7 @@ Classes
    shown below.
 
 
-.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., readonly: bool = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ...)
+.. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1340,11 +1345,6 @@ Classes
 
    .. py:attribute:: organization_name
       :type: str
-
-      
-
-   .. py:attribute:: readonly
-      :type: bool
 
       
 
