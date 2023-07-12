@@ -9,9 +9,9 @@ from viam.rpc.dial import Credentials, DialOptions
 
 
 async def connect():
-    creds = Credentials(type="robot-location-secret", payload="<ROBOT_LOCATION_SECRET>")
+    creds = Credentials(type="<your authentication type here>", payload="<your authentication payload here>")
     opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(credentials=creds), log_level=logging.DEBUG)
-    return await RobotClient.at_address("<ROBOT_ADDRESS>", opts)
+    return await RobotClient.at_address("<your robot uri here>", opts)
 
 
 async def main():
@@ -31,16 +31,16 @@ async def main():
     resp = await gizmo.do_two(False)
     print("do_two result:", resp)
 
-    # Certain types of streams are not currently supported by the viam-rust-utils library that python uses internally.
-    # If you are not using WebRTC, you can uncomment the following lines.
+    # # Certain types of streams are not currently supported by the viam-rust-utils library that python uses internally.
+    # # If you are not using WebRTC, you can uncomment the following lines.
 
-    # resp = await gizmo.do_one_server_stream("arg1")
-    # print("do_one_server_stream result:", resp)
+    # # resp = await gizmo.do_one_server_stream("arg1")
+    # # print("do_one_server_stream result:", resp)
 
-    # resp = await gizmo.do_one_bidi_stream(["arg1", "arg2", "arg3"])
-    # print("do_one_bidi_stream result:", resp)
+    # # resp = await gizmo.do_one_bidi_stream(["arg1", "arg2", "arg3"])
+    # # print("do_one_bidi_stream result:", resp)
 
-    # ####### SUMMATION ####### #
+    # # ####### SUMMATION ####### #
     summer = SummationService.from_robot(robot, name="mysum1")
     sum = await summer.sum([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     print(f"The sum of the numbers [0, 10) is {sum}")
