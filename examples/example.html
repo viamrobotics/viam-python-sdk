@@ -48,13 +48,21 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Example usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client">Connect as a client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-custom-components">Create custom components</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-custom-modules">Create custom modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subclass-a-resource">1. Subclass a resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-the-new-modular-resource">2. Register the new modular resource</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-entry-point-file">3. Create an entry point file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#make-the-module-executable">4. Make the module executable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-a-modular-resource">5. Configure a modular resource</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#create-custom-remotes">Create custom remotes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subclass-a-component">1. Subclass a component</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#register-the-custom-component">2. Register the custom component</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#start-the-server-and-add-it-as-a-remote">3. Start the Server and add it as a Remote</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -151,24 +159,28 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;motor&quot;
 name: &quot;motor0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;gantry&quot;
@@ -176,43 +188,39 @@ name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
+name: &quot;sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;servo&quot;
 name: &quot;servo0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;slam&quot;
-name: &quot;slam0&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;board&quot;
 name: &quot;board&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
 ]
 </pre></div>
 </div>
@@ -270,10 +278,206 @@ name: &quot;arm0&quot;
 </div>
 </div>
 </section>
-<section id="create-custom-components">
-<h2>Create custom components<a class="headerlink" href="#create-custom-components" title="Permalink to this heading"></a></h2>
+<section id="create-custom-modules">
+<h2>Create custom modules<a class="headerlink" href="#create-custom-modules" title="Permalink to this heading"></a></h2>
+<p>Make a modular resource from an existing resource.
+The steps required in creating a modular resource and connecting it to a robot are:</p>
+<ol class="arabic simple">
+<li><p><strong>Subclass a resource and implement desired functions.</strong> This will be your custom resource. In this document, we will be going over subclassing existing resource types. To learn more about creating a new resource type, see the <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/module">module example</a>.</p>
+<ul class="simple">
+<li><p>For functions that you do not wish to implement, you must at least define them by putting <code class="docutils literal notranslate"><span class="pre">pass</span></code> or <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">NotImplementedError()</span></code> in the function.</p></li>
+</ul>
+</li>
+<li><p><strong>Register a new model.</strong> This will register the new modular resource into the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p></li>
+<li><p><strong>Create an entry point file.</strong> Create and start the new module.</p></li>
+<li><p><strong>Make the module executable.</strong> This allows <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> to access and execute the module.</p></li>
+<li><p><strong>Configure a modular resource.</strong> Use the new module and instantiate a new resource to a robot!</p></li>
+</ol>
+<p>Knowing this, let’s implement a custom resource.</p>
+<section id="subclass-a-resource">
+<h3>1. Subclass a resource<a class="headerlink" href="#subclass-a-resource" title="Permalink to this heading"></a></h3>
+<p>The SDK provides a wide array of resources to customize. You can browse through the API Reference to see all of them, but for now we’ll use an <code class="docutils literal notranslate"><span class="pre">Arm</span></code> as an example. Our custom Arm will be extremely simple. Please note that the minimum set of endpoints you need to implement are <code class="docutils literal notranslate"><span class="pre">GetKinematics</span></code>, <code class="docutils literal notranslate"><span class="pre">GetJointPositions</span></code>, and <code class="docutils literal notranslate"><span class="pre">MoveToJointPositions</span></code>. You may leave the other methods unimplemented by putting <code class="docutils literal notranslate"><span class="pre">pass</span></code> or <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">NotImplementedError()</span></code> in the function.</p>
+<p>Let’s start by creating a directory called <code class="docutils literal notranslate"><span class="pre">modular-arm</span></code>. Inside of that directory, create another directory called <code class="docutils literal notranslate"><span class="pre">src</span></code>. Then inside this, make a file called <code class="docutils literal notranslate"><span class="pre">my_modular_arm.py</span></code>.
+The contents of <code class="docutils literal notranslate"><span class="pre">my_modular_arm.py</span></code> should be as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># modular-arm/src/my_modular_arm.py</span>
+
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
+
+
+<span class="k">class</span> <span class="nc">MyModularArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
+    <span class="c1"># Subclass the Viam Arm component and implement the required functions</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Starting joint positions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="p">(</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">KINEMATICS_FILE_FORMAT_SVA</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00\x01\x02</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_end_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pose</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">JointPositions</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span>
+
+    <span class="nd">@run_with_operation</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_to_joint_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">positions</span><span class="p">:</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">operation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operation</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">positions</span>
+
+        <span class="c1"># Simulate the length of time it takes for the arm to move to its new joint position</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Check if the operation is cancelled and, if it is, stop the arm&#39;s motion</span>
+            <span class="k">if</span> <span class="k">await</span> <span class="n">operation</span><span class="o">.</span><span class="n">is_cancelled</span><span class="p">():</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+                <span class="k">break</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span>
+</pre></div>
+</div>
+<p>You can view more component implementations in the <a class="reference external" href="https://github.com/viamrobotics/python-sdk/blob/main/examples/server/v1/components.py">examples</a>.</p>
+</section>
+<section id="register-the-new-modular-resource">
+<h3>2. Register the new modular resource<a class="headerlink" href="#register-the-new-modular-resource" title="Permalink to this heading"></a></h3>
+<p>Now that we’ve created the modular resource, we must register the resource to the registry.</p>
+<p>Define a <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#models"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a> name and a creator function in the resource. A creator function is a function that can create a resource given a config and map of dependencies.
+In the example below, <code class="docutils literal notranslate"><span class="pre">new()</span></code> is the creator function. We get the name from the config and return the resource. We can also assign class variables based on what the config has.</p>
+<p>To define a creator function and <code class="docutils literal notranslate"><span class="pre">Model</span></code>, import <code class="docutils literal notranslate"><span class="pre">ComponentConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code>, <code class="docutils literal notranslate"><span class="pre">Model</span></code>, and <code class="docutils literal notranslate"><span class="pre">ModelFamily</span></code> from the relative viam packages, as well as <code class="docutils literal notranslate"><span class="pre">Self</span></code>, <code class="docutils literal notranslate"><span class="pre">Mapping</span></code>, and <code class="docutils literal notranslate"><span class="pre">ClassVar</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># modular-arm/src/my_modular_arm.py</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
+
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span>
+
+
+<span class="k">class</span> <span class="nc">MyModularArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
+    <span class="c1"># Subclass the Viam Arm component and implement the required functions</span>
+    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;acme&quot;</span><span class="p">,</span> <span class="s2">&quot;demo&quot;</span><span class="p">),</span> <span class="s2">&quot;myarm&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="o">...</span>
+    
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="n">arm</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arm</span>
+</pre></div>
+</div>
+<p>After the resource has a defined model and creator function, the resource must be registered to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>. This can be done using <a class="reference external" href="https://python.viam.dev/autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">register_resource_creator()</span></code></a> and passing a <a class="reference external" href="https://python.viam.dev/autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a> object with the creator function as a parameter.</p>
+<p>In the same <code class="docutils literal notranslate"><span class="pre">modular-arm/src</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>. In it, call <code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code> with the subtype of the resource that was subclassed (in this case, <code class="docutils literal notranslate"><span class="pre">Arm</span></code>), the model name, and a <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object with the <code class="docutils literal notranslate"><span class="pre">new</span></code> function defined in the modular resource.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># modular-arm/src/__init__.py</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span>
+<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
+<span class="kn">from</span> <span class="nn">modular_arm</span> <span class="kn">import</span> <span class="n">MyModularArm</span>
+
+
+<span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MyModularArm</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MyModularArm</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="create-an-entry-point-file">
+<h3>3. Create an entry point file<a class="headerlink" href="#create-an-entry-point-file" title="Permalink to this heading"></a></h3>
+<p>The module now has to be created and started. In the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># modular-arm/src/main.py</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">viam.module.module</span> <span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span>
+
+<span class="kn">from</span> <span class="nn">.my_modular_arm</span> <span class="kn">import</span> <span class="n">MyModularArm</span> 
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function creates and starts a new module, after adding all desired resources.</span>
+<span class="sd">    Resources must be pre-registered. For an example, see the `__init__.py` file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">module</span> <span class="o">=</span> <span class="n">Module</span><span class="o">.</span><span class="n">from_args</span><span class="p">()</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">add_model_from_registry</span><span class="p">(</span><span class="n">Arm</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MyModularArm</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="make-the-module-executable">
+<h3>4. Make the module executable<a class="headerlink" href="#make-the-module-executable" title="Permalink to this heading"></a></h3>
+<p>To add the module to your robot, you must provide it as an <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#make-your-module-executable">executable file</a> that <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#make-sure-viam-server-can-access-your-executable"><code class="docutils literal notranslate"><span class="pre">viam-server</span></code> can access</a>.</p>
+<p>Dependencies for the module (including Viam SDK) have to be installed. In the <code class="docutils literal notranslate"><span class="pre">modular-arm</span></code> directory, create a new file called <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> that has all your dependencies. For this example, add <code class="docutils literal notranslate"><span class="pre">viam-sdk</span></code>.</p>
+<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>viam-sdk
+</pre></div>
+</div>
+<p>One option with the Python SDK is to create a new shell script (<code class="docutils literal notranslate"><span class="pre">.sh</span></code>) that runs your module, which can also be used to install the dependencies. For example, in the <code class="docutils literal notranslate"><span class="pre">modular-arm</span></code> directory, add an <code class="docutils literal notranslate"><span class="pre">exec.sh</span></code> file:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="c1"># !/bin/sh</span>
+<span class="nb">cd</span><span class="w"> </span><span class="sb">`</span>dirname<span class="w"> </span><span class="nv">$0</span><span class="sb">`</span>
+
+pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Be sure to use `exec` so that termination signals reach the python process,</span>
+<span class="c1"># or handle forwarding termination signals manually</span>
+<span class="nb">exec</span><span class="w"> </span>python3<span class="w"> </span>&lt;your-module-directory-name&gt;.&lt;main-program-filename-without-extension&gt;<span class="w"> </span><span class="nv">$@</span>
+</pre></div>
+</div>
+<p>In this case, <code class="docutils literal notranslate"><span class="pre">&lt;your-modular-directory-name&gt;.&lt;main-program-filename-without-extension&gt;</span></code> would be replaced with <code class="docutils literal notranslate"><span class="pre">src.main</span></code>.</p>
+<p>To make this shell script executable, run this in the Terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">&lt;FILEPATH&gt;/exec.sh</span></code></p>
+</section>
+<section id="configure-a-modular-resource">
+<h3>5. Configure a modular resource<a class="headerlink" href="#configure-a-modular-resource" title="Permalink to this heading"></a></h3>
+<p><strong>NOTE:</strong> <em>These instructions are for local development. Soon we will launch a <code class="docutils literal notranslate"><span class="pre">Registry</span></code> which will allow users to upload modules to app.viam.com directly. We will update the documentation with instructions on how to do that shortly.</em></p>
+<p><a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-module">Configure your new module</a> on your robot by navigating to the <strong>Config</strong> tab of the robot’s page on the Viam app, then click on the <strong>Modules</strong> subtab. Add the name of your module and the executable path. For our example, the path would be <code class="docutils literal notranslate"><span class="pre">&lt;path-on-your-filesystem&gt;/modular-arm/exec.sh</span></code>.</p>
+<p>Once you have configured a module as part of your robot configuration, <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-modular-resource">configure your modular resource</a> made available by that module by adding new components or services configured with your modular resources’ new type or model. To instantiate a new resource from your module, specify the <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> of your modular resource. This is a JSON example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;acme:demo:myarm&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">      </span><span class="nt">&quot;depends_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-arm&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;arm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;modules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;executable_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path-on-your-filesystem&gt;/modular-arm/exec.sh&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;modular_arm&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="create-custom-remotes">
+<h2>Create custom remotes<a class="headerlink" href="#create-custom-remotes" title="Permalink to this heading"></a></h2>
 <p>While the main RDK is written in golang, you can create custom components in python and connect them to a robot as a <code class="docutils literal notranslate"><span class="pre">remote</span></code> component. This allows you to extend the functionality of a robot, or even create an entire robot exclusively in python.</p>
-<p>The steps required in creating a custom component and connecting it to the RDK are</p>
+<p>To create a custom component and connect it to the RDK:</p>
 <ol class="arabic simple">
 <li><p><strong>Subclass a component and implement desired functions</strong>. This will be your custom component.</p>
 <ul class="simple">
@@ -283,14 +487,6 @@ name: &quot;arm0&quot;
 <li><p><strong>Create an <code class="docutils literal notranslate"><span class="pre">rpc.server.Server</span></code> instance and register the custom component</strong>. This is the <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server that enables communication with your custom component.</p></li>
 <li><p><strong>Start the <code class="docutils literal notranslate"><span class="pre">Server</span></code> and register the running server as a remote</strong>. Registering this <code class="docutils literal notranslate"><span class="pre">RPC</span></code> server as a remote allows the RDK to communicate with the server.</p></li>
 </ol>
-<p>But before we start, we need to cover one additional topic: Operations.</p>
-<section id="operations">
-<h3>Operations<a class="headerlink" href="#operations" title="Permalink to this heading"></a></h3>
-<p>Operations are used by the RDK to keep track of running tasks, and provide a means to query their status and even cancel them. In order for our custom component to respond appropriately to any Operation requests, we must obtain and listen to the Operation in our method calls.</p>
-<p>In order to take advantage of operations, you should wrap the component method with the <code class="docutils literal notranslate"><span class="pre">run_with_operation</span></code> decorator from the <code class="docutils literal notranslate"><span class="pre">viam.operations</span></code> package. Each component has a function, <code class="docutils literal notranslate"><span class="pre">get_operation(kwargs:</span> <span class="pre">Mapping[str,</span> <span class="pre">Any])</span> <span class="pre">-&gt;</span> <span class="pre">Operation</span></code>, that will return an Operation that will tell us if the operation is ever cancelled, allowing us to clean up any long running tasks, close connections, etc.</p>
-<p>It is extremely important that we check the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> status, as this not only prevents any unnecessary resource usage, but also allows us to respond to urgent cancellation requests and stop components’ motion.</p>
-<p>Knowing this, let’s implement a custom component where Operations might come in handy.</p>
-</section>
 <section id="subclass-a-component">
 <h3>1. Subclass a component<a class="headerlink" href="#subclass-a-component" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a wide array of components to customize. You can browse through the API Reference to see all of them, but for now we’ll use an <code class="docutils literal notranslate"><span class="pre">Arm</span></code> as an example. Our custom Arm will be extremely simple – it will only save and return the positions provided to it.</p>
@@ -373,8 +569,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="highlight"><pre><span></span><span class="c1"># my-python-robot/my_cool_arm.py</span>
 
 <span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
 <span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
 
 
@@ -396,6 +592,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <span class="c1"># Starting joint positions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">joint_positions</span> <span class="o">=</span> <span class="n">JointPositions</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span> <span class="o">=</span> <span class="p">(</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">KINEMATICS_FILE_FORMAT_SVA</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00\x01\x02</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_end_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
@@ -450,6 +647,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span>
 </pre></div>
 </div></div>
 </div>
@@ -533,6 +733,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </pre></div>
 </div>
 </section>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this heading"></a></h2>
+<p>Operations are used by the RDK to keep track of running tasks, and provide a means to query their status and even cancel them. In order for a component to respond appropriately to any Operation requests, we must obtain and listen to the Operation in our method calls.</p>
+<p>In order to take advantage of operations, you should wrap the component method with the <code class="docutils literal notranslate"><span class="pre">run_with_operation</span></code> decorator from the <code class="docutils literal notranslate"><span class="pre">viam.operations</span></code> package. Each component has a function, <code class="docutils literal notranslate"><span class="pre">get_operation(kwargs:</span> <span class="pre">Mapping[str,</span> <span class="pre">Any])</span> <span class="pre">-&gt;</span> <span class="pre">Operation</span></code>, that will return an Operation that will tell us if the operation is ever cancelled, allowing us to clean up any long running tasks, close connections, etc.</p>
+<p>It is extremely important that we check the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> status, as this not only prevents any unnecessary resource usage, but also allows us to respond to urgent cancellation requests and stop components’ motion.</p>
 </section>
 </section>
 
