@@ -1,6 +1,8 @@
 import asyncio
 import os
-from typing import Any, ClassVar, Dict, Mapping, Optional, Self, Tuple
+from typing import Any, ClassVar, Dict, Mapping, Optional, Tuple
+from typing_extensions import Self
+
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
 from viam.proto.app.robot import ComponentConfig

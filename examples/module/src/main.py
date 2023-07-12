@@ -3,8 +3,8 @@ import asyncio
 from viam.module.module import Module
 from viam.components.arm import Arm
 
-from .gizmo import Gizmo, MyGizmo
 from .arm import MyArm
+from .gizmo import Gizmo, MyGizmo
 from .summation import MySummationService, SummationService
 
 
