@@ -359,8 +359,8 @@ class DataClient:
         """
         sensor_contents = SensorData(
             metadata=SensorMetadata(
-                time_requested=timestamps[0] if timestamps[0] else None,
-                time_received=timestamps[1] if timestamps[1] else None,
+                time_requested=timestamps[0][0] if timestamps[0] else None,
+                time_received=timestamps[0][1] if timestamps[0] else None,
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,

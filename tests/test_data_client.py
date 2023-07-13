@@ -27,8 +27,11 @@ ROBOT_ID = "robot_id"
 PART_NAME = "part_name"
 PART_ID = "part_id"
 LOCATION_ID = "location_id"
+LOCATION_IDS = [LOCATION_ID]
 ORG_ID = "organization_id"
+ORG_IDS = [ORG_ID]
 MIME_TYPE = "mime_type"
+MIME_TYPES = [MIME_TYPE]
 SECONDS_START = 1689256710
 NANOS_START = 10
 SECONDS_END = 1689256810
@@ -43,9 +46,9 @@ FILTER = Filter(
     robot_id=ROBOT_ID,
     part_name=PART_NAME,
     part_id=PART_ID,
-    location_ids=[LOCATION_ID],
-    organization_ids=[ORG_ID],
-    mime_type=[MIME_TYPE],
+    location_ids=LOCATION_IDS,
+    organization_ids=ORG_IDS,
+    mime_type=MIME_TYPES,
     interval=CaptureInterval(
         start=Timestamp(
             seconds=SECONDS_START,
@@ -71,7 +74,7 @@ BINARY_IDS = [BinaryID(
 )]
 BINARY_DATA = b'binary_data'
 METHOD_NAME = "method_name"
-TIMESTAMPS = (
+TIMESTAMPS = [(
     Timestamp(
         seconds=SECONDS_START,
         nanos=NANOS_START
@@ -80,14 +83,14 @@ TIMESTAMPS = (
         seconds=SECONDS_END,
         nanos=NANOS_END
     )
-)
+)]
 METHOD_PARAMETERS = None
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
 
 TABULAR_RESPONSE = [{"key": "value"}]
-BINARY_RESPONSE = [b'binary_data']
+BINARY_RESPONSE = [BINARY_DATA]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
 BBOX_LABELS_RESPONSE = ["bbox_label"]
@@ -188,7 +191,7 @@ class TestClient:
             deleted_count = await client.remove_tags_from_binary_data_by_filter(tags=TAGS, filter=FILTER)
             assert deleted_count == DELETE_REMOVE_RESPONSE
             assert service.tags == TAGS
-            TestClient.assert_binary_ids(service.binary_ids)
+            TestClient.assert_filter(service.filter)
 
     @pytest.mark.asyncio
     async def test_tags_by_filter(self, service: MockData):
@@ -210,7 +213,7 @@ class TestClient:
     async def test_bounding_box_labels_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            bbox_labels = client.bounding_box_labels_by_filter(filter=FILTER)
+            bbox_labels = await client.bounding_box_labels_by_filter(filter=FILTER)
             assert bbox_labels == BBOX_LABELS_RESPONSE
             TestClient.assert_filter(service.filter)
 
@@ -235,7 +238,7 @@ class TestClient:
     async def test_tabular_data_capture_upload(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.binary_data_capture_upload(
+            await client.tabular_data_capture_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -274,7 +277,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             path = tmp_path / (FILE_NAME + FILE_EXT)
             path.write_bytes(BINARY_DATA)
-            await client.file_upload(
+            await client.file_upload_from_path(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -296,13 +299,13 @@ class TestClient:
         assert filter.robot_id == ROBOT_ID
         assert filter.part_name == PART_NAME
         assert filter.part_id == PART_ID
-        assert filter.location_id == LOCATION_ID
-        assert filter.org_id == ORG_ID
-        assert filter.mime_type == MIME_TYPE
-        assert filter.interval.start.seconds_start == SECONDS_START
-        assert filter.interval.start.nanos_start == NANOS_START
-        assert filter.interval.end.seconds_end == SECONDS_END
-        assert filter.interval.end.nanos_end == NANOS_END
+        assert filter.location_ids == LOCATION_IDS
+        assert filter.organization_ids == ORG_IDS
+        assert filter.mime_type == MIME_TYPES
+        assert filter.interval.start.seconds == SECONDS_START
+        assert filter.interval.start.nanos == NANOS_START
+        assert filter.interval.end.seconds == SECONDS_END
+        assert filter.interval.end.nanos == NANOS_END
         assert filter.tags_filter.tags == TAGS
         assert filter.bbox_labels == BBOX_LABELS
 
@@ -314,10 +317,10 @@ class TestClient:
 
     def assert_sensor_contents(sensor_contents: List[SensorData], is_binary: bool):
         for i, data in sensor_contents:
-            assert data.metadata.time_requested.seconds == TIMESTAMPS[0].seconds
-            assert data.metadata.time_requested.nanos == TIMESTAMPS[0].nanos
-            assert data.metadata.time_reeived.seconds == TIMESTAMPS[1].seconds
-            assert data.metadata.time_received.nanos == TIMESTAMPS[1].nanos
+            assert data.metadata.time_requested.seconds == TIMESTAMPS[i][0].seconds
+            assert data.metadata.time_requested.nanos == TIMESTAMPS[i][0].nanos
+            assert data.metadata.time_reeived.seconds == TIMESTAMPS[i][1].seconds
+            assert data.metadata.time_received.nanos == TIMESTAMPS[i][1].nanos
             if is_binary:
                 assert data.binary == BINARY_DATA
             else:

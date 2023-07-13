@@ -326,10 +326,15 @@ class MockData(DataServiceBase, DataSyncServiceBase):
         self.delete_remove_response = delete_remove_response
         self.tags_response = tags_response
         self.bbox_labels_response = bbox_labels_response
+        self.was_tabular_data_requested = False
+        self.was_binary_data_requested = False
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        if self.was_tabular_data_requested:
+            await stream.send_message(TabularDataByFilterResponse(data=None))
+            return
         self.filter = request.data_request.filter
         n = len(self.tabular_response)
         tabular_response_structs = [None] * n
@@ -338,12 +343,17 @@ class MockData(DataServiceBase, DataSyncServiceBase):
             s.update(self.tabular_response[i])
             tabular_response_structs[i] = s
         await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_response_structs]))
+        self.was_tabular_data_requested = True
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        if self.was_binary_data_requested:
+            await stream.send_message(BinaryDataByFilterResponse())
+            return
         self.filter = request.data_request.filter
         await stream.send_message(BinaryDataByFilterResponse(data=[BinaryData(binary=binary_data) for binary_data in self.binary_response]))
+        self.was_binary_data_requested = True
 
     async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
         request = await stream.recv_message()
@@ -394,7 +404,7 @@ class MockData(DataServiceBase, DataSyncServiceBase):
         assert request is not None
         self.binary_ids = request.binary_ids
         self.tags = request.tags
-        await stream.send_message(RemoveTagsFromBinaryDataByFilterResponse(deleted_count=self.delete_remove_response))
+        await stream.send_message(RemoveTagsFromBinaryDataByIDsResponse(deleted_count=self.delete_remove_response))
 
     async def RemoveTagsFromBinaryDataByFilter(
         self,
@@ -435,8 +445,10 @@ class MockData(DataServiceBase, DataSyncServiceBase):
         await stream.send_message(DataCaptureUploadResponse())
 
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.metadata = request.metadata
-        self.binary_data = request.file_contents.data
-        await stream.send_message(FileUploadResponse)
+        request_metadata = await stream.recv_message()
+        assert request_metadata is not None
+        self.metadata = request_metadata.metadata
+        request_file_contents = await stream.recv_message()
+        assert request_file_contents is not None
+        self.binary_data = request_file_contents.file_contents.data
+        await stream.send_message(FileUploadResponse())
