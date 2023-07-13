@@ -9,13 +9,15 @@ Modular resources allows you to define custom components and services, and add t
 For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
 
 ## Project structure
-The definition of the new resources are in the `src` directory. Within this directory are the `proto`, `gizmo`, and `summation` subdirectories.
+The definition of the new resources are in the `src` directory. Within this directory are the `proto`, `gizmo`, `arm`, and `summation` subdirectories.
 
 The `proto` directory contains the `gizmo.proto` and `summation.proto` definitions of all the message types and calls that can be made to the Gizmo component and Summation service. It also has the compiled python output of the protobuf definition.
 
 The `gizmo` directory contains all the necessary definitions for creating a custom `Gizmo` component type. The `api.py` file defines what a `Gizmo` can do (mirroring the `proto` definition), implements the gRPC `GizmoService` for receiving calls, and the gRPC `GizmoClient` for making calls. See the [API docs](https://docs.viam.com/program/extend/modular-resources/#apis) for more info. The `my_gizmo.py` file in contains the unique implementation of a `Gizmo`. This is defined as a specific `Model`. See the [Model docs](https://docs.viam.com/program/extend/modular-resources/#models) for more info. This implementation uses the `validate_config` function to specify an implicit dependency on a `motor` by default and throw an error if there is an `invalid` attribute.
 
 Similarly, the `summation` directory contains the analogous definitions for the `Summation` service type. The files in this directory mirror the files in the `gizmo` directory.
+
+The `arm` directory contains all the necessary definitions for creating a custom modular `Arm` component type. Since it is subclassing an already exisiting component supported by the Viam SDK, there is no need for a `api.py` file.
 
 There is also a `main.py` file, which creates a module, adds the desired resources, and starts the module. This file is called by the `run.sh` script, which is the entrypoint for this module. Read further to learn how to connect this module to your robot.
 
@@ -28,10 +30,17 @@ The `run.sh` script is the entrypoint for this module. To connect this module wi
 
 Once the module has been added to your robot, you can then add a component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. You can add a service that uses the `MySum` model in a similar manner.
 
-An example configuration for a Gizmo component and a Summation service could look like this:
+An example configuration for an Arm component, a Gizmo component, and a Summation service could look like this:
 ```json
 {
   "components": [
+    {
+      "name": "arm1",
+      "type": "arm",
+      "model": "acme:demo:myarm",
+      "attributes": {},
+      "depends_on": [],
+    },
     {
       "name": "gizmo1",
       "type": "gizmo",
