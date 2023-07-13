@@ -17,7 +17,7 @@ The `gizmo` directory contains all the necessary definitions for creating a cust
 
 Similarly, the `summation` directory contains the analogous definitions for the `Summation` service type. The files in this directory mirror the files in the `gizmo` directory.
 
-The `arm` directory contains all the necessary definitions for creating a custom modular `Arm` component type. Since it is subclassing an already existing component supported by the Viam SDK, there is no need for a `api.py` file. For a more in-depth tutorial on how to write a modular component from an existing resource, see the [documentation](https://python.viam.dev/examples/example.html#create-custom-modules).
+The `arm` directory contains all the necessary definitions for creating a custom modular `Arm` component type. Since it is subclassing an already existing component supported by the Viam SDK, there is no need for an `api.py` file. For a more in-depth tutorial on how to write a modular component from an existing resource, see the [documentation](https://python.viam.dev/examples/example.html#create-custom-modules).
 
 There is also a `main.py` file, which creates a module, adds the desired resources, and starts the module. This file is called by the `run.sh` script, which is the entrypoint for this module. Read further to learn how to connect this module to your robot.
 
