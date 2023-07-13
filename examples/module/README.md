@@ -39,7 +39,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
       "type": "arm",
       "model": "acme:demo:myarm",
       "attributes": {},
-      "depends_on": [],
+      "depends_on": []
     },
     {
       "name": "gizmo1",
