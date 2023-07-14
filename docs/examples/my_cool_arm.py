@@ -1,6 +1,7 @@
 # my-python-robot/my_cool_arm.py
 
 import asyncio
+import os
 from typing import Any, Dict, Optional, Tuple
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
@@ -24,7 +25,6 @@ class MyCoolArm(Arm):
         # Starting joint positions
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
-        self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
@@ -81,4 +81,8 @@ class MyCoolArm(Arm):
         return not self.is_stopped
 
     async def get_kinematics(self, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
-        return self.kinematics
+        dirname = os.path.dirname(__file__)
+        filepath = os.path.join(dirname, "./xarm6_kinematics.json")
+        with open(filepath, mode="rb") as f:
+            file_data = f.read()
+        return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
