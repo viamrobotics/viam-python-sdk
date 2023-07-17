@@ -335,7 +335,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[tuple[Timestamp, Timestamp]],
+        timestamps: Optional[List[tuple[Timestamp, Timestamp]]],
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
@@ -359,8 +359,8 @@ class DataClient:
         """
         sensor_contents = SensorData(
             metadata=SensorMetadata(
-                time_requested=timestamps[0] if timestamps and timestamps[0] else None,
-                time_received=timestamps[1] if timestamps and timestamps[1] else None,
+                time_requested=timestamps[0][0] if timestamps and timestamps[0] and timestamps[0][0] else None,
+                time_received=timestamps[0][1] if timestamps and timestamps[0] and timestamps[0][1] else None,
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
