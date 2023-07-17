@@ -61,12 +61,14 @@ class PackageInfo(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
+    PLATFORM_FIELD_NUMBER: builtins.int
     FILES_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     name: builtins.str
     version: builtins.str
     type: global___PackageType.ValueType
+    platform: builtins.str
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___FileInfo]:
@@ -76,13 +78,16 @@ class PackageInfo(google.protobuf.message.Message):
     def metadata(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., version: builtins.str=..., type: global___PackageType.ValueType=..., files: collections.abc.Iterable[global___FileInfo] | None=..., metadata: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., version: builtins.str=..., type: global___PackageType.ValueType=..., platform: builtins.str | None=..., files: collections.abc.Iterable[global___FileInfo] | None=..., metadata: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'metadata', b'metadata', 'platform', b'platform']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['files', b'files', 'metadata', b'metadata', 'name', b'name', 'organization_id', b'organization_id', 'type', b'type', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'files', b'files', 'metadata', b'metadata', 'name', b'name', 'organization_id', b'organization_id', 'platform', b'platform', 'type', b'type', 'version', b'version']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_platform', b'_platform']) -> typing_extensions.Literal['platform'] | None:
         ...
 global___PackageInfo = PackageInfo
 
@@ -193,10 +198,10 @@ class GetPackageRequest(google.protobuf.message.Message):
     id: builtins.str
     version: builtins.str
     include_url: builtins.bool
-    type: builtins.str
+    type: global___PackageType.ValueType
     platform: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., version: builtins.str=..., include_url: builtins.bool | None=..., type: builtins.str | None=..., platform: builtins.str | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., version: builtins.str=..., include_url: builtins.bool | None=..., type: global___PackageType.ValueType | None=..., platform: builtins.str | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_include_url', b'_include_url', '_platform', b'_platform', '_type', b'_type', 'include_url', b'include_url', 'platform', b'platform', 'type', b'type']) -> builtins.bool:
