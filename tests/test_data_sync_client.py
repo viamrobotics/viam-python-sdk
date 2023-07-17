@@ -59,7 +59,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                timestamps=TIMESTAMPS,
+                timestamps=TIMESTAMPS[0],
                 binary_data=BINARY_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=True)
