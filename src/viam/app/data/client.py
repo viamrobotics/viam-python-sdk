@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional
 
 from google.protobuf.struct_pb2 import Struct
-# from google.protobuf.timestamp_pb2 import Timestamp
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 
 from viam import logging
@@ -335,7 +335,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Any,
+        timestamps: Optional[List[tuple[Optional[Timestamp], Optional[Timestamp]]]],
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
@@ -356,7 +356,9 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
+            AssrtionError: If len(timestamps) is not 1.
         """
+        assert len(timestamps) == 1
         sensor_contents = SensorData(
             metadata=SensorMetadata(
                 time_requested=timestamps[0][0] if timestamps and timestamps[0] and timestamps[0][0] else None,
@@ -386,7 +388,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Any,
+        timestamps: Optional[List[tuple[Optional[Timestamp], Optional[Timestamp]]]],
         tabular_data: List[Mapping[str, Any]],
     ) -> None:
         """Upload tabular sensor data.
