@@ -6,7 +6,7 @@ else:
     from typing import AsyncIterator
 
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import datetime, timedelta
 from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
@@ -367,6 +367,7 @@ class MockCamera(Camera):
             DistortionParameters(model="no_distortion"),
         )
         self.timeout: Optional[float] = None
+        self.timestamp = datetime(1970, 1, 1)
         super().__init__(name)
 
     async def get_image(self, mime_type: str = "", timeout: Optional[float] = None, **kwargs) -> Union[Image.Image, RawImage]:
@@ -378,6 +379,15 @@ class MockCamera(Camera):
                 mime_type=mime_type,
             )
         return self.image.copy()
+
+    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[Union[Image.Image, RawImage]], datetime]:
+        self.timeout = timeout
+        return [
+            RawImage(
+                data=CameraMimeType.VIAM_RGBA.encode_image(self.image),
+                mime_type=CameraMimeType.VIAM_RGBA,
+            )
+        ], self.timestamp
 
     async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
         self.timeout = timeout

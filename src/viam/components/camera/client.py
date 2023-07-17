@@ -1,15 +1,19 @@
+from datetime import datetime
 from io import BytesIO
-from typing import Mapping, Optional, Tuple, Union
+from typing import Mapping, List, Optional, Tuple, Union
 
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 from PIL import Image
 
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
     GetImageResponse,
+    GetImagesRequest,
+    GetImagesResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -39,6 +43,20 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
             image = RawImage(response.image, response.mime_type)
             return image
         return Image.open(BytesIO(response.image), formats=LIBRARY_SUPPORTED_FORMATS)
+
+    async def get_images(self, *, timeout: Optional[float] = None) -> Tuple[List[Union[Image.Image, RawImage]], datetime]:
+        request = GetImagesRequest(name=self.name)
+        response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout)
+        imgs = []
+        for img in response.images:
+            mimetype = CameraMimeType.from_proto(img.format)
+            if CameraMimeType.is_supported(mimetype):
+                imgs.append(Image.open(BytesIO(img.image), formats=LIBRARY_SUPPORTED_FORMATS))
+            else:
+                image = RawImage(data=img.image, mime_type=mimetype)
+                imgs.append(image)
+        resp_metadata: ResponseMetadata = response.response_metadata
+        return imgs, resp_metadata.captured_at.ToDatetime()
 
     async def get_point_cloud(self, *, timeout: Optional[float] = None) -> Tuple[bytes, str]:
         request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD)

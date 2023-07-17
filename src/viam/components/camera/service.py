@@ -1,19 +1,24 @@
 from typing import Dict
 
 from google.api.httpbody_pb2 import HttpBody
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.server import Stream
+
 
 from viam.errors import MethodNotImplementedError
 from viam.media.video import CameraMimeType
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceBase,
     GetImageRequest,
     GetImageResponse,
+    GetImagesRequest,
+    GetImagesResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
+    Image,
     RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -59,6 +64,31 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         finally:
             image.close()
         response.image = img_bytes
+        await stream.send_message(response)
+
+    async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        camera = self.get_resource(name)
+
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        images, ts = await camera.get_images(timeout=timeout, metadata=stream.metadata)
+        img_bytes_lst = []
+        for img in images:
+            try:
+                # encode all pil images as jpg as default
+                mimetype = CameraMimeType.JPEG
+                if isinstance(img, RawImage):
+                    mimetype, _ = CameraMimeType.from_lazy(img.mime_type)
+                fmt = mimetype.to_proto()
+                img_bytes = mimetype.encode_image(img)
+                img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
+            finally:
+                img.close()
+        timestamp = Timestamp()
+        timestamp.FromDatetime(ts)
+        response = GetImagesResponse(images=img_bytes_lst, response_metadata=ResponseMetadata(captured_at=timestamp))
         await stream.send_message(response)
 
     async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:

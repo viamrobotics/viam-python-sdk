@@ -1,3 +1,4 @@
+from datetime import datetime
 from io import BytesIO
 
 import pytest
@@ -16,8 +17,11 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometries
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
+    Format,
     GetImageRequest,
     GetImageResponse,
+    GetImagesRequest,
+    GetImagesResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
@@ -40,6 +44,11 @@ from .mocks.components import MockCamera
 @pytest.fixture(scope="function")
 def image() -> Image.Image:
     return Image.new("RGBA", (100, 100), "#AABBCCDD")
+
+
+@pytest.fixture(scope="function")
+def timestamp() -> datetime:
+    return datetime(1970, 1, 1)
 
 
 @pytest.fixture(scope="function")
@@ -75,7 +84,7 @@ def generic_service(camera: Camera) -> GenericRPCService:
 
 class TestCamera:
     @pytest.mark.asyncio
-    async def test_get_frame(self, camera: Camera, image: Image.Image):
+    async def test_get_image(self, camera: Camera, image: Image.Image):
         img = await camera.get_image(CameraMimeType.PNG)
         assert img == image
 
@@ -84,6 +93,13 @@ class TestCamera:
 
         img = await camera.get_image(CameraMimeType.PNG.with_lazy_suffix)
         assert isinstance(img, RawImage)
+
+    @pytest.mark.asyncio
+    async def test_get_images(self, camera: Camera, image: Image.Image, timestamp: datetime):
+        imgs, ts = await camera.get_images()
+        assert isinstance(imgs[0], RawImage)
+        assert imgs[0].data == CameraMimeType.VIAM_RGBA.encode_image(image)
+        assert ts == timestamp
 
     @pytest.mark.asyncio
     async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
@@ -117,7 +133,7 @@ class TestCamera:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_get_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -147,6 +163,19 @@ class TestService:
             request = GetImageRequest(name="camera")
             response: GetImageResponse = await client.GetImage(request)
             assert service._camera_mime_types["camera"] == CameraMimeType.JPEG
+
+    @pytest.mark.asyncio
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, timestamp: datetime):
+        assert camera.timeout is None
+        async with ChannelFor([service]) as channel:
+            client = CameraServiceStub(channel)
+
+            request = GetImagesRequest(name="camera")
+            response: GetImagesResponse = await client.GetImages(request, timeout=18.2)
+            raw_img = response.images[0]
+            assert raw_img.format == Format.FORMAT_RAW_RGBA
+            assert response.response_metadata.captured_at.ToDatetime() == timestamp
+            assert camera.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
     async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
@@ -203,7 +232,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
@@ -231,6 +260,18 @@ class TestClient:
             assert isinstance(raw_img, RawImage)
             assert raw_img.data == image.tobytes()
             assert raw_img.mime_type == "unknown"
+
+    @pytest.mark.asyncio
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: Image.Image, timestamp: datetime):
+        assert camera.timeout is None
+        async with ChannelFor([service]) as channel:
+            client = CameraClient("camera", channel)
+
+            imgs, ts = await client.get_images(timeout=1.82)
+            assert isinstance(imgs[0], Image.Image)
+            assert imgs[0].tobytes() == image.tobytes()
+            assert ts == timestamp
+            assert camera.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_get_point_cloud(self, camera: MockCamera, service: CameraRPCService, point_cloud: bytes):

@@ -7,6 +7,7 @@ from PIL.Image import Image
 from typing_extensions import Self
 
 from viam.errors import NotSupportedError
+from viam.proto.component.camera import Format
 
 from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 
@@ -94,7 +95,7 @@ class CameraMimeType(str, Enum):
 
     @classmethod
     def is_supported(cls, mime_type: str) -> bool:
-        """Check if the provided mime_type is supported
+        """Check if the provided mime_type is supported.
 
         Args:
             mime_type (str): The mime_type to check
@@ -105,3 +106,37 @@ class CameraMimeType(str, Enum):
         if mime_type == cls.UNSUPPORTED:
             return False
         return mime_type in set(item.value for item in cls)
+
+    @classmethod
+    def from_proto(cls, format: Format.ValueType) -> Self:
+        """Returns the mimetype from a proto enum.
+
+        Args:
+            format (Format.ValueType): The mimetype in a proto enum.
+
+        Returns:
+            Self: The mimetype.
+        """
+        mimetypes = {
+            Format.FORMAT_RAW_RGBA: CameraMimeType.VIAM_RGBA,
+            Format.FORMAT_JPEG: CameraMimeType.JPEG,
+            Format.FORMAT_PNG: CameraMimeType.PNG,
+            Format.FORMAT_RAW_DEPTH: CameraMimeType.PCD,
+            Format.FORMAT_UNSPECIFIED: CameraMimeType.UNSUPPORTED,
+        }
+        return mimetypes.get(format, CameraMimeType.UNSUPPORTED)
+
+    def to_proto(self) -> Format.ValueType:
+        """Returns the mimetype in a proto enum.
+
+        Returns:
+            Format.ValueType: The mimetype in a proto enum.
+        """
+        formats = {
+            self.VIAM_RGBA: Format.FORMAT_RAW_RGBA,
+            self.JPEG: Format.FORMAT_JPEG,
+            self.PNG: Format.FORMAT_PNG,
+            self.PCD: Format.FORMAT_RAW_DEPTH,
+            self.UNSUPPORTED: Format.FORMAT_UNSPECIFIED,
+        }
+        return formats.get(self, Format.FORMAT_UNSPECIFIED)

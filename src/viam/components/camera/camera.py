@@ -1,7 +1,8 @@
 import abc
-from typing import Final, NamedTuple, Optional, Tuple, Union
+from typing import Final, List, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
+from datetime import datetime
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -45,6 +46,21 @@ class Camera(ComponentBase):
 
         Returns:
             Image | RawImage: The frame
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[Union[Image, RawImage]], datetime]:
+        """Get simultaneous images from different sensors, along with associated metadata (just timestamp for now).
+        It's not for getting a time series of images from the same sensor.
+
+        Returns:
+            Tuple[List[Union[Image, RawImage]], datetime]:
+                - List[Union[Image, RawImage]]:
+                  The list of images returned from the camera system.
+
+                - datetime:
+                  The timestamp of the images.
         """
         ...
 
