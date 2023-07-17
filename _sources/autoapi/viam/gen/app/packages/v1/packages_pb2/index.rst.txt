@@ -123,7 +123,7 @@ Attributes
 
    
 
-.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., platform: builtins.str | None = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -161,7 +161,12 @@ Attributes
 
       
 
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata']) -> bool
+   .. py:attribute:: platform
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_platform, b'_platform', metadata, b'metadata', platform, b'platform']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -176,6 +181,21 @@ Attributes
       :rtype: bool
 
       :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> typing_extensions.Literal['platform'] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 
@@ -356,7 +376,7 @@ Attributes
 
    
 
-.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ..., type: builtins.str | None = ..., platform: builtins.str | None = ...)
+.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ..., type: global___PackageType.ValueType | None = ..., platform: builtins.str | None = ...)
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -382,7 +402,7 @@ Attributes
       
 
    .. py:attribute:: type
-      :type: str
+      :type: global___PackageType
 
       
 
