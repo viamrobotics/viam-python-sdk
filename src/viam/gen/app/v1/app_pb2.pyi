@@ -500,6 +500,50 @@ class CreateOrganizationInviteResponse(google.protobuf.message.Message):
 global___CreateOrganizationInviteResponse = CreateOrganizationInviteResponse
 
 @typing_extensions.final
+class UpdateOrganizationInviteAuthorizationsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    EMAIL_FIELD_NUMBER: builtins.int
+    ADD_AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+    REMOVE_AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    email: builtins.str
+
+    @property
+    def add_authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+        ...
+
+    @property
+    def remove_authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+        ...
+
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., add_authorizations: collections.abc.Iterable[global___Authorization] | None=..., remove_authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['add_authorizations', b'add_authorizations', 'email', b'email', 'organization_id', b'organization_id', 'remove_authorizations', b'remove_authorizations']) -> None:
+        ...
+global___UpdateOrganizationInviteAuthorizationsRequest = UpdateOrganizationInviteAuthorizationsRequest
+
+@typing_extensions.final
+class UpdateOrganizationInviteAuthorizationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    INVITE_FIELD_NUMBER: builtins.int
+
+    @property
+    def invite(self) -> global___OrganizationInvite:
+        ...
+
+    def __init__(self, *, invite: global___OrganizationInvite | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> None:
+        ...
+global___UpdateOrganizationInviteAuthorizationsResponse = UpdateOrganizationInviteAuthorizationsResponse
+
+@typing_extensions.final
 class DeleteOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
