@@ -312,7 +312,7 @@ class MockSLAM(SLAM):
         return {"command": command}
 
 
-class MockData(DataServiceBase, DataSyncServiceBase):
+class MockData(DataServiceBase):
     def __init__(
         self,
         tabular_response: List[Mapping[str, Any]],
@@ -437,6 +437,8 @@ class MockData(DataServiceBase, DataSyncServiceBase):
         self.filter = request.filter
         await stream.send_message(BoundingBoxLabelsByFilterResponse(labels=self.bbox_labels_response))
 
+
+class MockDataSync(DataSyncServiceBase):
     async def DataCaptureUpload(self, stream: Stream[DataCaptureUploadRequest, DataCaptureUploadResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
