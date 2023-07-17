@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional
 
 from google.protobuf.struct_pb2 import Struct
-from google.protobuf.timestamp_pb2 import Timestamp
+# from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 
 from viam import logging
@@ -386,7 +386,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[List[tuple[Timestamp, Timestamp]]],
+        timestamps: Any,
         tabular_data: List[Mapping[str, Any]],
     ) -> None:
         """Upload tabular sensor data.
