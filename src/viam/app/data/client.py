@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Any, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional, Tuple
 
 from google.protobuf.struct_pb2 import Struct
 from google.protobuf.timestamp_pb2 import Timestamp
@@ -335,7 +335,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[List[tuple[Optional[Timestamp], Optional[Timestamp]]]],
+        timestamps: Optional[List[Tuple[Optional[Timestamp], Optional[Timestamp]]]],
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
@@ -350,7 +350,7 @@ class DataClient:
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            timestamps (Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]): Optional tuple
+            timestamps (Optional[Tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]): Optional tuple
                 containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
             binary_data (bytes): The data to be uploaded, respresented in bytes.
 
@@ -388,7 +388,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[List[tuple[Optional[Timestamp], Optional[Timestamp]]]],
+        timestamps: Optional[List[Tuple[Optional[Timestamp], Optional[Timestamp]]]],
         tabular_data: List[Mapping[str, Any]],
     ) -> None:
         """Upload tabular sensor data.
@@ -403,7 +403,7 @@ class DataClient:
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            timestamps (Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]]): Optional
+            timestamps (Optional[List[Tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]]): Optional
                 list of tuples, each containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the
                 appropriate sensor.
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
