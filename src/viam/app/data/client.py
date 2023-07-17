@@ -335,7 +335,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[List[tuple[Timestamp, Timestamp]]],
+        timestamps: Any,
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
