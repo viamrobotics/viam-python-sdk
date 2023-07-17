@@ -140,7 +140,7 @@ class DataClient:
             response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += list(response.data)
+            data += [data.binary for data in response.data]
             last = response.last
 
         if dest:
