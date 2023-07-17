@@ -2,7 +2,6 @@ from datetime import datetime
 from io import BytesIO
 from typing import Mapping, List, Optional, Tuple, Union
 
-from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 from PIL import Image
 
