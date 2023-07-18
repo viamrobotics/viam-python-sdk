@@ -24,6 +24,16 @@ from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 from . import Camera, RawImage
 
 
+def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: Optional[str] = None) -> Union[Image.Image, RawImage]:
+    if request_mime_type is None:
+        request_mime_type = response_mime_type
+    _, is_lazy = CameraMimeType.from_lazy(request_mime_type)
+    if is_lazy or not (CameraMimeType.is_supported(response_mime_type)):
+        image = RawImage(data=data, mime_type=response_mime_type)
+        return image
+    return Image.open(BytesIO(data), formats=LIBRARY_SUPPORTED_FORMATS)
+
+
 class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Camera component
@@ -37,23 +47,16 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     async def get_image(self, mime_type: str = "", *, timeout: Optional[float] = None) -> Union[Image.Image, RawImage]:
         request = GetImageRequest(name=self.name, mime_type=mime_type)
         response: GetImageResponse = await self.client.GetImage(request, timeout=timeout)
-        _, is_lazy = CameraMimeType.from_lazy(request.mime_type)
-        if is_lazy or not (CameraMimeType.is_supported(response.mime_type)):
-            image = RawImage(response.image, response.mime_type)
-            return image
-        return Image.open(BytesIO(response.image), formats=LIBRARY_SUPPORTED_FORMATS)
+        return get_image_from_response(response.image, response_mime_type=response.mime_type, request_mime_type=request.mime_type)
 
     async def get_images(self, *, timeout: Optional[float] = None) -> Tuple[List[Union[Image.Image, RawImage]], datetime]:
         request = GetImagesRequest(name=self.name)
         response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout)
         imgs = []
-        for img in response.images:
-            mimetype = CameraMimeType.from_proto(img.format)
-            if CameraMimeType.is_supported(mimetype):
-                imgs.append(Image.open(BytesIO(img.image), formats=LIBRARY_SUPPORTED_FORMATS))
-            else:
-                image = RawImage(data=img.image, mime_type=mimetype)
-                imgs.append(image)
+        for img_data in response.images:
+            mime_type = CameraMimeType.from_proto(img_data.format)
+            img = get_image_from_response(img_data.image, response_mime_type=mime_type)
+            imgs.append(img)
         resp_metadata: ResponseMetadata = response.response_metadata
         return imgs, resp_metadata.captured_at.ToDatetime()
 
