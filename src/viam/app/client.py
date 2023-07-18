@@ -28,7 +28,7 @@ class AppClient:
                 `auth_entity` fields are required.
 
         Returns:
-            Self: The AppClient.
+            Self: The `AppClient`.
         """
         self = cls()
         self._channel = await _dial_app(dial_options)
@@ -46,10 +46,10 @@ class AppClient:
         return DataClient(self._channel, self._metadata)
 
     def close(self):
-        """Close opened channels used for the various service stubs utilized."""
+        """Close opened channels used for the various service stubs initialized."""
         if self._closed:
-            LOGGER.debug("AppClient is already closed")
+            LOGGER.debug("AppClient is already closed.")
             return
-        LOGGER.debug("Closing gRPC channel to app")
+        LOGGER.debug("Closing gRPC channel to app.")
         self._channel.close()
         self._closed = True
