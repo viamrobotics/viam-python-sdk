@@ -1,5 +1,6 @@
-from array import array
 import os
+from array import array
+
 import pytest
 
 from viam.media.video import RawImage

@@ -1,10 +1,9 @@
 import pytest
-
 from grpclib import Status
 from grpclib.testing import ChannelFor
+
 from tests.mocks.components import MockArm
 from viam.components.arm.service import ArmRPCService
-
 from viam.errors import GRPCError, ViamGRPCError
 from viam.gen.component.arm.v1.arm_grpc import ArmServiceStub
 from viam.gen.component.arm.v1.arm_pb2 import IsMovingRequest, IsMovingResponse

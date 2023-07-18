@@ -1,20 +1,19 @@
-from grpclib.client import Channel
 import asyncio
 from typing import Any, Dict, Optional, Tuple
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
+from grpclib.client import Channel
 from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm, KinematicsFileFormat
-from viam.components.movement_sensor import MovementSensor
 from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
-from viam.resource.manager import ResourceManager
+from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import Pose, PoseInFrame, ResourceName, Transform, GeoPoint, Vector3, Orientation
+from viam.proto.common import GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus
@@ -44,6 +43,7 @@ from viam.proto.robot import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
+from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE

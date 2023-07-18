@@ -2,16 +2,12 @@ import pytest
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.resource.manager import ResourceManager
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
-from viam.proto.component.sensor import (
-    GetReadingsRequest,
-    GetReadingsResponse,
-    SensorServiceStub,
-)
-from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
+from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
+from viam.resource.manager import ResourceManager
+from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockSensor

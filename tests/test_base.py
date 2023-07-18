@@ -7,7 +7,6 @@ from grpclib.testing import ChannelFor
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.resource.manager import ResourceManager
 from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.base import (
     BaseServiceStub,
@@ -19,7 +18,8 @@ from viam.proto.component.base import (
     SpinRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
+from viam.resource.manager import ResourceManager
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockBase

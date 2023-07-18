@@ -3,17 +3,16 @@ from io import BytesIO
 
 import pytest
 from google.api.httpbody_pb2 import HttpBody
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
-
 from PIL import Image
 
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.resource.manager import ResourceManager
-from viam.media.video import CameraMimeType, RawImage, LIBRARY_SUPPORTED_FORMATS
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, RawImage
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
@@ -29,6 +28,7 @@ from viam.proto.component.camera import (
     IntrinsicParameters,
     RenderFrameRequest,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
@@ -47,8 +47,10 @@ def image() -> Image.Image:
 
 
 @pytest.fixture(scope="function")
-def timestamp() -> datetime:
-    return datetime(1970, 1, 1)
+def metadata() -> ResponseMetadata:
+    ts = Timestamp()
+    ts.FromDatetime(datetime(1970, 1, 1))
+    return ResponseMetadata(captured_at=ts)
 
 
 @pytest.fixture(scope="function")
@@ -95,11 +97,11 @@ class TestCamera:
         assert isinstance(img, RawImage)
 
     @pytest.mark.asyncio
-    async def test_get_images(self, camera: Camera, image: Image.Image, timestamp: datetime):
-        imgs, ts = await camera.get_images()
-        assert isinstance(imgs[0], RawImage)
+    async def test_get_images(self, camera: Camera, image: Image.Image, metadata: ResponseMetadata):
+        imgs, md = await camera.get_images()
+        assert isinstance(imgs[0], NamedImage)
         assert imgs[0].data == CameraMimeType.VIAM_RGBA.encode_image(image)
-        assert ts == timestamp
+        assert md == metadata
 
     @pytest.mark.asyncio
     async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
@@ -165,7 +167,7 @@ class TestService:
             assert service._camera_mime_types["camera"] == CameraMimeType.JPEG
 
     @pytest.mark.asyncio
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, timestamp: datetime):
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -174,7 +176,7 @@ class TestService:
             response: GetImagesResponse = await client.GetImages(request, timeout=18.2)
             raw_img = response.images[0]
             assert raw_img.format == Format.FORMAT_RAW_RGBA
-            assert response.response_metadata.captured_at.ToDatetime() == timestamp
+            assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
@@ -262,15 +264,15 @@ class TestClient:
             assert raw_img.mime_type == "unknown"
 
     @pytest.mark.asyncio
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: Image.Image, timestamp: datetime):
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: Image.Image, metadata: ResponseMetadata):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
-            imgs, ts = await client.get_images(timeout=1.82)
-            assert isinstance(imgs[0], Image.Image)
-            assert imgs[0].tobytes() == image.tobytes()
-            assert ts == timestamp
+            imgs, md = await client.get_images(timeout=1.82)
+            assert isinstance(imgs[0], NamedImage)
+            assert imgs[0].image.tobytes() == image.tobytes()
+            assert md == metadata
             assert camera.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio

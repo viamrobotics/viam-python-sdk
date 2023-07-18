@@ -1,6 +1,6 @@
 from typing import List
-import pytest
 
+import pytest
 from grpclib.testing import ChannelFor
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse

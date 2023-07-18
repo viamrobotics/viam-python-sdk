@@ -3,7 +3,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
-from viam.proto.common import Pose, PoseInFrame, ResourceName, GeoPoint, GeoObstacle
+from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import Constraints, LinearConstraint
 from viam.services.motion import MotionClient
 

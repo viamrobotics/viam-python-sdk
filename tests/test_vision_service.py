@@ -3,21 +3,8 @@ from random import random
 import pytest
 from grpclib.testing import ChannelFor
 from PIL import Image
-from viam.media.video import CameraMimeType
-from viam.proto.service.vision import (
-    VisionServiceStub,
-    GetClassificationsFromCameraRequest,
-    GetClassificationsFromCameraResponse,
-    GetClassificationsRequest,
-    GetClassificationsResponse,
-    GetDetectionsFromCameraRequest,
-    GetDetectionsFromCameraResponse,
-    GetDetectionsRequest,
-    GetDetectionsResponse,
-    GetObjectPointCloudsRequest,
-    GetObjectPointCloudsResponse,
-)
 
+from viam.media.video import CameraMimeType
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -28,12 +15,21 @@ from viam.proto.common import (
     RectangularPrism,
     Vector3,
 )
-from viam.resource.manager import ResourceManager
-from viam.services.vision import (
-    Detection,
-    Classification,
-    VisionClient,
+from viam.proto.service.vision import (
+    GetClassificationsFromCameraRequest,
+    GetClassificationsFromCameraResponse,
+    GetClassificationsRequest,
+    GetClassificationsResponse,
+    GetDetectionsFromCameraRequest,
+    GetDetectionsFromCameraResponse,
+    GetDetectionsRequest,
+    GetDetectionsResponse,
+    GetObjectPointCloudsRequest,
+    GetObjectPointCloudsResponse,
+    VisionServiceStub,
 )
+from viam.resource.manager import ResourceManager
+from viam.services.vision import Classification, Detection, VisionClient
 from viam.services.vision.service import VisionRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 

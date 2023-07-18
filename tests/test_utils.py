@@ -4,13 +4,7 @@ import pytest
 from google.protobuf.json_format import ParseError
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 
-from viam.proto.common import (
-    ActuatorStatus,
-    GeoPoint,
-    Orientation,
-    ResourceName,
-    Vector3,
-)
+from viam.proto.common import ActuatorStatus, GeoPoint, Orientation, ResourceName, Vector3
 from viam.utils import (
     PointerCounter,
     dict_to_struct,

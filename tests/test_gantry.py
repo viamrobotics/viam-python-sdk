@@ -4,7 +4,6 @@ from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryRPCService
-from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.gantry import (
     GantryServiceStub,
@@ -19,6 +18,7 @@ from viam.proto.component.gantry import (
     MoveToPositionRequest,
     StopRequest,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
