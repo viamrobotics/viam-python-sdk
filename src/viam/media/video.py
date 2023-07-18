@@ -48,7 +48,7 @@ class RawImage(NamedTuple):
         Returns:
             List[List[int]]: The standard representation of the image.
         """
-        if self.mime_type != "image/vnd.viam.dep":
+        if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
             raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
 
         width = int.from_bytes(self.data[8:16], "big")
