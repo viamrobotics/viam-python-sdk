@@ -62,6 +62,7 @@ class RawImage(NamedTuple):
 
 class CameraMimeType(str, Enum):
     VIAM_RGBA = "image/vnd.viam.rgba"
+    VIAM_RAW_DEPTH = "image/vnd.viam.dep"
     JPEG = "image/jpeg"
     PNG = "image/png"
     PCD = "pointcloud/pcd"
@@ -121,7 +122,7 @@ class CameraMimeType(str, Enum):
             Format.FORMAT_RAW_RGBA: CameraMimeType.VIAM_RGBA,
             Format.FORMAT_JPEG: CameraMimeType.JPEG,
             Format.FORMAT_PNG: CameraMimeType.PNG,
-            Format.FORMAT_RAW_DEPTH: CameraMimeType.PCD,
+            Format.FORMAT_RAW_DEPTH: CameraMimeType.VIAM_RAW_DEPTH,
             Format.FORMAT_UNSPECIFIED: CameraMimeType.UNSUPPORTED,
         }
         return mimetypes.get(format, CameraMimeType.UNSUPPORTED)
@@ -136,7 +137,7 @@ class CameraMimeType(str, Enum):
             self.VIAM_RGBA: Format.FORMAT_RAW_RGBA,
             self.JPEG: Format.FORMAT_JPEG,
             self.PNG: Format.FORMAT_PNG,
-            self.PCD: Format.FORMAT_RAW_DEPTH,
+            self.VIAM_RAW_DEPTH: Format.FORMAT_RAW_DEPTH,
             self.UNSUPPORTED: Format.FORMAT_UNSPECIFIED,
         }
         return formats.get(self, Format.FORMAT_UNSPECIFIED)
