@@ -23,7 +23,7 @@ NANOS_END = 10
 TAGS = ["tag"]
 BINARY_DATA = b'binary_data'
 METHOD_NAME = "method_name"
-TIMESTAMPS = [(
+TIMESTAMPS = (
     Timestamp(
         seconds=SECONDS_START,
         nanos=NANOS_START
@@ -32,7 +32,7 @@ TIMESTAMPS = [(
         seconds=SECONDS_END,
         nanos=NANOS_END
     )
-)]
+)
 METHOD_PARAMETERS = {}
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
@@ -76,7 +76,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                timestamps=TIMESTAMPS,  # tabular_upload takes in a list of tuples.
+                timestamps=[TIMESTAMPS],
                 tabular_data=TABULAR_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=False)
@@ -124,14 +124,14 @@ class TestClient:
 
     def assert_sensor_contents(self, sensor_contents: List[SensorData], is_binary: bool):
         for i in range(len(sensor_contents)):
-            assert sensor_contents[i].metadata.time_requested.seconds == TIMESTAMPS[i][0].seconds
-            assert sensor_contents[i].metadata.time_requested.nanos == TIMESTAMPS[i][0].nanos
-            assert sensor_contents[i].metadata.time_received.seconds == TIMESTAMPS[i][1].seconds
-            assert sensor_contents[i].metadata.time_received.nanos == TIMESTAMPS[i][1].nanos
-            if is_binary:
-                assert sensor_contents[i].binary == BINARY_DATA
-            else:
-                assert struct_to_dict(sensor_contents[i].struct) == TABULAR_DATA[i]
+            assert sensor_contents[i].metadata.time_requested.seconds == TIMESTAMPS[0].seconds
+            assert sensor_contents[i].metadata.time_requested.nanos == TIMESTAMPS[0].nanos
+            assert sensor_contents[i].metadata.time_received.seconds == TIMESTAMPS[1].seconds
+            assert sensor_contents[i].metadata.time_received.nanos == TIMESTAMPS[1].nanos
+        if is_binary:
+            assert sensor_contents[0].binary == BINARY_DATA
+        else:
+            assert struct_to_dict(sensor_contents[i].struct) == TABULAR_DATA[i]
 
     def assert_metadata(self, metadata: UploadMetadata) -> None:
         assert metadata.part_id == PART_ID

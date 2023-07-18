@@ -131,7 +131,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_tabular_data_by_filter(filter=FILTER)
             assert deleted_count == DELETE_REMOVE_RESPONSE
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_delete_binary_data_by_filter(self, service: MockData):
@@ -139,7 +139,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             deleted_count = await client.delete_binary_data_by_filter(filter=FILTER)
             assert deleted_count == DELETE_REMOVE_RESPONSE
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_delete_binary_data_by_ids(self, service: MockData):
@@ -163,7 +163,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             await client.add_tags_to_binary_data_by_filter(tags=TAGS, filter=FILTER)
             assert service.tags == TAGS
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_remove_tags_from_binary_data_by_ids(self, service: MockData):
@@ -181,7 +181,7 @@ class TestClient:
             deleted_count = await client.remove_tags_from_binary_data_by_filter(tags=TAGS, filter=FILTER)
             assert deleted_count == DELETE_REMOVE_RESPONSE
             assert service.tags == TAGS
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_tags_by_filter(self, service: MockData):
@@ -189,7 +189,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             tags = await client.tags_by_filter(filter=FILTER)
             assert tags == TAGS_RESPONSE
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_add_bounding_box_to_image_by_id(self, service: MockData):
@@ -205,7 +205,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             bbox_labels = await client.bounding_box_labels_by_filter(filter=FILTER)
             assert bbox_labels == BBOX_LABELS_RESPONSE
-            self.assert_filter(service.filter)
+            self.assert_filter(filter=service.filter)
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME

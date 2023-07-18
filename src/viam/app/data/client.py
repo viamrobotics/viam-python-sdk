@@ -335,7 +335,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        timestamps: Optional[List[Tuple[Optional[Timestamp], Optional[Timestamp]]]],
+        timestamps: Optional[Tuple[Optional[Timestamp], Optional[Timestamp]]],
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
@@ -356,13 +356,11 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            AssrtionError: If len(timestamps) is not 1.
         """
-        assert len(timestamps) == 1
         sensor_contents = SensorData(
             metadata=SensorMetadata(
-                time_requested=timestamps[0][0] if timestamps and timestamps[0] and timestamps[0][0] else None,
-                time_received=timestamps[0][1] if timestamps and timestamps[0] and timestamps[0][1] else None,
+                time_requested=timestamps[0] if timestamps and timestamps[0] else None,
+                time_received=timestamps[1] if timestamps and timestamps[1] else None,
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
