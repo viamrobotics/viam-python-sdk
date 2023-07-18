@@ -2,8 +2,11 @@ import asyncio
 
 from grpclib.utils import graceful_exit
 from grpclib.server import Server, Stream
+from google.protobuf.struct_pb2 import Struct
 
 from viam.proto.app.data import (
+    AddBoundingBoxToImageByIDResponse,
+    AddBoundingBoxToImageByIDRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
@@ -21,10 +24,13 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataByFilterRequest,
     DeleteTabularDataByFilterResponse,
+    RemoveBoundingBoxFromImageByIDResponse,
+    RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
     RemoveTagsFromBinaryDataByIDsResponse,
+    TabularData,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
     TagsByFilterRequest,
@@ -40,10 +46,23 @@ from viam.proto.app.datasync import (
 
 
 class DataServer(DataServiceBase, DataSyncServiceBase):
+    def __init__(self):
+        self.tabular_data_requested = False
+        self.tabular_response = [{"PowerPct": 0, "IsPowerred": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
 
     async def TabularDataByFilter(self, stream: [TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
-        data = [{"PowerPct": 0, "IsPowerred": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
-        return data
+        if self.tabular_data_requested:
+            await stream.send_message(TabularDataByFilterResponse())
+            return
+        self.tabular_data_requested = True
+        _ = await stream.recv_message()
+        n = len(self.tabular_response)
+        tabular_structs = [None] * n
+        for i in range(n):
+            s = Struct()
+            s.update(self.tabular_response[i])
+            tabular_structs[i] = s
+        await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_structs]))
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
         pass
@@ -86,13 +105,13 @@ class DataServer(DataServiceBase, DataSyncServiceBase):
 
     async def AddBoundingBoxToImageByID(
         self,
-        stream: 'Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]'
+        stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]
     ) -> None:
         pass
 
     async def RemoveBoundingBoxFromImageByID(
         self,
-        stream: 'Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]'
+        stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
     ) -> None:
         pass
 
