@@ -48,7 +48,7 @@ from viam.proto.app.datasync import (
 class MockData(DataServiceBase):
     def __init__(self):
         self.tabular_data_requested = False
-        self.tabular_response = [{"PowerPct": 0, "IsPowerred": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
+        self.tabular_response = [{"PowerPct": 0, "IsPowered": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
 
     async def TabularDataByFilter(self, stream: [TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         if self.tabular_data_requested:
