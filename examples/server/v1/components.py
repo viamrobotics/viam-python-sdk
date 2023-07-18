@@ -9,10 +9,10 @@ if sys.version_info >= (3, 9):
 else:
     from typing import AsyncIterator
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from multiprocessing import Lock, Queue
 from pathlib import Path
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from PIL import Image
 
@@ -34,6 +34,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
+from viam.media.video import RawImage
 from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
