@@ -45,7 +45,7 @@ from viam.proto.app.datasync import (
 )
 
 
-class DataServer(DataServiceBase, DataSyncServiceBase):
+class MockData(DataServiceBase):
     def __init__(self):
         self.tabular_data_requested = False
         self.tabular_response = [{"PowerPct": 0, "IsPowerred": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
@@ -118,18 +118,20 @@ class DataServer(DataServiceBase, DataSyncServiceBase):
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
         pass
 
+
+class MockDataSync(DataSyncServiceBase):
     async def DataCaptureUpload(self, stream: Stream[DataCaptureUploadRequest, DataCaptureUploadResponse]) -> None:
-        return None
+        await stream.send_message(DataCaptureUploadResponse())
 
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
         pass
 
 
 async def main(*, host: str = '127.0.0.1', port: int = 9092) -> None:
-    server = Server([DataServer()])
-    with graceful_exit([server]):
-        await server.start(host, port)
-        await server.wait_closed()
+    data_server = Server([MockData(), MockDataSync()])
+    with graceful_exit([data_server]):
+        await data_server.start(host, port)
+        await data_server.wait_closed()
 
 if __name__ == '__main__':
     asyncio.run(main())
