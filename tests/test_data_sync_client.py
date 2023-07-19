@@ -1,8 +1,8 @@
 import pytest
+from datetime import datetime
 from typing import List
 
 from grpclib.testing import ChannelFor
-from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.app.data.client import DataClient
 from viam.proto.app.datasync import (
@@ -23,16 +23,8 @@ NANOS_END = 10
 TAGS = ["tag"]
 BINARY_DATA = b'binary_data'
 METHOD_NAME = "method_name"
-TIMESTAMPS = (
-    Timestamp(
-        seconds=SECONDS_START,
-        nanos=NANOS_START
-    ),
-    Timestamp(
-        seconds=SECONDS_END,
-        nanos=NANOS_END
-    )
-)
+DATETIMES = (datetime.now(), datetime.now())
+TIMESTAMPS = (DataClient.datetime_to_timestamp(DATETIMES[0]), DataClient.datetime_to_timestamp(DATETIMES[1]))
 METHOD_PARAMETERS = {}
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
@@ -59,7 +51,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                timestamps=TIMESTAMPS,
+                datetimes=DATETIMES,
                 binary_data=BINARY_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=True)
@@ -76,7 +68,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                timestamps=[TIMESTAMPS],
+                datetimes=[DATETIMES],
                 tabular_data=TABULAR_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=False)
