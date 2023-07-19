@@ -26,8 +26,8 @@ from . import Camera, RawImage
 def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: Optional[str] = None) -> Union[Image.Image, RawImage]:
     if request_mime_type is None:
         request_mime_type = response_mime_type
-    _, is_lazy = CameraMimeType.from_lazy(request_mime_type)
-    if is_lazy or not (CameraMimeType.is_supported(response_mime_type)):
+    mime_type, is_lazy = CameraMimeType.from_lazy(request_mime_type)
+    if is_lazy or mime_type._should_be_raw:
         image = RawImage(data=data, mime_type=response_mime_type)
         return image
     return Image.open(BytesIO(data), formats=LIBRARY_SUPPORTED_FORMATS)

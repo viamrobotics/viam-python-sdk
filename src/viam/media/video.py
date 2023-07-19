@@ -3,7 +3,7 @@ from enum import Enum
 from io import BytesIO
 from typing import List, NamedTuple, Optional, Tuple, Union
 
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from typing_extensions import Self
 
 from viam.errors import NotSupportedError
@@ -93,6 +93,12 @@ class CameraMimeType(str, Enum):
             return buf.getvalue()
         else:
             raise ValueError(f"Cannot encode image to {self}")
+
+    @property
+    def _should_be_raw(self) -> bool:
+        return self in [CameraMimeType.UNSUPPORTED, CameraMimeType.PCD, CameraMimeType.VIAM_RAW_DEPTH] or not CameraMimeType.is_supported(
+            self
+        )
 
     @classmethod
     def is_supported(cls, mime_type: str) -> bool:
@@ -185,7 +191,10 @@ class ViamImage:
             self._image_decoded = True
             return self._image
 
-        self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+        try:
+            self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+        except UnidentifiedImageError:
+            self._image = None
         self._image_decoded = True
         return self._image
 
