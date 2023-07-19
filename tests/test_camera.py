@@ -100,6 +100,7 @@ class TestCamera:
     async def test_get_images(self, camera: Camera, image: Image.Image, metadata: ResponseMetadata):
         imgs, md = await camera.get_images()
         assert isinstance(imgs[0], NamedImage)
+        assert imgs[0].name == camera.name
         assert imgs[0].data == CameraMimeType.VIAM_RGBA.encode_image(image)
         assert md == metadata
 
@@ -176,6 +177,7 @@ class TestService:
             response: GetImagesResponse = await client.GetImages(request, timeout=18.2)
             raw_img = response.images[0]
             assert raw_img.format == Format.FORMAT_RAW_RGBA
+            assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.2)
 
@@ -271,6 +273,7 @@ class TestClient:
 
             imgs, md = await client.get_images(timeout=1.82)
             assert isinstance(imgs[0], NamedImage)
+            assert imgs[0].name == camera.name
             assert imgs[0].image.tobytes() == image.tobytes()
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)

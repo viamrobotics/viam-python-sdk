@@ -388,7 +388,7 @@ class MockCamera(Camera):
         self.timeout = timeout
         return [
             NamedImage(
-                name="name",
+                name=self.name,
                 data=CameraMimeType.VIAM_RGBA.encode_image(self.image),
                 mime_type=CameraMimeType.VIAM_RGBA,
             )
