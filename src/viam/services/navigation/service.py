@@ -3,14 +3,6 @@ from grpclib.server import Stream
 from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.navigation import (
-    GetInternalStateRequest,
-    GetInternalStateResponse,
-    GetLatestMapInfoRequest,
-    GetLatestMapInfoResponse,
-    GetPointCloudMapRequest,
-    GetPointCloudMapResponse,
-    GetPositionRequest,
-    GetPositionResponse,
     NavigationServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
