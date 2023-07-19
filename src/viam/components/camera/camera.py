@@ -56,7 +56,7 @@ class Camera(ComponentBase):
         This should not be used for getting a time series of images from the same sensor.
 
         Returns:
-            Tuple[List[NamedImage], datetime]:
+            Tuple[List[NamedImage], ResponseMetadata]:
                 - List[NamedImage]:
                   The list of images returned from the camera system.
 
