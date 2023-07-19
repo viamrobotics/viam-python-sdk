@@ -151,7 +151,7 @@ class ViamImage:
 
     _data: bytes
     _mime_type: CameraMimeType
-    _image: Optional[Image.Image]
+    _image: Optional[Image.Image] = None
     _image_decoded = False
 
     def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
@@ -173,6 +173,7 @@ class ViamImage:
         if value == self.mime_type:
             return
         self._mime_type = value
+        self.close()
         self._image_decoded = False
         self._image = None
 
@@ -180,14 +181,18 @@ class ViamImage:
     def image(self) -> Optional[Image.Image]:
         """The PIL.Image representation of the image. If the mime type is not supported, this will be None."""
         if not CameraMimeType.is_supported(self.mime_type):
-            self._image_decoded = True
             self._image = None
+            self._image_decoded = True
             return self._image
-        return Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+
+        self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+        self._image_decoded = True
+        return self._image
 
     def close(self):
-        """Close the image and release resources. For ViamImage, this is a noop."""
-        return
+        """Close the image and release resources."""
+        if self._image is not None:
+            self._image.close()
 
     def bytes_to_depth_array(self) -> List[List[int]]:
         """Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
