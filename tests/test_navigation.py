@@ -1,12 +1,9 @@
-from typing import List
-
 import pytest
 from grpclib.testing import ChannelFor
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint
 from viam.proto.service.navigation import (
     AddWaypointRequest,
-    AddWaypointResponse,
     GetLocationRequest,
     GetLocationResponse,
     GetModeRequest,
@@ -18,10 +15,7 @@ from viam.proto.service.navigation import (
     Mode,
     NavigationServiceStub,
     RemoveWaypointRequest,
-    RemoveWaypointResponse,
     SetModeRequest,
-    SetModeResponse,
-    Waypoint,
 )
 from viam.resource.manager import ResourceManager
 from viam.services.navigation import NavigationClient, NavigationRPCService

@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.navigation import (
     AddWaypointRequest,
