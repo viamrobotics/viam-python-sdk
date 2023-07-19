@@ -19,6 +19,7 @@ Classes
 
 .. py:class:: CameraRPCService(manager: viam.resource.manager.ResourceManager)
 
+
    Bases: :py:obj:`viam.proto.component.camera.CameraServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
 
    gRPC Service for a generic Camera
@@ -28,6 +29,10 @@ Classes
       
 
    .. py:method:: GetImage(stream: grpclib.server.Stream[viam.proto.component.camera.GetImageRequest, viam.proto.component.camera.GetImageResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetImages(stream: grpclib.server.Stream[viam.proto.component.camera.GetImagesRequest, viam.proto.component.camera.GetImagesResponse]) -> None
       :async:
 
 

@@ -70,6 +70,7 @@ Attributes
 
 .. py:class:: ModelType
 
+
    Bases: :py:obj:`_ModelType`
 
 
@@ -98,6 +99,7 @@ Attributes
    
 
 .. py:class:: TrainingStatus
+
 
    Bases: :py:obj:`_TrainingStatus`
 
@@ -141,7 +143,8 @@ Attributes
 
    
 
-.. py:class:: SubmitTrainingJobRequest(*, filter: app.data.v1.data_pb2.Filter | None = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: SubmitTrainingJobRequest(*, filter: viam.gen.app.data.v1.data_pb2.Filter | None = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -203,6 +206,7 @@ Attributes
 
 .. py:class:: SubmitTrainingJobResponse(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -223,6 +227,7 @@ Attributes
 
 .. py:class:: GetTrainingJobRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -242,6 +247,7 @@ Attributes
    
 
 .. py:class:: GetTrainingJobResponse(*, metadata: global___TrainingJobMetadata | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -279,6 +285,7 @@ Attributes
 
 .. py:class:: ListTrainingJobsRequest(*, organization_id: str = ..., status: global___TrainingStatus = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -304,6 +311,7 @@ Attributes
 
 .. py:class:: ListTrainingJobsResponse(*, jobs: collections.abc.Iterable[global___TrainingJobMetadata] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -322,6 +330,7 @@ Attributes
    
 
 .. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., status: global___TrainingStatus = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., user_email: str = ..., id: str = ..., error_status: google.rpc.status_pb2.Status | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -391,6 +400,7 @@ Attributes
 
 .. py:class:: CancelTrainingJobRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -410,6 +420,7 @@ Attributes
    
 
 .. py:class:: CancelTrainingJobResponse
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

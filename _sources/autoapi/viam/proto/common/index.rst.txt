@@ -40,6 +40,7 @@ Classes
    viam.proto.common.PoseInFrame
    viam.proto.common.RectangularPrism
    viam.proto.common.ResourceName
+   viam.proto.common.ResponseMetadata
    viam.proto.common.Sphere
    viam.proto.common.Transform
    viam.proto.common.Vector3
@@ -49,6 +50,7 @@ Classes
 
 
 .. py:class:: ActuatorStatus(*, is_moving: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -61,6 +63,7 @@ Classes
 
 
 .. py:class:: AnalogStatus(*, value: int = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -76,7 +79,8 @@ Classes
       Current value of the analog reader of a robot's board
 
 
-.. py:class:: BoardStatus(*, analogs: collections.abc.Mapping[builtins.str, global___AnalogStatus] | None = ..., digital_interrupts: collections.abc.Mapping[builtins.str, global___DigitalInterruptStatus] | None = ...)
+.. py:class:: BoardStatus(*, analogs: collections.abc.Mapping[str, global___AnalogStatus] | None = ..., digital_interrupts: collections.abc.Mapping[str, global___DigitalInterruptStatus] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -87,6 +91,7 @@ Classes
    shown below.
 
    .. py:class:: AnalogsEntry(*, key: str = ..., value: global___AnalogStatus | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -124,6 +129,7 @@ Classes
 
 
    .. py:class:: DigitalInterruptsEntry(*, key: str = ..., value: global___DigitalInterruptStatus | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -171,6 +177,7 @@ Classes
 
 .. py:class:: Capsule(*, radius_mm: float = ..., length_mm: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -192,6 +199,7 @@ Classes
 
 .. py:class:: DigitalInterruptStatus(*, value: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -207,6 +215,7 @@ Classes
 
 
 .. py:class:: DoCommandRequest(*, name: str = ..., command: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -241,6 +250,7 @@ Classes
 
 .. py:class:: DoCommandResponse(*, result: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DoCommandResponse represents a generic DoCommand output
@@ -269,6 +279,7 @@ Classes
 
 .. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
@@ -286,6 +297,7 @@ Classes
 
 
 .. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -330,7 +342,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> typing_extensions.Literal['sphere', 'box', 'capsule'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> Literal[sphere, box, capsule] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -347,6 +359,7 @@ Classes
 
 
 .. py:class:: GeoObstacle(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -383,6 +396,7 @@ Classes
 
 .. py:class:: GeoPoint(*, latitude: float = ..., longitude: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -404,6 +418,7 @@ Classes
 
 .. py:class:: GetGeometriesRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -419,6 +434,7 @@ Classes
 
 
 .. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -436,6 +452,7 @@ Classes
 
 .. py:class:: GetKinematicsRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -451,6 +468,7 @@ Classes
 
 
 .. py:class:: GetKinematicsResponse(*, format: global___KinematicsFileFormat = ..., kinematics_data: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -474,10 +492,12 @@ Classes
 
 .. py:class:: KinematicsFileFormat
 
+
    Bases: :py:obj:`_KinematicsFileFormat`
 
 
 .. py:class:: Orientation(*, o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -509,6 +529,7 @@ Classes
 
 
 .. py:class:: PointCloudObject(*, point_cloud: bytes = ..., geometries: global___GeometriesInFrame | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -544,6 +565,7 @@ Classes
 
 
 .. py:class:: Pose(*, x: float = ..., y: float = ..., z: float = ..., o_x: float = ..., o_y: float = ..., o_z: float = ..., theta: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -594,6 +616,7 @@ Classes
 
 .. py:class:: PoseInFrame(*, reference_frame: str = ..., pose: global___Pose | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    PoseInFrame contains a pose and the and the reference frame in which it was observed
@@ -627,6 +650,7 @@ Classes
 
 .. py:class:: RectangularPrism(*, dims_mm: global___Vector3 | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
@@ -655,6 +679,7 @@ Classes
 
 
 .. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -685,7 +710,60 @@ Classes
       
 
 
+.. py:class:: ResponseMetadata(*, captured_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: captured_at
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      captured_at is the time at which the resource as close as physically possible, captured
+      the data in the response.
+      Note: If correlating between other resources, be sure that the means
+      of measuring the capture are similar enough such that comparison can be made between them.
+
+   .. py:method:: HasField(field_name: Literal[_captured_at, b'_captured_at', captured_at, b'captured_at']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_captured_at, b'_captured_at']) -> Literal[captured_at] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
 .. py:class:: Sphere(*, radius_mm: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -702,6 +780,7 @@ Classes
 
 
 .. py:class:: Transform(*, reference_frame: str = ..., pose_in_observer_frame: global___PoseInFrame | None = ..., physical_object: global___Geometry | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -740,7 +819,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_physical_object, b'_physical_object']) -> typing_extensions.Literal['physical_object'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_physical_object, b'_physical_object']) -> Literal[physical_object] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -757,6 +836,7 @@ Classes
 
 
 .. py:class:: Vector3(*, x: float = ..., y: float = ..., z: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -783,6 +863,7 @@ Classes
 
 
 .. py:class:: WorldState(*, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None = ..., transforms: collections.abc.Iterable[global___Transform] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

@@ -39,7 +39,8 @@ Attributes
 
    
 
-.. py:class:: GetPosesRequest(*, name: str = ..., body_names: collections.abc.Iterable[builtins.str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPosesRequest(*, name: str = ..., body_names: collections.abc.Iterable[str] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -88,7 +89,8 @@ Attributes
 
    
 
-.. py:class:: GetPosesResponse(*, body_poses: collections.abc.Mapping[builtins.str, common.v1.common_pb2.PoseInFrame] | None = ...)
+.. py:class:: GetPosesResponse(*, body_poses: collections.abc.Mapping[str, viam.gen.common.v1.common_pb2.PoseInFrame] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -98,7 +100,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: BodyPosesEntry(*, key: str = ..., value: common.v1.common_pb2.PoseInFrame | None = ...)
+   .. py:class:: BodyPosesEntry(*, key: str = ..., value: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 

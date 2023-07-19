@@ -32,6 +32,8 @@ Classes
    viam.gen.service.navigation.v1.navigation_pb2.AddWaypointResponse
    viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointRequest
    viam.gen.service.navigation.v1.navigation_pb2.RemoveWaypointResponse
+   viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesRequest
+   viam.gen.service.navigation.v1.navigation_pb2.GetObstaclesResponse
 
 
 
@@ -59,6 +61,8 @@ Attributes
    viam.gen.service.navigation.v1.navigation_pb2.global___AddWaypointResponse
    viam.gen.service.navigation.v1.navigation_pb2.global___RemoveWaypointRequest
    viam.gen.service.navigation.v1.navigation_pb2.global___RemoveWaypointResponse
+   viam.gen.service.navigation.v1.navigation_pb2.global___GetObstaclesRequest
+   viam.gen.service.navigation.v1.navigation_pb2.global___GetObstaclesResponse
 
 
 .. py:data:: DESCRIPTOR
@@ -67,6 +71,7 @@ Attributes
    
 
 .. py:class:: Mode
+
 
    Bases: :py:obj:`_Mode`
 
@@ -91,6 +96,7 @@ Attributes
    
 
 .. py:class:: GetModeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -134,6 +140,7 @@ Attributes
 
 .. py:class:: GetModeResponse(*, mode: global___Mode = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -153,6 +160,7 @@ Attributes
    
 
 .. py:class:: SetModeRequest(*, name: str = ..., mode: global___Mode = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -201,6 +209,7 @@ Attributes
 
 .. py:class:: SetModeResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -214,7 +223,8 @@ Attributes
 
    
 
-.. py:class:: Waypoint(*, id: str = ..., location: common.v1.common_pb2.GeoPoint | None = ...)
+.. py:class:: Waypoint(*, id: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -257,6 +267,7 @@ Attributes
 
 .. py:class:: GetLocationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -297,7 +308,8 @@ Attributes
 
    
 
-.. py:class:: GetLocationResponse(*, location: common.v1.common_pb2.GeoPoint | None = ...)
+.. py:class:: GetLocationResponse(*, location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -334,6 +346,7 @@ Attributes
    
 
 .. py:class:: GetWaypointsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -377,6 +390,7 @@ Attributes
 
 .. py:class:: GetWaypointsResponse(*, waypoints: collections.abc.Iterable[global___Waypoint] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -394,7 +408,8 @@ Attributes
 
    
 
-.. py:class:: AddWaypointRequest(*, name: str = ..., location: common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: AddWaypointRequest(*, name: str = ..., location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -442,6 +457,7 @@ Attributes
 
 .. py:class:: AddWaypointResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -456,6 +472,7 @@ Attributes
    
 
 .. py:class:: RemoveWaypointRequest(*, name: str = ..., id: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -504,6 +521,7 @@ Attributes
 
 .. py:class:: RemoveWaypointResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -514,6 +532,69 @@ Attributes
 
 
 .. py:data:: global___RemoveWaypointResponse
+
+   
+
+.. py:class:: GetObstaclesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   GetObstacles will return the geopoint location and geometry of all
+   known obstacles on the navigation map. Obstacles that are detected
+   through the vision service will only be returned if this endpoint is called
+   when the robot is sensing the obstacle
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___GetObstaclesRequest
+
+   
+
+.. py:class:: GetObstaclesResponse(*, obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoObstacle] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: obstacles
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoObstacle]
+
+      List of all known geometries
+
+
+.. py:data:: global___GetObstaclesResponse
 
    
 

@@ -35,7 +35,8 @@ Classes
 
 
 
-.. py:class:: Metadata(*, md: collections.abc.Mapping[builtins.str, global___Strings] | None = ...)
+.. py:class:: Metadata(*, md: collections.abc.Mapping[str, global___Strings] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -43,6 +44,7 @@ Classes
    during a stream.
 
    .. py:class:: MdEntry(*, key: str = ..., value: global___Strings | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -86,6 +88,7 @@ Classes
 
 .. py:class:: PacketMessage(*, data: bytes = ..., eom: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    A PacketMessage is used to packetize large messages (> 64KiB) to be able to safely
@@ -103,6 +106,7 @@ Classes
 
 
 .. py:class:: Request(*, stream: global___Stream | None = ..., headers: global___RequestHeaders | None = ..., message: global___RequestMessage | None = ..., rst_stream: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -145,7 +149,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message', 'rst_stream'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[headers, message, rst_stream] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -162,6 +166,7 @@ Classes
 
 
 .. py:class:: RequestHeaders(*, method: str = ..., metadata: global___Metadata | None = ..., timeout: google.protobuf.duration_pb2.Duration | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -199,6 +204,7 @@ Classes
 
 
 .. py:class:: RequestMessage(*, has_message: bool = ..., packet_message: global___PacketMessage | None = ..., eos: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -238,6 +244,7 @@ Classes
 
 
 .. py:class:: Response(*, stream: global___Stream | None = ..., headers: global___ResponseHeaders | None = ..., message: global___ResponseMessage | None = ..., trailers: global___ResponseTrailers | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -279,7 +286,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['headers', 'message', 'trailers'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[headers, message, trailers] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -296,6 +303,7 @@ Classes
 
 
 .. py:class:: ResponseHeaders(*, metadata: global___Metadata | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -326,6 +334,7 @@ Classes
 
 .. py:class:: ResponseMessage(*, packet_message: global___PacketMessage | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    ResponseMessage contains the data of a response to a call.
@@ -353,6 +362,7 @@ Classes
 
 
 .. py:class:: ResponseTrailers(*, status: google.rpc.status_pb2.Status | None = ..., metadata: global___Metadata | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -386,6 +396,7 @@ Classes
 
 .. py:class:: Stream(*, id: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    A Stream represents an instance of a gRPC stream between
@@ -397,7 +408,8 @@ Classes
       
 
 
-.. py:class:: Strings(*, values: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: Strings(*, values: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -409,6 +421,7 @@ Classes
 
 
 .. py:class:: SignalingServiceBase
+
 
    Bases: :py:obj:`abc.ABC`
 
@@ -440,5 +453,6 @@ Classes
 
 
 .. py:class:: SignalingServiceStub(channel: grpclib.client.Channel)
+
 
 

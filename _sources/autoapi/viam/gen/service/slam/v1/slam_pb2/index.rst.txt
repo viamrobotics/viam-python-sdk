@@ -53,6 +53,7 @@ Attributes
 
 .. py:class:: GetPositionRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -71,7 +72,8 @@ Attributes
 
    
 
-.. py:class:: GetPositionResponse(*, pose: common.v1.common_pb2.Pose | None = ..., component_reference: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ..., component_reference: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -120,6 +122,7 @@ Attributes
 
 .. py:class:: GetPointCloudMapRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -139,6 +142,7 @@ Attributes
    
 
 .. py:class:: GetPointCloudMapResponse(*, point_cloud_pcd_chunk: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -177,6 +181,7 @@ Attributes
 
 .. py:class:: GetInternalStateRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -196,6 +201,7 @@ Attributes
    
 
 .. py:class:: GetInternalStateResponse(*, internal_state_chunk: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -218,6 +224,7 @@ Attributes
 
 .. py:class:: GetLatestMapInfoRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -237,6 +244,7 @@ Attributes
    
 
 .. py:class:: GetLatestMapInfoResponse(*, last_map_update: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

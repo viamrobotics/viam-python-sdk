@@ -14,6 +14,8 @@ Classes
 
    viam.media.video.RawImage
    viam.media.video.CameraMimeType
+   viam.media.video.ViamImage
+   viam.media.video.NamedImage
 
 
 
@@ -37,6 +39,7 @@ Attributes
    
 
 .. py:class:: RawImage
+
 
    Bases: :py:obj:`NamedTuple`
 
@@ -78,6 +81,7 @@ Attributes
 
 .. py:class:: CameraMimeType
 
+
    Bases: :py:obj:`str`, :py:obj:`enum.Enum`
 
    str(object='') -> str
@@ -97,6 +101,11 @@ Attributes
 
    .. py:attribute:: VIAM_RGBA
       :value: 'image/vnd.viam.rgba'
+
+      
+
+   .. py:attribute:: VIAM_RAW_DEPTH
+      :value: 'image/vnd.viam.dep'
 
       
 
@@ -130,7 +139,7 @@ Attributes
    .. py:method:: is_supported(mime_type: str) -> bool
       :classmethod:
 
-      Check if the provided mime_type is supported
+      Check if the provided mime_type is supported.
 
       :param mime_type: The mime_type to check
       :type mime_type: str
@@ -138,5 +147,77 @@ Attributes
       :returns: Whether the mime_type is supported
       :rtype: bool
 
+
+   .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> typing_extensions.Self
+      :classmethod:
+
+      Returns the mimetype from a proto enum.
+
+      :param format: The mimetype in a proto enum.
+      :type format: Format.ValueType
+
+      :returns: The mimetype.
+      :rtype: Self
+
+
+   .. py:method:: to_proto() -> viam.proto.component.camera.Format.ValueType
+
+      Returns the mimetype in a proto enum.
+
+      :returns: The mimetype in a proto enum.
+      :rtype: Format.ValueType
+
+
+
+.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+
+
+   A native implementation of an image.
+
+   Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
+
+   .. py:property:: data
+      :type: bytes
+
+      The raw bytes of the image
+
+   .. py:property:: mime_type
+      :type: CameraMimeType
+
+      The mime type of the image
+
+   .. py:property:: image
+      :type: Optional[PIL.Image.Image]
+
+      The PIL.Image representation of the image. If the mime type is not supported, this will be None.
+
+   .. py:method:: close()
+
+      Close the image and release resources.
+
+
+   .. py:method:: bytes_to_depth_array() -> List[List[int]]
+
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
+      a standard representation.
+
+      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+
+      :returns: The standard representation of the image.
+      :rtype: List[List[int]]
+
+
+
+.. py:class:: NamedImage(name: str, data: bytes, mime_type: CameraMimeType)
+
+
+   Bases: :py:obj:`ViamImage`
+
+   An implementation of ViamImage that contains a name attribute.
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the image
 
 

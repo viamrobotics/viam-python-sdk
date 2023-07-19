@@ -38,6 +38,7 @@ Classes
 
 .. py:class:: ModuleServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -75,7 +76,9 @@ Classes
 .. py:class:: ModuleServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: AddResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[builtins.str] | None = ...)
+
+.. py:class:: AddResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -113,6 +116,7 @@ Classes
 
 .. py:class:: AddResourceResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -122,7 +126,8 @@ Classes
    shown below.
 
 
-.. py:class:: HandlerDefinition(*, subtype: robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: HandlerDefinition(*, subtype: viam.gen.robot.v1.robot_pb2.ResourceRPCSubtype | None = ..., models: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -160,6 +165,7 @@ Classes
 
 .. py:class:: HandlerMap(*, handlers: collections.abc.Iterable[global___HandlerDefinition] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -174,6 +180,7 @@ Classes
 
 
 .. py:class:: ReadyRequest(*, parent_address: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -190,6 +197,7 @@ Classes
 
 
 .. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -226,7 +234,8 @@ Classes
 
 
 
-.. py:class:: ReconfigureResourceRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: ReconfigureResourceRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ..., dependencies: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -264,6 +273,7 @@ Classes
 
 .. py:class:: ReconfigureResourceResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -274,6 +284,7 @@ Classes
 
 
 .. py:class:: RemoveResourceRequest(*, name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -291,6 +302,7 @@ Classes
 
 .. py:class:: RemoveResourceResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -300,7 +312,8 @@ Classes
    shown below.
 
 
-.. py:class:: ValidateConfigRequest(*, config: app.v1.robot_pb2.ComponentConfig | None = ...)
+.. py:class:: ValidateConfigRequest(*, config: viam.gen.app.v1.robot_pb2.ComponentConfig | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -332,7 +345,8 @@ Classes
 
 
 
-.. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: ValidateConfigResponse(*, dependencies: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

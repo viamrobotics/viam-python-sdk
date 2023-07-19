@@ -120,6 +120,7 @@ Attributes
 
 .. py:class:: PeerConnectionType
 
+
    Bases: :py:obj:`_PeerConnectionType`
 
 
@@ -142,7 +143,8 @@ Attributes
 
    
 
-.. py:class:: FrameSystemConfig(*, frame: common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: FrameSystemConfig(*, frame: viam.gen.common.v1.common_pb2.Transform | None = ..., kinematics: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -178,7 +180,8 @@ Attributes
 
    
 
-.. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ...)
+.. py:class:: FrameSystemConfigRequest(*, supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -201,6 +204,7 @@ Attributes
 
 .. py:class:: FrameSystemConfigResponse(*, frame_system_configs: collections.abc.Iterable[global___FrameSystemConfig] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -218,7 +222,8 @@ Attributes
 
    
 
-.. py:class:: TransformPoseRequest(*, source: common.v1.common_pb2.PoseInFrame | None = ..., destination: str = ..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ...)
+.. py:class:: TransformPoseRequest(*, source: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., destination: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -268,7 +273,8 @@ Attributes
 
    
 
-.. py:class:: TransformPoseResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ...)
+.. py:class:: TransformPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -306,6 +312,7 @@ Attributes
 
 .. py:class:: TransformPCDRequest(*, point_cloud_pcd: bytes = ..., source: str = ..., destination: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -339,6 +346,7 @@ Attributes
 
 .. py:class:: TransformPCDResponse(*, point_cloud_pcd: bytes = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -359,6 +367,7 @@ Attributes
 
 .. py:class:: ResourceNamesRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -372,7 +381,8 @@ Attributes
 
    
 
-.. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None = ...)
+.. py:class:: ResourceNamesResponse(*, resources: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -391,7 +401,8 @@ Attributes
 
    
 
-.. py:class:: ResourceRPCSubtype(*, subtype: common.v1.common_pb2.ResourceName | None = ..., proto_service: str = ...)
+.. py:class:: ResourceRPCSubtype(*, subtype: viam.gen.common.v1.common_pb2.ResourceName | None = ..., proto_service: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -434,6 +445,7 @@ Attributes
 
 .. py:class:: ResourceRPCSubtypesRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -448,6 +460,7 @@ Attributes
    
 
 .. py:class:: ResourceRPCSubtypesResponse(*, resource_rpc_subtypes: collections.abc.Iterable[global___ResourceRPCSubtype] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -466,7 +479,8 @@ Attributes
 
    
 
-.. py:class:: Operation(*, id: str = ..., method: str = ..., arguments: google.protobuf.struct_pb2.Struct | None = ..., started: google.protobuf.timestamp_pb2.Timestamp | None = ..., session_id: builtins.str | None = ...)
+.. py:class:: Operation(*, id: str = ..., method: str = ..., arguments: google.protobuf.struct_pb2.Struct | None = ..., started: google.protobuf.timestamp_pb2.Timestamp | None = ..., session_id: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -516,7 +530,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_session_id, b'_session_id']) -> typing_extensions.Literal['session_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_session_id, b'_session_id']) -> Literal[session_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -538,6 +552,7 @@ Attributes
 
 .. py:class:: GetOperationsRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -552,6 +567,7 @@ Attributes
    
 
 .. py:class:: GetOperationsResponse(*, operations: collections.abc.Iterable[global___Operation] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -571,6 +587,7 @@ Attributes
    
 
 .. py:class:: CancelOperationRequest(*, id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -592,6 +609,7 @@ Attributes
 
 .. py:class:: CancelOperationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -606,6 +624,7 @@ Attributes
    
 
 .. py:class:: BlockForOperationRequest(*, id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -627,6 +646,7 @@ Attributes
 
 .. py:class:: BlockForOperationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -640,7 +660,8 @@ Attributes
 
    
 
-.. py:class:: PeerConnectionInfo(*, type: global___PeerConnectionType = ..., remote_address: builtins.str | None = ..., local_address: builtins.str | None = ...)
+.. py:class:: PeerConnectionInfo(*, type: global___PeerConnectionType = ..., remote_address: str | None = ..., local_address: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -682,8 +703,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_local_address, b'_local_address']) -> typing_extensions.Literal['local_address'] | None
-               WhichOneof(oneof_group: Literal[_remote_address, b'_remote_address']) -> typing_extensions.Literal['remote_address'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_local_address, b'_local_address']) -> Literal[local_address] | None
+                  WhichOneof(oneof_group: Literal[_remote_address, b'_remote_address']) -> Literal[remote_address] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -704,6 +725,7 @@ Attributes
    
 
 .. py:class:: Session(*, id: str = ..., peer_connection_info: global___PeerConnectionInfo | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -739,7 +761,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_peer_connection_info, b'_peer_connection_info']) -> typing_extensions.Literal['peer_connection_info'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_peer_connection_info, b'_peer_connection_info']) -> Literal[peer_connection_info] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -761,6 +783,7 @@ Attributes
 
 .. py:class:: GetSessionsRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -775,6 +798,7 @@ Attributes
    
 
 .. py:class:: GetSessionsResponse(*, sessions: collections.abc.Iterable[global___Session] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -794,6 +818,7 @@ Attributes
    
 
 .. py:class:: DiscoveryQuery(*, subtype: str = ..., model: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -815,6 +840,7 @@ Attributes
    
 
 .. py:class:: Discovery(*, query: global___DiscoveryQuery | None = ..., results: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -856,6 +882,7 @@ Attributes
 
 .. py:class:: DiscoverComponentsRequest(*, queries: collections.abc.Iterable[global___DiscoveryQuery] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -875,6 +902,7 @@ Attributes
 
 .. py:class:: DiscoverComponentsResponse(*, discovery: collections.abc.Iterable[global___Discovery] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -892,7 +920,8 @@ Attributes
 
    
 
-.. py:class:: Status(*, name: common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: Status(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -932,7 +961,8 @@ Attributes
 
    
 
-.. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None = ...)
+.. py:class:: GetStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -953,6 +983,7 @@ Attributes
 
 .. py:class:: GetStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -970,7 +1001,8 @@ Attributes
 
    
 
-.. py:class:: StreamStatusRequest(*, resource_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None = ..., every: google.protobuf.duration_pb2.Duration | None = ...)
+.. py:class:: StreamStatusRequest(*, resource_names: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ..., every: google.protobuf.duration_pb2.Duration | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1013,6 +1045,7 @@ Attributes
 
 .. py:class:: StreamStatusResponse(*, status: collections.abc.Iterable[global___Status] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1030,7 +1063,8 @@ Attributes
 
    
 
-.. py:class:: StopExtraParameters(*, name: common.v1.common_pb2.ResourceName | None = ..., params: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: StopExtraParameters(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., params: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1072,6 +1106,7 @@ Attributes
 
 .. py:class:: StopAllRequest(*, extra: collections.abc.Iterable[global___StopExtraParameters] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1091,6 +1126,7 @@ Attributes
 
 .. py:class:: StopAllResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1105,6 +1141,7 @@ Attributes
    
 
 .. py:class:: StartSessionRequest(*, resume: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1126,6 +1163,7 @@ Attributes
    
 
 .. py:class:: StartSessionResponse(*, id: str = ..., heartbeat_window: google.protobuf.duration_pb2.Duration | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1168,6 +1206,7 @@ Attributes
 
 .. py:class:: SendSessionHeartbeatRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1187,6 +1226,7 @@ Attributes
    
 
 .. py:class:: SendSessionHeartbeatResponse
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

@@ -63,7 +63,8 @@ Attributes
 
    
 
-.. py:class:: MoveRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -117,8 +118,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_constraints, b'_constraints']) -> typing_extensions.Literal['constraints'] | None
-               WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> typing_extensions.Literal['world_state'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_constraints, b'_constraints']) -> Literal[constraints] | None
+                  WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> Literal[world_state] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -140,6 +141,7 @@ Attributes
 
 .. py:class:: MoveResponse(*, success: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -158,7 +160,8 @@ Attributes
 
    
 
-.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: common.v1.common_pb2.Pose | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., slam_service_name: common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -217,6 +220,7 @@ Attributes
 
 .. py:class:: MoveOnMapResponse(*, success: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -235,7 +239,8 @@ Attributes
 
    
 
-.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: common.v1.common_pb2.GeoPoint | None = ..., heading: builtins.float | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None = ..., linear_meters_per_sec: builtins.float | None = ..., angular_deg_per_sec: builtins.float | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoObstacle] | None = ..., linear_meters_per_sec: float | None = ..., angular_deg_per_sec: float | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -307,9 +312,9 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_angular_deg_per_sec, b'_angular_deg_per_sec']) -> typing_extensions.Literal['angular_deg_per_sec'] | None
-               WhichOneof(oneof_group: Literal[_heading, b'_heading']) -> typing_extensions.Literal['heading'] | None
-               WhichOneof(oneof_group: Literal[_linear_meters_per_sec, b'_linear_meters_per_sec']) -> typing_extensions.Literal['linear_meters_per_sec'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_angular_deg_per_sec, b'_angular_deg_per_sec']) -> Literal[angular_deg_per_sec] | None
+                  WhichOneof(oneof_group: Literal[_heading, b'_heading']) -> Literal[heading] | None
+                  WhichOneof(oneof_group: Literal[_linear_meters_per_sec, b'_linear_meters_per_sec']) -> Literal[linear_meters_per_sec] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -331,6 +336,7 @@ Attributes
 
 .. py:class:: MoveOnGlobeResponse(*, success: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -349,7 +355,8 @@ Attributes
 
    
 
-.. py:class:: MoveSingleComponentRequest(*, name: str = ..., destination: common.v1.common_pb2.PoseInFrame | None = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., world_state: common.v1.common_pb2.WorldState | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveSingleComponentRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -398,7 +405,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> typing_extensions.Literal['world_state'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_world_state, b'_world_state']) -> Literal[world_state] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -420,6 +427,7 @@ Attributes
 
 .. py:class:: MoveSingleComponentResponse(*, success: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -438,7 +446,8 @@ Attributes
 
    
 
-.. py:class:: GetPoseRequest(*, name: str = ..., component_name: common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPoseRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -498,7 +507,8 @@ Attributes
 
    
 
-.. py:class:: GetPoseResponse(*, pose: common.v1.common_pb2.PoseInFrame | None = ...)
+.. py:class:: GetPoseResponse(*, pose: viam.gen.common.v1.common_pb2.PoseInFrame | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -536,6 +546,7 @@ Attributes
 
 .. py:class:: Constraints(*, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None = ..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None = ..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters
@@ -559,7 +570,8 @@ Attributes
 
    
 
-.. py:class:: LinearConstraint(*, line_tolerance_mm: builtins.float | None = ..., orientation_tolerance_degs: builtins.float | None = ...)
+.. py:class:: LinearConstraint(*, line_tolerance_mm: float | None = ..., orientation_tolerance_degs: float | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -592,8 +604,8 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_line_tolerance_mm, b'_line_tolerance_mm']) -> typing_extensions.Literal['line_tolerance_mm'] | None
-               WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> typing_extensions.Literal['orientation_tolerance_degs'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_line_tolerance_mm, b'_line_tolerance_mm']) -> Literal[line_tolerance_mm] | None
+                  WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> Literal[orientation_tolerance_degs] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -613,7 +625,8 @@ Attributes
 
    
 
-.. py:class:: OrientationConstraint(*, orientation_tolerance_degs: builtins.float | None = ...)
+.. py:class:: OrientationConstraint(*, orientation_tolerance_degs: float | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -641,7 +654,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> typing_extensions.Literal['orientation_tolerance_degs'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_orientation_tolerance_degs, b'_orientation_tolerance_degs']) -> Literal[orientation_tolerance_degs] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -661,13 +674,15 @@ Attributes
 
    
 
-.. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[global___CollisionSpecification.AllowedFrameCollisions] | None = ...)
+.. py:class:: CollisionSpecification(*, allows: collections.abc.Iterable[global___CollisionSpecification] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot
 
    .. py:class:: AllowedFrameCollisions(*, frame1: str = ..., frame2: str = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 

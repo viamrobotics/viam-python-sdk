@@ -47,6 +47,7 @@ Classes
 
 .. py:class:: SignalingServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -79,7 +80,9 @@ Classes
 .. py:class:: SignalingServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: AnswerRequest(*, uuid: str = ..., init: global___AnswerRequestInitStage | None = ..., update: global___AnswerRequestUpdateStage | None = ..., done: global___AnswerRequestDoneStage | None = ..., error: global___AnswerRequestErrorStage | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -126,7 +129,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> typing_extensions.Literal['init', 'update', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update, done, error] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -144,12 +147,14 @@ Classes
 
 .. py:class:: AnswerRequestDoneStage
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerRequestDoneStage indicates the controller is done responding with candidates.
 
 
 .. py:class:: AnswerRequestErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -178,6 +183,7 @@ Classes
 
 
 .. py:class:: AnswerRequestInitStage(*, sdp: str = ..., optional_config: global___WebRTCConfig | None = ..., deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -214,7 +220,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_deadline, b'_deadline']) -> typing_extensions.Literal['deadline'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_deadline, b'_deadline']) -> Literal[deadline] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -231,6 +237,7 @@ Classes
 
 
 .. py:class:: AnswerRequestUpdateStage(*, candidate: global___ICECandidate | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -260,6 +267,7 @@ Classes
 
 
 .. py:class:: AnswerResponse(*, uuid: str = ..., init: global___AnswerResponseInitStage | None = ..., update: global___AnswerResponseUpdateStage | None = ..., done: global___AnswerResponseDoneStage | None = ..., error: global___AnswerResponseErrorStage | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -305,7 +313,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> typing_extensions.Literal['init', 'update', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update, done, error] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -323,12 +331,14 @@ Classes
 
 .. py:class:: AnswerResponseDoneStage
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseDoneStage indicates the answerer is done responding with candidates.
 
 
 .. py:class:: AnswerResponseErrorStage(*, status: google.rpc.status_pb2.Status | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -358,6 +368,7 @@ Classes
 
 .. py:class:: AnswerResponseInitStage(*, sdp: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    AnswerResponseInitStage is the first and a one time stage that represents the
@@ -370,6 +381,7 @@ Classes
 
 
 .. py:class:: AnswerResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -400,6 +412,7 @@ Classes
 
 .. py:class:: CallRequest(*, sdp: str = ..., disable_trickle: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    CallRequest is the SDP offer that the controlling side is making.
@@ -418,6 +431,7 @@ Classes
 
 
 .. py:class:: CallResponse(*, uuid: str = ..., init: global___CallResponseInitStage | None = ..., update: global___CallResponseUpdateStage | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -453,7 +467,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> typing_extensions.Literal['init', 'update'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[stage, b'stage']) -> Literal[init, update] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -471,6 +485,7 @@ Classes
 
 .. py:class:: CallResponseInitStage(*, sdp: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    CallResponseInitStage is the first and a one time stage that represents
@@ -483,6 +498,7 @@ Classes
 
 
 .. py:class:: CallResponseUpdateStage(*, candidate: global___ICECandidate | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -512,6 +528,7 @@ Classes
 
 
 .. py:class:: CallUpdateRequest(*, uuid: str = ..., candidate: global___ICECandidate | None = ..., done: bool = ..., error: google.rpc.status_pb2.Status | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -552,7 +569,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[update, b'update']) -> typing_extensions.Literal['candidate', 'done', 'error'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[update, b'update']) -> Literal[candidate, done, error] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -570,12 +587,14 @@ Classes
 
 .. py:class:: CallUpdateResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    CallUpdateResponse contains nothing in response to a call update.
 
 
-.. py:class:: ICECandidate(*, candidate: str = ..., sdp_mid: builtins.str | None = ..., sdpm_line_index: builtins.int | None = ..., username_fragment: builtins.str | None = ...)
+.. py:class:: ICECandidate(*, candidate: str = ..., sdp_mid: str | None = ..., sdpm_line_index: int | None = ..., username_fragment: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -619,9 +638,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_sdp_mid, b'_sdp_mid']) -> typing_extensions.Literal['sdp_mid'] | None
-               WhichOneof(oneof_group: Literal[_sdpm_line_index, b'_sdpm_line_index']) -> typing_extensions.Literal['sdpm_line_index'] | None
-               WhichOneof(oneof_group: Literal[_username_fragment, b'_username_fragment']) -> typing_extensions.Literal['username_fragment'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_sdp_mid, b'_sdp_mid']) -> Literal[sdp_mid] | None
+                  WhichOneof(oneof_group: Literal[_sdpm_line_index, b'_sdpm_line_index']) -> Literal[sdpm_line_index] | None
+                  WhichOneof(oneof_group: Literal[_username_fragment, b'_username_fragment']) -> Literal[username_fragment] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -637,7 +656,8 @@ Classes
 
 
 
-.. py:class:: ICEServer(*, urls: collections.abc.Iterable[builtins.str] | None = ..., username: str = ..., credential: str = ...)
+.. py:class:: ICEServer(*, urls: collections.abc.Iterable[str] | None = ..., username: str = ..., credential: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -660,6 +680,7 @@ Classes
 
 .. py:class:: OptionalWebRTCConfigRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
@@ -667,6 +688,7 @@ Classes
 
 
 .. py:class:: OptionalWebRTCConfigResponse(*, config: global___WebRTCConfig | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -696,6 +718,7 @@ Classes
 
 
 .. py:class:: WebRTCConfig(*, additional_ice_servers: collections.abc.Iterable[global___ICEServer] | None = ..., disable_trickle: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

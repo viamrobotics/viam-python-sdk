@@ -38,6 +38,7 @@ Classes
 
 .. py:class:: VisionServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -80,7 +81,9 @@ Classes
 .. py:class:: VisionServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: Classification(*, class_name: str = ..., confidence: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -97,7 +100,8 @@ Classes
       the confidence score of the classification
 
 
-.. py:class:: Detection(*, x_min: builtins.int | None = ..., y_min: builtins.int | None = ..., x_max: builtins.int | None = ..., y_max: builtins.int | None = ..., confidence: float = ..., class_name: str = ...)
+.. py:class:: Detection(*, x_min: int | None = ..., y_min: int | None = ..., x_max: int | None = ..., y_max: int | None = ..., confidence: float = ..., class_name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -154,10 +158,10 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_x_max, b'_x_max']) -> typing_extensions.Literal['x_max'] | None
-               WhichOneof(oneof_group: Literal[_x_min, b'_x_min']) -> typing_extensions.Literal['x_min'] | None
-               WhichOneof(oneof_group: Literal[_y_max, b'_y_max']) -> typing_extensions.Literal['y_max'] | None
-               WhichOneof(oneof_group: Literal[_y_min, b'_y_min']) -> typing_extensions.Literal['y_min'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_x_max, b'_x_max']) -> Literal[x_max] | None
+                  WhichOneof(oneof_group: Literal[_x_min, b'_x_min']) -> Literal[x_min] | None
+                  WhichOneof(oneof_group: Literal[_y_max, b'_y_max']) -> Literal[y_max] | None
+                  WhichOneof(oneof_group: Literal[_y_min, b'_y_min']) -> Literal[y_min] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -174,6 +178,7 @@ Classes
 
 
 .. py:class:: GetClassificationsFromCameraRequest(*, name: str = ..., camera_name: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -223,6 +228,7 @@ Classes
 
 .. py:class:: GetClassificationsFromCameraResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -237,6 +243,7 @@ Classes
 
 
 .. py:class:: GetClassificationsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., n: int = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -301,6 +308,7 @@ Classes
 
 .. py:class:: GetClassificationsResponse(*, classifications: collections.abc.Iterable[global___Classification] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -315,6 +323,7 @@ Classes
 
 
 .. py:class:: GetDetectionsFromCameraRequest(*, name: str = ..., camera_name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -358,6 +367,7 @@ Classes
 
 .. py:class:: GetDetectionsFromCameraResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -373,6 +383,7 @@ Classes
 
 
 .. py:class:: GetDetectionsRequest(*, name: str = ..., image: bytes = ..., width: int = ..., height: int = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -432,6 +443,7 @@ Classes
 
 .. py:class:: GetDetectionsResponse(*, detections: collections.abc.Iterable[global___Detection] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -447,6 +459,7 @@ Classes
 
 
 .. py:class:: GetObjectPointCloudsRequest(*, name: str = ..., camera_name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -494,7 +507,8 @@ Classes
 
 
 
-.. py:class:: GetObjectPointCloudsResponse(*, mime_type: str = ..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None = ...)
+.. py:class:: GetObjectPointCloudsResponse(*, mime_type: str = ..., objects: collections.abc.Iterable[viam.gen.common.v1.common_pb2.PointCloudObject] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

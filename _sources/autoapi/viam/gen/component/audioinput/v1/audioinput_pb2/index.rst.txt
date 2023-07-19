@@ -56,6 +56,7 @@ Attributes
 
 .. py:class:: SampleFormat
 
+
    Bases: :py:obj:`_SampleFormat`
 
 
@@ -79,6 +80,7 @@ Attributes
    
 
 .. py:class:: RecordRequest(*, name: str = ..., duration: google.protobuf.duration_pb2.Duration | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -121,6 +123,7 @@ Attributes
 
 .. py:class:: AudioChunkInfo(*, sample_format: global___SampleFormat = ..., channels: int = ..., sampling_rate: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -151,6 +154,7 @@ Attributes
 
 .. py:class:: AudioChunk(*, data: bytes = ..., length: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -178,6 +182,7 @@ Attributes
 
 .. py:class:: ChunksRequest(*, name: str = ..., sample_format: global___SampleFormat = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -202,6 +207,7 @@ Attributes
    
 
 .. py:class:: ChunksResponse(*, info: global___AudioChunkInfo | None = ..., chunk: global___AudioChunk | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -236,7 +242,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> typing_extensions.Literal['info', 'chunk'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[type, b'type']) -> Literal[info, chunk] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -258,6 +264,7 @@ Attributes
 
 .. py:class:: PropertiesRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -277,6 +284,7 @@ Attributes
    
 
 .. py:class:: PropertiesResponse(*, channel_count: int = ..., latency: google.protobuf.duration_pb2.Duration | None = ..., sample_rate: int = ..., sample_size: int = ..., is_big_endian: bool = ..., is_float: bool = ..., is_interleaved: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

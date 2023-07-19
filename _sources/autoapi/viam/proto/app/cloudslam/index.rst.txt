@@ -37,6 +37,7 @@ Classes
 
 .. py:class:: CloudSLAMServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -74,7 +75,9 @@ Classes
 .. py:class:: CloudSLAMServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: GetActiveMappingSessionsForRobotRequest(*, robot_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -87,6 +90,7 @@ Classes
 
 
 .. py:class:: GetActiveMappingSessionsForRobotResponse(*, session_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -104,6 +108,7 @@ Classes
 
 .. py:class:: GetMappingSessionPointCloudRequest(*, session_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    GetMappingSessionPointCloud
@@ -114,7 +119,8 @@ Classes
       
 
 
-.. py:class:: GetMappingSessionPointCloudResponse(*, map_url: str = ..., pose: common.v1.common_pb2.Pose | None = ...)
+.. py:class:: GetMappingSessionPointCloudResponse(*, map_url: str = ..., pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -154,6 +160,7 @@ Classes
 
 .. py:class:: ListMappingSessionsRequest(*, organization_id: str = ..., location_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    ListMappingSessions
@@ -171,6 +178,7 @@ Classes
 
 .. py:class:: ListMappingSessionsResponse(*, session: collections.abc.Iterable[global___MappingMetadata] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -185,6 +193,7 @@ Classes
 
 
 .. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: str = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -279,6 +288,7 @@ Classes
 
 .. py:class:: StartMappingSessionRequest(*, slam_config: google.protobuf.struct_pb2.Struct | None = ..., slam_version: str = ..., map_name: str = ..., organization_id: str = ..., location_id: str = ..., robot_id: str = ..., viam_server_version: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    StartMappingSession
@@ -338,6 +348,7 @@ Classes
 
 .. py:class:: StartMappingSessionResponse(*, session_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -353,6 +364,7 @@ Classes
 
 
 .. py:class:: StopMappingSessionRequest(*, session_id: str = ..., save_map: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -370,6 +382,7 @@ Classes
 
 
 .. py:class:: StopMappingSessionResponse(*, package_id: str = ..., version: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

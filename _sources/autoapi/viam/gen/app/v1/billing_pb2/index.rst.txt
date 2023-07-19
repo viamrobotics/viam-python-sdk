@@ -87,6 +87,7 @@ Attributes
 
 .. py:class:: PaymentMethodType
 
+
    Bases: :py:obj:`_PaymentMethodType`
 
 
@@ -105,6 +106,7 @@ Attributes
    
 
 .. py:class:: CurrentMonthUsageSummary(*, cloud_storage_usage: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_upload_usage_quantity: float = ..., data_egres_usage_cost: float = ..., data_egres_usage_quantity: float = ..., standard_compute_usage_cost: float = ..., standard_compute_usage_quantity: float = ..., total_usage_quantity: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -172,6 +174,7 @@ Attributes
 
 .. py:class:: InvoiceSummary(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., paid_date: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -230,6 +233,7 @@ Attributes
    
 
 .. py:class:: BillableResourceEvent(*, id: str = ..., type: str = ..., usage_quantity: float = ..., usage_quantity_unit: str = ..., usage_cost: str = ..., occurred_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -297,6 +301,7 @@ Attributes
 
 .. py:class:: Invoice(*, id: str = ..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_amount: float = ..., status: str = ..., due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., items: collections.abc.Iterable[global___BillableResourceEvent] | None = ..., emailed_to: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -361,6 +366,7 @@ Attributes
 
 .. py:class:: PaymentMethodCard(*, brand: str = ..., last_four_digits: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -386,6 +392,7 @@ Attributes
 
 .. py:class:: GetCurrentMonthUsageSummaryRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
@@ -401,6 +408,7 @@ Attributes
    
 
 .. py:class:: GetCurrentMonthUsageSummaryResponse(*, cloud_storage_usage: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_upload_usage_quantity: float = ..., data_egres_usage_cost: float = ..., data_egres_usage_quantity: float = ..., standard_compute_usage_cost: float = ..., standard_compute_usage_quantity: float = ..., total_usage_quantity: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -468,6 +476,7 @@ Attributes
 
 .. py:class:: GetCurrentMonthUsageRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -487,6 +496,7 @@ Attributes
    
 
 .. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -568,6 +578,7 @@ Attributes
 
 .. py:class:: GetUnpaidBalanceRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TODO(APP-1865) may want to remove
@@ -583,6 +594,7 @@ Attributes
    
 
 .. py:class:: GetUnpaidBalanceResponse(*, unpaid_balance: float = ..., unpaid_balance_due_date: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -621,6 +633,7 @@ Attributes
 
 .. py:class:: GetInvoiceHistoryRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TODO(APP-1865) may want to remove
@@ -637,6 +650,7 @@ Attributes
 
 .. py:class:: GetInvoiceHistoryResponse(*, invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TODO(APP-1865) may want to remove
@@ -651,6 +665,7 @@ Attributes
    
 
 .. py:class:: GetItemizedInvoiceRequest(*, id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -667,6 +682,7 @@ Attributes
    
 
 .. py:class:: GetItemizedInvoiceResponse(*, invoice: global___Invoice | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -700,6 +716,7 @@ Attributes
 
 .. py:class:: GetOrgBillingInformationRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -719,6 +736,7 @@ Attributes
    
 
 .. py:class:: GetOrgBillingInformationResponse(*, type: global___PaymentMethodType = ..., billing_email: str = ..., method: global___PaymentMethodCard | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -760,7 +778,7 @@ Attributes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_method, b'_method']) -> typing_extensions.Literal['method'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_method, b'_method']) -> Literal[method] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -782,6 +800,7 @@ Attributes
 
 .. py:class:: GetInvoicesSummaryRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -801,6 +820,7 @@ Attributes
    
 
 .. py:class:: GetInvoicesSummaryResponse(*, outstanding_balance: float = ..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -827,6 +847,7 @@ Attributes
 
 .. py:class:: GetBillingSummaryRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TODO(APP-1865) should be deprecated/removed
@@ -842,6 +863,7 @@ Attributes
    
 
 .. py:class:: GetBillingSummaryResponse(*, usage_summary: global___CurrentMonthUsageSummary | None = ..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ..., statement_balance: float = ..., current_balance: float = ..., current_month_balance: float = ..., current_month_due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_email: str = ..., payment_method: global___PaymentMethodCard | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -908,6 +930,7 @@ Attributes
 
 .. py:class:: GetInvoicePdfRequest(*, id: str = ..., org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -932,6 +955,7 @@ Attributes
    
 
 .. py:class:: GetInvoicePdfResponse(*, chunk: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

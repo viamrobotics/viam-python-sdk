@@ -37,6 +37,7 @@ Classes
 
 .. py:class:: DataSyncServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -59,7 +60,9 @@ Classes
 .. py:class:: DataSyncServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: CaptureInterval(*, start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -95,7 +98,8 @@ Classes
 
 
 
-.. py:class:: DataCaptureMetadata(*, component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: DataCaptureMetadata(*, component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -106,6 +110,7 @@ Classes
    shown below.
 
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -178,6 +183,7 @@ Classes
 
 .. py:class:: DataCaptureUploadRequest(*, metadata: global___UploadMetadata | None = ..., sensor_contents: collections.abc.Iterable[global___SensorData] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -214,6 +220,7 @@ Classes
 
 .. py:class:: DataCaptureUploadResponse(*, file_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -230,10 +237,12 @@ Classes
 
 .. py:class:: DataType
 
+
    Bases: :py:obj:`_DataType`
 
 
 .. py:class:: FileData(*, data: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -250,6 +259,7 @@ Classes
 
 
 .. py:class:: FileUploadRequest(*, metadata: global___UploadMetadata | None = ..., file_contents: global___FileData | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -284,7 +294,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[upload_packet, b'upload_packet']) -> typing_extensions.Literal['metadata', 'file_contents'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[upload_packet, b'upload_packet']) -> Literal[metadata, file_contents] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -302,6 +312,7 @@ Classes
 
 .. py:class:: FileUploadResponse(*, file_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -317,6 +328,7 @@ Classes
 
 
 .. py:class:: SensorData(*, metadata: global___SensorMetadata | None = ..., struct: google.protobuf.struct_pb2.Struct | None = ..., binary: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -356,7 +368,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[data, b'data']) -> typing_extensions.Literal['struct', 'binary'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[data, b'data']) -> Literal[struct, binary] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -373,6 +385,7 @@ Classes
 
 
 .. py:class:: SensorMetadata(*, time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -408,7 +421,8 @@ Classes
 
 
 
-.. py:class:: UploadMetadata(*, part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., file_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: UploadMetadata(*, part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., type: global___DataType = ..., file_name: str = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., file_extension: str = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -419,6 +433,7 @@ Classes
    shown below.
 
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 

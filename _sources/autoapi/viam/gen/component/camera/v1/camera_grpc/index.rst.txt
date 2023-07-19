@@ -20,12 +20,18 @@ Classes
 
 .. py:class:: CameraServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
 
    .. py:method:: GetImage(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImageRequest, component.camera.v1.camera_pb2.GetImageResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetImages(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImagesRequest, component.camera.v1.camera_pb2.GetImagesResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -60,5 +66,6 @@ Classes
 
 
 .. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
+
 
 

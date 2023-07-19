@@ -57,6 +57,7 @@ Attributes
 
 .. py:class:: GetControlsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -97,7 +98,8 @@ Attributes
 
    
 
-.. py:class:: GetControlsResponse(*, controls: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: GetControlsResponse(*, controls: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -119,6 +121,7 @@ Attributes
    
 
 .. py:class:: GetEventsRequest(*, controller: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -162,6 +165,7 @@ Attributes
 
 .. py:class:: GetEventsResponse(*, events: collections.abc.Iterable[global___Event] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -182,6 +186,7 @@ Attributes
    
 
 .. py:class:: TriggerEventRequest(*, controller: str = ..., event: global___Event | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -230,6 +235,7 @@ Attributes
 
 .. py:class:: TriggerEventResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -244,6 +250,7 @@ Attributes
    
 
 .. py:class:: Event(*, time: google.protobuf.timestamp_pb2.Timestamp | None = ..., event: str = ..., control: str = ..., value: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -301,7 +308,8 @@ Attributes
 
    
 
-.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest.Events] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: StreamEventsRequest(*, controller: str = ..., events: collections.abc.Iterable[global___StreamEventsRequest] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -311,7 +319,8 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:class:: Events(*, control: str = ..., events: collections.abc.Iterable[builtins.str] | None = ..., cancelled_events: collections.abc.Iterable[builtins.str] | None = ...)
+   .. py:class:: Events(*, control: str = ..., events: collections.abc.Iterable[str] | None = ..., cancelled_events: collections.abc.Iterable[str] | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -377,6 +386,7 @@ Attributes
 
 .. py:class:: StreamEventsResponse(*, event: global___Event | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -413,6 +423,7 @@ Attributes
    
 
 .. py:class:: Status(*, events: collections.abc.Iterable[global___Event] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

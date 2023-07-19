@@ -67,6 +67,7 @@ Classes
 
 .. py:class:: DataServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -149,7 +150,9 @@ Classes
 .. py:class:: DataServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: AddBoundingBoxToImageByIDRequest(*, binary_id: global___BinaryID | None = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ..., file_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -213,6 +216,7 @@ Classes
 
 .. py:class:: AddBoundingBoxToImageByIDResponse(*, bbox_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -227,7 +231,8 @@ Classes
       
 
 
-.. py:class:: AddTagsToBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -261,6 +266,7 @@ Classes
 
 .. py:class:: AddTagsToBinaryDataByFilterResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -270,7 +276,8 @@ Classes
    shown below.
 
 
-.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AddTagsToBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[str] | None = ..., file_ids: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -292,6 +299,7 @@ Classes
 
 .. py:class:: AddTagsToBinaryDataByIDsResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -303,6 +311,7 @@ Classes
 
 .. py:class:: Annotations(*, bboxes: collections.abc.Iterable[global___BoundingBox] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Annotations are data annotations used for machine learning.
@@ -313,6 +322,7 @@ Classes
 
 
 .. py:class:: BinaryData(*, binary: bytes = ..., metadata: global___BinaryMetadata | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -350,6 +360,7 @@ Classes
 
 
 .. py:class:: BinaryDataByFilterRequest(*, data_request: global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -389,6 +400,7 @@ Classes
 
 .. py:class:: BinaryDataByFilterResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
@@ -413,7 +425,8 @@ Classes
       
 
 
-.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: BinaryDataByIDsRequest(*, include_binary: bool = ..., binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -436,6 +449,7 @@ Classes
 
 .. py:class:: BinaryDataByIDsResponse(*, data: collections.abc.Iterable[global___BinaryData] | None = ..., count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
@@ -451,6 +465,7 @@ Classes
 
 
 .. py:class:: BinaryID(*, file_id: str = ..., organization_id: str = ..., location_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -477,6 +492,7 @@ Classes
 
 
 .. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -542,6 +558,7 @@ Classes
 
 .. py:class:: BoundingBox(*, id: str = ..., label: str = ..., x_min_normalized: float = ..., y_min_normalized: float = ..., x_max_normalized: float = ..., y_max_normalized: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    BoundingBox represents a labeled bounding box on an image.
@@ -580,6 +597,7 @@ Classes
 
 .. py:class:: BoundingBoxLabelsByFilterRequest(*, filter: global___Filter | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -610,7 +628,8 @@ Classes
 
 
 
-.. py:class:: BoundingBoxLabelsByFilterResponse(*, labels: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: BoundingBoxLabelsByFilterResponse(*, labels: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -626,6 +645,7 @@ Classes
 
 
 .. py:class:: CaptureInterval(*, start: google.protobuf.timestamp_pb2.Timestamp | None = ..., end: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -657,13 +677,15 @@ Classes
 
 
 
-.. py:class:: CaptureMetadata(*, organization_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., mime_type: str = ...)
+.. py:class:: CaptureMetadata(*, organization_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., component_type: str = ..., component_name: str = ..., method_name: str = ..., method_parameters: collections.abc.Mapping[str, google.protobuf.any_pb2.Any] | None = ..., tags: collections.abc.Iterable[str] | None = ..., mime_type: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    CaptureMetadata contains information on the settings used for the data capture
 
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -761,6 +783,7 @@ Classes
 
 .. py:class:: DataRequest(*, filter: global___Filter | None = ..., limit: int = ..., last: str = ..., sort_order: global___Order = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -808,6 +831,7 @@ Classes
 
 .. py:class:: DeleteBinaryDataByFilterRequest(*, filter: global___Filter | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
@@ -836,6 +860,7 @@ Classes
 
 .. py:class:: DeleteBinaryDataByFilterResponse(*, deleted_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
@@ -846,7 +871,8 @@ Classes
       
 
 
-.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: DeleteBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., file_ids: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -864,6 +890,7 @@ Classes
 
 .. py:class:: DeleteBinaryDataByIDsResponse(*, deleted_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
@@ -875,6 +902,7 @@ Classes
 
 
 .. py:class:: DeleteTabularDataByFilterRequest(*, filter: global___Filter | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -904,6 +932,7 @@ Classes
 
 .. py:class:: DeleteTabularDataByFilterResponse(*, deleted_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
@@ -914,7 +943,8 @@ Classes
       
 
 
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[builtins.str] | None = ..., organization_ids: collections.abc.Iterable[builtins.str] | None = ..., mime_type: collections.abc.Iterable[builtins.str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[str] | None = ..., organization_ids: collections.abc.Iterable[str] | None = ..., mime_type: collections.abc.Iterable[str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1003,10 +1033,12 @@ Classes
 
 .. py:class:: Order
 
+
    Bases: :py:obj:`_Order`
 
 
 .. py:class:: RemoveBoundingBoxFromImageByIDRequest(*, binary_id: global___BinaryID | None = ..., bbox_id: str = ..., file_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1050,6 +1082,7 @@ Classes
 
 .. py:class:: RemoveBoundingBoxFromImageByIDResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1059,7 +1092,8 @@ Classes
    shown below.
 
 
-.. py:class:: RemoveTagsFromBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1093,6 +1127,7 @@ Classes
 
 .. py:class:: RemoveTagsFromBinaryDataByFilterResponse(*, deleted_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
@@ -1103,7 +1138,8 @@ Classes
       
 
 
-.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[builtins.str] | None = ..., file_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: RemoveTagsFromBinaryDataByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., tags: collections.abc.Iterable[str] | None = ..., file_ids: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1125,6 +1161,7 @@ Classes
 
 .. py:class:: RemoveTagsFromBinaryDataByIDsResponse(*, deleted_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed
@@ -1136,6 +1173,7 @@ Classes
 
 
 .. py:class:: TabularData(*, data: google.protobuf.struct_pb2.Struct | None = ..., metadata_index: int = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1182,6 +1220,7 @@ Classes
 
 .. py:class:: TabularDataByFilterRequest(*, data_request: global___DataRequest | None = ..., count_only: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TabularDataByFilterRequest requests tabular data based on filter values
@@ -1215,6 +1254,7 @@ Classes
 
 .. py:class:: TabularDataByFilterResponse(*, metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ..., data: collections.abc.Iterable[global___TabularData] | None = ..., count: int = ..., last: str = ..., total_size_bytes: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TabularDataByFilterResponse provides the data and metadata of tabular data
@@ -1245,6 +1285,7 @@ Classes
 
 .. py:class:: TagsByFilterRequest(*, filter: global___Filter | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    TagsByFilterRequest requests the unique tags from data based on given filter
@@ -1271,7 +1312,8 @@ Classes
 
 
 
-.. py:class:: TagsByFilterResponse(*, tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: TagsByFilterResponse(*, tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1282,7 +1324,8 @@ Classes
 
 
 
-.. py:class:: TagsFilter(*, type: global___TagsFilterType = ..., tags: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: TagsFilter(*, type: global___TagsFilterType = ..., tags: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1304,6 +1347,7 @@ Classes
 
 
 .. py:class:: TagsFilterType
+
 
    Bases: :py:obj:`_TagsFilterType`
 

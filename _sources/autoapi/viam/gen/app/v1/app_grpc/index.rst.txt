@@ -20,6 +20,7 @@ Classes
 
 .. py:class:: AppServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -71,6 +72,11 @@ Classes
 
 
    .. py:method:: CreateOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationInviteRequest, app.v1.app_pb2.CreateOrganizationInviteResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateOrganizationInviteAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest, app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -305,5 +311,6 @@ Classes
 
 
 .. py:class:: AppServiceStub(channel: grpclib.client.Channel)
+
 
 

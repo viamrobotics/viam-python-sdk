@@ -33,6 +33,7 @@ Classes
 
 .. py:class:: EncoderServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -70,7 +71,9 @@ Classes
 .. py:class:: EncoderServiceStub(channel: grpclib.client.Channel)
 
 
-.. py:class:: GetPositionRequest(*, name: str = ..., position_type: global___PositionType.ValueType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+.. py:class:: GetPositionRequest(*, name: str = ..., position_type: global___PositionType | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -116,7 +119,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_position_type, b'_position_type']) -> typing_extensions.Literal['position_type'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_position_type, b'_position_type']) -> Literal[position_type] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -133,6 +136,7 @@ Classes
 
 
 .. py:class:: GetPositionResponse(*, value: float = ..., position_type: global___PositionType = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -154,6 +158,7 @@ Classes
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -193,6 +198,7 @@ Classes
 
 .. py:class:: GetPropertiesResponse(*, ticks_count_supported: bool = ..., angle_degrees_supported: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -214,10 +220,12 @@ Classes
 
 .. py:class:: PositionType
 
+
    Bases: :py:obj:`_PositionType`
 
 
 .. py:class:: ResetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -256,6 +264,7 @@ Classes
 
 
 .. py:class:: ResetPositionResponse
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

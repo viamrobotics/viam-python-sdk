@@ -96,10 +96,22 @@ isort:skip_file</p>
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImageRequest" title="viam.gen.component.camera.v1.camera_pb2.GetImageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Format</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImageRequest" title="viam.gen.component.camera.v1.camera_pb2.GetImageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImageResponse" title="viam.gen.component.camera.v1.camera_pb2.GetImageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImageResponse" title="viam.gen.component.camera.v1.camera_pb2.GetImageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImageResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesRequest" title="viam.gen.component.camera.v1.camera_pb2.GetImagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImagesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesResponse" title="viam.gen.component.camera.v1.camera_pb2.GetImagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetImagesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Image</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.RenderFrameRequest" title="viam.gen.component.camera.v1.camera_pb2.RenderFrameRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RenderFrameRequest</span></code></a></p></td>
@@ -142,40 +154,67 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.DESCRIPTOR" title="viam.gen.component.camera.v1.camera_pb2.DESCRIPTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTOR</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_UNSPECIFIED" title="viam.gen.component.camera.v1.camera_pb2.FORMAT_UNSPECIFIED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FORMAT_UNSPECIFIED</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_RGBA" title="viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_RGBA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FORMAT_RAW_RGBA</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_DEPTH" title="viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_DEPTH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FORMAT_RAW_DEPTH</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_JPEG" title="viam.gen.component.camera.v1.camera_pb2.FORMAT_JPEG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FORMAT_JPEG</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_PNG" title="viam.gen.component.camera.v1.camera_pb2.FORMAT_PNG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FORMAT_PNG</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Format" title="viam.gen.component.camera.v1.camera_pb2.global___Format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Format</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImageRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetImageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetImageRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImageResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetImageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetImageResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___RenderFrameRequest" title="viam.gen.component.camera.v1.camera_pb2.global___RenderFrameRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___RenderFrameRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImagesRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetImagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetImagesRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPointCloudRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImagesResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetImagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetImagesResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPointCloudResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Image" title="viam.gen.component.camera.v1.camera_pb2.global___Image"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Image</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___RenderFrameRequest" title="viam.gen.component.camera.v1.camera_pb2.global___RenderFrameRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___RenderFrameRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPointCloudRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Webcams" title="viam.gen.component.camera.v1.camera_pb2.global___Webcams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Webcams</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetPointCloudResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPointCloudResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Webcam" title="viam.gen.component.camera.v1.camera_pb2.global___Webcam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Webcam</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesRequest" title="viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesRequest</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Property" title="viam.gen.component.camera.v1.camera_pb2.global___Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Property</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesResponse" title="viam.gen.component.camera.v1.camera_pb2.global___GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___IntrinsicParameters</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Webcams" title="viam.gen.component.camera.v1.camera_pb2.global___Webcams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Webcams</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DistortionParameters</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Webcam" title="viam.gen.component.camera.v1.camera_pb2.global___Webcam"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Webcam</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___Property" title="viam.gen.component.camera.v1.camera_pb2.global___Property"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___Property</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters" title="viam.gen.component.camera.v1.camera_pb2.global___IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___IntrinsicParameters</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters" title="viam.gen.component.camera.v1.camera_pb2.global___DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___DistortionParameters</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -183,6 +222,42 @@ isort:skip_file</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.DESCRIPTOR">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.descriptor.FileDescriptor</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.DESCRIPTOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Format">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">Format</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_Format</span></code></p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.FORMAT_UNSPECIFIED">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">FORMAT_UNSPECIFIED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><span class="pre">Format</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_UNSPECIFIED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_RGBA">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">FORMAT_RAW_RGBA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><span class="pre">Format</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_RGBA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_DEPTH">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">FORMAT_RAW_DEPTH</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><span class="pre">Format</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_RAW_DEPTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.FORMAT_JPEG">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">FORMAT_JPEG</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><span class="pre">Format</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_JPEG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.FORMAT_PNG">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">FORMAT_PNG</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.component.camera.v1.camera_pb2.Format" title="viam.gen.component.camera.v1.camera_pb2.Format"><span class="pre">Format</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.FORMAT_PNG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___Format">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Format</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___Format" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -237,6 +312,110 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___GetImageResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetImageResponse</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImageResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">GetImagesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of a camera</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___GetImagesRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetImagesRequest</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImagesRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">GetImagesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Image</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">response_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResponseMetadata" title="viam.gen.common.v1.common_pb2.ResponseMetadata"><span class="pre">viam.gen.common.v1.common_pb2.ResponseMetadata</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.images">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">images</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Image</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.images" title="Permalink to this definition"></a></dt>
+<dd><p>list of images returned from the camera system</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.response_metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">response_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResponseMetadata" title="viam.gen.common.v1.common_pb2.ResponseMetadata"><span class="pre">viam.gen.common.v1.common_pb2.ResponseMetadata</span></a></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.response_metadata" title="Permalink to this definition"></a></dt>
+<dd><p>contains timestamp data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">response_metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'response_metadata'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.GetImagesResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___GetImagesResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetImagesResponse</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___GetImagesResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Image">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Format</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Image" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Image.source_name">
+<span class="sig-name descname"><span class="pre">source_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Image.source_name" title="Permalink to this definition"></a></dt>
+<dd><p>the name of the sensor where the image came from</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Image.format">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Format</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Image.format" title="Permalink to this definition"></a></dt>
+<dd><p>format of the response image bytes</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.Image.image">
+<span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.Image.image" title="Permalink to this definition"></a></dt>
+<dd><p>image in bytes</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.global___Image">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">global___Image</span></span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.global___Image" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -552,7 +731,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.gen.component.camera.v1.camera_pb2.DistortionParameters">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">DistortionParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">builtins.float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.DistortionParameters" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.camera.v1.camera_pb2.</span></span><span class="sig-name descname"><span class="pre">DistortionParameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.camera.v1.camera_pb2.DistortionParameters" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol

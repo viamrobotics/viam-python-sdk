@@ -165,6 +165,8 @@ Classes
    viam.proto.app.UpdateLocationResponse
    viam.proto.app.UpdateModuleRequest
    viam.proto.app.UpdateModuleResponse
+   viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest
+   viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse
    viam.proto.app.UpdateOrganizationRequest
    viam.proto.app.UpdateOrganizationResponse
    viam.proto.app.UpdateRobotPartRequest
@@ -181,6 +183,7 @@ Classes
 
 
 .. py:class:: AppServiceBase
+
 
    Bases: :py:obj:`abc.ABC`
 
@@ -233,6 +236,11 @@ Classes
 
 
    .. py:method:: CreateOrganizationInvite(stream: grpclib.server.Stream[app.v1.app_pb2.CreateOrganizationInviteRequest, app.v1.app_pb2.CreateOrganizationInviteResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateOrganizationInviteAuthorizations(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsRequest, app.v1.app_pb2.UpdateOrganizationInviteAuthorizationsResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -469,7 +477,9 @@ Classes
 .. py:class:: AppServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: AddRoleRequest(*, authorization: global___Authorization | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -503,6 +513,7 @@ Classes
 
 .. py:class:: AddRoleResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -513,6 +524,7 @@ Classes
 
 
 .. py:class:: Authorization(*, authorization_type: str = ..., authorization_id: str = ..., resource_type: str = ..., resource_id: str = ..., identity_id: str = ..., organization_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -553,7 +565,8 @@ Classes
       
 
 
-.. py:class:: AuthorizedPermissions(*, resource_type: str = ..., resource_id: str = ..., permissions: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: AuthorizedPermissions(*, resource_type: str = ..., resource_id: str = ..., permissions: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -580,6 +593,7 @@ Classes
 
 .. py:class:: CheckPermissionsRequest(*, permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -595,6 +609,7 @@ Classes
 
 .. py:class:: CheckPermissionsResponse(*, authorized_permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -609,6 +624,7 @@ Classes
 
 
 .. py:class:: CreateFragmentRequest(*, name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., organization_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -652,6 +668,7 @@ Classes
 
 .. py:class:: CreateFragmentResponse(*, fragment: global___Fragment | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -682,7 +699,8 @@ Classes
 
 
 
-.. py:class:: CreateLocationRequest(*, organization_id: str = ..., name: str = ..., parent_location_id: builtins.str | None = ...)
+.. py:class:: CreateLocationRequest(*, organization_id: str = ..., name: str = ..., parent_location_id: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -724,7 +742,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> typing_extensions.Literal['parent_location_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> Literal[parent_location_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -741,6 +759,7 @@ Classes
 
 
 .. py:class:: CreateLocationResponse(*, location: global___Location | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -775,6 +794,7 @@ Classes
 
 .. py:class:: CreateLocationSecretRequest(*, location_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -790,6 +810,7 @@ Classes
 
 
 .. py:class:: CreateLocationSecretResponse(*, auth: global___LocationAuth | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -824,6 +845,7 @@ Classes
 
 .. py:class:: CreateModuleRequest(*, organization_id: str = ..., name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Modules
@@ -840,6 +862,7 @@ Classes
 
 
 .. py:class:: CreateModuleResponse(*, module_id: str = ..., url: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -861,6 +884,7 @@ Classes
 
 
 .. py:class:: CreateOrganizationInviteRequest(*, organization_id: str = ..., email: str = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -886,6 +910,7 @@ Classes
 
 
 .. py:class:: CreateOrganizationInviteResponse(*, invite: global___OrganizationInvite | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -919,6 +944,7 @@ Classes
 
 .. py:class:: CreateOrganizationRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -934,6 +960,7 @@ Classes
 
 
 .. py:class:: CreateOrganizationResponse(*, organization: global___Organization | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -967,6 +994,7 @@ Classes
 
 .. py:class:: CreateRobotPartSecretRequest(*, part_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -982,6 +1010,7 @@ Classes
 
 
 .. py:class:: CreateRobotPartSecretResponse(*, part: global___RobotPart | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1016,6 +1045,7 @@ Classes
 
 .. py:class:: DeleteFragmentRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1032,6 +1062,7 @@ Classes
 
 .. py:class:: DeleteFragmentResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1042,6 +1073,7 @@ Classes
 
 
 .. py:class:: DeleteLocationRequest(*, location_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1059,6 +1091,7 @@ Classes
 
 .. py:class:: DeleteLocationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1069,6 +1102,7 @@ Classes
 
 
 .. py:class:: DeleteLocationSecretRequest(*, location_id: str = ..., secret_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1091,6 +1125,7 @@ Classes
 
 .. py:class:: DeleteLocationSecretResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1101,6 +1136,7 @@ Classes
 
 
 .. py:class:: DeleteOrganizationInviteRequest(*, organization_id: str = ..., email: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1123,6 +1159,7 @@ Classes
 
 .. py:class:: DeleteOrganizationInviteResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1133,6 +1170,7 @@ Classes
 
 
 .. py:class:: DeleteOrganizationMemberRequest(*, organization_id: str = ..., user_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1155,6 +1193,7 @@ Classes
 
 .. py:class:: DeleteOrganizationMemberResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1165,6 +1204,7 @@ Classes
 
 
 .. py:class:: DeleteOrganizationRequest(*, organization_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1182,6 +1222,7 @@ Classes
 
 .. py:class:: DeleteOrganizationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1192,6 +1233,7 @@ Classes
 
 
 .. py:class:: DeleteRobotPartRequest(*, part_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1209,6 +1251,7 @@ Classes
 
 .. py:class:: DeleteRobotPartResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1219,6 +1262,7 @@ Classes
 
 
 .. py:class:: DeleteRobotPartSecretRequest(*, part_id: str = ..., secret_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1241,6 +1285,7 @@ Classes
 
 .. py:class:: DeleteRobotPartSecretResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1251,6 +1296,7 @@ Classes
 
 
 .. py:class:: DeleteRobotRequest(*, id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1268,6 +1314,7 @@ Classes
 
 .. py:class:: DeleteRobotResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1278,6 +1325,7 @@ Classes
 
 
 .. py:class:: Fragment(*, id: str = ..., name: str = ..., fragment: google.protobuf.struct_pb2.Struct | None = ..., organization_owner: str = ..., public: bool = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., organization_name: str = ..., robot_part_count: int = ..., organization_count: int = ..., only_used_by_owner: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1355,6 +1403,7 @@ Classes
 
 .. py:class:: GetFragmentRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1370,6 +1419,7 @@ Classes
 
 
 .. py:class:: GetFragmentResponse(*, fragment: global___Fragment | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1403,6 +1453,7 @@ Classes
 
 .. py:class:: GetLocationRequest(*, location_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1418,6 +1469,7 @@ Classes
 
 
 .. py:class:: GetLocationResponse(*, location: global___Location | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1450,7 +1502,8 @@ Classes
 
 
 
-.. py:class:: GetModuleRequest(*, module_id: str = ..., organization_id: builtins.str | None = ...)
+.. py:class:: GetModuleRequest(*, module_id: str = ..., organization_id: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1487,7 +1540,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1504,6 +1557,7 @@ Classes
 
 
 .. py:class:: GetModuleResponse(*, module: global___Module | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1538,6 +1592,7 @@ Classes
 
 .. py:class:: GetOrganizationNamespaceAvailabilityRequest(*, public_namespace: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1553,6 +1608,7 @@ Classes
 
 
 .. py:class:: GetOrganizationNamespaceAvailabilityResponse(*, available: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1570,6 +1626,7 @@ Classes
 
 .. py:class:: GetOrganizationRequest(*, organization_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1585,6 +1642,7 @@ Classes
 
 
 .. py:class:: GetOrganizationResponse(*, organization: global___Organization | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1618,6 +1676,7 @@ Classes
 
 .. py:class:: GetRobotPartHistoryRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1634,6 +1693,7 @@ Classes
 
 .. py:class:: GetRobotPartHistoryResponse(*, history: collections.abc.Iterable[global___RobotPartHistoryEntry] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1647,7 +1707,8 @@ Classes
 
 
 
-.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: builtins.str | None = ..., page_token: builtins.str | None = ...)
+.. py:class:: GetRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ..., page_token: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1694,8 +1755,8 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> typing_extensions.Literal['filter'] | None
-               WhichOneof(oneof_group: Literal[_page_token, b'_page_token']) -> typing_extensions.Literal['page_token'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> Literal[filter] | None
+                  WhichOneof(oneof_group: Literal[_page_token, b'_page_token']) -> Literal[page_token] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -1712,6 +1773,7 @@ Classes
 
 
 .. py:class:: GetRobotPartLogsResponse(*, logs: collections.abc.Iterable[global___LogEntry] | None = ..., next_page_token: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1733,6 +1795,7 @@ Classes
 
 .. py:class:: GetRobotPartRequest(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1748,6 +1811,7 @@ Classes
 
 
 .. py:class:: GetRobotPartResponse(*, part: global___RobotPart | None = ..., config_json: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1786,6 +1850,7 @@ Classes
 
 .. py:class:: GetRobotPartsRequest(*, robot_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1802,6 +1867,7 @@ Classes
 
 .. py:class:: GetRobotPartsResponse(*, parts: collections.abc.Iterable[global___RobotPart] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1816,6 +1882,7 @@ Classes
 
 
 .. py:class:: GetRobotRequest(*, id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1832,6 +1899,7 @@ Classes
 
 
 .. py:class:: GetRobotResponse(*, robot: global___Robot | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1865,6 +1933,7 @@ Classes
 
 .. py:class:: GetRoverRentalRobotsRequest(*, org_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1881,6 +1950,7 @@ Classes
 
 .. py:class:: GetRoverRentalRobotsResponse(*, robots: collections.abc.Iterable[global___RoverRentalRobot] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1895,6 +1965,7 @@ Classes
 
 
 .. py:class:: GetUserIDByEmailRequest(*, email: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1912,6 +1983,7 @@ Classes
 
 .. py:class:: GetUserIDByEmailResponse(*, user_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1926,7 +1998,8 @@ Classes
       
 
 
-.. py:class:: ListAuthorizationsRequest(*, organization_id: str = ..., resource_ids: collections.abc.Iterable[builtins.str] | None = ...)
+.. py:class:: ListAuthorizationsRequest(*, organization_id: str = ..., resource_ids: collections.abc.Iterable[str] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1949,6 +2022,7 @@ Classes
 
 .. py:class:: ListAuthorizationsResponse(*, authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1963,6 +2037,7 @@ Classes
 
 
 .. py:class:: ListFragmentsRequest(*, organization_id: str = ..., show_public: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -1985,6 +2060,7 @@ Classes
 
 .. py:class:: ListFragmentsResponse(*, fragments: collections.abc.Iterable[global___Fragment] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -1999,6 +2075,7 @@ Classes
 
 
 .. py:class:: ListLocationsRequest(*, organization_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2016,6 +2093,7 @@ Classes
 
 .. py:class:: ListLocationsResponse(*, locations: collections.abc.Iterable[global___Location] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2029,7 +2107,8 @@ Classes
 
 
 
-.. py:class:: ListModulesRequest(*, organization_id: builtins.str | None = ...)
+.. py:class:: ListModulesRequest(*, organization_id: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2061,7 +2140,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2079,6 +2158,7 @@ Classes
 
 .. py:class:: ListModulesResponse(*, modules: collections.abc.Iterable[global___Module] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2095,6 +2175,7 @@ Classes
 
 .. py:class:: ListOrganizationMembersRequest(*, organization_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2110,6 +2191,7 @@ Classes
 
 
 .. py:class:: ListOrganizationMembersResponse(*, organization_id: str = ..., members: collections.abc.Iterable[global___OrganizationMember] | None = ..., invites: collections.abc.Iterable[global___OrganizationInvite] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2135,6 +2217,7 @@ Classes
 
 .. py:class:: ListOrganizationsByUserRequest(*, user_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2151,6 +2234,7 @@ Classes
 
 .. py:class:: ListOrganizationsByUserResponse(*, orgs: collections.abc.Iterable[global___OrgDetails] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2166,6 +2250,7 @@ Classes
 
 .. py:class:: ListOrganizationsRequest
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2176,6 +2261,7 @@ Classes
 
 
 .. py:class:: ListOrganizationsResponse(*, organizations: collections.abc.Iterable[global___Organization] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2191,6 +2277,7 @@ Classes
 
 
 .. py:class:: ListRobotsRequest(*, location_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2208,6 +2295,7 @@ Classes
 
 .. py:class:: ListRobotsResponse(*, robots: collections.abc.Iterable[global___Robot] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2222,6 +2310,7 @@ Classes
 
 
 .. py:class:: Location(*, id: str = ..., name: str = ..., parent_location_id: str = ..., auth: global___LocationAuth | None = ..., organizations: collections.abc.Iterable[global___LocationOrganization] | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_count: int = ..., config: global___StorageConfig | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2291,6 +2380,7 @@ Classes
 
 .. py:class:: LocationAuth(*, secret: str = ..., location_id: str = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2319,6 +2409,7 @@ Classes
 
 .. py:class:: LocationAuthRequest(*, location_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2334,6 +2425,7 @@ Classes
 
 
 .. py:class:: LocationAuthResponse(*, auth: global___LocationAuth | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2367,6 +2459,7 @@ Classes
 
 .. py:class:: LocationOrganization(*, organization_id: str = ..., primary: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Location
@@ -2383,6 +2476,7 @@ Classes
 
 
 .. py:class:: LogEntry(*, host: str = ..., level: str = ..., time: google.protobuf.timestamp_pb2.Timestamp | None = ..., logger_name: str = ..., message: str = ..., caller: google.protobuf.struct_pb2.Struct | None = ..., stack: str = ..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2449,6 +2543,7 @@ Classes
 
 .. py:class:: MarkPartAsMainRequest(*, part_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2465,6 +2560,7 @@ Classes
 
 .. py:class:: MarkPartAsMainResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2475,6 +2571,7 @@ Classes
 
 
 .. py:class:: MarkPartForRestartRequest(*, part_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2492,6 +2589,7 @@ Classes
 
 .. py:class:: MarkPartForRestartResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2502,6 +2600,7 @@ Classes
 
 
 .. py:class:: Model(*, api: str = ..., model: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2523,6 +2622,7 @@ Classes
 
 
 .. py:class:: Module(*, module_id: str = ..., organization_id: str = ..., name: str = ..., visibility: global___Visibility = ..., versions: collections.abc.Iterable[global___VersionHistory] | None = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ..., total_robot_usage: int = ..., total_organization_usage: int = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2588,7 +2688,8 @@ Classes
       The total number of organizations using this module
 
 
-.. py:class:: ModuleFileInfo(*, module_id: str = ..., organization_id: builtins.str | None = ..., version: str = ..., platform: str = ...)
+.. py:class:: ModuleFileInfo(*, module_id: str = ..., organization_id: str | None = ..., version: str = ..., platform: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2635,7 +2736,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -2652,6 +2753,7 @@ Classes
 
 
 .. py:class:: NewRobotPartRequest(*, robot_id: str = ..., part_name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2674,6 +2776,7 @@ Classes
 
 .. py:class:: NewRobotPartResponse(*, part_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2689,6 +2792,7 @@ Classes
 
 
 .. py:class:: NewRobotRequest(*, name: str = ..., location: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2711,6 +2815,7 @@ Classes
 
 .. py:class:: NewRobotResponse(*, id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2726,6 +2831,7 @@ Classes
 
 
 .. py:class:: Organization(*, id: str = ..., name: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., public_namespace: str = ..., default_region: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2780,6 +2886,7 @@ Classes
 
 .. py:class:: OrganizationInvite(*, organization_id: str = ..., email: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., robot_count: int = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2825,7 +2932,8 @@ Classes
 
 
 
-.. py:class:: OrganizationMember(*, user_id: str = ..., emails: collections.abc.Iterable[builtins.str] | None = ..., date_added: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: OrganizationMember(*, user_id: str = ..., emails: collections.abc.Iterable[str] | None = ..., date_added: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2868,6 +2976,7 @@ Classes
 
 .. py:class:: OrgDetails(*, org_id: str = ..., org_name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2888,6 +2997,7 @@ Classes
 
 
 .. py:class:: RemoveRoleRequest(*, authorization: global___Authorization | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2921,6 +3031,7 @@ Classes
 
 .. py:class:: RemoveRoleResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -2931,6 +3042,7 @@ Classes
 
 
 .. py:class:: ResendOrganizationInviteRequest(*, organization_id: str = ..., email: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2952,6 +3064,7 @@ Classes
 
 
 .. py:class:: ResendOrganizationInviteResponse(*, invite: global___OrganizationInvite | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -2984,6 +3097,7 @@ Classes
 
 
 .. py:class:: Robot(*, id: str = ..., name: str = ..., location: str = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3035,6 +3149,7 @@ Classes
 
 
 .. py:class:: RobotPart(*, id: str = ..., name: str = ..., dns_name: str = ..., secret: str = ..., robot: str = ..., location_id: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ..., last_access: google.protobuf.timestamp_pb2.Timestamp | None = ..., user_supplied_info: google.protobuf.struct_pb2.Struct | None = ..., main_part: bool = ..., fqdn: str = ..., local_fqdn: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., secrets: collections.abc.Iterable[global___SharedSecret] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3131,6 +3246,7 @@ Classes
 
 .. py:class:: RobotPartHistoryEntry(*, part: str = ..., robot: str = ..., when: google.protobuf.timestamp_pb2.Timestamp | None = ..., old: global___RobotPart | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3177,6 +3293,7 @@ Classes
 
 .. py:class:: RoverRentalRobot(*, robot_id: str = ..., location_id: str = ..., robot_name: str = ..., robot_main_part_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3208,11 +3325,13 @@ Classes
 
 .. py:class:: SharedSecret(*, id: str = ..., secret: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., state: global___SharedSecret = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    SharedSecret is a secret used for LocationAuth and RobotParts.
 
    .. py:class:: State
+
 
       Bases: :py:obj:`SharedSecret._State`
 
@@ -3273,6 +3392,7 @@ Classes
 
 .. py:class:: ShareLocationRequest(*, location_id: str = ..., organization_id: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3294,6 +3414,7 @@ Classes
 
 .. py:class:: ShareLocationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3304,6 +3425,7 @@ Classes
 
 
 .. py:class:: StorageConfig(*, region: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3319,7 +3441,8 @@ Classes
       GCS region that data is stored in.
 
 
-.. py:class:: TailRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: builtins.str | None = ...)
+.. py:class:: TailRobotPartLogsRequest(*, id: str = ..., errors_only: bool = ..., filter: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3361,7 +3484,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> typing_extensions.Literal['filter'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_filter, b'_filter']) -> Literal[filter] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3379,6 +3502,7 @@ Classes
 
 .. py:class:: TailRobotPartLogsResponse(*, logs: collections.abc.Iterable[global___LogEntry] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3393,6 +3517,7 @@ Classes
 
 
 .. py:class:: UnshareLocationRequest(*, location_id: str = ..., organization_id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3415,6 +3540,7 @@ Classes
 
 .. py:class:: UnshareLocationResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3424,7 +3550,8 @@ Classes
    shown below.
 
 
-.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: builtins.bool | None = ...)
+.. py:class:: UpdateFragmentRequest(*, id: str = ..., name: str = ..., config: google.protobuf.struct_pb2.Struct | None = ..., public: bool | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3470,7 +3597,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_public, b'_public']) -> typing_extensions.Literal['public'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_public, b'_public']) -> Literal[public] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3487,6 +3614,7 @@ Classes
 
 
 .. py:class:: UpdateFragmentResponse(*, fragment: global___Fragment | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3518,7 +3646,8 @@ Classes
 
 
 
-.. py:class:: UpdateLocationRequest(*, location_id: str = ..., name: builtins.str | None = ..., parent_location_id: builtins.str | None = ..., region: builtins.str | None = ...)
+.. py:class:: UpdateLocationRequest(*, location_id: str = ..., name: str | None = ..., parent_location_id: str | None = ..., region: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3565,9 +3694,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_name, b'_name']) -> typing_extensions.Literal['name'] | None
-               WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> typing_extensions.Literal['parent_location_id'] | None
-               WhichOneof(oneof_group: Literal[_region, b'_region']) -> typing_extensions.Literal['region'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
+                  WhichOneof(oneof_group: Literal[_parent_location_id, b'_parent_location_id']) -> Literal[parent_location_id] | None
+                  WhichOneof(oneof_group: Literal[_region, b'_region']) -> Literal[region] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3584,6 +3713,7 @@ Classes
 
 
 .. py:class:: UpdateLocationResponse(*, location: global___Location | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3616,7 +3746,8 @@ Classes
 
 
 
-.. py:class:: UpdateModuleRequest(*, module_id: str = ..., organization_id: builtins.str | None = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+.. py:class:: UpdateModuleRequest(*, module_id: str = ..., organization_id: str | None = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrypoint: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3678,7 +3809,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_organization_id, b'_organization_id']) -> Literal[organization_id] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3696,6 +3827,7 @@ Classes
 
 .. py:class:: UpdateModuleResponse(*, url: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3710,7 +3842,71 @@ Classes
       The detail page of the module
 
 
-.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: builtins.str | None = ..., public_namespace: builtins.str | None = ..., region: builtins.str | None = ...)
+.. py:class:: UpdateOrganizationInviteAuthorizationsRequest(*, organization_id: str = ..., email: str = ..., add_authorizations: collections.abc.Iterable[global___Authorization] | None = ..., remove_authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: add_authorizations
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
+
+
+   .. py:property:: remove_authorizations
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]
+
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: email
+      :type: str
+
+      
+
+
+.. py:class:: UpdateOrganizationInviteAuthorizationsResponse(*, invite: global___OrganizationInvite | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: invite
+      :type: global___OrganizationInvite
+
+
+   .. py:method:: HasField(field_name: Literal[invite, b'invite']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:class:: UpdateOrganizationRequest(*, organization_id: str = ..., name: str | None = ..., public_namespace: str | None = ..., region: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3757,9 +3953,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_name, b'_name']) -> typing_extensions.Literal['name'] | None
-               WhichOneof(oneof_group: Literal[_public_namespace, b'_public_namespace']) -> typing_extensions.Literal['public_namespace'] | None
-               WhichOneof(oneof_group: Literal[_region, b'_region']) -> typing_extensions.Literal['region'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
+                  WhichOneof(oneof_group: Literal[_public_namespace, b'_public_namespace']) -> Literal[public_namespace] | None
+                  WhichOneof(oneof_group: Literal[_region, b'_region']) -> Literal[region] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3776,6 +3972,7 @@ Classes
 
 
 .. py:class:: UpdateOrganizationResponse(*, organization: global___Organization | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3808,6 +4005,7 @@ Classes
 
 
 .. py:class:: UpdateRobotPartRequest(*, id: str = ..., name: str = ..., robot_config: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3851,6 +4049,7 @@ Classes
 
 .. py:class:: UpdateRobotPartResponse(*, part: global___RobotPart | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3883,6 +4082,7 @@ Classes
 
 .. py:class:: UpdateRobotRequest(*, id: str = ..., name: str = ..., location: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -3908,6 +4108,7 @@ Classes
 
 
 .. py:class:: UpdateRobotResponse(*, robot: global___Robot | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3940,6 +4141,7 @@ Classes
 
 
 .. py:class:: UploadModuleFileRequest(*, module_file_info: global___ModuleFileInfo | None = ..., file: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -3976,7 +4178,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[module_file, b'module_file']) -> typing_extensions.Literal['module_file_info', 'file'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[module_file, b'module_file']) -> Literal[module_file_info, file] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -3994,6 +4196,7 @@ Classes
 
 .. py:class:: UploadModuleFileResponse(*, url: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -4009,6 +4212,7 @@ Classes
 
 
 .. py:class:: Uploads(*, platform: str = ..., uploaded_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -4048,6 +4252,7 @@ Classes
 
 .. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -4068,6 +4273,7 @@ Classes
 
 
 .. py:class:: Visibility
+
 
    Bases: :py:obj:`_Visibility`
 

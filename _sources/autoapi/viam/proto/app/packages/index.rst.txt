@@ -38,6 +38,7 @@ Classes
 
 .. py:class:: PackageServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -70,7 +71,9 @@ Classes
 .. py:class:: PackageServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: CreatePackageRequest(*, info: global___PackageInfo | None = ..., contents: bytes = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -106,7 +109,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[package, b'package']) -> typing_extensions.Literal['info', 'contents'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[package, b'package']) -> Literal[info, contents] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -123,6 +126,7 @@ Classes
 
 
 .. py:class:: CreatePackageResponse(*, id: str = ..., version: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -141,6 +145,7 @@ Classes
 
 
 .. py:class:: DeletePackageRequest(*, id: str = ..., version: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -163,6 +168,7 @@ Classes
 
 .. py:class:: DeletePackageResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -173,6 +179,7 @@ Classes
 
 
 .. py:class:: FileInfo(*, name: str = ..., size: int = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -193,7 +200,8 @@ Classes
       
 
 
-.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: builtins.bool | None = ..., type: global___PackageType.ValueType | None = ..., platform: builtins.str | None = ...)
+.. py:class:: GetPackageRequest(*, id: str = ..., version: str = ..., include_url: bool | None = ..., type: global___PackageType | None = ..., platform: str | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -245,9 +253,9 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> typing_extensions.Literal['include_url'] | None
-               WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> typing_extensions.Literal['platform'] | None
-               WhichOneof(oneof_group: Literal[_type, b'_type']) -> typing_extensions.Literal['type'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> Literal[include_url] | None
+                  WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> Literal[platform] | None
+                  WhichOneof(oneof_group: Literal[_type, b'_type']) -> Literal[type] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -264,6 +272,7 @@ Classes
 
 
 .. py:class:: GetPackageResponse(*, package: global___Package | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -295,7 +304,8 @@ Classes
 
 
 
-.. py:class:: ListPackagesRequest(*, organization_id: str = ..., name: builtins.str | None = ..., version: builtins.str | None = ..., type: global___PackageType.ValueType | None = ..., include_url: builtins.bool | None = ...)
+.. py:class:: ListPackagesRequest(*, organization_id: str = ..., name: str | None = ..., version: str | None = ..., type: global___PackageType | None = ..., include_url: bool | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -347,10 +357,10 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> typing_extensions.Literal['include_url'] | None
-               WhichOneof(oneof_group: Literal[_name, b'_name']) -> typing_extensions.Literal['name'] | None
-               WhichOneof(oneof_group: Literal[_type, b'_type']) -> typing_extensions.Literal['type'] | None
-               WhichOneof(oneof_group: Literal[_version, b'_version']) -> typing_extensions.Literal['version'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_include_url, b'_include_url']) -> Literal[include_url] | None
+                  WhichOneof(oneof_group: Literal[_name, b'_name']) -> Literal[name] | None
+                  WhichOneof(oneof_group: Literal[_type, b'_type']) -> Literal[type] | None
+                  WhichOneof(oneof_group: Literal[_version, b'_version']) -> Literal[version] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -368,6 +378,7 @@ Classes
 
 .. py:class:: ListPackagesResponse(*, packages: collections.abc.Iterable[global___Package] | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -382,6 +393,7 @@ Classes
 
 
 .. py:class:: Package(*, info: global___PackageInfo | None = ..., url: str = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., checksum: str = ..., id: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -432,7 +444,8 @@ Classes
 
 
 
-.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., platform: builtins.str | None = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: PackageInfo(*, organization_id: str = ..., name: str = ..., version: str = ..., type: global___PackageType = ..., platform: str | None = ..., files: collections.abc.Iterable[global___FileInfo] | None = ..., metadata: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -492,7 +505,7 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> typing_extensions.Literal['platform'] | None
+   .. py:method:: WhichOneof(oneof_group: Literal[_platform, b'_platform']) -> Literal[platform] | None
 
       Returns the name of the field that is set inside a oneof group.
 
@@ -509,6 +522,7 @@ Classes
 
 
 .. py:class:: PackageType
+
 
    Bases: :py:obj:`_PackageType`
 

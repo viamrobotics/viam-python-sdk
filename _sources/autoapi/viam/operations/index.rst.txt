@@ -38,6 +38,7 @@ Attributes
 
 .. py:class:: Operation(method: str, cancel_event: asyncio.Event, opid: Optional[uuid.UUID] = None)
 
+
    An Operation represents a running operation.
 
    Every request made to a robot's components will create a new Operation on the server. For custom components built with this python-sdk,

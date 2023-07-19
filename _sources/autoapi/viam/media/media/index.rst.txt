@@ -34,6 +34,7 @@ Attributes
 
 .. py:class:: MediaStream
 
+
    Bases: :py:obj:`Protocol`\ [\ :py:obj:`MediaType`\ ]
 
    .. py:method:: next() -> MediaType
@@ -54,6 +55,7 @@ Attributes
 
 .. py:class:: MediaReader
 
+
    Bases: :py:obj:`Protocol`\ [\ :py:obj:`MediaType`\ ]
 
    .. py:method:: read() -> MediaType
@@ -62,6 +64,7 @@ Attributes
 
 .. py:class:: MediaSource
 
+
    Bases: :py:obj:`Protocol`\ [\ :py:obj:`MediaType`\ ]
 
    .. py:method:: stream() -> MediaStream[MediaType]
@@ -69,6 +72,7 @@ Attributes
 
 
 .. py:class:: MediaStreamWithIterator(stream: collections.abc.AsyncIterator[MediaType])
+
 
    Bases: :py:obj:`MediaStream`\ [\ :py:obj:`MediaType`\ ]
 

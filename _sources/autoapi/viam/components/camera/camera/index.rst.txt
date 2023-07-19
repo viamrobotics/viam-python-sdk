@@ -19,6 +19,7 @@ Classes
 
 .. py:class:: Camera(name: str)
 
+
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
 
    Camera represents any physical hardware that can capture frames.
@@ -28,6 +29,7 @@ Classes
    overridden, it must call the ``super().__init__()`` function.
 
    .. py:class:: Properties
+
 
       Bases: :py:obj:`NamedTuple`
 
@@ -69,6 +71,23 @@ Classes
 
       :returns: The frame
       :rtype: Image | RawImage
+
+
+   .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+      :abstractmethod:
+      :async:
+
+      Get simultaneous images from different sensors, along with associated metadata.
+      This should not be used for getting a time series of images from the same sensor.
+
+      :returns:
+
+                    - List[NamedImage]:
+                      The list of images returned from the camera system.
+
+                    - ResponseMetadata:
+                      The metadata associated with this response
+      :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
    .. py:method:: get_point_cloud(*, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]

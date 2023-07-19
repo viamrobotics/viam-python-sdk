@@ -43,6 +43,7 @@ Attributes
 
 .. py:class:: Credentials
 
+
    Credentials to connect to the robot.
 
    Currently only supports robot location secret.
@@ -59,6 +60,7 @@ Attributes
 
 
 .. py:class:: DialOptions(disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False)
+
 
    .. py:attribute:: disable_webrtc
       :type: bool
@@ -101,6 +103,7 @@ Attributes
 
 .. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, ssl: Union[None, bool, AuthenticatedChannel.__init__.ssl] = None, server_hostname: Optional[str] = None)
 
+
    Bases: :py:obj:`grpclib.client.Channel`
 
    Represents a connection to the server, which can be used with generated
@@ -129,6 +132,7 @@ Attributes
 
 
 .. py:class:: ViamChannel
+
 
    .. py:attribute:: channel
       :type: grpclib.client.Channel

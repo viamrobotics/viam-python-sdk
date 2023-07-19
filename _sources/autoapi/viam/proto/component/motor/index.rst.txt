@@ -45,6 +45,7 @@ Classes
 
 .. py:class:: MotorServiceBase
 
+
    Bases: :py:obj:`abc.ABC`
 
    Helper class that provides a standard way to create an ABC using
@@ -112,7 +113,9 @@ Classes
 .. py:class:: MotorServiceStub(channel: grpclib.client.Channel)
 
 
+
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -152,6 +155,7 @@ Classes
 
 .. py:class:: GetPositionResponse(*, position: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -167,6 +171,7 @@ Classes
 
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -206,6 +211,7 @@ Classes
 
 .. py:class:: GetPropertiesResponse(*, position_reporting: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -221,6 +227,7 @@ Classes
 
 
 .. py:class:: GoForRequest(*, name: str = ..., rpm: float = ..., revolutions: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -270,6 +277,7 @@ Classes
 
 .. py:class:: GoForResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -280,6 +288,7 @@ Classes
 
 
 .. py:class:: GoToRequest(*, name: str = ..., rpm: float = ..., position_revolutions: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -329,6 +338,7 @@ Classes
 
 .. py:class:: GoToResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -339,6 +349,7 @@ Classes
 
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -356,6 +367,7 @@ Classes
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -371,6 +383,7 @@ Classes
 
 
 .. py:class:: IsPoweredRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -410,6 +423,7 @@ Classes
 
 .. py:class:: IsPoweredResponse(*, is_on: bool = ..., power_pct: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -432,6 +446,7 @@ Classes
 
 
 .. py:class:: ResetZeroPositionRequest(*, name: str = ..., offset: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -476,6 +491,7 @@ Classes
 
 .. py:class:: ResetZeroPositionResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -486,6 +502,7 @@ Classes
 
 
 .. py:class:: SetPowerRequest(*, name: str = ..., power_pct: float = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -530,6 +547,7 @@ Classes
 
 .. py:class:: SetPowerResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -540,6 +558,7 @@ Classes
 
 
 .. py:class:: Status(*, is_powered: bool = ..., position: float = ..., is_moving: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -566,6 +585,7 @@ Classes
 
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -604,6 +624,7 @@ Classes
 
 
 .. py:class:: StopResponse
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

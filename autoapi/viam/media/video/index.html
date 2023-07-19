@@ -80,6 +80,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.video.CameraMimeType"><code class="docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.with_lazy_suffix"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.with_lazy_suffix</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RGBA"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RGBA</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.VIAM_RAW_DEPTH"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.VIAM_RAW_DEPTH</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.JPEG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.JPEG</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.PNG"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PNG</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.PCD"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.PCD</span></code></a></li>
@@ -87,6 +88,20 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_lazy"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_lazy()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.encode_image"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.encode_image()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.is_supported"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.is_supported()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.from_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.from_proto()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.CameraMimeType.to_proto"><code class="docutils literal notranslate"><span class="pre">CameraMimeType.to_proto()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.ViamImage"><code class="docutils literal notranslate"><span class="pre">ViamImage</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.data"><code class="docutils literal notranslate"><span class="pre">ViamImage.data</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.mime_type"><code class="docutils literal notranslate"><span class="pre">ViamImage.mime_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.image"><code class="docutils literal notranslate"><span class="pre">ViamImage.image</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.close"><code class="docutils literal notranslate"><span class="pre">ViamImage.close()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.ViamImage.bytes_to_depth_array"><code class="docutils literal notranslate"><span class="pre">ViamImage.bytes_to_depth_array()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.media.video.NamedImage"><code class="docutils literal notranslate"><span class="pre">NamedImage</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.video.NamedImage.name"><code class="docutils literal notranslate"><span class="pre">NamedImage.name</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -142,6 +157,12 @@
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraMimeType</span></code></a></p></td>
 <td><p>str(object='') -&gt; str</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.media.video.ViamImage" title="viam.media.video.ViamImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamImage</span></code></a></p></td>
+<td><p>A native implementation of an image.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.media.video.NamedImage" title="viam.media.video.NamedImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedImage</span></code></a></p></td>
+<td><p>An implementation of ViamImage that contains a name attribute.</p></td>
 </tr>
 </tbody>
 </table>
@@ -242,6 +263,11 @@ errors defaults to ‘strict’.</p>
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.VIAM_RAW_DEPTH">
+<span class="sig-name descname"><span class="pre">VIAM_RAW_DEPTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'image/vnd.viam.dep'</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.VIAM_RAW_DEPTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="viam.media.video.CameraMimeType.JPEG">
 <span class="sig-name descname"><span class="pre">JPEG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'image/jpeg'</span></em><a class="headerlink" href="#viam.media.video.CameraMimeType.JPEG" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -274,7 +300,7 @@ errors defaults to ‘strict’.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.media.video.CameraMimeType.is_supported">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_supported</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType.is_supported"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType.is_supported" title="Permalink to this definition"></a></dt>
-<dd><p>Check if the provided mime_type is supported</p>
+<dd><p>Check if the provided mime_type is supported.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mime_type</strong> (<em>str</em>) – The mime_type to check</p>
@@ -286,6 +312,99 @@ errors defaults to ‘strict’.</p>
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.from_proto">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.component.camera.Format.ValueType</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType.from_proto" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the mimetype from a proto enum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>format</strong> (<em>Format.ValueType</em>) – The mimetype in a proto enum.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mimetype.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.CameraMimeType.to_proto">
+<span class="sig-name descname"><span class="pre">to_proto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.proto.component.camera.Format.ValueType</span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#CameraMimeType.to_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.CameraMimeType.to_proto" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the mimetype in a proto enum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The mimetype in a proto enum.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Format.ValueType</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">ViamImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><span class="pre">CameraMimeType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/video.html#ViamImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.ViamImage" title="Permalink to this definition"></a></dt>
+<dd><p>A native implementation of an image.</p>
+<p>Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.media.video.ViamImage.data" title="Permalink to this definition"></a></dt>
+<dd><p>The raw bytes of the image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage.mime_type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mime_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><span class="pre">CameraMimeType</span></a></em><a class="headerlink" href="#viam.media.video.ViamImage.mime_type" title="Permalink to this definition"></a></dt>
+<dd><p>The mime type of the image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">PIL.Image.Image</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.media.video.ViamImage.image" title="Permalink to this definition"></a></dt>
+<dd><p>The PIL.Image representation of the image. If the mime type is not supported, this will be None.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/video.html#ViamImage.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.ViamImage.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the image and release resources.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.video.ViamImage.bytes_to_depth_array">
+<span class="sig-name descname"><span class="pre">bytes_to_depth_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/media/video.html#ViamImage.bytes_to_depth_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.ViamImage.bytes_to_depth_array" title="Permalink to this definition"></a></dt>
+<dd><p>Decode the data of an image that has the custom depth MIME type <code class="docutils literal notranslate"><span class="pre">image/vnd.viam.dep</span></code> into
+a standard representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../errors/index.html#viam.errors.NotSupportedError" title="viam.errors.NotSupportedError"><strong>NotSupportedError</strong></a> – Raised if given an image that is not of MIME type <cite>image/vnd.viam.dep</cite>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The standard representation of the image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[List[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.media.video.NamedImage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.media.video.</span></span><span class="sig-name descname"><span class="pre">NamedImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.media.video.CameraMimeType" title="viam.media.video.CameraMimeType"><span class="pre">CameraMimeType</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/media/video.html#NamedImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.media.video.NamedImage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.media.video.ViamImage" title="viam.media.video.ViamImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ViamImage</span></code></a></p>
+<p>An implementation of ViamImage that contains a name attribute.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.media.video.NamedImage.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.media.video.NamedImage.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the image</p>
 </dd></dl>
 
 </dd></dl>

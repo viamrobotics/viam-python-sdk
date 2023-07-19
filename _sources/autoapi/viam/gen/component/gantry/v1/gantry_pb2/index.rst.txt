@@ -63,6 +63,7 @@ Attributes
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -103,7 +104,8 @@ Attributes
 
    
 
-.. py:class:: GetPositionResponse(*, positions_mm: collections.abc.Iterable[builtins.float] | None = ...)
+.. py:class:: GetPositionResponse(*, positions_mm: collections.abc.Iterable[float] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -122,7 +124,8 @@ Attributes
 
    
 
-.. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[builtins.float] | None = ..., speeds_mm_per_sec: collections.abc.Iterable[builtins.float] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveToPositionRequest(*, name: str = ..., positions_mm: collections.abc.Iterable[float] | None = ..., speeds_mm_per_sec: collections.abc.Iterable[float] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -176,6 +179,7 @@ Attributes
 
 .. py:class:: MoveToPositionResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -190,6 +194,7 @@ Attributes
    
 
 .. py:class:: HomeRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -233,6 +238,7 @@ Attributes
 
 .. py:class:: HomeResponse(*, homed: bool = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -252,6 +258,7 @@ Attributes
    
 
 .. py:class:: GetLengthsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -293,7 +300,8 @@ Attributes
 
    
 
-.. py:class:: GetLengthsResponse(*, lengths_mm: collections.abc.Iterable[builtins.float] | None = ...)
+.. py:class:: GetLengthsResponse(*, lengths_mm: collections.abc.Iterable[float] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -313,6 +321,7 @@ Attributes
    
 
 .. py:class:: StopRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -356,6 +365,7 @@ Attributes
 
 .. py:class:: StopResponse
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -369,7 +379,8 @@ Attributes
 
    
 
-.. py:class:: Status(*, positions_mm: collections.abc.Iterable[builtins.float] | None = ..., lengths_mm: collections.abc.Iterable[builtins.float] | None = ..., is_moving: bool = ...)
+.. py:class:: Status(*, positions_mm: collections.abc.Iterable[float] | None = ..., lengths_mm: collections.abc.Iterable[float] | None = ..., is_moving: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -399,6 +410,7 @@ Attributes
 
 .. py:class:: IsMovingRequest(*, name: str = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -418,6 +430,7 @@ Attributes
    
 
 .. py:class:: IsMovingResponse(*, is_moving: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

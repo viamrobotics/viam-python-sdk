@@ -69,6 +69,7 @@ Attributes
 
 .. py:class:: GetLinearVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -109,7 +110,8 @@ Attributes
 
    
 
-.. py:class:: GetLinearVelocityResponse(*, linear_velocity: common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetLinearVelocityResponse(*, linear_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -147,6 +149,7 @@ Attributes
    
 
 .. py:class:: GetAngularVelocityRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -188,7 +191,8 @@ Attributes
 
    
 
-.. py:class:: GetAngularVelocityResponse(*, angular_velocity: common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetAngularVelocityResponse(*, angular_velocity: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -226,6 +230,7 @@ Attributes
    
 
 .. py:class:: GetCompassHeadingRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -269,6 +274,7 @@ Attributes
 
 .. py:class:: GetCompassHeadingResponse(*, value: float = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -289,6 +295,7 @@ Attributes
    
 
 .. py:class:: GetOrientationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -330,7 +337,8 @@ Attributes
 
    
 
-.. py:class:: GetOrientationResponse(*, orientation: common.v1.common_pb2.Orientation | None = ...)
+.. py:class:: GetOrientationResponse(*, orientation: viam.gen.common.v1.common_pb2.Orientation | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -367,6 +375,7 @@ Attributes
    
 
 .. py:class:: GetPositionRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -408,7 +417,8 @@ Attributes
 
    
 
-.. py:class:: GetPositionResponse(*, coordinate: common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
+.. py:class:: GetPositionResponse(*, coordinate: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., altitude_m: float = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -451,6 +461,7 @@ Attributes
 
 .. py:class:: GetPropertiesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -492,6 +503,7 @@ Attributes
    
 
 .. py:class:: GetPropertiesResponse(*, linear_velocity_supported: bool = ..., angular_velocity_supported: bool = ..., orientation_supported: bool = ..., position_supported: bool = ..., compass_heading_supported: bool = ..., linear_acceleration_supported: bool = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -538,6 +550,7 @@ Attributes
 
 .. py:class:: GetAccuracyRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
+
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Abstract base class for protocol messages.
@@ -578,7 +591,8 @@ Attributes
 
    
 
-.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None = ...)
+.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -589,6 +603,7 @@ Attributes
    shown below.
 
    .. py:class:: AccuracyEntry(*, key: str = ..., value: float = ...)
+
 
       Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -619,6 +634,7 @@ Attributes
    
 
 .. py:class:: GetLinearAccelerationRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
@@ -660,7 +676,8 @@ Attributes
 
    
 
-.. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: common.v1.common_pb2.Vector3 | None = ...)
+.. py:class:: GetLinearAccelerationResponse(*, linear_acceleration: viam.gen.common.v1.common_pb2.Vector3 | None = ...)
+
 
    Bases: :py:obj:`google.protobuf.message.Message`
 

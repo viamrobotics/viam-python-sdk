@@ -22,6 +22,7 @@ Classes
 
 .. py:class:: AnalogReaderClient(name: str, board: BoardClient)
 
+
    Bases: :py:obj:`viam.components.board.board.Board.AnalogReader`
 
    AnalogReader represents an analog pin reader that resides on a Board.
@@ -90,6 +91,7 @@ Classes
 
 
 .. py:class:: DigitalInterruptClient(name: str, board: BoardClient)
+
 
    Bases: :py:obj:`viam.components.board.board.Board.DigitalInterrupt`
 
@@ -198,6 +200,7 @@ Classes
 
 
 .. py:class:: GPIOPinClient(name: str, board: BoardClient)
+
 
    Bases: :py:obj:`viam.components.board.board.Board.GPIOPin`
 
@@ -313,6 +316,7 @@ Classes
 
 
 .. py:class:: BoardClient(name: str, channel: grpclib.client.Channel)
+
 
    Bases: :py:obj:`viam.components.board.board.Board`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
