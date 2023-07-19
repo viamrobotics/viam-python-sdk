@@ -3,7 +3,21 @@ from grpclib.server import Stream
 from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.navigation import (
+    AddWaypointRequest,
+    AddWaypointResponse,
+    GetLocationRequest,
+    GetLocationResponse,
+    GetModeRequest,
+    GetModeResponse,
+    GetObstaclesRequest,
+    GetObstaclesResponse,
+    GetWaypointsRequest,
+    GetWaypointsResponse,
     NavigationServiceBase,
+    RemoveWaypointRequest,
+    RemoveWaypointResponse,
+    SetModeRequest,
+    SetModeResponse,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -18,40 +32,78 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
 
     RESOURCE_TYPE = Navigation
 
-    async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
+    async def GetLocation(self, stream: Stream[GetLocationRequest, GetLocationResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         navigation = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await navigation.get_internal_state(timeout=timeout)
-        for chunk in chunks:
-            response = GetInternalStateResponse(internal_state_chunk=chunk)
-            await stream.send_message(response)
-
-    async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        navigation = self.get_resource(name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await navigation.get_point_cloud_map(timeout=timeout)
-        for chunk in chunks:
-            response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
-            await stream.send_message(response)
-
-    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        navigation = self.get_resource(name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await navigation.get_position(timeout=timeout)
-        response = GetPositionResponse(pose=position)
+        location = await navigation.get_location(timeout=timeout)
+        response = GetLocationResponse(location=location)
         await stream.send_message(response)
 
-    async def GetLatestMapInfo(self, stream: Stream[GetLatestMapInfoRequest, GetLatestMapInfoResponse]) -> None:
-        raise MethodNotImplementedError("GetLatestMapInfo").grpc_error
+    async def GetObstacles(self, stream: Stream[GetObstaclesRequest, GetObstaclesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        obstacles = await navigation.get_obstacles(timeout=timeout)
+        response = GetObstaclesResponse(obstacles=obstacles)
+        await stream.send_message(response)
+
+    async def GetWaypoints(self, stream: Stream[GetWaypointsRequest, GetWaypointsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        waypoints = await navigation.get_waypoints(timeout=timeout)
+        response = GetWaypointsResponse(waypoints=waypoints)
+        await stream.send_message(response)
+
+    async def AddWaypoint(self, stream: Stream[AddWaypointRequest, AddWaypointResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        point = request.location
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await navigation.add_waypoint(point, timeout=timeout)
+        response = AddWaypointResponse()
+        await stream.send_message(response)
+
+    async def RemoveWaypoint(self, stream: Stream[RemoveWaypointRequest, RemoveWaypointResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        id = request.id
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await navigation.remove_waypoint(id=id, timeout=timeout)
+        response = RemoveWaypointResponse()
+        await stream.send_message(response)
+
+    async def GetMode(self, stream: Stream[GetModeRequest, GetModeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        mode = await navigation.get_mode(timeout=timeout)
+        response = GetModeResponse(mode=mode)
+        await stream.send_message(response)
+
+    async def SetMode(self, stream: Stream[SetModeRequest, SetModeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        mode = request.mode
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await navigation.set_mode(mode, timeout=timeout)
+        response = SetModeResponse()
+        await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
