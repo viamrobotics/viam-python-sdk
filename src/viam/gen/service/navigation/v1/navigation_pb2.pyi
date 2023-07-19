@@ -262,3 +262,45 @@ class RemoveWaypointResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___RemoveWaypointResponse = RemoveWaypointResponse
+
+@typing_extensions.final
+class GetObstaclesRequest(google.protobuf.message.Message):
+    """GetObstacles will return the geopoint location and geometry of all
+    known obstacles on the navigation map. Obstacles that are detected
+    through the vision service will only be returned if this endpoint is called
+    when the robot is sensing the obstacle
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetObstaclesRequest = GetObstaclesRequest
+
+@typing_extensions.final
+class GetObstaclesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    OBSTACLES_FIELD_NUMBER: builtins.int
+
+    @property
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
+        """List of all known geometries"""
+
+    def __init__(self, *, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles']) -> None:
+        ...
+global___GetObstaclesResponse = GetObstaclesResponse

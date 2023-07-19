@@ -1,8 +1,10 @@
 import abc
-from typing import Final, NamedTuple, Optional, Tuple, Union
+from typing import Final, List, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
+from viam.media.video import NamedImage
+from viam.proto.common import ResponseMetadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
@@ -45,6 +47,21 @@ class Camera(ComponentBase):
 
         Returns:
             Image | RawImage: The frame
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+        """Get simultaneous images from different sensors, along with associated metadata.
+        This should not be used for getting a time series of images from the same sensor.
+
+        Returns:
+            Tuple[List[NamedImage], ResponseMetadata]:
+                - List[NamedImage]:
+                  The list of images returned from the camera system.
+
+                - ResponseMetadata:
+                  The metadata associated with this response
         """
         ...
 

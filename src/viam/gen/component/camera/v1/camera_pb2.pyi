@@ -4,15 +4,39 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _Format:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _FormatEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Format.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    FORMAT_UNSPECIFIED: _Format.ValueType
+    FORMAT_RAW_RGBA: _Format.ValueType
+    FORMAT_RAW_DEPTH: _Format.ValueType
+    FORMAT_JPEG: _Format.ValueType
+    FORMAT_PNG: _Format.ValueType
+
+class Format(_Format, metaclass=_FormatEnumTypeWrapper):
+    ...
+FORMAT_UNSPECIFIED: Format.ValueType
+FORMAT_RAW_RGBA: Format.ValueType
+FORMAT_RAW_DEPTH: Format.ValueType
+FORMAT_JPEG: Format.ValueType
+FORMAT_PNG: Format.ValueType
+global___Format = Format
 
 @typing_extensions.final
 class GetImageRequest(google.protobuf.message.Message):
@@ -47,6 +71,64 @@ class GetImageResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['image', b'image', 'mime_type', b'mime_type']) -> None:
         ...
 global___GetImageResponse = GetImageResponse
+
+@typing_extensions.final
+class GetImagesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of a camera'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetImagesRequest = GetImagesRequest
+
+@typing_extensions.final
+class GetImagesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IMAGES_FIELD_NUMBER: builtins.int
+    RESPONSE_METADATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def images(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Image]:
+        """list of images returned from the camera system"""
+
+    @property
+    def response_metadata(self) -> common.v1.common_pb2.ResponseMetadata:
+        """contains timestamp data"""
+
+    def __init__(self, *, images: collections.abc.Iterable[global___Image] | None=..., response_metadata: common.v1.common_pb2.ResponseMetadata | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['response_metadata', b'response_metadata']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['images', b'images', 'response_metadata', b'response_metadata']) -> None:
+        ...
+global___GetImagesResponse = GetImagesResponse
+
+@typing_extensions.final
+class Image(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SOURCE_NAME_FIELD_NUMBER: builtins.int
+    FORMAT_FIELD_NUMBER: builtins.int
+    IMAGE_FIELD_NUMBER: builtins.int
+    source_name: builtins.str
+    'the name of the sensor where the image came from'
+    format: global___Format.ValueType
+    'format of the response image bytes'
+    image: builtins.bytes
+    'image in bytes'
+
+    def __init__(self, *, source_name: builtins.str=..., format: global___Format.ValueType=..., image: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['format', b'format', 'image', b'image', 'source_name', b'source_name']) -> None:
+        ...
+global___Image = Image
 
 @typing_extensions.final
 class RenderFrameRequest(google.protobuf.message.Message):

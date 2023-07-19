@@ -11,6 +11,7 @@ import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.internal.extension_dict
 import google.protobuf.message
 import google.protobuf.struct_pb2
+import google.protobuf.timestamp_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -499,6 +500,32 @@ class ActuatorStatus(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___ActuatorStatus = ActuatorStatus
+
+@typing_extensions.final
+class ResponseMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CAPTURED_AT_FIELD_NUMBER: builtins.int
+
+    @property
+    def captured_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """captured_at is the time at which the resource as close as physically possible, captured
+        the data in the response.
+        Note: If correlating between other resources, be sure that the means
+        of measuring the capture are similar enough such that comparison can be made between them.
+        """
+
+    def __init__(self, *, captured_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_captured_at', b'_captured_at']) -> typing_extensions.Literal['captured_at'] | None:
+        ...
+global___ResponseMetadata = ResponseMetadata
 
 @typing_extensions.final
 class DoCommandRequest(google.protobuf.message.Message):

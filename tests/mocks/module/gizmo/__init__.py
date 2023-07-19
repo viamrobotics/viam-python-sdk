@@ -1,5 +1,5 @@
 from viam.components.motor import *  # noqa: F403 Need to import motor so the component registers itself
-from viam.resource.registry import Registry, ResourceRegistration, ResourceCreatorRegistration
+from viam.resource.registry import Registry, ResourceCreatorRegistration, ResourceRegistration
 
 from .api import Gizmo, GizmoClient, GizmoService
 from .my_gizmo import MyGizmo

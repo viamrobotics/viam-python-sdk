@@ -10,10 +10,13 @@ from viam.proto.component.camera import (
     CameraServiceBase,
     GetImageRequest,
     GetImageResponse,
+    GetImagesRequest,
+    GetImagesResponse,
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
+    Image,
     RenderFrameRequest,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -59,6 +62,25 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         finally:
             image.close()
         response.image = img_bytes
+        await stream.send_message(response)
+
+    async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        camera = self.get_resource(name)
+
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        images, metadata = await camera.get_images(timeout=timeout, metadata=stream.metadata)
+        img_bytes_lst = []
+        for img in images:
+            try:
+                fmt = img.mime_type.to_proto()
+                img_bytes = img.data
+                img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
+            finally:
+                img.close()
+        response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
     async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:

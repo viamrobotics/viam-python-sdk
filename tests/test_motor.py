@@ -5,7 +5,6 @@ from grpclib.testing import ChannelFor
 from viam.components.generic.service import GenericRPCService
 from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorRPCService
-from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.motor import (
     GetPositionRequest,
@@ -23,7 +22,8 @@ from viam.proto.component.motor import (
     SetPowerRequest,
     StopRequest,
 )
-from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
+from viam.resource.manager import ResourceManager
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockMotor

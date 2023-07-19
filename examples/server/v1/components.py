@@ -34,6 +34,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
+from viam.media.video import NamedImage
 from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
@@ -45,6 +46,7 @@ from viam.proto.common import (
     Pose,
     PoseInFrame,
     Vector3,
+    ResponseMetadata,
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
@@ -331,6 +333,9 @@ class ExampleCamera(Camera):
 
     async def get_image(self, mime_type: str = "", **kwargs) -> Image.Image:
         return self.image.copy()
+
+    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+        raise NotImplementedError()
 
     async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
         raise NotImplementedError()

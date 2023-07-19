@@ -4,15 +4,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
 from viam.components.arm.service import ArmRPCService
-from viam.resource.manager import ResourceManager
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    GetGeometriesRequest,
-    GetKinematicsRequest,
-    GetKinematicsResponse,
-    Pose,
-)
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetKinematicsRequest, GetKinematicsResponse, Pose
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -26,6 +18,7 @@ from viam.proto.component.arm import (
     MoveToPositionRequest,
     StopRequest,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx

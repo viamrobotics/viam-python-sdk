@@ -1,25 +1,23 @@
 from typing import Any, Dict, List, Mapping, Optional, Union
-from PIL import Image
 
 from grpclib.server import Stream
-from viam.media.video import RawImage
-from viam.proto.common import PointCloudObject
-from viam.proto.service.vision import Classification, Detection
+from PIL import Image
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Pose, PoseInFrame, ResourceName
+from viam.media.video import RawImage
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
     GetPoseResponse,
     MotionServiceBase,
+    MoveOnGlobeRequest,
+    MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
-    MoveOnGlobeRequest,
-    MoveOnGlobeResponse,
 )
 from viam.proto.service.sensors import (
     GetReadingsRequest,
@@ -29,6 +27,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
+from viam.proto.service.vision import Classification, Detection
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.slam import SLAM
 from viam.services.vision import Vision

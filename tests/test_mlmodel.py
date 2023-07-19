@@ -1,11 +1,13 @@
-import pytest
-
 from typing import List
+
+import pytest
 from grpclib.testing import ChannelFor
+
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
 from viam.services.mlmodel import MLModelClient, MLModelRPCService
 from viam.utils import struct_to_dict
+
 from .mocks.services import MockMLModel
 
 

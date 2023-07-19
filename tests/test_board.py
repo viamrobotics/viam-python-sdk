@@ -2,15 +2,13 @@ from datetime import timedelta
 from typing import cast
 
 import pytest
+from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
-
-from google.protobuf.duration_pb2 import Duration
 
 from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.resource.manager import ResourceManager
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest
 from viam.proto.component.board import (
@@ -19,30 +17,26 @@ from viam.proto.component.board import (
     GetDigitalInterruptValueResponse,
     GetGPIORequest,
     GetGPIOResponse,
+    PowerMode,
     PWMFrequencyRequest,
     PWMFrequencyResponse,
     PWMRequest,
     PWMResponse,
-    PowerMode,
     ReadAnalogReaderRequest,
     ReadAnalogReaderResponse,
     SetGPIORequest,
-    SetPWMFrequencyRequest,
-    SetPWMRequest,
     SetPowerModeRequest,
     SetPowerModeResponse,
+    SetPWMFrequencyRequest,
+    SetPWMRequest,
     StatusRequest,
     StatusResponse,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import (
-    MockAnalogReader,
-    MockBoard,
-    MockDigitalInterrupt,
-    MockGPIOPin,
-)
+from .mocks.components import MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
 
 
 @pytest.fixture(scope="function")

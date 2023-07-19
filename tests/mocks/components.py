@@ -6,11 +6,12 @@ else:
     from typing import AsyncIterator
 
 from dataclasses import dataclass
-from datetime import timedelta
+from datetime import datetime, timedelta
 from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
+from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
@@ -32,7 +33,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
-from viam.media.video import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
@@ -41,6 +42,7 @@ from viam.proto.common import (
     Orientation,
     Pose,
     PoseInFrame,
+    ResponseMetadata,
     Vector3,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
@@ -367,6 +369,9 @@ class MockCamera(Camera):
             DistortionParameters(model="no_distortion"),
         )
         self.timeout: Optional[float] = None
+        ts = Timestamp()
+        ts.FromDatetime(datetime(1970, 1, 1))
+        self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
     async def get_image(self, mime_type: str = "", timeout: Optional[float] = None, **kwargs) -> Union[Image.Image, RawImage]:
@@ -378,6 +383,16 @@ class MockCamera(Camera):
                 mime_type=mime_type,
             )
         return self.image.copy()
+
+    async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+        self.timeout = timeout
+        return [
+            NamedImage(
+                name=self.name,
+                data=CameraMimeType.VIAM_RGBA.encode_image(self.image),
+                mime_type=CameraMimeType.VIAM_RGBA,
+            )
+        ], self.metadata
 
     async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
         self.timeout = timeout

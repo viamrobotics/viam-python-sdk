@@ -1,12 +1,11 @@
+from typing import Any, Dict, Optional
+
 import pytest
 from grpclib import GRPCError, Status
 from grpclib.testing import ChannelFor
 
-from typing import Any, Dict, Optional
-
 from viam.components.generic.service import GenericRPCService
 from viam.components.movement_sensor import MovementSensor, MovementSensorClient, MovementSensorRPCService
-from viam.resource.manager import ResourceManager
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint, GetGeometriesRequest, Orientation, Vector3
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
@@ -27,6 +26,7 @@ from viam.proto.component.movementsensor import (
     GetPropertiesResponse,
     MovementSensorServiceStub,
 )
+from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx

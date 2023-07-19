@@ -9,10 +9,10 @@ from grpclib.client import Channel
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
 from viam.operations import run_with_operation
+from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.resource.manager import ResourceManager
 from viam.resource.types import Subtype
 
 

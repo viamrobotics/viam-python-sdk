@@ -1,7 +1,7 @@
 import pytest
 
+from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.manager import ResourceManager
-from viam.errors import ResourceNotFoundError, DuplicateResourceError
 
 from .mocks.components import MockArm, MockServo
 
