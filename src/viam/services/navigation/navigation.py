@@ -39,9 +39,9 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_mode(self, id: str, *, timeout: Optional[float]) -> Mode:
+    async def get_mode(self, *, timeout: Optional[float]) -> Mode.ValueType:
         ...
 
     @abc.abstractmethod
-    async def set_mode(self, id: str, *, timeout: Optional[float]):
+    async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float]):
         ...

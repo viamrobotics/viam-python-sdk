@@ -4,18 +4,26 @@ from grpclib.client import Channel
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.navigation import (
-    GetInternalStateRequest,
-    GetInternalStateResponse,
-    GetPointCloudMapRequest,
-    GetPointCloudMapResponse,
-    GetPositionRequest,
-    GetPositionResponse,
+    AddWaypointRequest,
+    AddWaypointResponse,
+    GetLocationRequest,
+    GetLocationResponse,
+    GetModeRequest,
+    GetModeResponse,
+    GetObstaclesRequest,
+    GetObstaclesResponse,
+    GetWaypointsRequest,
+    GetWaypointsResponse,
     NavigationServiceStub,
+    RemoveWaypointRequest,
+    RemoveWaypointResponse,
+    SetModeRequest,
+    SetModeResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Pose
+from . import GeoObstacle, GeoPoint, Mode, Waypoint
 from .navigation import Navigation
 
 
@@ -31,20 +39,37 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
         self.client = NavigationServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
-        request = GetPositionRequest(name=self.name)
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
-        return response.pose
+    async def get_location(self, *, timeout: Optional[float]) -> GeoPoint:
+        request = GetLocationRequest(name=self.name)
+        response: GetLocationResponse = await self.client.GetLocation(request, timeout=timeout)
+        return response.location
 
-    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
-        request = GetPointCloudMapRequest(name=self.name)
-        response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
-        return response
+    async def get_obstacles(self, *, timeout: Optional[float]) -> List[GeoObstacle]:
+        request = GetObstaclesRequest(name=self.name)
+        response: GetObstaclesResponse = await self.client.GetObstacles(request, timeout=timeout)
+        return list(response.obstacles)
 
-    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
-        request = GetInternalStateRequest(name=self.name)
-        response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
-        return response
+    async def get_waypoints(self, *, timeout: Optional[float]) -> List[Waypoint]:
+        request = GetWaypointsRequest(name=self.name)
+        response: GetWaypointsResponse = await self.client.GetWaypoints(request, timeout=timeout)
+        return list(response.waypoints)
+
+    async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float]):
+        request = AddWaypointRequest(name=self.name, location=point)
+        await self.client.AddWaypoint(request, timeout=timeout)
+
+    async def remove_waypoint(self, id: str, *, timeout: Optional[float]):
+        request = RemoveWaypointRequest(name=self.name, id=id)
+        await self.client.RemoveWaypoint(request, timeout=timeout)
+
+    async def get_mode(self, *, timeout: Optional[float]) -> Mode.ValueType:
+        request = GetModeRequest(name=self.name)
+        response: GetModeResponse = await self.client.GetMode(request, timeout=timeout)
+        return response.mode
+
+    async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float]):
+        request = SetModeRequest(name=self.name, mode=mode)
+        await self.client.SetMode(request, timeout=timeout)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
