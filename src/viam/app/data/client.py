@@ -55,18 +55,18 @@ LOGGER = logging.getLogger(__name__)
 
 
 class DataClient:
-    """gRPC client for uploading and retreiving data from app
+    """gRPC client for uploading and retrieving data from app.
 
-    Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient
+    Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
+    `AppClient`.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
-        """
-        Create a data client that establishes a connection to app.
+        """Create a `DataClient` that maintains a connection to app.
 
         Args:
-            channel (Channel): an already-established connection to app.
-            metadata (str): the required authorization token to send requests to app.
+            channel (Channel): Connection to app.
+            metadata (Mapping[str, str]): Required authorization token to send requests to app.
         """
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
@@ -81,15 +81,15 @@ class DataClient:
         filter: Optional[Filter] = None,
         dest: Optional[str] = None,
     ) -> List[Mapping[str, Any]]:
-        """Filter and download tabular data
+        """Filter and download tabular data.
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the tabular data will be
-            filtered based on the provided constraints. Otherwise, all data is returned.
-            dest (str): When supplied, the tabular data will be saved to the provided file path.
+            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
+                data.
+            dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[Mapping[str, Any]]: A list of tabular data
+            List[Mapping[str, Any]]: The tabular data.
         """
         filter = filter if filter else Filter()
         last = ""
@@ -119,15 +119,14 @@ class DataClient:
         filter: Optional[Filter] = None,
         dest: Optional[str] = None,
     ) -> List[bytes]:
-        """Filter and download binary data
+        """Filter and download binary data.
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the binary data will be
-            filtered based on the provided constraints. Otherwise, all data is returned.
-            dest (str): When supplied, the binary data will be saved to the provided file path
+            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all binary data.
+            dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[bytes]: The binary data
+            List[bytes]: The binary data.
         """
         filter = filter if filter else Filter()
         last = ""
@@ -158,17 +157,17 @@ class DataClient:
         binary_ids: List[BinaryID],
         dest: Optional[str] = None,
     ) -> List[bytes]:
-        """Filter and download binary data
+        """Filter and download binary data.
 
         Args:
-            binary_ids (List[viam.proto.app.BinaryID]): IDs of the desired data. Must be non-empty.
-            dest (str): When supplied, the binary data will be saved to the provided file path.
+            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the desired data. Must be non-empty.
+            dest (str): Optional filepath for writing retrieved data.
+
+        Raises:
+            GRPCError: If no `BinaryID` objects are provided.
 
         Returns:
             List[bytes]: The binary data.
-
-        Raises:
-            GRPCError: if no binary_ids are provided.
         """
         request = BinaryDataByIDsRequest(binary_ids=binary_ids, include_binary=True)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
@@ -181,14 +180,11 @@ class DataClient:
         return [binary_data.binary for binary_data in response.data]
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
-        """Delete tabular data
+        """Filter and delete tabular data.
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the tabular data to delete will be filtered based on the provided constraints.
-                If not provided, all data will be deleted. Exercise caution before using this option.
-
-        Returns:
-            int: The number of items deleted
+            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Not passing a `Filter` will lead to
+                all data being deleted. Exercise caution when using this option.
         """
         filter = filter if filter else Filter()
         request = DeleteTabularDataByFilterRequest(filter=filter)
@@ -196,14 +192,11 @@ class DataClient:
         return response.deleted_count
 
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
-        """Delete binary data
+        """Filter and delete binary data.
 
         Args:
-            filter (viam.app.data.Filter): When supplied, the binary data to delete will be filtered based on the provided constraints.
-            If not provided, all data will be deleted. Exercise caution before using this option.
-
-        Returns:
-            int: the number of items deleted
+            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Not passing a `Filter` will lead to all
+                data being deleted. Exercise caution when using this option.
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
@@ -211,60 +204,61 @@ class DataClient:
         return response.deleted_count
 
     async def delete_binary_data_by_ids(self, binary_ids: List[BinaryID]) -> int:
-        """Delete binary data
+        """Filter and delete binary data.
 
         Args:
-            binary_ids (List[viam.proto.app.BinaryID]): The binary IDs of the data to be deleted. Must be non-empty.
-
-        Returns:
-            int: the number of items deleted
+            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.
 
         Raises:
-            GRPCError: if no binary_ids are provided.
+            GRPCError: If no `BinaryID` objects are provided.
+
+        Returns:
+            int: The number of items deleted.
         """
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
         response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
         return response.deleted_count
 
     async def add_tags_to_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> None:
-        """Add tags to binary data using BinaryIDs
+        """Add tags to binary data.
 
         Args:
-            tags (List[str]): List of tags to add to specified binary data. Must be non-empty
-            binary_ids (List[viam.app.proto.BinaryID]): List of BinaryIDs specifying binary data to tag. Must be non-empty
+            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
+            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
 
         Raises:
-            GRPCError: if no binary_ids or tags are provided
+            GRPCError: If no `BinaryID` objects or tags are provided.
         """
         request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         _: AddTagsToBinaryDataByIDsResponse = await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
 
     async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
-        """Add tags to binary data using a filter
+        """Add tags to binary data.
 
         Args:
-            tags (List[str]): List of tags to add to specified binary data. Must be non-empty
-            filter (viam.app.proto.Filter): Filter specifying binary data to tag. If no filter is provided, all data will be tagged
+            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
+            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be
+                tagged.
 
         Raises:
-            GRPCError: if no tags are provided
+            GRPCError: If no tags are provided.
         """
         filter = filter if filter else Filter()
         request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
         _: AddTagsToBinaryDataByFilterResponse = await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
 
     async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> int:
-        """Remove tags from binary data using BinaryIDs
+        """Remove tags from binary.
 
         Args:
-            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty
-            file_ids (List[str]): List of BinaryIDs specifying binary data to untag. Must be non-empty
+            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
+            file_ids (List[str]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
 
         Raises:
-            GRPCError: if no binary_ids or tags are provided
+            GRPCError: If no binary_ids or tags are provided.
 
         Returns:
-            int: the number of tags removed
+            int: The number of tags removed.
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
@@ -273,17 +267,18 @@ class DataClient:
         return response.deleted_count
 
     async def remove_tags_from_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> int:
-        """Remove tags from binary data using a filter
+        """Remove tags from binary data.
 
         Args:
-            tags (List[str]): List of tags to remove from specified binary data
-            filter (viam.app.proto.Filter): Filter specifying binary data to untag. If no filter is provided, all data will be tagged
+            tags (List[str]): List of tags to remove from specified binary data.
+            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
+                tagged.
 
         Raises:
-            GRPCError: if no tags are provided
+            GRPCError: If no tags are provided.
 
         Returns:
-            int: the number of tags removed
+            int: The number of tags removed.
         """
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -293,13 +288,14 @@ class DataClient:
         return response.deleted_count
 
     async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
-        """Get a list of tags using a filter
+        """Get a list of tags using a filter.
 
         Args:
-            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all data tags will return
+            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
+                return.
 
         Returns:
-            List[str]: The list of tags
+            List[str]: The list of tags.
         """
         filter = filter if filter else Filter()
         request = TagsByFilterRequest(filter=filter)
@@ -315,13 +311,14 @@ class DataClient:
         raise NotImplementedError()
 
     async def bounding_box_labels_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
-        """Get a list of bounding box labels using a filter
+        """Get a list of bounding box labels using a `Filter`.
 
         Args:
-            filter (viam.app.proto.Filter): Filter specifying data to retreive from. If no filter is provided, all labels will return
+            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
+                return.
 
         Returns:
-            List[str]: The list of bounding box labels
+            List[str]: The list of bounding box labels.
         """
         filter = filter if filter else Filter()
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
@@ -363,9 +360,7 @@ class DataClient:
                 time_requested=(
                     self.datetime_to_timestamp(data_request_times[0]) if data_request_times and data_request_times[0] else None
                 ),
-                time_received=(
-                    self.datetime_to_timestamp(data_request_times[1]) if data_request_times and data_request_times[1] else None
-                )
+                time_received=(self.datetime_to_timestamp(data_request_times[1]) if data_request_times and data_request_times[1] else None),
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
@@ -427,13 +422,11 @@ class DataClient:
             sensor_contents[i] = SensorData(
                 metadata=SensorMetadata(
                     time_requested=(
-                        self.datetime_to_timestamp(data_request_times[i][0])
-                        if data_request_times and data_request_times[i][0] else None
+                        self.datetime_to_timestamp(data_request_times[i][0]) if data_request_times and data_request_times[i][0] else None
                     ),
                     time_received=(
-                        self.datetime_to_timestamp(data_request_times[i][1])
-                        if data_request_times and data_request_times[i][1] else None
-                    )
+                        self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times and data_request_times[i][1] else None
+                    ),
                 ),
                 struct=s,
             )

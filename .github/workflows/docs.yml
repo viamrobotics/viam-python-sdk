@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'src/viam/**'
-      - 'docs/**'
-      - 'README.md'
-    branches: [ main ]
+      - "src/viam/**"
+      - "docs/**"
+      - "README.md"
+    branches: [main]
 
 jobs:
   generate-docs:
@@ -27,9 +27,11 @@ jobs:
 
       - name: Generate docs
         run: |
+          poetry run python3 -m docs.examples._data_server &
           poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 &
           sleep 2
           make documentation
+          kill -9 `ps aux | grep "[d]ocs.examples._data_server" | awk '{print $$2}'`
           kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $2}'`
 
       - name: Upload artifacts

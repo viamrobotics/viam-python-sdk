@@ -11,26 +11,29 @@ LOGGER = logging.getLogger(__name__)
 
 
 class AppClient:
-    """
-    gRPC client for all communication and interaction with app.
+    """gRPC client for all communication and interaction with app.
 
     Use create() to instantiate an AppClient::
 
         AppClient.create(...)
-
     """
 
     @classmethod
     async def create(cls, dial_options: DialOptions) -> Self:
-        """
-        Create an app client that establishes a connection to app.viam.com.
+        """Create an AppClient that establishes a connection to app.viam.com.
 
         Args:
-            dial_options (DialOptions): Required information for authorization and connection to app, creds and auth_entity are necessary.
+
+            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and
+                `auth_entity` fields are required.
+
+        Raises:
+            AssertionError: If the type provided in the credentials of the `DialOptions` object is 'robot-secret'.
 
         Returns:
-            Self: the AppClient.
+            Self: The `AppClient`.
         """
+        assert dial_options.credentials.type != "robot-secret"
         self = cls()
         self._channel = await _dial_app(dial_options)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
@@ -43,12 +46,14 @@ class AppClient:
 
     @property
     def data_client(self) -> DataClient:
+        """Insantiate and return a DataClient used to make `data` and `data_sync` method calls."""
         return DataClient(self._channel, self._metadata)
 
     def close(self):
+        """Close opened channels used for the various service stubs initialized."""
         if self._closed:
-            LOGGER.debug("AppClient is already closed")
+            LOGGER.debug("AppClient is already closed.")
             return
-        LOGGER.debug("Closing gRPC channel to app")
+        LOGGER.debug("Closing gRPC channel to app.")
         self._channel.close()
         self._closed = True
