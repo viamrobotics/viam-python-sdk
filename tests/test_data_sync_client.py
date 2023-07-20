@@ -51,7 +51,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                datetimes=DATETIMES,
+                data_request_times=DATETIMES,
                 binary_data=BINARY_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=True)
@@ -68,7 +68,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                datetimes=[DATETIMES],
+                data_request_times=[DATETIMES],
                 tabular_data=TABULAR_DATA
             )
             self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=False)

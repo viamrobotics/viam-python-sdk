@@ -336,7 +336,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        datetimes: Optional[Tuple[Optional[datetime], Optional[datetime]]],
+        data_request_times: Optional[Tuple[Optional[datetime], Optional[datetime]]],
         binary_data: bytes,
     ) -> None:
         """Upload binary sensor data.
@@ -351,8 +351,8 @@ class DataClient:
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            datetimes (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s denoting the times
-                this data was requested[0] and received[1] by the appropriate sensor.
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s denoting the
+                times this data was requested[0] and received[1] by the appropriate sensor.
             binary_data (bytes): The data to be uploaded, respresented in bytes.
 
         Raises:
@@ -360,8 +360,12 @@ class DataClient:
         """
         sensor_contents = SensorData(
             metadata=SensorMetadata(
-                time_requested=DataClient.datetime_to_timestamp(datetimes[0]) if datetimes and datetimes[0] else None,
-                time_received=DataClient.datetime_to_timestamp(datetimes[1]) if datetimes and datetimes[1] else None,
+                time_requested=(
+                    self.datetime_to_timestamp(data_request_times[0]) if data_request_times and data_request_times[0] else None
+                ),
+                time_received=(
+                    self.datetime_to_timestamp(data_request_times[1]) if data_request_times and data_request_times[1] else None
+                )
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
@@ -387,7 +391,7 @@ class DataClient:
         method_name: str,
         method_parameters: Optional[Mapping[str, Any]],
         tags: Optional[List[str]],
-        datetimes: Optional[List[Tuple[Optional[datetime], Optional[datetime]]]],
+        data_request_times: Optional[List[Tuple[Optional[datetime], Optional[datetime]]]],
         tabular_data: List[Mapping[str, Any]],
     ) -> None:
         """Upload tabular sensor data.
@@ -402,8 +406,8 @@ class DataClient:
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
-            datetimes (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing `datetime`s
-                denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
+                `datetime`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
 
         Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
@@ -414,16 +418,22 @@ class DataClient:
             AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.
         """
         sensor_contents = [None] * len(tabular_data)
-        if datetimes:
-            assert len(datetimes) == len(tabular_data)
+        if data_request_times:
+            assert len(data_request_times) == len(tabular_data)
 
         for i in range(len(tabular_data)):
             s = Struct()
             s.update(tabular_data[i])
             sensor_contents[i] = SensorData(
                 metadata=SensorMetadata(
-                    time_requested=DataClient.datetime_to_timestamp(datetimes[i][0]) if datetimes and datetimes[i][0] else None,
-                    time_received=DataClient.datetime_to_timestamp(datetimes[i][1]) if datetimes and datetimes[i][1] else None,
+                    time_requested=(
+                        self.datetime_to_timestamp(data_request_times[i][0])
+                        if data_request_times and data_request_times[i][0] else None
+                    ),
+                    time_received=(
+                        self.datetime_to_timestamp(data_request_times[i][1])
+                        if data_request_times and data_request_times[i][1] else None
+                    )
                 ),
                 struct=s,
             )
