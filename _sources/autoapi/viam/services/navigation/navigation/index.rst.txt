@@ -1,0 +1,124 @@
+:py:mod:`viam.services.navigation.navigation`
+=============================================
+
+.. py:module:: viam.services.navigation.navigation
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.navigation.navigation.Navigation
+
+
+
+
+.. py:class:: Navigation(name: str)
+
+
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
+
+   Navigation represents a Navigation service.
+
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: get_location(*, timeout: Optional[float]) -> viam.services.navigation.GeoPoint
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_obstacles(*, timeout: Optional[float]) -> List[viam.services.navigation.GeoObstacle]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_waypoints(*, timeout: Optional[float]) -> List[viam.services.navigation.Waypoint]
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: add_waypoint(point: viam.services.navigation.GeoPoint, *, timeout: Optional[float])
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: remove_waypoint(id: str, *, timeout: Optional[float])
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_mode(*, timeout: Optional[float]) -> viam.services.navigation.Mode.ValueType
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float])
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the service named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the service
+      :type name: str
+
+      :returns: The service, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+

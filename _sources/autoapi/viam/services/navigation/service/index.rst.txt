@@ -1,0 +1,63 @@
+:py:mod:`viam.services.navigation.service`
+==========================================
+
+.. py:module:: viam.services.navigation.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.navigation.service.NavigationRPCService
+
+
+
+
+.. py:class:: NavigationRPCService(manager: viam.resource.manager.ResourceManager)
+
+
+   Bases: :py:obj:`viam.proto.service.navigation.NavigationServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
+   gRPC Service for a Navigation service
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: GetLocation(stream: grpclib.server.Stream[viam.proto.service.navigation.GetLocationRequest, viam.proto.service.navigation.GetLocationResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetObstacles(stream: grpclib.server.Stream[viam.proto.service.navigation.GetObstaclesRequest, viam.proto.service.navigation.GetObstaclesResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[viam.proto.service.navigation.GetWaypointsRequest, viam.proto.service.navigation.GetWaypointsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[viam.proto.service.navigation.AddWaypointRequest, viam.proto.service.navigation.AddWaypointResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[viam.proto.service.navigation.RemoveWaypointRequest, viam.proto.service.navigation.RemoveWaypointResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetMode(stream: grpclib.server.Stream[viam.proto.service.navigation.GetModeRequest, viam.proto.service.navigation.GetModeResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetMode(stream: grpclib.server.Stream[viam.proto.service.navigation.SetModeRequest, viam.proto.service.navigation.SetModeResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
