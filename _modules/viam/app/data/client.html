@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.app.data.client &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">viam.app.data.client</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.app.data.client</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
+<span class="kn">from</span> <span class="nn">google.protobuf.timestamp_pb2</span> <span class="kn">import</span> <span class="n">Timestamp</span>
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+
+<span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">AddTagsToBinaryDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">,</span>
+    <span class="n">AddTagsToBinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">BinaryDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">BinaryDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">BinaryDataByIDsRequest</span><span class="p">,</span>
+    <span class="n">BinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">BinaryID</span><span class="p">,</span>
+    <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
+    <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
+    <span class="n">DataRequest</span><span class="p">,</span>
+    <span class="n">DataServiceStub</span><span class="p">,</span>
+    <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">DeleteBinaryDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">,</span>
+    <span class="n">DeleteBinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">DeleteTabularDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">DeleteTabularDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">Filter</span><span class="p">,</span>
+    <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">RemoveTagsFromBinaryDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">,</span>
+    <span class="n">RemoveTagsFromBinaryDataByIDsResponse</span><span class="p">,</span>
+    <span class="n">TabularDataByFilterRequest</span><span class="p">,</span>
+    <span class="n">TabularDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">TagsByFilterRequest</span><span class="p">,</span>
+    <span class="n">TagsByFilterResponse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.datasync</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DataCaptureUploadRequest</span><span class="p">,</span>
+    <span class="n">DataCaptureUploadResponse</span><span class="p">,</span>
+    <span class="n">DataSyncServiceStub</span><span class="p">,</span>
+    <span class="n">DataType</span><span class="p">,</span>
+    <span class="n">FileData</span><span class="p">,</span>
+    <span class="n">FileUploadRequest</span><span class="p">,</span>
+    <span class="n">FileUploadResponse</span><span class="p">,</span>
+    <span class="n">SensorData</span><span class="p">,</span>
+    <span class="n">SensorMetadata</span><span class="p">,</span>
+    <span class="n">UploadMetadata</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">struct_to_dict</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DataClient"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient">[docs]</a><span class="k">class</span> <span class="nc">DataClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for uploading and retrieving data from app.</span>
+
+<span class="sd">    Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through</span>
+<span class="sd">    `AppClient`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `DataClient` that maintains a connection to app.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (Channel): Connection to app.</span>
+<span class="sd">            metadata (Mapping[str, str]): Required authorization token to send requests to app.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span> <span class="o">=</span> <span class="n">DataServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_sync_client</span> <span class="o">=</span> <span class="n">DataSyncServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+    <span class="n">_data_client</span><span class="p">:</span> <span class="n">DataServiceStub</span>
+    <span class="n">_data_sync_client</span><span class="p">:</span> <span class="n">DataSyncServiceStub</span>
+    <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+
+<div class="viewcode-block" id="DataClient.tabular_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_filter</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular</span>
+<span class="sd">                data.</span>
+<span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Mapping[str, Any]]: The tabular data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># `DataRequest`s are limited to 100 pieces of data, so we loop through calls until</span>
+        <span class="c1"># we are certain we&#39;ve received everything.</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
+
+        <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write tabular data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all binary data.</span>
+<span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[bytes]: The binary data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># `DataRequest`s are limited to 100 pieces of data, so we loop through calls until</span>
+        <span class="c1"># we are certain we&#39;ve received everything.</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
+
+        <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div>
+
+<div class="viewcode-block" id="DataClient.binary_data_by_ids"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_ids</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the desired data. Must be non-empty.</span>
+<span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no `BinaryID` objects are provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[bytes]: The binary data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">binary_data</span><span class="o">.</span><span class="n">binary</span> <span class="k">for</span> <span class="n">binary_data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete tabular data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Not passing a `Filter` will lead to</span>
+<span class="sd">                all data being deleted. Exercise caution when using this option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_binary_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.delete_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Not passing a `Filter` will lead to all</span>
+<span class="sd">                data being deleted. Exercise caution when using this option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">DeleteBinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteBinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_binary_data_by_ids"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.delete_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no `BinaryID` objects are provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of items deleted.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">DeleteBinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteBinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_ids"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.add_tags_to_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
+<span class="sd">            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID` objects specifying binary data to tag. Must be non-empty.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no `BinaryID` objects or tags are provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">AddTagsToBinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddTagsToBinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.add_tags_to_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be</span>
+<span class="sd">                tagged.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no tags are provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">AddTagsToBinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddTagsToBinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_ids"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.remove_tags_from_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.</span>
+<span class="sd">            file_ids (List[str]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no binary_ids or tags are provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of tags removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">RemoveTagsFromBinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveTagsFromBinaryDataByIDs</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.remove_tags_from_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            tags (List[str]): List of tags to remove from specified binary data.</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be</span>
+<span class="sd">                tagged.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no tags are provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of tags removed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">RemoveTagsFromBinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveTagsFromBinaryDataByFilter</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.tags_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.tags_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tags_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of tags using a filter.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will</span>
+<span class="sd">                return.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The list of tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TagsByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">TagsByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TagsByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">tags</span></div>
+
+    <span class="c1"># TODO: implement</span>
+<div class="viewcode-block" id="DataClient.add_bounding_box_to_image_by_id"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.add_bounding_box_to_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_bounding_box_to_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+    <span class="c1"># TODO: implement</span>
+<div class="viewcode-block" id="DataClient.remove_bounding_box_from_image_by_id"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.remove_bounding_box_from_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_bounding_box_from_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="DataClient.bounding_box_labels_by_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.bounding_box_labels_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">bounding_box_labels_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of bounding box labels using a `Filter`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will</span>
+<span class="sd">                return.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[str]: The list of bounding box labels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">BoundingBoxLabelsByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BoundingBoxLabelsByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">labels</span></div>
+
+<div class="viewcode-block" id="DataClient.binary_data_capture_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.binary_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_capture_upload</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]]],</span>
+        <span class="n">binary_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
+
+<span class="sd">        Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with</span>
+<span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; tab in Data on app.viam.com.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_name (str): Name of the component used to capture the data.</span>
+<span class="sd">            method_name (str): Name of the method used to capture the data.</span>
+<span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
+<span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
+<span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s denoting the</span>
+<span class="sd">                times this data was requested[0] and received[1] by the appropriate sensor.</span>
+<span class="sd">            binary_data (bytes): The data to be uploaded, respresented in bytes.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid part ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sensor_contents</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="n">SensorMetadata</span><span class="p">(</span>
+                <span class="n">time_requested</span><span class="o">=</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">),</span>
+                <span class="n">time_received</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="p">),</span>
+            <span class="n">struct</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Used for tabular data.</span>
+            <span class="n">binary</span><span class="o">=</span><span class="n">binary_data</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_BINARY_SENSOR</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Not used in app.</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be stored as empty string &quot;&quot;.</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="p">[</span><span class="n">sensor_contents</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="DataClient.tabular_data_capture_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.tabular_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_capture_upload</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]]]],</span>
+        <span class="n">tabular_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
+
+<span class="sd">        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with</span>
+<span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; tab in Data on app.viam.com.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_name (str): Name of the component used to capture the data.</span>
+<span class="sd">            method_name (str): Name of the method used to capture the data.</span>
+<span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
+<span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
+<span class="sd">            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing</span>
+<span class="sd">                `datetime`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.</span>
+<span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
+
+<span class="sd">        Passing a list of tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the same</span>
+<span class="sd">        metadata.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid part ID is passed.</span>
+<span class="sd">            AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sensor_contents</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="n">SensorMetadata</span><span class="p">(</span>
+                    <span class="n">time_requested</span><span class="o">=</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                    <span class="p">),</span>
+                    <span class="n">time_received</span><span class="o">=</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                    <span class="p">),</span>
+                <span class="p">),</span>
+                <span class="n">struct</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_TABULAR_SENSOR</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Not used in app.</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be stored as empty string &quot;&quot;.</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="n">sensor_contents</span><span class="p">)</span></div>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_data_capture_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SensorData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">DataCaptureUploadResponse</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DataCaptureUploadRequest</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="n">sensor_contents</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_sync_client</span><span class="o">.</span><span class="n">DataCaptureUpload</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+<div class="viewcode-block" id="DataClient.file_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.file_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">file_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">file_extension</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
+
+<span class="sd">        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
+<span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
+<span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string &quot;&quot; will be assigned as the file name if a one isn&#39;t</span>
+<span class="sd">                provided.</span>
+<span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
+<span class="sd">            file_extension (Optional[str]): Optional file extension. The empty string &quot;&quot; will be assigned as the file extension if one isn&#39;t</span>
+<span class="sd">                provided.</span>
+<span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
+<span class="sd">            data: (Optional[bytes]): Optional bytes representing file data to upload.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid part ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span> <span class="k">if</span> <span class="n">component_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span> <span class="k">if</span> <span class="n">component_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span> <span class="k">if</span> <span class="n">method_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_FILE</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span> <span class="k">if</span> <span class="n">file_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span> <span class="k">if</span> <span class="n">file_extension</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="DataClient.file_upload_from_path"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.file_upload_from_path">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload_from_path</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+        <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
+
+<span class="sd">        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            part_id (str): Part ID of the component associated with the file.</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
+<span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
+<span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
+<span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
+<span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid part ID is passed.</span>
+<span class="sd">            FileNotFoundError: If the provided filepath is not found.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">stem</span>
+        <span class="n">file_extension</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">suffix</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span> <span class="k">if</span> <span class="n">component_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span> <span class="k">if</span> <span class="n">component_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span> <span class="k">if</span> <span class="n">method_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_FILE</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span></div>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_file_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">UploadMetadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="p">:</span> <span class="n">FileData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FileUploadResponse</span><span class="p">:</span>
+        <span class="n">request_metadata</span> <span class="o">=</span> <span class="n">FileUploadRequest</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="n">request_file_contents</span> <span class="o">=</span> <span class="n">FileUploadRequest</span><span class="p">(</span><span class="n">file_contents</span><span class="o">=</span><span class="n">file_contents</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_sync_client</span><span class="o">.</span><span class="n">FileUpload</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_metadata</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_file_contents</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">response</span>
+
+<div class="viewcode-block" id="DataClient.datetime_to_timestamp"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.datetime_to_timestamp">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">datetime_to_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span> <span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Timestamp</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert a Python native `datetime` into a `Timestamp`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dt (datetime.datetime): A `datetime` object. UTC is assumed in the conversion if the object is naive to timezone information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            google.protobuf.timestamp_pb2.Timestamp: The `Timestamp` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">()</span>
+        <span class="n">timestamp</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timestamp</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

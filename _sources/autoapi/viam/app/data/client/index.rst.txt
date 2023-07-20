@@ -1,7 +1,7 @@
-:py:mod:`client`
-================
+:py:mod:`viam.app.data.client`
+==============================
 
-.. py:module:: client
+.. py:module:: viam.app.data.client
 
 
 Module Contents
@@ -12,7 +12,7 @@ Classes
 
 .. autoapisummary::
 
-   client.DataClient
+   viam.app.data.client.DataClient
 
 
 
@@ -22,7 +22,7 @@ Attributes
 
 .. autoapisummary::
 
-   client.LOGGER
+   viam.app.data.client.LOGGER
 
 
 .. py:data:: LOGGER
@@ -32,166 +32,160 @@ Attributes
 .. py:class:: DataClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
 
 
-   gRPC client for uploading and retreiving data from app
+   gRPC client for uploading and retrieving data from app.
 
-   Constructor is used by AppClient to instantiate relevant service stubs. Calls to DataClient methods should be made through AppClient
+   Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
+   `AppClient`.
 
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[Mapping[str, Any]]
       :async:
 
-      Filter and download tabular data
+      Filter and download tabular data.
 
-      :param filter: When supplied, the tabular data will be
-      :type filter: viam.app.data.Filter
-      :param filtered based on the provided constraints. Otherwise:
-      :param all data is returned.:
-      :param dest: When supplied, the tabular data will be saved to the provided file path.
+      :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
+                     data.
+      :type filter: viam.proto.app.data.Filter
+      :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: A list of tabular data
+      :returns: The tabular data.
       :rtype: List[Mapping[str, Any]]
 
 
    .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[bytes]
       :async:
 
-      Filter and download binary data
+      Filter and download binary data.
 
-      :param filter: When supplied, the binary data will be
-      :type filter: viam.app.data.Filter
-      :param filtered based on the provided constraints. Otherwise:
-      :param all data is returned.:
-      :param dest: When supplied, the binary data will be saved to the provided file path
+      :param filter: Optional `Filter` specifying binary data to retrieve. No `Filter` implies all binary data.
+      :type filter: viam.proto.app.data.Filter
+      :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: The binary data
+      :returns: The binary data.
       :rtype: List[bytes]
 
 
    .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[bytes]
       :async:
 
-      Filter and download binary data
+      Filter and download binary data.
 
-      :param binary_ids: IDs of the desired data. Must be non-empty.
-      :type binary_ids: List[viam.proto.app.BinaryID]
-      :param dest: When supplied, the binary data will be saved to the provided file path.
+      :param binary_ids: `BinaryID` objects specifying the desired data. Must be non-empty.
+      :type binary_ids: List[viam.proto.app.data.BinaryID]
+      :param dest: Optional filepath for writing retrieved data.
       :type dest: str
+
+      :raises GRPCError: If no `BinaryID` objects are provided.
 
       :returns: The binary data.
       :rtype: List[bytes]
-
-      :raises GRPCError: if no binary_ids are provided.
 
 
    .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
       :async:
 
-      Delete tabular data
+      Filter and delete tabular data.
 
-      :param filter: When supplied, the tabular data to delete will be filtered based on the provided constraints.
-                     If not provided, all data will be deleted. Exercise caution before using this option.
-      :type filter: viam.app.data.Filter
-
-      :returns: The number of items deleted
-      :rtype: int
+      :param filter: Optional `Filter` specifying tabular data to delete. Not passing a `Filter` will lead to
+                     all data being deleted. Exercise caution when using this option.
+      :type filter: viam.proto.app.data.Filter
 
 
    .. py:method:: delete_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
       :async:
 
-      Delete binary data
+      Filter and delete binary data.
 
-      :param filter: When supplied, the binary data to delete will be filtered based on the provided constraints.
-      :type filter: viam.app.data.Filter
-      :param If not provided:
-      :param all data will be deleted. Exercise caution before using this option.:
-
-      :returns: the number of items deleted
-      :rtype: int
+      :param filter: Optional `Filter` specifying binary data to delete. Not passing a `Filter` will lead to all
+                     data being deleted. Exercise caution when using this option.
+      :type filter: viam.proto.app.data.Filter
 
 
    .. py:method:: delete_binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID]) -> int
       :async:
 
-      Delete binary data
+      Filter and delete binary data.
 
-      :param binary_ids: The binary IDs of the data to be deleted. Must be non-empty.
-      :type binary_ids: List[viam.proto.app.BinaryID]
+      :param binary_ids: `BinaryID` objects specifying the data to be deleted. Must be non-empty.
+      :type binary_ids: List[viam.proto.app.data.BinaryID]
 
-      :returns: the number of items deleted
+      :raises GRPCError: If no `BinaryID` objects are provided.
+
+      :returns: The number of items deleted.
       :rtype: int
-
-      :raises GRPCError: if no binary_ids are provided.
 
 
    .. py:method:: add_tags_to_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> None
       :async:
 
-      Add tags to binary data using BinaryIDs
+      Add tags to binary data.
 
-      :param tags: List of tags to add to specified binary data. Must be non-empty
+      :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param binary_ids: List of BinaryIDs specifying binary data to tag. Must be non-empty
+      :param binary_ids: List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
       :type binary_ids: List[viam.app.proto.BinaryID]
 
-      :raises GRPCError: if no binary_ids or tags are provided
+      :raises GRPCError: If no `BinaryID` objects or tags are provided.
 
 
    .. py:method:: add_tags_to_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> None
       :async:
 
-      Add tags to binary data using a filter
+      Add tags to binary data.
 
-      :param tags: List of tags to add to specified binary data. Must be non-empty
+      :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param filter: Filter specifying binary data to tag. If no filter is provided, all data will be tagged
-      :type filter: viam.app.proto.Filter
+      :param filter: `Filter` specifying binary data to tag. If no `Filter` is provided, all data will be
+                     tagged.
+      :type filter: viam.proto.app.data.Filter
 
-      :raises GRPCError: if no tags are provided
+      :raises GRPCError: If no tags are provided.
 
 
    .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> int
       :async:
 
-      Remove tags from binary data using BinaryIDs
+      Remove tags from binary.
 
-      :param tags: List of tags to remove from specified binary data. Must be non-empty
+      :param tags: List of tags to remove from specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param file_ids: List of BinaryIDs specifying binary data to untag. Must be non-empty
+      :param file_ids: List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
       :type file_ids: List[str]
 
-      :raises GRPCError: if no binary_ids or tags are provided
+      :raises GRPCError: If no binary_ids or tags are provided.
 
-      :returns: the number of tags removed
+      :returns: The number of tags removed.
       :rtype: int
 
 
    .. py:method:: remove_tags_from_binary_data_by_filter(tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> int
       :async:
 
-      Remove tags from binary data using a filter
+      Remove tags from binary data.
 
-      :param tags: List of tags to remove from specified binary data
+      :param tags: List of tags to remove from specified binary data.
       :type tags: List[str]
-      :param filter: Filter specifying binary data to untag. If no filter is provided, all data will be tagged
-      :type filter: viam.app.proto.Filter
+      :param filter: `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
+                     tagged.
+      :type filter: viam.proto.app.data.Filter
 
-      :raises GRPCError: if no tags are provided
+      :raises GRPCError: If no tags are provided.
 
-      :returns: the number of tags removed
+      :returns: The number of tags removed.
       :rtype: int
 
 
    .. py:method:: tags_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
       :async:
 
-      Get a list of tags using a filter
+      Get a list of tags using a filter.
 
-      :param filter: Filter specifying data to retreive from. If no filter is provided, all data tags will return
-      :type filter: viam.app.proto.Filter
+      :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
+                     return.
+      :type filter: viam.proto.app.data.Filter
 
-      :returns: The list of tags
+      :returns: The list of tags.
       :rtype: List[str]
 
 
@@ -208,12 +202,13 @@ Attributes
    .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
       :async:
 
-      Get a list of bounding box labels using a filter
+      Get a list of bounding box labels using a `Filter`.
 
-      :param filter: Filter specifying data to retreive from. If no filter is provided, all labels will return
-      :type filter: viam.app.proto.Filter
+      :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
+                     return.
+      :type filter: viam.proto.app.data.Filter
 
-      :returns: The list of bounding box labels
+      :returns: The list of bounding box labels.
       :rtype: List[str]
 
 

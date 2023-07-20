@@ -7,9 +7,10 @@
    "source": [
     "# Example usage\n",
     "\n",
-    "The Viam SDK can be used in two ways:\n",
+    "The Viam SDK can be used in three ways:\n",
     "1. As a client to connect to a (remote or local) robot\n",
     "2. Integrate custom resources to a robot\n",
+    "3. As a client to connect to app.viam.com to upload and retrieve data\n",
     "\n",
     "## Connect as a client\n",
     "\n",
@@ -897,6 +898,175 @@
     "In order to take advantage of operations, you should wrap the component method with the `run_with_operation` decorator from the `viam.operations` package. Each component has a function, `get_operation(kwargs: Mapping[str, Any]) -> Operation`, that will return an Operation that will tell us if the operation is ever cancelled, allowing us to clean up any long running tasks, close connections, etc.\n",
     "\n",
     "It is extremely important that we check the `Operation` status, as this not only prevents any unnecessary resource usage, but also allows us to respond to urgent cancellation requests and stop components' motion."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Connect as a client to app\n",
+    "\n",
+    "To connect to app as a client and make calls to the data API, you should instantiate an instance of an `AppClient` and retrieve its `DataClient` member."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from viam.rpc.dial import DialOptions, Credentials\n",
+    "from viam.app.client import AppClient\n",
+    "\n",
+    "async def connect_to_app() -> AppClient:\n",
+    "    dial_options = DialOptions(\n",
+    "        auth_entity='<ADDRESS>',  # The URL of your robot.\n",
+    "        credentials=Credentials(\n",
+    "            type='robot-location-secret',\n",
+    "            payload='<SECRET>'\n",
+    "        )\n",
+    "    )\n",
+    "    return await AppClient.create(dial_options)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Once you have a connected `AppClient`, you can then obtain a `DataClient` as a property."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "tags": [
+     "remove-input"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "# Hidden.\n",
+    "from typing_extensions import Self\n",
+    "\n",
+    "from viam.app.data.client import DataClient\n",
+    "from viam.rpc.dial import _dial_direct\n",
+    "\n",
+    "class MockAppClient:\n",
+    "\n",
+    "    @classmethod\n",
+    "    async def create_app_client(cls) -> Self:\n",
+    "        self = cls()\n",
+    "        self._channel = await _dial_direct(address=\"localhost:9092\", options=DialOptions(insecure=True))\n",
+    "        self.data_client = DataClient(channel=self._channel, metadata=None)\n",
+    "        return self\n",
+    "\n",
+    "    def close(self):\n",
+    "        self._channel.close()\n",
+    "\n",
+    "app_client = await MockAppClient.create_app_client()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {
+    "tags": [
+     "hide-output"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "data_client = app_client.data_client"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This `DataClient` can be used to make method calls that retrieve data from app."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[{'IsPowered': False, 'PowerPct': 0.0}, {'IsPowered': False, 'PowerPct': 0.0}, {'Position': 0.0}]\n"
+     ]
+    }
+   ],
+   "source": [
+    "from datetime import datetime\n",
+    "\n",
+    "from viam.proto.app.data import Filter, CaptureInterval, TagsFilter\n",
+    "\n",
+    "left_motor_filter = Filter(\n",
+    "    component_name=\"left_motor\",\n",
+    "    interval=CaptureInterval(\n",
+    "        # datetime_to_timestamp() converts a datetime to a Timestamp.\n",
+    "        start=DataClient.datetime_to_timestamp(datetime(2023, 6, 5, 11)),\n",
+    "        end=DataClient.datetime_to_timestamp(datetime(2023, 6, 5, 13, 30))\n",
+    "    ),\n",
+    "    tags_filter=TagsFilter(\n",
+    "        tags=[\"speed_test\"]\n",
+    "    )\n",
+    ")\n",
+    "\n",
+    "data = await data_client.tabular_data_by_filter(filter=left_motor_filter)\n",
+    "print(data)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "You can also use your `DataClient` to upload data to app."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {
+    "tags": [
+     "hide-output"
+    ]
+   },
+   "outputs": [],
+   "source": [
+    "await data_client.tabular_data_capture_upload(\n",
+    "    part_id='',\n",
+    "    component_type='rdk:component:motor',\n",
+    "    component_name='left_motor',\n",
+    "    method_name='IsPowered',\n",
+    "    method_parameters=None,\n",
+    "    tags=[\"tag_1\", \"tag_2\"],\n",
+    "    data_request_times=None,\n",
+    "    tabular_data=[{'PowerPCT': 0, 'IsPowered': False}, {'PowerPCT': 10, 'IsPowered': True}]\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "At the end, you may close the connection"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "async def cleanup():\n",
+    "    await app_client.close()"
    ]
   }
  ],

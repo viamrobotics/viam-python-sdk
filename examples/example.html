@@ -64,6 +64,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client-to-app">Connect as a client to app</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -76,6 +77,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
@@ -109,10 +111,11 @@
              
   <section id="example-usage">
 <h1>Example usage<a class="headerlink" href="#example-usage" title="Permalink to this heading"></a></h1>
-<p>The Viam SDK can be used in two ways:</p>
+<p>The Viam SDK can be used in three ways:</p>
 <ol class="arabic simple">
 <li><p>As a client to connect to a (remote or local) robot</p></li>
 <li><p>Integrate custom resources to a robot</p></li>
+<li><p>As a client to connect to app.viam.com to upload and retrieve data</p></li>
 </ol>
 <section id="connect-as-a-client">
 <h2>Connect as a client<a class="headerlink" href="#connect-as-a-client" title="Permalink to this heading"></a></h2>
@@ -159,42 +162,6 @@
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;slam&quot;
-name: &quot;slam0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;mlmodel&quot;
 name: &quot;mlmodel0&quot;
@@ -204,24 +171,60 @@ subtype: &quot;movement_sensor&quot;
 name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;pose_tracker&quot;
 name: &quot;pose_tracker0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;gripper&quot;
 name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;audio_input&quot;
 name: &quot;audio_input0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;base&quot;
 name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
 ]
 </pre></div>
 </div>
@@ -827,6 +830,94 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Operations are used by the RDK to keep track of running tasks, and provide a means to query their status and even cancel them. In order for a component to respond appropriately to any Operation requests, we must obtain and listen to the Operation in our method calls.</p>
 <p>In order to take advantage of operations, you should wrap the component method with the <code class="docutils literal notranslate"><span class="pre">run_with_operation</span></code> decorator from the <code class="docutils literal notranslate"><span class="pre">viam.operations</span></code> package. Each component has a function, <code class="docutils literal notranslate"><span class="pre">get_operation(kwargs:</span> <span class="pre">Mapping[str,</span> <span class="pre">Any])</span> <span class="pre">-&gt;</span> <span class="pre">Operation</span></code>, that will return an Operation that will tell us if the operation is ever cancelled, allowing us to clean up any long running tasks, close connections, etc.</p>
 <p>It is extremely important that we check the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> status, as this not only prevents any unnecessary resource usage, but also allows us to respond to urgent cancellation requests and stop components’ motion.</p>
+</section>
+<section id="connect-as-a-client-to-app">
+<h2>Connect as a client to app<a class="headerlink" href="#connect-as-a-client-to-app" title="Permalink to this heading"></a></h2>
+<p>To connect to app as a client and make calls to the data API, you should instantiate an instance of an <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> and retrieve its <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> member.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
+<span class="kn">from</span> <span class="nn">viam.app.client</span> <span class="kn">import</span> <span class="n">AppClient</span>
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_to_app</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AppClient</span><span class="p">:</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="p">(</span>
+        <span class="n">auth_entity</span><span class="o">=</span><span class="s1">&#39;&lt;ADDRESS&gt;&#39;</span><span class="p">,</span>  <span class="c1"># The URL of your robot.</span>
+        <span class="n">credentials</span><span class="o">=</span><span class="n">Credentials</span><span class="p">(</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;robot-location-secret&#39;</span><span class="p">,</span>
+            <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;&lt;SECRET&gt;&#39;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">AppClient</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">AppClient</span></code>, you can then obtain a <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> as a property.</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_client</span> <span class="o">=</span> <span class="n">app_client</span><span class="o">.</span><span class="n">data_client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> can be used to make method calls that retrieve data from app.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">CaptureInterval</span><span class="p">,</span> <span class="n">TagsFilter</span>
+
+<span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span>
+    <span class="n">interval</span><span class="o">=</span><span class="n">CaptureInterval</span><span class="p">(</span>
+        <span class="c1"># datetime_to_timestamp() converts a datetime to a Timestamp.</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">DataClient</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)),</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">DataClient</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+    <span class="p">),</span>
+    <span class="n">tags_filter</span><span class="o">=</span><span class="n">TagsFilter</span><span class="p">(</span>
+        <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;speed_test&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">left_motor_filter</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, {&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, {&#39;Position&#39;: 0.0}]
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also use your <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> to upload data to app.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;rdk:component:motor&#39;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
+    <span class="n">method_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the end, you may close the connection</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
+    <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
