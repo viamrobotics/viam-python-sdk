@@ -32,6 +32,12 @@ _better_imports:
 better_imports:
 	poetry run $(MAKE) _better_imports
 
+_test_watch:
+	ptw .
+
+test_watch:
+	poetry run $(MAKE) _test_watch
+
 _test:
 	coverage run -m pytest && coverage html
 

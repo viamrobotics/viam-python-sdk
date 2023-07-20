@@ -1,11 +1,10 @@
 from typing import Any, Dict, List, Mapping, Optional, Union
 
+from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
 from PIL import Image
-from google.protobuf.struct_pb2 import Struct
 
 from viam.media.video import RawImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
@@ -20,6 +19,7 @@ from viam.proto.app.data import (
     BinaryDataByIDsResponse,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
@@ -37,15 +37,15 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    DataServiceBase
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
+    DataSyncServiceBase,
     FileUploadRequest,
     FileUploadResponse,
-    DataSyncServiceBase
 )
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -60,6 +60,7 @@ from viam.proto.service.motion import (
     MoveSingleComponentRequest,
     MoveSingleComponentResponse,
 )
+from viam.proto.service.navigation import Mode, Waypoint
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -70,6 +71,7 @@ from viam.proto.service.sensors import (
 )
 from viam.proto.service.vision import Classification, Detection
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
+from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import Vision
 from viam.utils import ValueTypes, struct_to_dict
@@ -312,6 +314,51 @@ class MockSLAM(SLAM):
         return {"command": command}
 
 
+class MockNavigation(Navigation):
+    LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
+    OBSTACLES = [GeoObstacle(location=GeoPoint(latitude=200.0, longitude=250.0))]
+    WAYPOINTS = [Waypoint(location=GeoPoint(latitude=300.0, longitude=350.0))]
+
+    def __init__(self, name: str):
+        self.name = name
+        self.add_waypoints: list[GeoPoint] = []
+        self.remove_waypoints: list[str] = []
+        self.mode = Mode.MODE_UNSPECIFIED
+        self.timeout: Optional[float] = None
+        super().__init__(name)
+
+    async def get_location(self, *, timeout: Optional[float] = None) -> GeoPoint:
+        self.timeout = timeout
+        return self.LOCATION
+
+    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoObstacle]:
+        self.timeout = timeout
+        return self.OBSTACLES
+
+    async def get_waypoints(self, *, timeout: Optional[float] = None) -> List[Waypoint]:
+        self.timeout = timeout
+        return self.WAYPOINTS
+
+    async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float] = None):
+        self.timeout = timeout
+        self.add_waypoints.append(point)
+
+    async def remove_waypoint(self, id: str, *, timeout: Optional[float] = None):
+        self.timeout = timeout
+        self.remove_waypoints.append(id)
+
+    async def get_mode(self, *, timeout: Optional[float] = None) -> Mode.ValueType:
+        self.timeout = timeout
+        return self.mode
+
+    async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float] = None):
+        self.timeout = timeout
+        self.mode = mode
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
 class MockData(DataServiceBase):
     def __init__(
         self,
@@ -319,7 +366,7 @@ class MockData(DataServiceBase):
         binary_response: List[bytes],
         delete_remove_response: int,
         tags_response: List[str],
-        bbox_labels_response: List[str]
+        bbox_labels_response: List[str],
     ):
         self.tabular_response = tabular_response
         self.binary_response = binary_response
@@ -387,8 +434,7 @@ class MockData(DataServiceBase):
         await stream.send_message(AddTagsToBinaryDataByIDsResponse())
 
     async def AddTagsToBinaryDataByFilter(
-        self,
-        stream: Stream[AddTagsToBinaryDataByFilterRequest, AddTagsToBinaryDataByFilterResponse]
+        self, stream: Stream[AddTagsToBinaryDataByFilterRequest, AddTagsToBinaryDataByFilterResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -397,8 +443,7 @@ class MockData(DataServiceBase):
         await stream.send_message(AddTagsToBinaryDataByFilterResponse())
 
     async def RemoveTagsFromBinaryDataByIDs(
-        self,
-        stream: Stream[RemoveTagsFromBinaryDataByIDsRequest, RemoveTagsFromBinaryDataByIDsResponse]
+        self, stream: Stream[RemoveTagsFromBinaryDataByIDsRequest, RemoveTagsFromBinaryDataByIDsResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -407,8 +452,7 @@ class MockData(DataServiceBase):
         await stream.send_message(RemoveTagsFromBinaryDataByIDsResponse(deleted_count=self.delete_remove_response))
 
     async def RemoveTagsFromBinaryDataByFilter(
-        self,
-        stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
+        self, stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
     ) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -426,8 +470,7 @@ class MockData(DataServiceBase):
         pass
 
     async def RemoveBoundingBoxFromImageByID(
-        self,
-        stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
+        self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
     ) -> None:
         pass
 
