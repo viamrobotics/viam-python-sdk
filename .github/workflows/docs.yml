@@ -31,8 +31,6 @@ jobs:
           poetry run python3 -m examples.server.v1.server 0.0.0.0 9091 &
           sleep 2
           make documentation
-          kill -9 `ps aux | grep "[d]ocs.examples._data_server" | awk '{print $$2}'`
-          kill -9 `ps aux | grep "[e]xamples.server.v1.server" | awk '{print $2}'`
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
