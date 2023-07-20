@@ -33,7 +33,7 @@ better_imports:
 	poetry run $(MAKE) _better_imports
 
 _test_watch:
-	poetry run ptw .
+	ptw .
 
 test_watch:
 	poetry run $(MAKE) _test_watch
