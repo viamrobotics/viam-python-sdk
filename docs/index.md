@@ -17,6 +17,7 @@ Full Viam Docs <https://docs.viam.com>
 autoapi/viam/components/index
 autoapi/viam/services/index
 autoapi/viam/robot/index
+autoapi/viam/app/index
 autoapi/viam/resource/index
 autoapi/viam/module/index
 autoapi/viam/media/index
@@ -25,4 +26,5 @@ autoapi/viam/proto/index
 ```
 
 ```{include} ../README.md
+
 ```

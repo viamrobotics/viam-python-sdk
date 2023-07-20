@@ -160,11 +160,11 @@ class DataClient:
         """Filter and download binary data.
 
         Args:
-            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID`s of the desired data. Must be non-empty.
+            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the desired data. Must be non-empty.
             dest (str): Optional filepath for writing retrieved data.
 
         Raises:
-            GRPCError: if no `BinaryID`s are provided.
+            GRPCError: If no `BinaryID` objects are provided.
 
         Returns:
             List[bytes]: The binary data.
@@ -207,13 +207,13 @@ class DataClient:
         """Filter and delete binary data.
 
         Args:
-            binary_ids (List[viam.proto.app.data.BinaryID]): The `BinaryID`s of the data to be deleted. Must be non-empty.
-
-        Returns:
-            int: the number of items deleted
+            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.
 
         Raises:
-            GRPCError: If no `BinaryID`s are provided.
+            GRPCError: If no `BinaryID` objects are provided.
+
+        Returns:
+            int: The number of items deleted.
         """
         request = DeleteBinaryDataByIDsRequest(binary_ids=binary_ids)
         response: DeleteBinaryDataByIDsResponse = await self._data_client.DeleteBinaryDataByIDs(request, metadata=self._metadata)
@@ -224,10 +224,10 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
-            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID`s specifying binary data to tag. Must be non-empty.
+            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
 
         Raises:
-            GRPCError: If no `BinaryID`s or tags are provided.
+            GRPCError: If no `BinaryID` objects or tags are provided.
         """
         request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         _: AddTagsToBinaryDataByIDsResponse = await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
@@ -252,13 +252,13 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
-            file_ids (List[str]): List of `BinaryID`s specifying binary data to untag. Must be non-empty.
+            file_ids (List[str]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
 
         Raises:
-            GRPCError: if no binary_ids or tags are provided
+            GRPCError: If no binary_ids or tags are provided.
 
         Returns:
-            int: the number of tags removed
+            int: The number of tags removed.
         """
         request = RemoveTagsFromBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
         response: RemoveTagsFromBinaryDataByIDsResponse = await self._data_client.RemoveTagsFromBinaryDataByIDs(
@@ -275,10 +275,10 @@ class DataClient:
                 tagged.
 
         Raises:
-            GRPCError: if no tags are provided
+            GRPCError: If no tags are provided.
 
         Returns:
-            int: the number of tags removed
+            int: The number of tags removed.
         """
         filter = filter if filter else Filter()
         request = RemoveTagsFromBinaryDataByFilterRequest(filter=filter, tags=tags)
@@ -360,9 +360,7 @@ class DataClient:
                 time_requested=(
                     self.datetime_to_timestamp(data_request_times[0]) if data_request_times and data_request_times[0] else None
                 ),
-                time_received=(
-                    self.datetime_to_timestamp(data_request_times[1]) if data_request_times and data_request_times[1] else None
-                )
+                time_received=(self.datetime_to_timestamp(data_request_times[1]) if data_request_times and data_request_times[1] else None),
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
@@ -424,13 +422,11 @@ class DataClient:
             sensor_contents[i] = SensorData(
                 metadata=SensorMetadata(
                     time_requested=(
-                        self.datetime_to_timestamp(data_request_times[i][0])
-                        if data_request_times and data_request_times[i][0] else None
+                        self.datetime_to_timestamp(data_request_times[i][0]) if data_request_times and data_request_times[i][0] else None
                     ),
                     time_received=(
-                        self.datetime_to_timestamp(data_request_times[i][1])
-                        if data_request_times and data_request_times[i][1] else None
-                    )
+                        self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times and data_request_times[i][1] else None
+                    ),
                 ),
                 struct=s,
             )
