@@ -217,7 +217,7 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: binary_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], timestamps: Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]], binary_data: bytes) -> None
+   .. py:method:: binary_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], data_request_times: Optional[Tuple[Optional[datetime.datetime], Optional[datetime.datetime]]], binary_data: bytes) -> None
       :async:
 
       Upload binary sensor data.
@@ -237,16 +237,16 @@ Attributes
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
-      :param timestamps: Optional tuple
-                         containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
-      :type timestamps: Optional[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]
+      :param data_request_times: Optional tuple containing `datetime`s denoting the
+                                 times this data was requested[0] and received[1] by the appropriate sensor.
+      :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
       :param binary_data: The data to be uploaded, respresented in bytes.
       :type binary_data: bytes
 
       :raises GRPCError: If an invalid part ID is passed.
 
 
-   .. py:method:: tabular_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], timestamps: Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]], tabular_data: List[Mapping[str, Any]]) -> None
+   .. py:method:: tabular_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], data_request_times: Optional[List[Tuple[Optional[datetime.datetime], Optional[datetime.datetime]]]], tabular_data: List[Mapping[str, Any]]) -> None
       :async:
 
       Upload tabular sensor data.
@@ -266,10 +266,9 @@ Attributes
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
-      :param timestamps: Optional
-                         list of tuples, each containing `Timestamp`s denoting the times this data was requested[0] and received[1] by the
-                         appropriate sensor.
-      :type timestamps: Optional[List[tuple[google.protobuf.timestamp_pb2.Timestamp, google.protobuf.timestamp_pb2.Timestamp]]]
+      :param data_request_times: Optional list of tuples, each containing
+                                 `datetime`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+      :type data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]]
       :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
       :type tabular_data: List[Mapping[str, Any]]
 
@@ -334,6 +333,18 @@ Attributes
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.
+
+
+   .. py:method:: datetime_to_timestamp(dt: datetime.datetime) -> google.protobuf.timestamp_pb2.Timestamp
+      :staticmethod:
+
+      Convert a Python native `datetime` into a `Timestamp`.
+
+      :param dt: A `datetime` object. UTC is assumed in the conversion if the object is naive to timezone information.
+      :type dt: datetime.datetime
+
+      :returns: The `Timestamp` object.
+      :rtype: google.protobuf.timestamp_pb2.Timestamp
 
 
 
