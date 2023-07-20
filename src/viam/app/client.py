@@ -33,7 +33,7 @@ class AppClient:
         Returns:
             Self: The `AppClient`.
         """
-        assert dial_options.credentials.type == "robot-location-secret"
+        assert dial_options.credentials.type != "robot-secret"
         self = cls()
         self._channel = await _dial_app(dial_options)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
