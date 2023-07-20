@@ -28,7 +28,7 @@ class AppClient:
                 `auth_entity` fields are required.
 
         Raises:
-            AssertionError: If the type provided in the credentials of the `DialOptions` object is not 'robot-location-secret'.
+            AssertionError: If the type provided in the credentials of the `DialOptions` object is 'robot-secret'.
 
         Returns:
             Self: The `AppClient`.
