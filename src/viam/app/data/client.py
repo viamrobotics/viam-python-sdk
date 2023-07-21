@@ -142,7 +142,7 @@ class DataClient:
             response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [data.binary for data in response.data]
+            data += [data for data in response.data]
             last = response.last
 
         if dest:
@@ -587,6 +587,28 @@ class DataClient:
         tags: Optional[List[str]] = None,
         bbox_labels: Optional[List[str]] = None
     ) -> Filter:
+        """Create a `Filter`.
+
+        Args:
+            component_name (Optional[str]): Optional name of the component that captured the data being filtered (e.g., "left_motor").
+            component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (e.g., "motor").
+            method (Optional[str]): Optional name of the method used to capture the data being filtered (e.g., "IsPowered").
+            robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (e.g., "viam_rover_1").
+            robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.
+            part_name (Optional[str]): Optional name of the system part associated with the data being filtered (e.g., "viam_rover_1-main").
+            part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.
+            location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.
+            organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.
+            mime_type (Optional[List[str]]): Optional mime type of data being filtered (e.g., "image/png").
+            start_time (Optional[datetime.datetime]): Optional start time of an interval to filter data by.
+            end_time (Optional[datetime.datetime]): Optional end time of an interval to filter data by.
+            tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., ["test"]).
+            bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
+                "circle"]).
+
+        Returns:
+            viam.proto.app.data.Filter: The `Filter` object.
+        """
         return Filter(
             component_name=component_name,
             component_type=component_type,
