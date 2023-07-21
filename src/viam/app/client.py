@@ -5,6 +5,7 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.app.data.client import DataClient
+from viam.app.location.client import LocationClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)
@@ -48,6 +49,11 @@ class AppClient:
     def data_client(self) -> DataClient:
         """Insantiate and return a DataClient used to make `data` and `data_sync` method calls."""
         return DataClient(self._channel, self._metadata)
+
+    @property
+    def location_client(self) -> LocationClient:
+        """Insantiate and return a DataClient used to make `app` method calls."""
+        return LocationClient(self._channel, self._metadata)
 
     def close(self):
         """Close opened channels used for the various service stubs initialized."""

@@ -2,14 +2,25 @@ from typing import Mapping
 
 from grpclib.client import Channel
 
-from viam.proto.app import (
-    AppServiceStub
-)
+from viam.proto.app import AppServiceStub
 
 
 class LocationClient:
+    """gRPC client for method calls to app.
+
+    Constructor is used by `AppClient` to instantiate relevant service stub. Calls to `LocationClient`  methods should be made through
+    `AppClient`.
+    """
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
-        pass
+        """Create a `LocationClient` that maintains a connection to app.
+
+        Args:
+            channel (grpclib.client.Channel): connection to app.
+            metadata (Mapping[str, str]): Required authorization token to send requests to app.
+        """
+        self._metadata = metadata
+        self._location_client = AppServiceStub(channel)
 
     _location_client: AppServiceStub
     _metadata: Mapping[str, str]

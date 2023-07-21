@@ -67,7 +67,7 @@ class DataClient:
         """Create a `DataClient` that maintains a connection to app.
 
         Args:
-            channel (Channel): Connection to app.
+            channel (grpclib.client.Channel): Connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
         """
         self._metadata = metadata
