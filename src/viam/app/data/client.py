@@ -19,6 +19,7 @@ from viam.proto.app.data import (
     BinaryID,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    CaptureInterval,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -36,6 +37,7 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    TagsFilter
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -563,3 +565,42 @@ class DataClient:
         timestamp = Timestamp()
         timestamp.FromDatetime(dt)
         return timestamp
+
+    @staticmethod
+    def create_filter(
+        component_name: Optional[str],
+        component_type: Optional[str],
+        method: Optional[str],
+        robot_name: Optional[str],
+        robot_id: Optional[str],
+        part_name: Optional[str],
+        part_id: Optional[str],
+        location_ids: Optional[List[str]],
+        organization_ids: Optional[List[str]],
+        mime_type: Optional[List[str]],
+        start_time: Optional[datetime],
+        end_time: Optional[datetime],
+        tags: Optional[List[str]],
+        bbox_labels: Optional[List[str]]
+    ) -> Filter:
+        return Filter(
+            component_name=component_name if component_name else None,
+            component_type=component_type if component_type else None,
+            method=method if method else None,
+            robot_name=robot_name if robot_name else None,
+            robot_id=robot_id if robot_id else None,
+            part_name=part_name if part_name else None,
+            part_id=part_id if part_id else None,
+            location_ids=location_ids if location_ids else None,
+            organization_ids=organization_ids if organization_ids else None,
+            mime_type=mime_type if mime_type else None,
+            interval=(
+                CaptureInterval(
+                    start=DataClient.datetime_to_timestamp(start_time) if start_time else None,
+                    end=DataClient.datetime_to_timestamp(end_time) if end_time else None
+                )
+            )
+            if start_time and end_time else None,
+            tags_filter=TagsFilter(tags=tags) if tags else None,
+            bbox_labels=bbox_labels if bbox_labels else None
+        )
