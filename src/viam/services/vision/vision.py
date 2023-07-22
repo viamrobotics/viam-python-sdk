@@ -88,7 +88,7 @@ class Vision(ServiceBase, abc.ABC):
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> List[Classification]:
-        """Get a list of detections in the given image using the specified detector
+        """Get a list of classifications in the given image using the specified classifier
 
         Args:
             image (Image): The image to get detections from
