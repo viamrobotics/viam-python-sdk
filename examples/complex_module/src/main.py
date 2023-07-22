@@ -3,14 +3,14 @@ import asyncio
 from viam.module.module import Module
 from viam.components.arm import Arm
 
-from .arm import MyArm
+from .arm.my_arm import MyArm
 from .gizmo import Gizmo, MyGizmo
 from .summation import MySummationService, SummationService
 
 
 async def main():
-    """This function creates and starts a new module, after adding all desired resources.
-    Resources must be pre-registered. For an example, see the `gizmo.__init__.py` file.
+    """This function creates and starts a new module, after adding all desired resource models.
+    Resource models must be pre-registered. For an example, see the `gizmo.__init__.py` file.
     """
 
     module = Module.from_args()

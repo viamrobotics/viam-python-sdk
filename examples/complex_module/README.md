@@ -1,4 +1,4 @@
-# VIAM Module Example
+# VIAM Complex Module Example
 This example goes through how to create custom modular resources using Viam's python SDK, and how to connect it to a Robot.
 
 This is a limited document. For a more in-depth understanding of modules, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
@@ -6,7 +6,7 @@ This is a limited document. For a more in-depth understanding of modules, see th
 ## Purpose
 Modular resources allows you to define custom components and services, and add them to your robot. Viam ships with many component types, but you're not limited to only using those types -- you can create your own using modules.
 
-For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/).
+For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/simple_module), which only contains one custom resource model in one file.
 
 ## Project structure
 The definition of the new resources are in the `src` directory. Within this directory are the `proto`, `gizmo`, `arm`, and `summation` subdirectories.
@@ -26,7 +26,7 @@ Outside the `src` directory, there is the `client.py` file. This can be used to 
 ## How to use
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
 
-The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-python-sdk/examples/module/run.sh`. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
+The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-python-sdk/examples/complex_module/run.sh`. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
 
 Once the module has been added to your robot, you can then add a component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. You can add a service that uses the `MySum` model in a similar manner.
 
@@ -80,7 +80,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
   "modules": [
     {
       "name": "my-module",
-      "executable_path": "/home/viam-python-sdk/examples/module/run.sh"
+      "executable_path": "/home/viam-python-sdk/examples/complex_module/run.sh"
     }
   ]
 }

@@ -1,8 +1,9 @@
 # my-python-robot/my_cool_arm.py
 
 import asyncio
-import os
+import json
 from typing import Any, Dict, Optional, Tuple
+
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
 
@@ -25,6 +26,17 @@ class MyCoolArm(Arm):
         # Starting joint positions
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
+
+        # Minimal working kinematics model
+        self.kinematics = json.dumps(
+            {
+                "name": "MyArm",
+                "links": [{"id": "base", "parent": "world", "translation": {"x": 0, "y": 0, "z": 0}}],
+                "joints": [
+                    {"id": "waist", "type": "revolute", "parent": "base", "axis": {"x": 0, "y": 0, "z": 1}, "max": 359, "min": -359}
+                ],
+            }
+        ).encode("utf-8")
         super().__init__(name)
 
     async def get_end_position(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Pose:
@@ -81,8 +93,4 @@ class MyCoolArm(Arm):
         return not self.is_stopped
 
     async def get_kinematics(self, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
-        dirname = os.path.dirname(__file__)
-        filepath = os.path.join(dirname, "./xarm6_kinematics.json")
-        with open(filepath, mode="rb") as f:
-            file_data = f.read()
-        return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
+        return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
