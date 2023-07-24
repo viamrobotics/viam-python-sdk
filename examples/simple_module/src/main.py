@@ -33,7 +33,7 @@ class MySensor(Sensor):
 
 
 async def main():
-    """This function creates and starts a new module, after adding all desired resource model.
+    """This function creates and starts a new module, after adding all desired resource models.
     Resource creators must be registered to the resource registry before the module adds the resource model.
     """
     Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new))
