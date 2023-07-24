@@ -36,6 +36,7 @@ class AppClient:
         """
         assert dial_options.credentials.type != "robot-secret"
         self = cls()
+        self._location_id = dial_options.auth_entity.split('.')[1]
         self._channel = await _dial_app(dial_options)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
@@ -44,6 +45,7 @@ class AppClient:
     _channel: Channel
     _metadata: Mapping[str, str]
     _closed: bool = False
+    _location_id: str
 
     @property
     def data_client(self) -> DataClient:
@@ -53,7 +55,7 @@ class AppClient:
     @property
     def location_client(self) -> LocationClient:
         """Insantiate and return a DataClient used to make `app` method calls."""
-        return LocationClient(self._channel, self._metadata)
+        return LocationClient(self._channel, self._metadata, self._location_id)
 
     def close(self):
         """Close opened channels used for the various service stubs initialized."""
