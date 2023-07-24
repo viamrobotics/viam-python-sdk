@@ -36,7 +36,7 @@ class AppClient:
         """
         assert dial_options.credentials.type != "robot-secret"
         self = cls()
-        self._location_id = dial_options.auth_entity.split('.')[1]
+        self._location_id = dial_options.auth_entity.split(".")[1]
         self._channel = await _dial_app(dial_options)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
