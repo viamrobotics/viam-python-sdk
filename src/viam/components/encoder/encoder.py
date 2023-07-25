@@ -71,10 +71,9 @@ class Encoder(ComponentBase):
         **kwargs,
     ) -> Properties:
         """
-        Report a dictionary mapping optional properties to
-        whether it is supported by this encoder.
+        Return a dictionary of the types of position reporting this encoder supports
 
         Returns:
-            Properties: Map of position types to supported status.
+            Encoder.Properties: Map of position types to supported status.
         """
         ...
