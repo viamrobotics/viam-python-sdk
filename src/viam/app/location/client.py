@@ -97,7 +97,7 @@ class LocationClient:
     `AppClient`.
     """
 
-    def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: str):
+    def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
         """Create a `LocationClient` that maintains a connection to app.
 
         Args:
