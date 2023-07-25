@@ -1,5 +1,7 @@
 import json
 from typing import Any, List, Mapping, Optional
+from typing_extensions import Self
+from datetime import datetime
 
 from grpclib.client import Channel
 
@@ -14,7 +16,8 @@ from viam.proto.app import (
     DeleteRobotPartResponse,
     DeleteRobotRequest,
     DeleteRobotResponse,
-    Fragment,
+    Fragment as FragmentPB,
+    SharedSecret,
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -36,7 +39,7 @@ from viam.proto.app import (
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
-    LogEntry,
+    LogEntry as LogEntryPB,
     MarkPartForRestartRequest,
     MarkPartForRestartResponse,
     NewRobotPartRequest,
@@ -44,7 +47,7 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Robot,
-    RobotPart,
+    RobotPart as RobotPartPB,
     ShareLocationRequest,
     ShareLocationResponse,
     UnshareLocationRequest,
@@ -56,38 +59,9 @@ from viam.proto.app import (
     UpdateRobotRequest,
     UpdateRobotResponse,
 )
-from viam.utils import dict_to_struct
+from viam.utils import dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
-
-# WEIRD TYPES:
-# Location {
-#     LocationAuth {
-#         List[SharedSecret]
-#     },
-#     List[LocationOrganization],
-#     StorageConfig
-# }
-# Robot {
-#   Timestamp,
-#   Timestamp
-# }
-# RobotPart {
-#   Struct,
-#   Timestamp,
-#   Struct,
-#   Timestamp,
-#   List[SharedSecret]
-# }
-# LogEntry {
-#     Timestamp,
-#     Struct,
-#     List[Struct]
-# }
-# Fragment {
-#     Struct,
-#     Timestamp
-# }
 
 
 class LocationClient:
@@ -97,12 +71,107 @@ class LocationClient:
     `AppClient`.
     """
 
+    class RobotPart:
+        @classmethod
+        def robot_part_from_proto(cls, robot_part: RobotPartPB) -> Self:
+            self = cls()
+            self.proto = robot_part
+            self.id = robot_part.id
+            self.name = robot_part.name
+            self.dns_name = robot_part.dns_name
+            self.secret = robot_part.secret
+            self.robot = robot_part.robot
+            self.location_id = robot_part.location_id
+            self.robot_config = struct_to_dict(robot_part.robot_config) if robot_part.HasField("robot_config") else None
+            self.last_access = robot_part.last_access.ToDatetime() if robot_part.HasField("last_access") else None
+            self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None
+            self.main_part = robot_part.main_part
+            self.fqdn = robot_part.fqdn
+            self.local_fqdn = robot_part.fqdn
+            self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
+            self.secrets = robot_part.secrets
+            return self
+
+        id: str
+        name: str
+        dns_name: str
+        secret: str
+        robot: str
+        location_id: str
+        robot_config: Optional[Mapping[str, Any]]
+        last_access: Optional[datetime]
+        user_supplied_info: Optional[Mapping[str, Any]]
+        main_part: bool
+        fqdn: str
+        local_fqdn: str
+        created_on: Optional[datetime]
+        secrets: List[SharedSecret]
+
+        proto: RobotPartPB
+
+    class LogEntry:
+        @classmethod
+        def log_entry_from_proto(cls, log_entry: LogEntryPB) -> Self:
+            self = cls()
+            self.proto = log_entry
+            self.host = log_entry.host
+            self.level = log_entry.level
+            self.time = log_entry.time.ToDatetime() if log_entry.HasField("time") else None
+            self.logger_name = log_entry.logger_name
+            self.message = log_entry.message
+            self.caller = struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None
+            self.stack = log_entry.stack
+            self.fields = [struct_to_dict(struct) for struct in log_entry.fields]
+            return self
+
+        host: str
+        level: str
+        time: Optional[datetime]
+        logger_name: str
+        message: str
+        caller: Optional[Mapping[str, Any]]
+        stack: str
+        fields: List[Mapping[str, Any]]
+
+        proto: LogEntryPB
+
+    class Fragment:
+        @classmethod
+        def fragment_from_proto(cls, fragment: FragmentPB) -> Self:
+            self = cls()
+            self.proto = fragment
+            self.id = fragment.id
+            self.name = fragment.name
+            self.fragment = struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None
+            self.organization_owner = fragment.organization_owner
+            self.public = fragment.public
+            self.created_on = fragment.created_on.ToDatetime() if fragment.HasField("created_on") else None
+            self.organization_name = fragment.organization_name
+            self.robot_part_count = fragment.robot_part_count
+            self.organization_count = fragment.organization_count
+            self.only_used_by_owner = fragment.only_used_by_owner
+            return self
+
+        id: str
+        name: str
+        fragment: Optional[Mapping[str, Any]]
+        organization_owner: str
+        public: bool
+        created_on: Optional[datetime]
+        organization_name: str
+        robot_part_count: int
+        organization_count: int
+        only_used_by_owner: int
+
+        proto: FragmentPB
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
         """Create a `LocationClient` that maintains a connection to app.
 
         Args:
             channel (grpclib.client.Channel): connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
+            location_id (Optional[str]): Default location ID.
         """
         self._metadata = metadata
         self._location_client = AppServiceStub(channel)
@@ -163,8 +232,8 @@ class LocationClient:
         Args:
             organization_id (str): ID of the organization to create the location under.
             name (str): Name of the location.
-            parent_location_id (Optional[str]): Optional new parent location to move the location under. Defaults to currenty authorized
-                location.
+            parent_location_id (Optional[str]): Optional new parent location to move the location under. Defaults to the location ID
+                provided at `LocationClient` instantiation. A root level location is created if no default location ID exists.
 
         Raises:
             GRPCError: If either an invalid organization ID or parent location ID is passed.
@@ -181,7 +250,8 @@ class LocationClient:
         """Get a location.
 
         Args:
-            location_id (Optional[str]): ID of the location to get. Defaults to the current authorized location.
+            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `LocationClient  instantiation.
+                If no default location ID was passed, a GRPCError will be thrown.
 
         Raises:
             GRPCError: If an invalid location ID is passed.
@@ -307,7 +377,7 @@ class LocationClient:
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
         response: GetRobotPartsResponse = await self._location_client.GetRobotParts(request, metadata=self._metadata)
-        return response.parts
+        return [LocationClient.RobotPart.robot_part_from_proto(robot_part=part) for part in response.parts]
 
     async def get_robot_part(self, robot_part_id: Optional[str], dest: Optional[str] = None, indent: Optional[int] = 4) -> RobotPart:
         """Get a robot part.
@@ -315,7 +385,7 @@ class LocationClient:
         Args:
             robot_part_id (str): ID of the robot part to get.
             dest (Optional[str]): Optional filepath to write the robot part's config file in JSON format to.
-            indent (Optional[str]): Optional size of indent when writing config to `dest`.
+            indent (Optional[int]): Optional size of indent when writing config to `dest`.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -332,20 +402,25 @@ class LocationClient:
                 file.write(f"{json.dumps(json.loads(response.config_json), indent=indent)}")
             except Exception as e:
                 LOGGER.err(f"Failed to write config JSON to file {dest}", exc_info=e)
-        return response.part
+        return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
 
     # Not sure what a page_token is. Response contains `next_page_token`.
     # TODO: write logs to `dest`.
     async def get_robot_part_logs(
-        self, robot_part_id: str, filter: Optional[str], page_token: Optional[str], dest: str, errors_only: Optional[bool] = False
+        self,
+        robot_part_id: str,
+        filter: Optional[str] = None,
+        page_token: Optional[str] = None,
+        dest: Optional[str] = None,
+        errors_only: Optional[bool] = False
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
         Args:
-            id (str): ID of the robot part to get logs from.
+            robot_part_id (str): ID of the robot part to get logs from.
             filter (Optional[str]): Only include logs that contain the string `filter`. Defaults to empty string "".
             page_token (Optional[str]): Defaults to empty string "".
-            dest (Optional[str]): Filepath to write the log entries to.
+            dest (Optional[str]): Optional filepath to write the log entries to.
             errors_only (Optional[bool]): Optional boolean specifying whether or not to only include error logs. Defaults to False.
 
         Raises:
@@ -356,7 +431,7 @@ class LocationClient:
         """
         request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
         response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
-        return response.logs
+        return [LocationClient.LogEntry.log_entry_from_proto(log_entry=log) for log in response.logs]
 
     async def tail_robot_part_logs(self):
         raise NotImplementedError()
@@ -382,7 +457,7 @@ class LocationClient:
         robot_config_struct = dict_to_struct(robot_config) if robot_config else None
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=robot_config_struct)
         response: UpdateRobotPartResponse = await self._location_client.UpdateRobotPart(request, metadata=self._metadata)
-        return response.part
+        return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
 
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
         """Create a new robot part.
@@ -507,7 +582,7 @@ class LocationClient:
         """
         request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
         response: ListFragmentsResponse = await self._location_client.ListFragments(request, metadata=self._metadata)
-        return response.fragments
+        return [LocationClient.Fragment.fragment_from_proto(fragment=fragment) for fragment in response.fragments]
 
     async def get_fragment(self, fragment_id: str) -> Fragment:
         """Get a fragment.
@@ -520,7 +595,7 @@ class LocationClient:
         """
         request = GetFragmentRequest(id=fragment_id)
         response: GetFragmentResponse = await self._location_client.GetFragment(request, metadata=self._metadata)
-        return response.fragment
+        return LocationClient.Fragment.fragment_from_proto(fragment=response.fragment)
 
     async def create_fragment(self):
         raise NotImplementedError()
