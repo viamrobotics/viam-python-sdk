@@ -158,12 +158,13 @@ class LocationClient:
         raise NotImplementedError()
 
     async def create_location(self, organization_id: str, name: str, parent_location_id: Optional[str] = None) -> Location:
-        """Create a named location under the specified organization and parent location.
+        """Create and name a location under the specified organization and parent location.
 
         Args:
             organization_id (str): ID of the organization to create the location under.
             name (str): Name of the location.
-            parent_location_id (Optional[str]): Optional new parent location to move the location under. Defaults to the empty string "".
+            parent_location_id (Optional[str]): Optional new parent location to move the location under. Defaults to currenty authorized
+                location.
 
         Raises:
             GRPCError: If either an invalid organization ID or parent location ID is passed.
@@ -171,15 +172,16 @@ class LocationClient:
         Returns:
             viam.proto.app.Location: A `Location` object representing the newly created location.
         """
-        request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=parent_location_id)
+        location_id = parent_location_id if parent_location_id else self._location_id
+        request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=location_id)
         response: CreateLocationResponse = await self._location_client.CreateLocation(request, metadata=self._metadata)
         return response.location
 
-    async def get_location(self, location_id: str) -> Location:
+    async def get_location(self, location_id: Optional[str] = None) -> Location:
         """Get a location.
 
         Args:
-            location_id (str): ID of the location to get.
+            location_id (Optional[str]): ID of the location to get. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If an invalid location ID is passed.
@@ -187,6 +189,7 @@ class LocationClient:
         Location:
             viam.proto.app.Location: The location.
         """
+        location_id = location_id if location_id else self._location_id
         request = GetLocationRequest(location_id=location_id)
         response: GetLocationResponse = await self._location_client.GetLocation(request, metadata=self._metadata)
         return response.location
@@ -216,7 +219,7 @@ class LocationClient:
         """Delete a location.
 
         Args:
-            location_id (str): ID of the location to delete.
+            location_id (str): ID of the location to delete. Must be specified.
 
         Raises:
             GRPCError: If an invalid location ID is passed.
@@ -240,23 +243,25 @@ class LocationClient:
         response: ListLocationsResponse = await self._location_client.ListLocations(request, metadata=self._metadata)
         return response.locations
 
-    async def share_location(self, location_id: str, organization_id: str) -> None:
+    async def share_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
         """Share a location with a specific organization.
 
         Args:
-            location_id (str): ID of the location to be shared.
             organization_id (str): ID of the organization to share the location with.
+            location_id (Optional[str]): ID of the location to be shared. Defaults to the current authorized location.
         """
+        location_id = location_id if location_id else self._location_id
         request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
         _: ShareLocationResponse = await self._location_client.ShareLocation(request, metadata=self._metadata)
 
-    async def unshare_location(self, location_id: str, organization_id: str) -> None:
+    async def unshare_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
         """Unshare a location with a specific organization.
 
         Args:
-            location_id (str): ID of the location to be unshared.
             organization_id (str): ID of the organization to unshare the location with.
+            location_id (Optional[str]): ID of the location to be unshared. Defaults to the current authorized location.
         """
+        location_id = location_id if location_id else self._location_id
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
         _: UnshareLocationResponse = await self._location_client.UnshareLocation(request, metadata=self._metadata)
 
@@ -429,11 +434,11 @@ class LocationClient:
     async def delete_robot_part_secret(self):
         raise NotImplementedError()
 
-    async def list_robots(self, location_id: str) -> List[Robot]:
+    async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
         """Get a list of all robots under the specified location.
 
         Args:
-            location_id (str): ID of the location under which to list the robots.
+            location_id (Optional[str]): ID of the location under which to list the robots. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If an invalid location ID is passed.
@@ -441,16 +446,17 @@ class LocationClient:
         Returns:
             List[viam.proto.app.Robot]: The list of robots.
         """
+        location_id = location_id if location_id else self._location_id
         request = ListRobotsRequest(location_id=location_id)
         response: ListRobotsResponse = await self._location_client.ListRobots(request, metadata=self._metadata)
         return response.robots
 
-    async def new_robot(self, location_id: str, name: str) -> str:
+    async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
         """Create a new robot.
 
         Args:
             name (str): Name of the new robot.
-            location_id: ID of the location under which to create the robot.
+            location_id (Optional[str]): ID of the location under which to create the robot. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If an invalid location ID is passed
@@ -458,16 +464,17 @@ class LocationClient:
         Returns:
             str: The new robot's ID.
         """
+        location_id = location_id if location_id else self._location_id
         request = NewRobotRequest(name=name, location=location_id)
         response: NewRobotResponse = await self._location_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
-    async def update_robot(self, robot_id: str, name: str, location_id: str) -> Robot:
+    async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
         """Change the name of an existing robot.
         Args:
             robot_id (str): ID of the robot to update.
             name (str): New name to be updated on the robot.
-            location_id (str): ID of the location under which the robot exists.
+            location_id (Optional[str]): ID of the location under which the robot exists. Defaults to the current authorized location.
 
         Raises:
             GRPCError: If either an invalid robot ID, name, or location ID is passed.
@@ -475,6 +482,7 @@ class LocationClient:
         Returns:
             viam.proto.app.Robot: A `Robot` object representing the newly updated robot.
         """
+        location_id = location_id if location_id else self._location_id
         request = UpdateRobotRequest(id=robot_id, name=name, location=location_id)
         response: UpdateRobotResponse = await self._location_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot
