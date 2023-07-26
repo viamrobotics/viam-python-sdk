@@ -86,11 +86,10 @@ Classes
       :abstractmethod:
       :async:
 
-      Report a dictionary mapping optional properties to
-      whether it is supported by this encoder.
+      Return a dictionary of the types of position reporting this encoder supports
 
       :returns: Map of position types to supported status.
-      :rtype: Properties
+      :rtype: Encoder.Properties
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

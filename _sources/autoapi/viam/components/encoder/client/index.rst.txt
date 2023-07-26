@@ -52,11 +52,10 @@ Classes
    .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.encoder.encoder.Encoder.Properties
       :async:
 
-      Report a dictionary mapping optional properties to
-      whether it is supported by this encoder.
+      Return a dictionary of the types of position reporting this encoder supports
 
       :returns: Map of position types to supported status.
-      :rtype: Properties
+      :rtype: Encoder.Properties
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]

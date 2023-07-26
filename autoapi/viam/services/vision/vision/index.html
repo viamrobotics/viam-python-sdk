@@ -223,7 +223,10 @@ from the given camera, with the given detector applied to it.</p>
 <dd><p>Get a list of classifications in the given image using the specified classifier</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<a class="reference internal" href="../../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p></li>
+<li><p><strong>count</strong> (<em>int</em>) – The number of classifications desired</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of Classifications</p>
