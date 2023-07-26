@@ -497,3 +497,179 @@ class MockDataSync(DataSyncServiceBase):
         assert request_file_contents is not None
         self.binary_data = request_file_contents.file_contents.data
         await stream.send_message(FileUploadResponse())
+
+
+class MockLocation(AppServiceBase):
+    async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
+        pass
+
+    async def CreateOrganization(self, stream: Stream[CreateOrganizationRequest, CreateOrganizationResponse]) -> None:
+        pass
+
+    async def ListOrganizations(self, stream: Stream[ListOrganizationsRequest, ListOrganizationsResponse]) -> None:
+        pass
+
+    async def ListOrganizationsByUser(self, stream: Stream[ListOrganizationsByUserRequest, ListOrganizationsByUserResponse]) -> None:
+        pass
+
+    async def GetOrganization(self, stream: Stream[GetOrganizationRequest, GetOrganizationResponse]) -> None:
+        pass
+
+    async def GetOrganizationNamespaceAvailability(
+        self,
+        stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
+    ) -> None:
+        pass
+
+    async def UpdateOrganization(self, stream: Stream[UpdateOrganizationRequest, UpdateOrganizationResponse]) -> None:
+        pass
+
+    async def DeleteOrganization(self, stream: Stream[DeleteOrganizationRequest, DeleteOrganizationResponse]) -> None:
+        pass
+
+    async def ListOrganizationMembers(self, stream: Stream[ListOrganizationMembersRequest, ListOrganizationMembersResponse]) -> None:
+        pass
+
+    async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
+        pass
+
+    async def UpdateOrganizationInviteAuthorizations(
+        self,
+        stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
+    ) -> None:
+        pass
+
+    async def DeleteOrganizationMember(self, stream: Stream[DeleteOrganizationMemberRequest, DeleteOrganizationMemberResponse]) -> None:
+        pass
+
+    async def DeleteOrganizationInvite(self, stream: Stream[DeleteOrganizationInviteRequest, DeleteOrganizationInviteResponse]) -> None:
+        pass
+
+    async def ResendOrganizationInvite(self, stream: Stream[ResendOrganizationInviteRequest, ResendOrganizationInviteResponse]) -> None:
+        pass
+
+    async def CreateLocation(self, stream: Stream[CreateLocationRequest, CreateLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetLocation(self, stream: Stream[GetLocationRequest, GetLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UpdateLocation(self, stream: Stream[UpdateLocationRequest, UpdateLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteLocation(self, stream: Stream[DeleteLocationRequest, DeleteLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ListLocations(self, stream: Stream[ListLocationsRequest, ListLocationsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ShareLocation(self, stream: Stream[ShareLocationRequest, ShareLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UnshareLocation(self, stream: Stream[UnshareLocationRequest, UnshareLocationResponse]) -> None:
+        raise NotImplementedError()
+
+    async def LocationAuth(self, stream: Stream[LocationAuthRequest, LocationAuthResponse]) -> None:
+        pass
+
+    async def CreateLocationSecret(self, stream: Stream[CreateLocationSecretRequest, CreateLocationSecretResponse]) -> None:
+        pass
+
+    async def DeleteLocationSecret(self, stream: Stream[DeleteLocationSecretRequest, DeleteLocationSecretResponse]) -> None:
+        pass
+
+    async def GetRobot(self, stream: Stream[GetRobotRequest, GetRobotResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRoverRentalRobots(self, stream: Stream[GetRoverRentalRobotsRequest, GetRoverRentalRobotsResponse]) -> None:
+        pass
+
+    async def GetRobotParts(self, stream: Stream[GetRobotPartsRequest, GetRobotPartsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRobotPart(self, stream: Stream[GetRobotPartRequest, GetRobotPartResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRobotPartLogs(self, stream: Stream[GetRobotPartLogsRequest, GetRobotPartLogsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
+        pass
+
+    async def GetRobotPartHistory(self, stream: Stream[GetRobotPartHistoryRequest, GetRobotPartHistoryResponse]) -> None:
+        pass
+
+    async def UpdateRobotPart(self, stream: Stream[UpdateRobotPartRequest, UpdateRobotPartResponse]) -> None:
+        raise NotImplementedError()
+
+    async def NewRobotPart(self, stream: Stream[NewRobotPartRequest, NewRobotPartResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteRobotPart(self, stream: Stream[DeleteRobotPartRequest, DeleteRobotPartResponse]) -> None:
+        raise NotImplementedError()
+
+    async def MarkPartAsMain(self, stream: Stream[MarkPartAsMainRequest, MarkPartAsMainResponse]) -> None:
+        pass
+
+    async def MarkPartForRestart(self, stream: Stream[MarkPartForRestartRequest, MarkPartForRestartResponse]) -> None:
+        raise NotImplementedError()
+
+    async def CreateRobotPartSecret(self, stream: Stream[CreateRobotPartSecretRequest, CreateRobotPartSecretResponse]) -> None:
+        pass
+
+    async def DeleteRobotPartSecret(self, stream: Stream[DeleteRobotPartSecretRequest, DeleteRobotPartSecretResponse]) -> None:
+        pass
+
+    async def ListRobots(self, stream: Stream[ListRobotsRequest, ListRobotsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def NewRobot(self, stream: Stream[NewRobotRequest, NewRobotResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UpdateRobot(self, stream: Stream[UpdateRobotRequest, UpdateRobotResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteRobot(self, stream: Stream[DeleteRobotRequest, DeleteRobotResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetFragment(self, stream: Stream[GetFragmentRequest, GetFragmentResponse]) -> None:
+        raise NotImplementedError()
+
+    async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:
+        pass
+
+    async def UpdateFragment(self, stream: Stream[UpdateFragmentRequest, UpdateFragmentResponse]) -> None:
+        pass
+
+    async def DeleteFragment(self, stream: Stream[DeleteFragmentRequest, DeleteFragmentResponse]) -> None:
+        pass
+
+    async def AddRole(self, stream: Stream[AddRoleRequest, AddRoleResponse]) -> None:
+        pass
+
+    async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
+        pass
+
+    async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
+        pass
+
+    async def CheckPermissions(self, stream: Stream[CheckPermissionsRequest, CheckPermissionsResponse]) -> None:
+        pass
+
+    async def CreateModule(self, stream: Stream[CreateModuleRequest, CreateModuleResponse]) -> None:
+        pass
+
+    async def UpdateModule(self, stream: Stream[UpdateModuleRequest, UpdateModuleResponse]) -> None:
+        pass
+
+    async def UploadModuleFile(self, stream: Stream[UploadModuleFileRequest, UploadModuleFileResponse]) -> None:
+        pass
+
+    async def GetModule(self, stream: Stream[GetModuleRequest, GetModuleResponse]) -> None:
+        pass
+
+    async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
+        pass
