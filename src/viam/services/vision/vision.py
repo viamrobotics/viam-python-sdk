@@ -92,6 +92,7 @@ class Vision(ServiceBase, abc.ABC):
 
         Args:
             image (Image): The image to get detections from
+            count (int): The number of classifications desired
 
         Returns:
             List[viam.proto.service.vision.Classification]: The list of Classifications
