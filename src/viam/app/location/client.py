@@ -93,7 +93,6 @@ class LocationClient:
                 RobotPart: The `RobotPart`.
             """
             self = cls()
-            self.proto = robot_part
             self.id = robot_part.id
             self.name = robot_part.name
             self.dns_name = robot_part.dns_name
@@ -125,8 +124,6 @@ class LocationClient:
         created_on: Optional[datetime]
         secrets: List[SharedSecret]
 
-        proto: RobotPartPB
-
     class LogEntry:
         """A class that mirrors the `LogEntry` proto message.
 
@@ -145,7 +142,6 @@ class LocationClient:
                 LogEntry: The `LogEntry`.
             """
             self = cls()
-            self.proto = log_entry
             self.host = log_entry.host
             self.level = log_entry.level
             self.time = log_entry.time.ToDatetime() if log_entry.HasField("time") else None
@@ -165,8 +161,6 @@ class LocationClient:
         stack: str
         fields: List[Mapping[str, Any]]
 
-        proto: LogEntryPB
-
     class Fragment:
         """A class that mirrors the `Fragment` proto message.
 
@@ -185,7 +179,6 @@ class LocationClient:
                 Fragment: The `Fragment`.
             """
             self = cls()
-            self.proto = fragment
             self.id = fragment.id
             self.name = fragment.name
             self.fragment = struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None
@@ -208,8 +201,6 @@ class LocationClient:
         robot_part_count: int
         organization_count: int
         only_used_by_owner: int
-
-        proto: FragmentPB
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
         """Create a `LocationClient` that maintains a connection to app.
