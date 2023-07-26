@@ -15,7 +15,7 @@ The `run.sh` script is the entrypoint for a module and calls the `main.py` file.
 
 Outside the `src` directory, there is a `client.py` file. You can use this file to test the module once you have connected to your robot and configured the module. You will have to update the credentials and robot address in that file.
 
-## How to use
+## Configuring and using the module
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
 
 The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, this could be `/home/viam-python-sdk/examples/simple_module/run.sh`. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
