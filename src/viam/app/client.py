@@ -54,7 +54,7 @@ class AppClient:
 
     @property
     def location_client(self) -> LocationClient:
-        """Insantiate and return `LocationClient` used to make  location` method calls."""
+        """Insantiate and return `LocationClient` used to make  `location` method calls to app."""
         return LocationClient(self._channel, self._metadata, self._location_id)
 
     def close(self):
