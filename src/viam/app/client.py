@@ -49,12 +49,12 @@ class AppClient:
 
     @property
     def data_client(self) -> DataClient:
-        """Insantiate and return a DataClient used to make `data` and `data_sync` method calls."""
+        """Insantiate and return a `DataClient` used to make `data` and `data_sync` method calls."""
         return DataClient(self._channel, self._metadata)
 
     @property
     def location_client(self) -> LocationClient:
-        """Insantiate and return a DataClient used to make `app` method calls."""
+        """Insantiate and return `LocationClient` used to make  location` method calls."""
         return LocationClient(self._channel, self._metadata, self._location_id)
 
     def close(self):
