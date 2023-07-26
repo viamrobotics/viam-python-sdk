@@ -76,7 +76,7 @@ class LocationClient:
     """
 
     class RobotPart:
-        """`RobotPart` shadow class.
+        """A class that mirrors the `RobotPart` proto message.
 
         Copy the attributes of a `viam.proto.app.RobotPart` object and convert and store its internal `Timestamp` objects as Python
         `datetime` objects. It also converts the relevant `Struct` objects into dictionaries, mapping strings to items of type `Any`.
@@ -128,7 +128,7 @@ class LocationClient:
         proto: RobotPartPB
 
     class LogEntry:
-        """`LogEntry` shadow class.
+        """A class that mirrors the `LogEntry` proto message.
 
         Copy the attributes of a `viam.proto.app.LogEntry` object and convert and store its internal `Timestamp` object as a Python
         `datetime` object. It also converts the relevant `Struct` objects into dictionaries, mapping strings to items of type `Any`.
@@ -168,7 +168,7 @@ class LocationClient:
         proto: LogEntryPB
 
     class Fragment:
-        """`Fragment` shadow class.
+        """A class that mirrors the `Fragment` proto message.
 
         Copy the attributes of a `viam.proto.app.Fragment` object and convert and store its internal `Timestamp` object as a Python
         `datetime` object. It also converts the relevant `Struct` object into a dictionary, mapping strings to items of type `Any`.
