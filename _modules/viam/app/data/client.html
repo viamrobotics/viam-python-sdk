@@ -108,6 +108,7 @@
     <span class="n">BinaryID</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
+    <span class="n">CaptureInterval</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -125,6 +126,7 @@
     <span class="n">TabularDataByFilterResponse</span><span class="p">,</span>
     <span class="n">TagsByFilterRequest</span><span class="p">,</span>
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
+    <span class="n">TagsFilter</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.datasync</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataCaptureUploadRequest</span><span class="p">,</span>
@@ -272,7 +274,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete tabular data.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Not passing a `Filter` will lead to</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Passing an empty `Filter` will lead to</span>
 <span class="sd">                all data being deleted. Exercise caution when using this option.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
@@ -284,8 +286,8 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Not passing a `Filter` will lead to all</span>
-<span class="sd">                data being deleted. Exercise caution when using this option.</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
+<span class="sd">                all data being deleted. Exercise caution when using this option.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -416,14 +418,14 @@
 
 <div class="viewcode-block" id="DataClient.binary_data_capture_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.binary_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">binary_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">component_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]]],</span>
-        <span class="n">binary_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
 
@@ -431,25 +433,26 @@
 <span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; tab in Data on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            binary_data (bytes): The data to be uploaded, respresented in bytes.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
 <span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
-<span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s denoting the</span>
-<span class="sd">                times this data was requested[0] and received[1] by the appropriate sensor.</span>
-<span class="sd">            binary_data (bytes): The data to be uploaded, respresented in bytes.</span>
+<span class="sd">            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects</span>
+<span class="sd">                denoting the times this data was requested[0] and received[1] by the appropriate sensor.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
-            <span class="n">metadata</span><span class="o">=</span><span class="n">SensorMetadata</span><span class="p">(</span>
-                <span class="n">time_requested</span><span class="o">=</span><span class="p">(</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-                <span class="p">),</span>
-                <span class="n">time_received</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">),</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
+                <span class="n">SensorMetadata</span><span class="p">(</span>
+                    <span class="n">time_requested</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">time_received</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">data_request_times</span> <span class="k">else</span> <span class="kc">None</span>
             <span class="p">),</span>
             <span class="n">struct</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Used for tabular data.</span>
             <span class="n">binary</span><span class="o">=</span><span class="n">binary_data</span><span class="p">,</span>
@@ -461,22 +464,22 @@
             <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_BINARY_SENSOR</span><span class="p">,</span>
             <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Not used in app.</span>
-            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be stored as empty string &quot;&quot;.</span>
-            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">_</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="p">[</span><span class="n">sensor_contents</span><span class="p">])</span></div>
 
 <div class="viewcode-block" id="DataClient.tabular_data_capture_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.tabular_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">tabular_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">component_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]]]],</span>
-        <span class="n">tabular_data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_request_times</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">datetime</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
 
@@ -484,6 +487,7 @@
 <span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; tab in Data on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
 <span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
@@ -491,15 +495,16 @@
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
 <span class="sd">            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing</span>
-<span class="sd">                `datetime`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.</span>
-<span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
+<span class="sd">                `datetime` objects denoting the times this data was requested[0] and received[1] by the appropriate sensor.</span>
+
 
 <span class="sd">        Passing a list of tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the same</span>
 <span class="sd">        metadata.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
-<span class="sd">            AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.</span>
+<span class="sd">            AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular</span>
+<span class="sd">                data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
@@ -509,15 +514,15 @@
             <span class="n">s</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
             <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
             <span class="n">sensor_contents</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
-                <span class="n">metadata</span><span class="o">=</span><span class="n">SensorMetadata</span><span class="p">(</span>
-                    <span class="n">time_requested</span><span class="o">=</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-                    <span class="p">),</span>
-                    <span class="n">time_received</span><span class="o">=</span><span class="p">(</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span> <span class="ow">and</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
-                    <span class="p">),</span>
-                <span class="p">),</span>
-                <span class="n">struct</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
+                <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
+                    <span class="n">SensorMetadata</span><span class="p">(</span>
+                        <span class="n">time_requested</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="n">time_received</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                    <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="n">data_request_times</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">struct</span><span class="o">=</span><span class="n">s</span>
             <span class="p">)</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
@@ -527,9 +532,9 @@
             <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_TABULAR_SENSOR</span><span class="p">,</span>
             <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Not used in app.</span>
-            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># Will be stored as empty string &quot;&quot;.</span>
-            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span>
         <span class="p">)</span>
         <span class="n">_</span><span class="p">:</span> <span class="n">DataCaptureUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_capture_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">sensor_contents</span><span class="o">=</span><span class="n">sensor_contents</span><span class="p">)</span></div>
 
@@ -541,14 +546,14 @@
 <div class="viewcode-block" id="DataClient.file_upload"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.file_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">file_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-        <span class="n">file_extension</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">],</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">file_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">file_extension</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
@@ -572,39 +577,40 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
             <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
-            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span> <span class="k">if</span> <span class="n">component_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span> <span class="k">if</span> <span class="n">component_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span> <span class="k">if</span> <span class="n">method_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_FILE</span><span class="p">,</span>
-            <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span> <span class="k">if</span> <span class="n">file_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span> <span class="k">if</span> <span class="n">file_extension</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
+            <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">_</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="DataClient.file_upload_from_path"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.file_upload_from_path">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">file_upload_from_path</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
-        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
         <span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method_parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
 <span class="sd">        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
 <span class="sd">            part_id (str): Part ID of the component associated with the file.</span>
 <span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.</span>
-<span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
+
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
@@ -619,14 +625,14 @@
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
             <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
-            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span> <span class="k">if</span> <span class="n">component_type</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span> <span class="k">if</span> <span class="n">component_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span> <span class="k">if</span> <span class="n">method_name</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">method_name</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
             <span class="nb">type</span><span class="o">=</span><span class="n">DataType</span><span class="o">.</span><span class="n">DATA_TYPE_FILE</span><span class="p">,</span>
             <span class="n">file_name</span><span class="o">=</span><span class="n">file_name</span><span class="p">,</span>
-            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span> <span class="k">if</span> <span class="n">method_parameters</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">method_parameters</span><span class="o">=</span><span class="n">method_parameters</span><span class="p">,</span>
             <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span><span class="p">,</span>
-            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span> <span class="k">if</span> <span class="n">tags</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">_</span><span class="p">:</span> <span class="n">FileUploadResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_upload</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">file_contents</span><span class="o">=</span><span class="n">FileData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">))</span></div>
 
@@ -651,7 +657,68 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">timestamp</span> <span class="o">=</span> <span class="n">Timestamp</span><span class="p">()</span>
         <span class="n">timestamp</span><span class="o">.</span><span class="n">FromDatetime</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">timestamp</span></div></div>
+        <span class="k">return</span> <span class="n">timestamp</span></div>
+
+<div class="viewcode-block" id="DataClient.create_filter"><a class="viewcode-back" href="../../../../autoapi/viam/app/data/client/index.html#viam.app.data.client.DataClient.create_filter">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">robot_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">robot_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">part_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">location_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">organization_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">mime_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bbox_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Filter</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `Filter`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (Optional[str]): Optional name of the component that captured the data being filtered (e.g., &quot;left_motor&quot;).</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (e.g., &quot;motor&quot;).</span>
+<span class="sd">            method (Optional[str]): Optional name of the method used to capture the data being filtered (e.g., &quot;IsPowered&quot;).</span>
+<span class="sd">            robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (e.g., &quot;viam_rover_1&quot;).</span>
+<span class="sd">            robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.</span>
+<span class="sd">            part_name (Optional[str]): Optional name of the system part associated with the data being filtered (e.g., &quot;viam_rover_1-main&quot;).</span>
+<span class="sd">            part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.</span>
+<span class="sd">            location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.</span>
+<span class="sd">            organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.</span>
+<span class="sd">            mime_type (Optional[List[str]]): Optional mime type of data being filtered (e.g., &quot;image/png&quot;).</span>
+<span class="sd">            start_time (Optional[datetime.datetime]): Optional start time of an interval to filter data by.</span>
+<span class="sd">            end_time (Optional[datetime.datetime]): Optional end time of an interval to filter data by.</span>
+<span class="sd">            tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., [&quot;test&quot;]).</span>
+<span class="sd">            bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., [&quot;square&quot;,</span>
+<span class="sd">                &quot;circle&quot;]).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.data.Filter: The `Filter` object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Filter</span><span class="p">(</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span><span class="p">,</span>
+            <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+            <span class="n">robot_name</span><span class="o">=</span><span class="n">robot_name</span><span class="p">,</span>
+            <span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span>
+            <span class="n">part_name</span><span class="o">=</span><span class="n">part_name</span><span class="p">,</span>
+            <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span><span class="p">,</span>
+            <span class="n">location_ids</span><span class="o">=</span><span class="n">location_ids</span><span class="p">,</span>
+            <span class="n">organization_ids</span><span class="o">=</span><span class="n">organization_ids</span><span class="p">,</span>
+            <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
+            <span class="n">interval</span><span class="o">=</span><span class="p">(</span>
+                <span class="n">CaptureInterval</span><span class="p">(</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">DataClient</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">start_time</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">DataClient</span><span class="o">.</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">end_time</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">start_time</span> <span class="ow">and</span> <span class="n">end_time</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">tags_filter</span><span class="o">=</span><span class="n">TagsFilter</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">),</span>
+            <span class="n">bbox_labels</span><span class="o">=</span><span class="n">bbox_labels</span>
+        <span class="p">)</span></div></div>
 </pre></div>
 
            </div>

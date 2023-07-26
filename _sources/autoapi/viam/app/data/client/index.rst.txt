@@ -87,7 +87,7 @@ Attributes
 
       Filter and delete tabular data.
 
-      :param filter: Optional `Filter` specifying tabular data to delete. Not passing a `Filter` will lead to
+      :param filter: Optional `Filter` specifying tabular data to delete. Passing an empty `Filter` will lead to
                      all data being deleted. Exercise caution when using this option.
       :type filter: viam.proto.app.data.Filter
 
@@ -97,8 +97,8 @@ Attributes
 
       Filter and delete binary data.
 
-      :param filter: Optional `Filter` specifying binary data to delete. Not passing a `Filter` will lead to all
-                     data being deleted. Exercise caution when using this option.
+      :param filter: Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
+                     all data being deleted. Exercise caution when using this option.
       :type filter: viam.proto.app.data.Filter
 
 
@@ -212,7 +212,7 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: binary_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], data_request_times: Optional[Tuple[Optional[datetime.datetime], Optional[datetime.datetime]]], binary_data: bytes) -> None
+   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> None
       :async:
 
       Upload binary sensor data.
@@ -220,6 +220,8 @@ Attributes
       Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
       app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
 
+      :param binary_data: The data to be uploaded, respresented in bytes.
+      :type binary_data: bytes
       :param part_id: Part ID of the component used to capture the data.
       :type part_id: str
       :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
@@ -232,16 +234,14 @@ Attributes
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
-      :param data_request_times: Optional tuple containing `datetime`s denoting the
-                                 times this data was requested[0] and received[1] by the appropriate sensor.
+      :param data_request_times: Optional tuple containing `datetime`s objects
+                                 denoting the times this data was requested[0] and received[1] by the appropriate sensor.
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
-      :param binary_data: The data to be uploaded, respresented in bytes.
-      :type binary_data: bytes
 
       :raises GRPCError: If an invalid part ID is passed.
 
 
-   .. py:method:: tabular_data_capture_upload(part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], data_request_times: Optional[List[Tuple[Optional[datetime.datetime], Optional[datetime.datetime]]]], tabular_data: List[Mapping[str, Any]]) -> None
+   .. py:method:: tabular_data_capture_upload(tabular_data: List[Mapping[str, Any]], part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]] = None) -> None
       :async:
 
       Upload tabular sensor data.
@@ -249,6 +249,8 @@ Attributes
       Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
       app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
 
+      :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
+      :type tabular_data: List[Mapping[str, Any]]
       :param part_id: Part ID of the component used to capture the data.
       :type part_id: str
       :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
@@ -262,19 +264,18 @@ Attributes
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
       :type tags: Optional[List[str]]
       :param data_request_times: Optional list of tuples, each containing
-                                 `datetime`s denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                                 `datetime` objects denoting the times this data was requested[0] and received[1] by the appropriate sensor.
       :type data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]]
-      :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
-      :type tabular_data: List[Mapping[str, Any]]
 
       Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
       metadata.
 
       :raises GRPCError: If an invalid part ID is passed.
-      :raises AssertionError: If a list of `Timestamp`s is provided and its length does not match the length of the list of tabular data.
+      :raises AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+          data.
 
 
-   .. py:method:: file_upload(part_id: str, component_type: Optional[str], component_name: Optional[str], method_name: Optional[str], file_name: Optional[str], method_parameters: Optional[Mapping[str, Any]], file_extension: Optional[str], tags: Optional[List[str]], data: Optional[bytes]) -> None
+   .. py:method:: file_upload(part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, file_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, file_extension: Optional[str] = None, tags: Optional[List[str]] = None, data: Optional[bytes] = None) -> None
       :async:
 
       Upload arbitrary file data.
@@ -304,13 +305,15 @@ Attributes
       :raises GRPCError: If an invalid part ID is passed.
 
 
-   .. py:method:: file_upload_from_path(part_id: str, component_type: Optional[str], component_name: Optional[str], method_name: Optional[str], method_parameters: Optional[Mapping[str, Any]], tags: Optional[List[str]], filepath: str) -> None
+   .. py:method:: file_upload_from_path(filepath: str, part_id: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None) -> None
       :async:
 
       Upload arbitrary file data.
 
       Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
 
+      :param filepath: Absolute filepath of file to be uploaded.
+      :type filepath: str
       :param part_id: Part ID of the component associated with the file.
       :type part_id: str
       :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
@@ -323,8 +326,6 @@ Attributes
       :type method_parameters: Optional[str]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
-      :param filepath: Absolute filepath of file to be uploaded.
-      :type filepath: str
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.
@@ -340,6 +341,45 @@ Attributes
 
       :returns: The `Timestamp` object.
       :rtype: google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None) -> viam.proto.app.data.Filter
+      :staticmethod:
+
+      Create a `Filter`.
+
+      :param component_name: Optional name of the component that captured the data being filtered (e.g., "left_motor").
+      :type component_name: Optional[str]
+      :param component_type: Optional type of the componenet that captured the data being filtered (e.g., "motor").
+      :type component_type: Optional[str]
+      :param method: Optional name of the method used to capture the data being filtered (e.g., "IsPowered").
+      :type method: Optional[str]
+      :param robot_name: Optional name of the robot associated with the data being filtered (e.g., "viam_rover_1").
+      :type robot_name: Optional[str]
+      :param robot_id: Optional ID of the robot associated with the data being filtered.
+      :type robot_id: Optional[str]
+      :param part_name: Optional name of the system part associated with the data being filtered (e.g., "viam_rover_1-main").
+      :type part_name: Optional[str]
+      :param part_id: Optional ID of the system part associated with the data being filtered.
+      :type part_id: Optional[str]
+      :param location_ids: Optional list of location IDs associated with the data being filtered.
+      :type location_ids: Optional[List[str]]
+      :param organization_ids: Optional list of organization IDs associated with the data being filtered.
+      :type organization_ids: Optional[List[str]]
+      :param mime_type: Optional mime type of data being filtered (e.g., "image/png").
+      :type mime_type: Optional[List[str]]
+      :param start_time: Optional start time of an interval to filter data by.
+      :type start_time: Optional[datetime.datetime]
+      :param end_time: Optional end time of an interval to filter data by.
+      :type end_time: Optional[datetime.datetime]
+      :param tags: Optional list of tags attached to the data being filtered (e.g., ["test"]).
+      :type tags: Optional[List[str]]
+      :param bbox_labels: Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
+                          "circle"]).
+      :type bbox_labels: Optional[List[str]]
+
+      :returns: The `Filter` object.
+      :rtype: viam.proto.app.data.Filter
 
 
 
