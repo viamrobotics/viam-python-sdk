@@ -11,7 +11,7 @@ For more information, see the [documentation](https://docs.viam.com/program/exte
 ## Project structure
 The definition of the new resources are in the `main` file of the `src` directory.
 
-The `main.py` file contains the definition of a new sensor model and then registers it. It then creates and starts a module. This file is called by the `run.sh` script, which is the entrypoint for this module. Read further to learn how to connect this module to your robot.
+The `run.sh` script is the entrypoint for a module and calls the `main.py` file. The `main.py` file contains the definition of a new sensor model and code to register it. When called, the program creates and starts the module. Read further to learn how to connect this module to your robot.
 
 Outside the `src` directory, there is the `client.py` file. This can be used to test the module once it's connected to the robot. You will have to update the credentials and robot address in that file.
 
