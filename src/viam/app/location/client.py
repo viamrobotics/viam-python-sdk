@@ -452,14 +452,14 @@ class LocationClient:
                 file.write(f"{json.dumps(json.loads(response.config_json), indent=indent)}")
             except Exception as e:
                 LOGGER.err(f"Failed to write config JSON to file {dest}", exc_info=e)
-
         return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
 
-    # TODO: Figure out what a page_token is.
+    # TODO: write logs to `dest` and figure out what a page_token is.
     async def get_robot_part_logs(
         self,
         robot_part_id: str,
         filter: Optional[str] = None,
+        page_token: Optional[str] = None,
         dest: Optional[str] = None,
         errors_only: Optional[bool] = False,
     ) -> List[LogEntry]:
@@ -469,6 +469,7 @@ class LocationClient:
             robot_part_id (str): ID of the robot part to get logs from.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
                 filter).
+            page_token (Optional[str]): Defaults to empty string "".
             dest (Optional[str]): Optional filepath to write the log entries to.
             errors_only (Optional[bool]): Optional boolean specifying whether or not to only include error logs. Defaults to False.
 
@@ -478,33 +479,9 @@ class LocationClient:
         Returns:
             List[LocationClient.LogEntry]: The list of log entries.
         """
-        page_token = ""
-        logs = []
-
-        while True:
-            request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
-            response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
-            if not response.next_page_token or len(response.next_page_token) == 0:
-                break
-            else:
-                logs += [LocationClient.LogEntry.log_entry_from_proto(log_entry=log_entry) for log_entry in response.logs]
-                page_token = response.next_page_token
-
-        if dest:
-            try:
-                file = open(dest, "w")
-                for log in logs:
-                    time = log.time
-                    level = log.level.upper()
-                    logger_name = log.logger_name.split(".")[0]
-                    file_name = log.caller["File"]
-                    line_number = int(log.caller["Line"])
-                    message = log.message
-                    file.write(f"{time}\t\t{level}\t{logger_name}\t{file_name}:{line_number}\t{message}\n")
-            except Exception as e:
-                LOGGER.error(f"Failed to write robot part logs to file {dest}", exc_info=e)
-
-        return logs
+        request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
+        response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
+        return [LocationClient.LogEntry.log_entry_from_proto(log_entry=log) for log in response.logs]
 
     async def tail_robot_part_logs(self):
         raise NotImplementedError()
@@ -650,12 +627,13 @@ class LocationClient:
         request = DeleteRobotRequest(id=robot_id)
         _: DeleteRobotResponse = await self._location_client.DeleteRobot(request, metadata=self._metadata)
 
+    # TODO: What is show_public?
     async def list_fragments(self, organization_id: str, show_public: Optional[bool] = False) -> List[Fragment]:
         """Get a list of fragments under the specified organization.
 
         Args:
             organization_id (str): ID of the organization under which to list the fragments.
-            show_public: Optional boolean specifiying whether or not to only include public fragments. Defaults to False.
+            show_public: Optional boolean specifiying whether or not to show public fragments. Defaults to False.
 
         Raises:
             GRPCError: If an invalid organization ID is passed.
