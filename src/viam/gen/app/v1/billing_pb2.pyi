@@ -409,22 +409,30 @@ class GetOrgBillingInformationResponse(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     BILLING_EMAIL_FIELD_NUMBER: builtins.int
     METHOD_FIELD_NUMBER: builtins.int
+    BILLING_TIER_FIELD_NUMBER: builtins.int
     type: global___PaymentMethodType.ValueType
     billing_email: builtins.str
 
     @property
     def method(self) -> global___PaymentMethodCard:
         """defined if type is PAYMENT_METHOD_TYPE_CARD"""
+    billing_tier: builtins.str
+    'Only return billing_tier for billing dashboard admin users'
 
-    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=...) -> None:
+    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=..., billing_tier: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_method', b'_method', 'method', b'method']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_tier', b'billing_tier', 'method', b'method']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_method', b'_method', 'billing_email', b'billing_email', 'method', b'method', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_email', b'billing_email', 'billing_tier', b'billing_tier', 'method', b'method', 'type', b'type']) -> None:
         ...
 
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_billing_tier', b'_billing_tier']) -> typing_extensions.Literal['billing_tier'] | None:
+        ...
+
+    @typing.overload
     def WhichOneof(self, oneof_group: typing_extensions.Literal['_method', b'_method']) -> typing_extensions.Literal['method'] | None:
         ...
 global___GetOrgBillingInformationResponse = GetOrgBillingInformationResponse

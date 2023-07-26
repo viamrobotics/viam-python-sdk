@@ -37,7 +37,7 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    TagsFilter
+    TagsFilter,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -361,9 +361,10 @@ class DataClient:
             metadata=(
                 SensorMetadata(
                     time_requested=self.datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
-                    time_received=self.datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None
+                    time_received=self.datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
                 )
-                if data_request_times else None
+                if data_request_times
+                else None
             ),
             struct=None,  # Used for tabular data.
             binary=binary_data,
@@ -428,12 +429,14 @@ class DataClient:
                 metadata=(
                     SensorMetadata(
                         time_requested=self.datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None
+                        time_received=self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
                     )
-                    if data_request_times[i] else None
+                    if data_request_times[i]
+                    else None
                 )
-                if data_request_times else None,
-                struct=s
+                if data_request_times
+                else None,
+                struct=s,
             )
 
         metadata = UploadMetadata(
@@ -445,7 +448,7 @@ class DataClient:
             file_name=None,  # Not used in app.
             method_parameters=method_parameters,
             file_extension=None,  # Will be stored as empty string "".
-            tags=tags
+            tags=tags,
         )
         _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
 
@@ -507,7 +510,7 @@ class DataClient:
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
-        tags: Optional[List[str]] = None
+        tags: Optional[List[str]] = None,
     ) -> None:
         """Upload arbitrary file data.
 
@@ -585,7 +588,7 @@ class DataClient:
         start_time: Optional[datetime] = None,
         end_time: Optional[datetime] = None,
         tags: Optional[List[str]] = None,
-        bbox_labels: Optional[List[str]] = None
+        bbox_labels: Optional[List[str]] = None,
     ) -> Filter:
         """Create a `Filter`.
 
@@ -623,10 +626,11 @@ class DataClient:
             interval=(
                 CaptureInterval(
                     start=DataClient.datetime_to_timestamp(start_time) if start_time else None,
-                    end=DataClient.datetime_to_timestamp(end_time) if end_time else None
+                    end=DataClient.datetime_to_timestamp(end_time) if end_time else None,
                 )
             )
-            if start_time and end_time else None,
+            if start_time and end_time
+            else None,
             tags_filter=TagsFilter(tags=tags),
-            bbox_labels=bbox_labels
+            bbox_labels=bbox_labels,
         )
