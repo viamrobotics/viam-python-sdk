@@ -416,7 +416,7 @@ Classes
       
 
 
-.. py:class:: GetGeometriesRequest(*, name: str = ...)
+.. py:class:: GetGeometriesRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -427,10 +427,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
       The component name
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetGeometriesResponse(*, geometries: collections.abc.Iterable[global___Geometry] | None = ...)
@@ -450,7 +472,7 @@ Classes
       All geometries associated with the component, in their current configuration, in the frame of that component.
 
 
-.. py:class:: GetKinematicsRequest(*, name: str = ...)
+.. py:class:: GetKinematicsRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -461,10 +483,32 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
       The component name
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:class:: GetKinematicsResponse(*, format: global___KinematicsFileFormat = ..., kinematics_data: bytes = ...)

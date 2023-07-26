@@ -1,0 +1,56 @@
+:py:mod:`viam.gen.component.powersensor.v1.powersensor_grpc`
+============================================================
+
+.. py:module:: viam.gen.component.powersensor.v1.powersensor_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.component.powersensor.v1.powersensor_grpc.PowerSensorServiceBase
+   viam.gen.component.powersensor.v1.powersensor_grpc.PowerSensorServiceStub
+
+
+
+
+.. py:class:: PowerSensorServiceBase
+
+
+   Bases: :py:obj:`abc.ABC`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetVoltage(stream: grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetVoltageRequest, component.powersensor.v1.powersensor_pb2.GetVoltageResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetCurrent(stream: grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetCurrentRequest, component.powersensor.v1.powersensor_pb2.GetCurrentResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetPower(stream: grpclib.server.Stream[component.powersensor.v1.powersensor_pb2.GetPowerRequest, component.powersensor.v1.powersensor_pb2.GetPowerResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: PowerSensorServiceStub(channel: grpclib.client.Channel)
+
+
+
