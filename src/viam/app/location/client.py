@@ -1,9 +1,9 @@
 import json
-from typing import Any, List, Mapping, Optional
-from typing_extensions import Self
 from datetime import datetime
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
+from typing_extensions import Self
 
 from viam import logging
 from viam.proto.app import (
@@ -16,8 +16,9 @@ from viam.proto.app import (
     DeleteRobotPartResponse,
     DeleteRobotRequest,
     DeleteRobotResponse,
-    Fragment as FragmentPB,
-    SharedSecret,
+)
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import (
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -39,7 +40,9 @@ from viam.proto.app import (
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
-    LogEntry as LogEntryPB,
+)
+from viam.proto.app import LogEntry as LogEntryPB
+from viam.proto.app import (
     MarkPartForRestartRequest,
     MarkPartForRestartResponse,
     NewRobotPartRequest,
@@ -47,7 +50,10 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Robot,
-    RobotPart as RobotPartPB,
+)
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import (
+    SharedSecret,
     ShareLocationRequest,
     ShareLocationResponse,
     UnshareLocationRequest,
@@ -72,8 +78,22 @@ class LocationClient:
     """
 
     class RobotPart:
+        """`RobotPart` shadow class.
+
+        Copy the attributes of a `viam.proto.app.RobotPart` object and convert and store its internal `Timestamp` objects as Python
+        `datetime` objects. It also converts the relevant `Struct` objects into dictionaries, mapping strings to items of type `Any`.
+        """
+
         @classmethod
         def robot_part_from_proto(cls, robot_part: RobotPartPB) -> Self:
+            """Create a `RobotPart` from the .proto defined `RobotPart`.
+
+            Args:
+                robot_part (viam.proto.app.RobotPart): The object to copy from.
+
+            Returns:
+                RobotPart: The `RobotPart`.
+            """
             self = cls()
             self.proto = robot_part
             self.id = robot_part.id
@@ -110,8 +130,22 @@ class LocationClient:
         proto: RobotPartPB
 
     class LogEntry:
+        """`LogEntry` shadow class.
+
+        Copy the attributes of a `viam.proto.app.LogEntry` object and convert and store its internal `Timestamp` object as a Python
+        `datetime` object. It also converts the relevant `Struct` objects into dictionaries, mapping strings to items of type `Any`.
+        """
+
         @classmethod
         def log_entry_from_proto(cls, log_entry: LogEntryPB) -> Self:
+            """Create a `LogEntry` from the .proto defined `LogEntry`.
+
+            Args:
+                log_entry (viam.proto.app.LogEntry): The object to copy from.
+
+            Returns:
+                LogEntry: The `LogEntry`.
+            """
             self = cls()
             self.proto = log_entry
             self.host = log_entry.host
@@ -136,8 +170,22 @@ class LocationClient:
         proto: LogEntryPB
 
     class Fragment:
+        """`Fragment` shadow class.
+
+        Copy the attributes of a `viam.proto.app.Fragment` object and convert and store its internal `Timestamp` object as a Python
+        `datetime` object. It also converts the relevant `Struct` object into a dictionary, mapping strings to items of type `Any`.
+        """
+
         @classmethod
         def fragment_from_proto(cls, fragment: FragmentPB) -> Self:
+            """Create a `Fragment` from the .proto defined `Fragment`.
+
+            Args:
+                fragment (viam.proto.app.Fragment): The object to copy from.
+
+            Returns:
+                Fragment: The `Fragment`.
+            """
             self = cls()
             self.proto = fragment
             self.id = fragment.id
@@ -232,14 +280,14 @@ class LocationClient:
         Args:
             organization_id (str): ID of the organization to create the location under.
             name (str): Name of the location.
-            parent_location_id (Optional[str]): Optional new parent location to move the location under. Defaults to the location ID
-                provided at `LocationClient` instantiation. A root level location is created if no default location ID exists.
+            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to the location ID provided at
+                `LocationClient` instantiation. A root level location is created if no default location ID exists.
 
         Raises:
-            GRPCError: If either an invalid organization ID or parent location ID is passed.
+            GRPCError: If either an invalid organization ID, name, or parent location ID is passed.
 
         Returns:
-            viam.proto.app.Location: A `Location` object representing the newly created location.
+            viam.proto.app.Location: The newly created location.
         """
         location_id = parent_location_id if parent_location_id else self._location_id
         request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=location_id)
@@ -250,7 +298,7 @@ class LocationClient:
         """Get a location.
 
         Args:
-            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `LocationClient  instantiation.
+            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `LocationClient` instantiation.
                 If no default location ID was passed, a GRPCError will be thrown.
 
         Raises:
@@ -271,15 +319,16 @@ class LocationClient:
 
         Args:
             location_id (str): ID of the location to update.
-            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "". No change if not passed.
-            parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string "". No
-                change if not passed.
+            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
+                change).
+            parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string ""
+                (i.e., no new parent location is assigned).
 
         Raises:
-            GRPCError: If an invalid location ID is passed.
+            GRPCError: If either an invalid location ID, name, or parent location ID is passed.
 
         Returns:
-            viam.proto.app.Location: A `Location` object representing the newly updated location.
+            viam.proto.app.Location: The newly updated location.
         """
         request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id, region=region)
         response: UpdateLocationResponse = await self._location_client.UpdateLocation(request, metadata=self._metadata)
@@ -301,7 +350,7 @@ class LocationClient:
         """Get a list of all locations under the specified organization.
 
         Args:
-            organization_id (str): ID of the organization under which to list the locations.
+            organization_id (str): ID of the organization to retrieve the locations from.
 
         Raises:
             GRPCError: If an invalid organization ID is passed.
@@ -319,6 +368,9 @@ class LocationClient:
         Args:
             organization_id (str): ID of the organization to share the location with.
             location_id (Optional[str]): ID of the location to be shared. Defaults to the current authorized location.
+
+        Raises:
+            GRPCError: Permission denied.
         """
         location_id = location_id if location_id else self._location_id
         request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
@@ -330,6 +382,9 @@ class LocationClient:
         Args:
             organization_id (str): ID of the organization to unshare the location with.
             location_id (Optional[str]): ID of the location to be unshared. Defaults to the current authorized location.
+
+        Raises:
+            GRPCError: Permission denied.
         """
         location_id = location_id if location_id else self._location_id
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
@@ -373,7 +428,7 @@ class LocationClient:
             GRPCError: If an invalid robot ID is passed.
 
         Returns:
-            List[viam.proto.app.RobotPart]: The list of robot parts.
+            List[LocationClient.RobotPart]: The list of robot parts.
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
         response: GetRobotPartsResponse = await self._location_client.GetRobotParts(request, metadata=self._metadata)
@@ -385,13 +440,13 @@ class LocationClient:
         Args:
             robot_part_id (str): ID of the robot part to get.
             dest (Optional[str]): Optional filepath to write the robot part's config file in JSON format to.
-            indent (Optional[int]): Optional size of indent when writing config to `dest`.
+            indent (Optional[int]): Optional size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
 
         Returns:
-            RobotPart: The robot part.
+            LocationClient.RobotPart: The robot part.
         """
         request = GetRobotPartRequest(id=robot_part_id)
         response: GetRobotPartResponse = await self._location_client.GetRobotPart(request, metadata=self._metadata)
@@ -404,21 +459,21 @@ class LocationClient:
                 LOGGER.err(f"Failed to write config JSON to file {dest}", exc_info=e)
         return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
 
-    # Not sure what a page_token is. Response contains `next_page_token`.
-    # TODO: write logs to `dest`.
+    # TODO: write logs to `dest` and figure out what a page_token is.
     async def get_robot_part_logs(
         self,
         robot_part_id: str,
         filter: Optional[str] = None,
         page_token: Optional[str] = None,
         dest: Optional[str] = None,
-        errors_only: Optional[bool] = False
+        errors_only: Optional[bool] = False,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
         Args:
             robot_part_id (str): ID of the robot part to get logs from.
-            filter (Optional[str]): Only include logs that contain the string `filter`. Defaults to empty string "".
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+                filter).
             page_token (Optional[str]): Defaults to empty string "".
             dest (Optional[str]): Optional filepath to write the log entries to.
             errors_only (Optional[bool]): Optional boolean specifying whether or not to only include error logs. Defaults to False.
@@ -427,7 +482,7 @@ class LocationClient:
             GRPCError: If an invalid robot part ID is passed.
 
         Returns:
-            List[viam.proto.app.LogEntry]: The list of log entries.
+            List[LocationClient.LogEntry]: The list of log entries.
         """
         request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
         response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
@@ -441,18 +496,18 @@ class LocationClient:
         raise NotImplementedError(self)
 
     async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
-        """Change the name and/or assign a new configuration to a robot part.
+        """Change the name and assign an optional new configuration to a robot part.
 
         Args:
             robot_part_id (str): ID of the robot part to update.
             name (str): New name to be updated on the robot part.
-            robot_config (Mapping[str, Any]): New config represented as map to be updated on the robot part.
+            robot_config (Mapping[str, Any]): Optional new config represented as a dictionary to be updated on the robot part.
 
         Raises:
-            GRPCError: If either an invalid robot part ID or name is passed.
+            GRPCError: If either an invalid robot part ID, name, or config is passed.
 
         Returns:
-            viam.proto.app.RobotPart: A `RobotPart` object representing the newly updated robot part.
+            LocationClient.RobotPart: The newly updated robot part.
         """
         robot_config_struct = dict_to_struct(robot_config) if robot_config else None
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=robot_config_struct)
@@ -480,7 +535,7 @@ class LocationClient:
         """Delete the specified robot part.
 
         Args:
-            robot_part_id (str): ID of the robot part to delete.
+            robot_part_id (str): ID of the robot part to delete. Must be specified.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -513,7 +568,8 @@ class LocationClient:
         """Get a list of all robots under the specified location.
 
         Args:
-            location_id (Optional[str]): ID of the location under which to list the robots. Defaults to the current authorized location.
+            location_id (Optional[str]): ID of the location to retrieve the robots from. Defaults to the location ID provided at
+                `LocationClient` instantiation.
 
         Raises:
             GRPCError: If an invalid location ID is passed.
@@ -526,7 +582,7 @@ class LocationClient:
         response: ListRobotsResponse = await self._location_client.ListRobots(request, metadata=self._metadata)
         return response.robots
 
-    async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
+    async def new_robot(self, name: str = None, location_id: Optional[str] = None) -> str:
         """Create a new robot.
 
         Args:
@@ -546,16 +602,18 @@ class LocationClient:
 
     async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
         """Change the name of an existing robot.
+
         Args:
             robot_id (str): ID of the robot to update.
             name (str): New name to be updated on the robot.
-            location_id (Optional[str]): ID of the location under which the robot exists. Defaults to the current authorized location.
+            location_id (Optional[str]): ID of the location under which the robot exists. Defaults to the location ID provided at
+                `LocationClient` instantiation
 
         Raises:
             GRPCError: If either an invalid robot ID, name, or location ID is passed.
 
         Returns:
-            viam.proto.app.Robot: A `Robot` object representing the newly updated robot.
+            viam.proto.app.Robot: The newly updated robot.
         """
         location_id = location_id if location_id else self._location_id
         request = UpdateRobotRequest(id=robot_id, name=name, location=location_id)
@@ -564,12 +622,17 @@ class LocationClient:
 
     async def delete_robot(self, robot_id: str) -> None:
         """Delete the specified robot.
+
         Args:
             robot_id (str): ID of the robot to delete.
+
+        Raises:
+            GRPCError: If an invalid robot ID is passed.
         """
         request = DeleteRobotRequest(id=robot_id)
         _: DeleteRobotResponse = await self._location_client.DeleteRobot(request, metadata=self._metadata)
 
+    # TODO: What is show_public?
     async def list_fragments(self, organization_id: str, show_public: Optional[bool] = False) -> List[Fragment]:
         """Get a list of fragments under the specified organization.
 
@@ -577,8 +640,11 @@ class LocationClient:
             organization_id (str): ID of the organization under which to list the fragments.
             show_public: Optional boolean specifiying whether or not to show public fragments. Defaults to False.
 
+        Raises:
+            GRPCError: If an invalid organization ID is passed.
+
         Returns:
-            List[viam.proto.app]: The list of fragments.
+            List[LocationClient.Fragment]: The list of fragments.
         """
         request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
         response: ListFragmentsResponse = await self._location_client.ListFragments(request, metadata=self._metadata)
@@ -590,8 +656,11 @@ class LocationClient:
         Args:
             fragment_id (str): ID of the fragment to get.
 
+        Raises:
+            GRPCError: If an invalid fragment ID is passed.
+
         Returns:
-            viam.proto.app.Fragment: The fragment.
+            LocationClient.Fragment: The fragment.
         """
         request = GetFragmentRequest(id=fragment_id)
         response: GetFragmentResponse = await self._location_client.GetFragment(request, metadata=self._metadata)
