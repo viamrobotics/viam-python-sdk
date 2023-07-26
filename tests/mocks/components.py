@@ -110,7 +110,10 @@ class MockArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def get_kinematics(self, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+        self.extra = extra
         return self.kinematics
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:

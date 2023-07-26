@@ -90,7 +90,7 @@ class MyArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def get_kinematics(self, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         dirname = os.path.dirname(__file__)
         filepath = os.path.join(dirname, "./my_arm_kinematics.json")
         with open(filepath, mode="rb") as f:

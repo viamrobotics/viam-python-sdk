@@ -110,7 +110,7 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase):
         assert request is not None
         arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        format, kinematics_data = await arm.get_kinematics(timeout=timeout)
+        format, kinematics_data = await arm.get_kinematics(extra=struct_to_dict(request.extra), timeout=timeout)
         response = GetKinematicsResponse(format=format, kinematics_data=kinematics_data)
         await stream.send_message(response)
 
