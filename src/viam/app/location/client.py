@@ -35,8 +35,6 @@ from viam.proto.app import (
     ListFragmentsResponse,
     ListLocationsRequest,
     ListLocationsResponse,
-    ListOrganizationsRequest,
-    ListOrganizationsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -235,11 +233,8 @@ class LocationClient:
     async def create_organization(self):
         raise NotImplementedError()
 
-    # TODO: Unimplement.
     async def list_organizations(self):
-        request = ListOrganizationsRequest()
-        response: ListOrganizationsResponse = await self._location_client.ListOrganizations(request, metadata=self._metadata)
-        return response.organizations
+        raise NotImplementedError()
 
     async def list_organizations_by_user(self):
         raise NotImplementedError()
