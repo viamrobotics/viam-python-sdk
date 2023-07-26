@@ -83,7 +83,7 @@ class LocationClient:
         """
 
         @classmethod
-        def robot_part_from_proto(cls, robot_part: RobotPartPB) -> Self:
+        def from_proto(cls, robot_part: RobotPartPB) -> Self:
             """Create a `RobotPart` from the .proto defined `RobotPart`.
 
             Args:
@@ -135,7 +135,7 @@ class LocationClient:
         """
 
         @classmethod
-        def log_entry_from_proto(cls, log_entry: LogEntryPB) -> Self:
+        def from_proto(cls, log_entry: LogEntryPB) -> Self:
             """Create a `LogEntry` from the .proto defined `LogEntry`.
 
             Args:
@@ -175,7 +175,7 @@ class LocationClient:
         """
 
         @classmethod
-        def fragment_from_proto(cls, fragment: FragmentPB) -> Self:
+        def from_proto(cls, fragment: FragmentPB) -> Self:
             """Create a `Fragment` from the .proto defined `Fragment`.
 
             Args:
@@ -427,7 +427,7 @@ class LocationClient:
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
         response: GetRobotPartsResponse = await self._location_client.GetRobotParts(request, metadata=self._metadata)
-        return [LocationClient.RobotPart.robot_part_from_proto(robot_part=part) for part in response.parts]
+        return [LocationClient.RobotPart.from_proto(robot_part=part) for part in response.parts]
 
     async def get_robot_part(self, robot_part_id: Optional[str], dest: Optional[str] = None, indent: Optional[int] = 4) -> RobotPart:
         """Get a robot part.
@@ -453,7 +453,7 @@ class LocationClient:
             except Exception as e:
                 LOGGER.err(f"Failed to write config JSON to file {dest}", exc_info=e)
 
-        return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
+        return LocationClient.RobotPart.from_proto(robot_part=response.part)
 
     # TODO: Figure out what a page_token is.
     async def get_robot_part_logs(
@@ -487,7 +487,7 @@ class LocationClient:
             if not response.next_page_token or len(response.next_page_token) == 0:
                 break
             else:
-                logs += [LocationClient.LogEntry.log_entry_from_proto(log_entry=log_entry) for log_entry in response.logs]
+                logs += [LocationClient.LogEntry.from_proto(log_entry=log_entry) for log_entry in response.logs]
                 page_token = response.next_page_token
 
         if dest:
@@ -530,7 +530,7 @@ class LocationClient:
         robot_config_struct = dict_to_struct(robot_config) if robot_config else None
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=robot_config_struct)
         response: UpdateRobotPartResponse = await self._location_client.UpdateRobotPart(request, metadata=self._metadata)
-        return LocationClient.RobotPart.robot_part_from_proto(robot_part=response.part)
+        return LocationClient.RobotPart.from_proto(robot_part=response.part)
 
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
         """Create a new robot part.
@@ -665,7 +665,7 @@ class LocationClient:
         """
         request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
         response: ListFragmentsResponse = await self._location_client.ListFragments(request, metadata=self._metadata)
-        return [LocationClient.Fragment.fragment_from_proto(fragment=fragment) for fragment in response.fragments]
+        return [LocationClient.Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
     async def get_fragment(self, fragment_id: str) -> Fragment:
         """Get a fragment.
@@ -681,7 +681,7 @@ class LocationClient:
         """
         request = GetFragmentRequest(id=fragment_id)
         response: GetFragmentResponse = await self._location_client.GetFragment(request, metadata=self._metadata)
-        return LocationClient.Fragment.fragment_from_proto(fragment=response.fragment)
+        return LocationClient.Fragment.from_proto(fragment=response.fragment)
 
     async def create_fragment(self):
         raise NotImplementedError()
