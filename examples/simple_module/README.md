@@ -20,7 +20,7 @@ These steps assume that you have a robot available at [app.viam.com](app.viam.co
 
 The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, your file may be at `/home/viam-python-sdk/examples/simple_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
 
-Once the module has been added to your robot, you can then add a component that uses the `MySensor` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details.
+Once the module has been added to your robot, add a new component that uses the `MySensor` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details.
 
 An example configuration for a Sensor component could look like this:
 ```json
