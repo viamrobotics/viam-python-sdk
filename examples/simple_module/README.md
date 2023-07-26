@@ -13,7 +13,7 @@ The definition of the new resources are in the `main` file of the `src` director
 
 The `run.sh` script is the entrypoint for a module and calls the `main.py` file. The `main.py` file contains the definition of a new sensor model and code to register it. When called, the program creates and starts the module. Read further to learn how to connect this module to your robot.
 
-Outside the `src` directory, there is the `client.py` file. This can be used to test the module once it's connected to the robot. You will have to update the credentials and robot address in that file.
+Outside the `src` directory, there is a `client.py` file. You can use this file to test the module once you have connected to your robot and configured the module. You will have to update the credentials and robot address in that file.
 
 ## How to use
 These steps assume that you have a robot available at [app.viam.com](app.viam.com).
