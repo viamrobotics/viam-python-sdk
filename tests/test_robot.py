@@ -552,7 +552,9 @@ class TestRobotClient:
                 async def is_moving(self) -> bool:
                     return await self.actual_client.is_moving()
 
-                async def get_kinematics(self, timeout: Optional[float] = None) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+                async def get_kinematics(
+                    self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+                ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
                     return await self.actual_client.get_kinematics(timeout=timeout)
 
             old_create_client = Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client

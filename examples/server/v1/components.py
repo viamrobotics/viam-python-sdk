@@ -94,7 +94,7 @@ class ExampleArm(Arm):
     async def is_moving(self):
         return not self.is_stopped
 
-    async def get_kinematics(self, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
+    async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         return self.kinematics
 
 

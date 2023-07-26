@@ -66,8 +66,9 @@ class TestArm:
 
     @pytest.mark.asyncio
     async def test_get_kinematics(self):
-        kd = await self.arm.get_kinematics()
+        kd = await self.arm.get_kinematics(extra={"1": "2"})
         assert kd == self.kinematics
+        assert self.arm.extra == {"1": "2"}
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -249,8 +250,9 @@ class TestClient:
     async def test_get_kinematics(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmClient(self.name, channel)
-            kd = await client.get_kinematics()
+            kd = await client.get_kinematics(extra={"1": "2"})
             assert kd == self.kinematics
+            assert self.arm.extra == {"1": "2"}
 
     @pytest.mark.asyncio
     async def test_do(self):
