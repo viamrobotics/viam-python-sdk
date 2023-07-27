@@ -4,8 +4,8 @@ from grpclib.client import Channel
 from typing_extensions import Self
 
 from viam import logging
-from viam.app.data_client import DataClient
 from viam.app.app_client import AppClient
+from viam.app.data_client import DataClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)

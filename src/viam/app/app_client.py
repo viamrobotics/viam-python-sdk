@@ -1,25 +1,22 @@
 import json
-from typing import Any, List, Mapping, Optional
-from typing_extensions import Self
 from datetime import datetime
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
+from typing_extensions import Self
 
 from viam import logging
 from viam.proto.app import (
-    RobotPart as RobotPartPB,
-    LogEntry as LogEntryPB,
-    Fragment as FragmentPB
-)
-from viam.proto.app import (
     AppServiceStub,
-    SharedSecret,
     CreateLocationRequest,
     CreateLocationResponse,
     DeleteLocationRequest,
     DeleteRobotPartRequest,
     DeleteRobotRequest,
     DeleteRobotResponse,
+)
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import (
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -36,9 +33,14 @@ from viam.proto.app import (
     ListFragmentsResponse,
     ListLocationsRequest,
     ListLocationsResponse,
+    ListOrganizationsRequest,
+    ListOrganizationsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
+)
+from viam.proto.app import LogEntry as LogEntryPB
+from viam.proto.app import (
     MarkPartForRestartRequest,
     MarkPartForRestartResponse,
     NewRobotPartRequest,
@@ -46,6 +48,10 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Robot,
+)
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import (
+    SharedSecret,
     ShareLocationRequest,
     UnshareLocationRequest,
     UpdateLocationRequest,
@@ -55,7 +61,7 @@ from viam.proto.app import (
     UpdateRobotRequest,
     UpdateRobotResponse,
 )
-from viam.utils import dict_to_struct, struct_to_dict, datetime_to_timestamp
+from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -124,7 +130,7 @@ class RobotPart:
             fqdn=self.fqdn,
             local_fqdn=self.local_fqdn,
             created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
-            secrets=self.secrets
+            secrets=self.secrets,
         )
 
 
@@ -174,7 +180,7 @@ class LogEntry:
             message=self.message,
             caller=dict_to_struct(self.caller) if self.caller else None,
             stack=self.stack,
-            fields=[dict_to_struct(field) for field in self.fields]
+            fields=[dict_to_struct(field) for field in self.fields],
         )
 
 
@@ -230,7 +236,7 @@ class Fragment:
             organization_name=self.organization_name,
             robot_part_count=self.robot_part_count,
             organization_count=self.organization_count,
-            only_used_by_owner=self.only_used_by_owner
+            only_used_by_owner=self.only_used_by_owner,
         )
 
 
@@ -264,7 +270,9 @@ class AppClient:
         raise NotImplementedError()
 
     async def list_organizations(self):
-        raise NotImplementedError()
+        request = ListOrganizationsRequest()
+        response: ListOrganizationsResponse = await self._location_client.ListOrganizations(request, metadata=self._metadata)
+        return response.organizations
 
     async def list_organizations_by_user(self):
         raise NotImplementedError()
@@ -397,7 +405,8 @@ class AppClient:
 
         Raises:
             GRPCError: Permission denied. A location can only be shared by users who are owners of both organizations involved. An
-                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method.
+                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method. A
+                GRPCError is also thrown when attempting to share a location with an organization it is already shared with.
         """
         location_id = location_id if location_id else self._location_id
         request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
@@ -412,7 +421,8 @@ class AppClient:
 
         Raises:
             GRPCError: Permission denied. A location can only be unshared by users who are owners of both organizations involved. An
-                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method.
+                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method. A
+                GRPCError is also thrown when attempting to unshare a location with an organization it is not already shared with.
         """
         location_id = location_id if location_id else self._location_id
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
@@ -495,7 +505,7 @@ class AppClient:
         filter: Optional[str] = None,
         dest: Optional[str] = None,
         errors_only: Optional[bool] = None,
-        num_pages: Optional[int] = None
+        num_pages: Optional[int] = None,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -523,29 +533,21 @@ class AppClient:
 
         if num_pages == 0:
             while True:
-                next_page_token = self._get_robot_part_logs(
-                    robot_part_id=robot_part_id,
-                    filter=filter,
-                    errors_only=errors_only,
-                    page_token=page_token,
-                    logs=logs
+                next_page_token = await self._get_robot_part_logs(
+                    robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
                 )
                 if not next_page_token or len(next_page_token) == 0:
                     break
                 page_token = next_page_token
         else:
             while True:
-                response = self._get_robot_part_logs(
-                    robot_part_id=robot_part_id,
-                    filter=filter,
-                    errors_only=errors_only,
-                    page_token=page_token,
-                    logs=logs
+                next_page_token = await self._get_robot_part_logs(
+                    robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
                 )
                 num_pages -= 1
-                if (not response.next_page_token or len(response.next_page_token) == 0) or num_pages == 0:
+                if (not next_page_token or len(next_page_token) == 0) or num_pages == 0:
                     break
-                page_token = response.next_page_token
+                page_token = next_page_token
 
         if dest:
             try:
@@ -561,19 +563,14 @@ class AppClient:
             except Exception as e:
                 LOGGER.error(f"Failed to write robot part logs to file {dest}", exc_info=e)
 
-        return [LogEntry.from_proto(log) for log in logs]
+        return logs
 
-    def _get_robot_part_logs(
-        self,
-        robot_part_id: str,
-        filter: str,
-        errors_only: bool,
-        page_token: str,
-        logs: List[LogEntryPB]
+    async def _get_robot_part_logs(
+        self, robot_part_id: str, filter: str, errors_only: bool, page_token: str, logs: List[LogEntryPB]
     ) -> str:
         request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
         response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
-        logs += response.logs
+        logs += [LogEntry.from_proto(log) for log in response.logs]
         return response.next_page_token
 
     async def tail_robot_part_logs(self):

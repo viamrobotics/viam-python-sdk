@@ -48,8 +48,7 @@ from viam.proto.app.datasync import (
     SensorMetadata,
     UploadMetadata,
 )
-from viam.utils import struct_to_dict, datetime_to_timestamp
-
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
