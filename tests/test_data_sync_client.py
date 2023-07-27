@@ -4,12 +4,12 @@ from typing import List
 
 from grpclib.testing import ChannelFor
 
-from viam.app.data.client import DataClient
+from viam.app.data_client import DataClient
 from viam.proto.app.datasync import (
     UploadMetadata,
     SensorData
 )
-from viam.utils import struct_to_dict
+from viam.utils import struct_to_dict, datetime_to_timestamp
 
 from .mocks.services import MockDataSync
 
@@ -24,7 +24,7 @@ TAGS = ["tag"]
 BINARY_DATA = b'binary_data'
 METHOD_NAME = "method_name"
 DATETIMES = (datetime.now(), datetime.now())
-TIMESTAMPS = (DataClient.datetime_to_timestamp(DATETIMES[0]), DataClient.datetime_to_timestamp(DATETIMES[1]))
+TIMESTAMPS = (datetime_to_timestamp(DATETIMES[0]), datetime_to_timestamp(DATETIMES[1]))
 METHOD_PARAMETERS = {}
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"

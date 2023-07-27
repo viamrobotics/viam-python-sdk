@@ -3,8 +3,10 @@ import contextvars
 import functools
 import sys
 import threading
+from datetime import datetime
 from typing import Any, Dict, List, Mapping, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
+from google.protobuf.timestamp_pb2 import Timestamp
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
@@ -149,6 +151,12 @@ def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
 
 def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
+
+
+def datetime_to_timestamp(dt: datetime) -> Timestamp:
+    timestamp = Timestamp()
+    timestamp.FromDatetime(dt)
+    return timestamp
 
 
 def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]:

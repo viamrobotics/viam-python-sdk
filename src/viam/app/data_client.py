@@ -3,15 +3,12 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
 from google.protobuf.struct_pb2 import Struct
-from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
     AddTagsToBinaryDataByFilterRequest,
-    AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
-    AddTagsToBinaryDataByIDsResponse,
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
@@ -51,7 +48,8 @@ from viam.proto.app.datasync import (
     SensorMetadata,
     UploadMetadata,
 )
-from viam.utils import struct_to_dict
+from viam.utils import struct_to_dict, datetime_to_timestamp
+
 
 LOGGER = logging.getLogger(__name__)
 
@@ -59,8 +57,8 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retrieving data from app.
 
-    Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
-    `AppClient`.
+    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
+    `ViamClient`.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -232,7 +230,7 @@ class DataClient:
             GRPCError: If no `BinaryID` objects or tags are provided.
         """
         request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
-        _: AddTagsToBinaryDataByIDsResponse = await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
+        await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
 
     async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
         """Add tags to binary data.
@@ -247,7 +245,7 @@ class DataClient:
         """
         filter = filter if filter else Filter()
         request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
-        _: AddTagsToBinaryDataByFilterResponse = await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
+        await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
 
     async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> int:
         """Remove tags from binary.
@@ -360,8 +358,8 @@ class DataClient:
         sensor_contents = SensorData(
             metadata=(
                 SensorMetadata(
-                    time_requested=self.datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
-                    time_received=self.datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
+                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
+                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
                 )
                 if data_request_times
                 else None
@@ -380,7 +378,7 @@ class DataClient:
             file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
+        await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
 
     async def tabular_data_capture_upload(
         self,
@@ -428,8 +426,8 @@ class DataClient:
             sensor_contents[i] = SensorData(
                 metadata=(
                     SensorMetadata(
-                        time_requested=self.datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
+                        time_requested=datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
+                        time_received=datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
                     )
                     if data_request_times[i]
                     else None
@@ -450,7 +448,7 @@ class DataClient:
             file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
+        await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
 
     async def _data_capture_upload(self, metadata: UploadMetadata, sensor_contents: List[SensorData]) -> DataCaptureUploadResponse:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
@@ -500,7 +498,7 @@ class DataClient:
             file_extension=file_extension,
             tags=tags,
         )
-        _: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
 
     async def file_upload_from_path(
         self,
@@ -548,7 +546,7 @@ class DataClient:
             file_extension=file_extension,
             tags=tags,
         )
-        _: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
 
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)
@@ -558,20 +556,6 @@ class DataClient:
             await stream.send_message(request_file_contents, end=True)
             response: FileUploadResponse = await stream.recv_message()
             return response
-
-    @staticmethod
-    def datetime_to_timestamp(dt: datetime) -> Timestamp:
-        """Convert a Python native `datetime` into a `Timestamp`.
-
-        Args:
-            dt (datetime.datetime): A `datetime` object. UTC is assumed in the conversion if the object is naive to timezone information.
-
-        Returns:
-            google.protobuf.timestamp_pb2.Timestamp: The `Timestamp` object.
-        """
-        timestamp = Timestamp()
-        timestamp.FromDatetime(dt)
-        return timestamp
 
     @staticmethod
     def create_filter(
@@ -625,8 +609,8 @@ class DataClient:
             mime_type=mime_type,
             interval=(
                 CaptureInterval(
-                    start=DataClient.datetime_to_timestamp(start_time) if start_time else None,
-                    end=DataClient.datetime_to_timestamp(end_time) if end_time else None,
+                    start=datetime_to_timestamp(start_time) if start_time else None,
+                    end=datetime_to_timestamp(end_time) if end_time else None,
                 )
             )
             if start_time and end_time

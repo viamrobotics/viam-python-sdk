@@ -5,7 +5,7 @@ from typing import List
 from grpclib.testing import ChannelFor
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from viam.app.data.client import DataClient
+from viam.app.data_client import DataClient
 from viam.proto.app.data import (
     Filter,
     BinaryID,
