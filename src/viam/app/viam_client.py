@@ -14,9 +14,9 @@ LOGGER = logging.getLogger(__name__)
 class ViamClient:
     """gRPC client for all communication and interaction with app.
 
-    Use create() to instantiate a ViamClient::
+    There is currently 1 way to instantiate a `ViamClient` object::
 
-        ViamClient.create(...)
+        ViamClient.create_from_dial_options(...)
     """
 
     @classmethod

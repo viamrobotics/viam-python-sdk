@@ -13,7 +13,6 @@ from viam.proto.app import (
     DeleteLocationRequest,
     DeleteRobotPartRequest,
     DeleteRobotRequest,
-    DeleteRobotResponse,
 )
 from viam.proto.app import Fragment as FragmentPB
 from viam.proto.app import (
@@ -42,11 +41,11 @@ from viam.proto.app import (
 from viam.proto.app import LogEntry as LogEntryPB
 from viam.proto.app import (
     MarkPartForRestartRequest,
-    MarkPartForRestartResponse,
     NewRobotPartRequest,
     NewRobotPartResponse,
     NewRobotRequest,
     NewRobotResponse,
+    Organization,
     Robot,
 )
 from viam.proto.app import RobotPart as RobotPartPB
@@ -269,7 +268,12 @@ class AppClient:
     async def create_organization(self):
         raise NotImplementedError()
 
-    async def list_organizations(self):
+    async def list_organizations(self) -> List[Organization]:
+        """List the organization(s) the user is an authorized owner of.
+
+        Returns:
+            List[viam.proto.app.Organization]: The list of organizations.
+        """
         request = ListOrganizationsRequest()
         response: ListOrganizationsResponse = await self._location_client.ListOrganizations(request, metadata=self._metadata)
         return response.organizations
@@ -346,7 +350,7 @@ class AppClient:
         return response.location
 
     async def update_location(
-        self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None, region: str = None  # Not used in app.
+        self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None, region: str = None
     ) -> Location:
         """Change the name of a location and/or assign it a new parent location.
 
@@ -356,7 +360,8 @@ class AppClient:
                 change).
             parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string ""
                 (i.e., no new parent location is assigned).
-            name (Optional[str]): Optional new GCS region to associate the location with.
+            name (Optional[str]): Optional new GCS region to associate the location with. Currently, this parameter is not explicitly used
+                in app.
 
         Raises:
             GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -531,23 +536,14 @@ class AppClient:
         page_token = ""
         logs = []
 
-        if num_pages == 0:
-            while True:
-                next_page_token = await self._get_robot_part_logs(
-                    robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
-                )
-                if not next_page_token or len(next_page_token) == 0:
-                    break
-                page_token = next_page_token
-        else:
-            while True:
-                next_page_token = await self._get_robot_part_logs(
-                    robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
-                )
-                num_pages -= 1
-                if (not next_page_token or len(next_page_token) == 0) or num_pages == 0:
-                    break
-                page_token = next_page_token
+        while True:
+            next_page_token = await self._get_robot_part_logs(
+                robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
+            )
+            num_pages -= 1
+            if not next_page_token or len(next_page_token) == 0 or num_pages == 0:
+                break
+            page_token = next_page_token
 
         if dest:
             try:
@@ -642,7 +638,7 @@ class AppClient:
             GRPCError: If an invalid robot part ID is passed.
         """
         request = MarkPartForRestartRequest(part_id=robot_part_id)
-        _: MarkPartForRestartResponse = await self._location_client.MarkPartForRestart(request, metadata=self._metadata)
+        await self._location_client.MarkPartForRestart(request, metadata=self._metadata)
 
     async def create_robot_part_secret(self):
         raise NotImplementedError()
@@ -719,7 +715,7 @@ class AppClient:
             GRPCError: If an invalid robot ID is passed.
         """
         request = DeleteRobotRequest(id=robot_id)
-        _: DeleteRobotResponse = await self._location_client.DeleteRobot(request, metadata=self._metadata)
+        await self._location_client.DeleteRobot(request, metadata=self._metadata)
 
     async def list_fragments(self, organization_id: str, show_public: Optional[bool] = True) -> List[Fragment]:
         """Get a list of fragments under the specified organization.
