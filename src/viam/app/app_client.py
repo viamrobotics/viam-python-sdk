@@ -349,9 +349,7 @@ class AppClient:
         response: GetLocationResponse = await self._location_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
-    async def update_location(
-        self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None, region: str = None
-    ) -> Location:
+    async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
         """Change the name of a location and/or assign it a new parent location.
 
         Args:
@@ -360,8 +358,6 @@ class AppClient:
                 change).
             parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string ""
                 (i.e., no new parent location is assigned).
-            name (Optional[str]): Optional new GCS region to associate the location with. Currently, this parameter is not explicitly used
-                in app.
 
         Raises:
             GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -369,7 +365,7 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The newly updated location.
         """
-        request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id, region=region)
+        request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id)
         response: UpdateLocationResponse = await self._location_client.UpdateLocation(request, metadata=self._metadata)
         return response.location
 
