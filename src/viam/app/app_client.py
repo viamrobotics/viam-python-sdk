@@ -722,7 +722,8 @@ class AppClient:
 
         Args:
             organization_id (str): ID of the organization under which to list the fragments.
-            show_public: Optional boolean specifiying whether or not to only include public fragments. Defaults to True.
+            show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+                return. If False, only private fragments will return. Defaults to True.
 
         Raises:
             GRPCError: If an invalid organization ID is passed.
