@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from typing import Any, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -51,8 +51,6 @@ from viam.proto.app import (
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import (
     SharedSecret,
-    ShareLocationRequest,
-    UnshareLocationRequest,
     UpdateLocationRequest,
     UpdateLocationResponse,
     UpdateRobotPartRequest,
@@ -93,9 +91,9 @@ class RobotPart:
         self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None
         self.main_part = robot_part.main_part
         self.fqdn = robot_part.fqdn
-        self.local_fqdn = robot_part.fqdn
+        self.local_fqdn = robot_part.local_fqdn
         self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
-        self.secrets = robot_part.secrets
+        self.secrets = list(robot_part.secrets)
         return self
 
     id: str
@@ -221,7 +219,7 @@ class Fragment:
     organization_name: str
     robot_part_count: int
     organization_count: int
-    only_used_by_owner: int
+    only_used_by_owner: bool
 
     @property
     def proto(self):
@@ -255,12 +253,12 @@ class AppClient:
             location_id (Optional[str]): Default location ID.
         """
         self._metadata = metadata
-        self._location_client = AppServiceStub(channel)
+        self._app_client = AppServiceStub(channel)
         self._location_id = location_id
 
-    _location_client: AppServiceStub
+    _app_client: AppServiceStub
     _metadata: Mapping[str, str]
-    _location_id: str
+    _location_id: Optional[str]
 
     async def get_user_id_by_email(self):
         raise NotImplementedError()
@@ -275,8 +273,8 @@ class AppClient:
             List[viam.proto.app.Organization]: The list of organizations.
         """
         request = ListOrganizationsRequest()
-        response: ListOrganizationsResponse = await self._location_client.ListOrganizations(request, metadata=self._metadata)
-        return response.organizations
+        response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
+        return list(response.organizations)
 
     async def list_organizations_by_user(self):
         raise NotImplementedError()
@@ -311,12 +309,12 @@ class AppClient:
     async def resend_organization_invite(self):
         raise NotImplementedError()
 
-    async def create_location(self, organization_id: str, name: str, parent_location_id: Optional[str] = None) -> Location:
+    async def create_location(self, name: str, organization_id: str, parent_location_id: Optional[str] = None) -> Location:
         """Create and name a location under the specified organization and parent location.
 
         Args:
-            organization_id (str): ID of the organization to create the location under.
             name (str): Name of the location.
+            organization_id (str): ID of the organization to create the location under.
             parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to the location ID provided at
                 `AppClient` instantiation. A root level location is created if no default location ID exists.
 
@@ -328,7 +326,7 @@ class AppClient:
         """
         location_id = parent_location_id if parent_location_id else self._location_id
         request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=location_id)
-        response: CreateLocationResponse = await self._location_client.CreateLocation(request, metadata=self._metadata)
+        response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
         return response.location
 
     async def get_location(self, location_id: Optional[str] = None) -> Location:
@@ -345,8 +343,8 @@ class AppClient:
             viam.proto.app.Location: The location.
         """
         location_id = location_id if location_id else self._location_id
-        request = GetLocationRequest(location_id=location_id)
-        response: GetLocationResponse = await self._location_client.GetLocation(request, metadata=self._metadata)
+        request = GetLocationRequest(location_id=location_id if location_id else "")
+        response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
     async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
@@ -366,7 +364,7 @@ class AppClient:
             viam.proto.app.Location: The newly updated location.
         """
         request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id)
-        response: UpdateLocationResponse = await self._location_client.UpdateLocation(request, metadata=self._metadata)
+        response: UpdateLocationResponse = await self._app_client.UpdateLocation(request, metadata=self._metadata)
         return response.location
 
     async def delete_location(self, location_id: str) -> None:
@@ -379,7 +377,7 @@ class AppClient:
             GRPCError: If an invalid location ID is passed.
         """
         request = DeleteLocationRequest(location_id=location_id)
-        await self._location_client.DeleteLocation(request, metadata=self._metadata)
+        await self._app_client.DeleteLocation(request, metadata=self._metadata)
 
     async def list_locations(self, organization_id: str) -> List[Location]:
         """Get a list of all locations under the specified organization.
@@ -394,40 +392,14 @@ class AppClient:
             List[viam.proto.app.Location]: The list of locations.
         """
         request = ListLocationsRequest(organization_id=organization_id)
-        response: ListLocationsResponse = await self._location_client.ListLocations(request, metadata=self._metadata)
-        return response.locations
+        response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
+        return list(response.locations)
 
     async def share_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
-        """Share a location with a specific organization.
-
-        Args:
-            organization_id (str): ID of the organization to share the location with.
-            location_id (Optional[str]): ID of the location to be shared. Defaults to the current authorized location.
-
-        Raises:
-            GRPCError: Permission denied. A location can only be shared by users who are owners of both organizations involved. An
-                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method. A
-                GRPCError is also thrown when attempting to share a location with an organization it is already shared with.
-        """
-        location_id = location_id if location_id else self._location_id
-        request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
-        await self._location_client.ShareLocation(request, metadata=self._metadata)
+        raise NotImplementedError()
 
     async def unshare_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
-        """Unshare a location with a specific organization.
-
-        Args:
-            organization_id (str): ID of the organization to unshare the location with.
-            location_id (Optional[str]): ID of the location to be unshared. Defaults to the current authorized location.
-
-        Raises:
-            GRPCError: Permission denied. A location can only be unshared by users who are owners of both organizations involved. An
-                `AppClient` cannot be an authorized owner of two organizations. Permission will always be denied when calling this method. A
-                GRPCError is also thrown when attempting to unshare a location with an organization it is not already shared with.
-        """
-        location_id = location_id if location_id else self._location_id
-        request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
-        await self._location_client.UnshareLocation(request, metadata=self._metadata)
+        raise NotImplementedError()
 
     async def location_auth(self):
         raise NotImplementedError()
@@ -451,7 +423,7 @@ class AppClient:
             viam.proto.app.Robot: The robot.
         """
         request = GetRobotRequest(id=robot_id)
-        response: GetRobotResponse = await self._location_client.GetRobot(request, metadata=self._metadata)
+        response: GetRobotResponse = await self._app_client.GetRobot(request, metadata=self._metadata)
         return response.robot
 
     async def get_rover_rental_parts(self):
@@ -470,16 +442,16 @@ class AppClient:
             List[viam.app.app_client.RobotPart]: The list of robot parts.
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
-        response: GetRobotPartsResponse = await self._location_client.GetRobotParts(request, metadata=self._metadata)
+        response: GetRobotPartsResponse = await self._app_client.GetRobotParts(request, metadata=self._metadata)
         return [RobotPart.from_proto(robot_part=part) for part in response.parts]
 
-    async def get_robot_part(self, robot_part_id: Optional[str], dest: Optional[str] = None, indent: Optional[int] = None) -> RobotPart:
+    async def get_robot_part(self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart:
         """Get a robot part.
 
         Args:
             robot_part_id (str): ID of the robot part to get.
             dest (Optional[str]): Optional filepath to write the robot part's config file in JSON format to.
-            indent (Optional[int]): Optional size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
+            indent (int): Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
@@ -487,16 +459,15 @@ class AppClient:
         Returns:
             viam.app.app_client.RobotPart: The robot part.
         """
-        indent = indent if indent else 4
         request = GetRobotPartRequest(id=robot_part_id)
-        response: GetRobotPartResponse = await self._location_client.GetRobotPart(request, metadata=self._metadata)
+        response: GetRobotPartResponse = await self._app_client.GetRobotPart(request, metadata=self._metadata)
 
         if dest:
             try:
                 file = open(dest, "w")
                 file.write(f"{json.dumps(json.loads(response.config_json), indent=indent)}")
             except Exception as e:
-                LOGGER.err(f"Failed to write config JSON to file {dest}", exc_info=e)
+                LOGGER.error(f"Failed to write config JSON to file {dest}", exc_info=e)
 
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -505,8 +476,8 @@ class AppClient:
         robot_part_id: str,
         filter: Optional[str] = None,
         dest: Optional[str] = None,
-        errors_only: Optional[bool] = None,
-        num_pages: Optional[int] = None,
+        errors_only: bool = True,
+        num_pages: int = 1,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -515,8 +486,8 @@ class AppClient:
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
                 filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
-            errors_only (Optional[bool]): Optional boolean specifying whether or not to only include error logs. Defaults to True.
-            num_pages: Optional number of pages of logs to return. Passing 0 returns all pages. Defaults to 1. All pages or the first
+            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
+            num_pages (int): Number of pages of logs to return. Passing 0 returns all pages. Defaults to 1. All pages or the first
                 `num_pages` pages will be returned, whichever comes first.
 
         Raises:
@@ -533,11 +504,12 @@ class AppClient:
         logs = []
 
         while True:
-            next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter, errors_only=errors_only, page_token=page_token, logs=logs
+            new_logs, next_page_token = await self._get_robot_part_logs(
+                robot_part_id=robot_part_id, filter=filter if filter else "", errors_only=errors_only, page_token=page_token
             )
+            logs += new_logs
             num_pages -= 1
-            if not next_page_token or len(next_page_token) == 0 or num_pages == 0:
+            if not next_page_token or next_page_token == "" or num_pages == 0:
                 break
             page_token = next_page_token
 
@@ -553,17 +525,14 @@ class AppClient:
                     message = log.message
                     file.write(f"{time}\t\t{level}\t{logger_name}\t{file_name}:{line_number}\t{message}\n")
             except Exception as e:
-                LOGGER.error(f"Failed to write robot part logs to file {dest}", exc_info=e)
+                LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}", exc_info=e)
 
         return logs
 
-    async def _get_robot_part_logs(
-        self, robot_part_id: str, filter: str, errors_only: bool, page_token: str, logs: List[LogEntryPB]
-    ) -> str:
+    async def _get_robot_part_logs(self, robot_part_id: str, filter: str, errors_only: bool, page_token: str) -> Tuple[List[LogEntry], str]:
         request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
-        response: GetRobotPartLogsResponse = await self._location_client.GetRobotPartLogs(request, metadata=self._metadata)
-        logs += [LogEntry.from_proto(log) for log in response.logs]
-        return response.next_page_token
+        response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
+        return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
     async def tail_robot_part_logs(self):
         raise NotImplementedError()
@@ -589,7 +558,7 @@ class AppClient:
         """
         robot_config_struct = dict_to_struct(robot_config) if robot_config else None
         request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=robot_config_struct)
-        response: UpdateRobotPartResponse = await self._location_client.UpdateRobotPart(request, metadata=self._metadata)
+        response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
@@ -606,7 +575,7 @@ class AppClient:
             str: The new robot part's ID.
         """
         request = NewRobotPartRequest(robot_id=robot_id, part_name=part_name)
-        response: NewRobotPartResponse = await self._location_client.NewRobotPart(request, metadata=self._metadata)
+        response: NewRobotPartResponse = await self._app_client.NewRobotPart(request, metadata=self._metadata)
         return response.part_id
 
     async def delete_robot_part(self, robot_part_id: str) -> None:
@@ -619,7 +588,7 @@ class AppClient:
             GRPCError: If an invalid robot part ID is passed.
         """
         request = DeleteRobotPartRequest(part_id=robot_part_id)
-        await self._location_client.DeleteRobotPart(request, metadata=self._metadata)
+        await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
     async def mark_part_as_main(self):
         raise NotImplementedError()
@@ -634,7 +603,7 @@ class AppClient:
             GRPCError: If an invalid robot part ID is passed.
         """
         request = MarkPartForRestartRequest(part_id=robot_part_id)
-        await self._location_client.MarkPartForRestart(request, metadata=self._metadata)
+        await self._app_client.MarkPartForRestart(request, metadata=self._metadata)
 
     async def create_robot_part_secret(self):
         raise NotImplementedError()
@@ -657,11 +626,11 @@ class AppClient:
             List[viam.proto.app.Robot]: The list of robots.
         """
         location_id = location_id if location_id else self._location_id
-        request = ListRobotsRequest(location_id=location_id)
-        response: ListRobotsResponse = await self._location_client.ListRobots(request, metadata=self._metadata)
-        return response.robots
+        request = ListRobotsRequest(location_id=location_id if location_id else "")
+        response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
+        return list(response.robots)
 
-    async def new_robot(self, name: str = None, location_id: Optional[str] = None) -> str:
+    async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
         """Create a new robot.
 
         Args:
@@ -676,8 +645,8 @@ class AppClient:
             str: The new robot's ID.
         """
         location_id = location_id if location_id else self._location_id
-        request = NewRobotRequest(name=name, location=location_id)
-        response: NewRobotResponse = await self._location_client.NewRobot(request, metadata=self._metadata)
+        request = NewRobotRequest(name=name, location=location_id if location_id else "")
+        response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
     async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
@@ -697,8 +666,8 @@ class AppClient:
             viam.proto.app.Robot: The newly updated robot.
         """
         location_id = location_id if location_id else self._location_id
-        request = UpdateRobotRequest(id=robot_id, name=name, location=location_id)
-        response: UpdateRobotResponse = await self._location_client.UpdateRobot(request, metadata=self._metadata)
+        request = UpdateRobotRequest(id=robot_id, name=name, location=location_id if location_id else "")
+        response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot
 
     async def delete_robot(self, robot_id: str) -> None:
@@ -711,9 +680,9 @@ class AppClient:
             GRPCError: If an invalid robot ID is passed.
         """
         request = DeleteRobotRequest(id=robot_id)
-        await self._location_client.DeleteRobot(request, metadata=self._metadata)
+        await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
-    async def list_fragments(self, organization_id: str, show_public: Optional[bool] = True) -> List[Fragment]:
+    async def list_fragments(self, organization_id: str, show_public: bool = True) -> List[Fragment]:
         """Get a list of fragments under the specified organization.
 
         Args:
@@ -728,7 +697,7 @@ class AppClient:
             List[viam.app.app_client.Fragment]: The list of fragments.
         """
         request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
-        response: ListFragmentsResponse = await self._location_client.ListFragments(request, metadata=self._metadata)
+        response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
 
     async def get_fragment(self, fragment_id: str) -> Fragment:
@@ -744,7 +713,7 @@ class AppClient:
             viam.app.app_client.Fragment: The fragment.
         """
         request = GetFragmentRequest(id=fragment_id)
-        response: GetFragmentResponse = await self._location_client.GetFragment(request, metadata=self._metadata)
+        response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 
     async def create_fragment(self):

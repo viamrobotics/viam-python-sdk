@@ -34,7 +34,13 @@ class ViamClient:
         Returns:
             Self: The `ViamClient`.
         """
-        assert dial_options.credentials.type != "robot-secret"
+        if dial_options.credentials is None:
+            raise ValueError("dial_options.credentials cannot be None.")
+        if dial_options.credentials.type == "robot-secret":
+            raise ValueError("dial_options.credentials.type cannot be 'robot-secret'")
+        if dial_options.auth_entity is None:
+            raise ValueError("dial_options.auth_entity cannot be None.")
+
         self = cls()
         self._location_id = dial_options.auth_entity.split(".")[1]
         self._channel = await _dial_app(dial_options)

@@ -103,6 +103,7 @@ from viam.proto.app import (
     DeleteFragmentResponse,
     AddRoleRequest,
     AddRoleResponse,
+    Fragment,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ListAuthorizationsRequest,
@@ -119,6 +120,11 @@ from viam.proto.app import (
     GetModuleResponse,
     ListModulesRequest,
     ListModulesResponse,
+    Location,
+    Organization,
+    Robot,
+    RobotPart,
+    LogEntry,
 )
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
@@ -499,11 +505,9 @@ class MockData(DataServiceBase):
             return
         self.filter = request.data_request.filter
         n = len(self.tabular_response)
-        tabular_response_structs = [None] * n
+        tabular_response_structs = [Struct()] * n
         for i in range(n):
-            s = Struct()
-            s.update(self.tabular_response[i])
-            tabular_response_structs[i] = s
+            tabular_response_structs[i].update(self.tabular_response[i])
         await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_response_structs]))
         self.was_tabular_data_requested = True
 
@@ -582,12 +586,12 @@ class MockData(DataServiceBase):
         await stream.send_message(TagsByFilterResponse(tags=self.tags_response))
 
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def RemoveBoundingBoxFromImageByID(
         self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
     ) -> None:
-        pass
+        raise NotImplementedError()
 
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -614,177 +618,273 @@ class MockDataSync(DataSyncServiceBase):
         await stream.send_message(FileUploadResponse())
 
 
-class MockLocation(AppServiceBase):
+class MockApp(AppServiceBase):
+    def __init__(
+        self,
+        organizations: List[Organization],
+        location: Location,
+        robot: Robot,
+        robot_part: RobotPart,
+        log_entry: LogEntry,
+        id: str,
+        fragment: Fragment,
+    ):
+        self.organizations = organizations
+        self.location = location
+        self.robot = robot
+        self.robot_part = robot_part
+        self.log_entry = log_entry
+        self.id = id
+        self.fragment = fragment
+
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CreateOrganization(self, stream: Stream[CreateOrganizationRequest, CreateOrganizationResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ListOrganizations(self, stream: Stream[ListOrganizationsRequest, ListOrganizationsResponse]) -> None:
-        pass
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListOrganizationsResponse(organizations=self.organizations))
 
     async def ListOrganizationsByUser(self, stream: Stream[ListOrganizationsByUserRequest, ListOrganizationsByUserResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetOrganization(self, stream: Stream[GetOrganizationRequest, GetOrganizationResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetOrganizationNamespaceAvailability(
-        self,
-        stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
+        self, stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
     ) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UpdateOrganization(self, stream: Stream[UpdateOrganizationRequest, UpdateOrganizationResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteOrganization(self, stream: Stream[DeleteOrganizationRequest, DeleteOrganizationResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ListOrganizationMembers(self, stream: Stream[ListOrganizationMembersRequest, ListOrganizationMembersResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UpdateOrganizationInviteAuthorizations(
-        self,
-        stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
+        self, stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
     ) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteOrganizationMember(self, stream: Stream[DeleteOrganizationMemberRequest, DeleteOrganizationMemberResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteOrganizationInvite(self, stream: Stream[DeleteOrganizationInviteRequest, DeleteOrganizationInviteResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ResendOrganizationInvite(self, stream: Stream[ResendOrganizationInviteRequest, ResendOrganizationInviteResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CreateLocation(self, stream: Stream[CreateLocationRequest, CreateLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.name = request.name
+        self.parent_location_id = request.parent_location_id
+        await stream.send_message(CreateLocationResponse(location=self.location))
 
     async def GetLocation(self, stream: Stream[GetLocationRequest, GetLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(GetLocationResponse(location=self.location))
 
     async def UpdateLocation(self, stream: Stream[UpdateLocationRequest, UpdateLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        self.name = request.name
+        self.parent_location_id = request.parent_location_id
+        await stream.send_message(UpdateLocationResponse(location=self.location))
 
     async def DeleteLocation(self, stream: Stream[DeleteLocationRequest, DeleteLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(DeleteLocationResponse())
 
     async def ListLocations(self, stream: Stream[ListLocationsRequest, ListLocationsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        await stream.send_message(ListLocationsResponse(locations=[self.location]))
 
     async def ShareLocation(self, stream: Stream[ShareLocationRequest, ShareLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.location_id = request.location_id
+        await stream.send_message(ShareLocationResponse())
 
     async def UnshareLocation(self, stream: Stream[UnshareLocationRequest, UnshareLocationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.location_id = request.location_id
+        await stream.send_message(UnshareLocationResponse())
 
     async def LocationAuth(self, stream: Stream[LocationAuthRequest, LocationAuthResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CreateLocationSecret(self, stream: Stream[CreateLocationSecretRequest, CreateLocationSecretResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteLocationSecret(self, stream: Stream[DeleteLocationSecretRequest, DeleteLocationSecretResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetRobot(self, stream: Stream[GetRobotRequest, GetRobotResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_id = request.id
+        await stream.send_message(GetRobotResponse(robot=self.robot))
 
     async def GetRoverRentalRobots(self, stream: Stream[GetRoverRentalRobotsRequest, GetRoverRentalRobotsResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetRobotParts(self, stream: Stream[GetRobotPartsRequest, GetRobotPartsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_id = request.robot_id
+        await stream.send_message(GetRobotPartsResponse(parts=[self.robot_part]))
 
     async def GetRobotPart(self, stream: Stream[GetRobotPartRequest, GetRobotPartResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        await stream.send_message(GetRobotPartResponse(part=self.robot_part))
 
     async def GetRobotPartLogs(self, stream: Stream[GetRobotPartLogsRequest, GetRobotPartLogsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        self.filter = request.filter
+        self.errors_only = request.errors_only
+        await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetRobotPartHistory(self, stream: Stream[GetRobotPartHistoryRequest, GetRobotPartHistoryResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UpdateRobotPart(self, stream: Stream[UpdateRobotPartRequest, UpdateRobotPartResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        self.name = request.name
+        self.robot_config = request.robot_config
+        await stream.send_message(UpdateRobotPartResponse(part=self.robot_part))
 
     async def NewRobotPart(self, stream: Stream[NewRobotPartRequest, NewRobotPartResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_id = request.robot_id
+        self.part_name = request.part_name
+        await stream.send_message(NewRobotPartResponse(part_id=self.id))
 
     async def DeleteRobotPart(self, stream: Stream[DeleteRobotPartRequest, DeleteRobotPartResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.part_id
+        await stream.send_message(DeleteRobotPartResponse())
 
     async def MarkPartAsMain(self, stream: Stream[MarkPartAsMainRequest, MarkPartAsMainResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def MarkPartForRestart(self, stream: Stream[MarkPartForRestartRequest, MarkPartForRestartResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.part_id
+        await stream.send_message(MarkPartForRestartResponse())
 
     async def CreateRobotPartSecret(self, stream: Stream[CreateRobotPartSecretRequest, CreateRobotPartSecretResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteRobotPartSecret(self, stream: Stream[DeleteRobotPartSecretRequest, DeleteRobotPartSecretResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ListRobots(self, stream: Stream[ListRobotsRequest, ListRobotsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(ListRobotsResponse(robots=[self.robot]))
 
     async def NewRobot(self, stream: Stream[NewRobotRequest, NewRobotResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.location_id = request.location
+        await stream.send_message(NewRobotResponse(id=self.id))
 
     async def UpdateRobot(self, stream: Stream[UpdateRobotRequest, UpdateRobotResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_id = request.id
+        self.name = request.name
+        self.location_id = request.location
+        await stream.send_message(UpdateRobotResponse(robot=self.robot))
 
     async def DeleteRobot(self, stream: Stream[DeleteRobotRequest, DeleteRobotResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_id = request.id
+        await stream.send_message(DeleteRobotResponse())
 
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.show_public = request.show_public
+        await stream.send_message(ListFragmentsResponse(fragments=[self.fragment]))
 
     async def GetFragment(self, stream: Stream[GetFragmentRequest, GetFragmentResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.fragment_id = request.id
+        await stream.send_message(GetFragmentResponse(fragment=self.fragment))
 
     async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UpdateFragment(self, stream: Stream[UpdateFragmentRequest, UpdateFragmentResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def DeleteFragment(self, stream: Stream[DeleteFragmentRequest, DeleteFragmentResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def AddRole(self, stream: Stream[AddRoleRequest, AddRoleResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CheckPermissions(self, stream: Stream[CheckPermissionsRequest, CheckPermissionsResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def CreateModule(self, stream: Stream[CreateModuleRequest, CreateModuleResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UpdateModule(self, stream: Stream[UpdateModuleRequest, UpdateModuleResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def UploadModuleFile(self, stream: Stream[UploadModuleFileRequest, UploadModuleFileResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def GetModule(self, stream: Stream[GetModuleRequest, GetModuleResponse]) -> None:
-        pass
+        raise NotImplementedError()
 
     async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
-        pass
+        raise NotImplementedError()

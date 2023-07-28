@@ -299,7 +299,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = TagsByFilterRequest(filter=filter)
         response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
-        return response.tags
+        return list(response.tags)
 
     # TODO: implement
     async def add_bounding_box_to_image_by_id(self):
@@ -322,7 +322,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
-        return response.labels
+        return list(response.labels)
 
     async def binary_data_capture_upload(
         self,
@@ -372,9 +372,7 @@ class DataClient:
             component_name=component_name,
             method_name=method_name,
             type=DataType.DATA_TYPE_BINARY_SENSOR,
-            file_name=None,  # Not used in app.
             method_parameters=method_parameters,
-            file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
         await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
@@ -415,7 +413,7 @@ class DataClient:
             AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
-        sensor_contents = [None] * len(tabular_data)
+        sensor_contents = [SensorData()] * len(tabular_data)
         if data_request_times:
             assert len(data_request_times) == len(tabular_data)
 
@@ -442,9 +440,7 @@ class DataClient:
             component_name=component_name,
             method_name=method_name,
             type=DataType.DATA_TYPE_TABULAR_SENSOR,
-            file_name=None,  # Not used in app.
             method_parameters=method_parameters,
-            file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
         await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
@@ -488,16 +484,16 @@ class DataClient:
         """
         metadata = UploadMetadata(
             part_id=part_id,
-            component_type=component_type,
-            component_name=component_name,
-            method_name=method_name,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
             type=DataType.DATA_TYPE_FILE,
-            file_name=file_name,
+            file_name=file_name if file_name else "",
             method_parameters=method_parameters,
-            file_extension=file_extension,
+            file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
 
     async def file_upload_from_path(
         self,
@@ -536,13 +532,13 @@ class DataClient:
 
         metadata = UploadMetadata(
             part_id=part_id,
-            component_type=component_type,
-            component_name=component_name,
-            method_name=method_name,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
             type=DataType.DATA_TYPE_FILE,
             file_name=file_name,
             method_parameters=method_parameters,
-            file_extension=file_extension,
+            file_extension=file_extension if file_extension else "",
             tags=tags,
         )
         await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
@@ -553,7 +549,8 @@ class DataClient:
         async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
-            response: FileUploadResponse = await stream.recv_message()
+            response = await stream.recv_message()
+            assert response is not None
             return response
 
     @staticmethod
@@ -596,13 +593,13 @@ class DataClient:
             viam.proto.app.data.Filter: The `Filter` object.
         """
         return Filter(
-            component_name=component_name,
-            component_type=component_type,
-            method=method,
-            robot_name=robot_name,
-            robot_id=robot_id,
-            part_name=part_name,
-            part_id=part_id,
+            component_name=component_name if component_name else "",
+            component_type=component_type if component_type else "",
+            method=method if method else "",
+            robot_name=robot_name if robot_name else "",
+            robot_id=robot_id if robot_id else "",
+            part_name=part_name if part_name else "",
+            part_id=part_id if part_id else "",
             location_ids=location_ids,
             organization_ids=organization_ids,
             mime_type=mime_type,
