@@ -77,14 +77,14 @@ class TestPowerSensor:
         assert power_sensor.extra == EXTRA_PARAMS
 
         # A mock method to replace some get functions just for testing that should result in omitted entries in the dictionary
-        async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> tuple[float, bool]:
+        async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
             raise GRPCError(Status(2), "Unimplemented")
 
-        async def get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        async def get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> tuple[float, bool]:
             raise GRPCError(Status(2), "Unimplemented")
 
-        power_sensor.get_current = get_reading
-        power_sensor.get_power = get_power
+        power_sensor.get_current = get_current
+        power_sensor.get_power = get_reading
 
         value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
         assert value == {"voltage": VOLTS, "is_ac": IS_AC}
