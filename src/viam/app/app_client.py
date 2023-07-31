@@ -315,8 +315,8 @@ class AppClient:
         Args:
             name (str): Name of the location.
             organization_id (str): ID of the organization to create the location under.
-            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to the location ID provided at
-                `AppClient` instantiation. A root level location is created if no default location ID exists.
+            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
+                location ID is provided.
 
         Raises:
             GRPCError: If either an invalid organization ID, name, or parent location ID is passed.
@@ -324,7 +324,6 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The newly created location.
         """
-        location_id = parent_location_id if parent_location_id else self._location_id
         request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=location_id)
         response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
         return response.location
@@ -395,10 +394,10 @@ class AppClient:
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
         return list(response.locations)
 
-    async def share_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
+    async def share_location(self):
         raise NotImplementedError()
 
-    async def unshare_location(self, organization_id: str, location_id: Optional[str] = None) -> None:
+    async def unshare_location(self):
         raise NotImplementedError()
 
     async def location_auth(self):
