@@ -324,7 +324,7 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The newly created location.
         """
-        request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=location_id)
+        request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=parent_location_id)
         response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
         return response.location
 
