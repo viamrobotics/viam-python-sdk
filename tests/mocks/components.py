@@ -28,6 +28,7 @@ from viam.components.input import Control, ControlFunction, Controller, Event, E
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
 from viam.components.pose_tracker import PoseTracker
+from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
@@ -853,6 +854,35 @@ class MockPoseTracker(PoseTracker):
         self.timeout = timeout
         self.extra = extra
         return result
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        return {"command": command}
+
+
+class MockPowerSensor(PowerSensor):
+    def __init__(self, name: str, voltage: float, current: float, is_ac: bool, power: float):
+        super().__init__(name)
+        self.voltage = voltage
+        self.current = current
+        self.is_ac = is_ac
+        self.power = power
+        self.extra: Optional[Dict[str, Any]] = None
+        self.timeout: Optional[float] = None
+
+    async def get_voltage(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
+        self.extra = extra
+        self.timeout = timeout
+        return (self.voltage, self.is_ac)
+
+    async def get_current(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
+        self.extra = extra
+        self.timeout = timeout
+        return (self.current, self.is_ac)
+
+    async def get_power(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+        self.extra = extra
+        self.timeout = timeout
+        return self.power
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

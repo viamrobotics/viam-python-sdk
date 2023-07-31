@@ -1,5 +1,10 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple
+import asyncio
+from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
+
+from grpclib import GRPCError
+
+from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..sensor import Sensor
@@ -40,3 +45,47 @@ class PowerSensor(Sensor):
             float: power in watts
         """
         ...
+
+    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
+        """Obtain the measurements/data specific to this sensor.
+        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+        Returns:
+            Mapping[str, Any]: The readings for the PowerSensor:
+            {
+               voltage: tuple[float, bool]
+               current: tuple[float, bool]
+               power: float
+            }
+        """
+        (vol, cur, pow) = await asyncio.gather(
+            self.get_voltage(extra=extra, timeout=timeout),
+            self.get_current(extra=extra, timeout=timeout),
+            self.get_power(extra=extra, timeout=timeout),
+            return_exceptions=True,
+        )
+
+        readings = {}
+
+        # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
+        def add_reading(name: str, reading, returntype: List) -> None:
+            possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
+            if type(reading) in returntype:
+                if name == "voltage":
+                    readings["volts"] = reading[0]
+                    readings["is_ac"] = reading[1]
+                if name == "current":
+                    readings["amperes"] = reading[0]
+                    readings["is_ac"] = reading[1]
+                else:
+                    readings[name] = reading
+                return
+            elif isinstance(reading, possible_error_types) or (isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message)):
+                return
+            raise reading
+
+        add_reading("voltage", vol, [tuple])
+        add_reading("current", cur, [tuple])
+        add_reading("pow", pow, [float])
+
+        return readings
