@@ -74,6 +74,7 @@ class PowerSensor(Sensor):
             if type(reading) in returntype:
                 if name == "voltage":
                     readings["voltage"] = reading[0]
+                    readings["is_ac"] = reading[1]
                 elif name == "current":
                     readings["current"] = reading[0]
                     readings["is_ac"] = reading[1]

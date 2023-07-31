@@ -25,7 +25,7 @@ from .mocks.components import MockPowerSensor
 
 VOLTS = 3.2
 AMPERES = 2.0
-WATTS = 2
+WATTS = 1.0
 IS_AC = True
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 
@@ -73,7 +73,7 @@ class TestPowerSensor:
     async def test_get_readings(self, power_sensor: MockPowerSensor):
         assert power_sensor.extra is None
         value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {"volts": VOLTS, "is_ac": IS_AC, "amps": AMPERES}
+        assert value == {"voltage": VOLTS, "current": AMPERES, "is_ac": IS_AC, "power": WATTS}
         assert power_sensor.extra == EXTRA_PARAMS
 
         # A mock method to replace some get functions just for testing that should result in omitted entries in the dictionary
@@ -87,7 +87,7 @@ class TestPowerSensor:
         power_sensor.get_power = get_power
 
         value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {"volts": VOLTS, "is_ac": IS_AC}
+        assert value == {"voltage": VOLTS, "is_ac": IS_AC}
 
     @pytest.mark.asyncio
     async def test_timeout(self, power_sensor: MockPowerSensor):
@@ -198,7 +198,6 @@ class TestClient:
             client = PowerSensorClient(power_sensor.name, channel)
             assert power_sensor.extra is None
             value = await client.get_readings(extra=EXTRA_PARAMS, timeout=8.90)
-            print(value)
             assert value == {
                 "voltage": VOLTS,
                 "current": AMPERES,
