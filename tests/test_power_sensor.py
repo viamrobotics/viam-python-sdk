@@ -80,14 +80,10 @@ class TestPowerSensor:
         async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
             raise GRPCError(Status(2), "Unimplemented")
 
-        async def get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> tuple[float, bool]:
-            raise GRPCError(Status(2), "Unimplemented")
-
-        power_sensor.get_current = get_current
         power_sensor.get_power = get_reading
 
         value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {"voltage": VOLTS, "is_ac": IS_AC}
+        assert value == {"voltage": VOLTS, "current": AMPERES, "is_ac": IS_AC}
 
     @pytest.mark.asyncio
     async def test_timeout(self, power_sensor: MockPowerSensor):
