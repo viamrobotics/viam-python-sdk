@@ -29,21 +29,21 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetVoltageRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetVoltageResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetVoltageResponse = await self.client.GetVoltage(request, timeout=timeout)
         return response.volts, response.is_ac
 
     async def get_current(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[float, bool]:
         if extra is None:
             extra = {}
         request = GetCurrentRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetCurrentResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetCurrentResponse = await self.client.GetCurrent(request, timeout=timeout)
         return response.amperes, response.is_ac
 
     async def get_power(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float:
         if extra is None:
             extra = {}
         request = GetPowerRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPowerResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPowerResponse = await self.client.GetPower(request, timeout=timeout)
         return response.watts
 
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:

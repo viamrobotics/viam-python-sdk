@@ -53,8 +53,9 @@ class PowerSensor(Sensor):
         Returns:
             Mapping[str, Any]: The readings for the PowerSensor:
             {
-               voltage: tuple[float, bool]
-               current: tuple[float, bool]
+               voltage: float
+               current: float
+               is_ac: bool
                power: float
             }
         """
@@ -72,10 +73,9 @@ class PowerSensor(Sensor):
             possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
             if type(reading) in returntype:
                 if name == "voltage":
-                    readings["volts"] = reading[0]
-                    readings["is_ac"] = reading[1]
-                if name == "current":
-                    readings["amperes"] = reading[0]
+                    readings["voltage"] = reading[0]
+                elif name == "current":
+                    readings["current"] = reading[0]
                     readings["is_ac"] = reading[1]
                 else:
                     readings[name] = reading
@@ -86,6 +86,6 @@ class PowerSensor(Sensor):
 
         add_reading("voltage", vol, [tuple])
         add_reading("current", cur, [tuple])
-        add_reading("pow", pow, [float])
+        add_reading("power", pow, [float])
 
         return readings

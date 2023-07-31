@@ -106,7 +106,7 @@ class TestPowerSensor:
         assert power_sensor.timeout == loose_approx(8.90)
 
     @pytest.mark.asyncio
-    async def test_do(self, Power_sensor: PowerSensor):
+    async def test_do(self, power_sensor: PowerSensor):
         command = {"command": "args"}
         resp = await power_sensor.do_command(command)
         assert resp == {"command": command}
@@ -143,7 +143,7 @@ class TestService:
             client = PowerSensorServiceStub(channel)
             request = GetPowerRequest(name=power_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert power_sensor.extra is None
-            response: GetPowerResponse = await client.GetCurrent(request, timeout=1.23)
+            response: GetPowerResponse = await client.GetPower(request, timeout=1.23)
             assert response.watts == WATTS
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(1.23)
@@ -198,11 +198,12 @@ class TestClient:
             client = PowerSensorClient(power_sensor.name, channel)
             assert power_sensor.extra is None
             value = await client.get_readings(extra=EXTRA_PARAMS, timeout=8.90)
+            print(value)
             assert value == {
                 "voltage": VOLTS,
-                "is_ac": IS_AC,
                 "current": AMPERES,
-                "watts": WATTS,
+                "is_ac": IS_AC,
+                "power": WATTS,
             }
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
