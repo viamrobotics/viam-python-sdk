@@ -65,9 +65,8 @@ class TestPowerSensor:
 
     async def test_get_power(self, power_sensor: MockPowerSensor):
         assert power_sensor.extra is None
-        (volts, is_ac) = await power_sensor.get_voltage(extra=EXTRA_PARAMS)
-        assert volts == VOLTS
-        assert is_ac == IS_AC
+        watts = await power_sensor.get_power(extra=EXTRA_PARAMS)
+        assert watts == WATTS
         assert power_sensor.extra == EXTRA_PARAMS
 
     async def test_get_readings(self, power_sensor: MockPowerSensor):
