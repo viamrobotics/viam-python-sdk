@@ -520,10 +520,9 @@ class AppClient:
                     time = log.time
                     level = log.level.upper()
                     logger_name = log.logger_name.split(".")[0]
-                    file_name = log.caller["File"]
-                    line_number = int(log.caller["Line"])
+                    file_name = log.caller["File"] + ":" + str(int(log.caller["Line"]))
                     message = log.message
-                    file.write(f"{time}\t\t{level}\t{logger_name}\t{file_name}:{line_number}\t{message}\n")
+                    file.write(f"{time}\t{level}\t{logger_name}\t{file_name:<64}{message}\n")
             except Exception as e:
                 LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}", exc_info=e)
 
