@@ -58,7 +58,6 @@ ROBOT_PART = RobotPart(
     secrets=None,
 )
 ROBOT_PARTS = [ROBOT_PART]
-DEST = "dest"
 INDENT = 1
 FILTER = "filter"
 ERRORS_ONLY = True
@@ -167,7 +166,7 @@ class TestClient:
     async def test_get_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            robot_part = await client.get_robot_part(robot_part_id=ID, dest=DEST, indent=INDENT)
+            robot_part = await client.get_robot_part(robot_part_id=ID, indent=INDENT)
             assert service.robot_part_id == ID
             assert robot_part.proto == ROBOT_PART
 
@@ -176,7 +175,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             log_entries = await client.get_robot_part_logs(
-                robot_part_id=ID, filter=FILTER, dest=DEST, errors_only=ERRORS_ONLY, num_log_entries=NUM_LOGS
+                robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM_LOGS
             )
             assert service.robot_part_id == ID
             assert service.filter == FILTER
