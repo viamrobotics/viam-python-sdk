@@ -1,0 +1,762 @@
+:py:mod:`viam.app.app_client`
+=============================
+
+.. py:module:: viam.app.app_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.app_client.RobotPart
+   viam.app.app_client.LogEntry
+   viam.app.app_client.Fragment
+   viam.app.app_client.AppClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.app_client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: RobotPart
+
+
+   A class that mirrors the `RobotPart` proto message.
+
+   Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
+
+   .. py:property:: proto
+      :type: viam.proto.app.RobotPart
+
+
+   .. py:attribute:: id
+      :type: str
+
+      
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: dns_name
+      :type: str
+
+      
+
+   .. py:attribute:: secret
+      :type: str
+
+      
+
+   .. py:attribute:: robot
+      :type: str
+
+      
+
+   .. py:attribute:: location_id
+      :type: str
+
+      
+
+   .. py:attribute:: robot_config
+      :type: Optional[Mapping[str, Any]]
+
+      
+
+   .. py:attribute:: last_access
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: user_supplied_info
+      :type: Optional[Mapping[str, Any]]
+
+      
+
+   .. py:attribute:: main_part
+      :type: bool
+
+      
+
+   .. py:attribute:: fqdn
+      :type: str
+
+      
+
+   .. py:attribute:: local_fqdn
+      :type: str
+
+      
+
+   .. py:attribute:: created_on
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: secrets
+      :type: List[viam.proto.app.SharedSecret]
+
+      
+
+   .. py:method:: from_proto(robot_part: viam.proto.app.RobotPart) -> typing_extensions.Self
+      :classmethod:
+
+      Create a `RobotPart` from the .proto defined `RobotPart`.
+
+      :param robot_part: The object to copy from.
+      :type robot_part: viam.proto.app.RobotPart
+
+      :returns: The `RobotPart`.
+      :rtype: RobotPart
+
+
+
+.. py:class:: LogEntry
+
+
+   A class that mirrors the `LogEntry` proto message.
+
+   Use this class to make the attributes of a `viam.proto.app.LogEntry` more accessible and easier to read/interpret.
+
+   .. py:property:: proto
+      :type: viam.proto.app.LogEntry
+
+
+   .. py:attribute:: host
+      :type: str
+
+      
+
+   .. py:attribute:: level
+      :type: str
+
+      
+
+   .. py:attribute:: time
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: logger_name
+      :type: str
+
+      
+
+   .. py:attribute:: message
+      :type: str
+
+      
+
+   .. py:attribute:: caller
+      :type: Optional[Mapping[str, Any]]
+
+      
+
+   .. py:attribute:: stack
+      :type: str
+
+      
+
+   .. py:attribute:: fields
+      :type: List[Mapping[str, Any]]
+
+      
+
+   .. py:method:: from_proto(log_entry: viam.proto.app.LogEntry) -> typing_extensions.Self
+      :classmethod:
+
+      Create a `LogEntry` from the .proto defined `LogEntry`.
+
+      :param log_entry: The object to copy from.
+      :type log_entry: viam.proto.app.LogEntry
+
+      :returns: The `LogEntry`.
+      :rtype: LogEntry
+
+
+
+.. py:class:: Fragment
+
+
+   A class that mirrors the `Fragment` proto message.
+
+   Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
+
+   .. py:property:: proto
+
+
+   .. py:attribute:: id
+      :type: str
+
+      
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: fragment
+      :type: Optional[Mapping[str, Any]]
+
+      
+
+   .. py:attribute:: organization_owner
+      :type: str
+
+      
+
+   .. py:attribute:: public
+      :type: bool
+
+      
+
+   .. py:attribute:: created_on
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: organization_name
+      :type: str
+
+      
+
+   .. py:attribute:: robot_part_count
+      :type: int
+
+      
+
+   .. py:attribute:: organization_count
+      :type: int
+
+      
+
+   .. py:attribute:: only_used_by_owner
+      :type: bool
+
+      
+
+   .. py:method:: from_proto(fragment: viam.proto.app.Fragment) -> typing_extensions.Self
+      :classmethod:
+
+      Create a `Fragment` from the .proto defined `Fragment`.
+
+      :param fragment: The object to copy from.
+      :type fragment: viam.proto.app.Fragment
+
+      :returns: The `Fragment`.
+      :rtype: Fragment
+
+
+
+.. py:class:: AppClient(channel: grpclib.client.Channel, metadata: Mapping[str, str], location_id: Optional[str] = None)
+
+
+   gRPC client for method calls to app.
+
+   Constructor is used by `ViamClient` to instantiate relevant service stub. Calls to `AppClient`  methods should be made through
+   `ViamClient`.
+
+   .. py:method:: get_user_id_by_email()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: create_organization()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: list_organizations() -> List[viam.proto.app.Organization]
+      :async:
+
+      List the organization(s) the user is an authorized owner of.
+
+      :returns: The list of organizations.
+      :rtype: List[viam.proto.app.Organization]
+
+
+   .. py:method:: list_organizations_by_user()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_organization()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_organization_namespace_availability()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: update_organization()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_organization()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: list_organization_members()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: create_organization_invite()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: update_organization_invite_authorizations()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_organization_member()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_organization_invite()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: resend_organization_invite()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: create_location(name: str, organization_id: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
+      :async:
+
+      Create and name a location under the specified organization and parent location.
+
+      :param name: Name of the location.
+      :type name: str
+      :param organization_id: ID of the organization to create the location under.
+      :type organization_id: str
+      :param parent_location_id: Optional parent location to put the location under. Defaults to a root-level location if no
+                                 location ID is provided.
+      :type parent_location_id: Optional[str]
+
+      :raises GRPCError: If either an invalid organization ID, name, or parent location ID is passed.
+
+      :returns: The newly created location.
+      :rtype: viam.proto.app.Location
+
+
+   .. py:method:: get_location(location_id: Optional[str] = None) -> viam.proto.app.Location
+      :async:
+
+      Get a location.
+
+      :param location_id: ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
+                          If no default location ID was passed, a GRPCError will be thrown.
+      :type location_id: Optional[str]
+
+      :raises GRPCError: If an invalid location ID is passed.
+
+      :returns: The location.
+      :rtype: viam.proto.app.Location
+
+
+   .. py:method:: update_location(location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
+      :async:
+
+      Change the name of a location and/or assign it a new parent location.
+
+      :param location_id: ID of the location to update.
+      :type location_id: str
+      :param name: Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
+                   change).
+      :type name: Optional[str]
+      :param parent_location_id: Optional new parent location to move the location under. Defaults to the empty string ""
+                                 (i.e., no new parent location is assigned).
+      :type parent_location_id: Optional[str]
+
+      :raises GRPCError: If either an invalid location ID, name, or parent location ID is passed.
+
+      :returns: The newly updated location.
+      :rtype: viam.proto.app.Location
+
+
+   .. py:method:: delete_location(location_id: str) -> None
+      :async:
+
+      Delete a location.
+
+      :param location_id: ID of the location to delete. Must be specified.
+      :type location_id: str
+
+      :raises GRPCError: If an invalid location ID is passed.
+
+
+   .. py:method:: list_locations(organization_id: str) -> List[viam.proto.app.Location]
+      :async:
+
+      Get a list of all locations under the specified organization.
+
+      :param organization_id: ID of the organization to retrieve the locations from.
+      :type organization_id: str
+
+      :raises GRPCError: If an invalid organization ID is passed.
+
+      :returns: The list of locations.
+      :rtype: List[viam.proto.app.Location]
+
+
+   .. py:method:: share_location()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: unshare_location()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: location_auth()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: create_location_secret()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_location_secret()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_robot(robot_id: str) -> viam.proto.app.Robot
+      :async:
+
+      Get a robot.
+
+      :param id: ID of the robot to get.
+      :type id: str
+
+      :raises GRPCError: If an invalid robot ID is passed.
+
+      :returns: The robot.
+      :rtype: viam.proto.app.Robot
+
+
+   .. py:method:: get_rover_rental_parts()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_robot_parts(robot_id: str) -> List[RobotPart]
+      :async:
+
+      Get a list of all the parts under a specific robot.
+
+      :param robot_id: ID of the robot to get parts from.
+      :type robot_id: str
+
+      :raises GRPCError: If an invalid robot ID is passed.
+
+      :returns: The list of robot parts.
+      :rtype: List[viam.app.app_client.RobotPart]
+
+
+   .. py:method:: get_robot_part(robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart
+      :async:
+
+      Get a robot part.
+
+      :param robot_part_id: ID of the robot part to get.
+      :type robot_part_id: str
+      :param dest: Optional filepath to write the robot part's config file in JSON format to.
+      :type dest: Optional[str]
+      :param indent: Size (in number of spaces) of indent when writing config to `dest`. Defaults to 4.
+      :type indent: int
+
+      :raises GRPCError: If an invalid robot part ID is passed.
+
+      :returns: The robot part.
+      :rtype: viam.app.app_client.RobotPart
+
+
+   .. py:method:: get_robot_part_logs(robot_part_id: str, filter: Optional[str] = None, dest: Optional[str] = None, errors_only: bool = True, num_log_entries: int = 100) -> List[LogEntry]
+      :async:
+
+      Get the logs associated with a robot part.
+
+      :param robot_part_id: ID of the robot part to get logs from.
+      :type robot_part_id: str
+      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+                     filter).
+      :type filter: Optional[str]
+      :param dest: Optional filepath to write the log entries to.
+      :type dest: Optional[str]
+      :param errors_only: Boolean specifying whether or not to only include error logs. Defaults to True.
+      :type errors_only: bool
+      :param num_log_entries: Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
+                              `num_log_entries` logs will be returned, whichever comes first.
+      :type num_log_entries: int
+
+      :raises GRPCError: If an invalid robot part ID is passed.
+
+      :returns: The list of log entries.
+      :rtype: List[viam.app.app_client.LogEntry]
+
+
+   .. py:method:: tail_robot_part_logs()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_robot_part_history()
+      :async:
+
+
+   .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart
+      :async:
+
+      Change the name and assign an optional new configuration to a robot part.
+
+      :param robot_part_id: ID of the robot part to update.
+      :type robot_part_id: str
+      :param name: New name to be updated on the robot part.
+      :type name: str
+      :param robot_config: Optional new config represented as a dictionary to be updated on the robot part. The robot
+                           part's config will remain as is (no change) if one isn't passed.
+      :type robot_config: Mapping[str, Any]
+
+      :raises GRPCError: If either an invalid robot part ID, name, or config is passed.
+
+      :returns: The newly updated robot part.
+      :rtype: viam.app.app_client.RobotPart
+
+
+   .. py:method:: new_robot_part(robot_id: str, part_name: str) -> str
+      :async:
+
+      Create a new robot part.
+
+      :param robot_id: ID of the the robot to create a new part for.
+      :type robot_id: str
+      :param part_name: Name of the new part.
+      :type part_name: str
+
+      :raises GRPCError: If either an invalid robot ID or name is passed.
+
+      :returns: The new robot part's ID.
+      :rtype: str
+
+
+   .. py:method:: delete_robot_part(robot_part_id: str) -> None
+      :async:
+
+      Delete the specified robot part.
+
+      :param robot_part_id: ID of the robot part to delete. Must be specified.
+      :type robot_part_id: str
+
+      :raises GRPCError: If an invalid robot part ID is passed.
+
+
+   .. py:method:: mark_part_as_main()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: mark_part_for_restart(robot_part_id: str) -> None
+      :async:
+
+      Mark the specified robot part for restart.
+
+      :param robot_part_id: ID of the robot part to mark for restart.
+      :type robot_part_id: str
+
+      :raises GRPCError: If an invalid robot part ID is passed.
+
+
+   .. py:method:: create_robot_part_secret()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_robot_part_secret()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: list_robots(location_id: Optional[str] = None) -> List[viam.proto.app.Robot]
+      :async:
+
+      Get a list of all robots under the specified location.
+
+      :param location_id: ID of the location to retrieve the robots from. Defaults to the location ID provided at
+                          `AppClient` instantiation.
+      :type location_id: Optional[str]
+
+      :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
+          instantiation.
+
+      :returns: The list of robots.
+      :rtype: List[viam.proto.app.Robot]
+
+
+   .. py:method:: new_robot(name: str, location_id: Optional[str] = None) -> str
+      :async:
+
+      Create a new robot.
+
+      :param name: Name of the new robot.
+      :type name: str
+      :param location_id: ID of the location under which to create the robot. Defaults to the current authorized location.
+      :type location_id: Optional[str]
+
+      :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
+          instantiation.
+
+      :returns: The new robot's ID.
+      :rtype: str
+
+
+   .. py:method:: update_robot(robot_id: str, name: str, location_id: Optional[str] = None) -> viam.proto.app.Robot
+      :async:
+
+      Change the name of an existing robot.
+
+      :param robot_id: ID of the robot to update.
+      :type robot_id: str
+      :param name: New name to be updated on the robot.
+      :type name: str
+      :param location_id: ID of the location under which the robot exists. Defaults to the location ID provided at
+                          `AppClient` instantiation
+      :type location_id: Optional[str]
+
+      :raises GRPCError: If either an invalid robot ID, name, or location ID is passed or a location ID isn't passed and there was no location
+          ID provided at `AppClient` instantiation.
+
+      :returns: The newly updated robot.
+      :rtype: viam.proto.app.Robot
+
+
+   .. py:method:: delete_robot(robot_id: str) -> None
+      :async:
+
+      Delete the specified robot.
+
+      :param robot_id: ID of the robot to delete.
+      :type robot_id: str
+
+      :raises GRPCError: If an invalid robot ID is passed.
+
+
+   .. py:method:: list_fragments(organization_id: str, show_public: bool = True) -> List[Fragment]
+      :async:
+
+      Get a list of fragments under the specified organization.
+
+      :param organization_id: ID of the organization under which to list the fragments.
+      :type organization_id: str
+      :param show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+                          return. If False, only private fragments will return. Defaults to True.
+
+      :raises GRPCError: If an invalid organization ID is passed.
+
+      :returns: The list of fragments.
+      :rtype: List[viam.app.app_client.Fragment]
+
+
+   .. py:method:: get_fragment(fragment_id: str) -> Fragment
+      :async:
+
+      Get a fragment.
+
+      :param fragment_id: ID of the fragment to get.
+      :type fragment_id: str
+
+      :raises GRPCError: If an invalid fragment ID is passed.
+
+      :returns: The fragment.
+      :rtype: viam.app.app_client.Fragment
+
+
+   .. py:method:: create_fragment()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: update_fragment()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: delete_fragments()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: add_role()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: remove_role()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: list_authorizations()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: check_permissions()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: create_module()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: update_module()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: upload_module_file()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_module()
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: list_modules()
+      :abstractmethod:
+      :async:
+
+
+

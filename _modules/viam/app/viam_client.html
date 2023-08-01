@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>viam.app.client &mdash; Viam Python SDK  documentation</title>
+  <title>viam.app.viam_client &mdash; Viam Python SDK  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -77,7 +77,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">viam.app.client</li>
+      <li class="breadcrumb-item active">viam.app.viam_client</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -86,30 +86,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for viam.app.client</h1><div class="highlight"><pre>
+  <h1>Source code for viam.app.viam_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.app.data.client</span> <span class="kn">import</span> <span class="n">DataClient</span>
+<span class="kn">from</span> <span class="nn">viam.app.app_client</span> <span class="kn">import</span> <span class="n">AppClient</span>
+<span class="kn">from</span> <span class="nn">viam.app.data_client</span> <span class="kn">import</span> <span class="n">DataClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_dial_app</span><span class="p">,</span> <span class="n">_get_access_token</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="AppClient"><a class="viewcode-back" href="../../../autoapi/viam/app/client/index.html#viam.app.client.AppClient">[docs]</a><span class="k">class</span> <span class="nc">AppClient</span><span class="p">:</span>
+<div class="viewcode-block" id="ViamClient"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient">[docs]</a><span class="k">class</span> <span class="nc">ViamClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for all communication and interaction with app.</span>
 
-<span class="sd">    Use create() to instantiate an AppClient::</span>
+<span class="sd">    There is currently 1 way to instantiate a `ViamClient` object::</span>
 
-<span class="sd">        AppClient.create(...)</span>
+<span class="sd">        ViamClient.create_from_dial_options(...)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="AppClient.create"><a class="viewcode-back" href="../../../autoapi/viam/app/client/index.html#viam.app.client.AppClient.create">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an AppClient that establishes a connection to app.viam.com.</span>
+<div class="viewcode-block" id="ViamClient.create_from_dial_options"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.create_from_dial_options">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_dial_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` that establishes a connection to app.viam.com.</span>
 
 <span class="sd">        Args:</span>
 
@@ -120,10 +121,17 @@
 <span class="sd">            AssertionError: If the type provided in the credentials of the `DialOptions` object is &#39;robot-secret&#39;.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Self: The `AppClient`.</span>
+<span class="sd">            Self: The `ViamClient`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">assert</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;robot-secret&quot;</span>
+        <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dial_options.credentials cannot be None.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;robot-secret&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dial_options.credentials.type cannot be &#39;robot-secret&#39;&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dial_options.auth_entity cannot be None.&quot;</span><span class="p">)</span>
+
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_app</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
         <span class="n">access_token</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_get_access_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
@@ -132,13 +140,19 @@
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_location_id</span><span class="p">:</span> <span class="nb">str</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return a DataClient used to make `data` and `data_sync` method calls.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return a `DataClient` used to make `data` and `data_sync` method calls.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
-<div class="viewcode-block" id="AppClient.close"><a class="viewcode-back" href="../../../autoapi/viam/app/client/index.html#viam.app.client.AppClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">app_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AppClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return an `AppClient` used to make  `app` method calls.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">AppClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ViamClient.close"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close opened channels used for the various service stubs initialized.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;AppClient is already closed.&quot;</span><span class="p">)</span>

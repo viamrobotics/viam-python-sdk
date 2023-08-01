@@ -162,37 +162,13 @@
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
 name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
@@ -202,17 +178,13 @@ type: &quot;component&quot;
 subtype: &quot;pose_tracker&quot;
 name: &quot;pose_tracker0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;audio_input&quot;
@@ -223,8 +195,36 @@ subtype: &quot;base&quot;
 name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
 ]
 </pre></div>
 </div>
@@ -836,13 +836,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </section>
 <section id="connect-as-a-client-to-app">
 <h2>Connect as a client to app<a class="headerlink" href="#connect-as-a-client-to-app" title="Permalink to this heading"></a></h2>
-<p>To connect to app as a client and make calls to the data API, you should instantiate an instance of an <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> and retrieve its <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> member.</p>
+<p>To connect to app as a client and make calls to the data API, you should instantiate an instance of a <code class="docutils literal notranslate"><span class="pre">ViamClient</span></code> and retrieve its <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> member.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
-<span class="kn">from</span> <span class="nn">viam.app.client</span> <span class="kn">import</span> <span class="n">AppClient</span>
+<span class="kn">from</span> <span class="nn">viam.app.viam_client</span> <span class="kn">import</span> <span class="n">ViamClient</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_to_app</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AppClient</span><span class="p">:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_to_app</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
     <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="p">(</span>
         <span class="n">auth_entity</span><span class="o">=</span><span class="s1">&#39;&lt;ADDRESS&gt;&#39;</span><span class="p">,</span>  <span class="c1"># The URL of your robot.</span>
         <span class="n">credentials</span><span class="o">=</span><span class="n">Credentials</span><span class="p">(</span>
@@ -850,17 +850,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;&lt;SECRET&gt;&#39;</span>
         <span class="p">)</span>
     <span class="p">)</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">AppClient</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">AppClient</span></code>, you can then obtain a <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> as a property.</p>
+<p>Once you have a connected <code class="docutils literal notranslate"><span class="pre">ViamClient</span></code>, you can then obtain a <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> as a property.</p>
 <div class="cell tag_remove-input docutils container">
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_client</span> <span class="o">=</span> <span class="n">app_client</span><span class="o">.</span><span class="n">data_client</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">data_client</span>
 </pre></div>
 </div>
 </div>
@@ -911,7 +911,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

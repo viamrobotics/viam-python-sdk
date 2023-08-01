@@ -1,7 +1,7 @@
-:py:mod:`viam.app.data.client`
+:py:mod:`viam.app.data_client`
 ==============================
 
-.. py:module:: viam.app.data.client
+.. py:module:: viam.app.data_client
 
 
 Module Contents
@@ -12,7 +12,7 @@ Classes
 
 .. autoapisummary::
 
-   viam.app.data.client.DataClient
+   viam.app.data_client.DataClient
 
 
 
@@ -22,7 +22,7 @@ Attributes
 
 .. autoapisummary::
 
-   viam.app.data.client.LOGGER
+   viam.app.data_client.LOGGER
 
 
 .. py:data:: LOGGER
@@ -34,8 +34,8 @@ Attributes
 
    gRPC client for uploading and retrieving data from app.
 
-   Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
-   `AppClient`.
+   Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
+   `ViamClient`.
 
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[Mapping[str, Any]]
       :async:
@@ -329,18 +329,6 @@ Attributes
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises FileNotFoundError: If the provided filepath is not found.
-
-
-   .. py:method:: datetime_to_timestamp(dt: datetime.datetime) -> google.protobuf.timestamp_pb2.Timestamp
-      :staticmethod:
-
-      Convert a Python native `datetime` into a `Timestamp`.
-
-      :param dt: A `datetime` object. UTC is assumed in the conversion if the object is naive to timezone information.
-      :type dt: datetime.datetime
-
-      :returns: The `Timestamp` object.
-      :rtype: google.protobuf.timestamp_pb2.Timestamp
 
 
    .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None) -> viam.proto.app.data.Filter

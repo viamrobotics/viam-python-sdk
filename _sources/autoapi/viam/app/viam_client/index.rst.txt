@@ -1,0 +1,72 @@
+:py:mod:`viam.app.viam_client`
+==============================
+
+.. py:module:: viam.app.viam_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.viam_client.ViamClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.viam_client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: ViamClient
+
+
+   gRPC client for all communication and interaction with app.
+
+   There is currently 1 way to instantiate a `ViamClient` object::
+
+       ViamClient.create_from_dial_options(...)
+
+   .. py:property:: data_client
+      :type: viam.app.data_client.DataClient
+
+      Insantiate and return a `DataClient` used to make `data` and `data_sync` method calls.
+
+   .. py:property:: app_client
+      :type: viam.app.app_client.AppClient
+
+      Insantiate and return an `AppClient` used to make  `app` method calls.
+
+   .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions) -> typing_extensions.Self
+      :classmethod:
+      :async:
+
+      Create `ViamClient` that establishes a connection to app.viam.com.
+
+      :param dial_options: Required information for authorization and connection to app. `creds` and
+                           `auth_entity` fields are required.
+      :type dial_options: viam.rpc.dial.DialOptions
+
+      :raises AssertionError: If the type provided in the credentials of the `DialOptions` object is 'robot-secret'.
+
+      :returns: The `ViamClient`.
+      :rtype: Self
+
+
+   .. py:method:: close()
+
+      Close opened channels used for the various service stubs initialized.
+
+
+
