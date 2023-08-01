@@ -17,10 +17,10 @@ To upgrade, simply run the `pip install` command with the `-U` option:
 `pip install -U viam-sdk`
 
 ### Installing from Source
-The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [Rust utils repo](https://github.com/viamrobotics/rust-utils) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.
+The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [rust-utils repo](https://github.com/viamrobotics/rust-utils) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.
 
 1. Download/clone this [repository](https://github.com/viamrobotics/viam-python-sdk)
-1. Download/clone the [Rust utils](https://github.com/viamrobotics/rust-utils)
+1. Download/clone the [rust-utils](https://github.com/viamrobotics/rust-utils)
 1. [Install Rust](https://www.rust-lang.org/tools/install) if not already available
 1. From the `rust-utils` directory, run `cargo build`
     * You can optionally provide the `--release` flag: `cargo build --release`
@@ -30,6 +30,8 @@ The Viam Python SDK uses native libraries to support communication over WebRTC, 
 1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
 1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
+
+If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the [releases](https://github.com/viamrobotics/rust-utils/releases/latest) page of the rust-utils library.
 
 
 If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
