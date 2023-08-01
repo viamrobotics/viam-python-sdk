@@ -476,7 +476,7 @@ class AppClient:
         filter: Optional[str] = None,
         dest: Optional[str] = None,
         errors_only: bool = True,
-        num_pages: int = 1,
+        num_log_entries: int = 100,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
 
@@ -486,18 +486,18 @@ class AppClient:
                 filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            num_pages (int): Number of pages of logs to return. Passing 0 returns all pages. Defaults to 1. All pages or the first
-                `num_pages` pages will be returned, whichever comes first.
+            num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
+                `num_log_entries` logs will be returned, whichever comes first.
 
         Raises:
             GRPCError: If an invalid robot part ID is passed.
-            AssertionError: If `num_pages` is less than 0.
 
         Returns:
             List[viam.app.app_client.LogEntry]: The list of log entries.
         """
-        num_pages = num_pages if num_pages is not None else 1
-        assert num_pages >= 0
+        if num_log_entries < 0:
+            raise ValueError("'num_log_entries must be at least 0.")
+        logs_left = num_log_entries
         errors_only = errors_only if errors_only else True
         page_token = ""
         logs = []
@@ -506,9 +506,12 @@ class AppClient:
             new_logs, next_page_token = await self._get_robot_part_logs(
                 robot_part_id=robot_part_id, filter=filter if filter else "", errors_only=errors_only, page_token=page_token
             )
+            if num_log_entries != 0 and len(new_logs) > logs_left:
+                logs += new_logs[0:logs_left]
+                break
             logs += new_logs
-            num_pages -= 1
-            if not next_page_token or next_page_token == "" or num_pages == 0:
+            logs_left -= len(new_logs)
+            if not next_page_token or next_page_token == "" or logs_left == 0:
                 break
             page_token = next_page_token
 
