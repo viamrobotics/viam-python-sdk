@@ -3,6 +3,8 @@ import asyncio
 import pytest
 from google.protobuf.json_format import ParseError
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
+from google.protobuf.timestamp_pb2 import Timestamp
+
 
 from viam.proto.common import ActuatorStatus, GeoPoint, Orientation, ResourceName, Vector3
 from viam.utils import (
@@ -15,6 +17,7 @@ from viam.utils import (
     struct_to_dict,
     struct_to_message,
     value_to_primitive,
+    datetime_to_timestamp,
 )
 
 
@@ -204,6 +207,15 @@ def test_struct_to_dict():
     struct = dict_to_struct(expected)
 
     assert struct_to_dict(struct) == expected
+
+
+def test_datetime_to_timestamp():
+    expected = Timestamp(
+        seconds=1686045600,
+    )
+    datetime = expected.ToDatetime()
+
+    assert datetime_to_timestamp(datetime) == expected
 
 
 def test_sensor_readings():

@@ -3,15 +3,12 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
 from google.protobuf.struct_pb2 import Struct
-from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
     AddTagsToBinaryDataByFilterRequest,
-    AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
-    AddTagsToBinaryDataByIDsResponse,
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
@@ -51,7 +48,7 @@ from viam.proto.app.datasync import (
     SensorMetadata,
     UploadMetadata,
 )
-from viam.utils import struct_to_dict
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -59,15 +56,15 @@ LOGGER = logging.getLogger(__name__)
 class DataClient:
     """gRPC client for uploading and retrieving data from app.
 
-    Constructor is used by `AppClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
-    `AppClient`.
+    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
+    `ViamClient`.
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
 
         Args:
-            channel (Channel): Connection to app.
+            channel (grpclib.client.Channel): Connection to app.
             metadata (Mapping[str, str]): Required authorization token to send requests to app.
         """
         self._metadata = metadata
@@ -232,7 +229,7 @@ class DataClient:
             GRPCError: If no `BinaryID` objects or tags are provided.
         """
         request = AddTagsToBinaryDataByIDsRequest(binary_ids=binary_ids, tags=tags)
-        _: AddTagsToBinaryDataByIDsResponse = await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
+        await self._data_client.AddTagsToBinaryDataByIDs(request, metadata=self._metadata)
 
     async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
         """Add tags to binary data.
@@ -247,7 +244,7 @@ class DataClient:
         """
         filter = filter if filter else Filter()
         request = AddTagsToBinaryDataByFilterRequest(filter=filter, tags=tags)
-        _: AddTagsToBinaryDataByFilterResponse = await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
+        await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
 
     async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> int:
         """Remove tags from binary.
@@ -302,7 +299,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = TagsByFilterRequest(filter=filter)
         response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
-        return response.tags
+        return list(response.tags)
 
     # TODO: implement
     async def add_bounding_box_to_image_by_id(self):
@@ -325,7 +322,7 @@ class DataClient:
         filter = filter if filter else Filter()
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
-        return response.labels
+        return list(response.labels)
 
     async def binary_data_capture_upload(
         self,
@@ -360,8 +357,8 @@ class DataClient:
         sensor_contents = SensorData(
             metadata=(
                 SensorMetadata(
-                    time_requested=self.datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
-                    time_received=self.datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
+                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
+                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
                 )
                 if data_request_times
                 else None
@@ -375,12 +372,10 @@ class DataClient:
             component_name=component_name,
             method_name=method_name,
             type=DataType.DATA_TYPE_BINARY_SENSOR,
-            file_name=None,  # Not used in app.
             method_parameters=method_parameters,
-            file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
+        await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
 
     async def tabular_data_capture_upload(
         self,
@@ -418,7 +413,7 @@ class DataClient:
             AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
-        sensor_contents = [None] * len(tabular_data)
+        sensor_contents = [SensorData()] * len(tabular_data)
         if data_request_times:
             assert len(data_request_times) == len(tabular_data)
 
@@ -428,8 +423,8 @@ class DataClient:
             sensor_contents[i] = SensorData(
                 metadata=(
                     SensorMetadata(
-                        time_requested=self.datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=self.datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
+                        time_requested=datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
+                        time_received=datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
                     )
                     if data_request_times[i]
                     else None
@@ -445,12 +440,10 @@ class DataClient:
             component_name=component_name,
             method_name=method_name,
             type=DataType.DATA_TYPE_TABULAR_SENSOR,
-            file_name=None,  # Not used in app.
             method_parameters=method_parameters,
-            file_extension=None,  # Will be stored as empty string "".
             tags=tags,
         )
-        _: DataCaptureUploadResponse = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
+        await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
 
     async def _data_capture_upload(self, metadata: UploadMetadata, sensor_contents: List[SensorData]) -> DataCaptureUploadResponse:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
@@ -491,16 +484,16 @@ class DataClient:
         """
         metadata = UploadMetadata(
             part_id=part_id,
-            component_type=component_type,
-            component_name=component_name,
-            method_name=method_name,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
             type=DataType.DATA_TYPE_FILE,
-            file_name=file_name,
+            file_name=file_name if file_name else "",
             method_parameters=method_parameters,
-            file_extension=file_extension,
+            file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        _: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
 
     async def file_upload_from_path(
         self,
@@ -539,16 +532,16 @@ class DataClient:
 
         metadata = UploadMetadata(
             part_id=part_id,
-            component_type=component_type,
-            component_name=component_name,
-            method_name=method_name,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
             type=DataType.DATA_TYPE_FILE,
             file_name=file_name,
             method_parameters=method_parameters,
-            file_extension=file_extension,
+            file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        _: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
 
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)
@@ -556,22 +549,9 @@ class DataClient:
         async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
-            response: FileUploadResponse = await stream.recv_message()
+            response = await stream.recv_message()
+            assert response is not None
             return response
-
-    @staticmethod
-    def datetime_to_timestamp(dt: datetime) -> Timestamp:
-        """Convert a Python native `datetime` into a `Timestamp`.
-
-        Args:
-            dt (datetime.datetime): A `datetime` object. UTC is assumed in the conversion if the object is naive to timezone information.
-
-        Returns:
-            google.protobuf.timestamp_pb2.Timestamp: The `Timestamp` object.
-        """
-        timestamp = Timestamp()
-        timestamp.FromDatetime(dt)
-        return timestamp
 
     @staticmethod
     def create_filter(
@@ -613,20 +593,20 @@ class DataClient:
             viam.proto.app.data.Filter: The `Filter` object.
         """
         return Filter(
-            component_name=component_name,
-            component_type=component_type,
-            method=method,
-            robot_name=robot_name,
-            robot_id=robot_id,
-            part_name=part_name,
-            part_id=part_id,
+            component_name=component_name if component_name else "",
+            component_type=component_type if component_type else "",
+            method=method if method else "",
+            robot_name=robot_name if robot_name else "",
+            robot_id=robot_id if robot_id else "",
+            part_name=part_name if part_name else "",
+            part_id=part_id if part_id else "",
             location_ids=location_ids,
             organization_ids=organization_ids,
             mime_type=mime_type,
             interval=(
                 CaptureInterval(
-                    start=DataClient.datetime_to_timestamp(start_time) if start_time else None,
-                    end=DataClient.datetime_to_timestamp(end_time) if end_time else None,
+                    start=datetime_to_timestamp(start_time) if start_time else None,
+                    end=datetime_to_timestamp(end_time) if end_time else None,
                 )
             )
             if start_time and end_time
