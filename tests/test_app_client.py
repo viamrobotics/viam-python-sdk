@@ -62,7 +62,7 @@ DEST = "dest"
 INDENT = 1
 FILTER = "filter"
 ERRORS_ONLY = True
-NUM_PAGES = 1
+NUM_LOGS = 1
 HOST = "host"
 LEVEL = "level"
 LOGGER_NAME = "logger_name"
@@ -176,7 +176,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             log_entries = await client.get_robot_part_logs(
-                robot_part_id=ID, filter=FILTER, dest=DEST, errors_only=ERRORS_ONLY, num_pages=NUM_PAGES
+                robot_part_id=ID, filter=FILTER, dest=DEST, errors_only=ERRORS_ONLY, num_log_entries=NUM_LOGS
             )
             assert service.robot_part_id == ID
             assert service.filter == FILTER
