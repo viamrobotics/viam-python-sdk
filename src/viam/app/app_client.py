@@ -165,7 +165,7 @@ class LogEntry:
     message: str
     caller: Optional[Mapping[str, Any]]
     stack: str
-    fields: List[Mapping[str, Any]]
+    fields: Optional[List[Mapping[str, Any]]]
 
     @property
     def proto(self) -> LogEntryPB:
@@ -177,7 +177,7 @@ class LogEntry:
             message=self.message,
             caller=dict_to_struct(self.caller) if self.caller else None,
             stack=self.stack,
-            fields=[dict_to_struct(field) for field in self.fields],
+            fields=[dict_to_struct(field) for field in self.fields] if self.fields else None,
         )
 
 
