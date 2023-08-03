@@ -516,7 +516,7 @@ class DataClient:
         file_extension: Optional[str] = None,
         tags: Optional[List[str]] = None,
         data: Optional[bytes] = None,
-    ) -> None:
+    ) -> str:
         """Upload arbitrary file data.
 
         Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
@@ -536,6 +536,9 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
+
+        Returns:
+            str: ID of the new file.
         """
         metadata = UploadMetadata(
             part_id=part_id,
@@ -548,7 +551,8 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        return response.file_id
 
     async def file_upload_from_path(
         self,
@@ -559,7 +563,7 @@ class DataClient:
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
-    ) -> None:
+    ) -> str:
         """Upload arbitrary file data.
 
         Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
@@ -577,6 +581,9 @@ class DataClient:
         Raises:
             GRPCError: If an invalid part ID is passed.
             FileNotFoundError: If the provided filepath is not found.
+
+        Returns:
+            str: ID of the new file.
         """
         path = Path(filepath)
         file_name = path.stem
@@ -596,7 +603,8 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        return response.file_id
 
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)

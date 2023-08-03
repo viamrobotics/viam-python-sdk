@@ -489,8 +489,13 @@ class MockNavigation(Navigation):
 class MockData(DataServiceBase):
     def __init__(
         self,
+<<<<<<< HEAD
         tabular_response: List[DataClient.TabularData],
         binary_response: List[DataClient.BinaryData],
+=======
+        tabular_response: List[Dict[str, str]],
+        binary_response: List[bytes],
+>>>>>>> 5d8a5236 (Implement baseline and make flyby fixes (return file ID's when uploading files).)
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
@@ -618,6 +623,9 @@ class MockData(DataServiceBase):
 
 
 class MockDataSync(DataSyncServiceBase):
+    def __init__(self, file_upload_response: str):
+        self.file_upload_response = file_upload_response
+
     async def DataCaptureUpload(self, stream: Stream[DataCaptureUploadRequest, DataCaptureUploadResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -632,7 +640,7 @@ class MockDataSync(DataSyncServiceBase):
         request_file_contents = await stream.recv_message()
         assert request_file_contents is not None
         self.binary_data = request_file_contents.file_contents.data
-        await stream.send_message(FileUploadResponse())
+        await stream.send_message(FileUploadResponse(file_id=self.file_upload_response))
 
 
 class MockApp(AppServiceBase):

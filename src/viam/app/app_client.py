@@ -7,11 +7,34 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.proto.app import (
+    AddRoleRequest,
     AppServiceStub,
+    Authorization,
+    AuthorizedPermissions,
+    CheckPermissionsRequest,
+    CheckPermissionsResponse,
+    CreateFragmentRequest,
+    CreateFragmentResponse,
     CreateLocationRequest,
     CreateLocationResponse,
+    CreateLocationSecretRequest,
+    CreateLocationSecretResponse,
+    CreateModuleRequest,
+    CreateModuleResponse,
+    CreateOrganizationInviteRequest,
+    CreateOrganizationInviteResponse,
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
+    CreateRobotPartSecretRequest,
+    CreateRobotPartSecretResponse,
+    DeleteFragmentRequest,
     DeleteLocationRequest,
+    DeleteLocationSecretRequest,
+    DeleteOrganizationInviteRequest,
+    DeleteOrganizationMemberRequest,
+    DeleteOrganizationRequest,
     DeleteRobotPartRequest,
+    DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
 )
 from viam.proto.app import Fragment as FragmentPB
@@ -20,6 +43,14 @@ from viam.proto.app import (
     GetFragmentResponse,
     GetLocationRequest,
     GetLocationResponse,
+    GetModuleRequest,
+    GetModuleResponse,
+    GetOrganizationNamespaceAvailabilityRequest,
+    GetOrganizationNamespaceAvailabilityResponse,
+    GetOrganizationRequest,
+    GetOrganizationResponse,
+    GetRobotPartHistoryRequest,
+    GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
     GetRobotPartLogsResponse,
     GetRobotPartRequest,
@@ -28,35 +59,63 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
+    ListAuthorizationsRequest,
+    ListAuthorizationsResponse,
     ListFragmentsRequest,
     ListFragmentsResponse,
     ListLocationsRequest,
     ListLocationsResponse,
+    ListModulesRequest,
+    ListModulesResponse,
+    ListOrganizationMembersRequest,
+    ListOrganizationMembersResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
+    LocationAuth,
+    LocationAuthRequest,
+    LocationAuthResponse,
 )
 from viam.proto.app import LogEntry as LogEntryPB
 from viam.proto.app import (
+    MarkPartAsMainRequest,
     MarkPartForRestartRequest,
+    Model,
+    Module,
+    ModuleFileInfo,
     NewRobotPartRequest,
     NewRobotPartResponse,
     NewRobotRequest,
     NewRobotResponse,
     Organization,
+    OrganizationInvite,
+    OrganizationMember,
+    RemoveRoleRequest,
+    ResendOrganizationInviteRequest,
+    ResendOrganizationInviteResponse,
     Robot,
 )
 from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
     SharedSecret,
+    UpdateFragmentRequest,
+    UpdateFragmentResponse,
     UpdateLocationRequest,
     UpdateLocationResponse,
+    UpdateModuleRequest,
+    UpdateModuleResponse,
+    UpdateOrganizationInviteAuthorizationsRequest,
+    UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationRequest,
+    UpdateOrganizationResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
+    UploadModuleFileRequest,
 )
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
@@ -222,7 +281,7 @@ class Fragment:
     only_used_by_owner: bool
 
     @property
-    def proto(self):
+    def proto(self) -> FragmentPB:
         return FragmentPB(
             id=self.id,
             name=self.name,
@@ -235,6 +294,19 @@ class Fragment:
             organization_count=self.organization_count,
             only_used_by_owner=self.only_used_by_owner,
         )
+
+
+class RobotPartHistoryEntry:
+    """ """
+
+    @classmethod
+    def from_proto(cls, robot_part_history_entry: RobotPartHistoryEntryPB) -> Self:
+        self = cls()
+        return self
+
+    @property
+    def proto(self) -> RobotPartHistoryEntryPB:
+        return RobotPartHistoryEntryPB()
 
 
 class AppClient:
@@ -263,8 +335,22 @@ class AppClient:
     async def get_user_id_by_email(self):
         raise NotImplementedError()
 
-    async def create_organization(self):
-        raise NotImplementedError()
+    # TODO: Test.
+    async def create_organization(self, name: str) -> Organization:
+        """Create an organization.
+
+        Args:
+            name (str): Name of the new organization.
+
+        Raises:
+            GRPCError: If an invalid name is passed.
+
+        Returns:
+            viam.proto.app.Organization: _description_
+        """
+        request = CreateOrganizationRequest(name=name)
+        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
+        return response.organization
 
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
@@ -279,35 +365,179 @@ class AppClient:
     async def list_organizations_by_user(self):
         raise NotImplementedError()
 
-    async def get_organization(self):
-        raise NotImplementedError()
+    # TODO: Test.
+    async def get_organization(self, organization_id: str) -> Organization:
+        """Get an organization.
 
-    async def get_organization_namespace_availability(self):
-        raise NotImplementedError()
+        Args:
+            organization_id (str): ID of the organization to get.
 
-    async def update_organization(self):
-        raise NotImplementedError()
+        Raises:
+            GRPCError: If an invalid organization ID is passed.
 
-    async def delete_organization(self):
-        raise NotImplementedError()
+        Returns:
+            viam.proto.app.Organization: The organization.
+        """
+        request = GetOrganizationRequest(organization_id=organization_id)
+        response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
+        return response.organization
 
-    async def list_organization_members(self):
-        raise NotImplementedError()
+    # TODO: Test and add docstring.
+    async def get_organization_namespace_availability(self, public_namespace: str) -> bool:
+        """
 
-    async def create_organization_invite(self):
-        raise NotImplementedError()
+        Args:
+            public_namespace (str):
 
-    async def update_organization_invite_authorizations(self):
-        raise NotImplementedError()
+        Returns:
+            bool:
+        """
+        request = GetOrganizationNamespaceAvailabilityRequest(public_namespace=public_namespace)
+        response: GetOrganizationNamespaceAvailabilityResponse = await self._app_client.GetOrganizationNamespaceAvailability(
+            request, metadata=self._metadata
+        )
+        return response.available
 
-    async def delete_organization_member(self):
-        raise NotImplementedError()
+    # TODO: Test, check optionality, and add docstring.
+    async def update_organization(
+        self, organization_id: str, name: Optional[str], public_namespace: Optional[str], region: Optional[str]
+    ) -> Organization:
+        """
 
-    async def delete_organization_invite(self):
-        raise NotImplementedError()
+        Args:
+            organization_id (str):
+            name (Optional[str]):
+            public_namespace (Optional[str]):
+            region (Optional[str]):
 
-    async def resend_organization_invite(self):
-        raise NotImplementedError()
+        Returns:
+            viam.proto.app.Organization:
+        """
+        request = UpdateOrganizationRequest(organization_id=organization_id, name=name, public_namespace=public_namespace)
+        response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
+        return response.organization
+
+    # TODO: Test.
+    async def delete_organization(self, organization_id: str) -> None:
+        """Delete an organization.
+
+        Args:
+            organization_id (str): ID of the organization to delete.
+
+        Raises:
+            GRPCError: If an invalid ID is passed.
+        """
+        request = DeleteOrganizationRequest(organization_id=organization_id)
+        await self._app_client.DeleteOrganization(request, metadata=self._metadata)
+
+    # TODO: Test.
+    async def list_organization_members(self, organization_id: str) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
+        """List the members of an organization.
+
+        Args:
+            organization_id (str): ID of the organization to retrieve members from.
+
+        Raises:
+            GRPCError: If an invalid organization ID is passed.
+
+        Returns:
+            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
+                [0] of organization members, and the second [1] contains organization invites.
+        """
+        request = ListOrganizationMembersRequest(organization_id=organization_id)
+        response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
+        return list(response.members), list(response.invites)
+
+    # TODO: Test and Add docstring.
+    async def create_organization_invite(
+        self, organization_id: str, email: str, authorizations: Optional[List[Authorization]]
+    ) -> OrganizationInvite:
+        """
+
+        Args:
+            organization_id (str):
+            email (str):
+            authorizations (Optional[List[Authorization]]):
+
+        Returns:
+            viam.proto.app.OrganizationInvite:
+        """
+        request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations)
+        response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
+        return response.invite
+
+    # TODO: Test, check optionality, and add docstring.
+    async def update_organization_invite_authorizations(
+        self,
+        organization_id: str,
+        email: str,
+        add_authorizations: Optional[List[Authorization]],
+        remove_authorizations: Optional[List[Authorization]],
+    ) -> OrganizationInvite:
+        """
+
+        Args:
+            organization_id (str):
+            email (str):
+            add_authorization (Optional[List[viam.proto.app.Authorization]]):
+            remove_authorization (Optional[List[viam.proto.app.Authorization]]):
+
+        Returns:
+            viam.proto.app.OrganizationInvite: The updated invite.
+        """
+        request = UpdateOrganizationInviteAuthorizationsRequest(
+            organization_id=organization_id, email=email, add_authorizations=add_authorizations, remove_authorizations=remove_authorizations
+        )
+        response: UpdateOrganizationInviteAuthorizationsResponse = await self._app_client.UpdateOrganizationInviteAuthorizations(
+            request, metadata=self._metadata
+        )
+        return response.invite
+
+    # TODO: Test.
+    async def delete_organization_member(self, organization_id: str, user_id: str) -> None:
+        """Delete an organization member.
+
+        Args:
+            organization_id (str): ID of the organization to delete the member from.
+            user_id (str): ID of the user to delete.
+
+        Raises:
+            GRPCError: If either an invalid organization ID or user ID is passed.
+        """
+        request = DeleteOrganizationMemberRequest(organization_id=organization_id, user_id=user_id)
+        await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
+
+    # TODO: Test.
+    async def delete_organization_invite(self, organization_id: str, email: str) -> None:
+        """Delete an organization invite
+
+        Args:
+            organization_id (str): ID of the organization the invite was sent from.
+            email (str): Email the invite was sent to.
+
+        Raises:
+            GRPCError: If either an invalid organization ID or email is passed.
+        """
+        request = DeleteOrganizationInviteRequest(organization_id=organization_id, email=email)
+        await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
+
+    # TODO: Test.
+    async def resend_organization_invite(self, organization_id: str, email: str) -> OrganizationInvite:
+        """Resend an organization invite
+
+        Args:
+            organization_id (str): ID of the organization the invite was sent from.
+            email (str): Email the invite was sent to.
+
+        Raises:
+            GRPCError: If either an invalid organization ID or email is passed.
+
+        Returns:
+            viam.app.proto.OrganizationInvite: The resent organization invite.
+        """
+        request = ResendOrganizationInviteRequest(organization_id=organization_id, email=email)
+        response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
+        return response.invite
 
     async def create_location(self, name: str, organization_id: str, parent_location_id: Optional[str] = None) -> Location:
         """Create and name a location under the specified organization and parent location.
@@ -341,8 +571,7 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The location.
         """
-        location_id = location_id if location_id else self._location_id
-        request = GetLocationRequest(location_id=location_id if location_id else "")
+        request = GetLocationRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
         return response.location
 
@@ -400,14 +629,59 @@ class AppClient:
     async def unshare_location(self):
         raise NotImplementedError()
 
-    async def location_auth(self):
-        raise NotImplementedError()
+    # TODO: Test, add docstring, default `location_id`.
+    async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
+        """_summary_
 
-    async def create_location_secret(self):
-        raise NotImplementedError()
+        Args:
+            location_id (str):
 
-    async def delete_location_secret(self):
-        raise NotImplementedError()
+        Raises:
+            GRPCError: If an invalid location_id is passed or if one isn't passed and there was no location ID provided at `AppClient`
+                instantiation.
+
+        Returns:
+            LocationAuth: _description_
+        """
+        request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
+        return response.auth
+
+    # TODO: Test and finish docstring.
+    async def create_location_secret(self, location_id: Optional[str] = None) -> LocationAuth:
+        """Create a new location secret.
+
+        Args:
+            location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at
+                `AppClient` instantiation.
+
+        Raises:
+            GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
+                instantiation.
+
+        Returns:
+            viam.proto.app.LocationAuth: _description_
+        """
+        request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
+        response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
+        return response.auth
+
+    # TODO: Test.
+    async def delete_location_secret(self, location_id: str, secret_id: str) -> None:
+        """Delete a location secret.
+
+        Args:
+            location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.
+            secret_id (str): ID of the secret to delete.
+
+        Raises:
+            GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn't passed and there was no location
+                ID provided at `AppClient` instantiation.
+        """
+        request = DeleteLocationSecretRequest(
+            location_id=location_id if location_id else self._location_id if self._location_id else "", secret_id=secret_id
+        )
+        await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
     async def get_robot(self, robot_id: str) -> Robot:
         """Get a robot.
@@ -535,12 +809,26 @@ class AppClient:
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
+    # Unary-stream method.
     async def tail_robot_part_logs(self):
         raise NotImplementedError()
 
-    async def get_robot_part_history(self):
-        pass
-        raise NotImplementedError(self)
+    # TODO: Test.
+    async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
+        """Get a list containing the history of a robot part.
+
+        Args:
+            robot_part_id (str): ID of the robot part to retrieve history from.
+
+        Raises:
+            GRPCError: If an invalid robot_part_id is provided.
+
+        Returns:
+            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part's history.
+        """
+        request = GetRobotPartHistoryRequest(id=robot_part_id)
+        response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
+        return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
 
     async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
         """Change the name and assign an optional new configuration to a robot part.
@@ -557,8 +845,7 @@ class AppClient:
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
         """
-        robot_config_struct = dict_to_struct(robot_config) if robot_config else None
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=robot_config_struct)
+        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
         response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
         return RobotPart.from_proto(robot_part=response.part)
 
@@ -591,8 +878,18 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
-    async def mark_part_as_main(self):
-        raise NotImplementedError()
+    # TODO: Test
+    async def mark_part_as_main(self, robot_part_id: str) -> None:
+        """Mark a robot part as the main part of a robot.
+
+        Args:
+            robot_part_id (str): ID of the robot part to mark as main.
+
+        Raises:
+            GRPCError: If an invalid robot part ID is passed.
+        """
+        request = MarkPartAsMainRequest(part_id=robot_part_id)
+        await self._app_client.MarkPartAsMain(request, metadata=self._metadata)
 
     async def mark_part_for_restart(self, robot_part_id: str) -> None:
         """Mark the specified robot part for restart.
@@ -606,11 +903,36 @@ class AppClient:
         request = MarkPartForRestartRequest(part_id=robot_part_id)
         await self._app_client.MarkPartForRestart(request, metadata=self._metadata)
 
-    async def create_robot_part_secret(self):
-        raise NotImplementedError()
+    # TODO: Test.
+    async def create_robot_part_secret(self, robot_part_id: str) -> RobotPart:
+        """Create a robot part secret.
 
-    async def delete_robot_part_secret(self):
-        raise NotImplementedError()
+        Args:
+            robot_part_id (str): ID of the robot part to create a secret for.
+
+        Raises:
+            GRPCError: If an invalid robot part ID is passed.
+
+        Returns:
+            viam.app.app_client.RobotPart: The robot part the new secret was generated for.
+        """
+        request = CreateRobotPartSecretRequest(part_id=robot_part_id)
+        response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request, metadata=self._metadata)
+        return RobotPart.from_proto(response.part)
+
+    # TODO: Test.
+    async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
+        """Delete a robot part secret.
+
+        Args:
+            robot_part_id (str): ID of the robot part to delete the secret from.
+            secret_id (str): ID of the secret to delete.
+
+        Raises:
+            GRPCError: If an invalid robot part ID or secret ID is passed.
+        """
+        request = DeleteRobotPartSecretRequest(part_id=robot_part_id, secret_id=secret_id)
+        await self._app_client.DeleteRobotPartSecret(request, metadata=self._metadata)
 
     async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
         """Get a list of all robots under the specified location.
@@ -626,8 +948,7 @@ class AppClient:
         Returns:
             List[viam.proto.app.Robot]: The list of robots.
         """
-        location_id = location_id if location_id else self._location_id
-        request = ListRobotsRequest(location_id=location_id if location_id else "")
+        request = ListRobotsRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
         return list(response.robots)
 
@@ -645,8 +966,7 @@ class AppClient:
         Returns:
             str: The new robot's ID.
         """
-        location_id = location_id if location_id else self._location_id
-        request = NewRobotRequest(name=name, location=location_id if location_id else "")
+        request = NewRobotRequest(location=location_id if location_id else self._location_id if self._location_id else "", name=name)
         response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
         return response.id
 
@@ -666,8 +986,9 @@ class AppClient:
         Returns:
             viam.proto.app.Robot: The newly updated robot.
         """
-        location_id = location_id if location_id else self._location_id
-        request = UpdateRobotRequest(id=robot_id, name=name, location=location_id if location_id else "")
+        request = UpdateRobotRequest(
+            id=robot_id, name=name, location=location_id if location_id else self._location_id if self._location_id else ""
+        )
         response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
         return response.robot
 
@@ -717,38 +1038,225 @@ class AppClient:
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 
-    async def create_fragment(self):
-        raise NotImplementedError()
+    # TODO: Test and check optionality.
+    async def create_fragment(self, name: str, organization_id: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
+        """Create a new fragment.
 
-    async def update_fragment(self):
-        raise NotImplementedError()
+        Args:
+            name (str): Name of the fragment.
+            config (Optional[Mapping[str, Any]]): _description_
+            organization_id (str): ID of the organization to own the fragment.
 
-    async def delete_fragments(self):
-        raise NotImplementedError()
+        Returns:
+            viam.app.app_client.Fragment: The newly created fragment.
+        """
+        request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None, organization_id=organization_id)
+        response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
+        return Fragment.from_proto(response.fragment)
 
-    async def add_role(self):
-        raise NotImplementedError()
+    # TODO: Test, check optionality, and finish docstring.
+    async def update_fragment(
+        self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
+    ) -> Fragment:
+        """Update a fragment.
 
-    async def remove_role(self):
-        raise NotImplementedError()
+        Args:
+            fragment_id (str): ID of the fragment to be updated.
+            name (str):
+            config (Optional[Mapping[str, Any]]):
+            public ():
 
-    async def list_authorizations(self):
-        raise NotImplementedError()
+        Raises:
+            GRPCError: if an invalid ID, name, or config is passed.
 
-    async def check_permissions(self):
-        raise NotImplementedError()
+        Returns:
+            viam.app.app_client.Fragment: The newly updated fragment.
+        """
+        request = UpdateFragmentRequest(id=fragment_id, name=name, config=dict_to_struct(config) if config else None, public=public)
+        response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
+        return Fragment.from_proto(response.fragment)
 
-    async def create_module(self):
-        raise NotImplementedError()
+    # TODO: Test.
+    async def delete_fragment(self, fragment_id) -> None:
+        """Delete a fragment.
 
-    async def update_module(self):
-        raise NotImplementedError()
+        Args:
+            fragment_id (_type_): ID of the fragment to delete.
 
-    async def upload_module_file(self):
-        raise NotImplementedError()
+        Raises:
+            GRPCError: If an invalid fragment ID is passed.
+        """
+        request = DeleteFragmentRequest(id=fragment_id)
+        await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    async def get_module(self):
-        raise NotImplementedError()
+    # TODO: Test, check optionality, and finish docstring.
+    async def add_role(self, authorization: Optional[Authorization]) -> None:
+        """
 
-    async def list_modules(self):
-        raise NotImplementedError()
+        Args:
+            authorization (Optional[Authorization]):
+        """
+        request = AddRoleRequest(authorization=authorization)
+        await self._app_client.AddRole(request, metadata=self._metadata)
+
+    # TODO: Test, check optionality, and finish docstring.
+    async def remove_role(self, authorization: Optional[Authorization]) -> None:
+        """
+
+        Args:
+            authorization (Optional[Authorization]):
+        """
+        request = RemoveRoleRequest(authorization=authorization)
+        await self._app_client.RemoveRole(request, metadata=self._metadata)
+
+    # TODO: Test, check optionality, and finish docstring.
+    async def list_authorizations(self, organization_id: str, resource_ids: List[str]) -> List[Authorization]:
+        """
+
+        Args:
+            organization_id (str):
+            resource_ids (List[str]):
+
+        Raises:
+            GRPCError: If an invalid organization ID or resource ID is passed.
+
+        Returns:
+            List[Authorization]: The list of authorizations.
+        """
+        request = ListAuthorizationsRequest(organization_id=organization_id, resource_ids=resource_ids)
+        response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
+        return list(response.authorizations)
+
+    # TODO: Test, check optionality, and finish docstring.
+    async def check_permissions(self, permissions: Optional[List[AuthorizedPermissions]]) -> List[AuthorizedPermissions]:
+        """
+
+        Args:
+            permissions (Optional[List[AuthorizedPermissions]]):
+
+        Returns:
+            List[viam.proto.app.AuthorizedPermissions]:
+        """
+        request = CheckPermissionsRequest(permissions=permissions)
+        response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
+        return list(response.authorized_permissions)
+
+    # TODO: Test
+    async def create_module(self, organization_id: str, name: str) -> Tuple[str, str]:
+        """Create a module
+
+        Args:
+            organization_id (str): The organization to create the module under.
+            name (str): The name of the module, which must be unique within your organization.
+
+        Raises:
+            GRPCError: If either an invalid organization ID or name is passed.
+
+        Returns:
+            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
+        """
+        request = CreateModuleRequest(organization_id=organization_id, name=name)
+        response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
+        return response.module_id, response.url
+
+    # TODO: Test, check optionality, finish docstring, and figure out what visibility is.
+    async def update_module(
+        self,
+        module_id: str,
+        organization_id: Optional[str],
+        visibility: Any,
+        url: str,
+        description: str,
+        models: Optional[List[Model]],
+        entrypoint: str,
+    ) -> str:
+        """
+
+        Args:
+            module_id (str): ID of the module being updated, containing module name or namespace and module name.
+            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the
+                module_id.
+            visibility (Any): The visibility that should be set for the module.
+            url (str): The url to reference for documentation and code.
+            description (str): A short description of the module that explains its purpose.
+            models (Optional[List[Model]]):
+            entrypoint (str):
+
+        Raises:
+            GRPCError:
+
+        Returns:
+            str: The URL of the newly updated module.
+        """
+        request = UpdateModuleRequest(
+            module_id=module_id,
+            organization_id=organization_id,
+            visibility=visibility,
+            description=description,
+            models=models,
+            entrypoint=entrypoint,
+        )
+        response: UpdateModuleResponse = await self._app_client.UpdateModule(request, metadata=self._metadata)
+        return response.url
+
+    # Stream-unary method.
+    async def upload_module_file(self, module_file_info: Optional[ModuleFileInfo], file: bytes) -> str:
+        """Upload a module file
+
+        Args:
+            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.
+            file (bytes): Bytes of file to upload.
+
+        Returns:
+            str: ID of uploaded file.
+        """
+        request_metadata = UploadModuleFileRequest(module_file_info=module_file_info)
+        request_file = UploadModuleFileRequest(file=file)
+        async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(request_file)
+            response = await stream.recv_message()
+            assert response is not None
+            return response.url
+
+    # TODO: Test
+    async def get_module(self, module_id: str, organization_id: str) -> Module:
+        """Get a module.
+
+        Args:
+            module_id (str): ID of the module being retrieved, containing module name or namespace and module name.
+            organization_id (str): ID of the organization of the module being retrieved, required if no namespace exists in the module_id.
+
+        Raises:
+            GRPCError: If either an invalid module ID or organization ID is passed.
+
+        Returns:
+            viam.proto.app.Module: The module.
+        """
+        request = GetModuleRequest(module_id=module_id, organization_id=organization_id)
+        response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
+        return response.module
+
+    async def list_modules(self, organization_id: str) -> List[Module]:
+        """List the modules under an organization.
+
+        Args:
+            organization_id (str): ID of the organization to return private modules for.
+
+        Raises:
+            GRPCError: If an invalid of organization ID is passed.
+
+        Returns:
+            List[viam.proto.app.Module]: The list of modules.
+        """
+        request = ListModulesRequest(organization_id=organization_id)
+        response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
+        return list(response.modules)
+
+    @staticmethod
+    def create_authorization() -> Authorization:
+        return Authorization()
+
+    @staticmethod
+    def create_authorized_permission() -> AuthorizedPermissions:
+        return AuthorizedPermissions()
