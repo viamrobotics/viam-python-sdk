@@ -163,16 +163,12 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
 name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;slam&quot;
-name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;pose_tracker&quot;
@@ -183,48 +179,52 @@ subtype: &quot;mlmodel&quot;
 name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;arm&quot;
 name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;motor&quot;
 name: &quot;motor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;sensor&quot;
 name: &quot;sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;encoder&quot;
 name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
 ]
 </pre></div>
 </div>
@@ -842,7 +842,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
 <span class="kn">from</span> <span class="nn">viam.app.viam_client</span> <span class="kn">import</span> <span class="n">ViamClient</span>
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_to_app</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
     <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="p">(</span>
         <span class="n">auth_entity</span><span class="o">=</span><span class="s1">&#39;&lt;ADDRESS&gt;&#39;</span><span class="p">,</span>  <span class="c1"># The URL of your robot.</span>
         <span class="n">credentials</span><span class="o">=</span><span class="n">Credentials</span><span class="p">(</span>
@@ -870,8 +870,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">CaptureInterval</span><span class="p">,</span> <span class="n">TagsFilter</span>
-
 <span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_filter</span><span class="p">(</span>
     <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span>
     <span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
@@ -885,33 +883,133 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, {&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, {&#39;Position&#39;: 0.0}]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0, &#39;Position&#39;: 0.0}, {&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0, &#39;Position&#39;: 0.0}, {&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0, &#39;Position&#39;: 0.0}]
 </pre></div>
 </div>
 </div>
 </div>
 <p>You can also use your <code class="docutils literal notranslate"><span class="pre">DataClient</span></code> to upload data to app.</p>
-<div class="cell tag_hide-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
-    <span class="n">part_id</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">time_recieved_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span> <span class="c1"># Unique ID of the relevant robot part.</span>
     <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;rdk:component:motor&#39;</span><span class="p">,</span>
     <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
     <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
     <span class="n">method_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
-    <span class="n">data_request_times</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}]</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_recieved_1</span><span class="p">)],</span>
+    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>At the end, you may close the connection</p>
+<p><code class="docutils literal notranslate"><span class="pre">ViamClient</span></code> objects also house an <code class="docutils literal notranslate"><span class="pre">AppClient</span></code>, which can be used to retrieve information about your organization in App or make certain changes to it. The <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> can be obtained in a manner similar to the <code class="docutils literal notranslate"><span class="pre">DataClient</span></code>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">app_client</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With this <code class="docutils literal notranslate"><span class="pre">AppClient</span></code>, you can access information about entities within your organization. For example, you can list information about all robots under your organization.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">cleanup</span><span class="p">():</span>
-    <span class="k">await</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_organizations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">list_organizations</span><span class="p">()</span>
+<span class="n">MY_ORG_ID</span> <span class="o">=</span> <span class="n">my_organizations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+<span class="n">my_locations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">list_locations</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">MY_ORG_ID</span><span class="p">)</span>
+<span class="n">robots</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">my_locations</span><span class="p">:</span>
+    <span class="n">more_robots</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">list_robots</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="n">robots</span> <span class="o">+=</span> <span class="n">more_robots</span>
+    
+<span class="k">for</span> <span class="n">robot</span> <span class="ow">in</span> <span class="n">robots</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>robot-0
+robot-1
+robot-2
+robot-3
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also create new robots/robot parts or make updates to robots/robot parts that already already exist, or even delete them!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new robot named &quot;new_rover&quot;.</span>
+<span class="n">NEW_ROBOT_ID</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">new_robot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;new_rover&quot;</span><span class="p">,</span> <span class="n">location_id</span><span class="o">=</span><span class="n">my_locations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+<span class="c1"># Change the new robot&#39;s name to &quot;rover&quot; and assign it a new parent location.</span>
+<span class="n">updated_robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">update_robot</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">NEW_ROBOT_ID</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rover&quot;</span><span class="p">,</span> <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;&lt;LOCATION_ID&quot;</span><span class="p">)</span>
+
+<span class="c1"># Delete the new robot.</span>
+<span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">delete_robot</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">NEW_ROBOT_ID</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Certain types returned by <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> methods (namely, <code class="docutils literal notranslate"><span class="pre">RobotPart</span></code>, <code class="docutils literal notranslate"><span class="pre">LogEntry</span></code>, and <code class="docutils literal notranslate"><span class="pre">Fragment</span></code> objects) are wrapped in mirror classes that convert proto data into a friendlier, more readable format. Each of these mirrors still allows access to the intial proto type returned by the response as a property.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">get_robot_part_logs</span><span class="p">(</span><span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span> <span class="n">num_log_entries</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">*****PROTO*****</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">proto</span><span class="o">.</span><span class="n">caller</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Function: go.viam.com/rdk/robot/impl.(*resourceManager).updateResources
+Line: 922.0
+Defined: True
+File: /__w/rdk/rdk/robot/impl/resource_manager.go
+
+*****PROTO*****
+
+fields {
+  key: &quot;Line&quot;
+  value {
+    number_value: 922
+  }
+}
+fields {
+  key: &quot;Function&quot;
+  value {
+    string_value: &quot;go.viam.com/rdk/robot/impl.(*resourceManager).updateResources&quot;
+  }
+}
+fields {
+  key: &quot;File&quot;
+  value {
+    string_value: &quot;/__w/rdk/rdk/robot/impl/resource_manager.go&quot;
+  }
+}
+fields {
+  key: &quot;Defined&quot;
+  value {
+    bool_value: true
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>At the end, you may close the connection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
