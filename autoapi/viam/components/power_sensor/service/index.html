@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.components.power_sensor.service &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="viam.components.sensor" href="../../sensor/index.html" />
+    <link rel="prev" title="viam.components.power_sensor.power_sensor" href="../power_sensor/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../arm/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.arm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../audio_input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.audio_input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../base/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../board/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../camera/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.camera</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../encoder/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.encoder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gantry/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gantry</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generic/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.generic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../gripper/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.gripper</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../input/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../motor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.motor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../movement_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.movement_sensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../pose_tracker/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.pose_tracker</span></code></a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor</span></code></a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor.client</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../power_sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor.power_sensor</span></code></a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor.service</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService.RESOURCE_TYPE"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService.RESOURCE_TYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetVoltage"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService.GetVoltage()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetCurrent"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService.GetCurrent()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetPower"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService.GetPower()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService.DoCommand"><code class="docutils literal notranslate"><span class="pre">PowerSensorRPCService.DoCommand()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#package-contents">Package Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sensor/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.sensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../servo/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.servo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#submodules">Submodules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor.service</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/viam/components/power_sensor/service/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.components.power_sensor.service">
+<span id="viam-components-power-sensor-service"></span><h1><a class="reference internal" href="#module-viam.components.power_sensor.service" title="viam.components.power_sensor.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.power_sensor.service</span></code></a><a class="headerlink" href="#module-viam.components.power_sensor.service" title="Permalink to this heading"></a></h1>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.power_sensor.service.PowerSensorRPCService" title="viam.components.power_sensor.service.PowerSensorRPCService"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PowerSensorRPCService</span></code></a></p></td>
+<td><p>gRPC Service for a PowerSensor</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.power_sensor.service.</span></span><span class="sig-name descname"><span class="pre">PowerSensorRPCService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">manager</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../resource/manager/index.html#viam.resource.manager.ResourceManager" title="viam.resource.manager.ResourceManager"><span class="pre">viam.resource.manager.ResourceManager</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/power_sensor/service.html#PowerSensorRPCService"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.PowerSensorServiceBase" title="viam.proto.component.powersensor.PowerSensorServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.proto.component.powersensor.PowerSensorServiceBase</span></code></a>, <a class="reference internal" href="../../../resource/rpc_service_base/index.html#viam.resource.rpc_service_base.ResourceRPCServiceBase" title="viam.resource.rpc_service_base.ResourceRPCServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.resource.rpc_service_base.ResourceRPCServiceBase</span></code></a></p>
+<p>gRPC Service for a PowerSensor</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService.RESOURCE_TYPE">
+<span class="sig-name descname"><span class="pre">RESOURCE_TYPE</span></span><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService.RESOURCE_TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService.GetVoltage">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetVoltage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetVoltageRequest" title="viam.proto.component.powersensor.GetVoltageRequest"><span class="pre">viam.proto.component.powersensor.GetVoltageRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetVoltageResponse" title="viam.proto.component.powersensor.GetVoltageResponse"><span class="pre">viam.proto.component.powersensor.GetVoltageResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/power_sensor/service.html#PowerSensorRPCService.GetVoltage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetVoltage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService.GetCurrent">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCurrent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetCurrentRequest" title="viam.proto.component.powersensor.GetCurrentRequest"><span class="pre">viam.proto.component.powersensor.GetCurrentRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetCurrentResponse" title="viam.proto.component.powersensor.GetCurrentResponse"><span class="pre">viam.proto.component.powersensor.GetCurrentResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/power_sensor/service.html#PowerSensorRPCService.GetCurrent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetCurrent" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService.GetPower">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetPowerRequest" title="viam.proto.component.powersensor.GetPowerRequest"><span class="pre">viam.proto.component.powersensor.GetPowerRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/component/powersensor/index.html#viam.proto.component.powersensor.GetPowerResponse" title="viam.proto.component.powersensor.GetPowerResponse"><span class="pre">viam.proto.component.powersensor.GetPowerResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/power_sensor/service.html#PowerSensorRPCService.GetPower"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService.GetPower" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.power_sensor.service.PowerSensorRPCService.DoCommand">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><span class="pre">viam.proto.common.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><span class="pre">viam.proto.common.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/power_sensor/service.html#PowerSensorRPCService.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.power_sensor.service.PowerSensorRPCService.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../power_sensor/index.html" class="btn btn-neutral float-left" title="viam.components.power_sensor.power_sensor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../sensor/index.html" class="btn btn-neutral float-right" title="viam.components.sensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

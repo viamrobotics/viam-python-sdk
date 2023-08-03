@@ -1,0 +1,47 @@
+:py:mod:`viam.components.power_sensor.service`
+==============================================
+
+.. py:module:: viam.components.power_sensor.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.power_sensor.service.PowerSensorRPCService
+
+
+
+
+.. py:class:: PowerSensorRPCService(manager: viam.resource.manager.ResourceManager)
+
+
+   Bases: :py:obj:`viam.proto.component.powersensor.PowerSensorServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
+   gRPC Service for a PowerSensor
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: GetVoltage(stream: grpclib.server.Stream[viam.proto.component.powersensor.GetVoltageRequest, viam.proto.component.powersensor.GetVoltageResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetCurrent(stream: grpclib.server.Stream[viam.proto.component.powersensor.GetCurrentRequest, viam.proto.component.powersensor.GetCurrentResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPower(stream: grpclib.server.Stream[viam.proto.component.powersensor.GetPowerRequest, viam.proto.component.powersensor.GetPowerResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+

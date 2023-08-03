@@ -1,0 +1,122 @@
+:py:mod:`viam.components.power_sensor.client`
+=============================================
+
+.. py:module:: viam.components.power_sensor.client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.power_sensor.client.PowerSensorClient
+
+
+
+
+.. py:class:: PowerSensorClient(name: str, channel: grpclib.client.Channel)
+
+
+   Bases: :py:obj:`viam.components.power_sensor.power_sensor.PowerSensor`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+
+   gRPC client for the PowerSensor component.
+
+   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[float, bool]
+      :async:
+
+      Get the voltage reading and bool IsAC
+
+      :returns: voltage (volts) and bool IsAC
+      :rtype: Tuple[float, bool]
+
+
+   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[float, bool]
+      :async:
+
+      Get the current reading and bool IsAC
+
+      :returns: current (amperes) and bool IsAC
+      :rtype: Tuple[float, bool]
+
+
+   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float
+      :async:
+
+      Get the power reading in watts
+
+      :returns: power in watts
+      :rtype: float
+
+
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+      If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+      :returns: The readings for the PowerSensor:
+                {
+                   voltage: float
+                   current: float
+                   is_ac: bool
+                   power: float
+                }
+      :rtype: Mapping[str, Any]
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+

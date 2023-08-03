@@ -1,0 +1,145 @@
+:py:mod:`viam.components.power_sensor`
+======================================
+
+.. py:module:: viam.components.power_sensor
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   power_sensor/index.rst
+   service/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.power_sensor.PowerSensor
+
+
+
+
+.. py:class:: PowerSensor(name: str)
+
+
+   Bases: :py:obj:`viam.components.sensor.Sensor`
+
+   PowerSensor reports information about voltage, current and power.
+
+   This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.
+   This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
+      :abstractmethod:
+      :async:
+
+      Get the voltage reading and bool IsAC
+
+      :returns: voltage (volts) and bool IsAC
+      :rtype: Tuple[float, bool]
+
+
+   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]
+      :abstractmethod:
+      :async:
+
+      Get the current reading and bool IsAC
+
+      :returns: current (amperes) and bool IsAC
+      :rtype: Tuple[float, bool]
+
+
+   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
+      :abstractmethod:
+      :async:
+
+      Get the power reading in watts
+
+      :returns: power in watts
+      :rtype: float
+
+
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+      If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+      :returns: The readings for the PowerSensor:
+                {
+                   voltage: float
+                   current: float
+                   is_ac: bool
+                   power: float
+                }
+      :rtype: Mapping[str, Any]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
