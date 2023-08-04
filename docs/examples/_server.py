@@ -1,10 +1,12 @@
 import asyncio
+from datetime import datetime
 
 from grpclib.utils import graceful_exit
 from grpclib.server import Server, Stream
 from google.protobuf.struct_pb2 import Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
+from viam.app.data_client import DataClient
 from viam.utils import dict_to_struct, value_to_primitive
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDResponse,
@@ -19,6 +21,7 @@ from viam.proto.app.data import (
     BinaryDataByIDsResponse,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    CaptureMetadata,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
@@ -169,7 +172,26 @@ from viam.proto.app import (
 class MockData(DataServiceBase):
     def __init__(self):
         self.tabular_data_requested = False
-        self.tabular_response = [{"PowerPct": 0, "IsPowered": False}, {"PowerPct": 0, "IsPowered": False}, {"Position": 0}]
+        self.tabular_response = [
+            DataClient.TabularData(
+                {"PowerPct": 0, "IsPowered": False},
+                CaptureMetadata(method_name="IsPowered"),
+                datetime(2022, 1, 1, 1, 1, 1),
+                datetime(2022, 12, 31, 23, 59, 59),
+            ),
+            DataClient.TabularData(
+                {"PowerPct": 0, "IsPowered": False},
+                CaptureMetadata(location_id="loc-id"),
+                datetime(2023, 1, 2),
+                datetime(2023, 3, 4)
+            ),
+            DataClient.TabularData(
+                {"Position": 0},
+                CaptureMetadata(),
+                datetime(2023, 5, 6),
+                datetime(2023, 7, 8),
+            ),
+        ]
 
     async def TabularDataByFilter(self, stream: Stream[TabularDataByFilterRequest, TabularDataByFilterResponse]) -> None:
         if self.tabular_data_requested:
@@ -180,8 +202,12 @@ class MockData(DataServiceBase):
         n = len(self.tabular_response)
         tabular_structs = [Struct()] * n
         for i in range(n):
-            tabular_structs[i].update(self.tabular_response[i])
-        await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_structs]))
+            tabular_structs[i].update(self.tabular_response[i]._data)
+        await stream.send_message(TabularDataByFilterResponse(
+            data=[TabularData(data=struct) for struct in tabular_structs],
+            metadata=[d._metadata for d in self.tabular_response],
+            )
+        )
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
         pass
