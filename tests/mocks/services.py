@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
@@ -138,8 +138,10 @@ from viam.proto.app.data import (
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
     BinaryDataByIDsResponse,
+    BinaryMetadata,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    CaptureMetadata,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
@@ -483,8 +485,8 @@ class MockNavigation(Navigation):
 class MockData(DataServiceBase):
     def __init__(
         self,
-        tabular_response: List[Mapping[str, Any]],
-        binary_response: List[bytes],
+        tabular_response: List[Tuple[Mapping[str, Any], CaptureMetadata]],
+        binary_response: List[Tuple[bytes, BinaryMetadata]],
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
@@ -506,9 +508,15 @@ class MockData(DataServiceBase):
         self.filter = request.data_request.filter
         n = len(self.tabular_response)
         tabular_response_structs = [Struct()] * n
+        tabular_metadata = []
         for i in range(n):
-            tabular_response_structs[i].update(self.tabular_response[i])
-        await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_response_structs]))
+            tabular_data, tabular_md = self.tabular_response[i]
+            tabular_response_structs[i].update(tabular_data)
+            tabular_metadata.append(tabular_md)
+        await stream.send_message(TabularDataByFilterResponse(
+            data=[TabularData(data=struct, metadata_index=idx) for idx, struct in enumerate(tabular_response_structs)],
+            metadata=tabular_metadata)
+        )
         self.was_tabular_data_requested = True
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
@@ -518,14 +526,18 @@ class MockData(DataServiceBase):
             await stream.send_message(BinaryDataByFilterResponse())
             return
         self.filter = request.data_request.filter
-        await stream.send_message(BinaryDataByFilterResponse(data=[BinaryData(binary=binary_data) for binary_data in self.binary_response]))
+        await stream.send_message(BinaryDataByFilterResponse(
+            data=[BinaryData(binary=binary_data, metadata=binary_metadata) for (binary_data, binary_metadata) in self.binary_response])
+        )
         self.was_binary_data_requested = True
 
     async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
-        await stream.send_message(BinaryDataByIDsResponse(data=[BinaryData(binary=binary_data) for binary_data in self.binary_response]))
+        await stream.send_message(BinaryDataByIDsResponse(
+            data=[BinaryData(binary=binary_data, metadata=binary_metadata) for (binary_data, binary_metadata) in self.binary_response])
+        )
 
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()

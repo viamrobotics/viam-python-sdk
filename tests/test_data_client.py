@@ -7,10 +7,14 @@ from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.app.data_client import DataClient
 from viam.proto.app.data import (
-    Filter,
+    Annotations,
     BinaryID,
+    BinaryMetadata,
+    BoundingBox,
     CaptureInterval,
-    TagsFilter
+    CaptureMetadata,
+    Filter,
+    TagsFilter,
 )
 
 from .mocks.services import MockData
@@ -26,13 +30,17 @@ LOCATION_ID = "location_id"
 LOCATION_IDS = [LOCATION_ID]
 ORG_ID = "organization_id"
 ORG_IDS = [ORG_ID]
-MIME_TYPES = ["mime_type"]
+MIME_TYPE = "mime_type"
+MIME_TYPES = [MIME_TYPE]
+URI = "some.robot.uri"
 START_DATETIME = datetime(2001, 1, 1, 1, 1, 1)
 END_DATETIME = datetime(2001, 1, 1, 1, 1, 1)
 SECONDS_START = 978310861
 NANOS_START = 0
 SECONDS_END = 978310861
 NANOS_END = 0
+START_TS = Timestamp(seconds=SECONDS_START, nanos=NANOS_START)
+END_TS = Timestamp(seconds=SECONDS_END, nanos=NANOS_END)
 TAGS = ["tag"]
 BBOX_LABELS = ["bbox_label"]
 FILTER = Filter(
@@ -47,14 +55,8 @@ FILTER = Filter(
     organization_ids=ORG_IDS,
     mime_type=MIME_TYPES,
     interval=CaptureInterval(
-        start=Timestamp(
-            seconds=SECONDS_START,
-            nanos=NANOS_START,
-        ),
-        end=Timestamp(
-            seconds=SECONDS_END,
-            nanos=NANOS_END
-        )
+        start=START_TS,
+        end=END_TS
     ),
     tags_filter=TagsFilter(
         tags=TAGS
@@ -68,25 +70,50 @@ BINARY_IDS = [BinaryID(
     location_id=LOCATION_ID
 )]
 BINARY_DATA = b'binary_data'
-TIMESTAMPS = [(
-    Timestamp(
-        seconds=SECONDS_START,
-        nanos=NANOS_START
-    ),
-    Timestamp(
-        seconds=SECONDS_END,
-        nanos=NANOS_END
-    )
-)]
-TABULAR_DATA = [{"key": "value"}]
+TIMESTAMPS = [(START_TS, END_TS)]
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
+BBOX_LABEL = "bbox_label"
+BBOX_LABELS_RESPONSE = [BBOX_LABEL]
+BBOX = BoundingBox(
+    id="id",
+    label=BBOX_LABEL,
+    x_min_normalized=0,
+    y_min_normalized=1,
+    x_max_normalized=2,
+    y_max_normalized=3,
+)
+BBOXES = [BBOX]
+TABULAR_DATA = {"key": "value"}
+TABULAR_METADATA = CaptureMetadata(
+    organization_id=ORG_ID,
+    location_id=LOCATION_ID,
+    robot_name=ROBOT_NAME,
+    robot_id=ROBOT_ID,
+    part_name=PART_NAME,
+    part_id=PART_ID,
+    component_type=COMPONENT_TYPE,
+    component_name=COMPONENT_NAME,
+    method_name=METHOD,
+    method_parameters={},
+    tags=TAGS,
+    mime_type=MIME_TYPE,
+)
+BINARY_METADATA = BinaryMetadata(
+    id="id",
+    capture_metadata=TABULAR_METADATA,
+    time_requested=START_TS,
+    time_received=END_TS,
+    file_name=FILE_NAME,
+    file_ext=FILE_EXT,
+    uri=URI,
+    annotations=Annotations(bboxes=BBOXES),
+)
 
-TABULAR_RESPONSE = TABULAR_DATA
-BINARY_RESPONSE = [BINARY_DATA]
+TABULAR_RESPONSE = [(TABULAR_DATA, TABULAR_METADATA)]
+BINARY_RESPONSE = [(BINARY_DATA, BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
-BBOX_LABELS_RESPONSE = ["bbox_label"]
 
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
