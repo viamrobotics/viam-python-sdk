@@ -1,5 +1,4 @@
 import pytest
-from datetime import datetime
 from typing import List
 
 from grpclib.testing import ChannelFor
@@ -11,10 +10,8 @@ from viam.proto.app.data import (
     BinaryID,
     BinaryMetadata,
     BoundingBox,
-    CaptureInterval,
     CaptureMetadata,
     Filter,
-    TagsFilter,
 )
 
 from .mocks.services import MockData

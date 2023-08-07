@@ -1,6 +1,5 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Union
 
-from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
 from PIL import Image
 
@@ -138,10 +137,8 @@ from viam.proto.app.data import (
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
     BinaryDataByIDsResponse,
-    BinaryMetadata,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
-    CaptureMetadata,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,

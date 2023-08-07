@@ -211,8 +211,7 @@ class MockData(DataServiceBase):
                 )
             )
         await stream.send_message(TabularDataByFilterResponse(
-            data=[TabularData(data=struct) for struct in tabular_structs],
-            metadata=tabular_metadata,
+            data=tabular_structs, metadata=tabular_metadata,
             )
         )
 

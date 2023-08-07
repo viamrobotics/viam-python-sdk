@@ -86,7 +86,7 @@ class DataClient:
         def __str__(self) -> str:
             return f"{self.data}\n{self.metadata}Time requested: {self.time_requested}\nTime received: {self.time_received}\n"
 
-        def __eq__(self, other: "TabularData") -> bool:
+        def __eq__(self, other: "DataClient.TabularData") -> bool:
             return str(self) == str(other)
 
     class BinaryData:
@@ -107,7 +107,7 @@ class DataClient:
         def __str__(self) -> str:
             return f"{self.data}\n{self.metadata}"
 
-        def __eq__(self, other: "BinaryData") -> bool:
+        def __eq__(self, other: "DataClient.BinaryData") -> bool:
             return str(self) == str(other)
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
