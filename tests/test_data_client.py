@@ -33,17 +33,17 @@ ORG_IDS = [ORG_ID]
 MIME_TYPE = "mime_type"
 MIME_TYPES = [MIME_TYPE]
 URI = "some.robot.uri"
-START_DATETIME = datetime(2001, 1, 1, 1, 1, 1)
-END_DATETIME = datetime(2001, 1, 1, 1, 1, 1)
 SECONDS_START = 978310861
 NANOS_START = 0
 SECONDS_END = 978310861
 NANOS_END = 0
 START_TS = Timestamp(seconds=SECONDS_START, nanos=NANOS_START)
 END_TS = Timestamp(seconds=SECONDS_END, nanos=NANOS_END)
+START_DATETIME = START_TS.ToDatetime()
+END_DATETIME = END_TS.ToDatetime()
 TAGS = ["tag"]
 BBOX_LABELS = ["bbox_label"]
-FILTER = Filter(
+FILTER = DataClient.create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
     method=METHOD,
@@ -54,15 +54,12 @@ FILTER = Filter(
     location_ids=LOCATION_IDS,
     organization_ids=ORG_IDS,
     mime_type=MIME_TYPES,
-    interval=CaptureInterval(
-        start=START_TS,
-        end=END_TS
-    ),
-    tags_filter=TagsFilter(
-        tags=TAGS
-    ),
-    bbox_labels=BBOX_LABELS,
+    start_time=START_DATETIME,
+    end_time=END_DATETIME,
+    tags=TAGS,
+    bbox_labels=BBOX_LABELS
 )
+
 FILE_ID = "file_id"
 BINARY_IDS = [BinaryID(
     file_id=FILE_ID,
@@ -70,7 +67,6 @@ BINARY_IDS = [BinaryID(
     location_id=LOCATION_ID
 )]
 BINARY_DATA = b'binary_data'
-TIMESTAMPS = [(START_TS, END_TS)]
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
 BBOX_LABEL = "bbox_label"
@@ -110,8 +106,8 @@ BINARY_METADATA = BinaryMetadata(
     annotations=Annotations(bboxes=BBOXES),
 )
 
-TABULAR_RESPONSE = [(TABULAR_DATA, TABULAR_METADATA)]
-BINARY_RESPONSE = [(BINARY_DATA, BINARY_METADATA)]
+TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
+BINARY_RESPONSE = [DataClient.BinaryData(BINARY_DATA, BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
 
@@ -135,22 +131,7 @@ class TestClient:
     async def test_tabular_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            tabular_data = await client.tabular_data_by_filter(filter=client.create_filter(
-                component_name=COMPONENT_NAME,
-                component_type=COMPONENT_TYPE,
-                method=METHOD,
-                robot_name=ROBOT_NAME,
-                robot_id=ROBOT_ID,
-                part_name=PART_NAME,
-                part_id=PART_ID,
-                location_ids=LOCATION_IDS,
-                organization_ids=ORG_IDS,
-                mime_type=MIME_TYPES,
-                start_time=START_DATETIME,
-                end_time=START_DATETIME,
-                tags=TAGS,
-                bbox_labels=BBOX_LABELS
-            ))
+            tabular_data = await client.tabular_data_by_filter(filter=FILTER)
             assert tabular_data == TABULAR_RESPONSE
             self.assert_filter(filter=service.filter)
 

@@ -81,26 +81,26 @@ class DataClient:
         def __str__(self) -> str:
             return f"{self._data}\n{self._metadata}Time requested: {self._time_requested}\nTime received: {self._time_received}\n"
 
-        def __repr__(self) -> str:
-            return self.__str__()
+        def __eq__(self, other: "TabularData") -> bool:
+            return str(self) == str(other)
 
     class BinaryData:
         """Class representing a piece of binary data and associated metadata.
 
         Args:
-            data (Mapping[str, Any]): the requested data.
+            data (bytes): the requested data.
             metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.
         """
 
-        def __init__(self, data: Mapping[str, Any], metadata: BinaryMetadata) -> None:
+        def __init__(self, data: bytes, metadata: BinaryMetadata) -> None:
             self._data = data
             self._metadata = metadata
 
         def __str__(self) -> str:
             return f"{self._data}\n{self._metadata}"
 
-        def __repr__(self) -> str:
-            return self.__str__()
+        def __eq__(self, other: "BinaryData") -> bool:
+            return str(self) == str(other)
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
@@ -155,7 +155,7 @@ class DataClient:
         if dest:
             try:
                 file = open(dest, "w")
-                file.write(f"{data}")
+                file.write(f"{[str(d) for d in data]}")
             except Exception as e:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
         return data
@@ -192,7 +192,7 @@ class DataClient:
         if dest:
             try:
                 file = open(dest, "w")
-                file.write(f"{data}")
+                file.write(f"{[str(d) for d in data]}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
 
@@ -202,7 +202,7 @@ class DataClient:
         self,
         binary_ids: List[BinaryID],
         dest: Optional[str] = None,
-    ) -> List[Tuple[bytes, BinaryMetadata]]:
+    ) -> List[BinaryData]:
         """Filter and download binary data.
 
         Args:
@@ -223,7 +223,7 @@ class DataClient:
                 file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
-        return [(binary_data.binary, binary_data.metadata) for binary_data in response.data]
+        return [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Filter and delete tabular data.
