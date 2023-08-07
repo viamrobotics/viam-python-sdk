@@ -73,13 +73,18 @@ class DataClient:
         """
 
         def __init__(self, data: Mapping[str, Any], metadata: CaptureMetadata, time_requested: datetime, time_received: datetime) -> None:
-            self._data = data
-            self._metadata = metadata
-            self._time_requested = time_requested
-            self._time_received = time_received
+            self.data = data
+            self.metadata = metadata
+            self.time_requested = time_requested
+            self.time_received = time_received
+
+        data: Mapping[str, Any]
+        metadata: CaptureMetadata
+        time_requested: datetime
+        time_received: datetime
 
         def __str__(self) -> str:
-            return f"{self._data}\n{self._metadata}Time requested: {self._time_requested}\nTime received: {self._time_received}\n"
+            return f"{self.data}\n{self.metadata}Time requested: {self.time_requested}\nTime received: {self.time_received}\n"
 
         def __eq__(self, other: "TabularData") -> bool:
             return str(self) == str(other)
@@ -93,11 +98,14 @@ class DataClient:
         """
 
         def __init__(self, data: bytes, metadata: BinaryMetadata) -> None:
-            self._data = data
-            self._metadata = metadata
+            self.data = data
+            self.metadata = metadata
+
+        data: bytes
+        metadata: BinaryMetadata
 
         def __str__(self) -> str:
-            return f"{self._data}\n{self._metadata}"
+            return f"{self.data}\n{self.metadata}"
 
         def __eq__(self, other: "BinaryData") -> bool:
             return str(self) == str(other)

@@ -508,14 +508,14 @@ class MockData(DataServiceBase):
             return
         self.filter = request.data_request.filter
         tabular_response_structs = []
-        tabular_metadata = [data._metadata for data in self.tabular_response]
+        tabular_metadata = [data.metadata for data in self.tabular_response]
         for idx, tabular_data in enumerate(self.tabular_response):
             tabular_response_structs.append(
                 TabularData(
-                    data=dict_to_struct(tabular_data._data),
+                    data=dict_to_struct(tabular_data.data),
                     metadata_index=idx,
-                    time_requested=datetime_to_timestamp(tabular_data._time_requested),
-                    time_received=datetime_to_timestamp(tabular_data._time_received)
+                    time_requested=datetime_to_timestamp(tabular_data.time_requested),
+                    time_received=datetime_to_timestamp(tabular_data.time_received)
                 )
             )
         await stream.send_message(TabularDataByFilterResponse(
@@ -531,7 +531,7 @@ class MockData(DataServiceBase):
             return
         self.filter = request.data_request.filter
         await stream.send_message(BinaryDataByFilterResponse(
-            data=[BinaryData(binary=data._data, metadata=data._metadata) for data in self.binary_response])
+            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
         self.was_binary_data_requested = True
 
@@ -540,7 +540,7 @@ class MockData(DataServiceBase):
         assert request is not None
         self.binary_ids = request.binary_ids
         await stream.send_message(BinaryDataByIDsResponse(
-            data=[BinaryData(binary=data._data, metadata=data._metadata) for data in self.binary_response])
+            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
 
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:

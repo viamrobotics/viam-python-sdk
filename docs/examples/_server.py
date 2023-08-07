@@ -7,7 +7,7 @@ from google.protobuf.struct_pb2 import Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.app.data_client import DataClient
-from viam.utils import dict_to_struct, value_to_primitive
+from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDResponse,
     AddBoundingBoxToImageByIDRequest,
@@ -199,13 +199,20 @@ class MockData(DataServiceBase):
             return
         self.tabular_data_requested = True
         _ = await stream.recv_message()
-        n = len(self.tabular_response)
-        tabular_structs = [Struct()] * n
-        for i in range(n):
-            tabular_structs[i].update(self.tabular_response[i]._data)
+        tabular_structs = []
+        tabular_metadata = [data.metadata for data in self.tabular_response]
+        for idx, tabular_data in enumerate(self.tabular_response):
+            tabular_structs.append(
+                TabularData(
+                    data=dict_to_struct(tabular_data.data),
+                    metadata_index=idx,
+                    time_requested=datetime_to_timestamp(tabular_data.time_requested),
+                    time_received=datetime_to_timestamp(tabular_data.time_received)
+                )
+            )
         await stream.send_message(TabularDataByFilterResponse(
             data=[TabularData(data=struct) for struct in tabular_structs],
-            metadata=[d._metadata for d in self.tabular_response],
+            metadata=tabular_metadata,
             )
         )
 
