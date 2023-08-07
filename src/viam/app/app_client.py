@@ -362,9 +362,17 @@ class AppClient:
     _metadata: Mapping[str, str]
     _location_id: Optional[str]
     _channel: Channel
+    _organization_id: Optional[str] = None
 
     def close(self) -> None:
         self._channel.close()
+
+    async def _get_organization_id(self) -> str:
+        return self._organization_id if self._organization_id else await self._request_organization_id()
+
+    async def _request_organization_id(self) -> str:
+        organizations = await self.list_organizations()
+        return organizations[0].id
 
     # TODO: Nil error.
     async def get_user_id_by_email(self, email: str) -> str:
@@ -428,20 +436,16 @@ class AppClient:
         response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
         return list(response.orgs)
 
+    # TODO: WRITE TEST!
     # TODO: Nil error when passing anything that isn't the currently auth'd organization's ID (i.e., an incorrect/mistyped ID or an
     # unauthenticated ID).
-    async def get_organization(self, organization_id: str) -> Organization:
-        """Get an organization.
-
-        Args:
-            organization_id (str): ID of the organization to get.
-
-        Raises:
-            GRPCError: If an invalid organization ID is passed.
+    async def get_organization(self) -> Organization:
+        """Get organization.
 
         Returns:
             viam.proto.app.Organization: The organization.
         """
+        organization_id = await self._get_organization_id()
         request = GetOrganizationRequest(organization_id=organization_id)
         response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
         return response.organization
@@ -466,12 +470,11 @@ class AppClient:
 
     # TODO: Nil error only when trying to update name.
     async def update_organization(
-        self, organization_id: str, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None
+        self, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None
     ) -> Organization:
-        """Update the name or GCS region associated with an organization or assign it a public namespace.
+        """Update the name or GCS region associated with organization or assign it a public namespace.
 
         Args:
-            organization_id (str): ID of the organization to update.
             name (Optional[str]): New name to assign the organization. No name provided will simply leave the current name unchanged.
             public_namespace (Optional[str]): New public namespace to assign to the organization. No namespace provided will
                 simply not assign a namespace. A namespace can only be assigned to an organization once (i.e., it is immutable).
@@ -479,12 +482,12 @@ class AppClient:
                 region unchanged.
 
         Raises:
-            GRPCError: If either an invalid organization ID, name, public namespace, or region is provided.
+            GRPCError: If either an invalid name, public namespace, or region is provided.
 
         Returns:
             viam.proto.app.Organization: The newly updated organization.
         """
-        print(name)
+        organization_id = await self._get_organization_id()
         request = UpdateOrganizationRequest(organization_id=organization_id, name=name, public_namespace=public_namespace, region=region)
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
@@ -494,53 +497,41 @@ class AppClient:
         raise NotImplementedError()
 
     # TODO: Nil error.
-    async def list_organization_members(self, organization_id: str) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
-        """List the members of an organization.
-
-        Args:
-            organization_id (str): ID of the organization to retrieve members from.
-
-        Raises:
-            GRPCError: If an invalid organization ID is passed.
+    async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
+        """List the members of organization.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
                 [0] of organization members, and the second [1] contains organization invites.
         """
+        organization_id = await self._get_organization_id()
         request = ListOrganizationMembersRequest(organization_id=organization_id)
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
     # TODO: Test and add docstring.
-    async def create_organization_invite(
-        self, organization_id: str, email: str, authorizations: Optional[List[Authorization]]
-    ) -> OrganizationInvite:
+    async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]]) -> OrganizationInvite:
         """
 
         Args:
-            organization_id (str):
             email (str):
             authorizations (Optional[List[Authorization]]):
 
         Returns:
             viam.proto.app.OrganizationInvite:
         """
+        organization_id = await self._get_organization_id()
         request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations)
         response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
     # TODO: Test, check optionality, and add docstring.
     async def update_organization_invite_authorizations(
-        self,
-        organization_id: str,
-        email: str,
-        add_authorizations: Optional[List[Authorization]],
-        remove_authorizations: Optional[List[Authorization]],
+        self, email: str, add_authorizations: Optional[List[Authorization]], remove_authorizations: Optional[List[Authorization]]
     ) -> OrganizationInvite:
         """
 
         Args:
-            organization_id (str):
             email (str):
             add_authorization (Optional[List[viam.proto.app.Authorization]]):
             remove_authorization (Optional[List[viam.proto.app.Authorization]]):
@@ -548,6 +539,7 @@ class AppClient:
         Returns:
             viam.proto.app.OrganizationInvite: The updated invite.
         """
+        organization_id = await self._get_organization_id()
         request = UpdateOrganizationInviteAuthorizationsRequest(
             organization_id=organization_id, email=email, add_authorizations=add_authorizations, remove_authorizations=remove_authorizations
         )
@@ -557,66 +549,66 @@ class AppClient:
         return response.invite
 
     # TODO: Test.
-    async def delete_organization_member(self, organization_id: str, user_id: str) -> None:
+    async def delete_organization_member(self, user_id: str) -> None:
         """Delete an organization member.
 
         Args:
-            organization_id (str): ID of the organization to delete the member from.
             user_id (str): ID of the user to delete.
 
         Raises:
-            GRPCError: If either an invalid organization ID or user ID is passed.
+            GRPCError: If either an invalid user ID is passed.
         """
+        organization_id = await self._get_organization_id()
         request = DeleteOrganizationMemberRequest(organization_id=organization_id, user_id=user_id)
         await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
 
     # TODO: Test.
-    async def delete_organization_invite(self, organization_id: str, email: str) -> None:
-        """Delete an organization invite
+    async def delete_organization_invite(self, email: str) -> None:
+        """Delete organization invite
 
         Args:
-            organization_id (str): ID of the organization the invite was sent from.
             email (str): Email the invite was sent to.
 
         Raises:
-            GRPCError: If either an invalid organization ID or email is passed.
+            GRPCError: If either an invalid email is passed.
         """
+        organization_id = await self._get_organization_id()
         request = DeleteOrganizationInviteRequest(organization_id=organization_id, email=email)
         await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
 
     # TODO: Test.
-    async def resend_organization_invite(self, organization_id: str, email: str) -> OrganizationInvite:
+    async def resend_organization_invite(self, email: str) -> OrganizationInvite:
         """Resend an organization invite
 
         Args:
-            organization_id (str): ID of the organization the invite was sent from.
             email (str): Email the invite was sent to.
 
         Raises:
-            GRPCError: If either an invalid organization ID or email is passed.
+            GRPCError: If either an invalid email is passed.
 
         Returns:
             viam.app.proto.OrganizationInvite: The resent organization invite.
         """
+        organization_id = await self._get_organization_id()
         request = ResendOrganizationInviteRequest(organization_id=organization_id, email=email)
         response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
-    async def create_location(self, name: str, organization_id: str, parent_location_id: Optional[str] = None) -> Location:
-        """Create and name a location under the specified organization and parent location.
+    async def create_location(self, name: str, parent_location_id: Optional[str] = None) -> Location:
+        """Create and name a location under organization and the specified parent location.
 
         Args:
             name (str): Name of the location.
-            organization_id (str): ID of the organization to create the location under.
             parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
                 location ID is provided.
 
         Raises:
-            GRPCError: If either an invalid organization ID, name, or parent location ID is passed.
+            GRPCError: If either an invalid name, or parent location ID is passed.
 
         Returns:
             viam.proto.app.Location: The newly created location.
         """
+        organization_id = await self._get_organization_id()
         request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=parent_location_id)
         response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
         return response.location
@@ -670,18 +662,13 @@ class AppClient:
         request = DeleteLocationRequest(location_id=location_id)
         await self._app_client.DeleteLocation(request, metadata=self._metadata)
 
-    async def list_locations(self, organization_id: str) -> List[Location]:
-        """Get a list of all locations under the specified organization.
-
-        Args:
-            organization_id (str): ID of the organization to retrieve the locations from.
-
-        Raises:
-            GRPCError: If an invalid organization ID is passed.
+    async def list_locations(self) -> List[Location]:
+        """Get a list of all locations under organization.
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
         """
+        organization_id = await self._get_organization_id()
         request = ListLocationsRequest(organization_id=organization_id)
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
         return list(response.locations)
@@ -1061,20 +1048,17 @@ class AppClient:
         request = DeleteRobotRequest(id=robot_id)
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
-    async def list_fragments(self, organization_id: str, show_public: bool = True) -> List[Fragment]:
-        """Get a list of fragments under the specified organization.
+    async def list_fragments(self, show_public: bool = True) -> List[Fragment]:
+        """Get a list of fragments under organization.
 
         Args:
-            organization_id (str): ID of the organization under which to list the fragments.
             show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
                 return. If False, only private fragments will return. Defaults to True.
-
-        Raises:
-            GRPCError: If an invalid organization ID is passed.
 
         Returns:
             List[viam.app.app_client.Fragment]: The list of fragments.
         """
+        organization_id = await self._get_organization_id()
         request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
         response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
         return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
@@ -1096,20 +1080,20 @@ class AppClient:
         return Fragment.from_proto(fragment=response.fragment)
 
     # TODO: Fragments are currently able to have the empty string "" as a name.
-    async def create_fragment(self, name: str, organization_id: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
+    async def create_fragment(self, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
         """Create a new private fragment.
 
         Args:
             name (str): Name of the fragment.
             config (Optional[Mapping[str, Any]]): _description_
-            organization_id (str): ID of the organization to own the fragment.
 
         Raises:
-            GRPCError: If an invalid organization ID is provided.
+            GRPCError: If an invalid name is passed.
 
         Returns:
             viam.app.app_client.Fragment: The newly created fragment.
         """
+        organization_id = await self._get_organization_id()
         request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None, organization_id=organization_id)
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
@@ -1150,7 +1134,7 @@ class AppClient:
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    async def add_role(self, identity_id: str, role: str, resource_type: str, resource_id: str, organization_id: str) -> None:
+    async def add_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
         """Add a role under organization.
 
         Args:
@@ -1159,12 +1143,11 @@ class AppClient:
             resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot"). Must match
                 `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
-            organization_id (str): ID of the organization the role will be housed under. Must be the organization caller is authenticated
-                against.
 
         Raises:
-            GRPCError: If either an invalid identity ID, role ID, resource type, resource ID, or organization ID is passed.
+            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
         """
+        organization_id = await self._get_organization_id()
         authorization = Authorization(
             identity_id=identity_id,
             authorization_id=f"{resource_type}_{role}",
@@ -1175,7 +1158,7 @@ class AppClient:
         request = AddRoleRequest(authorization=authorization)
         await self._app_client.AddRole(request, metadata=self._metadata)
 
-    async def remove_role(self, identity_id: str, role: str, resource_type: str, resource_id: str, organization_id: str) -> None:
+    async def remove_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
         """Remove a role under organization.
 
         Args:
@@ -1184,12 +1167,11 @@ class AppClient:
             resource_type (str): Type of the resource to remove role from (i.e., either "organization", "location", or "robot"). Must match
                 `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
-            organization_id (str): ID of the organization the role is housed under. Must be the organization caller is authenticated
-                against.
 
         Raises:
-            GRPCError: If either an invalid identity ID, role ID, resource type, resource ID, or organization ID is passed.
+            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
         """
+        organization_id = await self._get_organization_id()
         authorization = Authorization(
             identity_id=identity_id,
             authorization_id=f"{resource_type}_{role}",
@@ -1201,20 +1183,20 @@ class AppClient:
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
     # TODO: This method reveals user ID's.
-    async def list_authorizations(self, organization_id: str, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
-        """List all authorizations under a specific resource (or resources) within an organization. If no resource IDs are provided, all
+    async def list_authorizations(self, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
+        """List all authorizations under a specific resource (or resources) within organization. If no resource IDs are provided, all
         resource authorizations within the organizations are returned.
 
         Args:
-            organization_id (str): ID of the organization to retrieve resource authorizations from.
             resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from. Defaults to None.
 
         Raises:
-            GRPCError: If an invalid organization ID or resource ID is passed.
+            GRPCError: If an invalid resource ID is passed.
 
         Returns:
             List[Authorization]: The list of authorizations.
         """
+        organization_id = await self._get_organization_id()
         request = ListAuthorizationsRequest(organization_id=organization_id, resource_ids=resource_ids)
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
@@ -1234,19 +1216,19 @@ class AppClient:
         return list(response.authorized_permissions)
 
     # TODO: Test
-    async def create_module(self, organization_id: str, name: str) -> Tuple[str, str]:
-        """Create a module
+    async def create_module(self, name: str) -> Tuple[str, str]:
+        """Create a module under organization.
 
         Args:
-            organization_id (str): The organization to create the module under.
             name (str): The name of the module, which must be unique within your organization.
 
         Raises:
-            GRPCError: If either an invalid organization ID or name is passed.
+            GRPCError: If either an invalid name is passed.
 
         Returns:
             Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
         """
+        organization_id = await self._get_organization_id()
         request = CreateModuleRequest(organization_id=organization_id, name=name)
         response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
         return response.module_id, response.url
@@ -1312,35 +1294,30 @@ class AppClient:
             return response.url
 
     # TODO: Test
-    async def get_module(self, module_id: str, organization_id: str) -> Module:
+    async def get_module(self, module_id: str) -> Module:
         """Get a module.
 
         Args:
             module_id (str): ID of the module being retrieved, containing module name or namespace and module name.
-            organization_id (str): ID of the organization of the module being retrieved, required if no namespace exists in the module_id.
 
         Raises:
-            GRPCError: If either an invalid module ID or organization ID is passed.
+            GRPCError: If an invalid module ID is passed.
 
         Returns:
             viam.proto.app.Module: The module.
         """
+        organization_id = await self._get_organization_id()
         request = GetModuleRequest(module_id=module_id, organization_id=organization_id)
         response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
         return response.module
 
-    async def list_modules(self, organization_id: str) -> List[Module]:
-        """List the modules under an organization.
-
-        Args:
-            organization_id (str): ID of the organization to return private modules for.
-
-        Raises:
-            GRPCError: If an invalid of organization ID is passed.
+    async def list_modules(self) -> List[Module]:
+        """List the modules under organization.
 
         Returns:
             List[viam.proto.app.Module]: The list of modules.
         """
+        organization_id = await self._get_organization_id()
         request = ListModulesRequest(organization_id=organization_id)
         response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
         return list(response.modules)

@@ -162,8 +162,7 @@ class TestClient:
     async def test_create_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            new_location = await client.create_location(organization_id=ID, name=NAME, parent_location_id=ID)
-            assert service.organization_id == ID
+            new_location = await client.create_location(name=NAME, parent_location_id=ID)
             assert service.name == NAME
             assert service.parent_location_id == ID
             assert new_location == LOCATION
@@ -197,8 +196,7 @@ class TestClient:
     async def test_list_locations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            locations = await client.list_locations(organization_id=ID)
-            assert service.organization_id == ID
+            locations = await client.list_locations()
             assert locations == locations
 
     @pytest.mark.asyncio
@@ -369,8 +367,7 @@ class TestClient:
     async def test_list_fragments(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragments = await client.list_fragments(organization_id=ID, show_public=SHOW_PUBLIC)
-            assert service.organization_id == ID
+            fragments = await client.list_fragments(show_public=SHOW_PUBLIC)
             assert service.show_public == SHOW_PUBLIC
             assert [fragment.proto for fragment in fragments] == [FRAGMENT]
 
@@ -386,9 +383,8 @@ class TestClient:
     async def test_create_fragment(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            fragment = await client.create_fragment(name=NAME, organization_id=ID)
+            fragment = await client.create_fragment(name=NAME)
             assert service.name == NAME
-            assert service.organization_id == ID
             assert fragment.proto == FRAGMENT
 
     @pytest.mark.asyncio
@@ -412,29 +408,26 @@ class TestClient:
     async def test_add_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.add_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID, organization_id=ID)
+            await client.add_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
             assert service.resource_type == TYPE
             assert service.resource_id == ID
-            assert service.organization_id == ID
 
     @pytest.mark.asyncio
     async def test_remove_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.remove_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID, organization_id=ID)
+            await client.remove_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
             assert service.resource_type == TYPE
             assert service.resource_id == ID
-            assert service.organization_id == ID
 
     @pytest.mark.asyncio
     async def test_list_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            authorizations = await client.list_authorizations(organization_id=ID, resource_ids=IDS)
-            assert service.organization_id == ID
+            authorizations = await client.list_authorizations(resource_ids=IDS)
             assert service.resource_ids == IDS
             assert authorizations == AUTHORIZATIONS

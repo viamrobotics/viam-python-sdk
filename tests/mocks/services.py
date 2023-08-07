@@ -727,7 +727,6 @@ class MockApp(AppServiceBase):
     async def CreateLocation(self, stream: Stream[CreateLocationRequest, CreateLocationResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
         self.name = request.name
         self.parent_location_id = request.parent_location_id
         await stream.send_message(CreateLocationResponse(location=self.location))
@@ -755,7 +754,6 @@ class MockApp(AppServiceBase):
     async def ListLocations(self, stream: Stream[ListLocationsRequest, ListLocationsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
         await stream.send_message(ListLocationsResponse(locations=[self.location]))
 
     async def ShareLocation(self, stream: Stream[ShareLocationRequest, ShareLocationResponse]) -> None:
@@ -905,7 +903,6 @@ class MockApp(AppServiceBase):
     async def ListFragments(self, stream: Stream[ListFragmentsRequest, ListFragmentsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
         self.show_public = request.show_public
         await stream.send_message(ListFragmentsResponse(fragments=[self.fragment]))
 
@@ -919,7 +916,6 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.name = request.name
-        self.organization_id = request.organization_id
         await stream.send_message(CreateFragmentResponse(fragment=self.fragment))
 
     async def UpdateFragment(self, stream: Stream[UpdateFragmentRequest, UpdateFragmentResponse]) -> None:
@@ -943,7 +939,6 @@ class MockApp(AppServiceBase):
         self.role = request.authorization.authorization_id.split("_")[-1]
         self.resource_type = request.authorization.resource_type
         self.resource_id = request.authorization.resource_id
-        self.organization_id = request.authorization.organization_id
         await stream.send_message(AddRoleResponse())
 
     async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
@@ -953,13 +948,11 @@ class MockApp(AppServiceBase):
         self.role = request.authorization.authorization_id.split("_")[-1]
         self.resource_type = request.authorization.resource_type
         self.resource_id = request.authorization.resource_id
-        self.organization_id = request.authorization.organization_id
         await stream.send_message(RemoveRoleResponse())
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
         self.resource_ids = request.resource_ids
         await stream.send_message(ListAuthorizationsResponse(authorizations=self.authorizations))
 
