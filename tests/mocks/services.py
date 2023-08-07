@@ -11,11 +11,14 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    RobotPartHistoryEntry,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
     ListOrganizationsByUserRequest,
+    Authorization,
     ListOrganizationsByUserResponse,
     GetOrganizationRequest,
+    LocationAuth,
     GetOrganizationResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
@@ -653,6 +656,10 @@ class MockApp(AppServiceBase):
         log_entry: LogEntry,
         id: str,
         fragment: Fragment,
+        available: bool,
+        location_auth: LocationAuth,
+        robot_part_history: List[RobotPartHistoryEntry],
+        authorizations: List[Authorization]
     ):
         self.organizations = organizations
         self.location = location
@@ -661,6 +668,10 @@ class MockApp(AppServiceBase):
         self.log_entry = log_entry
         self.id = id
         self.fragment = fragment
+        self.available = available
+        self.location_auth = location_auth
+        self.robot_part_history = robot_part_history
+        self.authorizations = authorizations
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         raise NotImplementedError()
@@ -682,7 +693,10 @@ class MockApp(AppServiceBase):
     async def GetOrganizationNamespaceAvailability(
         self, stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.namespace = request.public_namespace
+        await stream.send_message(GetOrganizationNamespaceAvailabilityResponse(available=self.available))
 
     async def UpdateOrganization(self, stream: Stream[UpdateOrganizationRequest, UpdateOrganizationResponse]) -> None:
         raise NotImplementedError()
@@ -759,13 +773,23 @@ class MockApp(AppServiceBase):
         await stream.send_message(UnshareLocationResponse())
 
     async def LocationAuth(self, stream: Stream[LocationAuthRequest, LocationAuthResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(LocationAuthResponse(auth=self.location_auth))
 
     async def CreateLocationSecret(self, stream: Stream[CreateLocationSecretRequest, CreateLocationSecretResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        await stream.send_message(CreateLocationSecretResponse(auth=self.location_auth))
 
     async def DeleteLocationSecret(self, stream: Stream[DeleteLocationSecretRequest, DeleteLocationSecretResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.location_id = request.location_id
+        self.secret_id = request.secret_id
+        await stream.send_message(DeleteLocationSecretResponse())
 
     async def GetRobot(self, stream: Stream[GetRobotRequest, GetRobotResponse]) -> None:
         request = await stream.recv_message()
@@ -800,7 +824,10 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def GetRobotPartHistory(self, stream: Stream[GetRobotPartHistoryRequest, GetRobotPartHistoryResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        await stream.send_message(GetRobotPartHistoryResponse(history=self.robot_part_history))
 
     async def UpdateRobotPart(self, stream: Stream[UpdateRobotPartRequest, UpdateRobotPartResponse]) -> None:
         request = await stream.recv_message()
@@ -824,7 +851,10 @@ class MockApp(AppServiceBase):
         await stream.send_message(DeleteRobotPartResponse())
 
     async def MarkPartAsMain(self, stream: Stream[MarkPartAsMainRequest, MarkPartAsMainResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.part_id
+        await stream.send_message(MarkPartAsMainResponse())
 
     async def MarkPartForRestart(self, stream: Stream[MarkPartForRestartRequest, MarkPartForRestartResponse]) -> None:
         request = await stream.recv_message()
@@ -833,10 +863,17 @@ class MockApp(AppServiceBase):
         await stream.send_message(MarkPartForRestartResponse())
 
     async def CreateRobotPartSecret(self, stream: Stream[CreateRobotPartSecretRequest, CreateRobotPartSecretResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.part_id
+        await stream.send_message(CreateRobotPartSecretResponse(part=self.robot_part))
 
     async def DeleteRobotPartSecret(self, stream: Stream[DeleteRobotPartSecretRequest, DeleteRobotPartSecretResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.part_id
+        self.secret_id = request.secret_id
+        await stream.send_message(DeleteRobotPartSecretResponse())
 
     async def ListRobots(self, stream: Stream[ListRobotsRequest, ListRobotsResponse]) -> None:
         request = await stream.recv_message()
@@ -879,22 +916,52 @@ class MockApp(AppServiceBase):
         await stream.send_message(GetFragmentResponse(fragment=self.fragment))
 
     async def CreateFragment(self, stream: Stream[CreateFragmentRequest, CreateFragmentResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.organization_id = request.organization_id
+        await stream.send_message(CreateFragmentResponse(fragment=self.fragment))
 
     async def UpdateFragment(self, stream: Stream[UpdateFragmentRequest, UpdateFragmentResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.fragment_id = request.id
+        self.name = request.name
+        self.public = request.public
+        await stream.send_message(UpdateFragmentResponse(fragment=self.fragment))
 
     async def DeleteFragment(self, stream: Stream[DeleteFragmentRequest, DeleteFragmentResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.fragment_id = request.id
+        await stream.send_message(DeleteFragmentResponse())
 
     async def AddRole(self, stream: Stream[AddRoleRequest, AddRoleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.identity_id = request.authorization.identity_id
+        self.role = request.authorization.authorization_id.split("_")[-1]
+        self.resource_type = request.authorization.resource_type
+        self.resource_id = request.authorization.resource_id
+        self.organization_id = request.authorization.organization_id
+        await stream.send_message(AddRoleResponse())
 
     async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.identity_id = request.authorization.identity_id
+        self.role = request.authorization.authorization_id.split("_")[-1]
+        self.resource_type = request.authorization.resource_type
+        self.resource_id = request.authorization.resource_id
+        self.organization_id = request.authorization.organization_id
+        await stream.send_message(RemoveRoleResponse())
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.resource_ids = request.resource_ids
+        await stream.send_message(ListAuthorizationsResponse(authorizations=self.authorizations))
 
     async def CheckPermissions(self, stream: Stream[CheckPermissionsRequest, CheckPermissionsResponse]) -> None:
         raise NotImplementedError()

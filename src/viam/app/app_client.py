@@ -32,7 +32,6 @@ from viam.proto.app import (
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
     DeleteOrganizationMemberRequest,
-    DeleteOrganizationRequest,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -59,6 +58,8 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
+    GetUserIDByEmailRequest,
+    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
@@ -69,6 +70,8 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
+    ListOrganizationsByUserRequest,
+    ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
     ListRobotsRequest,
@@ -92,6 +95,7 @@ from viam.proto.app import (
     Organization,
     OrganizationInvite,
     OrganizationMember,
+    OrgDetails,
     RemoveRoleRequest,
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
@@ -297,16 +301,41 @@ class Fragment:
 
 
 class RobotPartHistoryEntry:
-    """ """
+    """A class that mirrors the `RobotPartHistoryEntry` proto message.
+
+    Use this class to make the attributes of a `viam.proto.app.RobotPartHistoryEntry` more accessible and easier to read/interpret.
+    """
 
     @classmethod
     def from_proto(cls, robot_part_history_entry: RobotPartHistoryEntryPB) -> Self:
+        """Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.
+
+        Args:
+            robo_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.
+
+        Returns:
+            RobotPartHistoryEntry: The `RobotPartHistoryEntry`.
+        """
         self = cls()
+        self.part = robot_part_history_entry.part
+        self.robot = robot_part_history_entry.robot
+        self.when = robot_part_history_entry.when.ToDatetime() if robot_part_history_entry.HasField("when") else None
+        self.old = RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField("old") else None
         return self
+
+    part: str
+    robot: str
+    when: Optional[datetime]
+    old: Optional[RobotPart]
 
     @property
     def proto(self) -> RobotPartHistoryEntryPB:
-        return RobotPartHistoryEntryPB()
+        return RobotPartHistoryEntryPB(
+            part=self.part,
+            robot=self.robot,
+            when=datetime_to_timestamp(self.when) if self.when else None,
+            old=self.old.proto if self.old else None,
+        )
 
 
 class AppClient:
@@ -327,15 +356,34 @@ class AppClient:
         self._metadata = metadata
         self._app_client = AppServiceStub(channel)
         self._location_id = location_id
+        self._channel = channel
 
     _app_client: AppServiceStub
     _metadata: Mapping[str, str]
     _location_id: Optional[str]
+    _channel: Channel
 
-    async def get_user_id_by_email(self):
-        raise NotImplementedError()
+    def close(self) -> None:
+        self._channel.close()
 
-    # TODO: Test.
+    # TODO: Nil error.
+    async def get_user_id_by_email(self, email: str) -> str:
+        """Get a user's ID using their email.
+
+        Args:
+            email (str): User's email.
+
+        Raises:
+            GRPCError: If an invalid email is passed.
+
+        Returns:
+            str: The ID.
+        """
+        request = GetUserIDByEmailRequest(email=email)
+        response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
+        return response.user_id
+
+    # TODO: Nil error.
     async def create_organization(self, name: str) -> Organization:
         """Create an organization.
 
@@ -352,6 +400,7 @@ class AppClient:
         response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
         return response.organization
 
+    # TODO: Timestamp error. The returned timestamp is negative.
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
 
@@ -362,10 +411,25 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    async def list_organizations_by_user(self):
-        raise NotImplementedError()
-
     # TODO: Test.
+    async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
+        """List the organizations a user is a part of.
+
+        Args:
+            user_id (str): ID of the user
+
+        Raises:
+            GRPCError: If an invalid user ID is passed.
+
+        Returns:
+            List[viam.proto.app.Organization]: The list of organizations.
+        """
+        request = ListOrganizationsByUserRequest(user_id=user_id)
+        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
+        return list(response.orgs)
+
+    # TODO: Nil error when passing anything that isn't the currently auth'd organization's ID (i.e., an incorrect/mistyped ID or an
+    # unauthenticated ID).
     async def get_organization(self, organization_id: str) -> Organization:
         """Get an organization.
 
@@ -382,15 +446,17 @@ class AppClient:
         response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # TODO: Test and add docstring.
     async def get_organization_namespace_availability(self, public_namespace: str) -> bool:
-        """
+        """Check the availability of an organization namespace.
 
         Args:
-            public_namespace (str):
+            public_namespace (str): Organization namespace to check.
+
+        Raises:
+            GRPCError: If an invalid namespace is provided.
 
         Returns:
-            bool:
+            bool: Boolean signifying if the provided namespace is available.
         """
         request = GetOrganizationNamespaceAvailabilityRequest(public_namespace=public_namespace)
         response: GetOrganizationNamespaceAvailabilityResponse = await self._app_client.GetOrganizationNamespaceAvailability(
@@ -398,39 +464,36 @@ class AppClient:
         )
         return response.available
 
-    # TODO: Test, check optionality, and add docstring.
+    # TODO: Nil error only when trying to update name.
     async def update_organization(
-        self, organization_id: str, name: Optional[str], public_namespace: Optional[str], region: Optional[str]
+        self, organization_id: str, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None
     ) -> Organization:
-        """
+        """Update the name or GCS region associated with an organization or assign it a public namespace.
 
         Args:
-            organization_id (str):
-            name (Optional[str]):
-            public_namespace (Optional[str]):
-            region (Optional[str]):
+            organization_id (str): ID of the organization to update.
+            name (Optional[str]): New name to assign the organization. No name provided will simply leave the current name unchanged.
+            public_namespace (Optional[str]): New public namespace to assign to the organization. No namespace provided will
+                simply not assign a namespace. A namespace can only be assigned to an organization once (i.e., it is immutable).
+            region (Optional[str]): New GCS region to associate the organization with. No region provided will simply leave the current
+                region unchanged.
+
+        Raises:
+            GRPCError: If either an invalid organization ID, name, public namespace, or region is provided.
 
         Returns:
-            viam.proto.app.Organization:
+            viam.proto.app.Organization: The newly updated organization.
         """
-        request = UpdateOrganizationRequest(organization_id=organization_id, name=name, public_namespace=public_namespace)
+        print(name)
+        request = UpdateOrganizationRequest(organization_id=organization_id, name=name, public_namespace=public_namespace, region=region)
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # TODO: Test.
+    # Not possible under current location-based authentication model.
     async def delete_organization(self, organization_id: str) -> None:
-        """Delete an organization.
+        raise NotImplementedError()
 
-        Args:
-            organization_id (str): ID of the organization to delete.
-
-        Raises:
-            GRPCError: If an invalid ID is passed.
-        """
-        request = DeleteOrganizationRequest(organization_id=organization_id)
-        await self._app_client.DeleteOrganization(request, metadata=self._metadata)
-
-    # TODO: Test.
+    # TODO: Nil error.
     async def list_organization_members(self, organization_id: str) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members of an organization.
 
@@ -448,7 +511,7 @@ class AppClient:
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
-    # TODO: Test and Add docstring.
+    # TODO: Test and add docstring.
     async def create_organization_invite(
         self, organization_id: str, email: str, authorizations: Optional[List[Authorization]]
     ) -> OrganizationInvite:
@@ -629,25 +692,24 @@ class AppClient:
     async def unshare_location(self):
         raise NotImplementedError()
 
-    # TODO: Test, add docstring, default `location_id`.
     async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
-        """_summary_
+        """Get a locations `LocationAuth` (location secret(s)).
 
         Args:
-            location_id (str):
+            location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`
+                instantiation.
 
         Raises:
             GRPCError: If an invalid location_id is passed or if one isn't passed and there was no location ID provided at `AppClient`
                 instantiation.
 
         Returns:
-            LocationAuth: _description_
+            LocationAuth: The `LocationAuth` containing location secrets.
         """
         request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
         return response.auth
 
-    # TODO: Test and finish docstring.
     async def create_location_secret(self, location_id: Optional[str] = None) -> LocationAuth:
         """Create a new location secret.
 
@@ -660,14 +722,13 @@ class AppClient:
                 instantiation.
 
         Returns:
-            viam.proto.app.LocationAuth: _description_
+            viam.proto.app.LocationAuth: The specified location's `LocationAuth` containing the newly created secret.
         """
         request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
         return response.auth
 
-    # TODO: Test.
-    async def delete_location_secret(self, location_id: str, secret_id: str) -> None:
+    async def delete_location_secret(self, secret_id: str, location_id: Optional[str] = None) -> None:
         """Delete a location secret.
 
         Args:
@@ -813,7 +874,6 @@ class AppClient:
     async def tail_robot_part_logs(self):
         raise NotImplementedError()
 
-    # TODO: Test.
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
         """Get a list containing the history of a robot part.
 
@@ -878,7 +938,6 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
-    # TODO: Test
     async def mark_part_as_main(self, robot_part_id: str) -> None:
         """Mark a robot part as the main part of a robot.
 
@@ -903,7 +962,6 @@ class AppClient:
         request = MarkPartForRestartRequest(part_id=robot_part_id)
         await self._app_client.MarkPartForRestart(request, metadata=self._metadata)
 
-    # TODO: Test.
     async def create_robot_part_secret(self, robot_part_id: str) -> RobotPart:
         """Create a robot part secret.
 
@@ -920,7 +978,6 @@ class AppClient:
         response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request, metadata=self._metadata)
         return RobotPart.from_proto(response.part)
 
-    # TODO: Test.
     async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
         """Delete a robot part secret.
 
@@ -1038,14 +1095,17 @@ class AppClient:
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 
-    # TODO: Test and check optionality.
+    # TODO: Fragments are currently able to have the empty string "" as a name.
     async def create_fragment(self, name: str, organization_id: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
-        """Create a new fragment.
+        """Create a new private fragment.
 
         Args:
             name (str): Name of the fragment.
             config (Optional[Mapping[str, Any]]): _description_
             organization_id (str): ID of the organization to own the fragment.
+
+        Raises:
+            GRPCError: If an invalid organization ID is provided.
 
         Returns:
             viam.app.app_client.Fragment: The newly created fragment.
@@ -1054,17 +1114,19 @@ class AppClient:
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
-    # TODO: Test, check optionality, and finish docstring.
+    # TODO: It doesn't make sense that the name HAS to be updated and can't be empty.
     async def update_fragment(
         self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
     ) -> Fragment:
-        """Update a fragment.
+        """Update a fragment name AND its
 
         Args:
             fragment_id (str): ID of the fragment to be updated.
-            name (str):
-            config (Optional[Mapping[str, Any]]):
-            public ():
+            name (str): New name to associate with the fragment.
+            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
+                passing this parameter will leave it unchanged.
+            public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave it unchanged. A fragment
+                is private by default when created.
 
         Raises:
             GRPCError: if an invalid ID, name, or config is passed.
@@ -1076,12 +1138,11 @@ class AppClient:
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
-    # TODO: Test.
     async def delete_fragment(self, fragment_id) -> None:
         """Delete a fragment.
 
         Args:
-            fragment_id (_type_): ID of the fragment to delete.
+            fragment_id (str): ID of the fragment to delete.
 
         Raises:
             GRPCError: If an invalid fragment ID is passed.
@@ -1089,33 +1150,64 @@ class AppClient:
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    # TODO: Test, check optionality, and finish docstring.
-    async def add_role(self, authorization: Optional[Authorization]) -> None:
-        """
+    async def add_role(self, identity_id: str, role: str, resource_type: str, resource_id: str, organization_id: str) -> None:
+        """Add a role under organization.
 
         Args:
-            authorization (Optional[Authorization]):
+            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            role (str): The role to add (i.e., either "owner" or "operator").
+            resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot"). Must match
+                `resource_id`.
+            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            organization_id (str): ID of the organization the role will be housed under. Must be the organization caller is authenticated
+                against.
+
+        Raises:
+            GRPCError: If either an invalid identity ID, role ID, resource type, resource ID, or organization ID is passed.
         """
+        authorization = Authorization(
+            identity_id=identity_id,
+            authorization_id=f"{resource_type}_{role}",
+            resource_type=resource_type,
+            resource_id=resource_id,
+            organization_id=organization_id
+        )
         request = AddRoleRequest(authorization=authorization)
         await self._app_client.AddRole(request, metadata=self._metadata)
 
-    # TODO: Test, check optionality, and finish docstring.
-    async def remove_role(self, authorization: Optional[Authorization]) -> None:
-        """
+    async def remove_role(self, identity_id: str, role: str, resource_type: str, resource_id: str, organization_id: str) -> None:
+        """Remove a role under organization.
 
         Args:
-            authorization (Optional[Authorization]):
+            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            role (str): The role to remove (i.e., either "owner" or "operator").
+            resource_type (str): Type of the resource to remove role from (i.e., either "organization", "location", or "robot"). Must match
+                `resource_id`.
+            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+            organization_id (str): ID of the organization the role is housed under. Must be the organization caller is authenticated
+                against.
+
+        Raises:
+            GRPCError: If either an invalid identity ID, role ID, resource type, resource ID, or organization ID is passed.
         """
+        authorization = Authorization(
+            identity_id=identity_id,
+            authorization_id=f"{resource_type}_{role}",
+            resource_type=resource_type,
+            resource_id=resource_id,
+            organization_id=organization_id
+        )
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
-    # TODO: Test, check optionality, and finish docstring.
-    async def list_authorizations(self, organization_id: str, resource_ids: List[str]) -> List[Authorization]:
-        """
+    # TODO: This method reveals user ID's.
+    async def list_authorizations(self, organization_id: str, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
+        """List all authorizations under a specific resource (or resources) within an organization. If no resource IDs are provided, all
+        resource authorizations within the organizations are returned.
 
         Args:
-            organization_id (str):
-            resource_ids (List[str]):
+            organization_id (str): ID of the organization to retrieve resource authorizations from.
+            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from. Defaults to None.
 
         Raises:
             GRPCError: If an invalid organization ID or resource ID is passed.
@@ -1252,10 +1344,6 @@ class AppClient:
         request = ListModulesRequest(organization_id=organization_id)
         response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
         return list(response.modules)
-
-    @staticmethod
-    def create_authorization() -> Authorization:
-        return Authorization()
 
     @staticmethod
     def create_authorized_permission() -> AuthorizedPermissions:

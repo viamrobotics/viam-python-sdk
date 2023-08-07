@@ -120,10 +120,15 @@ class DataClient:
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
         self._data_sync_client = DataSyncServiceStub(channel)
+        self._channel = channel
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
     _metadata: Mapping[str, str]
+    _channel: Channel
+
+    def close(self) -> None:
+        self._channel.close()
 
     async def tabular_data_by_filter(
         self,
@@ -404,7 +409,7 @@ class DataClient:
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
-                denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -457,7 +462,7 @@ class DataClient:
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
-                `datetime` objects denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
 
         Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
