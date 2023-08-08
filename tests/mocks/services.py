@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Mapping, Optional, Union
 
-from google.protobuf.struct_pb2 import Struct
 from grpclib.server import Stream
 from PIL import Image
 
@@ -191,11 +190,12 @@ from viam.proto.service.sensors import (
     SensorsServiceBase,
 )
 from viam.proto.service.vision import Classification, Detection
+from viam.app.data_client import DataClient
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import Vision
-from viam.utils import ValueTypes, struct_to_dict
+from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
 class MockVision(Vision):
@@ -483,8 +483,8 @@ class MockNavigation(Navigation):
 class MockData(DataServiceBase):
     def __init__(
         self,
-        tabular_response: List[Mapping[str, Any]],
-        binary_response: List[bytes],
+        tabular_response: List[DataClient.TabularData],
+        binary_response: List[DataClient.BinaryData],
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
@@ -504,11 +504,20 @@ class MockData(DataServiceBase):
             await stream.send_message(TabularDataByFilterResponse(data=None))
             return
         self.filter = request.data_request.filter
-        n = len(self.tabular_response)
-        tabular_response_structs = [Struct()] * n
-        for i in range(n):
-            tabular_response_structs[i].update(self.tabular_response[i])
-        await stream.send_message(TabularDataByFilterResponse(data=[TabularData(data=struct) for struct in tabular_response_structs]))
+        tabular_response_structs = []
+        tabular_metadata = [data.metadata for data in self.tabular_response]
+        for idx, tabular_data in enumerate(self.tabular_response):
+            tabular_response_structs.append(
+                TabularData(
+                    data=dict_to_struct(tabular_data.data),
+                    metadata_index=idx,
+                    time_requested=datetime_to_timestamp(tabular_data.time_requested),
+                    time_received=datetime_to_timestamp(tabular_data.time_received)
+                )
+            )
+        await stream.send_message(TabularDataByFilterResponse(
+            data=tabular_response_structs, metadata=tabular_metadata)
+        )
         self.was_tabular_data_requested = True
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
@@ -518,14 +527,18 @@ class MockData(DataServiceBase):
             await stream.send_message(BinaryDataByFilterResponse())
             return
         self.filter = request.data_request.filter
-        await stream.send_message(BinaryDataByFilterResponse(data=[BinaryData(binary=binary_data) for binary_data in self.binary_response]))
+        await stream.send_message(BinaryDataByFilterResponse(
+            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+        )
         self.was_binary_data_requested = True
 
     async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
-        await stream.send_message(BinaryDataByIDsResponse(data=[BinaryData(binary=binary_data) for binary_data in self.binary_response]))
+        await stream.send_message(BinaryDataByIDsResponse(
+            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+        )
 
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
         request = await stream.recv_message()

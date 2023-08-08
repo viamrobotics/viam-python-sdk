@@ -14,9 +14,11 @@ from viam.proto.app.data import (
     BinaryDataByIDsRequest,
     BinaryDataByIDsResponse,
     BinaryID,
+    BinaryMetadata,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureInterval,
+    CaptureMetadata,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -60,6 +62,54 @@ class DataClient:
     `ViamClient`.
     """
 
+    class TabularData:
+        """Class representing a piece of tabular data and associated metadata.
+
+        Args:
+            data (Mapping[str, Any]): the requested data.
+            metadata (viam.proto.app.data.CaptureMetadata): the metadata from the request.
+            time_requested (datetime): the time the data request was sent.
+            time_received (datetime): the time the requested data was received.
+        """
+
+        def __init__(self, data: Mapping[str, Any], metadata: CaptureMetadata, time_requested: datetime, time_received: datetime) -> None:
+            self.data = data
+            self.metadata = metadata
+            self.time_requested = time_requested
+            self.time_received = time_received
+
+        data: Mapping[str, Any]
+        metadata: CaptureMetadata
+        time_requested: datetime
+        time_received: datetime
+
+        def __str__(self) -> str:
+            return f"{self.data}\n{self.metadata}Time requested: {self.time_requested}\nTime received: {self.time_received}\n"
+
+        def __eq__(self, other: "DataClient.TabularData") -> bool:
+            return str(self) == str(other)
+
+    class BinaryData:
+        """Class representing a piece of binary data and associated metadata.
+
+        Args:
+            data (bytes): the requested data.
+            metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.
+        """
+
+        def __init__(self, data: bytes, metadata: BinaryMetadata) -> None:
+            self.data = data
+            self.metadata = metadata
+
+        data: bytes
+        metadata: BinaryMetadata
+
+        def __str__(self) -> str:
+            return f"{self.data}\n{self.metadata}"
+
+        def __eq__(self, other: "DataClient.BinaryData") -> bool:
+            return str(self) == str(other)
+
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.
 
@@ -79,7 +129,7 @@ class DataClient:
         self,
         filter: Optional[Filter] = None,
         dest: Optional[str] = None,
-    ) -> List[Mapping[str, Any]]:
+    ) -> List[TabularData]:
         """Filter and download tabular data.
 
         Args:
@@ -102,13 +152,18 @@ class DataClient:
             response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [struct_to_dict(struct.data) for struct in response.data]
+            data += [DataClient.TabularData(
+                struct_to_dict(struct.data),
+                response.metadata[struct.metadata_index],
+                struct.time_requested.ToDatetime(),
+                struct.time_received.ToDatetime(),
+            ) for struct in response.data]
             last = response.last
 
         if dest:
             try:
                 file = open(dest, "w")
-                file.write(f"{data}")
+                file.write(f"{[str(d) for d in data]}")
             except Exception as e:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
         return data
@@ -117,7 +172,7 @@ class DataClient:
         self,
         filter: Optional[Filter] = None,
         dest: Optional[str] = None,
-    ) -> List[bytes]:
+    ) -> List[BinaryData]:
         """Filter and download binary data.
 
         Args:
@@ -139,13 +194,13 @@ class DataClient:
             response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [data.binary for data in response.data]
+            data += [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
             last = response.last
 
         if dest:
             try:
                 file = open(dest, "w")
-                file.write(f"{data}")
+                file.write(f"{[str(d) for d in data]}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
 
@@ -155,7 +210,7 @@ class DataClient:
         self,
         binary_ids: List[BinaryID],
         dest: Optional[str] = None,
-    ) -> List[bytes]:
+    ) -> List[BinaryData]:
         """Filter and download binary data.
 
         Args:
@@ -176,7 +231,7 @@ class DataClient:
                 file.write(f"{response.data}")
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
-        return [binary_data.binary for binary_data in response.data]
+        return [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
 
     async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Filter and delete tabular data.
