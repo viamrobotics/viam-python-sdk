@@ -14,7 +14,13 @@ from viam.proto.app import (
     Fragment,
     LocationAuth,
     RobotPartHistoryEntry,
-    Authorization
+    Authorization,
+    Model,
+    Module,
+    Visibility,
+    OrganizationMember,
+    OrganizationInvite,
+    ModuleFileInfo
 )
 
 from .mocks.services import MockApp
@@ -35,7 +41,7 @@ ORGANIZATION = Organization(
     default_region=DEFAULT_REGION,
 )
 ORGANIZATIONS = [ORGANIZATION]
-COUNT = 1
+NUM = 1
 LOCATION = Location(
     id=ID,
     name=NAME,
@@ -43,7 +49,7 @@ LOCATION = Location(
     auth=None,
     organizations=None,
     created_on=TIME,
-    robot_count=COUNT,
+    robot_count=NUM,
     config=None,
 )
 ROBOT = Robot(id=ID, name=NAME, location=ID, last_access=TIME, created_on=TIME)
@@ -69,10 +75,8 @@ ROBOT_PART = RobotPart(
     secrets=None,
 )
 ROBOT_PARTS = [ROBOT_PART]
-INDENT = 1
 FILTER = "filter"
 ERRORS_ONLY = True
-NUM_LOGS = 1
 HOST = "host"
 LEVEL = "level"
 LOGGER_NAME = "logger_name"
@@ -94,7 +98,7 @@ FRAGMENT = Fragment(
     public=PUBLIC,
     created_on=TIME,
     organization_name=ORGANIZATION_NAME,
-    robot_part_count=COUNT,
+    robot_part_count=NUM,
     only_used_by_owner=ONLY_USED_BY_OWNER,
 )
 NAMESPACE = "namespace"
@@ -123,6 +127,50 @@ AUTHORIZATION = Authorization(
     organization_id=ID
 )
 AUTHORIZATIONS = [AUTHORIZATION]
+URL = "url"
+DESCRIPTION = "description"
+MODEL = "model"
+API = "api"
+MODELS = [Model(api=API, model=MODEL)]
+ENTRYPOINT = "entrypoint"
+MODULE = Module(
+    module_id=ID,
+    organization_id=ID,
+    name=NAME,
+    visibility=Visibility.VISIBILITY_PUBLIC,
+    versions=None,
+    url=URL,
+    description=DESCRIPTION,
+    models=MODELS,
+    entrypoint=ENTRYPOINT,
+    total_robot_usage=NUM,
+    total_organization_usage=NUM
+)
+MODULES = [MODULE]
+EMAIL = "email"
+EMAILS = [EMAIL]
+MEMBER = OrganizationMember(
+    user_id=ID,
+    emails=EMAILS,
+    date_added=TIME
+)
+MEMBERS = [MEMBER]
+INVITE = OrganizationInvite(
+    organization_id=ID,
+    email=EMAIL,
+    created_on=TIME
+)
+INVITES = [INVITE]
+VISIBILITY = Visibility.VISIBILITY_PUBLIC
+VERSION = "version"
+PLATFORM = "platform"
+MODULE_FILE_INFO = ModuleFileInfo(
+    module_id=ID,
+    organization_id=ID,
+    version=VERSION,
+    platform=PLATFORM
+)
+FILE = b'file'
 
 
 @pytest.fixture(scope="function")
@@ -138,7 +186,11 @@ def service() -> MockApp:
         available=AVAILABLE,
         location_auth=LOCATION_AUTH,
         robot_part_history=ROBOT_PART_HISTORY,
-        authorizations=AUTHORIZATIONS
+        authorizations=AUTHORIZATIONS,
+        url=URL,
+        module=MODULE,
+        members=MEMBERS,
+        invite=INVITE
     )
 
 
@@ -152,11 +204,31 @@ class TestClient:
             assert service.namespace == NAMESPACE
 
     @pytest.mark.asyncio
+    async def test_list_organization_members(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            members, invites = await client.list_organization_members()
+            assert members == MEMBERS
+            assert invites == INVITES
+
+    @pytest.mark.asyncio
     async def test_list_organizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             organizations = await client.list_organizations()
             assert organizations == ORGANIZATIONS
+
+    @pytest.mark.asyncio
+    async def test_update_organization_invite_authorizations(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            invite = await client.update_organization_invite_authorizations(
+                email=EMAIL, add_authorizations=AUTHORIZATIONS, remove_authorizations=AUTHORIZATIONS
+            )
+            assert invite == INVITE
+            assert service.email == EMAIL
+            assert service.add_authorizations == AUTHORIZATIONS
+            assert service.remove_authorizations == AUTHORIZATIONS
 
     @pytest.mark.asyncio
     async def test_create_location(self, service: MockApp):
@@ -243,7 +315,7 @@ class TestClient:
     async def test_get_robot_part(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            robot_part = await client.get_robot_part(robot_part_id=ID, indent=INDENT)
+            robot_part = await client.get_robot_part(robot_part_id=ID, indent=NUM)
             assert service.robot_part_id == ID
             assert robot_part.proto == ROBOT_PART
 
@@ -252,7 +324,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             log_entries = await client.get_robot_part_logs(
-                robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM_LOGS
+                robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM
             )
             assert service.robot_part_id == ID
             assert service.filter == FILTER
@@ -431,3 +503,69 @@ class TestClient:
             authorizations = await client.list_authorizations(resource_ids=IDS)
             assert service.resource_ids == IDS
             assert authorizations == AUTHORIZATIONS
+
+    @pytest.mark.asyncio
+    async def test_create_module(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            id, url = await client.create_module(name=NAME)
+            assert service.name == NAME
+            assert id == ID
+            assert url == URL
+
+    @pytest.mark.asyncio
+    async def test_update_module(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            url = await client.update_module(
+                module_id=ID,
+                url=URL,
+                description=DESCRIPTION,
+                models=MODELS,
+                entrypoint=ENTRYPOINT,
+                organization_id=ID,
+                public=PUBLIC
+            )
+            assert url == URL
+            assert service.module_id == ID
+            assert service.url == URL
+            assert service.description == DESCRIPTION
+            assert service.models == MODELS
+            assert service.entrypoint == ENTRYPOINT
+            assert service.organization_id == ID
+            assert service.visibility == VISIBILITY
+
+    @pytest.mark.asyncio
+    async def test_created_module(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            url = await client.update_module(module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT)
+            assert service.module_id == ID
+            assert service.description == DESCRIPTION
+            assert service.models == MODELS
+            assert service.entrypoint == ENTRYPOINT
+            assert url == URL
+
+    @pytest.mark.asyncio
+    async def test_upload_module_file(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            id = await client.upload_module_file(module_file_info=MODULE_FILE_INFO, file=FILE)
+            assert id == ID
+            assert service.module_file_info == MODULE_FILE_INFO
+            assert service.file == FILE
+
+    @pytest.mark.asyncio
+    async def test_get_module(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            module = await client.get_module(module_id=ID)
+            assert service.module_id == ID
+            assert module == MODULE
+
+    @pytest.mark.asyncio
+    async def test_list_modules(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            modules = await client.list_modules()
+            assert modules == MODULES

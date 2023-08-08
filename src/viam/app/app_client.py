@@ -11,8 +11,6 @@ from viam.proto.app import (
     AppServiceStub,
     Authorization,
     AuthorizedPermissions,
-    CheckPermissionsRequest,
-    CheckPermissionsResponse,
     CreateFragmentRequest,
     CreateFragmentResponse,
     CreateLocationRequest,
@@ -120,6 +118,7 @@ from viam.proto.app import (
     UpdateRobotRequest,
     UpdateRobotResponse,
     UploadModuleFileRequest,
+    Visibility,
 )
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
@@ -172,7 +171,7 @@ class RobotPart:
     fqdn: str
     local_fqdn: str
     created_on: Optional[datetime]
-    secrets: List[SharedSecret]
+    secrets: Optional[List[SharedSecret]]
 
     @property
     def proto(self) -> RobotPartPB:
@@ -218,7 +217,7 @@ class LogEntry:
         self.message = log_entry.message
         self.caller = struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None
         self.stack = log_entry.stack
-        self.fields = [struct_to_dict(struct) for struct in log_entry.fields]
+        self.fields = [struct_to_dict(field) for field in log_entry.fields]
         return self
 
     host: str
@@ -374,7 +373,7 @@ class AppClient:
         organizations = await self.list_organizations()
         return organizations[0].id
 
-    # TODO: Nil error.
+    # TODO: 'nil pointer dereference'.
     async def get_user_id_by_email(self, email: str) -> str:
         """Get a user's ID using their email.
 
@@ -391,7 +390,8 @@ class AppClient:
         response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
         return response.user_id
 
-    # TODO: Nil error.
+    # TODO: 'nil pointer dereference'.
+    # This request does NOT execute/work properly; no organization is created. We just recieve the 'nil pointer dereference' GRPCError.
     async def create_organization(self, name: str) -> Organization:
         """Create an organization.
 
@@ -399,16 +399,18 @@ class AppClient:
             name (str): Name of the new organization.
 
         Raises:
-            GRPCError: If an invalid name is passed.
+            GRPCError: If an invalid name (e.g., "") is passed.
 
         Returns:
-            viam.proto.app.Organization: _description_
+            viam.proto.app.Organization: The newly created organization.
         """
         request = CreateOrganizationRequest(name=name)
         response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # TODO: Timestamp error. The returned timestamp is negative.
+    # TODO: Timestamp error.
+    # The returned organization contains an incorrect (and negative) Timestamp value as the `created_on` field. This is not the case with
+    # get_organization().
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
 
@@ -419,7 +421,7 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    # TODO: Test.
+    # TODO: 'nil pointer dereference'.
     async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
         """List the organizations a user is a part of.
 
@@ -437,8 +439,10 @@ class AppClient:
         return list(response.orgs)
 
     # TODO: WRITE TEST!
-    # TODO: Nil error when passing anything that isn't the currently auth'd organization's ID (i.e., an incorrect/mistyped ID or an
-    # unauthenticated ID).
+    # TODO: 'nil pointer dereference'. This is probably fine for now, since we no longer ask the caller to provide an organization ID. It is
+    # worth noting, though, that if an incorrect organization ID is passed (i.e., one that is mistyped and so doesn't exist or one that we
+    # aren't authenticated to access) we don't get a 'permission denied' or 'resource not found' error; it's alwayt the 'nil pointer
+    # dereference' error.
     async def get_organization(self) -> Organization:
         """Get organization.
 
@@ -457,10 +461,10 @@ class AppClient:
             public_namespace (str): Organization namespace to check.
 
         Raises:
-            GRPCError: If an invalid namespace is provided.
+            GRPCError: If an invalid namespace (e.g., "") is provided.
 
         Returns:
-            bool: Boolean signifying if the provided namespace is available.
+            bool: True if the provided namespace is available.
         """
         request = GetOrganizationNamespaceAvailabilityRequest(public_namespace=public_namespace)
         response: GetOrganizationNamespaceAvailabilityResponse = await self._app_client.GetOrganizationNamespaceAvailability(
@@ -468,7 +472,9 @@ class AppClient:
         )
         return response.available
 
-    # TODO: Nil error only when trying to update name.
+    # TODO: 'nil pointer dereference'.
+    # The error only appears when trying to update the name of the organization, even though the name does get updated. All other behavior
+    # is as expected.
     async def update_organization(
         self, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None
     ) -> Organization:
@@ -492,49 +498,66 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # Not possible under current location-based authentication model.
+    # This is impossible under our current (org-wide) authentication model. To authenticat to `AppClient` and be able to make this request,
+    # a robot URI (and so a location) must exist within the organization. However, organizations can only be deleted if they contain no
+    # locations.
     async def delete_organization(self, organization_id: str) -> None:
         raise NotImplementedError()
 
-    # TODO: Nil error.
     async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
-        """List the members of organization.
+        """List the members and invites of organization.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
-                [0] of organization members, and the second [1] contains organization invites.
+                [0] of organization members, and the second [1] of organization invites.
         """
         organization_id = await self._get_organization_id()
         request = ListOrganizationMembersRequest(organization_id=organization_id)
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
-    # TODO: Test and add docstring.
-    async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]]) -> OrganizationInvite:
-        """
+    # TODO: 'nil pointer dereference'.
+    # This returns the GRPC 'nil pointer dereference error', but the request itself does successfully go through and execute (i.e., an
+    # invite is created and sent with the proper authorizations and edge case behavior).
+    async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]] = None) -> OrganizationInvite:
+        """Create and send an organization invite for a specific user with said user's email.
 
         Args:
-            email (str):
-            authorizations (Optional[List[Authorization]]):
+            email (str): Email of the user to invite.
+            authorizations (Optional[List[Authorization]]): Optional list of roles/authorizations to assign the user. Defaults to making the
+                user an owner of organization. Can only include one authorization per resource ID.
+
+        Raises:
+            GRPCError: If the user associated with the provided email already has an invite from organization or if an invalid email is
+                provided.
 
         Returns:
-            viam.proto.app.OrganizationInvite:
+            viam.proto.app.OrganizationInvite: The newly created organization invite.
         """
         organization_id = await self._get_organization_id()
         request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations)
         response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
-    # TODO: Test, check optionality, and add docstring.
     async def update_organization_invite_authorizations(
-        self, email: str, add_authorizations: Optional[List[Authorization]], remove_authorizations: Optional[List[Authorization]]
+        self,
+        email: str,
+        add_authorizations: Optional[List[Authorization]] = None,
+        remove_authorizations: Optional[List[Authorization]] = None,
     ) -> OrganizationInvite:
-        """
+        """Update the authorizations attached to an organization invite that has already been created.
+
+        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
+        at least one authorization overall.
 
         Args:
-            email (str):
-            add_authorization (Optional[List[viam.proto.app.Authorization]]):
-            remove_authorization (Optional[List[viam.proto.app.Authorization]]):
+            email (str): Email of the user the invite was sent to.
+            add_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
+            remove_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
+
+        Raises:
+            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
+                remove when the invite only contains one authorization).
 
         Returns:
             viam.proto.app.OrganizationInvite: The updated invite.
@@ -548,7 +571,8 @@ class AppClient:
         )
         return response.invite
 
-    # TODO: Test.
+    # TODO: 'nil pointer dereference'.
+    # The request does NOT go through (i.e., the specified user is not deleted).
     async def delete_organization_member(self, user_id: str) -> None:
         """Delete an organization member.
 
@@ -556,13 +580,14 @@ class AppClient:
             user_id (str): ID of the user to delete.
 
         Raises:
-            GRPCError: If either an invalid user ID is passed.
+            GRPCError: If an invalid user ID is passed.
         """
         organization_id = await self._get_organization_id()
         request = DeleteOrganizationMemberRequest(organization_id=organization_id, user_id=user_id)
         await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
 
-    # TODO: Test.
+    # TODO: 'nil pointer dereference'.
+    # The request works (i.e., the invite to the specified email is deleted), but a GRPCError returns.
     async def delete_organization_invite(self, email: str) -> None:
         """Delete organization invite
 
@@ -570,13 +595,14 @@ class AppClient:
             email (str): Email the invite was sent to.
 
         Raises:
-            GRPCError: If either an invalid email is passed.
+            GRPCError:
         """
         organization_id = await self._get_organization_id()
         request = DeleteOrganizationInviteRequest(organization_id=organization_id, email=email)
         await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
 
-    # TODO: Test.
+    # TODO: 'nil pointer dereference'.
+    # The request works (i.e., the invite is resent to the specified email), but a GRPCError returns.
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
         """Resend an organization invite
 
@@ -584,7 +610,7 @@ class AppClient:
             email (str): Email the invite was sent to.
 
         Raises:
-            GRPCError: If either an invalid email is passed.
+            GRPCError: If an invalid email is passed (i.e., an email for which an invite hasn't been initially created).
 
         Returns:
             viam.app.proto.OrganizationInvite: The resent organization invite.
@@ -603,7 +629,7 @@ class AppClient:
                 location ID is provided.
 
         Raises:
-            GRPCError: If either an invalid name, or parent location ID is passed.
+            GRPCError: If either an invalid name (e.g., ""), or parent location ID (e.g., a nonexistent ID) is passed.
 
         Returns:
             viam.proto.app.Location: The newly created location.
@@ -618,10 +644,10 @@ class AppClient:
 
         Args:
             location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
-                If no default location ID was passed, a GRPCError will be thrown.
 
         Raises:
-            GRPCError: If an invalid location ID is passed.
+            GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
+                instantiation.
 
         Returns:
             viam.proto.app.Location: The location.
@@ -634,11 +660,11 @@ class AppClient:
         """Change the name of a location and/or assign it a new parent location.
 
         Args:
-            location_id (str): ID of the location to update.
+            location_id (str): ID of the location to update. Must be specified.
             name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
                 change).
-            parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string ""
-                (i.e., no new parent location is assigned).
+            parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string
+                "" (i.e., no new parent location is assigned).
 
         Raises:
             GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -680,14 +706,14 @@ class AppClient:
         raise NotImplementedError()
 
     async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
-        """Get a locations `LocationAuth` (location secret(s)).
+        """Get a location's `LocationAuth` (location secret(s)).
 
         Args:
             location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`
                 instantiation.
 
         Raises:
-            GRPCError: If an invalid location_id is passed or if one isn't passed and there was no location ID provided at `AppClient`
+            GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
                 instantiation.
 
         Returns:
@@ -857,8 +883,8 @@ class AppClient:
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
-    # Unary-stream method.
-    async def tail_robot_part_logs(self):
+    # TODO: unary-stream method.
+    async def tail_robot_part_logs(self, robot_part_id: str, errors_only: bool, filter: str) -> List[LogEntry]:
         raise NotImplementedError()
 
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
@@ -868,7 +894,7 @@ class AppClient:
             robot_part_id (str): ID of the robot part to retrieve history from.
 
         Raises:
-            GRPCError: If an invalid robot_part_id is provided.
+            GRPCError: If an invalid robot part ID is provided.
 
         Returns:
             List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part's history.
@@ -1098,7 +1124,7 @@ class AppClient:
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
-    # TODO: It doesn't make sense that the name HAS to be updated and can't be empty.
+    # TODO: The name of a fragment HAS to be updated if any updates to its config and/or public status are being made.
     async def update_fragment(
         self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
     ) -> Fragment:
@@ -1153,7 +1179,7 @@ class AppClient:
             authorization_id=f"{resource_type}_{role}",
             resource_type=resource_type,
             resource_id=resource_id,
-            organization_id=organization_id
+            organization_id=organization_id,
         )
         request = AddRoleRequest(authorization=authorization)
         await self._app_client.AddRole(request, metadata=self._metadata)
@@ -1177,12 +1203,11 @@ class AppClient:
             authorization_id=f"{resource_type}_{role}",
             resource_type=resource_type,
             resource_id=resource_id,
-            organization_id=organization_id
+            organization_id=organization_id,
         )
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
-    # TODO: This method reveals user ID's.
     async def list_authorizations(self, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
         """List all authorizations under a specific resource (or resources) within organization. If no resource IDs are provided, all
         resource authorizations within the organizations are returned.
@@ -1201,29 +1226,18 @@ class AppClient:
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
-    # TODO: Test, check optionality, and finish docstring.
-    async def check_permissions(self, permissions: Optional[List[AuthorizedPermissions]]) -> List[AuthorizedPermissions]:
-        """
+    # TODO
+    async def check_permissions(self, permissions: Optional[List[AuthorizedPermissions]] = None) -> List[AuthorizedPermissions]:
+        raise NotImplementedError()
 
-        Args:
-            permissions (Optional[List[AuthorizedPermissions]]):
-
-        Returns:
-            List[viam.proto.app.AuthorizedPermissions]:
-        """
-        request = CheckPermissionsRequest(permissions=permissions)
-        response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
-        return list(response.authorized_permissions)
-
-    # TODO: Test
     async def create_module(self, name: str) -> Tuple[str, str]:
         """Create a module under organization.
 
         Args:
-            name (str): The name of the module, which must be unique within your organization.
+            name (str): The name of the module. Must be unique within your organization.
 
         Raises:
-            GRPCError: If either an invalid name is passed.
+            GRPCError: If an invalid name (e.g., "") is passed.
 
         Returns:
             Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].
@@ -1233,39 +1247,41 @@ class AppClient:
         response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
         return response.module_id, response.url
 
-    # TODO: Test, check optionality, finish docstring, and figure out what visibility is.
+    # TODO: Some fields HAVE to be updated.
     async def update_module(
         self,
         module_id: str,
-        organization_id: Optional[str],
-        visibility: Any,
         url: str,
         description: str,
         models: Optional[List[Model]],
         entrypoint: str,
+        organization_id: Optional[str] = None,
+        public: bool = False,
     ) -> str:
-        """
+        """Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
 
         Args:
-            module_id (str): ID of the module being updated, containing module name or namespace and module name.
-            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the
-                module_id.
-            visibility (Any): The visibility that should be set for the module.
-            url (str): The url to reference for documentation and code.
+            module_id (str): ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
+                "my-org:my-module").
+            url (str): The url to reference for documentation and code (NOT the url of the module itself).
             description (str): A short description of the module that explains its purpose.
-            models (Optional[List[Model]]):
-            entrypoint (str):
+            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.
+            entrypoint (str): The executable to run to start the module program.
+            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the
+                module ID.
+            public (bool): The visibility that should be set for the module. Defaults to False (private).
 
         Raises:
-            GRPCError:
+            GRPCError: If either an invalid module ID, URL, list of models, or organization ID is passed.
 
         Returns:
             str: The URL of the newly updated module.
         """
         request = UpdateModuleRequest(
             module_id=module_id,
-            organization_id=organization_id,
-            visibility=visibility,
+            organization_id=organization_id if organization_id else "",
+            visibility=Visibility.VISIBILITY_PUBLIC if public else Visibility.VISIBILITY_PRIVATE,
+            url=url,
             description=description,
             models=models,
             entrypoint=entrypoint,
@@ -1273,7 +1289,6 @@ class AppClient:
         response: UpdateModuleResponse = await self._app_client.UpdateModule(request, metadata=self._metadata)
         return response.url
 
-    # Stream-unary method.
     async def upload_module_file(self, module_file_info: Optional[ModuleFileInfo], file: bytes) -> str:
         """Upload a module file
 
@@ -1284,16 +1299,15 @@ class AppClient:
         Returns:
             str: ID of uploaded file.
         """
-        request_metadata = UploadModuleFileRequest(module_file_info=module_file_info)
+        request_module_file_info = UploadModuleFileRequest(module_file_info=module_file_info)
         request_file = UploadModuleFileRequest(file=file)
         async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
-            await stream.send_message(request_metadata)
-            await stream.send_message(request_file)
+            await stream.send_message(request_module_file_info)
+            await stream.send_message(request_file, end=True)
             response = await stream.recv_message()
             assert response is not None
             return response.url
 
-    # TODO: Test
     async def get_module(self, module_id: str) -> Module:
         """Get a module.
 
@@ -1321,7 +1335,3 @@ class AppClient:
         request = ListModulesRequest(organization_id=organization_id)
         response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
         return list(response.modules)
-
-    @staticmethod
-    def create_authorized_permission() -> AuthorizedPermissions:
-        return AuthorizedPermissions()

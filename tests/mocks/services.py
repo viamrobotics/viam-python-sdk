@@ -11,6 +11,8 @@ from viam.proto.app import (
     GetUserIDByEmailResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    OrganizationMember,
+    OrganizationInvite,
     RobotPartHistoryEntry,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
@@ -35,6 +37,7 @@ from viam.proto.app import (
     DeleteOrganizationMemberRequest,
     DeleteOrganizationMemberResponse,
     DeleteOrganizationInviteRequest,
+    Module,
     DeleteOrganizationInviteResponse,
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
@@ -659,7 +662,11 @@ class MockApp(AppServiceBase):
         available: bool,
         location_auth: LocationAuth,
         robot_part_history: List[RobotPartHistoryEntry],
-        authorizations: List[Authorization]
+        authorizations: List[Authorization],
+        url: str,
+        module: Module,
+        members: List[OrganizationMember],
+        invite: OrganizationInvite
     ):
         self.organizations = organizations
         self.location = location
@@ -672,6 +679,10 @@ class MockApp(AppServiceBase):
         self.location_auth = location_auth
         self.robot_part_history = robot_part_history
         self.authorizations = authorizations
+        self.url = url
+        self.module = module
+        self.members = members
+        self.invite = invite
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         raise NotImplementedError()
@@ -705,7 +716,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def ListOrganizationMembers(self, stream: Stream[ListOrganizationMembersRequest, ListOrganizationMembersResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListOrganizationMembersResponse(members=self.members, invites=[self.invite]))
 
     async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
         raise NotImplementedError()
@@ -713,7 +726,12 @@ class MockApp(AppServiceBase):
     async def UpdateOrganizationInviteAuthorizations(
         self, stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.email = request.email
+        self.add_authorizations = request.add_authorizations
+        self.remove_authorizations = request.remove_authorizations
+        await stream.send_message(UpdateOrganizationInviteAuthorizationsResponse(invite=self.invite))
 
     async def DeleteOrganizationMember(self, stream: Stream[DeleteOrganizationMemberRequest, DeleteOrganizationMemberResponse]) -> None:
         raise NotImplementedError()
@@ -960,16 +978,39 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def CreateModule(self, stream: Stream[CreateModuleRequest, CreateModuleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        await stream.send_message(CreateModuleResponse(module_id=self.id, url=self.url))
 
     async def UpdateModule(self, stream: Stream[UpdateModuleRequest, UpdateModuleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.module_id = request.module_id
+        self.url = request.url
+        self.description = request.description
+        self.models = request.models
+        self.entrypoint = request.entrypoint
+        self.organization_id = request.organization_id
+        self.visibility = request.visibility
+        await stream.send_message(UpdateModuleResponse(url=self.url))
 
     async def UploadModuleFile(self, stream: Stream[UploadModuleFileRequest, UploadModuleFileResponse]) -> None:
-        raise NotImplementedError()
+        request_file_info = await stream.recv_message()
+        assert request_file_info is not None
+        self.module_file_info = request_file_info.module_file_info
+        request_file = await stream.recv_message()
+        assert request_file is not None
+        self.file = request_file.file
+        await stream.send_message(UploadModuleFileResponse(url=self.id))
 
     async def GetModule(self, stream: Stream[GetModuleRequest, GetModuleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.module_id = request.module_id
+        await stream.send_message(GetModuleResponse(module=self.module))
 
     async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListModulesResponse(modules=[self.module]))
