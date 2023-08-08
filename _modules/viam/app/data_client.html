@@ -103,9 +103,11 @@
     <span class="n">BinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">BinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">BinaryID</span><span class="p">,</span>
+    <span class="n">BinaryMetadata</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
     <span class="n">CaptureInterval</span><span class="p">,</span>
+    <span class="n">CaptureMetadata</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -149,6 +151,54 @@
 <span class="sd">    `ViamClient`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of tabular data and associated metadata.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (Mapping[str, Any]): the requested data.</span>
+<span class="sd">            metadata (viam.proto.app.data.CaptureMetadata): the metadata from the request.</span>
+<span class="sd">            time_requested (datetime): the time the data request was sent.</span>
+<span class="sd">            time_received (datetime): the time the requested data was received.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">CaptureMetadata</span><span class="p">,</span> <span class="n">time_requested</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">time_received</span><span class="p">:</span> <span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">time_requested</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_received</span> <span class="o">=</span> <span class="n">time_received</span>
+
+        <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">CaptureMetadata</span>
+        <span class="n">time_requested</span><span class="p">:</span> <span class="n">datetime</span>
+        <span class="n">time_received</span><span class="p">:</span> <span class="n">datetime</span>
+
+<div class="viewcode-block" id="DataClient.TabularData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">Time requested: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_requested</span><span class="si">}</span><span class="se">\n</span><span class="s2">Time received: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_received</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="DataClient.TabularData.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;DataClient.TabularData&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (bytes): the requested data.</span>
+<span class="sd">            metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">BinaryMetadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+
+        <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">BinaryMetadata</span>
+
+<div class="viewcode-block" id="DataClient.BinaryData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="DataClient.BinaryData.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">&quot;DataClient.BinaryData&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div></div>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `DataClient` that maintains a connection to app.</span>
 
@@ -168,7 +218,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TabularData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data.</span>
 
 <span class="sd">        Args:</span>
@@ -191,13 +241,18 @@
             <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">break</span>
-            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">(</span>
+                <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">struct</span><span class="o">.</span><span class="n">metadata_index</span><span class="p">],</span>
+                <span class="n">struct</span><span class="o">.</span><span class="n">time_requested</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
+                <span class="n">struct</span><span class="o">.</span><span class="n">time_received</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
+            <span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
             <span class="n">last</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
 
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
-                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write tabular data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span></div>
@@ -206,7 +261,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
 
 <span class="sd">        Args:</span>
@@ -228,13 +283,13 @@
             <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">break</span>
-            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
             <span class="n">last</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
 
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
-                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">data</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
 
@@ -244,7 +299,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
 
 <span class="sd">        Args:</span>
@@ -265,7 +320,7 @@
                 <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">binary_data</span><span class="o">.</span><span class="n">binary</span> <span class="k">for</span> <span class="n">binary_data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete tabular data.</span>

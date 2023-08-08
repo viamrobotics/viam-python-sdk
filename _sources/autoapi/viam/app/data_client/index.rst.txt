@@ -37,7 +37,83 @@ Attributes
    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
    `ViamClient`.
 
-   .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[Mapping[str, Any]]
+   .. py:class:: TabularData(data: Mapping[str, Any], metadata: viam.proto.app.data.CaptureMetadata, time_requested: datetime.datetime, time_received: datetime.datetime)
+
+
+      Class representing a piece of tabular data and associated metadata.
+
+      :param data: the requested data.
+      :type data: Mapping[str, Any]
+      :param metadata: the metadata from the request.
+      :type metadata: viam.proto.app.data.CaptureMetadata
+      :param time_requested: the time the data request was sent.
+      :type time_requested: datetime
+      :param time_received: the time the requested data was received.
+      :type time_received: datetime
+
+      .. py:attribute:: data
+         :type: Mapping[str, Any]
+
+         
+
+      .. py:attribute:: metadata
+         :type: viam.proto.app.data.CaptureMetadata
+
+         
+
+      .. py:attribute:: time_requested
+         :type: datetime.datetime
+
+         
+
+      .. py:attribute:: time_received
+         :type: datetime.datetime
+
+         
+
+      .. py:method:: __str__() -> str
+
+         Return str(self).
+
+
+      .. py:method:: __eq__(other: DataClient) -> bool
+
+         Return self==value.
+
+
+
+   .. py:class:: BinaryData(data: bytes, metadata: viam.proto.app.data.BinaryMetadata)
+
+
+      Class representing a piece of binary data and associated metadata.
+
+      :param data: the requested data.
+      :type data: bytes
+      :param metadata: the metadata from the request.
+      :type metadata: viam.proto.app.data.BinaryMetadata
+
+      .. py:attribute:: data
+         :type: bytes
+
+         
+
+      .. py:attribute:: metadata
+         :type: viam.proto.app.data.BinaryMetadata
+
+         
+
+      .. py:method:: __str__() -> str
+
+         Return str(self).
+
+
+      .. py:method:: __eq__(other: DataClient) -> bool
+
+         Return self==value.
+
+
+
+   .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[TabularData]
       :async:
 
       Filter and download tabular data.
@@ -52,7 +128,7 @@ Attributes
       :rtype: List[Mapping[str, Any]]
 
 
-   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[bytes]
+   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[BinaryData]
       :async:
 
       Filter and download binary data.
@@ -66,7 +142,7 @@ Attributes
       :rtype: List[bytes]
 
 
-   .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[bytes]
+   .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[BinaryData]
       :async:
 
       Filter and download binary data.
