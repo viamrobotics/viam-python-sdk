@@ -1,4 +1,5 @@
 from typing import List, Mapping, Optional
+from datetime import datetime
 
 from grpclib.client import Channel
 
@@ -6,6 +7,8 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
+    GetLatestMapInfoRequest,
+    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -45,6 +48,11 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         request = GetInternalStateRequest(name=self.name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return response
+
+    async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
+        request = GetLatestMapInfoRequest(name=self.name)
+        response: GetLatestMapInfoResponse = await self.client.GetLatestMapInfo(request, timeout=timeout)
+        return response.last_map_update.ToDatetime()
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

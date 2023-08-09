@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
@@ -14,7 +13,7 @@ from viam.proto.service.slam import (
     SLAMServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 from .slam import SLAM
 
@@ -59,7 +58,13 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         await stream.send_message(response)
 
     async def GetLatestMapInfo(self, stream: Stream[GetLatestMapInfoRequest, GetLatestMapInfoResponse]) -> None:
-        raise MethodNotImplementedError("GetLatestMapInfo").grpc_error
+        request = await stream.recv_message()
+        assert request is not None
+        slam = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        time = await slam.get_latest_map_info(timeout=timeout)
+        response = GetLatestMapInfoResponse(last_map_update=datetime_to_timestamp(time))
+        await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
