@@ -3,12 +3,12 @@ from grpclib.server import Stream
 from viam.components.power_sensor.power_sensor import PowerSensor
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.powersensor import (
-    GetVoltageRequest,
-    GetVoltageResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetVoltageRequest,
+    GetVoltageResponse,
     PowerSensorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
