@@ -495,13 +495,8 @@ class MockNavigation(Navigation):
 class MockData(DataServiceBase):
     def __init__(
         self,
-<<<<<<< HEAD
         tabular_response: List[DataClient.TabularData],
         binary_response: List[DataClient.BinaryData],
-=======
-        tabular_response: List[Dict[str, str]],
-        binary_response: List[bytes],
->>>>>>> 5d8a5236 (Implement baseline and make flyby fixes (return file ID's when uploading files).)
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
