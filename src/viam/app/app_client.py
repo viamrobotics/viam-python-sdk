@@ -20,17 +20,11 @@ from viam.proto.app import (
     CreateLocationSecretResponse,
     CreateModuleRequest,
     CreateModuleResponse,
-    CreateOrganizationInviteRequest,
-    CreateOrganizationInviteResponse,
-    CreateOrganizationRequest,
-    CreateOrganizationResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
     DeleteLocationRequest,
     DeleteLocationSecretRequest,
-    DeleteOrganizationInviteRequest,
-    DeleteOrganizationMemberRequest,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -45,8 +39,6 @@ from viam.proto.app import (
     GetModuleResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
-    GetOrganizationRequest,
-    GetOrganizationResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -57,8 +49,6 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
-    GetUserIDByEmailRequest,
-    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
@@ -69,8 +59,6 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
-    ListOrganizationsByUserRequest,
-    ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
     ListRobotsRequest,
@@ -96,8 +84,6 @@ from viam.proto.app import (
     OrganizationMember,
     OrgDetails,
     RemoveRoleRequest,
-    ResendOrganizationInviteRequest,
-    ResendOrganizationInviteResponse,
     Robot,
 )
 from viam.proto.app import RobotPart as RobotPartPB
@@ -114,8 +100,6 @@ from viam.proto.app import (
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
-    UpdateOrganizationRequest,
-    UpdateOrganizationResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -376,40 +360,11 @@ class AppClient:
         organizations = await self.list_organizations()
         return organizations[0].id
 
-    # TODO: 'nil pointer dereference'.
     async def get_user_id_by_email(self, email: str) -> str:
-        """Get a user's ID using their email.
+        raise NotImplementedError()
 
-        Args:
-            email (str): User's email.
-
-        Raises:
-            GRPCError: If an invalid email is passed.
-
-        Returns:
-            str: The ID.
-        """
-        request = GetUserIDByEmailRequest(email=email)
-        response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
-        return response.user_id
-
-    # TODO: 'nil pointer dereference'.
-    # This request does NOT execute/work properly; no organization is created. We just recieve the 'nil pointer dereference' GRPCError.
     async def create_organization(self, name: str) -> Organization:
-        """Create an organization.
-
-        Args:
-            name (str): Name of the new organization.
-
-        Raises:
-            GRPCError: If an invalid name (e.g., "") is passed.
-
-        Returns:
-            viam.proto.app.Organization: The newly created organization.
-        """
-        request = CreateOrganizationRequest(name=name)
-        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
-        return response.organization
+        raise NotImplementedError()
 
     # TODO: Timestamp error.
     # The returned organization contains an incorrect (and negative) Timestamp value as the `created_on` field. This is not the case with
@@ -424,38 +379,11 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    # TODO: 'nil pointer dereference'.
     async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
-        """List the organizations a user is a part of.
+        raise NotImplementedError()
 
-        Args:
-            user_id (str): ID of the user
-
-        Raises:
-            GRPCError: If an invalid user ID is passed.
-
-        Returns:
-            List[viam.proto.app.Organization]: The list of organizations.
-        """
-        request = ListOrganizationsByUserRequest(user_id=user_id)
-        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
-        return list(response.orgs)
-
-    # TODO: WRITE TEST!
-    # TODO: 'nil pointer dereference'. This is probably fine for now, since we no longer ask the caller to provide an organization ID. It is
-    # worth noting, though, that if an incorrect organization ID is passed (i.e., one that is mistyped and so doesn't exist or one that we
-    # aren't authenticated to access) we don't get a 'permission denied' or 'resource not found' error; it's alwayt the 'nil pointer
-    # dereference' error.
     async def get_organization(self) -> Organization:
-        """Get organization.
-
-        Returns:
-            viam.proto.app.Organization: The organization.
-        """
-        organization_id = await self._get_organization_id()
-        request = GetOrganizationRequest(organization_id=organization_id)
-        response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
-        return response.organization
+        raise NotImplementedError()
 
     async def get_organization_namespace_availability(self, public_namespace: str) -> bool:
         """Check the availability of an organization namespace.
@@ -475,31 +403,10 @@ class AppClient:
         )
         return response.available
 
-    # TODO: 'nil pointer dereference'.
-    # The error only appears when trying to update the name of the organization, even though the name does get updated. All other behavior
-    # is as expected.
     async def update_organization(
         self, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None
     ) -> Organization:
-        """Update the name or GCS region associated with organization or assign it a public namespace.
-
-        Args:
-            name (Optional[str]): New name to assign the organization. No name provided will simply leave the current name unchanged.
-            public_namespace (Optional[str]): New public namespace to assign to the organization. No namespace provided will
-                simply not assign a namespace. A namespace can only be assigned to an organization once (i.e., it is immutable).
-            region (Optional[str]): New GCS region to associate the organization with. No region provided will simply leave the current
-                region unchanged.
-
-        Raises:
-            GRPCError: If either an invalid name, public namespace, or region is provided.
-
-        Returns:
-            viam.proto.app.Organization: The newly updated organization.
-        """
-        organization_id = await self._get_organization_id()
-        request = UpdateOrganizationRequest(organization_id=organization_id, name=name, public_namespace=public_namespace, region=region)
-        response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
-        return response.organization
+        raise NotImplementedError()
 
     # This is impossible under our current (org-wide) authentication model. To authenticat to `AppClient` and be able to make this request,
     # a robot URI (and so a location) must exist within the organization. However, organizations can only be deleted if they contain no
@@ -519,28 +426,8 @@ class AppClient:
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
-    # TODO: 'nil pointer dereference'.
-    # This returns the GRPC 'nil pointer dereference error', but the request itself does successfully go through and execute (i.e., an
-    # invite is created and sent with the proper authorizations and edge case behavior).
     async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]] = None) -> OrganizationInvite:
-        """Create and send an organization invite for a specific user with said user's email.
-
-        Args:
-            email (str): Email of the user to invite.
-            authorizations (Optional[List[Authorization]]): Optional list of roles/authorizations to assign the user. Defaults to making the
-                user an owner of organization. Can only include one authorization per resource ID.
-
-        Raises:
-            GRPCError: If the user associated with the provided email already has an invite from organization or if an invalid email is
-                provided.
-
-        Returns:
-            viam.proto.app.OrganizationInvite: The newly created organization invite.
-        """
-        organization_id = await self._get_organization_id()
-        request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations)
-        response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
-        return response.invite
+        raise NotImplementedError()
 
     async def update_organization_invite_authorizations(
         self,
@@ -574,54 +461,14 @@ class AppClient:
         )
         return response.invite
 
-    # TODO: 'nil pointer dereference'.
-    # The request does NOT go through (i.e., the specified user is not deleted).
     async def delete_organization_member(self, user_id: str) -> None:
-        """Delete an organization member.
+        raise NotImplementedError()
 
-        Args:
-            user_id (str): ID of the user to delete.
-
-        Raises:
-            GRPCError: If an invalid user ID is passed.
-        """
-        organization_id = await self._get_organization_id()
-        request = DeleteOrganizationMemberRequest(organization_id=organization_id, user_id=user_id)
-        await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
-
-    # TODO: 'nil pointer dereference'.
-    # The request works (i.e., the invite to the specified email is deleted), but a GRPCError returns.
     async def delete_organization_invite(self, email: str) -> None:
-        """Delete organization invite
+        raise NotImplementedError()
 
-        Args:
-            email (str): Email the invite was sent to.
-
-        Raises:
-            GRPCError:
-        """
-        organization_id = await self._get_organization_id()
-        request = DeleteOrganizationInviteRequest(organization_id=organization_id, email=email)
-        await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
-
-    # TODO: 'nil pointer dereference'.
-    # The request works (i.e., the invite is resent to the specified email), but a GRPCError returns.
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
-        """Resend an organization invite
-
-        Args:
-            email (str): Email the invite was sent to.
-
-        Raises:
-            GRPCError: If an invalid email is passed (i.e., an email for which an invite hasn't been initially created).
-
-        Returns:
-            viam.app.proto.OrganizationInvite: The resent organization invite.
-        """
-        organization_id = await self._get_organization_id()
-        request = ResendOrganizationInviteRequest(organization_id=organization_id, email=email)
-        response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
-        return response.invite
+        raise NotImplementedError()
 
     async def create_location(self, name: str, parent_location_id: Optional[str] = None) -> Location:
         """Create and name a location under organization and the specified parent location.
