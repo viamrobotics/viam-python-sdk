@@ -832,7 +832,12 @@ class MockApp(AppServiceBase):
         await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        self.errors_only = request.errors_only
+        self.filter = request.filter
+        await stream.send_message(TailRobotPartLogsResponse(logs=[]))
 
     async def GetRobotPartHistory(self, stream: Stream[GetRobotPartHistoryRequest, GetRobotPartHistoryResponse]) -> None:
         request = await stream.recv_message()

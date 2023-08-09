@@ -1,11 +1,12 @@
 import json
 from datetime import datetime
-from typing import Any, List, Mapping, Optional, Tuple
+from typing import Any, AsyncIterator, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 from typing_extensions import Self
 
 from viam import logging
+from viam.app.logs.logs import LogsStream, LogsStreamWithIterator
 from viam.proto.app import (
     AddRoleRequest,
     AppServiceStub,
@@ -103,6 +104,8 @@ from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
     SharedSecret,
+    TailRobotPartLogsRequest,
+    TailRobotPartLogsResponse,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
     UpdateLocationRequest,
@@ -883,9 +886,35 @@ class AppClient:
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
-    # TODO: unary-stream method.
-    async def tail_robot_part_logs(self, robot_part_id: str, errors_only: bool, filter: str) -> List[LogEntry]:
-        raise NotImplementedError()
+    # TODO: WRITE TEST!
+    async def tail_robot_part_logs(
+        self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
+    ) -> LogsStream[List[LogEntry]]:
+        """Get an asynchronous iterator that recieves live robot part logs.
+
+        Args:
+            robot_part_id (str): ID of the robot part to retrieve lgos from.
+            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
+            filter (str): _description_
+
+        Returns:
+            LogsStream[List[LogEntry]]: _description_
+        """
+
+        async def read() -> AsyncIterator[List[LogEntry]]:
+            async with self._app_client.TailRobotPartLogs.open(metadata=self._metadata) as stream:
+                await stream.send_message(
+                    TailRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter if filter else "")
+                )
+
+                while True:
+                    response: Optional[TailRobotPartLogsResponse] = await stream.recv_message()
+                    if response is None or len(response.logs) == 0:
+                        break
+                    logs = [LogEntry.from_proto(log) for log in response.logs]
+                    yield logs
+
+        return LogsStreamWithIterator(read())
 
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
         """Get a list containing the history of a robot part.

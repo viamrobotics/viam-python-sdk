@@ -190,7 +190,7 @@ def service() -> MockApp:
         url=URL,
         module=MODULE,
         members=MEMBERS,
-        invite=INVITE
+        invite=INVITE,
     )
 
 
@@ -333,7 +333,13 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_tail_robot_part_logs(self, service: MockApp):
-        pass
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            logs_stream = await client.tail_robot_part_logs(robot_part_id=ID, errors_only=ERRORS_ONLY, filter=FILTER)
+            [logs async for logs in logs_stream]
+            assert service.robot_part_id == ID
+            assert service.errors_only == ERRORS_ONLY
+            assert service.filter == FILTER
 
     @pytest.mark.asyncio
     async def test_get_robot_part_history(self, service: MockApp):
