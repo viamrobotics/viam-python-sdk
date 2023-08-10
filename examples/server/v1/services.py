@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Dict, List, Optional
 from tests.mocks.services import MockMLModel, MockSLAM
 from viam.services.slam import Pose, SLAM
@@ -24,6 +25,7 @@ class ExampleSLAM(SLAM):
         self.position = MockSLAM.POSITION
         self.internal_chunks = MockSLAM.INTERNAL_STATE_CHUNKS
         self.point_cloud_chunks = MockSLAM.POINT_CLOUD_PCD_CHUNKS
+        self.time = MockSLAM.LAST_UPDATE
         super().__init__(name)
 
     async def get_internal_state(self, **kwargs) -> List[bytes]:
@@ -34,3 +36,6 @@ class ExampleSLAM(SLAM):
 
     async def get_position(self, **kwargs) -> Pose:
         return self.position
+
+    async def get_latest_map_info(self, **kwargs) -> datetime:
+        return self.time
