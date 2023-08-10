@@ -24,16 +24,6 @@ class LogsStream(Protocol[LogsType]):
         return await self.next()
 
 
-class LogsReader(Protocol[LogsType]):
-    def read(self) -> LogsType:
-        ...
-
-
-class LogsSource(Protocol[LogsType]):
-    def stream(self) -> LogsStream[LogsType]:
-        ...
-
-
 class LogsStreamWithIterator(LogsStream[LogsType]):
     _stream: AsyncIterator[LogsType]
 
