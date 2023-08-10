@@ -46,7 +46,7 @@ class SLAM(ServiceBase):
         Get the timestamp of the last update to the point cloud SLAM map.
 
         Returns:
-            google.protobuf.timestamp_pb2.Timestamp: The timestamp of the last update.
+            datetime: The timestamp of the last update.
         """
         ...
 
