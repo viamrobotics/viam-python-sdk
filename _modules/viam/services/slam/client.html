@@ -88,6 +88,7 @@
              
   <h1>Source code for viam.services.slam.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
@@ -95,6 +96,8 @@
 <span class="kn">from</span> <span class="nn">viam.proto.service.slam</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">GetInternalStateRequest</span><span class="p">,</span>
     <span class="n">GetInternalStateResponse</span><span class="p">,</span>
+    <span class="n">GetLatestMapInfoRequest</span><span class="p">,</span>
+    <span class="n">GetLatestMapInfoResponse</span><span class="p">,</span>
     <span class="n">GetPointCloudMapRequest</span><span class="p">,</span>
     <span class="n">GetPointCloudMapResponse</span><span class="p">,</span>
     <span class="n">GetPositionRequest</span><span class="p">,</span>
@@ -134,6 +137,11 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetInternalStateRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">GetInternalStateResponse</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetInternalState</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="SLAMClient.get_latest_map_info"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/index.html#viam.services.slam.client.SLAMClient.get_latest_map_info">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_latest_map_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLatestMapInfoRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetLatestMapInfoResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetLatestMapInfo</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">last_map_update</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="SLAMClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/services/slam/index.html#viam.services.slam.client.SLAMClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>

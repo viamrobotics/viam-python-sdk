@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.components.base.Vector3
+   viam.components.base.Base
 
 
 
@@ -53,5 +54,182 @@ Classes
       :type: float
 
       
+
+
+.. py:class:: Base(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Base represents a physical base of a robot.
+
+   This acts as an abstract base class for any drivers representing specific
+   base implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:class:: Properties
+
+
+      .. py:attribute:: width_meters
+         :type: float
+
+         
+
+      .. py:attribute:: turning_radius_meters
+         :type: float
+
+         
+
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: move_straight(distance: int, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Move the base in a straight line the given ``distance``, expressed in millimeters,
+      at the given ``velocity``, expressed in millimeters per second.
+      When ``distance`` or ``velocity`` is 0, the base will stop.
+      This method blocks until completed or cancelled.
+
+      :param distance: The distance (in millimeters) to move.
+                       Negative implies backwards.
+      :type distance: int
+      :param velocity: The velocity (in millimeters per second) to move.
+                       Negative implies backwards.
+      :type velocity: float
+
+
+   .. py:method:: spin(angle: float, velocity: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Spin the base in place ``angle`` degrees, at the given angular ``velocity``,
+      expressed in degrees per second.
+      When ``velocity`` is 0, the base will stop.
+      This method blocks until completed or cancelled.
+
+      :param angle: The angle (in degrees) to spin.
+      :type angle: float
+      :param velocity: The angular velocity (in degrees per second)
+                       to spin.
+                       Given a positive angle and a positive velocity, the base will turn to the left.
+      :type velocity: float
+
+
+   .. py:method:: set_power(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Set the linear and angular velocity of the Base
+      When ``linear`` is 0, the the base will spin.
+      When ``angular`` is 0, the the base will move in a straight line.
+      When both ``linear`` and ``angular`` are 0, the base will stop.
+      When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,
+      with a tighter radius if angular power is greater than linear power.
+
+      :param linear: The linear component. Only the Y component is used
+                     for wheeled base. Positive implies forwards.
+      :type linear: Vector3
+      :param angular: The angular component. Only the Z component is used
+                      for wheeled base. Positive turns left; negative turns right.
+      :type angular: Vector3
+
+
+   .. py:method:: set_velocity(linear: viam.components.base.Vector3, angular: viam.components.base.Vector3, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Set the linear and angular velocities of the base.
+
+
+      :param linear: Velocity in mm/sec
+      :type linear: Vector3
+      :param angular: Velocity in deg/sec
+      :type angular: Vector3
+
+
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Stop the base.
+
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+      :async:
+
+      Get if the base is currently moving.
+
+      :returns: Whether the base is moving.
+      :rtype: bool
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
+      :abstractmethod:
+      :async:
+
+      Get the base width and turning radius
+
+      :returns: The properties of the base
+      :rtype: Properties
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
 
 

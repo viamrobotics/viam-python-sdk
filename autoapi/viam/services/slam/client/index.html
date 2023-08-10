@@ -71,6 +71,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_position"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_point_cloud_map"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_point_cloud_map()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_internal_state"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_internal_state()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_latest_map_info"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_latest_map_info()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.do_command"><code class="docutils literal notranslate"><span class="pre">SLAMClient.do_command()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.from_robot"><code class="docutils literal notranslate"><span class="pre">SLAMClient.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.client.SLAMClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">SLAMClient.get_resource_name()</span></code></a></li>
@@ -196,6 +197,20 @@
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse" title="viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse">GetInternalStateResponse</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient.get_latest_map_info">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_latest_map_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">datetime.datetime</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient.get_latest_map_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient.get_latest_map_info" title="Permalink to this definition"></a></dt>
+<dd><p>Get the timestamp of the last update to the point cloud SLAM map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The timestamp of the last update.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>datetime</p>
 </dd>
 </dl>
 </dd></dl>

@@ -121,6 +121,15 @@ Classes
       :rtype: List[GetInternalStateResponse]
 
 
+   .. py:method:: get_latest_map_info(*, timeout: Optional[float] = None) -> datetime.datetime
+      :async:
+
+      Get the timestamp of the last update to the point cloud SLAM map.
+
+      :returns: The timestamp of the last update.
+      :rtype: datetime
+
+
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
