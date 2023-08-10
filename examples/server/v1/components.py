@@ -39,18 +39,26 @@ from viam.operations import run_with_operation
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
+    Capsule,
     DigitalInterruptStatus,
+    Geometry,
     GeoPoint,
     KinematicsFileFormat,
     Orientation,
     Pose,
     PoseInFrame,
-    Vector3,
     ResponseMetadata,
+    Sphere,
+    Vector3,
 )
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.encoder import PositionType
+
+GEOMETRIES = [
+    Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+    Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+]
 
 
 class ExampleArm(Arm):
@@ -96,6 +104,9 @@ class ExampleArm(Arm):
 
     async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         return self.kinematics
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleAudioInput(AudioInput):
@@ -160,6 +171,9 @@ class ExampleAudioInput(AudioInput):
             is_interleaved=True,
         )
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleBase(Base):
     def __init__(self, name: str):
@@ -211,6 +225,9 @@ class ExampleBase(Base):
 
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
         return self.props
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleAnalogReader(Board.AnalogReader):
@@ -321,6 +338,9 @@ class ExampleBoard(Board):
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleCamera(Camera):
     def __init__(self, name: str):
@@ -342,6 +362,9 @@ class ExampleCamera(Camera):
 
     async def get_properties(self, **kwargs) -> Camera.Properties:
         raise NotImplementedError()
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleController(Controller):
@@ -448,6 +471,9 @@ class ExampleController(Controller):
                     callbacks[trigger] = function
             self.callbacks[control] = callbacks
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleEncoder(Encoder):
     def __init__(self, name: str):
@@ -467,6 +493,9 @@ class ExampleEncoder(Encoder):
 
     async def get_properties(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Encoder.Properties:
         return Encoder.Properties(ticks_count_supported=True, angle_degrees_supported=False)
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleGantry(Gantry):
@@ -501,6 +530,9 @@ class ExampleGantry(Gantry):
     async def is_moving(self):
         return not self.is_stopped
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleGripper(Gripper):
     def __init__(self, name: str):
@@ -522,6 +554,9 @@ class ExampleGripper(Gripper):
 
     async def is_moving(self):
         return not self.is_stopped
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleMotor(Motor):
@@ -596,6 +631,9 @@ class ExampleMotor(Motor):
     async def is_moving(self):
         return self.powered
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleMovementSensor(MovementSensor):
     def __init__(
@@ -646,6 +684,9 @@ class ExampleMovementSensor(MovementSensor):
     async def get_accuracy(self, **kwargs) -> Mapping[str, float]:
         return self.accuracy
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExamplePoseTracker(PoseTracker):
     async def get_poses(self, body_names: List[str], **kwargs) -> Dict[str, PoseInFrame]:
@@ -655,6 +696,9 @@ class ExamplePoseTracker(PoseTracker):
         }
         return {k: v for k, v in all_poses.items() if k in body_names}
 
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
+
 
 class ExampleSensor(Sensor):
     def __init__(self, name: str):
@@ -663,6 +707,9 @@ class ExampleSensor(Sensor):
 
     async def get_readings(self, **kwargs) -> Mapping[str, Any]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
 
 
 class ExampleServo(Servo):
@@ -683,3 +730,6 @@ class ExampleServo(Servo):
 
     async def is_moving(self):
         return not self.is_stopped
+
+    async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
+        return GEOMETRIES
