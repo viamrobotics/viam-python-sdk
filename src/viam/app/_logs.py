@@ -10,7 +10,7 @@ from typing import Protocol, TypeVar
 LogsType = TypeVar("LogsType", covariant=True)
 
 
-class LogsStream(Protocol[LogsType]):
+class _LogsStream(Protocol[LogsType]):
     async def next(self) -> LogsType:
         ...
 
@@ -24,7 +24,7 @@ class LogsStream(Protocol[LogsType]):
         return await self.next()
 
 
-class LogsStreamWithIterator(LogsStream[LogsType]):
+class _LogsStreamWithIterator(_LogsStream[LogsType]):
     _stream: AsyncIterator[LogsType]
 
     def __init__(self, stream: AsyncIterator[LogsType]):

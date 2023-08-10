@@ -6,7 +6,7 @@ from grpclib.client import Channel
 from typing_extensions import Self
 
 from viam import logging
-from viam.app.logs.logs import LogsStream, LogsStreamWithIterator
+from viam.app._logs import _LogsStream, _LogsStreamWithIterator
 from viam.proto.app import (
     AddRoleRequest,
     AppServiceStub,
@@ -733,10 +733,9 @@ class AppClient:
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
-    # TODO: WRITE TEST!
     async def tail_robot_part_logs(
         self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
-    ) -> LogsStream[List[LogEntry]]:
+    ) -> _LogsStream[List[LogEntry]]:
         """Get an asynchronous iterator that recieves live robot part logs.
 
         Args:
@@ -745,7 +744,7 @@ class AppClient:
             filter (str): _description_
 
         Returns:
-            LogsStream[List[LogEntry]]: _description_
+            _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
@@ -761,7 +760,7 @@ class AppClient:
                     logs = [LogEntry.from_proto(log) for log in response.logs]
                     yield logs
 
-        return LogsStreamWithIterator(read())
+        return _LogsStreamWithIterator(read())
 
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
         """Get a list containing the history of a robot part.
