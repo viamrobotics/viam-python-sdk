@@ -987,7 +987,7 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.module_id = request.module_id
-        self.url = request.url
+        self.module_url = request.url
         self.description = request.description
         self.models = request.models
         self.entrypoint = request.entrypoint

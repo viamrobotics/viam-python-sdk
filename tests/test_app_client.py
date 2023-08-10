@@ -534,7 +534,7 @@ class TestClient:
             )
             assert url == URL
             assert service.module_id == ID
-            assert service.url == URL
+            assert service.module_url == URL
             assert service.description == DESCRIPTION
             assert service.models == MODELS
             assert service.entrypoint == ENTRYPOINT

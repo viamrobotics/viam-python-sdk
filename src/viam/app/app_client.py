@@ -366,9 +366,6 @@ class AppClient:
     async def create_organization(self, name: str) -> Organization:
         raise NotImplementedError()
 
-    # TODO: Timestamp error.
-    # The returned organization contains an incorrect (and negative) Timestamp value as the `created_on` field. This is not the case with
-    # get_organization().
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
 
@@ -389,7 +386,8 @@ class AppClient:
         """Check the availability of an organization namespace.
 
         Args:
-            public_namespace (str): Organization namespace to check.
+            public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash
+                characters.
 
         Raises:
             GRPCError: If an invalid namespace (e.g., "") is provided.
@@ -741,7 +739,8 @@ class AppClient:
         Args:
             robot_part_id (str): ID of the robot part to retrieve lgos from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
-            filter (str): _description_
+            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+                filter).
 
         Returns:
             _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.
@@ -980,13 +979,13 @@ class AppClient:
         response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
         return Fragment.from_proto(fragment=response.fragment)
 
-    # TODO: Fragments are currently able to have the empty string "" as a name.
     async def create_fragment(self, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
         """Create a new private fragment.
 
         Args:
             name (str): Name of the fragment.
-            config (Optional[Mapping[str, Any]]): _description_
+            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be
+                assigned by updating the fragment.
 
         Raises:
             GRPCError: If an invalid name is passed.
