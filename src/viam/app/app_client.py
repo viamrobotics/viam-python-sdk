@@ -1,10 +1,22 @@
 import json
 from datetime import datetime
-from typing import Any, List, Mapping, Optional, Tuple
+from typing import Any, List, Mapping, Optional, Tuple, Union
 
+from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
 from typing_extensions import Self
 
+from viam.proto.app.robot import (
+    RobotServiceStub,
+    RobotConfig,
+    ConfigRequest,
+    ConfigResponse,
+    CertificateRequest,
+    CertificateResponse,
+    LogRequest,
+    NeedsRestartRequest,
+    NeedsRestartResponse
+)
 from viam import logging
 from viam.proto.app import (
     AppServiceStub,
@@ -254,9 +266,11 @@ class AppClient:
         """
         self._metadata = metadata
         self._app_client = AppServiceStub(channel)
+        self._robot_client = RobotServiceStub(channel)
         self._location_id = location_id
 
     _app_client: AppServiceStub
+    _robot_client: RobotServiceStub
     _metadata: Mapping[str, str]
     _location_id: Optional[str]
 
@@ -752,3 +766,60 @@ class AppClient:
 
     async def list_modules(self):
         raise NotImplementedError()
+
+    async def config(self, robot_part_id: str) -> RobotConfig:
+        """Get the current robot config.
+
+        Args:
+            robot_part_id (str): ID of the robot part to get config from.
+
+        Returns:
+            viam.proto.app.robot.RobotConfig: The robot config.
+        """
+        request = ConfigRequest(id=robot_part_id)
+        response: ConfigResponse = await self._robot_client.Config(request, metadata=self._metadata)
+        return response.config
+
+    async def certificate(self, robot_part_id: str) -> Tuple[str, str]:
+        """Get a robot's certificate.
+
+        Args:
+            robot_part_id (str): ID of the robot part to retrieve certificate from.
+
+        Returns:
+            Tuple[str, str]: Tuple containing the robot's TLS certificate [0] and TLS private key [1].
+        """
+        request = CertificateRequest(id=robot_part_id)
+        response: CertificateResponse = await self._robot_client.Certificate(request, metadata=self._metadata)
+        return response.tls_certificate, response.tls_private_key
+
+    async def log(self, robot_part_id: str, logs: List[Union[LogEntry, LogEntryPB]]) -> None:
+        """Insert log entries associated with a robot part.
+
+        Args:
+            robot_part_id (str): ID of the robot part to associate logs with.
+            logs (Union[LogEntry, viam.proto.app.LogEntry]): List of log entries to insert. Only up to 1000 log entries can be inserted per
+                request. Log entries can either be proto or mirror types.
+        """
+        if len(logs) == 0:
+            raise ValueError("Cannot insert 0 logs.")
+        elif len(logs) > 1000:
+            raise ValueError("Cannot insert more than 1000 logs.")
+
+        logs_proto = [log.proto if isinstance(log, LogEntry) else log for log in logs]
+        request = LogRequest(id=robot_part_id, logs=logs_proto)
+        await self._robot_client.Log(request, metadata=self._metadata)
+
+    async def needs_restart(self, robot_part_id: str) -> Tuple[bool, Duration]:
+        """Returns if the robot needs to restart and the interval it should check to restart.
+
+        Args:
+            robot_part_id (str): ID of the robot part to request.
+
+        Returns:
+            Tuple[bool, Duration]: Tuple containing a boolean [0] that is true if the robot should restart and the interval at which the
+                robot should check to restart.
+        """
+        request = NeedsRestartRequest(id=robot_part_id)
+        response: NeedsRestartResponse = await self._robot_client.NeedsRestart(request, metadata=self._metadata)
+        return response.must_restart, response.restart_check_interval

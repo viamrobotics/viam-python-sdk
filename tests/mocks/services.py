@@ -5,6 +5,18 @@ from grpclib.server import Stream
 from PIL import Image
 
 from viam.media.video import RawImage
+from viam.proto.app.robot import (
+    RobotServiceBase,
+    ConfigRequest,
+    ConfigResponse,
+    CertificateRequest,
+    CertificateResponse,
+    LogRequest,
+    LogResponse,
+    NeedsRestartRequest,
+    NeedsRestartResponse,
+    RobotConfig
+)
 from viam.proto.app import (
     AppServiceBase,
     GetUserIDByEmailRequest,
@@ -888,3 +900,28 @@ class MockApp(AppServiceBase):
 
     async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockRobot(RobotServiceBase):
+    def __init__(self, config: RobotConfig, cert: str, key: str):
+        self.config = config
+        self.cert = cert
+        self.key = key
+
+    async def Config(self, stream: Stream[ConfigRequest, ConfigResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        await stream.send_message(ConfigResponse(config=self.config))
+
+    async def Certificate(self, stream: Stream[CertificateRequest, CertificateResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        await stream.send_message(CertificateResponse(id=self.robot_part_id, tls_certificate=self.cert, tls_private_key=self.key))
+
+    async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
+        pass
+
+    async def NeedsRestart(self, stream: Stream[NeedsRestartRequest, NeedsRestartResponse]) -> None:
+        pass
