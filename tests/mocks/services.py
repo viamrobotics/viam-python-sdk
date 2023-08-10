@@ -1,4 +1,5 @@
 from typing import Any, Dict, List, Mapping, Optional, Union
+from datetime import datetime
 
 from grpclib.server import Stream
 from PIL import Image
@@ -413,6 +414,7 @@ class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+    LAST_UPDATE = datetime(2023, 3, 12, 3, 24, 34, 29)
 
     def __init__(self, name: str):
         self.name = name
@@ -430,6 +432,10 @@ class MockSLAM(SLAM):
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
         return self.POSITION
+
+    async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
+        self.timeout = timeout
+        return self.LAST_UPDATE
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -512,12 +518,10 @@ class MockData(DataServiceBase):
                     data=dict_to_struct(tabular_data.data),
                     metadata_index=idx,
                     time_requested=datetime_to_timestamp(tabular_data.time_requested),
-                    time_received=datetime_to_timestamp(tabular_data.time_received)
+                    time_received=datetime_to_timestamp(tabular_data.time_received),
                 )
             )
-        await stream.send_message(TabularDataByFilterResponse(
-            data=tabular_response_structs, metadata=tabular_metadata)
-        )
+        await stream.send_message(TabularDataByFilterResponse(data=tabular_response_structs, metadata=tabular_metadata))
         self.was_tabular_data_requested = True
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
@@ -527,8 +531,8 @@ class MockData(DataServiceBase):
             await stream.send_message(BinaryDataByFilterResponse())
             return
         self.filter = request.data_request.filter
-        await stream.send_message(BinaryDataByFilterResponse(
-            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+        await stream.send_message(
+            BinaryDataByFilterResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
         self.was_binary_data_requested = True
 
@@ -536,8 +540,8 @@ class MockData(DataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
-        await stream.send_message(BinaryDataByIDsResponse(
-            data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+        await stream.send_message(
+            BinaryDataByIDsResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
 
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
