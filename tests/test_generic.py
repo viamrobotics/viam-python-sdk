@@ -1,15 +1,14 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.generic import GenericClient, GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockGeneric
+from .mocks.components import GEOMETRIES, MockGeneric
 
 
 class TestGeneric:
@@ -20,6 +19,11 @@ class TestGeneric:
         result = await self.generic.do_command({"command": "args"}, timeout=1.82)
         assert result == {"command": True}
         assert self.generic.timeout == loose_approx(1.82)
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.generic.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -44,9 +48,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GenericServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -64,3 +68,10 @@ class TestClient:
             result = await client.do_command({"command": "args"}, timeout=7.86)
             assert result == {"command": True}
             assert self.generic.timeout == loose_approx(7.86)
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GenericClient(self.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

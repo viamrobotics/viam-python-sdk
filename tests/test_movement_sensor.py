@@ -6,7 +6,15 @@ from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.movement_sensor import MovementSensor, MovementSensorClient, MovementSensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoPoint, GetGeometriesRequest, Orientation, Vector3
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GeoPoint,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    Orientation,
+    Vector3,
+)
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAccuracyResponse,
@@ -30,7 +38,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockMovementSensor
+from .mocks.components import GEOMETRIES, MockMovementSensor
 
 COORDINATE = GeoPoint(latitude=40.664679865782624, longitude=-73.97668056188789)
 ALTITUDE = 15
@@ -217,6 +225,11 @@ class TestMovementSensor:
         resp = await movement_sensor.do_command(command)
         assert resp == {"command": command}
 
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, movement_sensor: MockMovementSensor):
+        geometries = await movement_sensor.get_geometries()
+        assert geometries == GEOMETRIES
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -317,12 +330,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: MovementSensorRPCService):
+    async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=movement_sensor.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -432,3 +445,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorClient(movement_sensor.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

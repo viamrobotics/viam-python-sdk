@@ -1,13 +1,12 @@
 from random import randint, random
 
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.base import BaseClient, Vector3, create_status
 from viam.components.base.service import BaseRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import ActuatorStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.base import (
     BaseServiceStub,
     IsMovingRequest,
@@ -22,7 +21,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockBase
+from .mocks.components import GEOMETRIES, MockBase
 
 
 @pytest.fixture(scope="function")
@@ -127,6 +126,11 @@ class TestBase:
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await base.move_straight(1, 1, extra=extra)
         assert base.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, base: MockBase):
+        geometries = await base.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -268,12 +272,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: BaseRPCService):
+    async def test_get_geometries(self, base: MockBase, service: BaseRPCService):
         async with ChannelFor([service]) as channel:
             client = BaseServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=base.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -371,3 +375,10 @@ class TestClient:
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             await client.move_straight(1, 1, extra=extra)
             assert base.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, base: MockBase, service: BaseRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BaseClient(base.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

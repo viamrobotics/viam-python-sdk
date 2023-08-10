@@ -1,16 +1,15 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.pose_tracker import PoseTrackerClient
 from viam.components.pose_tracker.service import PoseTrackerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, Pose, PoseInFrame
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, Pose, PoseInFrame
 from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockPose, MockPoseTracker
+from .mocks.components import GEOMETRIES, MockPose, MockPoseTracker
 
 POSES = [
     MockPose(X=1, Y=2, Z=3, o_X=2, o_Y=3, o_Z=4, theta=20),
@@ -35,6 +34,11 @@ class TestPoseTracker:
         command = {"command": "args"}
         resp = await self.mock_pose_tracker.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.mock_pose_tracker.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -72,9 +76,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = PoseTrackerServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -103,3 +107,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = PoseTrackerClient(self.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

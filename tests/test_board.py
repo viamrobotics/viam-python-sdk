@@ -10,7 +10,15 @@ from viam.components.board import Board, BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import AnalogStatus, BoardStatus, DigitalInterruptStatus, DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import (
+    AnalogStatus,
+    BoardStatus,
+    DigitalInterruptStatus,
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -36,7 +44,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
+from .mocks.components import GEOMETRIES, MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
 
 
 @pytest.fixture(scope="function")
@@ -130,6 +138,11 @@ class TestBoard:
         assert board.timeout == loose_approx(1.11)
         assert board.power_mode == pm_mode
         assert board.power_mode_duration == pm_duration
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, board: MockBoard):
+        geometries = await board.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -286,12 +299,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: BoardRPCService):
+    async def test_get_geometries(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=board.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
     @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard, service: BoardRPCService):
@@ -406,6 +419,13 @@ class TestClient:
             pm_duration = Duration()
             pm_duration.FromTimedelta(pm_timedelta)
             assert board.power_mode_duration == pm_duration.ToTimedelta()
+
+    @pytest.mark.asyncio
+    async def test_extra(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(board.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES
 
 
 class TestGPIOPinClient:

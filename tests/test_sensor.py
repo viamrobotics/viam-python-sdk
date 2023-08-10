@@ -1,16 +1,15 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockSensor
+from .mocks.components import GEOMETRIES, MockSensor
 
 READINGS = {"a": 1, "b": 2, "c": 3}
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
@@ -35,6 +34,11 @@ class TestSensor:
         command = {"command": "args"}
         resp = await sensor.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, sensor):
+        geometries = await sensor.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 @pytest.fixture(scope="function")
@@ -70,12 +74,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: SensorRPCService):
+    async def test_get_geometries(self, sensor: MockSensor, service: SensorRPCService):
         async with ChannelFor([service]) as channel:
             client = SensorServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=sensor.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -96,3 +100,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, sensor, service):
+        async with ChannelFor([service]) as channel:
+            client = SensorClient(sensor.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES
