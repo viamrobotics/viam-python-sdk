@@ -4,6 +4,7 @@ from typing import Any, Dict, Final, List, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Geometry
 
 
 class Gantry(ComponentBase):
@@ -79,5 +80,15 @@ class Gantry(ComponentBase):
 
         Returns:
             bool: Whether the gantry is moving.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the gantry, in their current configuration, in the frame of the gantry.
+
+        Returns:
+            List[Geometry]: The geometries associated with the gantry.
         """
         ...

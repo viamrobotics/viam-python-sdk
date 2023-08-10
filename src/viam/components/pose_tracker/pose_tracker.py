@@ -5,6 +5,7 @@ from viam.proto.common import PoseInFrame
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Geometry
 
 
 class PoseTracker(ComponentBase):
@@ -34,5 +35,15 @@ class PoseTracker(ComponentBase):
             body_names (List[str]): Names of the bodies whose poses are being
                 requested. In the event this parameter is not supplied or is
                 an empty list, all available poses are returned.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the pose tracker, in their current configuration, in the frame of the pose tracker.
+
+        Returns:
+            List[Geometry]: The geometries associated with the pose tracker.
         """
         ...

@@ -108,16 +108,6 @@ class Arm(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the arm, in their current configuration, in the frame of that component.
-
-        Returns:
-            List[Geometry]: The geometries associated with the arm.
-        """
-        ...
-
-    @abc.abstractmethod
     async def get_kinematics(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
     ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
@@ -130,5 +120,15 @@ class Arm(ComponentBase):
                   The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
 
                 - bytes: The byte contents of the file.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the arm, in their current configuration, in the frame of the arm.
+
+        Returns:
+            List[Geometry]: The geometries associated with the arm.
         """
         ...

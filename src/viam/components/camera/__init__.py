@@ -1,4 +1,5 @@
 from viam.media.video import RawImage
+from viam.proto.common import Geometry
 from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
 from viam.resource.registry import Registry, ResourceRegistration
 
@@ -8,6 +9,7 @@ from .service import CameraRPCService
 
 __all__ = [
     "Camera",
+    "Geometry",
     "IntrinsicParameters",
     "DistortionParameters",
     "RawImage",

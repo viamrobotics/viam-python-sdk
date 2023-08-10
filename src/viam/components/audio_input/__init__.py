@@ -1,3 +1,4 @@
+from viam.proto.common import Geometry
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .audio_input import AudioInput
@@ -6,6 +7,7 @@ from .service import AudioInputRPCService
 
 __all__ = [
     "AudioInput",
+    "Geometry",
 ]
 
 

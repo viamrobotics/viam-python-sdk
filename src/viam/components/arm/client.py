@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
-from viam.components.arm import Geometry
 
 from viam.proto.common import (
     DoCommandRequest,
@@ -27,7 +26,7 @@ from viam.proto.component.arm import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Arm, KinematicsFileFormat, Pose
+from . import Arm, Geometry, KinematicsFileFormat, Pose
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):

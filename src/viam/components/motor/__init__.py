@@ -1,5 +1,6 @@
 import asyncio
 
+from viam.proto.common import Geometry
 from viam.proto.component.motor import Status as MotorStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
@@ -11,6 +12,7 @@ from .service import MotorRPCService
 
 __all__ = [
     "Motor",
+    "Geometry",
 ]
 
 

@@ -11,7 +11,7 @@ from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..sensor import Sensor
-from . import GeoPoint, Orientation, Vector3
+from . import Geometry, GeoPoint, Orientation, Vector3
 
 
 class MovementSensor(Sensor):
@@ -182,3 +182,13 @@ class MovementSensor(Sensor):
         add_reading("orientation", orient, [Orientation])
 
         return readings
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the movement sensor, in their current configuration, in the frame of the movement sensor.
+
+        Returns:
+            List[Geometry]: The geometries associated with the movement sensor.
+        """
+        ...

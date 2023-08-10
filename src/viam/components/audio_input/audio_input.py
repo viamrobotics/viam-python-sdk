@@ -1,7 +1,7 @@
 import abc
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Final, Optional
+from typing import Final, List, Optional
 
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
@@ -12,6 +12,7 @@ from viam.proto.component.audioinput import PropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Geometry
 
 
 class AudioInput(ComponentBase, MediaSource[Audio]):
@@ -75,5 +76,15 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
 
         Returns:
             Properties: The audio input properties
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the audio input, in their current configuration, in the frame of the audio input.
+
+        Returns:
+            List[Geometry]: The geometries associated with the audio input.
         """
         ...

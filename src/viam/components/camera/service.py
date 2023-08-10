@@ -135,4 +135,10 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
-        raise MethodNotImplementedError("GetGeometries").grpc_error
+        request = await stream.recv_message()
+        assert request is not None
+        camera = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        geometries = await camera.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)
