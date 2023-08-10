@@ -793,7 +793,7 @@ class AppClient:
         response: CertificateResponse = await self._robot_client.Certificate(request, metadata=self._metadata)
         return response.tls_certificate, response.tls_private_key
 
-    async def log(self, robot_part_id: str, logs: List[Union[LogEntry, LogEntryPB]]) -> None:
+    async def log(self, robot_part_id: str, logs: Union[List[LogEntry], List[LogEntryPB]]) -> None:
         """Insert log entries associated with a robot part.
 
         Args:

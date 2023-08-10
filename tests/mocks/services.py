@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Mapping, Optional, Union
 
 from google.protobuf.struct_pb2 import Struct
+from google.protobuf.duration_pb2 import Duration
 from grpclib.server import Stream
 from PIL import Image
 
@@ -903,10 +904,12 @@ class MockApp(AppServiceBase):
 
 
 class MockRobot(RobotServiceBase):
-    def __init__(self, config: RobotConfig, cert: str, key: str):
+    def __init__(self, config: RobotConfig, cert: str, key: str, needs_restart: bool, duration: Duration):
         self.config = config
         self.cert = cert
         self.key = key
+        self.needs_restart = needs_restart
+        self.duration = duration
 
     async def Config(self, stream: Stream[ConfigRequest, ConfigResponse]) -> None:
         request = await stream.recv_message()
@@ -921,7 +924,16 @@ class MockRobot(RobotServiceBase):
         await stream.send_message(CertificateResponse(id=self.robot_part_id, tls_certificate=self.cert, tls_private_key=self.key))
 
     async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
-        pass
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        self.logs = request.logs
+        await stream.send_message(LogResponse())
 
     async def NeedsRestart(self, stream: Stream[NeedsRestartRequest, NeedsRestartResponse]) -> None:
-        pass
+        request = await stream.recv_message()
+        assert request is not None
+        self.robot_part_id = request.id
+        await stream.send_message(NeedsRestartResponse(
+            id=self.robot_part_id, must_restart=self.needs_restart, restart_check_interval=self.duration
+        ))
