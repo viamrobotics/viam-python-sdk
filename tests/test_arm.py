@@ -4,7 +4,18 @@ from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
 from viam.components.arm.service import ArmRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetKinematicsRequest, GetKinematicsResponse, Pose
+from viam.proto.common import (
+    Capsule,
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+    Pose,
+    Sphere,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -30,6 +41,10 @@ class TestArm:
     pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
     joint_pos = JointPositions(values=[1, 8, 2])
     kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+    geometries = [
+        Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+        Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+    ]
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -71,6 +86,11 @@ class TestArm:
         assert self.arm.extra == {"1": "2"}
 
     @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.arm.get_geometries()
+        assert geometries == self.geometries
+
+    @pytest.mark.asyncio
     async def test_do(self):
         command = {"command": "args"}
         resp = await self.arm.do_command(command)
@@ -99,6 +119,10 @@ class TestService:
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls.geometries = [
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+        ]
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -175,9 +199,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == self.geometries
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -199,6 +223,10 @@ class TestClient:
         cls.pose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
         cls.joint_pos = JointPositions(values=[1, 8, 2])
         cls.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        cls.geometries = [
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+        ]
 
     @pytest.mark.asyncio
     async def test_move_to_position(self):
@@ -253,6 +281,13 @@ class TestClient:
             kd = await client.get_kinematics(extra={"1": "2"})
             assert kd == self.kinematics
             assert self.arm.extra == {"1": "2"}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == self.geometries
 
     @pytest.mark.asyncio
     async def test_do(self):

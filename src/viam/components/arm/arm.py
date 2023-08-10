@@ -1,10 +1,10 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple
+from typing import Any, Dict, Final, List, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import JointPositions, KinematicsFileFormat, Pose
+from . import Geometry, JointPositions, KinematicsFileFormat, Pose
 
 
 class Arm(ComponentBase):
@@ -104,6 +104,16 @@ class Arm(ComponentBase):
 
         Returns:
             bool: Whether the arm is moving.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the arm, in their current configuration, in the frame of that component.
+
+        Returns:
+            List[Geometry]: The geometries associated with the arm.
         """
         ...
 

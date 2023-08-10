@@ -1,6 +1,5 @@
 from grpclib.server import Stream
 
-from viam.errors import MethodNotImplementedError
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -115,4 +114,10 @@ class ArmRPCService(ArmServiceBase, ResourceRPCServiceBase):
         await stream.send_message(response)
 
     async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
-        raise MethodNotImplementedError("GetGeometries").grpc_error
+        request = await stream.recv_message()
+        assert request is not None
+        arm = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        response = GetGeometriesResponse(geometries=geometries)
+        await stream.send_message(response)

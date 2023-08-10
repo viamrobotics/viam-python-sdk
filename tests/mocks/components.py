@@ -14,7 +14,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
-from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
+from viam.components.arm import Arm, Geometry, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
@@ -38,12 +38,15 @@ from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
+    Capsule,
     DigitalInterruptStatus,
+    Geometry,
     GeoPoint,
     Orientation,
     Pose,
     PoseInFrame,
     ResponseMetadata,
+    Sphere,
     Vector3,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
@@ -54,18 +57,14 @@ from viam.utils import ValueTypes
 
 class MockArm(Arm):
     def __init__(self, name: str):
-        self.position = Pose(
-            x=1,
-            y=2,
-            z=3,
-            o_x=2,
-            o_y=3,
-            o_z=4,
-            theta=20,
-        )
+        self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.geometries = [
+            Geometry(center=self.position, sphere=Sphere(radius_mm=2)),
+            Geometry(center=self.position, capsule=Capsule(radius_mm=3, length_mm=8)),
+        ]
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -115,7 +114,13 @@ class MockArm(Arm):
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
     ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         self.extra = extra
+        self.timeout = timeout
         return self.kinematics
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
