@@ -4,7 +4,6 @@ from io import BytesIO
 import pytest
 from google.api.httpbody_pb2 import HttpBody
 from google.protobuf.timestamp_pb2 import Timestamp
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 from PIL import Image
 
