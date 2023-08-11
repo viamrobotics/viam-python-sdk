@@ -350,9 +350,6 @@ class AppClient:
     _channel: Channel
     _organization_id: Optional[str] = None
 
-    def close(self) -> None:
-        self._channel.close()
-
     async def _get_organization_id(self) -> str:
         return self._organization_id if self._organization_id else await self._request_organization_id()
 

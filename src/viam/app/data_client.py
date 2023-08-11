@@ -127,9 +127,6 @@ class DataClient:
     _metadata: Mapping[str, str]
     _channel: Channel
 
-    def close(self) -> None:
-        self._channel.close()
-
     async def tabular_data_by_filter(
         self,
         filter: Optional[Filter] = None,
