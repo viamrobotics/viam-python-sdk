@@ -7,7 +7,7 @@ from grpclib import GRPCError
 from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
-from ..sensor import Sensor
+from ..sensor import Geometry, Sensor
 
 
 class PowerSensor(Sensor):
@@ -90,3 +90,6 @@ class PowerSensor(Sensor):
         add_reading("power", pow, [float])
 
         return readings
+
+    async def get_geometries(self) -> List[Geometry]:
+        raise MethodNotImplementedError("GetGeometries").grpc_error
