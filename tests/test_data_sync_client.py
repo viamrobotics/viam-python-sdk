@@ -1,4 +1,3 @@
-from collections.abc import Iterable
 import pytest
 from datetime import datetime
 from typing import List, cast, Mapping, Any
@@ -56,7 +55,7 @@ class TestClient:
                 data_request_times=DATETIMES,
                 binary_data=BINARY_DATA
             )
-            self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=True)
+            self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
 
     @pytest.mark.asyncio
@@ -73,7 +72,7 @@ class TestClient:
                 data_request_times=[DATETIMES],
                 tabular_data=cast(List[Mapping[str, Any]], TABULAR_DATA)
             )
-            self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=False)
+            self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=False)
             self.assert_metadata(metadata=service.metadata)
 
     @pytest.mark.asyncio
@@ -118,9 +117,8 @@ class TestClient:
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
-    def assert_sensor_contents(self, sensor_contents: Iterable[SensorData], is_binary: bool):
-        idx = 0
-        for sensor_content in sensor_contents:
+    def assert_sensor_contents(self, sensor_contents: List[SensorData], is_binary: bool):
+        for idx, sensor_content in enumerate(sensor_contents):
             assert sensor_content.metadata.time_requested.seconds == TIMESTAMPS[0].seconds
             assert sensor_content.metadata.time_requested.nanos == TIMESTAMPS[0].nanos
             assert sensor_content.metadata.time_received.seconds == TIMESTAMPS[1].seconds
@@ -129,7 +127,6 @@ class TestClient:
                 assert sensor_content.binary == BINARY_DATA
             else:
                 assert struct_to_dict(sensor_content.struct) == TABULAR_DATA[idx]
-            idx += 1
 
     def assert_metadata(self, metadata: UploadMetadata) -> None:
         assert metadata.part_id == PART_ID
