@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, ClassVar, List, Mapping, Optional, SupportsByt
 
 from typing_extensions import Self
 
+from viam.proto.common import Geometry
 from viam.resource.base import ResourceBase
 
 if TYPE_CHECKING:
@@ -39,4 +40,7 @@ class ComponentBase(abc.ABC, ResourceBase):
         return cast(cls, component)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        raise NotImplementedError()
+
+    async def get_geometries(self) -> List[Geometry]:
         raise NotImplementedError()

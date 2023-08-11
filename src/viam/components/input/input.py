@@ -198,7 +198,7 @@ class Controller(ComponentBase):
     @abc.abstractmethod
     async def get_geometries(self) -> List[Geometry]:
         """
-        Get all geometries associated with the input, in their current configuration, in the frame of the input.
+        Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.
 
         Returns:
             List[Geometry]: The geometries associated with the input.

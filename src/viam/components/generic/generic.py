@@ -72,9 +72,9 @@ class Generic(ComponentBase):
     @abc.abstractmethod
     async def get_geometries(self) -> List[Geometry]:
         """
-        Get all geometries associated with the arm, in their current configuration, in the frame of the arm.
+        Get all geometries associated with the generic component, in their current configuration, in the frame of the generic component.
 
         Returns:
-            List[Geometry]: The geometries associated with the arm.
+            List[Geometry]: The geometries associated with the generic component.
         """
         ...
