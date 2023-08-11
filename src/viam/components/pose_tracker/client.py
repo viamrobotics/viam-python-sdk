@@ -2,10 +2,10 @@ from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, PoseInFrame
+from viam.proto.common import DoCommandRequest, DoCommandResponse, PoseInFrame
 from viam.proto.component.posetracker import GetPosesRequest, GetPosesResponse, PoseTrackerServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, container_to_list, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
 from .pose_tracker import PoseTracker
 from . import Geometry
@@ -40,8 +40,4 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
         return struct_to_dict(response.result)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        if extra is None:
-            extra = {}
-        request = GetGeometriesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetGeometriesResponse = await self.client.GetGeometries(request, timeout=timeout)
-        return container_to_list(response.geometries)
+        return await get_geometries(self, extra, timeout)
