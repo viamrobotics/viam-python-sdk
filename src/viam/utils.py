@@ -6,6 +6,7 @@ import threading
 from datetime import datetime
 from typing import Any, Dict, List, Mapping, SupportsBytes, SupportsFloat, Type, TypeVar, Union
 
+from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
@@ -157,6 +158,10 @@ def datetime_to_timestamp(dt: datetime) -> Timestamp:
     timestamp = Timestamp()
     timestamp.FromDatetime(dt)
     return timestamp
+
+
+def container_to_list(container: RepeatedCompositeFieldContainer) -> List[Any]:
+    return [item for item in container]
 
 
 def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]:

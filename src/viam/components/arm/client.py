@@ -24,7 +24,7 @@ from viam.proto.component.arm import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, container_to_list, dict_to_struct, struct_to_dict
 
 from . import Arm, Geometry, KinematicsFileFormat, Pose
 
@@ -129,5 +129,4 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetGeometriesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetGeometriesResponse = await self.client.GetGeometries(request, timeout=timeout)
-        geometries = [geometry for geometry in response.geometries]
-        return geometries
+        return container_to_list(response.geometries)
