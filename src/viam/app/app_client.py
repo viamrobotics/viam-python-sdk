@@ -406,14 +406,11 @@ class AppClient:
     ) -> Organization:
         raise NotImplementedError()
 
-    # This is impossible under our current (org-wide) authentication model. To authenticat to `AppClient` and be able to make this request,
-    # a robot URI (and so a location) must exist within the organization. However, organizations can only be deleted if they contain no
-    # locations.
     async def delete_organization(self, organization_id: str) -> None:
         raise NotImplementedError()
 
     async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
-        """List the members and invites of organization.
+        """List the members and invites of the currently authed-to organization.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
@@ -469,7 +466,7 @@ class AppClient:
         raise NotImplementedError()
 
     async def create_location(self, name: str, parent_location_id: Optional[str] = None) -> Location:
-        """Create and name a location under organization and the specified parent location.
+        """Create and name a location under the currently authed-to organization and the specified parent location.
 
         Args:
             name (str): Name of the location.
@@ -537,7 +534,7 @@ class AppClient:
         await self._app_client.DeleteLocation(request, metadata=self._metadata)
 
     async def list_locations(self) -> List[Location]:
-        """Get a list of all locations under organization.
+        """Get a list of all locations under the currently authed-to organization.
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
@@ -949,7 +946,7 @@ class AppClient:
         await self._app_client.DeleteRobot(request, metadata=self._metadata)
 
     async def list_fragments(self, show_public: bool = True) -> List[Fragment]:
-        """Get a list of fragments under organization.
+        """Get a list of fragments under the currently authed-to organization.
 
         Args:
             show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
@@ -998,19 +995,18 @@ class AppClient:
         response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
-    # TODO: The name of a fragment HAS to be updated if any updates to its config and/or public status are being made.
     async def update_fragment(
         self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
     ) -> Fragment:
-        """Update a fragment name AND its
+        """Update a fragment name AND its config and/or visibility.
 
         Args:
-            fragment_id (str): ID of the fragment to be updated.
+            fragment_id (str): ID of the fragment to update.
             name (str): New name to associate with the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not
-                passing this parameter will leave it unchanged.
-            public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave it unchanged. A fragment
-                is private by default when created.
+                passing this parameter will leave the fragment's config unchanged.
+            public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
+                visibility unchanged. A fragment is private by default when created.
 
         Raises:
             GRPCError: if an invalid ID, name, or config is passed.
@@ -1035,7 +1031,7 @@ class AppClient:
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
     async def add_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
-        """Add a role under organization.
+        """Add a role under the currently authed-to organization.
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
@@ -1059,7 +1055,7 @@ class AppClient:
         await self._app_client.AddRole(request, metadata=self._metadata)
 
     async def remove_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
-        """Remove a role under organization.
+        """Remove a role under the currently authed-to organization.
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
@@ -1083,8 +1079,8 @@ class AppClient:
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
     async def list_authorizations(self, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
-        """List all authorizations under a specific resource (or resources) within organization. If no resource IDs are provided, all
-        resource authorizations within the organizations are returned.
+        """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
+        are provided, all resource authorizations within the organizations are returned.
 
         Args:
             resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from. Defaults to None.
@@ -1100,12 +1096,11 @@ class AppClient:
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
-    # TODO
     async def check_permissions(self, permissions: Optional[List[AuthorizedPermissions]] = None) -> List[AuthorizedPermissions]:
         raise NotImplementedError()
 
     async def create_module(self, name: str) -> Tuple[str, str]:
-        """Create a module under organization.
+        """Create a module under the currently authed-to organization.
 
         Args:
             name (str): The name of the module. Must be unique within your organization.
@@ -1121,7 +1116,6 @@ class AppClient:
         response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
         return response.module_id, response.url
 
-    # TODO: Some fields HAVE to be updated.
     async def update_module(
         self,
         module_id: str,
@@ -1200,7 +1194,7 @@ class AppClient:
         return response.module
 
     async def list_modules(self) -> List[Module]:
-        """List the modules under organization.
+        """List the modules under the currently authed-to organization.
 
         Returns:
             List[viam.proto.app.Module]: The list of modules.

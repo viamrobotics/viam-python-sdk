@@ -119,7 +119,8 @@ class TestClient:
             assert service.binary_data == BINARY_DATA
 
     def assert_sensor_contents(self, sensor_contents: Iterable[SensorData], is_binary: bool):
-        for idx, sensor_content in enumerate(sensor_contents):
+        idx = 0
+        for sensor_content in sensor_contents:
             assert sensor_content.metadata.time_requested.seconds == TIMESTAMPS[0].seconds
             assert sensor_content.metadata.time_requested.nanos == TIMESTAMPS[0].nanos
             assert sensor_content.metadata.time_received.seconds == TIMESTAMPS[1].seconds
@@ -128,6 +129,7 @@ class TestClient:
                 assert sensor_content.binary == BINARY_DATA
             else:
                 assert struct_to_dict(sensor_content.struct) == TABULAR_DATA[idx]
+            idx += 1
 
     def assert_metadata(self, metadata: UploadMetadata) -> None:
         assert metadata.part_id == PART_ID
