@@ -77,6 +77,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker"><code class="docutils literal notranslate"><span class="pre">PoseTracker</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">PoseTracker.SUBTYPE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.get_poses"><code class="docutils literal notranslate"><span class="pre">PoseTracker.get_poses()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.get_geometries"><code class="docutils literal notranslate"><span class="pre">PoseTracker.get_geometries()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.from_robot"><code class="docutils literal notranslate"><span class="pre">PoseTracker.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.do_command"><code class="docutils literal notranslate"><span class="pre">PoseTracker.do_command()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.get_resource_name"><code class="docutils literal notranslate"><span class="pre">PoseTracker.get_resource_name()</span></code></a></li>
@@ -174,6 +175,20 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dd class="field-odd"><p><strong>body_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – Names of the bodies whose poses are being
 requested. In the event this parameter is not supplied or is
 an empty list, all available poses are returned.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.pose_tracker.pose_tracker.PoseTracker.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.pose_tracker.Geometry" title="viam.components.pose_tracker.Geometry"><span class="pre">viam.components.pose_tracker.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/pose_tracker/pose_tracker.html#PoseTracker.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.pose_tracker.pose_tracker.PoseTracker.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the pose tracker, in their current configuration, in the frame of the pose tracker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the pose tracker.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/index.html#viam.components.arm.Geometry" title="viam.components.arm.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

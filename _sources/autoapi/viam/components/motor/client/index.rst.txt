@@ -133,6 +133,15 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.components.motor.Geometry]
+      :async:
+
+      Get all geometries associated with the motor, in their current configuration, in the frame of the motor.
+
+      :returns: The geometries associated with the motor.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

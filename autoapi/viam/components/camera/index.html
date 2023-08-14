@@ -76,6 +76,16 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.RawImage.bytes_to_depth_array"><code class="docutils literal notranslate"><span class="pre">RawImage.bytes_to_depth_array()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.capsule"><code class="docutils literal notranslate"><span class="pre">Geometry.capsule</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.camera.DistortionParameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.parameters"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.parameters</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.DistortionParameters.model"><code class="docutils literal notranslate"><span class="pre">DistortionParameters.model</span></code></a></li>
@@ -102,6 +112,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_images"><code class="docutils literal notranslate"><span class="pre">Camera.get_images()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_point_cloud"><code class="docutils literal notranslate"><span class="pre">Camera.get_point_cloud()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_properties"><code class="docutils literal notranslate"><span class="pre">Camera.get_properties()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_geometries"><code class="docutils literal notranslate"><span class="pre">Camera.get_geometries()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.from_robot"><code class="docutils literal notranslate"><span class="pre">Camera.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.do_command"><code class="docutils literal notranslate"><span class="pre">Camera.do_command()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.camera.Camera.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Camera.get_resource_name()</span></code></a></li>
@@ -186,13 +197,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RawImage</span></code></a></p></td>
 <td><p>A raw bytes representation of an image.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.DistortionParameters" title="viam.components.camera.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.Geometry" title="viam.components.camera.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.DistortionParameters" title="viam.components.camera.DistortionParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistortionParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.IntrinsicParameters" title="viam.components.camera.IntrinsicParameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntrinsicParameters</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.camera.Camera" title="viam.components.camera.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.camera.Camera" title="viam.components.camera.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
 <td><p>Camera represents any physical hardware that can capture frames.</p></td>
 </tr>
 </tbody>
@@ -241,6 +255,84 @@ a standard representation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[List[int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.camera.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Sphere</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RectangularPrism</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Capsule</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.camera.Geometry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.components.camera.Geometry.center" title="Permalink to this definition"></a></dt>
+<dd><p>Pose of a geometries center point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.sphere">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Sphere</span></em><a class="headerlink" href="#viam.components.camera.Geometry.sphere" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.box">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">box</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___RectangularPrism</span></em><a class="headerlink" href="#viam.components.camera.Geometry.box" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.capsule">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">capsule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Capsule</span></em><a class="headerlink" href="#viam.components.camera.Geometry.capsule" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.camera.Geometry.label" title="Permalink to this definition"></a></dt>
+<dd><p>Label of the geometry. If none supplied, will be an empty string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">box</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'box'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">capsule</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'capsule'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">center</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'center'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geometry_type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">sphere</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'sphere'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.camera.Geometry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.Geometry.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">geometry_type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">sphere</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">box</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">capsule</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.camera.Geometry.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
 </dd></dl>
@@ -428,6 +520,20 @@ str: The mimetype of the pointcloud (e.g. PCD).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#viam.components.camera.Camera.Properties" title="viam.components.camera.Camera.Properties">Properties</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.camera.Camera.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.camera.Geometry" title="viam.components.camera.Geometry"><span class="pre">viam.components.camera.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/camera/camera.html#Camera.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.camera.Camera.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the camera, in their current configuration, in the frame of the camera.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the camera.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.components.camera.Geometry" title="viam.components.camera.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

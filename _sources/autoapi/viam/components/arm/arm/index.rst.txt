@@ -105,6 +105,16 @@ Classes
       :rtype: Tuple[KinematicsFileFormat.ValueType, bytes]
 
 
+   .. py:method:: get_geometries() -> List[viam.components.arm.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the arm, in their current configuration, in the frame of the arm.
+
+      :returns: The geometries associated with the arm.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

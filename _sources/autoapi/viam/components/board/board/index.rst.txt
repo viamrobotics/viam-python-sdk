@@ -446,6 +446,16 @@ Attributes
       :param mode: the desired power mode
 
 
+   .. py:method:: get_geometries() -> List[viam.components.board.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the board, in their current configuration, in the frame of the board.
+
+      :returns: The geometries associated with the board.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

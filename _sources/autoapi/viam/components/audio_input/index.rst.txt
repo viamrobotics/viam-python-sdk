@@ -23,145 +23,70 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.audio_input.AudioInput
+   viam.components.audio_input.Geometry
 
 
 
 
-.. py:class:: AudioInput(name: str)
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
 
 
-   Bases: :py:obj:`viam.components.component_base.ComponentBase`, :py:obj:`viam.media.MediaSource`\ [\ :py:obj:`viam.media.audio.Audio`\ ]
+   Bases: :py:obj:`google.protobuf.message.Message`
 
-   AudioInput represents a component that can capture audio.
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 
-   This acts as an abstract base class for any drivers representing specific
-   audio input implementations. This cannot be used on its own. If the ``__init__()`` function is
-   overridden, it must call the ``super().__init__()`` function.
+   .. py:property:: center
+      :type: global___Pose
 
-   .. py:class:: Properties
+      Pose of a geometries center point
 
-
-      .. py:property:: proto
-         :type: viam.proto.component.audioinput.PropertiesResponse
+   .. py:property:: sphere
+      :type: global___Sphere
 
 
-      .. py:attribute:: channel_count
-         :type: int
-
-         
-
-      .. py:attribute:: latency
-         :type: datetime.timedelta
-
-         
-
-      .. py:attribute:: sample_rate
-         :type: int
-
-         
-
-      .. py:attribute:: sample_size
-         :type: int
-
-         
-
-      .. py:attribute:: is_big_endian
-         :type: bool
-
-         
-
-      .. py:attribute:: is_float
-         :type: bool
-
-         
-
-      .. py:attribute:: is_interleaved
-         :type: bool
-
-         
-
-      .. py:method:: from_proto(proto: viam.proto.component.audioinput.PropertiesResponse) -> typing_extensions.Self
-         :classmethod:
+   .. py:property:: box
+      :type: global___RectangularPrism
 
 
-
-   .. py:attribute:: SUBTYPE
-      :type: Final
-
-      
-
-   .. py:method:: stream(*, timeout: Optional[float] = None, **kwargs) -> viam.media.audio.AudioStream
-      :abstractmethod:
-      :async:
-
-      Stream audio samples from the audio input of the underlying robot
-
-      :returns: The stream of audio chunks
-      :rtype: MediaStream[Audio]
+   .. py:property:: capsule
+      :type: global___Capsule
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties
-      :abstractmethod:
-      :async:
+   .. py:attribute:: label
+      :type: str
 
-      Get the properties of the audio input of the underlying robot
+      Label of the geometry. If none supplied, will be an empty string.
 
-      :returns: The audio input properties
-      :rtype: Properties
+   .. py:method:: HasField(field_name: Literal[box, b'box', capsule, b'capsule', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
 
+      Checks if a certain field is set for the message.
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
-      :classmethod:
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
 
-      Get the component named ``name`` from the provided robot.
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
 
-      :param robot: The robot
-      :type robot: RobotClient
-      :param name: The name of the component
-      :type name: str
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
 
-      :returns: The component, if it exists on the robot
-      :rtype: Self
+      :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
-      :abstractmethod:
-      :async:
+   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> Literal[sphere, box, capsule] | None
 
-      Send/Receive arbitrary commands to the Resource
+      Returns the name of the field that is set inside a oneof group.
 
-      :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
+      If no field is set, returns None.
 
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
 
-      :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
 
-
-   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
-      :classmethod:
-
-      Get the ResourceName for this Resource with the given name
-
-      :param name: The name of the Resource
-      :type name: str
-
-
-   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
-
-      Get the ``Operation`` associated with the currently running function.
-
-      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
-      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
-      ).
-
-      :param kwargs: The kwargs object containing the operation
-      :type kwargs: Mapping[str, Any]
-
-      :returns: The operation associated with this function
-      :rtype: viam.operations.Operation
+      :raises ValueError: no group with the given name exists
 
 
 

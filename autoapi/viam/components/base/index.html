@@ -67,6 +67,16 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.base.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.box"><code class="docutils literal notranslate"><span class="pre">Geometry.box</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.capsule"><code class="docutils literal notranslate"><span class="pre">Geometry.capsule</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.base.Vector3"><code class="docutils literal notranslate"><span class="pre">Vector3</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Vector3.x"><code class="docutils literal notranslate"><span class="pre">Vector3.x</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Vector3.y"><code class="docutils literal notranslate"><span class="pre">Vector3.y</span></code></a></li>
@@ -87,6 +97,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.stop"><code class="docutils literal notranslate"><span class="pre">Base.stop()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.is_moving"><code class="docutils literal notranslate"><span class="pre">Base.is_moving()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.get_properties"><code class="docutils literal notranslate"><span class="pre">Base.get_properties()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.get_geometries"><code class="docutils literal notranslate"><span class="pre">Base.get_geometries()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.from_robot"><code class="docutils literal notranslate"><span class="pre">Base.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.do_command"><code class="docutils literal notranslate"><span class="pre">Base.do_command()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.base.Base.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Base.get_resource_name()</span></code></a></li>
@@ -170,14 +181,95 @@
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.Geometry" title="viam.components.base.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.Vector3" title="viam.components.base.Vector3"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.base.Base" title="viam.components.base.Base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.base.Base" title="viam.components.base.Base"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Base</span></code></a></p></td>
 <td><p>Base represents a physical base of a robot.</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.base.Geometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.</span></span><span class="sig-name descname"><span class="pre">Geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Pose</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Sphere</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___RectangularPrism</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Capsule</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.Geometry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.center">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">center</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Pose</span></em><a class="headerlink" href="#viam.components.base.Geometry.center" title="Permalink to this definition"></a></dt>
+<dd><p>Pose of a geometries center point</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.sphere">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Sphere</span></em><a class="headerlink" href="#viam.components.base.Geometry.sphere" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.box">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">box</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___RectangularPrism</span></em><a class="headerlink" href="#viam.components.base.Geometry.box" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.capsule">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">capsule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Capsule</span></em><a class="headerlink" href="#viam.components.base.Geometry.capsule" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.label">
+<span class="sig-name descname"><span class="pre">label</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.base.Geometry.label" title="Permalink to this definition"></a></dt>
+<dd><p>Label of the geometry. If none supplied, will be an empty string.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">box</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'box'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">capsule</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'capsule'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">center</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'center'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">geometry_type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">sphere</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'sphere'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.components.base.Geometry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.Geometry.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">geometry_type</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'geometry_type'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">sphere</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">box</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">capsule</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.components.base.Geometry.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.base.Vector3">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.base.</span></span><span class="sig-name descname"><span class="pre">Vector3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.base.Vector3" title="Permalink to this definition"></a></dt>
@@ -334,6 +426,20 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#viam.components.base.Base.Properties" title="viam.components.base.Base.Properties">Properties</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.Base.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.base.Geometry" title="viam.components.base.Geometry"><span class="pre">viam.components.base.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/base/base.html#Base.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.Base.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the base, in their current configuration, in the frame of the base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the base.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.components.base.Geometry" title="viam.components.base.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

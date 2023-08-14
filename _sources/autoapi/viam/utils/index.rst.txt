@@ -29,6 +29,7 @@ Functions
    viam.utils.dict_to_struct
    viam.utils.struct_to_dict
    viam.utils.datetime_to_timestamp
+   viam.utils.get_geometries
    viam.utils.sensor_readings_native_to_value
    viam.utils.sensor_readings_value_to_native
    viam.utils.to_thread
@@ -87,6 +88,10 @@ Attributes
 
 
 .. py:function:: datetime_to_timestamp(dt: datetime.datetime) -> google.protobuf.timestamp_pb2.Timestamp
+
+
+.. py:function:: get_geometries(client, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+   :async:
 
 
 .. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]

@@ -23,7 +23,7 @@ Classes
 .. py:class:: AnalogReaderClient(name: str, board: BoardClient)
 
 
-   Bases: :py:obj:`viam.components.board.board.Board.AnalogReader`
+   Bases: :py:obj:`viam.components.board.Board.AnalogReader`
 
    AnalogReader represents an analog pin reader that resides on a Board.
 
@@ -93,7 +93,7 @@ Classes
 .. py:class:: DigitalInterruptClient(name: str, board: BoardClient)
 
 
-   Bases: :py:obj:`viam.components.board.board.Board.DigitalInterrupt`
+   Bases: :py:obj:`viam.components.board.Board.DigitalInterrupt`
 
    DigitalInterrupt represents a configured interrupt on the Board that
    when interrupted, calls the added callbacks. Post processors can
@@ -202,7 +202,7 @@ Classes
 .. py:class:: GPIOPinClient(name: str, board: BoardClient)
 
 
-   Bases: :py:obj:`viam.components.board.board.Board.GPIOPin`
+   Bases: :py:obj:`viam.components.board.Board.GPIOPin`
 
    Abstract representation of an individual GPIO pin on a board
 
@@ -318,11 +318,11 @@ Classes
 .. py:class:: BoardClient(name: str, channel: grpclib.client.Channel)
 
 
-   Bases: :py:obj:`viam.components.board.board.Board`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.components.board.Board`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
 
    gRPC client for the Board component.
 
-   .. py:method:: analog_reader_by_name(name: str) -> viam.components.board.board.Board.AnalogReader
+   .. py:method:: analog_reader_by_name(name: str) -> viam.components.board.Board.AnalogReader
       :async:
 
       Get an AnalogReader by ``name``.
@@ -334,7 +334,7 @@ Classes
       :rtype: AnalogReader
 
 
-   .. py:method:: digital_interrupt_by_name(name: str) -> viam.components.board.board.Board.DigitalInterrupt
+   .. py:method:: digital_interrupt_by_name(name: str) -> viam.components.board.Board.DigitalInterrupt
       :async:
 
       Get a DigitalInterrupt by ``name``.
@@ -346,7 +346,7 @@ Classes
       :rtype: DigitalInterrupt
 
 
-   .. py:method:: gpio_pin_by_name(name: str) -> viam.components.board.board.Board.GPIOPin
+   .. py:method:: gpio_pin_by_name(name: str) -> viam.components.board.Board.GPIOPin
       :async:
 
       Get a GPIO Pin by ``name``.
@@ -385,7 +385,7 @@ Classes
       :rtype: viam.proto.common.BoardStatus
 
 
-   .. py:method:: model_attributes() -> viam.components.board.board.Board.Attributes
+   .. py:method:: model_attributes() -> viam.components.board.Board.Attributes
       :async:
 
       Get the attributes related to the model of this board.
@@ -414,6 +414,15 @@ Classes
       Set the board to the indicated power mode.
 
       :param mode: the desired power mode
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.components.board.Geometry]
+      :async:
+
+      Get all geometries associated with the board, in their current configuration, in the frame of the board.
+
+      :returns: The geometries associated with the board.
+      :rtype: List[Geometry]
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

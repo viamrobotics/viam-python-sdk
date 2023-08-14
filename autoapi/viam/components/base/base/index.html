@@ -77,6 +77,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.stop"><code class="docutils literal notranslate"><span class="pre">Base.stop()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.is_moving"><code class="docutils literal notranslate"><span class="pre">Base.is_moving()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_properties"><code class="docutils literal notranslate"><span class="pre">Base.get_properties()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_geometries"><code class="docutils literal notranslate"><span class="pre">Base.get_geometries()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.from_robot"><code class="docutils literal notranslate"><span class="pre">Base.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.do_command"><code class="docutils literal notranslate"><span class="pre">Base.do_command()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.base.base.Base.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Base.get_resource_name()</span></code></a></li>
@@ -294,6 +295,20 @@ for wheeled base. Positive turns left; negative turns right.</p></li>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="#viam.components.base.base.Base.Properties" title="viam.components.base.base.Base.Properties">Properties</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.base.base.Base.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.base.Geometry" title="viam.components.base.Geometry"><span class="pre">viam.components.base.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/base/base.html#Base.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.base.base.Base.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the base, in their current configuration, in the frame of the base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the base.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/index.html#viam.components.arm.Geometry" title="viam.components.arm.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

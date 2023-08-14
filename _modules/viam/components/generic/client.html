@@ -87,7 +87,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.components.generic.client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
@@ -95,9 +95,10 @@
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.generic</span> <span class="kn">import</span> <span class="n">GenericServiceStub</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">get_geometries</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.generic</span> <span class="kn">import</span> <span class="n">Generic</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Geometry</span>
 
 
 <div class="viewcode-block" id="GenericClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.GenericClient">[docs]</a><span class="k">class</span> <span class="nc">GenericClient</span><span class="p">(</span><span class="n">Generic</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
@@ -118,7 +119,10 @@
                 <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
             <span class="k">raise</span> <span class="n">e</span>
 
-        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GenericClient.get_geometries"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.GenericClient.get_geometries">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="do_command"><a class="viewcode-back" href="../../../../autoapi/viam/components/generic/client/index.html#viam.components.generic.client.do_command">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span>

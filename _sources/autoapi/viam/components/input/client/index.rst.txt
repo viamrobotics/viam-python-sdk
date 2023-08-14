@@ -101,6 +101,15 @@ Attributes
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.components.input.Geometry]
+      :async:
+
+      Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.
+
+      :returns: The geometries associated with the input.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

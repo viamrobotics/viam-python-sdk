@@ -118,6 +118,15 @@ Functions
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.components.camera.Geometry]
+      :async:
+
+      Get all geometries associated with the camera, in their current configuration, in the frame of the camera.
+
+      :returns: The geometries associated with the camera.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

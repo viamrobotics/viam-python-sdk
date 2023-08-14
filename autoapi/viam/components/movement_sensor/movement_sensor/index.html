@@ -95,6 +95,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_properties"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_properties()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_accuracy"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_accuracy()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_readings"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_readings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_geometries"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_geometries()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.from_robot"><code class="docutils literal notranslate"><span class="pre">MovementSensor.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.do_command"><code class="docutils literal notranslate"><span class="pre">MovementSensor.do_command()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_resource_name"><code class="docutils literal notranslate"><span class="pre">MovementSensor.get_resource_name()</span></code></a></li>
@@ -363,6 +364,20 @@ orientation: Orientation,</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.movement_sensor.movement_sensor.MovementSensor.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.movement_sensor.Geometry" title="viam.components.movement_sensor.Geometry"><span class="pre">viam.components.movement_sensor.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/movement_sensor/movement_sensor.html#MovementSensor.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.movement_sensor.movement_sensor.MovementSensor.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the movement sensor, in their current configuration, in the frame of the movement sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the movement sensor.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/index.html#viam.components.arm.Geometry" title="viam.components.arm.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

@@ -71,6 +71,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.get_position"><code class="docutils literal notranslate"><span class="pre">EncoderClient.get_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.get_properties"><code class="docutils literal notranslate"><span class="pre">EncoderClient.get_properties()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.do_command"><code class="docutils literal notranslate"><span class="pre">EncoderClient.do_command()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.get_geometries"><code class="docutils literal notranslate"><span class="pre">EncoderClient.get_geometries()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.from_robot"><code class="docutils literal notranslate"><span class="pre">EncoderClient.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">EncoderClient.get_resource_name()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.encoder.client.EncoderClient.get_operation"><code class="docutils literal notranslate"><span class="pre">EncoderClient.get_operation()</span></code></a></li>
@@ -219,6 +220,20 @@ The position will be either in relative units (ticks away from a zero position) 
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.encoder.client.EncoderClient.get_geometries">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.encoder.Geometry" title="viam.components.encoder.Geometry"><span class="pre">viam.components.encoder.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/encoder/client.html#EncoderClient.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.encoder.client.EncoderClient.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the encoder, in their current configuration, in the frame of the encoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the encoder.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/index.html#viam.components.arm.Geometry" title="viam.components.arm.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

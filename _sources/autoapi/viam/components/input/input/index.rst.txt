@@ -314,6 +314,16 @@ Attributes
       :type event: Event
 
 
+   .. py:method:: get_geometries() -> List[viam.components.input.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.
+
+      :returns: The geometries associated with the input.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

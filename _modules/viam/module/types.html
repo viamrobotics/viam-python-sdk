@@ -104,12 +104,21 @@
 
 <div class="viewcode-block" id="Stoppable"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Stoppable">[docs]</a><span class="nd">@runtime_checkable</span>
 <span class="k">class</span> <span class="nc">Stoppable</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The Stoppable protocol defines the requirements for making a resource Stoppable.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Stoppable protocol defines the requirements for making a resource Stoppable.</span>
 
 <span class="sd">    All resources that physically move should be Stoppable.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Stoppable.stop"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.Stoppable.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="o">...</span></div></div>
+
+
+<div class="viewcode-block" id="SupportsGetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.SupportsGetGeometries">[docs]</a><span class="nd">@runtime_checkable</span>
+<span class="k">class</span> <span class="nc">SupportsGetGeometries</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="SupportsGetGeometries.get_geometries"><a class="viewcode-back" href="../../../autoapi/viam/module/types/index.html#viam.module.types.SupportsGetGeometries.get_geometries">[docs]</a>    <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="o">...</span></div></div>
 </pre></div>
 

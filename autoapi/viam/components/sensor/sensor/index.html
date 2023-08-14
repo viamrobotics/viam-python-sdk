@@ -79,6 +79,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor"><code class="docutils literal notranslate"><span class="pre">Sensor</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Sensor.SUBTYPE</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.get_readings"><code class="docutils literal notranslate"><span class="pre">Sensor.get_readings()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.get_geometries"><code class="docutils literal notranslate"><span class="pre">Sensor.get_geometries()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.from_robot"><code class="docutils literal notranslate"><span class="pre">Sensor.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.do_command"><code class="docutils literal notranslate"><span class="pre">Sensor.do_command()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.sensor.sensor.Sensor.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Sensor.get_resource_name()</span></code></a></li>
@@ -175,6 +176,20 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>Mapping[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.sensor.sensor.Sensor.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.components.sensor.Geometry" title="viam.components.sensor.Geometry"><span class="pre">viam.components.sensor.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/sensor/sensor.html#Sensor.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.sensor.sensor.Sensor.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the sensor, in their current configuration, in the frame of the sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the sensor.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="../../arm/index.html#viam.components.arm.Geometry" title="viam.components.arm.Geometry">Geometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

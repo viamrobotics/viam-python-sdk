@@ -45,6 +45,16 @@ Classes
       :type body_names: List[str]
 
 
+   .. py:method:: get_geometries() -> List[viam.components.pose_tracker.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the pose tracker, in their current configuration, in the frame of the pose tracker.
+
+      :returns: The geometries associated with the pose tracker.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

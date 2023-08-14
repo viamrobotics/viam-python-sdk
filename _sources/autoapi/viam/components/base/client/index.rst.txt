@@ -124,6 +124,15 @@ Classes
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.components.base.Geometry]
+      :async:
+
+      Get all geometries associated with the base, in their current configuration, in the frame of the base.
+
+      :returns: The geometries associated with the base.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

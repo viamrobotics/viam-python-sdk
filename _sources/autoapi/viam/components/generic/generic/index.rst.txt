@@ -84,6 +84,16 @@ Classes
 
       
 
+   .. py:method:: get_geometries() -> List[viam.components.generic.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the generic component, in their current configuration, in the frame of the generic component.
+
+      :returns: The geometries associated with the generic component.
+      :rtype: List[Geometry]
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 

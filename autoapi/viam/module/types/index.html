@@ -74,6 +74,10 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.module.types.Stoppable.stop"><code class="docutils literal notranslate"><span class="pre">Stoppable.stop()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.module.types.SupportsGetGeometries"><code class="docutils literal notranslate"><span class="pre">SupportsGetGeometries</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.module.types.SupportsGetGeometries.get_geometries"><code class="docutils literal notranslate"><span class="pre">SupportsGetGeometries.get_geometries()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -129,6 +133,9 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.module.types.Stoppable" title="viam.module.types.Stoppable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Stoppable</span></code></a></p></td>
 <td><p>The Stoppable protocol defines the requirements for making a resource Stoppable.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.module.types.SupportsGetGeometries" title="viam.module.types.SupportsGetGeometries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SupportsGetGeometries</span></code></a></p></td>
+<td><p>The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -152,6 +159,18 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.module.types.Stoppable.stop">
 <span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/types.html#Stoppable.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.types.Stoppable.stop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.module.types.SupportsGetGeometries">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.module.types.</span></span><span class="sig-name descname"><span class="pre">SupportsGetGeometries</span></span><a class="reference internal" href="../../../../_modules/viam/module/types.html#SupportsGetGeometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.types.SupportsGetGeometries" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">Protocol</span></code></p>
+<p>The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.module.types.SupportsGetGeometries.get_geometries">
+<span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/types.html#SupportsGetGeometries.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.types.SupportsGetGeometries.get_geometries" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -23,191 +23,70 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.motor.Motor
+   viam.components.motor.Geometry
 
 
 
 
-.. py:class:: Motor(name: str)
+.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
 
 
-   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+   Bases: :py:obj:`google.protobuf.message.Message`
 
-   Motor represents a physical motor.
+   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
 
-   This acts as an abstract base class for any drivers representing specific
-   motor implementations. This cannot be used on its own. If the ``__init__()`` function is
-   overridden, it must call the ``super().__init__()`` function.
+   .. py:property:: center
+      :type: global___Pose
 
-   .. py:class:: Properties
+      Pose of a geometries center point
 
-
-      .. py:attribute:: position_reporting
-         :type: bool
-
-         
+   .. py:property:: sphere
+      :type: global___Sphere
 
 
-   .. py:attribute:: SUBTYPE
-      :type: Final
-
-      
-
-   .. py:method:: set_power(power: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
-
-      Sets the "percentage" of power the motor should employ between -1 and 1.
-      When ``power`` is negative, the rotation will be in the backward direction.
-
-      :param power: Power between -1 and 1
-                    (negative implies backwards).
-      :type power: float
+   .. py:property:: box
+      :type: global___RectangularPrism
 
 
-   .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
-
-      Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
-      When ``rpm`` or ``revolutions`` is a negative value, the rotation will be in the backward direction.
-      Note: if both ``rpm`` and ``revolutions`` are negative, the motor will spin in the forward direction.
-
-      :param rpm: Speed at which the motor should move in rotations per minute
-                  (negative implies backwards).
-      :type rpm: float
-      :param revolutions: Number of revolutions the motor should run for
-                          (negative implies backwards).
-      :type revolutions: float
+   .. py:property:: capsule
+      :type: global___Capsule
 
 
-   .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
+   .. py:attribute:: label
+      :type: str
 
-      Spin the motor to the specified position (provided in revolutions from home/zero),
-      at the specified speed, in revolutions per minute.
-      Regardless of the directionality of the ``rpm`` this function will move
-      the motor towards the specified position.
+      Label of the geometry. If none supplied, will be an empty string.
 
-      :param rpm: Speed at which the motor should rotate (absolute value).
-      :type rpm: float
-      :param position_revolutions: Target position relative to home/zero, in revolutions.
-      :type position_revolutions: float
+   .. py:method:: HasField(field_name: Literal[box, b'box', capsule, b'capsule', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
 
+      Checks if a certain field is set for the message.
 
-   .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
 
-      Set the current position (modified by ``offset``) to be the new zero (home) position.
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
 
-      :param offset: The offset from the current position to new home/zero position.
-      :type offset: float
-
-
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
-      :abstractmethod:
-      :async:
-
-      Report the position of the motor based on its encoder.
-      The value returned is the number of revolutions relative to its zero position.
-      This method will raise an exception if position reporting is not supported by the motor.
-
-      :returns: Number of revolutions the motor is away from zero/home.
-      :rtype: float
-
-
-   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
-      :abstractmethod:
-      :async:
-
-      Report a dictionary mapping optional properties to
-      whether it is supported by this motor.
-
-      :returns: Map of feature names to supported status.
-      :rtype: Properties
-
-
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
-
-      Stop the motor immediately, without any gradual step down.
-
-
-   .. py:method:: is_powered(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[bool, float]
-      :abstractmethod:
-      :async:
-
-      Returns whether or not the motor is currently running.
-
-      :returns: Indicates whether the motor is currently powered.
-                float: The current power percentage of the motor
+      :returns: Whether a value has been set for the named field.
       :rtype: bool
 
-
-   .. py:method:: is_moving() -> bool
-      :abstractmethod:
-      :async:
-
-      Get if the motor is currently moving.
-
-      :returns: Whether the motor is moving.
-      :rtype: bool
+      :raises ValueError: if the `field_name` is not a member of this message.
 
 
-   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
-      :classmethod:
+   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> Literal[sphere, box, capsule] | None
 
-      Get the component named ``name`` from the provided robot.
+      Returns the name of the field that is set inside a oneof group.
 
-      :param robot: The robot
-      :type robot: RobotClient
-      :param name: The name of the component
-      :type name: str
+      If no field is set, returns None.
 
-      :returns: The component, if it exists on the robot
-      :rtype: Self
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
 
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
 
-   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
-      :abstractmethod:
-      :async:
-
-      Send/Receive arbitrary commands to the Resource
-
-      :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
-
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
-
-
-   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
-      :classmethod:
-
-      Get the ResourceName for this Resource with the given name
-
-      :param name: The name of the Resource
-      :type name: str
-
-
-   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
-
-      Get the ``Operation`` associated with the currently running function.
-
-      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
-      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
-      ).
-
-      :param kwargs: The kwargs object containing the operation
-      :type kwargs: Mapping[str, Any]
-
-      :returns: The operation associated with this function
-      :rtype: viam.operations.Operation
+      :raises ValueError: no group with the given name exists
 
 
 
