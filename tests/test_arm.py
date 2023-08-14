@@ -1,10 +1,17 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import ArmClient, ArmStatus, KinematicsFileFormat, create_status
 from viam.components.arm.service import ArmRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetKinematicsRequest, GetKinematicsResponse, Pose
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+    Pose,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -22,7 +29,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockArm
+from .mocks.components import GEOMETRIES, MockArm
 
 
 class TestArm:
@@ -69,6 +76,11 @@ class TestArm:
         kd = await self.arm.get_kinematics(extra={"1": "2"})
         assert kd == self.kinematics
         assert self.arm.extra == {"1": "2"}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.arm.get_geometries()
+        assert geometries == GEOMETRIES
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -175,9 +187,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ArmServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
     @pytest.mark.asyncio
     async def test_extra(self):
@@ -253,6 +265,13 @@ class TestClient:
             kd = await client.get_kinematics(extra={"1": "2"})
             assert kd == self.kinematics
             assert self.arm.extra == {"1": "2"}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ArmClient(self.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES
 
     @pytest.mark.asyncio
     async def test_do(self):

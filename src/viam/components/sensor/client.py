@@ -1,13 +1,14 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 from .sensor import Sensor
+from . import Geometry
 
 
 class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
@@ -31,3 +32,6 @@ class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)

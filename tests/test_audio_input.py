@@ -8,7 +8,7 @@ from grpclib.testing import ChannelFor
 
 from viam.components.audio_input import AudioInput, AudioInputClient, AudioInputRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
@@ -22,7 +22,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockAudioInput
+from .mocks.components import GEOMETRIES, MockAudioInput
 
 PROPERTIES = AudioInput.Properties(
     channel_count=2,
@@ -75,6 +75,11 @@ class TestAudioInput:
         command = {"command": "args"}
         resp = await audio_input.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, audio_input: AudioInput):
+        geometries = await audio_input.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -129,12 +134,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: AudioInputRPCService):
+    async def test_get_geometries(self, audio_input: MockAudioInput, service: AudioInputRPCService):
         async with ChannelFor([service]) as channel:
             client = AudioInputServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=audio_input.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -169,3 +174,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, audio_input: AudioInput, service: AudioInputRPCService):
+        async with ChannelFor([service]) as channel:
+            client = AudioInputClient(audio_input.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

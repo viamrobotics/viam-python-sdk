@@ -1,4 +1,4 @@
-from typing import AsyncIterator, Mapping, Optional, Union
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
@@ -14,9 +14,9 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
-from .audio_input import AudioInput
+from .audio_input import AudioInput, Geometry
 
 
 class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
@@ -58,3 +58,6 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)

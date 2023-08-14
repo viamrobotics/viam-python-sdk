@@ -4,7 +4,6 @@ from io import BytesIO
 import pytest
 from google.api.httpbody_pb2 import HttpBody
 from google.protobuf.timestamp_pb2 import Timestamp
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 from PIL import Image
 
@@ -12,7 +11,7 @@ from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, RawImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, ResponseMetadata
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
     DistortionParameters,
@@ -32,7 +31,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockCamera
+from .mocks.components import GEOMETRIES, MockCamera
 
 # ################################ NB ################################# #
 #   These test values have to be fixtures and must match the values in  #
@@ -133,6 +132,11 @@ class TestCamera:
         await camera.get_properties(timeout=7.86)
         assert camera.timeout == loose_approx(7.86)
 
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, camera: MockCamera):
+        geometries = await camera.get_geometries()
+        assert geometries == GEOMETRIES
+
 
 class TestService:
     @pytest.mark.asyncio
@@ -226,12 +230,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: CameraRPCService):
+    async def test_get_geometries(self, camera: MockCamera, service: CameraRPCService):
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=camera.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -303,3 +307,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, service: CameraRPCService):
+        async with ChannelFor([service]) as channel:
+            client = CameraClient("camera", channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

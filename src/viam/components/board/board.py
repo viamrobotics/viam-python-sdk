@@ -9,6 +9,7 @@ from viam.proto.component.board import PowerMode
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Geometry
 
 PostProcessor = Callable[[int], int]
 
@@ -262,3 +263,13 @@ class Board(ComponentBase):
         Args:
             mode: the desired power mode
         """
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the board, in their current configuration, in the frame of the board.
+
+        Returns:
+            List[Geometry]: The geometries associated with the board.
+        """
+        ...

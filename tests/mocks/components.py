@@ -38,12 +38,15 @@ from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
+    Capsule,
     DigitalInterruptStatus,
+    Geometry,
     GeoPoint,
     Orientation,
     Pose,
     PoseInFrame,
     ResponseMetadata,
+    Sphere,
     Vector3,
 )
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
@@ -52,20 +55,19 @@ from viam.proto.component.encoder import PositionType
 from viam.utils import ValueTypes
 
 
+GEOMETRIES = [
+    Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+    Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+]
+
+
 class MockArm(Arm):
     def __init__(self, name: str):
-        self.position = Pose(
-            x=1,
-            y=2,
-            z=3,
-            o_x=2,
-            o_y=3,
-            o_z=4,
-            theta=20,
-        )
+        self.position = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
         self.kinematics = (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, b"\x00\x01\x02")
+        self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -115,7 +117,13 @@ class MockArm(Arm):
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
     ) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         self.extra = extra
+        self.timeout = timeout
         return self.kinematics
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -124,6 +132,7 @@ class MockArm(Arm):
 class MockAudioInput(AudioInput):
     def __init__(self, name: str, properties: AudioInput.Properties):
         super().__init__(name)
+        self.geometries = GEOMETRIES
         self.properties = properties
         self.timeout: Optional[float] = None
 
@@ -146,6 +155,11 @@ class MockAudioInput(AudioInput):
         self.timeout = timeout
         return self.properties
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -159,6 +173,7 @@ class MockBase(Base):
         self.angular_pwr = Vector3(x=0, y=0, z=0)
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
+        self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
         self.props = Base.Properties(1.0, 1.0)
@@ -220,6 +235,11 @@ class MockBase(Base):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
         self.timeout = timeout
         return self.props
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -313,6 +333,7 @@ class MockBoard(Board):
     ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
+        self.geometries = GEOMETRIES
         self.gpios = gpio_pins
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -352,6 +373,11 @@ class MockBoard(Board):
     async def model_attributes(self) -> Board.Attributes:
         return Board.Attributes(remote=True)
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -366,6 +392,7 @@ class MockBoard(Board):
 class MockCamera(Camera):
     def __init__(self, name: str):
         self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
+        self.geometries = GEOMETRIES
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.props = Camera.Properties(
             False,
@@ -406,6 +433,11 @@ class MockCamera(Camera):
         self.timeout = timeout
         return self.props
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -414,6 +446,7 @@ class MockEncoder(Encoder):
     def __init__(self, name: str):
         self.position: float = 0
         self.position_type = PositionType.POSITION_TYPE_TICKS_COUNT
+        self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -452,6 +485,11 @@ class MockEncoder(Encoder):
         self.timeout = timeout
         return Encoder.Properties(ticks_count_supported=True, angle_degrees_supported=False)
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -464,6 +502,7 @@ class MockGantry(Gantry):
         self.extra = None
         self.homed = True
         self.speeds = Optional[List[float]]
+        self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         super().__init__(name)
 
@@ -507,12 +546,23 @@ class MockGantry(Gantry):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
 
 class MockGeneric(GenericComponent):
     timeout: Optional[float] = None
+    geometries = GEOMETRIES
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         self.timeout = timeout
@@ -522,6 +572,7 @@ class MockGeneric(GenericComponent):
 class MockGripper(Gripper):
     def __init__(self, name: str):
         self.opened = False
+        self.geometries = GEOMETRIES
         self.extra = None
         self.is_stopped = True
         self.timeout: Optional[float] = None
@@ -548,6 +599,11 @@ class MockGripper(Gripper):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -557,6 +613,7 @@ class MockInputController(Controller):
         super().__init__(name)
         self.events: Dict[Control, Event] = {}
         self.callbacks: Dict[Control, Dict[EventType, Optional[ControlFunction]]] = {}
+        self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra = None
         self.reg_extra = None
@@ -614,6 +671,11 @@ class MockInputController(Controller):
         if callback:
             callback(event)
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -623,6 +685,7 @@ class MockMotor(Motor):
         self.position: float = 0
         self.power = 0
         self.powered = False
+        self.geometries = GEOMETRIES
         self.extra = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -732,6 +795,11 @@ class MockMotor(Motor):
     async def is_moving(self) -> bool:
         return self.powered
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -760,6 +828,7 @@ class MockMovementSensor(MovementSensor):
         self.orientation = orientation
         self.properties = properties
         self.accuracy = accuracy
+        self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
 
@@ -811,6 +880,11 @@ class MockMovementSensor(MovementSensor):
         self.timeout = timeout
         return self.accuracy
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -837,6 +911,7 @@ class MockPoseTracker(PoseTracker):
             pose_map[str(idx)] = pose
         self.poses_result = pose_map
         self.name = name
+        self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Mapping[str, Any]] = None
 
@@ -855,6 +930,11 @@ class MockPoseTracker(PoseTracker):
         self.extra = extra
         return result
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -866,6 +946,7 @@ class MockPowerSensor(PowerSensor):
         self.current = current
         self.is_ac = is_ac
         self.power = power
+        self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
 
@@ -891,6 +972,7 @@ class MockPowerSensor(PowerSensor):
 class MockSensor(Sensor):
     def __init__(self, name: str, result: Mapping[str, Any] = {"a": 0, "b": {"foo": "bar"}, "c": [1, 8, 2], "d": "Hello world!"}):
         self.readings = result
+        self.geometries = GEOMETRIES
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
         super().__init__(name)
@@ -902,6 +984,11 @@ class MockSensor(Sensor):
         self.timeout = timeout
         return self.readings
 
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -910,6 +997,7 @@ class MockServo(Servo):
     def __init__(self, name: str):
         self.angle = 0
         self.is_stopped = True
+        self.geometries = GEOMETRIES
         self.timeout: Optional[float] = None
         self.extra: Optional[Mapping[str, Any]] = None
         super().__init__(name)
@@ -932,6 +1020,11 @@ class MockServo(Servo):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.geometries
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

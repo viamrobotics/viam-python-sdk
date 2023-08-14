@@ -27,9 +27,10 @@ from viam.proto.component.board import (
     StatusResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
-from .board import Board, PostProcessor
+from .board import PostProcessor
+from . import Board, Geometry
 
 
 class AnalogReaderClient(Board.AnalogReader):
@@ -174,3 +175,6 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             duration_pb = [(d, d.FromTimedelta(duration)) for d in [Duration()]][0][0]
         request = SetPowerModeRequest(name=self.name, power_mode=mode, duration=duration_pb)
         await self.client.SetPowerMode(request, timeout=timeout)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)

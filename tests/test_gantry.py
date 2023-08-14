@@ -1,10 +1,9 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.gantry import GantryClient, GantryStatus, create_status
 from viam.components.gantry.service import GantryRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.gantry import (
     GantryServiceStub,
     GetLengthsRequest,
@@ -22,7 +21,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockGantry
+from .mocks.components import GEOMETRIES, MockGantry
 
 
 class TestGantry:
@@ -96,6 +95,11 @@ class TestGantry:
 
         await self.gantry.stop(timeout=4.4)
         assert self.gantry.timeout == loose_approx(4.4)
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.gantry.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -186,9 +190,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = GantryServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.gantry.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -264,3 +268,10 @@ class TestClient:
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             await client.move_to_position([1, 2, 3], [4, 5, 6], extra=extra)
             assert self.gantry.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = GantryClient(self.gantry.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

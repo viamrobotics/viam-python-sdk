@@ -1,4 +1,4 @@
-from typing import Any, Dict, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
@@ -17,9 +17,9 @@ from viam.proto.component.arm import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
-from . import Arm, KinematicsFileFormat, Pose
+from . import Arm, Geometry, KinematicsFileFormat, Pose
 
 
 class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
@@ -116,3 +116,6 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout)
         return (response.format, response.kinematics_data)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)

@@ -1,9 +1,10 @@
 import abc
-from typing import Any, Final, Mapping, Optional
+from typing import Any, Final, List, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import Geometry
 
 
 class Servo(ComponentBase):
@@ -51,5 +52,15 @@ class Servo(ComponentBase):
 
         Returns:
             bool: Whether the servo is moving.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the servo, in their current configuration, in the frame of the servo.
+
+        Returns:
+            List[Geometry]: The geometries associated with the servo.
         """
         ...

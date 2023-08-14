@@ -8,7 +8,7 @@ from viam.proto.common import ResponseMetadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import DistortionParameters, IntrinsicParameters, RawImage
+from . import DistortionParameters, Geometry, IntrinsicParameters, RawImage
 
 
 class Camera(ComponentBase):
@@ -101,5 +101,15 @@ class Camera(ComponentBase):
 
         Returns:
             Properties: The properties of the camera
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the camera, in their current configuration, in the frame of the camera.
+
+        Returns:
+            List[Geometry]: The geometries associated with the camera.
         """
         ...

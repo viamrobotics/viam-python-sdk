@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -13,9 +13,10 @@ from viam.proto.component.servo import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
 from .servo import Servo
+from . import Geometry
 
 
 class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
@@ -56,3 +57,6 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)

@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
@@ -6,9 +6,10 @@ from grpclib.client import Channel
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
 
 from .generic import Generic
+from . import Geometry
 
 
 class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
@@ -30,6 +31,9 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
             raise e
 
         return struct_to_dict(response.result)
+
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+        return await get_geometries(self, extra, timeout)
 
 
 async def do_command(

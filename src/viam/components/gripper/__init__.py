@@ -1,5 +1,4 @@
-from viam.components.gantry.gantry import Gantry
-from viam.proto.common import ActuatorStatus
+from viam.proto.common import ActuatorStatus, Geometry
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
@@ -10,6 +9,7 @@ from .service import GripperRPCService
 
 __all__ = [
     "Gripper",
+    "Geometry",
 ]
 
 

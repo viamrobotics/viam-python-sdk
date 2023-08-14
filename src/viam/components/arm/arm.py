@@ -1,10 +1,10 @@
 import abc
-from typing import Any, Dict, Final, Optional, Tuple
+from typing import Any, Dict, Final, List, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import JointPositions, KinematicsFileFormat, Pose
+from . import Geometry, JointPositions, KinematicsFileFormat, Pose
 
 
 class Arm(ComponentBase):
@@ -120,5 +120,15 @@ class Arm(ComponentBase):
                   The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
 
                 - bytes: The byte contents of the file.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the arm, in their current configuration, in the frame of the arm.
+
+        Returns:
+            List[Geometry]: The geometries associated with the arm.
         """
         ...

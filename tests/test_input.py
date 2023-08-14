@@ -3,14 +3,13 @@ from datetime import datetime, timedelta
 from time import time
 
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.input import Control, Event, EventType
 from viam.components.input.client import ControllerClient
 from viam.components.input.service import InputControllerRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -25,7 +24,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockInputController
+from .mocks.components import GEOMETRIES, MockInputController
 
 
 @pytest.fixture(scope="function")
@@ -110,6 +109,11 @@ class TestInputController:
         command = {"command": "args"}
         resp = await controller.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, controller: MockInputController):
+        geometries = await controller.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -218,12 +222,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: InputControllerRPCService):
+    async def test_get_geometries(self, controller: MockInputController, service: InputControllerRPCService):
         async with ChannelFor([service]) as channel:
             client = InputControllerServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=controller.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -339,3 +343,10 @@ class TestClient:
             client.reset_channel(channel2)
             await asyncio.sleep(0.1)
             assert client._is_streaming is True  # reset the channel should restart the callback stream
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, controller: MockInputController, service: InputControllerRPCService):
+        async with ChannelFor([service]) as channel:
+            client = ControllerClient(controller.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

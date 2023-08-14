@@ -1,3 +1,4 @@
+from viam.proto.common import Geometry
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import EncoderClient
@@ -6,6 +7,7 @@ from .service import EncoderRPCService
 
 __all__ = [
     "Encoder",
+    "Geometry",
 ]
 
 

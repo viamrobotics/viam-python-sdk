@@ -1,4 +1,4 @@
-from viam.proto.common import ActuatorStatus, Vector3
+from viam.proto.common import ActuatorStatus, Geometry, Vector3
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
@@ -7,7 +7,11 @@ from .base import Base
 from .client import BaseClient
 from .service import BaseRPCService
 
-__all__ = ["Base", "Vector3"]
+__all__ = [
+    "Base",
+    "Geometry",
+    "Vector3",
+]
 
 
 async def create_status(component: Base) -> Status:

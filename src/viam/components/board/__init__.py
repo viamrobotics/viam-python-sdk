@@ -1,3 +1,4 @@
+from viam.proto.common import Geometry
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
@@ -8,6 +9,7 @@ from .service import BoardRPCService
 
 __all__ = [
     "Board",
+    "Geometry",
 ]
 
 

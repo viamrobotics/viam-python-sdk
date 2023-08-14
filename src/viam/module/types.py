@@ -15,10 +15,19 @@ class Reconfigurable(Protocol):
 
 @runtime_checkable
 class Stoppable(Protocol):
-    """The Stoppable protocol defines the requirements for making a resource Stoppable.
+    """
+    The Stoppable protocol defines the requirements for making a resource Stoppable.
 
     All resources that physically move should be Stoppable.
     """
 
     def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        ...
+
+
+@runtime_checkable
+class SupportsGetGeometries(Protocol):
+    """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
+
+    def get_geometries(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         ...

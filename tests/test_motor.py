@@ -1,11 +1,10 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.motor import MotorClient, MotorStatus, create_status
 from viam.components.motor.service import MotorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
@@ -26,7 +25,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockMotor
+from .mocks.components import GEOMETRIES, MockMotor
 
 
 @pytest.fixture(scope="function")
@@ -144,6 +143,11 @@ class TestMotor:
         extra = {"foo": "bar", "baz": [1, 2, 3]}
         await motor.is_powered(extra=extra)
         assert motor.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, motor: MockMotor):
+        geometries = await motor.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -281,12 +285,12 @@ class TestService:
             assert result == {"command": command}
 
     @pytest.mark.asyncio
-    async def test_get_geometries(self, service: MotorRPCService):
+    async def test_get_geometries(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=motor.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -402,3 +406,10 @@ class TestClient:
             extra = {"foo": "bar", "baz": [1, 2, 3]}
             await client.is_powered(extra=extra)
             assert motor.extra == extra
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self, motor: MockMotor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES

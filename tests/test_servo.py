@@ -1,10 +1,9 @@
 import pytest
-from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
 from viam.components.servo import ServoClient, ServoStatus, create_status
 from viam.components.servo.service import ServoRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.servo import (
     GetPositionRequest,
     GetPositionResponse,
@@ -18,7 +17,7 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import MockServo
+from .mocks.components import GEOMETRIES, MockServo
 
 
 class TestServo:
@@ -66,6 +65,11 @@ class TestServo:
         status = await create_status(self.servo)
         assert status.name == self.servo.get_resource_name(self.servo.name)
         assert status.status == message_to_struct(ServoStatus(position_deg=self.pos, is_moving=True))
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        geometries = await self.servo.get_geometries()
+        assert geometries == GEOMETRIES
 
 
 class TestService:
@@ -132,9 +136,9 @@ class TestService:
     async def test_get_geometries(self):
         async with ChannelFor([self.service]) as channel:
             client = ServoServiceStub(channel)
-            request = GetGeometriesRequest()
-            with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-                await client.GetGeometries(request)
+            request = GetGeometriesRequest(name=self.servo.name)
+            response: GetGeometriesResponse = await client.GetGeometries(request)
+            assert [geometry for geometry in response.geometries] == GEOMETRIES
 
 
 class TestClient:
@@ -189,3 +193,10 @@ class TestClient:
             command = {"command": "args"}
             resp = await client.do_command(command)
             assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_get_geometries(self):
+        async with ChannelFor([self.service]) as channel:
+            client = ServoClient(self.name, channel)
+            geometries = await client.get_geometries()
+            assert geometries == GEOMETRIES
