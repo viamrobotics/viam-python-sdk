@@ -11,7 +11,7 @@ from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from viam.proto.common import GetGeometriesRequest, GetGeometriesResponse, GeoPoint, Orientation, ResourceName, Vector3
+from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import Subtype
@@ -159,7 +159,7 @@ def datetime_to_timestamp(dt: datetime) -> Timestamp:
     return timestamp
 
 
-async def get_geometries(client, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Any]:
+async def get_geometries(client, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
     if extra is None:
         extra = {}
     request = GetGeometriesRequest(name=client.name, extra=dict_to_struct(extra))
