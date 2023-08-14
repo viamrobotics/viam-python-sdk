@@ -3,14 +3,13 @@ import asyncio
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 
 from grpclib import GRPCError
+from viam.components.component_base import ComponentBase
 
 from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
-from ..sensor import Geometry, Sensor
 
-
-class PowerSensor(Sensor):
+class PowerSensor(ComponentBase):
     """PowerSensor reports information about voltage, current and power.
 
     This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.
@@ -90,6 +89,3 @@ class PowerSensor(Sensor):
         add_reading("power", pow, [float])
 
         return readings
-
-    async def get_geometries(self) -> List[Geometry]:
-        raise MethodNotImplementedError("GetGeometries").grpc_error

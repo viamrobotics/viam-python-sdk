@@ -106,11 +106,6 @@ class TestPowerSensor:
         resp = await power_sensor.do_command(command)
         assert resp == {"command": command}
 
-    @pytest.mark.asyncio
-    async def test_get_geometries(self, power_sensor: PowerSensor):
-        with pytest.raises(GRPCError, match=r"Method [a-zA-Z]+ not implemented"):
-            await power_sensor.get_geometries()
-
 
 class TestService:
     @pytest.mark.asyncio
