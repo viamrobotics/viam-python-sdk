@@ -355,7 +355,8 @@ class AppClient:
 
     async def _request_organization_id(self) -> str:
         organizations = await self.list_organizations()
-        return organizations[0].id
+        self._organization_id = organizations[0].id
+        return self._organization_id
 
     async def get_user_id_by_email(self, email: str) -> str:
         raise NotImplementedError()

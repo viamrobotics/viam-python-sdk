@@ -336,7 +336,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             logs_stream = await client.tail_robot_part_logs(robot_part_id=ID, errors_only=ERRORS_ONLY, filter=FILTER)
-            [logs async for logs in logs_stream]
+            [logs async for logs in logs_stream]  # Iterate over returned value to implicitly call __anext__() so server runs properly.
             assert service.robot_part_id == ID
             assert service.errors_only == ERRORS_ONLY
             assert service.filter == FILTER
