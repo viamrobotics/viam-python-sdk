@@ -14,7 +14,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import Subtype
+from viam.resource.types import Subtype, SupportsGetGeometries
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -159,11 +159,13 @@ def datetime_to_timestamp(dt: datetime) -> Timestamp:
     return timestamp
 
 
-async def get_geometries(client, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+async def get_geometries(
+    client: SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+) -> List[Geometry]:
     if extra is None:
         extra = {}
-    request = GetGeometriesRequest(name=client.name, extra=dict_to_struct(extra))
-    response: GetGeometriesResponse = await client.client.GetGeometries(request, timeout=timeout)
+    request = GetGeometriesRequest(name=name, extra=dict_to_struct(extra))
+    response: GetGeometriesResponse = await client.GetGeometries(request, timeout=timeout)
     return [geometry for geometry in response.geometries]
 
 
