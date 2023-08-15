@@ -14,7 +14,6 @@ Classes
 
    viam.module.types.Reconfigurable
    viam.module.types.Stoppable
-   viam.module.types.SupportsGetGeometries
 
 
 
@@ -40,17 +39,6 @@ Classes
    All resources that physically move should be Stoppable.
 
    .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
-
-
-
-.. py:class:: SupportsGetGeometries
-
-
-   Bases: :py:obj:`Protocol`
-
-   The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.
-
-   .. py:method:: get_geometries(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
 
 
 

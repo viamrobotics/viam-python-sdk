@@ -90,7 +90,7 @@ Attributes
 .. py:function:: datetime_to_timestamp(dt: datetime.datetime) -> google.protobuf.timestamp_pb2.Timestamp
 
 
-.. py:function:: get_geometries(client, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+.. py:function:: get_geometries(client: viam.resource.types.SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
    :async:
 
 
