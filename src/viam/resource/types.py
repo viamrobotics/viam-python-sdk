@@ -1,6 +1,6 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Sequence
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, runtime_checkable, Sequence
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -10,7 +10,7 @@ else:
 from typing_extensions import Self
 
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName
+from viam.proto.common import ResourceName, GetGeometriesRequest, GetGeometriesResponse
 
 if TYPE_CHECKING:
     from .base import ResourceBase
@@ -198,3 +198,11 @@ def resource_name_from_string(string: str) -> ResourceName:
 
 ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]
 Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
+
+
+@runtime_checkable
+class SupportsGetGeometries(Protocol):
+    """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
+
+    async def GetGeometries(self, request: GetGeometriesRequest, timeout: Optional[float] = None) -> GetGeometriesResponse:
+        ...

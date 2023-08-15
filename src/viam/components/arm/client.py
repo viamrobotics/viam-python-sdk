@@ -118,4 +118,4 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         return (response.format, response.kinematics_data)
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self, extra, timeout)
+        return await get_geometries(self.client, self.name, extra, timeout)
