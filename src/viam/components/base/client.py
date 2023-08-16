@@ -119,7 +119,9 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return Base.Properties(width_meters=response.width_meters, turning_radius_meters=response.turning_radius_meters)
+        return Base.Properties(width_meters=response.width_meters,
+                               turning_radius_meters=response.turning_radius_meters,
+                               wheel_circumference_meters=response.wheel_circumference_meters)
 
     async def do_command(
         self,

@@ -112,7 +112,9 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase):
         base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         properties = await base.get_properties(timeout=timeout, metadata=stream.metadata)
-        response = GetPropertiesResponse(width_meters=properties.width_meters, turning_radius_meters=properties.turning_radius_meters)
+        response = GetPropertiesResponse(width_meters=properties.width_meters,
+                                         turning_radius_meters=properties.turning_radius_meters,
+                                         wheel_circumference_meters=properties.wheel_circumference_meters)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
