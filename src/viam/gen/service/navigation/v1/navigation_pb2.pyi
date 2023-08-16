@@ -146,18 +146,21 @@ global___GetLocationRequest = GetLocationRequest
 class GetLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
+    COMPASS_HEADING_FIELD_NUMBER: builtins.int
 
     @property
     def location(self) -> common.v1.common_pb2.GeoPoint:
         ...
+    compass_heading: builtins.float
+    'A number from [0-360) where 0 is north\n    90 is east, 180 is south, 270 is west\n    '
 
-    def __init__(self, *, location: common.v1.common_pb2.GeoPoint | None=...) -> None:
+    def __init__(self, *, location: common.v1.common_pb2.GeoPoint | None=..., compass_heading: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['compass_heading', b'compass_heading', 'location', b'location']) -> None:
         ...
 global___GetLocationResponse = GetLocationResponse
 

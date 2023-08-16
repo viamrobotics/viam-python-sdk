@@ -134,6 +134,60 @@ class MoveOnMapResponse(google.protobuf.message.Message):
 global___MoveOnMapResponse = MoveOnMapResponse
 
 @typing_extensions.final
+class MotionConfiguration(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VISION_SERVICES_FIELD_NUMBER: builtins.int
+    POSITION_POLLING_FREQUENCY_HZ_FIELD_NUMBER: builtins.int
+    OBSTACLE_POLLING_FREQUENCY_HZ_FIELD_NUMBER: builtins.int
+    PLAN_DEVIATION_M_FIELD_NUMBER: builtins.int
+    LINEAR_M_PER_SEC_FIELD_NUMBER: builtins.int
+    ANGULAR_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
+
+    @property
+    def vision_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.ResourceName]:
+        """The name of the vision service(s) that will be used to detect obstacles"""
+    position_polling_frequency_hz: builtins.float
+    'Sets the frequency to poll for the position of the robot'
+    obstacle_polling_frequency_hz: builtins.float
+    'Sets the frequency to poll the vision service(s) for new obstacles'
+    plan_deviation_m: builtins.float
+    'Sets the distance in meters that a robot is allowed to deviate from the motion plan'
+    linear_m_per_sec: builtins.float
+    'Optional linear velocity to target when moving'
+    angular_degs_per_sec: builtins.float
+    'Optional angular velocity to target when turning'
+
+    def __init__(self, *, vision_services: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=..., position_polling_frequency_hz: builtins.float | None=..., obstacle_polling_frequency_hz: builtins.float | None=..., plan_deviation_m: builtins.float | None=..., linear_m_per_sec: builtins.float | None=..., angular_degs_per_sec: builtins.float | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz', 'vision_services', b'vision_services']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> typing_extensions.Literal['angular_degs_per_sec'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> typing_extensions.Literal['linear_m_per_sec'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> typing_extensions.Literal['obstacle_polling_frequency_hz'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_plan_deviation_m', b'_plan_deviation_m']) -> typing_extensions.Literal['plan_deviation_m'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> typing_extensions.Literal['position_polling_frequency_hz'] | None:
+        ...
+global___MotionConfiguration = MotionConfiguration
+
+@typing_extensions.final
 class MoveOnGlobeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -142,8 +196,7 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
     OBSTACLES_FIELD_NUMBER: builtins.int
-    LINEAR_METERS_PER_SEC_FIELD_NUMBER: builtins.int
-    ANGULAR_DEG_PER_SEC_FIELD_NUMBER: builtins.int
+    MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
@@ -165,26 +218,22 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     @property
     def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
         """Obstacles to be considered for motion planning"""
-    linear_meters_per_sec: builtins.float
-    'Optional linear velocity to target when moving'
-    angular_deg_per_sec: builtins.float
-    'Optional angular velocity to target when turning'
+
+    @property
+    def motion_configuration(self) -> global___MotionConfiguration:
+        """Optional set of motion configuration options"""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., linear_meters_per_sec: builtins.float | None=..., angular_deg_per_sec: builtins.float | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec', '_heading', b'_heading', '_linear_meters_per_sec', b'_linear_meters_per_sec', 'angular_deg_per_sec', b'angular_deg_per_sec', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'linear_meters_per_sec', b'linear_meters_per_sec', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec', '_heading', b'_heading', '_linear_meters_per_sec', b'_linear_meters_per_sec', 'angular_deg_per_sec', b'angular_deg_per_sec', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'linear_meters_per_sec', b'linear_meters_per_sec', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_angular_deg_per_sec', b'_angular_deg_per_sec']) -> typing_extensions.Literal['angular_deg_per_sec'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
         ...
 
     @typing.overload
@@ -192,7 +241,7 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_linear_meters_per_sec', b'_linear_meters_per_sec']) -> typing_extensions.Literal['linear_meters_per_sec'] | None:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
         ...
 global___MoveOnGlobeRequest = MoveOnGlobeRequest
 
@@ -208,58 +257,6 @@ class MoveOnGlobeResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
         ...
 global___MoveOnGlobeResponse = MoveOnGlobeResponse
-
-@typing_extensions.final
-class MoveSingleComponentRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    DESTINATION_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    WORLD_STATE_FIELD_NUMBER: builtins.int
-    EXTRA_FIELD_NUMBER: builtins.int
-    name: builtins.str
-
-    @property
-    def destination(self) -> common.v1.common_pb2.PoseInFrame:
-        ...
-
-    @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        ...
-
-    @property
-    def world_state(self) -> common.v1.common_pb2.WorldState:
-        ...
-
-    @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_world_state', b'_world_state', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
-        ...
-global___MoveSingleComponentRequest = MoveSingleComponentRequest
-
-@typing_extensions.final
-class MoveSingleComponentResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SUCCESS_FIELD_NUMBER: builtins.int
-    success: builtins.bool
-
-    def __init__(self, *, success: builtins.bool=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
-        ...
-global___MoveSingleComponentResponse = MoveSingleComponentResponse
 
 @typing_extensions.final
 class GetPoseRequest(google.protobuf.message.Message):
@@ -345,7 +342,9 @@ global___Constraints = Constraints
 
 @typing_extensions.final
 class LinearConstraint(google.protobuf.message.Message):
-    """LinearConstraint specifies that the component being moved should move linearly relative to its goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move"""
+    """LinearConstraint specifies that the component being moved should move linearly relative to its goal.
+    It does not constrain the motion of components other than the `component_name` specified in motion.Move
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LINE_TOLERANCE_MM_FIELD_NUMBER: builtins.int
     ORIENTATION_TOLERANCE_DEGS_FIELD_NUMBER: builtins.int
@@ -374,7 +373,9 @@ global___LinearConstraint = LinearConstraint
 
 @typing_extensions.final
 class OrientationConstraint(google.protobuf.message.Message):
-    """OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move"""
+    """OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
+    to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORIENTATION_TOLERANCE_DEGS_FIELD_NUMBER: builtins.int
     orientation_tolerance_degs: builtins.float

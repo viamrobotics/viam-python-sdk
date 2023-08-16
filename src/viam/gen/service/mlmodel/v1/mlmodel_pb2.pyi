@@ -43,6 +43,8 @@ class InferRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     INPUT_DATA_FIELD_NUMBER: builtins.int
+    INPUT_TENSORS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the model service'
 
@@ -50,13 +52,21 @@ class InferRequest(google.protobuf.message.Message):
     def input_data(self) -> google.protobuf.struct_pb2.Struct:
         """this is a struct of input arrays/tensors as specified in the metadata"""
 
-    def __init__(self, *, name: builtins.str=..., input_data: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def input_tensors(self) -> global___FlatTensors:
+        """the input data can also be provided as set of named flat tensors"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., input_data: google.protobuf.struct_pb2.Struct | None=..., input_tensors: global___FlatTensors | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['input_data', b'input_data']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_data', b'input_data', 'input_tensors', b'input_tensors']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['input_data', b'input_data', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_data', b'input_data', 'input_tensors', b'input_tensors', 'name', b'name']) -> None:
         ...
 global___InferRequest = InferRequest
 
@@ -64,18 +74,23 @@ global___InferRequest = InferRequest
 class InferResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OUTPUT_DATA_FIELD_NUMBER: builtins.int
+    OUTPUT_TENSORS_FIELD_NUMBER: builtins.int
 
     @property
     def output_data(self) -> google.protobuf.struct_pb2.Struct:
         """this is a struct of output arrays/tensors as specified in the metadata"""
 
-    def __init__(self, *, output_data: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def output_tensors(self) -> global___FlatTensors:
+        """the output data can be provided as a set of named flat tensors"""
+
+    def __init__(self, *, output_data: google.protobuf.struct_pb2.Struct | None=..., output_tensors: global___FlatTensors | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['output_data', b'output_data']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['output_data', b'output_data', 'output_tensors', b'output_tensors']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['output_data', b'output_data']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['output_data', b'output_data', 'output_tensors', b'output_tensors']) -> None:
         ...
 global___InferResponse = InferResponse
 
@@ -83,13 +98,21 @@ global___InferResponse = InferResponse
 class MetadataRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the model service'
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___MetadataRequest = MetadataRequest
 
@@ -199,3 +222,269 @@ class File(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'label_type', b'label_type', 'name', b'name']) -> None:
         ...
 global___File = File
+
+@typing_extensions.final
+class FlatTensorDataInt8(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+    data: builtins.bytes
+
+    def __init__(self, *, data: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataInt8 = FlatTensorDataInt8
+
+@typing_extensions.final
+class FlatTensorDataUInt8(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+    data: builtins.bytes
+
+    def __init__(self, *, data: builtins.bytes=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataUInt8 = FlatTensorDataUInt8
+
+@typing_extensions.final
+class FlatTensorDataInt16(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        """packs two 16-bit numbers per entry - explicitly little-endian
+        so big-endian producers/consumers must compensate
+        """
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataInt16 = FlatTensorDataInt16
+
+@typing_extensions.final
+class FlatTensorDataUInt16(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        """packs two 16-bit numbers per entry - explicitly little-endian
+        so big-endian producers/consumers must compensate
+        """
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataUInt16 = FlatTensorDataUInt16
+
+@typing_extensions.final
+class FlatTensorDataInt32(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataInt32 = FlatTensorDataInt32
+
+@typing_extensions.final
+class FlatTensorDataUInt32(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataUInt32 = FlatTensorDataUInt32
+
+@typing_extensions.final
+class FlatTensorDataInt64(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataInt64 = FlatTensorDataInt64
+
+@typing_extensions.final
+class FlatTensorDataUInt64(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.int] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataUInt64 = FlatTensorDataUInt64
+
+@typing_extensions.final
+class FlatTensorDataFloat(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.float] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataFloat = FlatTensorDataFloat
+
+@typing_extensions.final
+class FlatTensorDataDouble(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[builtins.float] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___FlatTensorDataDouble = FlatTensorDataDouble
+
+@typing_extensions.final
+class FlatTensor(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SHAPE_FIELD_NUMBER: builtins.int
+    INT8_TENSOR_FIELD_NUMBER: builtins.int
+    UINT8_TENSOR_FIELD_NUMBER: builtins.int
+    INT16_TENSOR_FIELD_NUMBER: builtins.int
+    UINT16_TENSOR_FIELD_NUMBER: builtins.int
+    INT32_TENSOR_FIELD_NUMBER: builtins.int
+    UINT32_TENSOR_FIELD_NUMBER: builtins.int
+    INT64_TENSOR_FIELD_NUMBER: builtins.int
+    UINT64_TENSOR_FIELD_NUMBER: builtins.int
+    FLOAT_TENSOR_FIELD_NUMBER: builtins.int
+    DOUBLE_TENSOR_FIELD_NUMBER: builtins.int
+
+    @property
+    def shape(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
+        """the shape of the provided tensor as a list of integer extents"""
+
+    @property
+    def int8_tensor(self) -> global___FlatTensorDataInt8:
+        ...
+
+    @property
+    def uint8_tensor(self) -> global___FlatTensorDataUInt8:
+        ...
+
+    @property
+    def int16_tensor(self) -> global___FlatTensorDataInt16:
+        ...
+
+    @property
+    def uint16_tensor(self) -> global___FlatTensorDataUInt16:
+        ...
+
+    @property
+    def int32_tensor(self) -> global___FlatTensorDataInt32:
+        ...
+
+    @property
+    def uint32_tensor(self) -> global___FlatTensorDataUInt32:
+        ...
+
+    @property
+    def int64_tensor(self) -> global___FlatTensorDataInt64:
+        ...
+
+    @property
+    def uint64_tensor(self) -> global___FlatTensorDataUInt64:
+        ...
+
+    @property
+    def float_tensor(self) -> global___FlatTensorDataFloat:
+        ...
+
+    @property
+    def double_tensor(self) -> global___FlatTensorDataDouble:
+        ...
+
+    def __init__(self, *, shape: collections.abc.Iterable[builtins.int] | None=..., int8_tensor: global___FlatTensorDataInt8 | None=..., uint8_tensor: global___FlatTensorDataUInt8 | None=..., int16_tensor: global___FlatTensorDataInt16 | None=..., uint16_tensor: global___FlatTensorDataUInt16 | None=..., int32_tensor: global___FlatTensorDataInt32 | None=..., uint32_tensor: global___FlatTensorDataUInt32 | None=..., int64_tensor: global___FlatTensorDataInt64 | None=..., uint64_tensor: global___FlatTensorDataUInt64 | None=..., float_tensor: global___FlatTensorDataFloat | None=..., double_tensor: global___FlatTensorDataDouble | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['double_tensor', b'double_tensor', 'float_tensor', b'float_tensor', 'int16_tensor', b'int16_tensor', 'int32_tensor', b'int32_tensor', 'int64_tensor', b'int64_tensor', 'int8_tensor', b'int8_tensor', 'tensor', b'tensor', 'uint16_tensor', b'uint16_tensor', 'uint32_tensor', b'uint32_tensor', 'uint64_tensor', b'uint64_tensor', 'uint8_tensor', b'uint8_tensor']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['double_tensor', b'double_tensor', 'float_tensor', b'float_tensor', 'int16_tensor', b'int16_tensor', 'int32_tensor', b'int32_tensor', 'int64_tensor', b'int64_tensor', 'int8_tensor', b'int8_tensor', 'shape', b'shape', 'tensor', b'tensor', 'uint16_tensor', b'uint16_tensor', 'uint32_tensor', b'uint32_tensor', 'uint64_tensor', b'uint64_tensor', 'uint8_tensor', b'uint8_tensor']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['tensor', b'tensor']) -> typing_extensions.Literal['int8_tensor', 'uint8_tensor', 'int16_tensor', 'uint16_tensor', 'int32_tensor', 'uint32_tensor', 'int64_tensor', 'uint64_tensor', 'float_tensor', 'double_tensor'] | None:
+        ...
+global___FlatTensor = FlatTensor
+
+@typing_extensions.final
+class FlatTensors(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class TensorsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___FlatTensor:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___FlatTensor | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    TENSORS_FIELD_NUMBER: builtins.int
+
+    @property
+    def tensors(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___FlatTensor]:
+        """A name-indexed collection of flat tensor objects"""
+
+    def __init__(self, *, tensors: collections.abc.Mapping[builtins.str, global___FlatTensor] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['tensors', b'tensors']) -> None:
+        ...
+global___FlatTensors = FlatTensors

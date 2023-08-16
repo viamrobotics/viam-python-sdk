@@ -22,10 +22,10 @@ from viam.proto.component.inputcontroller import (
     TriggerEventRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .input import Control, ControlFunction, Controller, Event, EventType
 from . import Geometry
+from .input import Control, ControlFunction, Controller, Event, EventType
 
 LOGGER = getLogger(__name__)
 
