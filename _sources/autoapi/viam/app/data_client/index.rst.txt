@@ -243,7 +243,7 @@ Attributes
       :param tags: List of tags to remove from specified binary data.
       :type tags: List[str]
       :param filter: `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
-                     tagged.
+                     untagged.
       :type filter: viam.proto.app.data.Filter
 
       :raises GRPCError: If no tags are provided.
@@ -293,8 +293,8 @@ Attributes
 
       Upload binary sensor data.
 
-      Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-      app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
+      Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+      app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
 
       :param binary_data: The data to be uploaded, represented in bytes.
       :type binary_data: bytes
@@ -322,8 +322,8 @@ Attributes
 
       Upload tabular sensor data.
 
-      Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-      app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
+      Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+      app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
       :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
       :type tabular_data: List[Mapping[str, Any]]
@@ -356,7 +356,8 @@ Attributes
 
       Upload arbitrary file data.
 
-      Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+      Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+      "Files" subtab of the Data tab on app.viam.com.
 
       :param part_id: Part ID of the resource associated with the file.
       :type part_id: str
@@ -366,7 +367,7 @@ Attributes
       :type component_name: Optional[str]
       :param method_name: Optional name of the method associated with the file.
       :type method_name: Optional[str]
-      :param file_name: Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
+      :param file_name: Optional name of the file. The empty string "" will be assigned as the file name if one isn't
                         provided.
       :type file_name: Optional[str]
       :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
@@ -387,7 +388,8 @@ Attributes
 
       Upload arbitrary file data.
 
-      Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+      Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+      "Files" subtab of the Data tab on app.viam.com.
 
       :param filepath: Absolute filepath of file to be uploaded.
       :type filepath: str

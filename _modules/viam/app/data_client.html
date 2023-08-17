@@ -415,7 +415,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data.</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be</span>
-<span class="sd">                tagged.</span>
+<span class="sd">                untagged.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no tags are provided.</span>
@@ -481,8 +481,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
 
-<span class="sd">        Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with</span>
-<span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; tab in Data on app.viam.com.</span>
+<span class="sd">        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
+<span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_data (bytes): The data to be uploaded, represented in bytes.</span>
@@ -534,8 +534,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
 
-<span class="sd">        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with</span>
-<span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; tab in Data on app.viam.com.</span>
+<span class="sd">        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
+<span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
@@ -608,14 +608,15 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
-<span class="sd">        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.</span>
+<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
+<span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
 <span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
-<span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string &quot;&quot; will be assigned as the file name if a one isn&#39;t</span>
+<span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string &quot;&quot; will be assigned as the file name if one isn&#39;t</span>
 <span class="sd">                provided.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
 <span class="sd">            file_extension (Optional[str]): Optional file extension. The empty string &quot;&quot; will be assigned as the file extension if one isn&#39;t</span>
@@ -651,7 +652,8 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload arbitrary file data.</span>
 
-<span class="sd">        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.</span>
+<span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
+<span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
