@@ -152,12 +152,15 @@ class DataClient:
             response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [DataClient.TabularData(
-                struct_to_dict(struct.data),
-                response.metadata[struct.metadata_index],
-                struct.time_requested.ToDatetime(),
-                struct.time_received.ToDatetime(),
-            ) for struct in response.data]
+            data += [
+                DataClient.TabularData(
+                    struct_to_dict(struct.data),
+                    response.metadata[struct.metadata_index],
+                    struct.time_requested.ToDatetime(),
+                    struct.time_received.ToDatetime(),
+                )
+                for struct in response.data
+            ]
             last = response.last
 
         if dest:

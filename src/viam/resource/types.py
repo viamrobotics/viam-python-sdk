@@ -1,6 +1,6 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, runtime_checkable, Sequence
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -10,7 +10,7 @@ else:
 from typing_extensions import Self
 
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import GetGeometriesRequest, GetGeometriesResponse, ResourceName
 
 if TYPE_CHECKING:
     from .base import ResourceBase

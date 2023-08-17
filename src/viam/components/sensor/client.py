@@ -5,10 +5,10 @@ from grpclib.client import Channel
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, get_geometries, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, sensor_readings_value_to_native, struct_to_dict
 
-from .sensor import Sensor
 from . import Geometry
+from .sensor import Sensor
 
 
 class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):

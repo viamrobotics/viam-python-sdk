@@ -20,10 +20,10 @@ from viam.proto.component.motor import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .motor import Motor
 from . import Geometry
+from .motor import Motor
 
 
 class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
