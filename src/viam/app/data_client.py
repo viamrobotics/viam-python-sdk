@@ -326,7 +326,7 @@ class DataClient:
         Args:
             tags (List[str]): List of tags to remove from specified binary data.
             filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
-                tagged.
+                untagged.
 
         Raises:
             GRPCError: If no tags are provided.
@@ -392,8 +392,8 @@ class DataClient:
     ) -> None:
         """Upload binary sensor data.
 
-        Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-        app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
+        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             binary_data (bytes): The data to be uploaded, represented in bytes.
@@ -445,8 +445,8 @@ class DataClient:
     ) -> None:
         """Upload tabular sensor data.
 
-        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-        app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
+        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
@@ -519,14 +519,15 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             part_id (str): Part ID of the resource associated with the file.
             component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
+            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if one isn't
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
@@ -562,7 +563,8 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             filepath (str): Absolute filepath of file to be uploaded.
