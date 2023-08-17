@@ -445,7 +445,7 @@ class DataClient:
     ) -> None:
         """Upload tabular sensor data.
 
-        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
+        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
         app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
         Args:
@@ -519,7 +519,7 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
         subtab of the Data tab on app.viam.com.
 
         Args:
@@ -563,7 +563,7 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
         subtab of the Data tab on app.viam.com.
 
         Args:
