@@ -519,8 +519,8 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
-        subtab of the Data tab on app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             part_id (str): Part ID of the resource associated with the file.
@@ -563,8 +563,8 @@ class DataClient:
     ) -> None:
         """Upload arbitrary file data.
 
-        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the "Files"
-        subtab of the Data tab on app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             filepath (str): Absolute filepath of file to be uploaded.
