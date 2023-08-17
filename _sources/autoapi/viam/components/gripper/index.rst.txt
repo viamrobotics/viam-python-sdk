@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.components.gripper.Geometry
+   viam.components.gripper.Gripper
 
 
 
@@ -87,6 +88,120 @@ Classes
       :rtype: str or None
 
       :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: Gripper(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Gripper represents a physical robotic gripper.
+
+   This acts as an abstract base class for any drivers representing specific
+   gripper implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: open(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Open the gripper.
+
+
+   .. py:method:: grab(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
+      :abstractmethod:
+      :async:
+
+      Instruct the gripper to grab.
+
+      :returns: Indicates if the gripper grabbed something.
+      :rtype: bool
+
+
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Stop the gripper. It is assumed the gripper stops immediately.
+
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+      :async:
+
+      Get if the gripper is currently moving.
+
+      :returns: Whether the gripper is moving.
+      :rtype: bool
+
+
+   .. py:method:: get_geometries() -> List[viam.components.gripper.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the gripper, in their current configuration, in the frame of the gripper.
+
+      :returns: The geometries associated with the gripper.
+      :rtype: List[Geometry]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
 
 
 

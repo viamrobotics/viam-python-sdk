@@ -96,7 +96,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Geometry</span>
 
 
-<div class="viewcode-block" id="Servo"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo">[docs]</a><span class="k">class</span> <span class="nc">Servo</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
+<div class="viewcode-block" id="Servo"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo">[docs]</a><span class="k">class</span> <span class="nc">Servo</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Servo represents a physical servo.</span>
 
@@ -107,7 +107,7 @@
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;servo&quot;</span><span class="p">)</span>
 
-<div class="viewcode-block" id="Servo.move"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo.move">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Servo.move"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo.move">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the servo to the provided angle.</span>
@@ -117,7 +117,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Servo.get_position"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo.get_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Servo.get_position"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo.get_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the current angle (degrees) of the servo.</span>
@@ -127,14 +127,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Servo.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo.stop">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Servo.stop"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo.stop">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop the servo. It is assumed that the servo stops immediately.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Servo.is_moving"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo.is_moving">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Servo.is_moving"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo.is_moving">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get if the servo is currently moving.</span>
@@ -144,7 +144,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Servo.get_geometries"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.servo.Servo.get_geometries">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Servo.get_geometries"><a class="viewcode-back" href="../../../../autoapi/viam/components/servo/servo/index.html#viam.components.servo.Servo.get_geometries">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all geometries associated with the servo, in their current configuration, in the frame of the servo.</span>

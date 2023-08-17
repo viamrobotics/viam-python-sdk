@@ -58,7 +58,7 @@ Attributes
                            `auth_entity` fields are required.
       :type dial_options: viam.rpc.dial.DialOptions
 
-      :raises AssertionError: If the type provided in the credentials of the `DialOptions` object is 'robot-secret'.
+      :raises ValueError: If the input parameters are missing a required field or simply invalid.
 
       :returns: The `ViamClient`.
       :rtype: Self

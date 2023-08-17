@@ -89,18 +89,33 @@
   <h1>Source code for viam.app.app_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.app._logs</span> <span class="kn">import</span> <span class="n">_LogsStream</span><span class="p">,</span> <span class="n">_LogsStreamWithIterator</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddRoleRequest</span><span class="p">,</span>
     <span class="n">AppServiceStub</span><span class="p">,</span>
+    <span class="n">Authorization</span><span class="p">,</span>
+    <span class="n">AuthorizedPermissions</span><span class="p">,</span>
+    <span class="n">CreateFragmentRequest</span><span class="p">,</span>
+    <span class="n">CreateFragmentResponse</span><span class="p">,</span>
     <span class="n">CreateLocationRequest</span><span class="p">,</span>
     <span class="n">CreateLocationResponse</span><span class="p">,</span>
+    <span class="n">CreateLocationSecretRequest</span><span class="p">,</span>
+    <span class="n">CreateLocationSecretResponse</span><span class="p">,</span>
+    <span class="n">CreateModuleRequest</span><span class="p">,</span>
+    <span class="n">CreateModuleResponse</span><span class="p">,</span>
+    <span class="n">CreateRobotPartSecretRequest</span><span class="p">,</span>
+    <span class="n">CreateRobotPartSecretResponse</span><span class="p">,</span>
+    <span class="n">DeleteFragmentRequest</span><span class="p">,</span>
     <span class="n">DeleteLocationRequest</span><span class="p">,</span>
+    <span class="n">DeleteLocationSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotPartRequest</span><span class="p">,</span>
+    <span class="n">DeleteRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Fragment</span> <span class="k">as</span> <span class="n">FragmentPB</span>
@@ -109,6 +124,12 @@
     <span class="n">GetFragmentResponse</span><span class="p">,</span>
     <span class="n">GetLocationRequest</span><span class="p">,</span>
     <span class="n">GetLocationResponse</span><span class="p">,</span>
+    <span class="n">GetModuleRequest</span><span class="p">,</span>
+    <span class="n">GetModuleResponse</span><span class="p">,</span>
+    <span class="n">GetOrganizationNamespaceAvailabilityRequest</span><span class="p">,</span>
+    <span class="n">GetOrganizationNamespaceAvailabilityResponse</span><span class="p">,</span>
+    <span class="n">GetRobotPartHistoryRequest</span><span class="p">,</span>
+    <span class="n">GetRobotPartHistoryResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartRequest</span><span class="p">,</span>
@@ -117,35 +138,63 @@
     <span class="n">GetRobotPartsResponse</span><span class="p">,</span>
     <span class="n">GetRobotRequest</span><span class="p">,</span>
     <span class="n">GetRobotResponse</span><span class="p">,</span>
+    <span class="n">ListAuthorizationsRequest</span><span class="p">,</span>
+    <span class="n">ListAuthorizationsResponse</span><span class="p">,</span>
     <span class="n">ListFragmentsRequest</span><span class="p">,</span>
     <span class="n">ListFragmentsResponse</span><span class="p">,</span>
     <span class="n">ListLocationsRequest</span><span class="p">,</span>
     <span class="n">ListLocationsResponse</span><span class="p">,</span>
+    <span class="n">ListModulesRequest</span><span class="p">,</span>
+    <span class="n">ListModulesResponse</span><span class="p">,</span>
+    <span class="n">ListOrganizationMembersRequest</span><span class="p">,</span>
+    <span class="n">ListOrganizationMembersResponse</span><span class="p">,</span>
     <span class="n">ListOrganizationsRequest</span><span class="p">,</span>
     <span class="n">ListOrganizationsResponse</span><span class="p">,</span>
     <span class="n">ListRobotsRequest</span><span class="p">,</span>
     <span class="n">ListRobotsResponse</span><span class="p">,</span>
     <span class="n">Location</span><span class="p">,</span>
+    <span class="n">LocationAuth</span><span class="p">,</span>
+    <span class="n">LocationAuthRequest</span><span class="p">,</span>
+    <span class="n">LocationAuthResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">LogEntry</span> <span class="k">as</span> <span class="n">LogEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MarkPartAsMainRequest</span><span class="p">,</span>
     <span class="n">MarkPartForRestartRequest</span><span class="p">,</span>
+    <span class="n">Model</span><span class="p">,</span>
+    <span class="n">Module</span><span class="p">,</span>
+    <span class="n">ModuleFileInfo</span><span class="p">,</span>
     <span class="n">NewRobotPartRequest</span><span class="p">,</span>
     <span class="n">NewRobotPartResponse</span><span class="p">,</span>
     <span class="n">NewRobotRequest</span><span class="p">,</span>
     <span class="n">NewRobotResponse</span><span class="p">,</span>
     <span class="n">Organization</span><span class="p">,</span>
+    <span class="n">OrganizationInvite</span><span class="p">,</span>
+    <span class="n">OrganizationMember</span><span class="p">,</span>
+    <span class="n">OrgDetails</span><span class="p">,</span>
+    <span class="n">RemoveRoleRequest</span><span class="p">,</span>
     <span class="n">Robot</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPart</span> <span class="k">as</span> <span class="n">RobotPartPB</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPartHistoryEntry</span> <span class="k">as</span> <span class="n">RobotPartHistoryEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">SharedSecret</span><span class="p">,</span>
+    <span class="n">TailRobotPartLogsRequest</span><span class="p">,</span>
+    <span class="n">TailRobotPartLogsResponse</span><span class="p">,</span>
+    <span class="n">UpdateFragmentRequest</span><span class="p">,</span>
+    <span class="n">UpdateFragmentResponse</span><span class="p">,</span>
     <span class="n">UpdateLocationRequest</span><span class="p">,</span>
     <span class="n">UpdateLocationResponse</span><span class="p">,</span>
+    <span class="n">UpdateModuleRequest</span><span class="p">,</span>
+    <span class="n">UpdateModuleResponse</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotPartRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotPartResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotResponse</span><span class="p">,</span>
+    <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
+    <span class="n">Visibility</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
@@ -198,7 +247,7 @@
     <span class="n">fqdn</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">local_fqdn</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">created_on</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
-    <span class="n">secrets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">SharedSecret</span><span class="p">]</span>
+    <span class="n">secrets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">SharedSecret</span><span class="p">]]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPartPB</span><span class="p">:</span>
@@ -244,7 +293,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">caller</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">log_entry</span><span class="o">.</span><span class="n">caller</span><span class="p">)</span> <span class="k">if</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;caller&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stack</span> <span class="o">=</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">stack</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">field</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">log_entry</span><span class="o">.</span><span class="n">fields</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
     <span class="n">host</span><span class="p">:</span> <span class="nb">str</span>
@@ -311,7 +360,7 @@
     <span class="n">only_used_by_owner</span><span class="p">:</span> <span class="nb">bool</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FragmentPB</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">FragmentPB</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
@@ -323,6 +372,44 @@
             <span class="n">robot_part_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">robot_part_count</span><span class="p">,</span>
             <span class="n">organization_count</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">organization_count</span><span class="p">,</span>
             <span class="n">only_used_by_owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">only_used_by_owner</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RobotPartHistoryEntry"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.RobotPartHistoryEntry">[docs]</a><span class="k">class</span> <span class="nc">RobotPartHistoryEntry</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class that mirrors the `RobotPartHistoryEntry` proto message.</span>
+
+<span class="sd">    Use this class to make the attributes of a `viam.proto.app.RobotPartHistoryEntry` more accessible and easier to read/interpret.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RobotPartHistoryEntry.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.RobotPartHistoryEntry.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">robot_part_history_entry</span><span class="p">:</span> <span class="n">RobotPartHistoryEntryPB</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robo_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RobotPartHistoryEntry: The `RobotPartHistoryEntry`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">part</span> <span class="o">=</span> <span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">part</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">robot</span> <span class="o">=</span> <span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">robot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">when</span> <span class="o">=</span> <span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">when</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">()</span> <span class="k">if</span> <span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;when&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="o">=</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">old</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_part_history_entry</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;old&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="n">part</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">robot</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">when</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">old</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RobotPart</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPartHistoryEntryPB</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">RobotPartHistoryEntryPB</span><span class="p">(</span>
+            <span class="n">part</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">part</span><span class="p">,</span>
+            <span class="n">robot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">robot</span><span class="p">,</span>
+            <span class="n">when</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">when</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">when</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">old</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="o">.</span><span class="n">proto</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -344,15 +431,26 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span> <span class="o">=</span> <span class="n">AppServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">location_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
     <span class="n">_app_client</span><span class="p">:</span> <span class="n">AppServiceStub</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
+    <span class="n">_organization_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="AppClient.get_user_id_by_email"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_user_id_by_email">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_user_id_by_email</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="k">else</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_organization_id</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_request_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">organizations</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_organizations</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="o">=</span> <span class="n">organizations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span>
+
+<div class="viewcode-block" id="AppClient.get_user_id_by_email"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_user_id_by_email">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_user_id_by_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.create_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.create_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="AppClient.list_organizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Organization</span><span class="p">]:</span>
@@ -365,54 +463,110 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">organizations</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_organizations_by_user"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations_by_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations_by_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.list_organizations_by_user"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations_by_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations_by_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OrgDetails</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.get_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.get_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.get_organization_namespace_availability"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization_namespace_availability">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization_namespace_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.get_organization_namespace_availability"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization_namespace_availability">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization_namespace_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">public_namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the availability of an organization namespace.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash</span>
+<span class="sd">                characters.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid namespace (e.g., &quot;&quot;) is provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: True if the provided namespace is available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationNamespaceAvailabilityRequest</span><span class="p">(</span><span class="n">public_namespace</span><span class="o">=</span><span class="n">public_namespace</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationNamespaceAvailabilityResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganizationNamespaceAvailability</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">available</span></div>
+
+<div class="viewcode-block" id="AppClient.update_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">public_namespace</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.update_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.delete_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.delete_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.list_organization_members"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organization_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organization_members</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrganizationMember</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">OrganizationInvite</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the members and invites of the currently authed-to organization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first</span>
+<span class="sd">                [0] of organization members, and the second [1] of organization invites.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationMembersRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationMembersResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizationMembers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">members</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">invites</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.create_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.list_organization_members"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organization_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organization_members</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.update_organization_invite_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization_invite_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization_invite_authorizations</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">add_authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">remove_authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the authorizations attached to an organization invite that has already been created.</span>
+
+<span class="sd">        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have</span>
+<span class="sd">        at least one authorization overall.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            email (str): Email of the user the invite was sent to.</span>
+<span class="sd">            add_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.</span>
+<span class="sd">            remove_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to</span>
+<span class="sd">                remove when the invite only contains one authorization).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.OrganizationInvite: The updated invite.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">add_authorizations</span><span class="o">=</span><span class="n">add_authorizations</span><span class="p">,</span> <span class="n">remove_authorizations</span><span class="o">=</span><span class="n">remove_authorizations</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateOrganizationInviteAuthorizations</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">invite</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_organization_member"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.create_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.delete_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.update_organization_invite_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization_invite_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization_invite_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.delete_organization_member"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_member</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="AppClient.delete_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="AppClient.create_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and name a location under the specified organization and parent location.</span>
+<div class="viewcode-block" id="AppClient.create_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and name a location under the currently authed-to organization and the specified parent location.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the location.</span>
-<span class="sd">            organization_id (str): ID of the organization to create the location under.</span>
 <span class="sd">            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no</span>
 <span class="sd">                location ID is provided.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If either an invalid organization ID, name, or parent location ID is passed.</span>
+<span class="sd">            GRPCError: If either an invalid name (e.g., &quot;&quot;), or parent location ID (e.g., a nonexistent ID) is passed.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The newly created location.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="o">=</span><span class="n">parent_location_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">location</span></div>
@@ -422,16 +576,15 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.</span>
-<span class="sd">                If no default location ID was passed, a GRPCError will be thrown.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid location ID is passed.</span>
+<span class="sd">            GRPCError: If an invalid location ID is passed or if one isn&#39;t passed and there was no location ID provided at `AppClient`</span>
+<span class="sd">                instantiation.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The location.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">location_id</span> <span class="o">=</span> <span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">location</span></div>
 
@@ -439,11 +592,11 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name of a location and/or assign it a new parent location.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            location_id (str): ID of the location to update.</span>
+<span class="sd">            location_id (str): ID of the location to update. Must be specified.</span>
 <span class="sd">            name (Optional[str]): Optional new name to be updated on the location. Defaults to the empty string &quot;&quot; (i.e., the name doesn&#39;t</span>
 <span class="sd">                change).</span>
-<span class="sd">            parent_location_id(Optional[str]): Optional new parent location to move the location under. Defaults to the empty string &quot;&quot;</span>
-<span class="sd">                (i.e., no new parent location is assigned).</span>
+<span class="sd">            parent_location_id(Optional[str]): Optional ID of new parent location to move the location under. Defaults to the empty string</span>
+<span class="sd">                &quot;&quot; (i.e., no new parent location is assigned).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid location ID, name, or parent location ID is passed.</span>
@@ -467,18 +620,13 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_locations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_locations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all locations under the specified organization.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): ID of the organization to retrieve the locations from.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid organization ID is passed.</span>
+<div class="viewcode-block" id="AppClient.list_locations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_locations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all locations under the currently authed-to organization.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Location]: The list of locations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListLocationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListLocationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListLocations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">locations</span><span class="p">)</span></div>
@@ -489,14 +637,57 @@
 <div class="viewcode-block" id="AppClient.unshare_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.unshare_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unshare_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.location_auth"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.location_auth">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">location_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.location_auth"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.location_auth">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">location_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocationAuth</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a location&#39;s `LocationAuth` (location secret(s)).</span>
 
-<div class="viewcode-block" id="AppClient.create_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`</span>
+<span class="sd">                instantiation.</span>
 
-<div class="viewcode-block" id="AppClient.delete_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid location ID is passed or if one isn&#39;t passed and there was no location ID provided at `AppClient`</span>
+<span class="sd">                instantiation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            LocationAuth: The `LocationAuth` containing location secrets.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">LocationAuthRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">LocationAuthResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">LocationAuth</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">auth</span></div>
+
+<div class="viewcode-block" id="AppClient.create_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocationAuth</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new location secret.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at</span>
+<span class="sd">                `AppClient` instantiation.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid location ID is passed or one isn&#39;t passed and there was no location ID provided at `AppClient`</span>
+<span class="sd">                instantiation.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.LocationAuth: The specified location&#39;s `LocationAuth` containing the newly created secret.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationSecretRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationSecretResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">auth</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a location secret.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.</span>
+<span class="sd">            secret_id (str): ID of the secret to delete.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn&#39;t passed and there was no location</span>
+<span class="sd">                ID provided at `AppClient` instantiation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationSecretRequest</span><span class="p">(</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocationSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.get_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot.</span>
@@ -624,12 +815,51 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartLogsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartLogs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">LogEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">logs</span><span class="p">],</span> <span class="n">response</span><span class="o">.</span><span class="n">next_page_token</span>
 
-<div class="viewcode-block" id="AppClient.tail_robot_part_logs"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.tail_robot_part_logs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tail_robot_part_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.tail_robot_part_logs"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.tail_robot_part_logs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tail_robot_part_logs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">errors_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_LogsStream</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that recieves live robot part logs.</span>
 
-<div class="viewcode-block" id="AppClient.get_robot_part_history"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_history">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part_history</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">pass</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to retrieve lgos from.</span>
+<span class="sd">            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.</span>
+<span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (i.e., no</span>
+<span class="sd">                filter).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">TailRobotPartLogs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span>
+                    <span class="n">TailRobotPartLogsRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">errors_only</span><span class="o">=</span><span class="n">errors_only</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                <span class="p">)</span>
+
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">response</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TailRobotPartLogsResponse</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">logs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LogEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">logs</span><span class="p">]</span>
+                    <span class="k">yield</span> <span class="n">logs</span>
+
+        <span class="k">return</span> <span class="n">_LogsStreamWithIterator</span><span class="p">(</span><span class="n">read</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="AppClient.get_robot_part_history"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_history">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list containing the history of a robot part.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to retrieve history from.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid robot part ID is provided.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part&#39;s history.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotPartHistoryRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotPartHistoryResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotPartHistory</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">part_history</span><span class="p">)</span> <span class="k">for</span> <span class="n">part_history</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">history</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a robot part.</span>
@@ -646,8 +876,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.RobotPart: The newly updated robot part.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">robot_config_struct</span> <span class="o">=</span> <span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">robot_config_struct</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotPartRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">robot_config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">robot_config</span><span class="p">)</span> <span class="k">if</span> <span class="n">robot_config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotPartResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">robot_part</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
 
@@ -680,8 +909,17 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotPartRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.mark_part_as_main"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_as_main">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_as_main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.mark_part_as_main"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_as_main">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_as_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a robot part as the main part of a robot.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to mark as main.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MarkPartAsMainRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartAsMain</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.mark_part_for_restart"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_for_restart">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_for_restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark the specified robot part for restart.</span>
@@ -695,11 +933,34 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">MarkPartForRestartRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">MarkPartForRestart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.create_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.create_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot part secret.</span>
 
-<div class="viewcode-block" id="AppClient.delete_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to create a secret for.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid robot part ID is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.app.app_client.RobotPart: The robot part the new secret was generated for.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateRobotPartSecretRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateRobotPartSecretResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateRobotPartSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">RobotPart</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">part</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a robot part secret.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to delete the secret from.</span>
+<span class="sd">            secret_id (str): ID of the secret to delete.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid robot part ID or secret ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotPartSecretRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">,</span> <span class="n">secret_id</span><span class="o">=</span><span class="n">secret_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPartSecret</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.list_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Robot</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all robots under the specified location.</span>
@@ -715,8 +976,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Robot]: The list of robots.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">location_id</span> <span class="o">=</span> <span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRobotsRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
@@ -734,8 +994,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The new robot&#39;s ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">location_id</span> <span class="o">=</span> <span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">NewRobotRequest</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">NewRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">NewRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
@@ -755,8 +1014,9 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Robot: The newly updated robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">location_id</span> <span class="o">=</span> <span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRobotRequest</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="n">location_id</span> <span class="k">if</span> <span class="n">location_id</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">robot</span></div>
 
@@ -772,20 +1032,17 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the specified organization.</span>
+<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the currently authed-to organization.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): ID of the organization under which to list the fragments.</span>
 <span class="sd">            show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will</span>
 <span class="sd">                return. If False, only private fragments will return. Defaults to True.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            GRPCError: If an invalid organization ID is passed.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.Fragment]: The list of fragments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">show_public</span><span class="o">=</span><span class="n">show_public</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListFragmentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListFragments</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">fragment</span><span class="p">)</span> <span class="k">for</span> <span class="n">fragment</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">fragments</span><span class="p">]</span></div>
@@ -806,41 +1063,233 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.create_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="AppClient.create_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new private fragment.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): Name of the fragment.</span>
+<span class="sd">            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be</span>
+<span class="sd">                assigned by updating the fragment.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid name is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.app.app_client.Fragment: The newly created fragment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateFragmentRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_fragment</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">public</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a fragment name AND its config and/or visibility.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fragment_id (str): ID of the fragment to update.</span>
+<span class="sd">            name (str): New name to associate with the fragment.</span>
+<span class="sd">            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Not</span>
+<span class="sd">                passing this parameter will leave the fragment&#39;s config unchanged.</span>
+<span class="sd">            public (bool): Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment&#39;s</span>
+<span class="sd">                visibility unchanged. A fragment is private by default when created.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: if an invalid ID, name, or config is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.app.app_client.Fragment: The newly updated fragment.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">public</span><span class="o">=</span><span class="n">public</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">UpdateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a fragment.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            fragment_id (str): ID of the fragment to delete.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid fragment ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteFragmentRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">fragment_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.add_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.add_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a role under the currently authed-to organization.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            role (str): The role to add (i.e., either &quot;owner&quot; or &quot;operator&quot;).</span>
+<span class="sd">            resource_type (str): Type of the resource to add role to (i.e., either &quot;organization&quot;, &quot;location&quot;, or &quot;robot&quot;). Must match</span>
+<span class="sd">                `resource_id`.</span>
+<span class="sd">            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">authorization</span> <span class="o">=</span> <span class="n">Authorization</span><span class="p">(</span>
+            <span class="n">identity_id</span><span class="o">=</span><span class="n">identity_id</span><span class="p">,</span>
+            <span class="n">authorization_id</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">resource_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">role</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">resource_type</span><span class="o">=</span><span class="n">resource_type</span><span class="p">,</span>
+            <span class="n">resource_id</span><span class="o">=</span><span class="n">resource_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddRoleRequest</span><span class="p">(</span><span class="n">authorization</span><span class="o">=</span><span class="n">authorization</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">AddRole</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.remove_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.remove_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_role</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">role</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a role under the currently authed-to organization.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            role (str): The role to remove (i.e., either &quot;owner&quot; or &quot;operator&quot;).</span>
+<span class="sd">            resource_type (str): Type of the resource to remove role from (i.e., either &quot;organization&quot;, &quot;location&quot;, or &quot;robot&quot;). Must match</span>
+<span class="sd">                `resource_id`.</span>
+<span class="sd">            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">authorization</span> <span class="o">=</span> <span class="n">Authorization</span><span class="p">(</span>
+            <span class="n">identity_id</span><span class="o">=</span><span class="n">identity_id</span><span class="p">,</span>
+            <span class="n">authorization_id</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">resource_type</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">role</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">resource_type</span><span class="o">=</span><span class="n">resource_type</span><span class="p">,</span>
+            <span class="n">resource_id</span><span class="o">=</span><span class="n">resource_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveRoleRequest</span><span class="p">(</span><span class="n">authorization</span><span class="o">=</span><span class="n">authorization</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RemoveRole</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.list_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs</span>
+<span class="sd">        are provided, all resource authorizations within the organizations are returned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from. Defaults to None.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid resource ID is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Authorization]: The list of authorizations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListAuthorizationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">resource_ids</span><span class="o">=</span><span class="n">resource_ids</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListAuthorizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">authorizations</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.check_permissions"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.check_permissions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">check_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="AppClient.update_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.create_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a module under the currently authed-to organization.</span>
 
-<div class="viewcode-block" id="AppClient.delete_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The name of the module. Must be unique within your organization.</span>
 
-<div class="viewcode-block" id="AppClient.add_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.add_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_role</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid name (e.g., &quot;&quot;) is passed.</span>
 
-<div class="viewcode-block" id="AppClient.remove_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.remove_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_role</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateModuleRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">module_id</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
 
-<div class="viewcode-block" id="AppClient.list_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.update_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_module</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">module_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">models</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Model</span><span class="p">]],</span>
+        <span class="n">entrypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.</span>
 
-<div class="viewcode-block" id="AppClient.check_permissions"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.check_permissions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">check_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            module_id (str): ID of the module being updated, containing module name (e.g., &quot;my-module&quot;) or namespace and module name (e.g.,</span>
+<span class="sd">                &quot;my-org:my-module&quot;).</span>
+<span class="sd">            url (str): The url to reference for documentation and code (NOT the url of the module itself).</span>
+<span class="sd">            description (str): A short description of the module that explains its purpose.</span>
+<span class="sd">            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.</span>
+<span class="sd">            entrypoint (str): The executable to run to start the module program.</span>
+<span class="sd">            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the</span>
+<span class="sd">                module ID.</span>
+<span class="sd">            public (bool): The visibility that should be set for the module. Defaults to False (private).</span>
 
-<div class="viewcode-block" id="AppClient.create_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If either an invalid module ID, URL, list of models, or organization ID is passed.</span>
 
-<div class="viewcode-block" id="AppClient.update_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The URL of the newly updated module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateModuleRequest</span><span class="p">(</span>
+            <span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span> <span class="k">if</span> <span class="n">organization_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">visibility</span><span class="o">=</span><span class="n">Visibility</span><span class="o">.</span><span class="n">VISIBILITY_PUBLIC</span> <span class="k">if</span> <span class="n">public</span> <span class="k">else</span> <span class="n">Visibility</span><span class="o">.</span><span class="n">VISIBILITY_PRIVATE</span><span class="p">,</span>
+            <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
+            <span class="n">models</span><span class="o">=</span><span class="n">models</span><span class="p">,</span>
+            <span class="n">entrypoint</span><span class="o">=</span><span class="n">entrypoint</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">UpdateModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
 
-<div class="viewcode-block" id="AppClient.upload_module_file"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.upload_module_file">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">upload_module_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.upload_module_file"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.upload_module_file">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">upload_module_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_file_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModuleFileInfo</span><span class="p">],</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload a module file</span>
 
-<div class="viewcode-block" id="AppClient.get_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        Args:</span>
+<span class="sd">            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.</span>
+<span class="sd">            file (bytes): Bytes of file to upload.</span>
 
-<div class="viewcode-block" id="AppClient.list_modules"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+<span class="sd">        Returns:</span>
+<span class="sd">            str: ID of uploaded file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request_module_file_info</span> <span class="o">=</span> <span class="n">UploadModuleFileRequest</span><span class="p">(</span><span class="n">module_file_info</span><span class="o">=</span><span class="n">module_file_info</span><span class="p">)</span>
+        <span class="n">request_file</span> <span class="o">=</span> <span class="n">UploadModuleFileRequest</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UploadModuleFile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_module_file_info</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_file</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
+
+<div class="viewcode-block" id="AppClient.get_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a module.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            module_id (str): ID of the module being retrieved, containing module name or namespace and module name.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: If an invalid module ID is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            viam.proto.app.Module: The module.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">module</span></div>
+
+<div class="viewcode-block" id="AppClient.list_modules"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Module</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the modules under the currently authed-to organization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.app.Module]: The list of modules.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListModulesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListModules</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

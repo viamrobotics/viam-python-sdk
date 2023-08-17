@@ -15,6 +15,7 @@ Classes
    viam.app.app_client.RobotPart
    viam.app.app_client.LogEntry
    viam.app.app_client.Fragment
+   viam.app.app_client.RobotPartHistoryEntry
    viam.app.app_client.AppClient
 
 
@@ -109,7 +110,7 @@ Attributes
       
 
    .. py:attribute:: secrets
-      :type: List[viam.proto.app.SharedSecret]
+      :type: Optional[List[viam.proto.app.SharedSecret]]
 
       
 
@@ -198,6 +199,7 @@ Attributes
    Use this class to make the attributes of a `viam.proto.app.RobotPart` more accessible and easier to read/interpret.
 
    .. py:property:: proto
+      :type: viam.proto.app.Fragment
 
 
    .. py:attribute:: id
@@ -263,6 +265,50 @@ Attributes
 
 
 
+.. py:class:: RobotPartHistoryEntry
+
+
+   A class that mirrors the `RobotPartHistoryEntry` proto message.
+
+   Use this class to make the attributes of a `viam.proto.app.RobotPartHistoryEntry` more accessible and easier to read/interpret.
+
+   .. py:property:: proto
+      :type: viam.proto.app.RobotPartHistoryEntry
+
+
+   .. py:attribute:: part
+      :type: str
+
+      
+
+   .. py:attribute:: robot
+      :type: str
+
+      
+
+   .. py:attribute:: when
+      :type: Optional[datetime.datetime]
+
+      
+
+   .. py:attribute:: old
+      :type: Optional[RobotPart]
+
+      
+
+   .. py:method:: from_proto(robot_part_history_entry: viam.proto.app.RobotPartHistoryEntry) -> typing_extensions.Self
+      :classmethod:
+
+      Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.
+
+      :param robo_part_history_entry: The object to copy from.
+      :type robo_part_history_entry: viam.proto.app.RobotPartHistoryEntry
+
+      :returns: The `RobotPartHistoryEntry`.
+      :rtype: RobotPartHistoryEntry
+
+
+
 .. py:class:: AppClient(channel: grpclib.client.Channel, metadata: Mapping[str, str], location_id: Optional[str] = None)
 
 
@@ -271,12 +317,12 @@ Attributes
    Constructor is used by `ViamClient` to instantiate relevant service stub. Calls to `AppClient`  methods should be made through
    `ViamClient`.
 
-   .. py:method:: get_user_id_by_email()
+   .. py:method:: get_user_id_by_email(email: str) -> str
       :abstractmethod:
       :async:
 
 
-   .. py:method:: create_organization()
+   .. py:method:: create_organization(name: str) -> viam.proto.app.Organization
       :abstractmethod:
       :async:
 
@@ -290,75 +336,107 @@ Attributes
       :rtype: List[viam.proto.app.Organization]
 
 
-   .. py:method:: list_organizations_by_user()
+   .. py:method:: list_organizations_by_user(user_id: str) -> List[viam.proto.app.OrgDetails]
       :abstractmethod:
       :async:
 
 
-   .. py:method:: get_organization()
+   .. py:method:: get_organization() -> viam.proto.app.Organization
       :abstractmethod:
       :async:
 
 
-   .. py:method:: get_organization_namespace_availability()
+   .. py:method:: get_organization_namespace_availability(public_namespace: str) -> bool
+      :async:
+
+      Check the availability of an organization namespace.
+
+      :param public_namespace: Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash
+                               characters.
+      :type public_namespace: str
+
+      :raises GRPCError: If an invalid namespace (e.g., "") is provided.
+
+      :returns: True if the provided namespace is available.
+      :rtype: bool
+
+
+   .. py:method:: update_organization(name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None) -> viam.proto.app.Organization
       :abstractmethod:
       :async:
 
 
-   .. py:method:: update_organization()
+   .. py:method:: delete_organization(organization_id: str) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: delete_organization()
+   .. py:method:: list_organization_members() -> Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+      :async:
+
+      List the members and invites of the currently authed-to organization.
+
+      :returns:
+
+                A tuple containing two lists; the first
+                    [0] of organization members, and the second [1] of organization invites.
+      :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+
+
+   .. py:method:: create_organization_invite(email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
       :abstractmethod:
       :async:
 
 
-   .. py:method:: list_organization_members()
+   .. py:method:: update_organization_invite_authorizations(email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
+      :async:
+
+      Update the authorizations attached to an organization invite that has already been created.
+
+      Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
+      at least one authorization overall.
+
+      :param email: Email of the user the invite was sent to.
+      :type email: str
+      :param add_authorization: Optional list of authorizations to add to the invite.
+      :type add_authorization: Optional[List[viam.proto.app.Authorization]]
+      :param remove_authorization: Optional list of authorizations to remove from the invite.
+      :type remove_authorization: Optional[List[viam.proto.app.Authorization]]
+
+      :raises GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
+          remove when the invite only contains one authorization).
+
+      :returns: The updated invite.
+      :rtype: viam.proto.app.OrganizationInvite
+
+
+   .. py:method:: delete_organization_member(user_id: str) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: create_organization_invite()
+   .. py:method:: delete_organization_invite(email: str) -> None
       :abstractmethod:
       :async:
 
 
-   .. py:method:: update_organization_invite_authorizations()
+   .. py:method:: resend_organization_invite(email: str) -> viam.proto.app.OrganizationInvite
       :abstractmethod:
       :async:
 
 
-   .. py:method:: delete_organization_member()
-      :abstractmethod:
+   .. py:method:: create_location(name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
       :async:
 
-
-   .. py:method:: delete_organization_invite()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: resend_organization_invite()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: create_location(name: str, organization_id: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
-      :async:
-
-      Create and name a location under the specified organization and parent location.
+      Create and name a location under the currently authed-to organization and the specified parent location.
 
       :param name: Name of the location.
       :type name: str
-      :param organization_id: ID of the organization to create the location under.
-      :type organization_id: str
       :param parent_location_id: Optional parent location to put the location under. Defaults to a root-level location if no
                                  location ID is provided.
       :type parent_location_id: Optional[str]
 
-      :raises GRPCError: If either an invalid organization ID, name, or parent location ID is passed.
+      :raises GRPCError: If either an invalid name (e.g., ""), or parent location ID (e.g., a nonexistent ID) is passed.
 
       :returns: The newly created location.
       :rtype: viam.proto.app.Location
@@ -370,10 +448,10 @@ Attributes
       Get a location.
 
       :param location_id: ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
-                          If no default location ID was passed, a GRPCError will be thrown.
       :type location_id: Optional[str]
 
-      :raises GRPCError: If an invalid location ID is passed.
+      :raises GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
+          instantiation.
 
       :returns: The location.
       :rtype: viam.proto.app.Location
@@ -384,13 +462,13 @@ Attributes
 
       Change the name of a location and/or assign it a new parent location.
 
-      :param location_id: ID of the location to update.
+      :param location_id: ID of the location to update. Must be specified.
       :type location_id: str
       :param name: Optional new name to be updated on the location. Defaults to the empty string "" (i.e., the name doesn't
                    change).
       :type name: Optional[str]
-      :param parent_location_id: Optional new parent location to move the location under. Defaults to the empty string ""
-                                 (i.e., no new parent location is assigned).
+      :param parent_location_id: Optional ID of new parent location to move the location under. Defaults to the empty string
+                                 "" (i.e., no new parent location is assigned).
       :type parent_location_id: Optional[str]
 
       :raises GRPCError: If either an invalid location ID, name, or parent location ID is passed.
@@ -410,15 +488,10 @@ Attributes
       :raises GRPCError: If an invalid location ID is passed.
 
 
-   .. py:method:: list_locations(organization_id: str) -> List[viam.proto.app.Location]
+   .. py:method:: list_locations() -> List[viam.proto.app.Location]
       :async:
 
-      Get a list of all locations under the specified organization.
-
-      :param organization_id: ID of the organization to retrieve the locations from.
-      :type organization_id: str
-
-      :raises GRPCError: If an invalid organization ID is passed.
+      Get a list of all locations under the currently authed-to organization.
 
       :returns: The list of locations.
       :rtype: List[viam.proto.app.Location]
@@ -434,19 +507,50 @@ Attributes
       :async:
 
 
-   .. py:method:: location_auth()
-      :abstractmethod:
+   .. py:method:: location_auth(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
       :async:
 
+      Get a location's `LocationAuth` (location secret(s)).
 
-   .. py:method:: create_location_secret()
-      :abstractmethod:
+      :param location_id: ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`
+                          instantiation.
+      :type location_id: str
+
+      :raises GRPCError: If an invalid location ID is passed or if one isn't passed and there was no location ID provided at `AppClient`
+          instantiation.
+
+      :returns: The `LocationAuth` containing location secrets.
+      :rtype: LocationAuth
+
+
+   .. py:method:: create_location_secret(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
       :async:
 
+      Create a new location secret.
 
-   .. py:method:: delete_location_secret()
-      :abstractmethod:
+      :param location_id: ID of the location to generate a new secret for. Defaults to the location ID provided at
+                          `AppClient` instantiation.
+      :type location_id: Optional[str]
+
+      :raises GRPCError: If an invalid location ID is passed or one isn't passed and there was no location ID provided at `AppClient`
+          instantiation.
+
+      :returns: The specified location's `LocationAuth` containing the newly created secret.
+      :rtype: viam.proto.app.LocationAuth
+
+
+   .. py:method:: delete_location_secret(secret_id: str, location_id: Optional[str] = None) -> None
       :async:
+
+      Delete a location secret.
+
+      :param location_id: ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.
+      :type location_id: str
+      :param secret_id: ID of the secret to delete.
+      :type secret_id: str
+
+      :raises GRPCError: If either an invalid location ID or secret ID is passed or a location ID isn't passed and there was no location
+          ID provided at `AppClient` instantiation.
 
 
    .. py:method:: get_robot(robot_id: str) -> viam.proto.app.Robot
@@ -524,13 +628,35 @@ Attributes
       :rtype: List[viam.app.app_client.LogEntry]
 
 
-   .. py:method:: tail_robot_part_logs()
-      :abstractmethod:
+   .. py:method:: tail_robot_part_logs(robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None) -> viam.app._logs._LogsStream[List[LogEntry]]
       :async:
 
+      Get an asynchronous iterator that recieves live robot part logs.
 
-   .. py:method:: get_robot_part_history()
+      :param robot_part_id: ID of the robot part to retrieve lgos from.
+      :type robot_part_id: str
+      :param errors_only: Boolean specifying whether or not to only include error logs. Defaults to True.
+      :type errors_only: bool
+      :param filter: Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
+                     filter).
+      :type filter: Optional[str]
+
+      :returns: The asynchronous iterator recieving live robot part logs.
+      :rtype: _LogsStream[List[LogEntry]]
+
+
+   .. py:method:: get_robot_part_history(robot_part_id: str) -> List[RobotPartHistoryEntry]
       :async:
+
+      Get a list containing the history of a robot part.
+
+      :param robot_part_id: ID of the robot part to retrieve history from.
+      :type robot_part_id: str
+
+      :raises GRPCError: If an invalid robot part ID is provided.
+
+      :returns: The list of the robot part's history.
+      :rtype: List[viam.app.app_client.RobotPartHistoryEntry]
 
 
    .. py:method:: update_robot_part(robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart
@@ -579,9 +705,15 @@ Attributes
       :raises GRPCError: If an invalid robot part ID is passed.
 
 
-   .. py:method:: mark_part_as_main()
-      :abstractmethod:
+   .. py:method:: mark_part_as_main(robot_part_id: str) -> None
       :async:
+
+      Mark a robot part as the main part of a robot.
+
+      :param robot_part_id: ID of the robot part to mark as main.
+      :type robot_part_id: str
+
+      :raises GRPCError: If an invalid robot part ID is passed.
 
 
    .. py:method:: mark_part_for_restart(robot_part_id: str) -> None
@@ -595,14 +727,31 @@ Attributes
       :raises GRPCError: If an invalid robot part ID is passed.
 
 
-   .. py:method:: create_robot_part_secret()
-      :abstractmethod:
+   .. py:method:: create_robot_part_secret(robot_part_id: str) -> RobotPart
       :async:
 
+      Create a robot part secret.
 
-   .. py:method:: delete_robot_part_secret()
-      :abstractmethod:
+      :param robot_part_id: ID of the robot part to create a secret for.
+      :type robot_part_id: str
+
+      :raises GRPCError: If an invalid robot part ID is passed.
+
+      :returns: The robot part the new secret was generated for.
+      :rtype: viam.app.app_client.RobotPart
+
+
+   .. py:method:: delete_robot_part_secret(robot_part_id: str, secret_id: str) -> None
       :async:
+
+      Delete a robot part secret.
+
+      :param robot_part_id: ID of the robot part to delete the secret from.
+      :type robot_part_id: str
+      :param secret_id: ID of the secret to delete.
+      :type secret_id: str
+
+      :raises GRPCError: If an invalid robot part ID or secret ID is passed.
 
 
    .. py:method:: list_robots(location_id: Optional[str] = None) -> List[viam.proto.app.Robot]
@@ -669,17 +818,13 @@ Attributes
       :raises GRPCError: If an invalid robot ID is passed.
 
 
-   .. py:method:: list_fragments(organization_id: str, show_public: bool = True) -> List[Fragment]
+   .. py:method:: list_fragments(show_public: bool = True) -> List[Fragment]
       :async:
 
-      Get a list of fragments under the specified organization.
+      Get a list of fragments under the currently authed-to organization.
 
-      :param organization_id: ID of the organization under which to list the fragments.
-      :type organization_id: str
       :param show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
                           return. If False, only private fragments will return. Defaults to True.
-
-      :raises GRPCError: If an invalid organization ID is passed.
 
       :returns: The list of fragments.
       :rtype: List[viam.app.app_client.Fragment]
@@ -699,64 +844,189 @@ Attributes
       :rtype: viam.app.app_client.Fragment
 
 
-   .. py:method:: create_fragment()
+   .. py:method:: create_fragment(name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment
+      :async:
+
+      Create a new private fragment.
+
+      :param name: Name of the fragment.
+      :type name: str
+      :param config: Optional Dictionary representation of new config to assign to specified fragment. Can be
+                     assigned by updating the fragment.
+      :type config: Optional[Mapping[str, Any]]
+
+      :raises GRPCError: If an invalid name is passed.
+
+      :returns: The newly created fragment.
+      :rtype: viam.app.app_client.Fragment
+
+
+   .. py:method:: update_fragment(fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None) -> Fragment
+      :async:
+
+      Update a fragment name AND its config and/or visibility.
+
+      :param fragment_id: ID of the fragment to update.
+      :type fragment_id: str
+      :param name: New name to associate with the fragment.
+      :type name: str
+      :param config: Optional Dictionary representation of new config to assign to specified fragment. Not
+                     passing this parameter will leave the fragment's config unchanged.
+      :type config: Optional[Mapping[str, Any]]
+      :param public: Boolean specifying whether the fragment is public. Not passing this parameter will leave the fragment's
+                     visibility unchanged. A fragment is private by default when created.
+      :type public: bool
+
+      :raises GRPCError: if an invalid ID, name, or config is passed.
+
+      :returns: The newly updated fragment.
+      :rtype: viam.app.app_client.Fragment
+
+
+   .. py:method:: delete_fragment(fragment_id) -> None
+      :async:
+
+      Delete a fragment.
+
+      :param fragment_id: ID of the fragment to delete.
+      :type fragment_id: str
+
+      :raises GRPCError: If an invalid fragment ID is passed.
+
+
+   .. py:method:: add_role(identity_id: str, role: str, resource_type: str, resource_id: str) -> None
+      :async:
+
+      Add a role under the currently authed-to organization.
+
+      :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :type identity_id: str
+      :param role: The role to add (i.e., either "owner" or "operator").
+      :type role: str
+      :param resource_type: Type of the resource to add role to (i.e., either "organization", "location", or "robot"). Must match
+                            `resource_id`.
+      :type resource_type: str
+      :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :type resource_id: str
+
+      :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
+
+
+   .. py:method:: remove_role(identity_id: str, role: str, resource_type: str, resource_id: str) -> None
+      :async:
+
+      Remove a role under the currently authed-to organization.
+
+      :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :type identity_id: str
+      :param role: The role to remove (i.e., either "owner" or "operator").
+      :type role: str
+      :param resource_type: Type of the resource to remove role from (i.e., either "organization", "location", or "robot"). Must match
+                            `resource_id`.
+      :type resource_type: str
+      :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :type resource_id: str
+
+      :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
+
+
+   .. py:method:: list_authorizations(resource_ids: Optional[List[str]] = None) -> List[viam.proto.app.Authorization]
+      :async:
+
+      List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
+      are provided, all resource authorizations within the organizations are returned.
+
+      :param resource_ids: IDs of the resources to retrieve authorizations from. Defaults to None.
+      :type resource_ids: Optional[List[str]]
+
+      :raises GRPCError: If an invalid resource ID is passed.
+
+      :returns: The list of authorizations.
+      :rtype: List[Authorization]
+
+
+   .. py:method:: check_permissions(permissions: Optional[List[viam.proto.app.AuthorizedPermissions]] = None) -> List[viam.proto.app.AuthorizedPermissions]
       :abstractmethod:
       :async:
 
 
-   .. py:method:: update_fragment()
-      :abstractmethod:
+   .. py:method:: create_module(name: str) -> Tuple[str, str]
       :async:
 
+      Create a module under the currently authed-to organization.
 
-   .. py:method:: delete_fragments()
-      :abstractmethod:
+      :param name: The name of the module. Must be unique within your organization.
+      :type name: str
+
+      :raises GRPCError: If an invalid name (e.g., "") is passed.
+
+      :returns: A tuple containing the ID [0] of the new module and its URL [1].
+      :rtype: Tuple[str, str]
+
+
+   .. py:method:: update_module(module_id: str, url: str, description: str, models: Optional[List[viam.proto.app.Model]], entrypoint: str, organization_id: Optional[str] = None, public: bool = False) -> str
       :async:
 
+      Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
 
-   .. py:method:: add_role()
-      :abstractmethod:
+      :param module_id: ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
+                        "my-org:my-module").
+      :type module_id: str
+      :param url: The url to reference for documentation and code (NOT the url of the module itself).
+      :type url: str
+      :param description: A short description of the module that explains its purpose.
+      :type description: str
+      :param models: list of models that are available in the module.
+      :type models: Optional[List[viam.proto.app.Model]]
+      :param entrypoint: The executable to run to start the module program.
+      :type entrypoint: str
+      :param organization_id: ID of organization of the module being updated, required if no namespace exists in the
+                              module ID.
+      :type organization_id: Optional[str]
+      :param public: The visibility that should be set for the module. Defaults to False (private).
+      :type public: bool
+
+      :raises GRPCError: If either an invalid module ID, URL, list of models, or organization ID is passed.
+
+      :returns: The URL of the newly updated module.
+      :rtype: str
+
+
+   .. py:method:: upload_module_file(module_file_info: Optional[viam.proto.app.ModuleFileInfo], file: bytes) -> str
       :async:
 
+      Upload a module file
 
-   .. py:method:: remove_role()
-      :abstractmethod:
+      :param module_file_info: Relevant metadata.
+      :type module_file_info: Optional[viam.proto.app.ModuleFileInfo]
+      :param file: Bytes of file to upload.
+      :type file: bytes
+
+      :returns: ID of uploaded file.
+      :rtype: str
+
+
+   .. py:method:: get_module(module_id: str) -> viam.proto.app.Module
       :async:
 
+      Get a module.
 
-   .. py:method:: list_authorizations()
-      :abstractmethod:
+      :param module_id: ID of the module being retrieved, containing module name or namespace and module name.
+      :type module_id: str
+
+      :raises GRPCError: If an invalid module ID is passed.
+
+      :returns: The module.
+      :rtype: viam.proto.app.Module
+
+
+   .. py:method:: list_modules() -> List[viam.proto.app.Module]
       :async:
 
+      List the modules under the currently authed-to organization.
 
-   .. py:method:: check_permissions()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: create_module()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: update_module()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: upload_module_file()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: get_module()
-      :abstractmethod:
-      :async:
-
-
-   .. py:method:: list_modules()
-      :abstractmethod:
-      :async:
+      :returns: The list of modules.
+      :rtype: List[viam.proto.app.Module]
 
 
 
