@@ -29,7 +29,7 @@ class ViamClient:
                 `auth_entity` fields are required.
 
         Raises:
-            AssertionError: If the type provided in the credentials of the `DialOptions` object is 'robot-secret'.
+            ValueError: If the input parameters are missing a required field or simply invalid.
 
         Returns:
             Self: The `ViamClient`.

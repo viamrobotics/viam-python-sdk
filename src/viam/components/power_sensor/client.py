@@ -5,12 +5,12 @@ from grpclib.client import Channel
 from viam.components.power_sensor.power_sensor import PowerSensor
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.powersensor import (
-    GetVoltageRequest,
-    GetVoltageResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetVoltageRequest,
+    GetVoltageResponse,
     PowerSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
