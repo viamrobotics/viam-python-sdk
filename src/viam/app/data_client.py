@@ -396,7 +396,7 @@ class DataClient:
         app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
 
         Args:
-            binary_data (bytes): The data to be uploaded, respresented in bytes.
+            binary_data (bytes): The data to be uploaded, represented in bytes.
             part_id (str): Part ID of the component used to capture the data.
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
@@ -532,7 +532,7 @@ class DataClient:
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
                 provided.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
-            data: (Optional[bytes]): Optional bytes representing file data to upload.
+            data (Optional[bytes]): Optional bytes representing file data to upload.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
