@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.components.board.Geometry
+   viam.components.board.Board
 
 
 
@@ -87,6 +88,487 @@ Classes
       :rtype: str or None
 
       :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: Board(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Board represents a physical general purpose compute board that contains various
+   components such as analog readers, and digital interrupts.
+
+   This acts as an abstract base class for any drivers representing specific
+   board implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:class:: Attributes
+
+
+      .. py:attribute:: remote
+         :type: bool
+
+         Indicates whether this board is accessed over a remote connection, e.g. gRPC.
+
+
+   .. py:class:: AnalogReader(name: str)
+
+
+      Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+      AnalogReader represents an analog pin reader that resides on a Board.
+
+      .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+         :abstractmethod:
+         :async:
+
+         Read the current value.
+
+         :returns: The current value.
+         :rtype: int
+
+
+      .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+         :classmethod:
+
+         Get the component named ``name`` from the provided robot.
+
+         :param robot: The robot
+         :type robot: RobotClient
+         :param name: The name of the component
+         :type name: str
+
+         :returns: The component, if it exists on the robot
+         :rtype: Self
+
+
+      .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+         :abstractmethod:
+         :async:
+
+         Send/Receive arbitrary commands to the Resource
+
+         :param command: The command to execute
+         :type command: Mapping[str, ValueTypes]
+
+         :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+         :returns: Result of the executed command
+         :rtype: Mapping[str, ValueTypes]
+
+
+      .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+         :classmethod:
+
+         Get the ResourceName for this Resource with the given name
+
+         :param name: The name of the Resource
+         :type name: str
+
+
+      .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+         Get the ``Operation`` associated with the currently running function.
+
+         When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+         If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+         ).
+
+         :param kwargs: The kwargs object containing the operation
+         :type kwargs: Mapping[str, Any]
+
+         :returns: The operation associated with this function
+         :rtype: viam.operations.Operation
+
+
+
+   .. py:class:: DigitalInterrupt(name: str)
+
+
+      Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+      DigitalInterrupt represents a configured interrupt on the Board that
+      when interrupted, calls the added callbacks. Post processors can
+      be added to modify what Value it ultimately returns.
+
+      .. py:method:: value(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+         :abstractmethod:
+         :async:
+
+         Get the current value of the interrupt,
+         which is based on the type of interrupt.
+
+         :returns: The current value.
+         :rtype: int
+
+
+      .. py:method:: tick(high: bool, nanos: int)
+         :abstractmethod:
+         :async:
+
+         This method is to be called either manually if the interrupt
+         is a proxy to some real hardware interrupt or for tests.
+
+         :param high: If the signal of the interrupt is high.
+         :type high: bool
+         :param nanos: Nanoseconds from an arbitrary point in time,
+                       but always increasing and always needs to be accurate.
+                       Using ``time.time_ns()`` would be acceptable.
+         :type nanos: int
+
+
+      .. py:method:: add_callback(queue: multiprocessing.Queue)
+         :abstractmethod:
+         :async:
+
+         Add a callback to be sent the low/high value on ``tick()``.
+
+         :param queue: The receiving queue.
+         :type queue: Queue
+
+
+      .. py:method:: add_post_processor(processor: PostProcessor)
+         :abstractmethod:
+         :async:
+
+         Add a post processor that should be used to modify what
+         is returned by ``self.value()``
+
+         :param processor: The post processor to add.
+         :type processor: PostProcessor
+
+
+      .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+         :classmethod:
+
+         Get the component named ``name`` from the provided robot.
+
+         :param robot: The robot
+         :type robot: RobotClient
+         :param name: The name of the component
+         :type name: str
+
+         :returns: The component, if it exists on the robot
+         :rtype: Self
+
+
+      .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+         :abstractmethod:
+         :async:
+
+         Send/Receive arbitrary commands to the Resource
+
+         :param command: The command to execute
+         :type command: Mapping[str, ValueTypes]
+
+         :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+         :returns: Result of the executed command
+         :rtype: Mapping[str, ValueTypes]
+
+
+      .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+         :classmethod:
+
+         Get the ResourceName for this Resource with the given name
+
+         :param name: The name of the Resource
+         :type name: str
+
+
+      .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+         Get the ``Operation`` associated with the currently running function.
+
+         When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+         If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+         ).
+
+         :param kwargs: The kwargs object containing the operation
+         :type kwargs: Mapping[str, Any]
+
+         :returns: The operation associated with this function
+         :rtype: viam.operations.Operation
+
+
+
+   .. py:class:: GPIOPin(name: str)
+
+
+      Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+      Abstract representation of an individual GPIO pin on a board
+
+      .. py:method:: set(high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+         :async:
+
+         Set the pin to either low or high.
+
+         :param high: When true, sets the pin to high. When false, sets the pin to low.
+         :type high: bool
+
+
+      .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
+         :abstractmethod:
+         :async:
+
+         Get the high/low state of the pin.
+
+         :returns: Indicates if the state of the pin is high.
+         :rtype: bool
+
+
+      .. py:method:: get_pwm(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
+         :abstractmethod:
+         :async:
+
+         Get the pin's given duty cycle.
+
+         :returns: The duty cycle.
+         :rtype: float
+
+
+      .. py:method:: set_pwm(duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+         :async:
+
+         Set the pin to the given ``duty_cycle``.
+
+         :param duty_cycle: The duty cycle.
+         :type duty_cycle: float
+
+
+      .. py:method:: get_pwm_frequency(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+         :abstractmethod:
+         :async:
+
+         Get the PWM frequency of the pin.
+
+         :returns: The PWM frequency.
+         :rtype: int
+
+
+      .. py:method:: set_pwm_frequency(frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+         :async:
+
+         Set the pin to the given PWM ``frequency`` (in Hz).
+         When ``frequency`` is 0, it will use the board's default PWM frequency.
+
+         :param frequency: The frequency, in Hz.
+         :type frequency: int
+
+
+      .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+         :classmethod:
+
+         Get the component named ``name`` from the provided robot.
+
+         :param robot: The robot
+         :type robot: RobotClient
+         :param name: The name of the component
+         :type name: str
+
+         :returns: The component, if it exists on the robot
+         :rtype: Self
+
+
+      .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+         :abstractmethod:
+         :async:
+
+         Send/Receive arbitrary commands to the Resource
+
+         :param command: The command to execute
+         :type command: Mapping[str, ValueTypes]
+
+         :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+         :returns: Result of the executed command
+         :rtype: Mapping[str, ValueTypes]
+
+
+      .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+         :classmethod:
+
+         Get the ResourceName for this Resource with the given name
+
+         :param name: The name of the Resource
+         :type name: str
+
+
+      .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+         Get the ``Operation`` associated with the currently running function.
+
+         When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+         If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+         ).
+
+         :param kwargs: The kwargs object containing the operation
+         :type kwargs: Mapping[str, Any]
+
+         :returns: The operation associated with this function
+         :rtype: viam.operations.Operation
+
+
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: analog_reader_by_name(name: str) -> AnalogReader
+      :abstractmethod:
+      :async:
+
+      Get an AnalogReader by ``name``.
+
+      :param name: Name of the analog reader to be retrieved.
+      :type name: str
+
+      :returns: The analog reader.
+      :rtype: AnalogReader
+
+
+   .. py:method:: digital_interrupt_by_name(name: str) -> DigitalInterrupt
+      :abstractmethod:
+      :async:
+
+      Get a DigitalInterrupt by ``name``.
+
+      :param name: Name of the digital interrupt.
+      :type name: str
+
+      :returns: the digital interrupt.
+      :rtype: DigitalInterrupt
+
+
+   .. py:method:: gpio_pin_by_name(name: str) -> GPIOPin
+      :abstractmethod:
+      :async:
+
+      Get a GPIO Pin by ``name``.
+
+      :param name: Name of the GPIO pin.
+      :type name: str
+
+      :returns: the pin.
+      :rtype: GPIOPin
+
+
+   .. py:method:: analog_reader_names() -> List[str]
+      :abstractmethod:
+      :async:
+
+      Get the names of all known analog readers.
+
+      :returns: The names of the analog readers..
+      :rtype: List[str]
+
+
+   .. py:method:: digital_interrupt_names() -> List[str]
+      :abstractmethod:
+      :async:
+
+      Get the names of all known digital interrupts.
+
+      :returns: The names of the digital interrupts.
+      :rtype: List[str]
+
+
+   .. py:method:: status(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.proto.common.BoardStatus
+      :abstractmethod:
+      :async:
+
+      Return the current status of the board.
+
+      :returns: the status.
+      :rtype: viam.proto.common.BoardStatus
+
+
+   .. py:method:: model_attributes() -> Attributes
+      :abstractmethod:
+      :async:
+
+      Get the attributes related to the model of this board.
+
+      :returns: The attributes.
+      :rtype: Attributes
+
+
+   .. py:method:: set_power_mode(mode: viam.proto.component.board.PowerMode.ValueType, duration: Optional[datetime.timedelta] = None, *, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Set the board to the indicated power mode.
+
+      :param mode: the desired power mode
+
+
+   .. py:method:: get_geometries() -> List[viam.components.board.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the board, in their current configuration, in the frame of the board.
+
+      :returns: The geometries associated with the board.
+      :rtype: List[Geometry]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
 
 
 

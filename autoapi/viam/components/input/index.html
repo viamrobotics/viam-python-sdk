@@ -73,7 +73,8 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#viam.components.input.Geometry"><code class="docutils literal notranslate"><span class="pre">Geometry</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Geometry.center"><code class="docutils literal notranslate"><span class="pre">Geometry.center</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Geometry.sphere"><code class="docutils literal notranslate"><span class="pre">Geometry.sphere</span></code></a></li>
@@ -82,6 +83,70 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.input.Control"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_X"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_X</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_Y"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_Y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_Z"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_Z</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_RX"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RX</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_RY"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RY</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_RZ"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_RZ</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_HAT0_X"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_HAT0_X</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_HAT0_Y"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_HAT0_Y</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_SOUTH"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_SOUTH</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_EAST"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_EAST</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_WEST"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_WEST</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_NORTH"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_NORTH</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_LT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_LT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_RT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_LT2"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_LT2</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_RT2"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RT2</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_L_THUMB"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_L_THUMB</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_R_THUMB"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_R_THUMB</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_SELECT"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_SELECT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_START"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_START</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_MENU"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_MENU</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_RECORD"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_RECORD</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.BUTTON_E_STOP"><code class="docutils literal notranslate"><span class="pre">Control.BUTTON_E_STOP</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_PEDAL_ACCELERATOR"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_PEDAL_ACCELERATOR</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_PEDAL_BRAKE"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_PEDAL_BRAKE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Control.ABSOLUTE_PEDAL_CLUTCH"><code class="docutils literal notranslate"><span class="pre">Control.ABSOLUTE_PEDAL_CLUTCH</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.input.ControlFunction"><code class="docutils literal notranslate"><span class="pre">ControlFunction</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.input.Controller"><code class="docutils literal notranslate"><span class="pre">Controller</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Controller.SUBTYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.get_controls"><code class="docutils literal notranslate"><span class="pre">Controller.get_controls()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.get_events"><code class="docutils literal notranslate"><span class="pre">Controller.get_events()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.register_control_callback"><code class="docutils literal notranslate"><span class="pre">Controller.register_control_callback()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.trigger_event"><code class="docutils literal notranslate"><span class="pre">Controller.trigger_event()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.get_geometries"><code class="docutils literal notranslate"><span class="pre">Controller.get_geometries()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.from_robot"><code class="docutils literal notranslate"><span class="pre">Controller.from_robot()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.do_command"><code class="docutils literal notranslate"><span class="pre">Controller.do_command()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Controller.get_resource_name()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Controller.get_operation"><code class="docutils literal notranslate"><span class="pre">Controller.get_operation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.input.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.proto"><code class="docutils literal notranslate"><span class="pre">Event.proto</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.time"><code class="docutils literal notranslate"><span class="pre">Event.time</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.event"><code class="docutils literal notranslate"><span class="pre">Event.event</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.control"><code class="docutils literal notranslate"><span class="pre">Event.control</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.value"><code class="docutils literal notranslate"><span class="pre">Event.value</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.Event.from_proto"><code class="docutils literal notranslate"><span class="pre">Event.from_proto()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.components.input.EventType"><code class="docutils literal notranslate"><span class="pre">EventType</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.ALL_EVENTS"><code class="docutils literal notranslate"><span class="pre">EventType.ALL_EVENTS</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.CONNECT"><code class="docutils literal notranslate"><span class="pre">EventType.CONNECT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.DISCONNECT"><code class="docutils literal notranslate"><span class="pre">EventType.DISCONNECT</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.BUTTON_PRESS"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_PRESS</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.BUTTON_RELEASE"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_RELEASE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.BUTTON_HOLD"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_HOLD</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.BUTTON_CHANGE"><code class="docutils literal notranslate"><span class="pre">EventType.BUTTON_CHANGE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.POSITION_CHANGE_ABSOLUTE"><code class="docutils literal notranslate"><span class="pre">EventType.POSITION_CHANGE_ABSOLUTE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.components.input.EventType.POSITION_CHANGE_RELATIVE"><code class="docutils literal notranslate"><span class="pre">EventType.POSITION_CHANGE_RELATIVE</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -156,6 +221,28 @@
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.input.Geometry" title="viam.components.input.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Control</span></code></a></p></td>
+<td><p>Control identifies the input (specific Axis or Button) of a controller.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.input.Controller" title="viam.components.input.Controller"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Controller</span></code></a></p></td>
+<td><p>Controller is a logical &quot;container&quot; more than an actual device</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Event</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EventType</span></code></a></p></td>
+<td><p>Represents the type of input event.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.input.ControlFunction" title="viam.components.input.ControlFunction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ControlFunction</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -233,6 +320,403 @@ be raised.</p>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.input.Control">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.input.</span></span><span class="sig-name descname"><span class="pre">Control</span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Control" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Control identifies the input (specific Axis or Button) of a controller.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_X">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_X</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteX'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_X" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_Y">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_Y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteY'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_Y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_Z">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_Z</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteZ'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_Z" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_RX">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_RX</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteRX'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_RX" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_RY">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_RY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteRY'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_RY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_RZ">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_RZ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteRZ'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_RZ" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_HAT0_X">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_HAT0_X</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteHat0X'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_HAT0_X" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_HAT0_Y">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_HAT0_Y</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsoluteHat0Y'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_HAT0_Y" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_SOUTH">
+<span class="sig-name descname"><span class="pre">BUTTON_SOUTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonSouth'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_SOUTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_EAST">
+<span class="sig-name descname"><span class="pre">BUTTON_EAST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonEast'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_EAST" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_WEST">
+<span class="sig-name descname"><span class="pre">BUTTON_WEST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonWest'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_WEST" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_NORTH">
+<span class="sig-name descname"><span class="pre">BUTTON_NORTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonNorth'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_NORTH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_LT">
+<span class="sig-name descname"><span class="pre">BUTTON_LT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonLT'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_LT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_RT">
+<span class="sig-name descname"><span class="pre">BUTTON_RT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonRT'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_RT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_LT2">
+<span class="sig-name descname"><span class="pre">BUTTON_LT2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonLT2'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_LT2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_RT2">
+<span class="sig-name descname"><span class="pre">BUTTON_RT2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonRT2'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_RT2" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_L_THUMB">
+<span class="sig-name descname"><span class="pre">BUTTON_L_THUMB</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonLThumb'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_L_THUMB" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_R_THUMB">
+<span class="sig-name descname"><span class="pre">BUTTON_R_THUMB</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonRThumb'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_R_THUMB" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_SELECT">
+<span class="sig-name descname"><span class="pre">BUTTON_SELECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonSelect'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_SELECT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_START">
+<span class="sig-name descname"><span class="pre">BUTTON_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonStart'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_START" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_MENU">
+<span class="sig-name descname"><span class="pre">BUTTON_MENU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonMenu'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_MENU" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_RECORD">
+<span class="sig-name descname"><span class="pre">BUTTON_RECORD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonRecord'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_RECORD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.BUTTON_E_STOP">
+<span class="sig-name descname"><span class="pre">BUTTON_E_STOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonEStop'</span></em><a class="headerlink" href="#viam.components.input.Control.BUTTON_E_STOP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_PEDAL_ACCELERATOR">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_PEDAL_ACCELERATOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsolutePedalAccelerator'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_PEDAL_ACCELERATOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_PEDAL_BRAKE">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_PEDAL_BRAKE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsolutePedalBrake'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_PEDAL_BRAKE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Control.ABSOLUTE_PEDAL_CLUTCH">
+<span class="sig-name descname"><span class="pre">ABSOLUTE_PEDAL_CLUTCH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AbsolutePedalClutch'</span></em><a class="headerlink" href="#viam.components.input.Control.ABSOLUTE_PEDAL_CLUTCH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.components.input.ControlFunction">
+<span class="sig-prename descclassname"><span class="pre">viam.components.input.</span></span><span class="sig-name descname"><span class="pre">ControlFunction</span></span><a class="headerlink" href="#viam.components.input.ControlFunction" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.input.Controller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.input.</span></span><span class="sig-name descname"><span class="pre">Controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="../component_base/index.html#viam.components.component_base.ComponentBase" title="viam.components.component_base.ComponentBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.components.component_base.ComponentBase</span></code></a></p>
+<p>Controller is a logical “container” more than an actual device
+Could be a single gamepad, or a collection of digitalInterrupts
+and analogReaders, a keyboard, etc.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Controller.SUBTYPE">
+<span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.components.input.Controller.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.get_controls">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_controls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_controls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_controls" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of Controls provided by the Controller</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of controls provided by the Controller</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control">Control</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.get_events">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_events" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the most recent Event for each input
+(which should be the current state)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The most recent event for each input</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[<a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control">Control</a>, <a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event">Event</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.register_control_callback">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_control_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">control</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">triggers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><span class="pre">EventType</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">function</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">ControlFunction</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.register_control_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.register_control_callback" title="Permalink to this definition"></a></dt>
+<dd><p>Register a function that will fire on given EventTypes for a given
+Control</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>control</strong> (<a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><em>Control</em></a>) – The control to register the function for</p></li>
+<li><p><strong>triggers</strong> (<em>List</em><em>[</em><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><em>EventType</em></a><em>]</em>) – The events that will
+trigger the function</p></li>
+<li><p><strong>function</strong> (<em>ControlFunction</em>) – The function to run on
+specific triggers</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.trigger_event">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">trigger_event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><span class="pre">Event</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.trigger_event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.trigger_event" title="Permalink to this definition"></a></dt>
+<dd><p>Directly send an Event (such as a button press) from external code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event</strong> (<a class="reference internal" href="#viam.components.input.Event" title="viam.components.input.Event"><em>Event</em></a>) – The event to trigger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.get_geometries">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_geometries</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.components.input.Geometry" title="viam.components.input.Geometry"><span class="pre">viam.components.input.Geometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Controller.get_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Controller.get_geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The geometries associated with the input.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="#viam.components.input.Geometry" title="viam.components.input.Geometry">Geometry</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.from_robot">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="headerlink" href="#viam.components.input.Controller.from_robot" title="Permalink to this definition"></a></dt>
+<dd><p>Get the component named <code class="docutils literal notranslate"><span class="pre">name</span></code> from the provided robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot</strong> (<a class="reference internal" href="../../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><em>RobotClient</em></a>) – The robot</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the component</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The component, if it exists on the robot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Self</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.do_command">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#viam.components.input.Controller.do_command" title="Permalink to this definition"></a></dt>
+<dd><p>Send/Receive arbitrary commands to the Resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>command</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – Raised if the Resource does not support arbitrary commands</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Result of the executed command</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping[str, ValueTypes]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.get_resource_name">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_resource_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></span><a class="headerlink" href="#viam.components.input.Controller.get_resource_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get the ResourceName for this Resource with the given name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Controller.get_operation">
+<span class="sig-name descname"><span class="pre">get_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation"><span class="pre">viam.operations.Operation</span></a></span></span><a class="headerlink" href="#viam.components.input.Controller.get_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> associated with the currently running function.</p>
+<p>When writing custom resources, you should get the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> by calling this function and check to see if it’s cancelled.
+If the <code class="docutils literal notranslate"><span class="pre">Operation</span></code> is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – The kwargs object containing the operation</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The operation associated with this function</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.input.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.input.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Event" title="Permalink to this definition"></a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="viam.components.input.Event.proto">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><a class="headerlink" href="#viam.components.input.Event.proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Event.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.components.input.Event.time" title="Permalink to this definition"></a></dt>
+<dd><p>seconds since epoch</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Event.event">
+<span class="sig-name descname"><span class="pre">event</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.input.EventType" title="viam.components.input.EventType"><span class="pre">EventType</span></a></em><a class="headerlink" href="#viam.components.input.Event.event" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Event.control">
+<span class="sig-name descname"><span class="pre">control</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.components.input.Control" title="viam.components.input.Control"><span class="pre">Control</span></a></em><a class="headerlink" href="#viam.components.input.Event.control" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.Event.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.components.input.Event.value" title="Permalink to this definition"></a></dt>
+<dd><p>0 or 1 for buttons, -1.0 to +1.0 for axes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.input.Event.from_proto">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/component/inputcontroller/index.html#viam.proto.component.inputcontroller.Event" title="viam.proto.component.inputcontroller.Event"><span class="pre">viam.proto.component.inputcontroller.Event</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#Event.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.Event.from_proto" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.components.input.EventType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.input.</span></span><span class="sig-name descname"><span class="pre">EventType</span></span><a class="reference internal" href="../../../../_modules/viam/components/input/input.html#EventType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.input.EventType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>Represents the type of input event.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.ALL_EVENTS">
+<span class="sig-name descname"><span class="pre">ALL_EVENTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AllEvents'</span></em><a class="headerlink" href="#viam.components.input.EventType.ALL_EVENTS" title="Permalink to this definition"></a></dt>
+<dd><p>Callbacks registered for this event will be called in ADDITION to other registered event callbacks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.CONNECT">
+<span class="sig-name descname"><span class="pre">CONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Connect'</span></em><a class="headerlink" href="#viam.components.input.EventType.CONNECT" title="Permalink to this definition"></a></dt>
+<dd><p>Sent at controller initialization, and on reconnects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.DISCONNECT">
+<span class="sig-name descname"><span class="pre">DISCONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Disconnect'</span></em><a class="headerlink" href="#viam.components.input.EventType.DISCONNECT" title="Permalink to this definition"></a></dt>
+<dd><p>If unplugged, or wireless/network times out.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.BUTTON_PRESS">
+<span class="sig-name descname"><span class="pre">BUTTON_PRESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonPress'</span></em><a class="headerlink" href="#viam.components.input.EventType.BUTTON_PRESS" title="Permalink to this definition"></a></dt>
+<dd><p>Typical key press.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.BUTTON_RELEASE">
+<span class="sig-name descname"><span class="pre">BUTTON_RELEASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonRelease'</span></em><a class="headerlink" href="#viam.components.input.EventType.BUTTON_RELEASE" title="Permalink to this definition"></a></dt>
+<dd><p>Key release.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.BUTTON_HOLD">
+<span class="sig-name descname"><span class="pre">BUTTON_HOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonHold'</span></em><a class="headerlink" href="#viam.components.input.EventType.BUTTON_HOLD" title="Permalink to this definition"></a></dt>
+<dd><p>Key is held down. This wil likely be a repeated event.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.BUTTON_CHANGE">
+<span class="sig-name descname"><span class="pre">BUTTON_CHANGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ButtonChange'</span></em><a class="headerlink" href="#viam.components.input.EventType.BUTTON_CHANGE" title="Permalink to this definition"></a></dt>
+<dd><p>Both up and down for convenience during registration, not typically emitted.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.POSITION_CHANGE_ABSOLUTE">
+<span class="sig-name descname"><span class="pre">POSITION_CHANGE_ABSOLUTE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PositionChangeAbs'</span></em><a class="headerlink" href="#viam.components.input.EventType.POSITION_CHANGE_ABSOLUTE" title="Permalink to this definition"></a></dt>
+<dd><p>Absolute position is reported via Value, a la joysticks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.components.input.EventType.POSITION_CHANGE_RELATIVE">
+<span class="sig-name descname"><span class="pre">POSITION_CHANGE_RELATIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PositionChangeRel'</span></em><a class="headerlink" href="#viam.components.input.EventType.POSITION_CHANGE_RELATIVE" title="Permalink to this definition"></a></dt>
+<dd><p>Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.</p>
 </dd></dl>
 
 </dd></dl>

@@ -24,8 +24,20 @@ Classes
 .. autoapisummary::
 
    viam.components.input.Geometry
+   viam.components.input.Control
+   viam.components.input.Controller
+   viam.components.input.Event
+   viam.components.input.EventType
 
 
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.components.input.ControlFunction
 
 
 .. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
@@ -88,5 +100,355 @@ Classes
 
       :raises ValueError: no group with the given name exists
 
+
+
+.. py:class:: Control
+
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Control identifies the input (specific Axis or Button) of a controller.
+
+   .. py:attribute:: ABSOLUTE_X
+      :value: 'AbsoluteX'
+
+      
+
+   .. py:attribute:: ABSOLUTE_Y
+      :value: 'AbsoluteY'
+
+      
+
+   .. py:attribute:: ABSOLUTE_Z
+      :value: 'AbsoluteZ'
+
+      
+
+   .. py:attribute:: ABSOLUTE_RX
+      :value: 'AbsoluteRX'
+
+      
+
+   .. py:attribute:: ABSOLUTE_RY
+      :value: 'AbsoluteRY'
+
+      
+
+   .. py:attribute:: ABSOLUTE_RZ
+      :value: 'AbsoluteRZ'
+
+      
+
+   .. py:attribute:: ABSOLUTE_HAT0_X
+      :value: 'AbsoluteHat0X'
+
+      
+
+   .. py:attribute:: ABSOLUTE_HAT0_Y
+      :value: 'AbsoluteHat0Y'
+
+      
+
+   .. py:attribute:: BUTTON_SOUTH
+      :value: 'ButtonSouth'
+
+      
+
+   .. py:attribute:: BUTTON_EAST
+      :value: 'ButtonEast'
+
+      
+
+   .. py:attribute:: BUTTON_WEST
+      :value: 'ButtonWest'
+
+      
+
+   .. py:attribute:: BUTTON_NORTH
+      :value: 'ButtonNorth'
+
+      
+
+   .. py:attribute:: BUTTON_LT
+      :value: 'ButtonLT'
+
+      
+
+   .. py:attribute:: BUTTON_RT
+      :value: 'ButtonRT'
+
+      
+
+   .. py:attribute:: BUTTON_LT2
+      :value: 'ButtonLT2'
+
+      
+
+   .. py:attribute:: BUTTON_RT2
+      :value: 'ButtonRT2'
+
+      
+
+   .. py:attribute:: BUTTON_L_THUMB
+      :value: 'ButtonLThumb'
+
+      
+
+   .. py:attribute:: BUTTON_R_THUMB
+      :value: 'ButtonRThumb'
+
+      
+
+   .. py:attribute:: BUTTON_SELECT
+      :value: 'ButtonSelect'
+
+      
+
+   .. py:attribute:: BUTTON_START
+      :value: 'ButtonStart'
+
+      
+
+   .. py:attribute:: BUTTON_MENU
+      :value: 'ButtonMenu'
+
+      
+
+   .. py:attribute:: BUTTON_RECORD
+      :value: 'ButtonRecord'
+
+      
+
+   .. py:attribute:: BUTTON_E_STOP
+      :value: 'ButtonEStop'
+
+      
+
+   .. py:attribute:: ABSOLUTE_PEDAL_ACCELERATOR
+      :value: 'AbsolutePedalAccelerator'
+
+      
+
+   .. py:attribute:: ABSOLUTE_PEDAL_BRAKE
+      :value: 'AbsolutePedalBrake'
+
+      
+
+   .. py:attribute:: ABSOLUTE_PEDAL_CLUTCH
+      :value: 'AbsolutePedalClutch'
+
+      
+
+
+.. py:data:: ControlFunction
+
+   
+
+.. py:class:: Controller(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Controller is a logical "container" more than an actual device
+   Could be a single gamepad, or a collection of digitalInterrupts
+   and analogReaders, a keyboard, etc.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: get_controls(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]
+      :abstractmethod:
+      :async:
+
+      Returns a list of Controls provided by the Controller
+
+      :returns: List of controls provided by the Controller
+      :rtype: List[Control]
+
+
+   .. py:method:: get_events(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Dict[Control, Event]
+      :abstractmethod:
+      :async:
+
+      Returns the most recent Event for each input
+      (which should be the current state)
+
+      :returns: The most recent event for each input
+      :rtype: Dict[Control, Event]
+
+
+   .. py:method:: register_control_callback(control: Control, triggers: List[EventType], function: Optional[ControlFunction], *, extra: Optional[Dict[str, Any]] = None, **kwargs)
+      :abstractmethod:
+
+      Register a function that will fire on given EventTypes for a given
+      Control
+
+      :param control: The control to register the function for
+      :type control: Control
+      :param triggers: The events that will
+                       trigger the function
+      :type triggers: List[EventType]
+      :param function: The function to run on
+                       specific triggers
+      :type function: ControlFunction
+
+
+   .. py:method:: trigger_event(event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :async:
+
+      Directly send an Event (such as a button press) from external code
+
+      :param event: The event to trigger
+      :type event: Event
+
+
+   .. py:method:: get_geometries() -> List[viam.components.input.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.
+
+      :returns: The geometries associated with the input.
+      :rtype: List[Geometry]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+
+.. py:class:: Event
+
+
+   .. py:property:: proto
+
+
+   .. py:attribute:: time
+      :type: float
+
+      seconds since epoch
+
+   .. py:attribute:: event
+      :type: EventType
+
+      
+
+   .. py:attribute:: control
+      :type: Control
+
+      
+
+   .. py:attribute:: value
+      :type: float
+
+      0 or 1 for buttons, -1.0 to +1.0 for axes
+
+   .. py:method:: from_proto(proto: viam.proto.component.inputcontroller.Event) -> typing_extensions.Self
+      :classmethod:
+
+
+
+.. py:class:: EventType
+
+
+   Bases: :py:obj:`str`, :py:obj:`enum.Enum`
+
+   Represents the type of input event.
+
+   .. py:attribute:: ALL_EVENTS
+      :value: 'AllEvents'
+
+      Callbacks registered for this event will be called in ADDITION to other registered event callbacks.
+
+   .. py:attribute:: CONNECT
+      :value: 'Connect'
+
+      Sent at controller initialization, and on reconnects.
+
+   .. py:attribute:: DISCONNECT
+      :value: 'Disconnect'
+
+      If unplugged, or wireless/network times out.
+
+   .. py:attribute:: BUTTON_PRESS
+      :value: 'ButtonPress'
+
+      Typical key press.
+
+   .. py:attribute:: BUTTON_RELEASE
+      :value: 'ButtonRelease'
+
+      Key release.
+
+   .. py:attribute:: BUTTON_HOLD
+      :value: 'ButtonHold'
+
+      Key is held down. This wil likely be a repeated event.
+
+   .. py:attribute:: BUTTON_CHANGE
+      :value: 'ButtonChange'
+
+      Both up and down for convenience during registration, not typically emitted.
+
+   .. py:attribute:: POSITION_CHANGE_ABSOLUTE
+      :value: 'PositionChangeAbs'
+
+      Absolute position is reported via Value, a la joysticks.
+
+   .. py:attribute:: POSITION_CHANGE_RELATIVE
+      :value: 'PositionChangeRel'
+
+      Relative position is reported via Value, a la mice, or simulating axes with up/down buttons.
 
 
