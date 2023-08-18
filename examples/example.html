@@ -63,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#start-the-server-and-add-it-as-a-remote">3. Start the Server and add it as a Remote</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#convert-a-custom-remote-to-a-custom-module">Convert a custom remote to a custom module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client-to-app">Connect as a client to app</a></li>
 </ul>
@@ -167,56 +168,24 @@ subtype: &quot;base&quot;
 name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;slam&quot;
-name: &quot;slam0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;movement_sensor&quot;
 name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;encoder&quot;
 name: &quot;encoder0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;servo&quot;
@@ -224,7 +193,39 @@ name: &quot;servo0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
 name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
 ]
 </pre></div>
 </div>
@@ -828,6 +829,112 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </section>
 </section>
+<section id="convert-a-custom-remote-to-a-custom-module">
+<h2>Convert a custom remote to a custom module<a class="headerlink" href="#convert-a-custom-remote-to-a-custom-module" title="Permalink to this heading"></a></h2>
+<p>Modular resources are the preferred method of creating custom resource implementations for the Python SDK unless you are hosting viam-server on a non-Linux system or have another issue with compilation. Already existing custom remote resources can be converted to custom module resources.</p>
+<p>This section will go over the steps it takes to convert a custom remote to a custom module.
+<code class="docutils literal notranslate"><span class="pre">MySensor</span></code> is currently a custom remote component, written here:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.server</span> <span class="kn">import</span> <span class="n">Server</span>
+
+
+<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/proc/net/wireless&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wifi_stats</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">wifi_stats</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">wifi_signal</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">4</span><span class="p">]}</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MySensor</span><span class="p">(</span><span class="s2">&quot;my-sensor&quot;</span><span class="p">)])</span>
+    <span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>The two steps that are required to convert a custom remote resource to a custom module resource are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Register the resource.</strong> This will register a new modular resource model into the Registry.</p></li>
+<li><p><strong>Make the module executable.</strong> This allows viam-server to access and execute the module.</p></li>
+</ol>
+<p>Add a <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#models"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a> name and a creator function in the resource by defining a new <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> variable in the class. Then add a function that will act as the creator function. For more details on how to add these two, follow the pertaining steps in <a class="reference external" href="https://python.viam.dev/examples/example.html#register-the-new-modular-resource">Register the new modular resource</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADD THE NECESSARY IMPORTS TO DEFINE A MODEL NAME AND CREATOR FUNCTION.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Mapping</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
+
+<span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span>
+
+<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
+    <span class="c1"># ADD A MODEL NAME IN THE EXISTING RESOURCE CLASS.</span>
+    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;viam-labs&quot;</span><span class="p">,</span><span class="s2">&quot;sensor&quot;</span><span class="p">),</span> <span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ADD A CREATOR FUNCTION IN THE EXISTING RESOURCE CLASS.</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resource</span>
+</pre></div>
+</div>
+<p>In the resource’s main function or <code class="docutils literal notranslate"><span class="pre">main.py</span></code> file, replace the content of <code class="docutils literal notranslate"><span class="pre">main()</span></code> with the content below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADD THE NECESSARY IMPORTS TO REGISTER THE NEW MODEL</span>
+<span class="kn">from</span> <span class="nn">viam.module.module</span> <span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
+
+<span class="c1"># REPLACE THE MAIN FUNCTION/FILE SO THAT IT CALLS `register_resource_creator()` AND STARTS THE MODULE.</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
+
+    <span class="n">module</span> <span class="o">=</span> <span class="n">Module</span><span class="o">.</span><span class="n">from_args</span><span class="p">()</span>
+    <span class="n">module</span><span class="o">.</span><span class="n">add_model_from_registry</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Follow the steps outlined in the section <a class="reference external" href="https://python.viam.dev/examples/example.html#make-the-module-executable">Make the module executable</a> in the directory of the component.</p>
+<p>The custom remote component is now a custom module component. To use the component on the Viam app, follow the steps to <a class="reference external" href="https://python.viam.dev/examples/example.html#configure-a-modular-resource">configure the new modular resource</a>.</p>
+<p>For easy visualization, the differences in the configuration JSONs and code are below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Custom remote</p></th>
+<th class="head text-left"><p>Custom module</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><pre>{<br>    “remotes”: [<br>      {<br>        “name”: “my-sensor”,<br>        “insecure”: true,<br>        “address”: “localhost:9090”<br>      }<br>    ],<br>    “processes”: [<br>      {<br>        “id”: “my-python-server-process”,<br>        “log”: true,<br>        “name”: “python”,<br>        “args”: [<br>          “/home/my_sensor/my_sensor.py”<br>        ]<br>      }<br>    ]<br>  } </pre></p></td>
+<td class="text-left"><p><pre>{<br>  “components”: [<br>    {<br>      “depends_on”: [],<br>      “model”: “viam-labs:sensor:test”,<br>      “name”: “my-sensor”,<br>      “type”: “sensor”,<br>      “attributes”: {}<br>    }<br>  ],<br>  “modules”: [<br>    {<br>      “executable_path”: “/home/my_sensor/run.sh”,<br>      “name”: “testsensor”,<br>      “type”: “local”<br>    }<br>  ]<br>} </pre></p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;./codediff.png&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/3217c6da0cbe6fc51d6f40e845b3f2c3ab886988041ea6513264ba959f9e7465.png" src="../_images/3217c6da0cbe6fc51d6f40e845b3f2c3ab886988041ea6513264ba959f9e7465.png" />
+</div>
+</div>
+</section>
 <section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this heading"></a></h2>
 <p>Operations are used by the RDK to keep track of running tasks, and provide a means to query their status and even cancel them. In order for a component to respond appropriately to any Operation requests, we must obtain and listen to the Operation in our method calls.</p>
@@ -883,7 +990,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.app.data_client.DataClient.TabularData object at 0x7f544cac5340&gt;, &lt;viam.app.data_client.DataClient.TabularData object at 0x7f544cac5c70&gt;, &lt;viam.app.data_client.DataClient.TabularData object at 0x7f544cac5460&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.app.data_client.DataClient.TabularData object at 0x7f45aeb53130&gt;, &lt;viam.app.data_client.DataClient.TabularData object at 0x7f45aeb53bb0&gt;, &lt;viam.app.data_client.DataClient.TabularData object at 0x7f45aeb53a90&gt;]
 </pre></div>
 </div>
 </div>
