@@ -44,7 +44,7 @@ class MySensor(Sensor):
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return command
 
-    def reconfigure_resource(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
+    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.multiplier = config.attributes.fields["multiplier"].number_value
 
 
