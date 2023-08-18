@@ -27,7 +27,7 @@ class MySensor(Sensor):
         return sensor
 
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Sequence[]:
+    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
         if "multiplier" in config.attributes.fields:
             if not isinstance(config.attributes.fields["multiplier"], float):
                 raise Exception("Multiplier must be a float.")
@@ -36,7 +36,7 @@ class MySensor(Sensor):
                 raise Exception("Multiplier cannot be 0.")
         else:
             cls.multiplier = 1.0
-        return []
+        return [""]
 
     async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
         return {"signal": 1 * self.multiplier}
