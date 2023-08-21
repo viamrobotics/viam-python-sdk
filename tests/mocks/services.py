@@ -106,6 +106,8 @@ from viam.proto.app import (
     Fragment,
     RemoveRoleRequest,
     RemoveRoleResponse,
+    ChangeRoleRequest,
+    ChangeRoleResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     CheckPermissionsRequest,
@@ -165,6 +167,8 @@ from viam.proto.app.datasync import (
     DataSyncServiceBase,
     FileUploadRequest,
     FileUploadResponse,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
 )
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import (
@@ -621,6 +625,11 @@ class MockDataSync(DataSyncServiceBase):
         self.binary_data = request_file_contents.file_contents.data
         await stream.send_message(FileUploadResponse())
 
+    async def StreamingDataCaptureUpload(
+        self, stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
+    ) -> None:
+        raise NotImplementedError()
+
 
 class MockApp(AppServiceBase):
     def __init__(
@@ -870,6 +879,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ChangeRole(self, stream: Stream[ChangeRoleRequest, ChangeRoleResponse]) -> None:
         raise NotImplementedError()
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
