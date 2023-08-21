@@ -1,5 +1,4 @@
 import asyncio
-import sys
 from concurrent.futures import Future, ProcessPoolExecutor
 from datetime import timedelta
 from multiprocessing import Value
