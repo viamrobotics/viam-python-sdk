@@ -249,12 +249,14 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WIDTH_METERS_FIELD_NUMBER: builtins.int
     TURNING_RADIUS_METERS_FIELD_NUMBER: builtins.int
+    WHEEL_CIRCUMFERENCE_METERS_FIELD_NUMBER: builtins.int
     width_meters: builtins.float
     turning_radius_meters: builtins.float
+    wheel_circumference_meters: builtins.float
 
-    def __init__(self, *, width_meters: builtins.float=..., turning_radius_meters: builtins.float=...) -> None:
+    def __init__(self, *, width_meters: builtins.float=..., turning_radius_meters: builtins.float=..., wheel_circumference_meters: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['turning_radius_meters', b'turning_radius_meters', 'width_meters', b'width_meters']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['turning_radius_meters', b'turning_radius_meters', 'wheel_circumference_meters', b'wheel_circumference_meters', 'width_meters', b'width_meters']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse

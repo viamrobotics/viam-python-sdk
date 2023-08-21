@@ -6,6 +6,7 @@ from ....gen.app.datasync.v1.data_sync_grpc import DataSyncServiceBase, DataSync
 from ....gen.app.datasync.v1.data_sync_pb2 import (
     CaptureInterval,
     DataCaptureMetadata,
+    DataCaptureUploadMetadata,
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
     DataType,
@@ -14,6 +15,8 @@ from ....gen.app.datasync.v1.data_sync_pb2 import (
     FileUploadResponse,
     SensorData,
     SensorMetadata,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
 
@@ -22,6 +25,7 @@ __all__ = [
     "DataSyncServiceStub",
     "CaptureInterval",
     "DataCaptureMetadata",
+    "DataCaptureUploadMetadata",
     "DataCaptureUploadRequest",
     "DataCaptureUploadResponse",
     "DataType",
@@ -30,5 +34,7 @@ __all__ = [
     "FileUploadResponse",
     "SensorData",
     "SensorMetadata",
+    "StreamingDataCaptureUploadRequest",
+    "StreamingDataCaptureUploadResponse",
     "UploadMetadata",
 ]

@@ -3,8 +3,8 @@ import asyncio
 from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
 
 from grpclib import GRPCError
-from viam.components.component_base import ComponentBase
 
+from viam.components.component_base import ComponentBase
 from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
