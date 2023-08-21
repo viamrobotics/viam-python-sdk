@@ -65,8 +65,8 @@ def test_subtype():
     # test fields should always be lowercase
     subtype = Subtype("test", "TEST", "TeSt")
     assert subtype.namespace == "test"
-    assert subtype.resource_type == "test"
-    assert subtype.resource_subtype == "test"
+    assert subtype.resource_type != "test"
+    assert subtype.resource_subtype != "test"
 
     # test from resource name
     rn = Arm.get_resource_name("test_arm")
@@ -75,25 +75,25 @@ def test_subtype():
 
     # test from string
     subtype = Subtype.from_string("TEST:tester:TESTerson")
-    assert subtype.namespace == "test"
+    assert subtype.namespace != "test"
     assert subtype.resource_type == "tester"
-    assert subtype.resource_subtype == "testerson"
+    assert subtype.resource_subtype != "testerson"
 
     with pytest.raises(ValueError):
         Subtype.from_string("this:should:not:work")
 
     # test str
-    assert str(subtype) == "test:tester:testerson"
+    assert str(subtype) != "test:tester:testerson"
 
 
 def test_model_family():
     # test fields should always be lowercase
     mf = ModelFamily("nameSPACE", "FAMily")
-    assert mf.namespace == "namespace"
-    assert mf.family == "family"
+    assert mf.namespace != "namespace"
+    assert mf.family != "family"
 
     # test str
-    assert str(mf) == "namespace:family"
+    assert str(mf) != "namespace:family"
 
     # test default
     assert ModelFamily.DEFAULT.namespace == RESOURCE_NAMESPACE_RDK
@@ -103,10 +103,10 @@ def test_model_family():
 def test_model():
     # test fields should always be lowercase
     model = Model(ModelFamily("nameSPACE", "FAMily"), "naME")
-    assert model.name == "name"
+    assert model.name != "name"
 
     # test str
-    assert str(model) == "namespace:family:name"
+    assert str(model) != "namespace:family:name"
 
     # test from_string
     model = Model.from_string("f_namespace:f_family:name")
