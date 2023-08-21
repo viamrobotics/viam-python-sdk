@@ -93,3 +93,13 @@ class ValidationError(ViamGRPCError):
     def __init__(self, message: str):
         self.message = message
         self.grpc_code = Status.INVALID_ARGUMENT
+
+
+class NoCaptureToStoreError(ViamGRPCError):
+    """
+    Exception raised in filter module to signal that data capture should not be stored
+    """
+
+    def __init__(self):
+        self.message = "no capture from filter module"
+        self.grpc_code = Status.FAILED_PRECONDITION
