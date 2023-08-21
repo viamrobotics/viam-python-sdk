@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
 from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
-from viam.proto.service.motion import Constraints, LinearConstraint
+from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
 from viam.services.motion import MotionClient
 
 from . import loose_approx
@@ -17,6 +17,14 @@ GET_POSE_RESPONSES = {
     "arm": PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
     "gantry": PoseInFrame(reference_frame="gantry", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
 }
+MOTION_CONFIGURATION = MotionConfiguration(
+    vision_services=[ResourceName(namespace="rdk", type="service", subtype="vision", name="viz1")],
+    position_polling_frequency_hz=144,
+    obstacle_polling_frequency_hz=182,
+    plan_deviation_m=41,
+    linear_m_per_sec=44,
+    angular_degs_per_sec=10,
+)
 
 MOTION_SERVICE_NAME = "motion1"
 
@@ -50,17 +58,6 @@ class TestClient:
             assert success == MOVE_RESPONSES["gantry"]
             assert service.extra == {}
             assert service.timeout is None
-
-    @pytest.mark.asyncio
-    async def test_move_single_component(self, service: MockMotion):
-        async with ChannelFor([service]) as channel:
-            client = MotionClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move_single_component(Arm.get_resource_name("arm"), PoseInFrame(), extra={"foo": "bar"})
-            assert success == MOVE_SINGLE_COMPONENT_RESPONSES["arm"]
-            assert service.extra == {"foo": "bar"}
-            success = await client.move_single_component(Gantry.get_resource_name("gantry"), PoseInFrame())
-            assert success == MOVE_SINGLE_COMPONENT_RESPONSES["gantry"]
-            assert service.extra == {}
 
     @pytest.mark.asyncio
     async def test_get_pose(self, service: MockMotion):
@@ -98,16 +95,14 @@ class TestClient:
                 movement_rn,
                 obstacles,
                 heading=182,
-                linear_meters_per_sec=44,
-                angular_deg_per_sec=786,
+                configuration=MOTION_CONFIGURATION,
             )
             assert service.component_name == component_rn
             assert service.movement_sensor == movement_rn
             assert service.destination == destination
             assert service.obstacles == obstacles
             assert service.heading == 182
-            assert service.linear_meters_per_sec == 44
-            assert service.angular_deg_per_sec == 786
+            assert service.configuration == MOTION_CONFIGURATION
             assert success
 
     @pytest.mark.asyncio

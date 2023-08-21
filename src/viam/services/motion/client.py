@@ -17,6 +17,7 @@ from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
     GetPoseResponse,
+    MotionConfiguration,
     MotionServiceStub,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
@@ -24,8 +25,6 @@ from viam.proto.service.motion import (
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
-    MoveSingleComponentRequest,
-    MoveSingleComponentResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -91,43 +90,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: MoveResponse = await self.client.Move(request, timeout=timeout)
         return response.success
 
-    async def move_single_component(
-        self,
-        component_name: ResourceName,
-        destination: PoseInFrame,
-        world_state: Optional[WorldState] = None,
-        *,
-        extra: Optional[Mapping[str, Any]] = None,
-        timeout: Optional[float] = None,
-    ) -> bool:
-        """
-        This function will pass through a move command to a component with a ``move_to_position`` method that takes a ``Pose``. ``Arm`` is
-        the only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of
-        the arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end
-        to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
-
-        Args:
-            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
-            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
-                observed.
-            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints
-                expressed in the WorldState message.
-
-        Returns:
-            bool: Whether the move was successful
-        """
-        if extra is None:
-            extra = {}
-        request = MoveSingleComponentRequest(
-            name=self.name,
-            destination=destination,
-            component_name=component_name,
-            world_state=world_state,
-            extra=dict_to_struct(extra),
-        )
-        response: MoveSingleComponentResponse = await self.client.MoveSingleComponent(request, timeout=timeout)
-        return response.success
-
     async def move_on_globe(
         self,
         component_name: ResourceName,
@@ -135,8 +97,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         movement_sensor_name: ResourceName,
         obstacles: Optional[Sequence[GeoObstacle]] = None,
         heading: Optional[float] = None,
-        linear_meters_per_sec: Optional[float] = None,
-        angular_deg_per_sec: Optional[float] = None,
+        configuration: Optional[MotionConfiguration] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -164,8 +125,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             movement_sensor_name=movement_sensor_name,
             obstacles=obstacles,
             heading=heading,
-            linear_meters_per_sec=linear_meters_per_sec,
-            angular_deg_per_sec=angular_deg_per_sec,
+            motion_configuration=configuration,
             extra=dict_to_struct(extra),
         )
         response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)

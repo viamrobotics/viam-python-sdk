@@ -178,8 +178,6 @@ from viam.proto.service.motion import (
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
-    MoveSingleComponentRequest,
-    MoveSingleComponentResponse,
 )
 from viam.proto.service.navigation import Mode, Waypoint
 from viam.proto.service.sensors import (
@@ -346,21 +344,10 @@ class MockMotion(MotionServiceBase):
         self.movement_sensor = request.movement_sensor_name
         self.obstacles = request.obstacles
         self.heading = request.heading
-        self.linear_meters_per_sec = request.linear_meters_per_sec
-        self.angular_deg_per_sec = request.angular_deg_per_sec
+        self.configuration = request.motion_configuration
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         await stream.send_message(MoveOnGlobeResponse(success=True))
-
-    async def MoveSingleComponent(self, stream: Stream[MoveSingleComponentRequest, MoveSingleComponentResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name: ResourceName = request.component_name
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        success = self.move_single_component_responses[name.name]
-        response = MoveSingleComponentResponse(success=success)
-        await stream.send_message(response)
 
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
