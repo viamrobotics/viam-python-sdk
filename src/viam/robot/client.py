@@ -155,7 +155,9 @@ class RobotClient:
         self._should_close_channel = close_channel
         self._options = options
         self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
-        self._sessions_client = SessionsClient(self._channel, disabled=self._options.disable_sessions)
+        self._sessions_client = SessionsClient(
+            self._channel, self._address, self._options.dial_options, disabled=self._options.disable_sessions
+        )
 
         try:
             await self.refresh()
@@ -303,7 +305,12 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
-                    self._sessions_client = SessionsClient(channel=self._channel, disabled=self._options.disable_sessions)
+                    self._sessions_client = SessionsClient(
+                        channel=self._channel,
+                        address=self._address,
+                        dial_options=self._options.dial_options,
+                        disabled=self._options.disable_sessions,
+                    )
 
                     await self.refresh()
                     self._connected = True
