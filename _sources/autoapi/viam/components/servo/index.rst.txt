@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.components.servo.Geometry
+   viam.components.servo.Servo
 
 
 
@@ -87,6 +88,123 @@ Classes
       :rtype: str or None
 
       :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: Servo(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   Servo represents a physical servo.
+
+   This acts as an abstract base class for any drivers representing specific
+   servo implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Move the servo to the provided angle.
+
+      :param angle: The desired angle of the servo in degrees.
+      :type angle: int
+
+
+   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+      :abstractmethod:
+      :async:
+
+      Get the current angle (degrees) of the servo.
+
+      :returns: The current angle of the servo in degrees.
+      :rtype: int
+
+
+   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Stop the servo. It is assumed that the servo stops immediately.
+
+
+   .. py:method:: is_moving() -> bool
+      :abstractmethod:
+      :async:
+
+      Get if the servo is currently moving.
+
+      :returns: Whether the servo is moving.
+      :rtype: bool
+
+
+   .. py:method:: get_geometries() -> List[viam.components.servo.Geometry]
+      :abstractmethod:
+      :async:
+
+      Get all geometries associated with the servo, in their current configuration, in the frame of the servo.
+
+      :returns: The geometries associated with the servo.
+      :rtype: List[Geometry]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
 
 
 

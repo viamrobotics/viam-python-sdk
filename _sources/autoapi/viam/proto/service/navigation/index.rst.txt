@@ -190,7 +190,7 @@ Classes
 
 
 
-.. py:class:: GetLocationResponse(*, location: viam.gen.common.v1.common_pb2.GeoPoint | None = ...)
+.. py:class:: GetLocationResponse(*, location: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., compass_heading: float = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -204,6 +204,12 @@ Classes
    .. py:property:: location
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
+
+   .. py:attribute:: compass_heading
+      :type: float
+
+      A number from [0-360) where 0 is north
+      90 is east, 180 is south, 270 is west
 
    .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 

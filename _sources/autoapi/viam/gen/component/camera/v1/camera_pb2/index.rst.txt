@@ -107,7 +107,7 @@ Attributes
 
    
 
-.. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ...)
+.. py:class:: GetImageRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -118,6 +118,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
@@ -127,6 +132,23 @@ Attributes
       :type: str
 
       Requested MIME type of response
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetImageRequest
@@ -254,7 +276,7 @@ Attributes
 
    
 
-.. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ...)
+.. py:class:: RenderFrameRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -265,6 +287,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
@@ -274,13 +301,30 @@ Attributes
       :type: str
 
       Requested MIME type of response
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___RenderFrameRequest
 
    
 
-.. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ...)
+.. py:class:: GetPointCloudRequest(*, name: str = ..., mime_type: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -291,6 +335,11 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
@@ -300,6 +349,23 @@ Attributes
       :type: str
 
       Requested MIME type of response
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___GetPointCloudRequest

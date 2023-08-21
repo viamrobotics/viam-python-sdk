@@ -65,28 +65,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: move_single_component(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.PoseInFrame, world_state: Optional[viam.proto.common.WorldState] = None, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> bool
-      :async:
-
-      This function will pass through a move command to a component with a ``move_to_position`` method that takes a ``Pose``. ``Arm`` is
-      the only component that support this. This method will transform the destination pose, given in an arbitrary frame, into the pose of
-      the arm. The arm will then move its most distal link to that pose. If you instead wish to move any other component than the arm end
-      to that pose, then you must manually adjust the given destination by the transform from the arm end to the intended component.
-
-      :param component_name: Name of a component on a given robot.
-      :type component_name: viam.proto.common.ResourceName
-      :param destination: The destination to move to, expressed as a ``Pose`` and the frame in which it was
-                          observed.
-      :type destination: viam.proto.common.PoseInFrame
-      :param world_state: When supplied, the motion service will create a plan that obeys any contraints
-                          expressed in the WorldState message.
-      :type world_state: viam.proto.common.WorldState
-
-      :returns: Whether the move was successful
-      :rtype: bool
-
-
-   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, linear_meters_per_sec: Optional[float] = None, angular_deg_per_sec: Optional[float] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> bool
       :async:
 
       Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.

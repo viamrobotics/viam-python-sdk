@@ -26,6 +26,18 @@ Classes
    viam.gen.service.mlmodel.v1.mlmodel_pb2.Metadata
    viam.gen.service.mlmodel.v1.mlmodel_pb2.TensorInfo
    viam.gen.service.mlmodel.v1.mlmodel_pb2.File
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataInt8
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataUInt8
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataInt16
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataUInt16
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataInt32
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataUInt32
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataInt64
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataUInt64
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataFloat
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensorDataDouble
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensor
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.FlatTensors
 
 
 
@@ -47,6 +59,18 @@ Attributes
    viam.gen.service.mlmodel.v1.mlmodel_pb2.global___Metadata
    viam.gen.service.mlmodel.v1.mlmodel_pb2.global___TensorInfo
    viam.gen.service.mlmodel.v1.mlmodel_pb2.global___File
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataInt8
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataUInt8
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataInt16
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataUInt16
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataInt32
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataUInt32
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataInt64
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataUInt64
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataFloat
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensorDataDouble
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensor
+   viam.gen.service.mlmodel.v1.mlmodel_pb2.global___FlatTensors
 
 
 .. py:data:: DESCRIPTOR
@@ -79,7 +103,7 @@ Attributes
 
    
 
-.. py:class:: InferRequest(*, name: str = ..., input_data: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: InferRequest(*, name: str = ..., input_data: google.protobuf.struct_pb2.Struct | None = ..., input_tensors: global___FlatTensors | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -95,12 +119,22 @@ Attributes
 
       this is a struct of input arrays/tensors as specified in the metadata
 
+   .. py:property:: input_tensors
+      :type: global___FlatTensors
+
+      the input data can also be provided as set of named flat tensors
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
       name of the model service
 
-   .. py:method:: HasField(field_name: Literal[input_data, b'input_data']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra', input_data, b'input_data', input_tensors, b'input_tensors']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -122,7 +156,7 @@ Attributes
 
    
 
-.. py:class:: InferResponse(*, output_data: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: InferResponse(*, output_data: google.protobuf.struct_pb2.Struct | None = ..., output_tensors: global___FlatTensors | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -138,7 +172,12 @@ Attributes
 
       this is a struct of output arrays/tensors as specified in the metadata
 
-   .. py:method:: HasField(field_name: Literal[output_data, b'output_data']) -> bool
+   .. py:property:: output_tensors
+      :type: global___FlatTensors
+
+      the output data can be provided as a set of named flat tensors
+
+   .. py:method:: HasField(field_name: Literal[output_data, b'output_data', output_tensors, b'output_tensors']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -160,7 +199,7 @@ Attributes
 
    
 
-.. py:class:: MetadataRequest(*, name: str = ...)
+.. py:class:: MetadataRequest(*, name: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -171,10 +210,32 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
    .. py:attribute:: name
       :type: str
 
       name of the model service
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
 
 
 .. py:data:: global___MetadataRequest
@@ -351,6 +412,364 @@ Attributes
 
 
 .. py:data:: global___File
+
+   
+
+.. py:class:: FlatTensorDataInt8(*, data: bytes = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: data
+      :type: bytes
+
+      
+
+
+.. py:data:: global___FlatTensorDataInt8
+
+   
+
+.. py:class:: FlatTensorDataUInt8(*, data: bytes = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: data
+      :type: bytes
+
+      
+
+
+.. py:data:: global___FlatTensorDataUInt8
+
+   
+
+.. py:class:: FlatTensorDataInt16(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+      packs two 16-bit numbers per entry - explicitly little-endian
+      so big-endian producers/consumers must compensate
+
+
+.. py:data:: global___FlatTensorDataInt16
+
+   
+
+.. py:class:: FlatTensorDataUInt16(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+      packs two 16-bit numbers per entry - explicitly little-endian
+      so big-endian producers/consumers must compensate
+
+
+.. py:data:: global___FlatTensorDataUInt16
+
+   
+
+.. py:class:: FlatTensorDataInt32(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+
+
+.. py:data:: global___FlatTensorDataInt32
+
+   
+
+.. py:class:: FlatTensorDataUInt32(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+
+
+.. py:data:: global___FlatTensorDataUInt32
+
+   
+
+.. py:class:: FlatTensorDataInt64(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+
+
+.. py:data:: global___FlatTensorDataInt64
+
+   
+
+.. py:class:: FlatTensorDataUInt64(*, data: collections.abc.Iterable[int] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+
+
+.. py:data:: global___FlatTensorDataUInt64
+
+   
+
+.. py:class:: FlatTensorDataFloat(*, data: collections.abc.Iterable[float] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
+
+.. py:data:: global___FlatTensorDataFloat
+
+   
+
+.. py:class:: FlatTensorDataDouble(*, data: collections.abc.Iterable[float] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[float]
+
+
+
+.. py:data:: global___FlatTensorDataDouble
+
+   
+
+.. py:class:: FlatTensor(*, shape: collections.abc.Iterable[int] | None = ..., int8_tensor: global___FlatTensorDataInt8 | None = ..., uint8_tensor: global___FlatTensorDataUInt8 | None = ..., int16_tensor: global___FlatTensorDataInt16 | None = ..., uint16_tensor: global___FlatTensorDataUInt16 | None = ..., int32_tensor: global___FlatTensorDataInt32 | None = ..., uint32_tensor: global___FlatTensorDataUInt32 | None = ..., int64_tensor: global___FlatTensorDataInt64 | None = ..., uint64_tensor: global___FlatTensorDataUInt64 | None = ..., float_tensor: global___FlatTensorDataFloat | None = ..., double_tensor: global___FlatTensorDataDouble | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: shape
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[int]
+
+      the shape of the provided tensor as a list of integer extents
+
+   .. py:property:: int8_tensor
+      :type: global___FlatTensorDataInt8
+
+
+   .. py:property:: uint8_tensor
+      :type: global___FlatTensorDataUInt8
+
+
+   .. py:property:: int16_tensor
+      :type: global___FlatTensorDataInt16
+
+
+   .. py:property:: uint16_tensor
+      :type: global___FlatTensorDataUInt16
+
+
+   .. py:property:: int32_tensor
+      :type: global___FlatTensorDataInt32
+
+
+   .. py:property:: uint32_tensor
+      :type: global___FlatTensorDataUInt32
+
+
+   .. py:property:: int64_tensor
+      :type: global___FlatTensorDataInt64
+
+
+   .. py:property:: uint64_tensor
+      :type: global___FlatTensorDataUInt64
+
+
+   .. py:property:: float_tensor
+      :type: global___FlatTensorDataFloat
+
+
+   .. py:property:: double_tensor
+      :type: global___FlatTensorDataDouble
+
+
+   .. py:method:: HasField(field_name: Literal[double_tensor, b'double_tensor', float_tensor, b'float_tensor', int16_tensor, b'int16_tensor', int32_tensor, b'int32_tensor', int64_tensor, b'int64_tensor', int8_tensor, b'int8_tensor', tensor, b'tensor', uint16_tensor, b'uint16_tensor', uint32_tensor, b'uint32_tensor', uint64_tensor, b'uint64_tensor', uint8_tensor, b'uint8_tensor']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[tensor, b'tensor']) -> Literal[int8_tensor, uint8_tensor, int16_tensor, uint16_tensor, int32_tensor, uint32_tensor, int64_tensor, uint64_tensor, float_tensor, double_tensor] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___FlatTensor
+
+   
+
+.. py:class:: FlatTensors(*, tensors: collections.abc.Mapping[str, global___FlatTensor] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:class:: TensorsEntry(*, key: str = ..., value: global___FlatTensor | None = ...)
+
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+      .. py:property:: value
+         :type: global___FlatTensor
+
+
+      .. py:attribute:: key
+         :type: str
+
+         
+
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:property:: tensors
+      :type: google.protobuf.internal.containers.MessageMap[str, global___FlatTensor]
+
+      A name-indexed collection of flat tensor objects
+
+
+.. py:data:: global___FlatTensors
 
    
 
