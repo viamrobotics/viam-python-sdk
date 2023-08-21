@@ -1,6 +1,8 @@
 import asyncio
 import sys
+from concurrent.futures import Future, ProcessPoolExecutor
 from datetime import timedelta
+from multiprocessing import Value
 from typing import Optional
 
 from grpclib import Status
@@ -9,8 +11,9 @@ from grpclib.events import RecvTrailingMetadata, SendRequest, listen
 from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
-from viam import _TASK_PREFIX, logging
-from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
+from viam import logging
+from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest
+from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
@@ -30,12 +33,6 @@ EXEMPT_METADATA_METHODS = frozenset(
 )
 
 
-def loop_kwargs():
-    if sys.version_info <= (3, 9):
-        return {"loop": asyncio.get_running_loop()}
-    return {}
-
-
 class SessionsClient:
     """
     A Session allows a client to express that it is actively connected and
@@ -46,22 +43,24 @@ class SessionsClient:
     _disabled: bool = False
     _supported: Optional[bool] = None
     _heartbeat_interval: Optional[timedelta] = None
+    _heartbeat_task: Optional[Future[asyncio.Task]] = None
 
-    def __init__(self, channel: Channel, *, disabled: bool = False):
+    def __init__(self, channel: Channel, address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._disabled = disabled
-        self._lock = asyncio.Lock(**loop_kwargs())
+        self._should_reset = Value("b", False)
+
+        self._address = address
+        self._dial_options = dial_options
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
 
     def reset(self):
-        if self._lock.locked():
-            return
-
         LOGGER.debug("resetting session")
         self._supported = None
+        self._should_reset.value = True
 
     async def _send_request(self, event: SendRequest):
         if self._disabled:
@@ -81,71 +80,42 @@ class SessionsClient:
     async def metadata(self) -> _MetadataLike:
         if self._disabled:
             return self._metadata
-
-        if self._supported:
+        if self._supported is not None:
             return self._metadata
 
-        async with self._lock:
-            if self._supported is False:
+        request = StartSessionRequest(resume=self._current_id)
+
+        try:
+            response = await self.client.StartSession(request)
+        except GRPCError as error:
+            if error.status == Status.UNIMPLEMENTED:
+                self._supported = False
                 return self._metadata
-
-            request = StartSessionRequest(resume=self._current_id)
-            response: Optional[StartSessionResponse] = None
-
-            try:
-                response = await self.client.StartSession(request)
-            except GRPCError as error:
-                if error.status == Status.UNIMPLEMENTED:
-                    self._supported = False
-                    return self._metadata
-                else:
-                    raise
             else:
-                if response is None:
-                    raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
+                raise
 
-                if response.heartbeat_window is None:
-                    raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
+        if response is None:
+            raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
 
-                self._supported = True
-                self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
-                self._current_id = response.id
+        if response.heartbeat_window is None:
+            raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
+
+        self._supported = True
+        self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
+        self._current_id = response.id
 
         # tick once to ensure heartbeats are supported
-        await self._heartbeat_tick()
+        await _heartbeat_tick(self.client, self._current_id)
 
         if self._supported:
             # We send heartbeats slightly faster than the interval window to
             # ensure that we don't fall outside of it and expire the session.
             wait = self._heartbeat_interval.total_seconds() / 5
-            asyncio.create_task(self._heartbeat_task(wait), name=f"{_TASK_PREFIX}-heartbeat")
+
+            p = ProcessPoolExecutor(initializer=_set_global, initargs=(self._should_reset,))
+            p.submit(_start_heartbeat_process, self._address, self._dial_options, self._current_id, wait)
 
         return self._metadata
-
-    async def _heartbeat_task(self, wait: float):
-        while self._supported:
-            await asyncio.sleep(wait)
-            await self._heartbeat_tick()
-
-    async def _heartbeat_tick(self):
-        if not self._supported:
-            return
-
-        while self._lock.locked():
-            pass
-
-        request = SendSessionHeartbeatRequest(id=self._current_id)
-
-        if self._heartbeat_interval is None:
-            raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
-
-        try:
-            await self.client.SendSessionHeartbeat(request)
-        except (GRPCError, StreamTerminatedError):
-            LOGGER.debug("Heartbeat terminated", exc_info=True)
-            self.reset()
-        else:
-            LOGGER.debug("Sent heartbeat successfully")
 
     @property
     def _metadata(self) -> _MetadataLike:
@@ -153,3 +123,39 @@ class SessionsClient:
             return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
+
+
+def _set_global(args):
+    global should_restart
+    should_restart = args
+
+
+def _start_heartbeat_process(address: str, dial_options: DialOptions | None, id: str, wait: float):
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(heartbeat_process(address, dial_options, id, wait))
+
+
+async def _heartbeat_tick(client: RobotServiceStub, id: str):
+    request = SendSessionHeartbeatRequest(id=id)
+
+    try:
+        await client.SendSessionHeartbeat(request)
+    except (GRPCError, StreamTerminatedError):
+        LOGGER.debug("Heartbeat terminated", exc_info=True)
+        raise
+    else:
+        LOGGER.debug("Sent heartbeat successfully")
+
+
+async def heartbeat_process(address: str, dial_options: DialOptions | None, id: str, wait: float):
+    if dial_options is not None:
+        dial_options.disable_webrtc = True
+    channel = await dial(address=address, options=dial_options)
+    client = RobotServiceStub(channel.channel)
+    while not should_restart.value:
+        await asyncio.sleep(wait)
+        await _heartbeat_tick(client, id)
+
+    # reset shared var
+    should_restart.value = False

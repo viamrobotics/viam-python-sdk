@@ -54,7 +54,7 @@ def service_without_heartbeat(service: RobotService) -> RobotService:
 @pytest.mark.asyncio
 async def test_init_client():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert client._current_id == ""
         assert client._supported is None
 
@@ -62,7 +62,7 @@ async def test_init_client():
 @pytest.mark.asyncio
 async def test_sessions_error():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
 
         with pytest.raises(GRPCError) as e_info:
             assert await client.metadata == {}
@@ -73,7 +73,7 @@ async def test_sessions_error():
 @pytest.mark.asyncio
 async def test_sessions_not_supported():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         client._supported = False
         assert await client.metadata == {}
         assert client._supported is False
@@ -82,7 +82,7 @@ async def test_sessions_not_supported():
 @pytest.mark.asyncio
 async def test_sessions_not_implemented(service_without_session: RobotService):
     async with ChannelFor([service_without_session]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
         assert client._supported is False
 
@@ -90,7 +90,7 @@ async def test_sessions_not_implemented(service_without_session: RobotService):
 @pytest.mark.asyncio
 async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotService):
     async with ChannelFor([service_without_heartbeat]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
         assert client._supported is None
 
@@ -98,7 +98,7 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotSer
 @pytest.mark.asyncio
 async def test_sessions_heartbeat(service: RobotService):
     async with ChannelFor([service]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert await client.metadata == {SESSION_METADATA_KEY: SESSION_ID}
         assert client._supported
         assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == HEARTBEAT_INTERVAL
@@ -108,7 +108,7 @@ async def test_sessions_heartbeat(service: RobotService):
 @pytest.mark.asyncio
 async def test_sessions_disabled(service: RobotService):
     async with ChannelFor([service]) as channel:
-        client = SessionsClient(channel, disabled=True)
+        client = SessionsClient(channel, "", None, disabled=True)
         assert await client.metadata == {}
         assert client._supported is None
         assert not client._heartbeat_interval
