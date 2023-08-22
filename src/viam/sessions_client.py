@@ -104,14 +104,17 @@ class SessionsClient:
         self._current_id = response.id
 
         # tick once to ensure heartbeats are supported
-        await _heartbeat_tick(self.client, self._current_id)
+        try:
+            await _heartbeat_tick(self.client, self._current_id)
+        except Exception:
+            self.reset()
 
         if self._supported:
             # We send heartbeats slightly faster than the interval window to
             # ensure that we don't fall outside of it and expire the session.
             wait = self._heartbeat_interval.total_seconds() / 5
 
-            p = ProcessPoolExecutor(initializer=_set_global, initargs=(self._should_reset,))
+            p = ProcessPoolExecutor(initializer=_init_process, initargs=(self._should_reset, logging.LOG_LEVEL))
             p.submit(_start_heartbeat_process, self._address, self._dial_options, self._current_id, wait)
 
         return self._metadata
@@ -124,9 +127,10 @@ class SessionsClient:
         return {}
 
 
-def _set_global(args):
+def _init_process(args, level):
     global should_restart
     should_restart = args
+    logging.setLevel(level)
 
 
 def _start_heartbeat_process(address: str, dial_options: DialOptions | None, id: str, wait: float):
@@ -142,6 +146,7 @@ async def _heartbeat_tick(client: RobotServiceStub, id: str):
         await client.SendSessionHeartbeat(request)
     except (GRPCError, StreamTerminatedError):
         LOGGER.debug("Heartbeat terminated", exc_info=True)
+        # should reset, not raise
         raise
     else:
         LOGGER.debug("Sent heartbeat successfully")
