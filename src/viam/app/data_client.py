@@ -470,7 +470,7 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
         sensor_contents = []
