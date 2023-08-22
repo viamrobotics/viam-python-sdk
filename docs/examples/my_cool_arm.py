@@ -2,10 +2,11 @@
 
 import asyncio
 import json
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
 from viam.operations import run_with_operation
+from viam.proto.common import Capsule, Geometry, Sphere
 
 
 class MyCoolArm(Arm):
@@ -26,6 +27,10 @@ class MyCoolArm(Arm):
         # Starting joint positions
         self.joint_positions = JointPositions(values=[0, 0, 0, 0, 0, 0])
         self.is_stopped = True
+        self.geometries = [
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
+            Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
+        ]
 
         # Minimal working kinematics model
         self.kinematics = json.dumps(
@@ -91,6 +96,9 @@ class MyCoolArm(Arm):
 
     async def is_moving(self) -> bool:
         return not self.is_stopped
+
+    async def get_geometries(self) -> List[Geometry]:
+        return self.geometries
 
     async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
