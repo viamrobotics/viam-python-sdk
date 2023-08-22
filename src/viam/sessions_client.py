@@ -41,8 +41,6 @@ class SessionsClient:
 
     _current_id: str = ""
     _disabled: bool = False
-    # can only synchronize numbers and chars across processes, so 0 = Unknown, 1 = True, 2 = False
-    _supported: Synchronized = Value("b", 0)
     _heartbeat_interval: Optional[timedelta] = None
 
     def __init__(self, channel: Channel, address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
@@ -52,6 +50,9 @@ class SessionsClient:
 
         self._address = address
         self._dial_options = dial_options
+
+        # can only synchronize numbers and chars across processes, so 0 = Unknown, 1 = True, 2 = False
+        self._supported: Synchronized = Value("b", 0)
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)

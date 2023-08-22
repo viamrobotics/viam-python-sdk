@@ -110,5 +110,5 @@ async def test_sessions_disabled(service: RobotService):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel, "", None, disabled=True)
         assert await client.metadata == {}
-        assert client._supported.value == 2
+        assert client._supported.value == 0
         assert not client._heartbeat_interval
