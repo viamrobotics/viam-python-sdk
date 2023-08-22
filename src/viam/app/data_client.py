@@ -470,28 +470,31 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
-        sensor_contents = [SensorData()] * len(tabular_data)
+        sensor_contents = []
         if data_request_times:
-            assert len(data_request_times) == len(tabular_data)
+            if len(data_request_times) != len(tabular_data):
+                raise ValueError("data_request_times and tabular_data lengths must be equal.")
 
-        for i in range(len(tabular_data)):
+        for idx, tab in enumerate(tabular_data):
             s = Struct()
-            s.update(tabular_data[i])
-            sensor_contents[i] = SensorData(
-                metadata=(
-                    SensorMetadata(
-                        time_requested=datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
+            s.update(tab)
+            sensor_contents.append(
+                SensorData(
+                    metadata=(
+                        SensorMetadata(
+                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx][0] else None,
+                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx][1] else None,
+                        )
+                        if data_request_times[idx]
+                        else None
                     )
-                    if data_request_times[i]
-                    else None
+                    if data_request_times
+                    else None,
+                    struct=s,
                 )
-                if data_request_times
-                else None,
-                struct=s,
             )
 
         metadata = UploadMetadata(
@@ -675,11 +678,11 @@ class DataClient:
             mime_type=mime_type,
             interval=(
                 CaptureInterval(
-                    start=datetime_to_timestamp(start_time) if start_time else None,
-                    end=datetime_to_timestamp(end_time) if end_time else None,
+                    start=datetime_to_timestamp(start_time),
+                    end=datetime_to_timestamp(end_time),
                 )
             )
-            if start_time and end_time
+            if start_time or end_time
             else None,
             tags_filter=TagsFilter(tags=tags),
             bbox_labels=bbox_labels,
