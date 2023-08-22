@@ -226,9 +226,7 @@ class DataClient:
 
         return data
 
-    async def _binary_data_by_filter(
-        self, filter: Filter, limit: int, include_binary: bool, last: str
-    ) -> Tuple[List[BinaryData], str]:
+    async def _binary_data_by_filter(self, filter: Filter, limit: int, include_binary: bool, last: str) -> Tuple[List[BinaryData], str]:
         data_request = DataRequest(filter=filter, limit=limit, last=last)
         request = BinaryDataByFilterRequest(data_request=data_request, count_only=False, include_binary=include_binary)
         response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
