@@ -56,7 +56,7 @@ async def test_init_client():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
         assert client._current_id == ""
-        assert client._supported is None
+        assert client._supported.value == 0
 
 
 @pytest.mark.asyncio
@@ -74,9 +74,9 @@ async def test_sessions_error():
 async def test_sessions_not_supported():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
-        client._supported = False
+        client._supported.value = 2
         assert await client.metadata == {}
-        assert client._supported is False
+        assert client._supported.value == 2
 
 
 @pytest.mark.asyncio
@@ -84,7 +84,7 @@ async def test_sessions_not_implemented(service_without_session: RobotService):
     async with ChannelFor([service_without_session]) as channel:
         client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported is False
+        assert client._supported.value == 2
 
 
 @pytest.mark.asyncio
@@ -92,7 +92,7 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotSer
     async with ChannelFor([service_without_heartbeat]) as channel:
         client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported is None
+        assert client._supported.value == 0
 
 
 @pytest.mark.asyncio
@@ -110,5 +110,5 @@ async def test_sessions_disabled(service: RobotService):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel, "", None, disabled=True)
         assert await client.metadata == {}
-        assert client._supported is None
+        assert client._supported.value == 2
         assert not client._heartbeat_interval
