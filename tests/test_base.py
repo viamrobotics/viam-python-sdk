@@ -108,6 +108,13 @@ class TestBase:
         assert not await base.is_moving()
 
     @pytest.mark.asyncio
+    async def test_get_properties(self, base: MockBase):
+        properties = await base.get_properties()
+        assert properties.width_meters == 1.0
+        assert properties.turning_radius_meters == 2.0
+        assert properties.wheel_circumference_meters == 3.0
+
+    @pytest.mark.asyncio
     async def test_do(self, base: MockBase):
         command = {"command": "args"}
         resp = await base.do_command(command)
