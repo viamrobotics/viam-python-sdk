@@ -559,28 +559,31 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
-<span class="sd">            AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular</span>
+<span class="sd">            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular</span>
 <span class="sd">                data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[</span><span class="n">SensorData</span><span class="p">()]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
+        <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;data_request_times and tabular_data lengths must be equal.&quot;</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tab</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">):</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">Struct</span><span class="p">()</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">sensor_contents</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
-                <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
-                    <span class="n">SensorMetadata</span><span class="p">(</span>
-                        <span class="n">time_requested</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                        <span class="n">time_received</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+            <span class="n">sensor_contents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">SensorData</span><span class="p">(</span>
+                    <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
+                        <span class="n">SensorMetadata</span><span class="p">(</span>
+                            <span class="n">time_requested</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">time_received</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">data_request_times</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                        <span class="p">)</span>
+                        <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                        <span class="k">else</span> <span class="kc">None</span>
                     <span class="p">)</span>
-                    <span class="k">if</span> <span class="n">data_request_times</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                    <span class="k">else</span> <span class="kc">None</span>
+                    <span class="k">if</span> <span class="n">data_request_times</span>
+                    <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">struct</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="k">if</span> <span class="n">data_request_times</span>
-                <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="n">struct</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
             <span class="p">)</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
@@ -764,11 +767,11 @@
             <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
             <span class="n">interval</span><span class="o">=</span><span class="p">(</span>
                 <span class="n">CaptureInterval</span><span class="p">(</span>
-                    <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">start_time</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-                    <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">end_time</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">),</span>
+                    <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">),</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="k">if</span> <span class="n">start_time</span> <span class="ow">and</span> <span class="n">end_time</span>
+            <span class="k">if</span> <span class="n">start_time</span> <span class="ow">or</span> <span class="n">end_time</span>
             <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">tags_filter</span><span class="o">=</span><span class="n">TagsFilter</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">),</span>
             <span class="n">bbox_labels</span><span class="o">=</span><span class="n">bbox_labels</span><span class="p">,</span>
