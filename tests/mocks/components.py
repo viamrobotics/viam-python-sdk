@@ -176,7 +176,7 @@ class MockBase(Base):
         self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
-        self.props = Base.Properties(1.0, 1.0)
+        self.props = Base.Properties(1.0, 2.0, 3.0)
         super().__init__(name)
 
     async def move_straight(
