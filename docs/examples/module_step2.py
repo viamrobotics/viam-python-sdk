@@ -1,0 +1,41 @@
+# wifi-sensor/src/wifi_sensor_module.py
+import asyncio
+from typing import Any, ClassVar, Dict, List, Mapping, Optional
+from typing_extensions import Self
+
+from viam.components.sensor import Geometry, Sensor
+from viam.proto.app.robot import ComponentConfig
+from viam.proto.common import ResourceName
+from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry, ResourceCreatorRegistration
+from viam.resource.types import Model, ModelFamily
+
+
+class MySensor(Sensor):
+    # Subclass the Viam Sensor component and implement the required functions
+    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "wifi_sensor"), "linux")
+
+    @classmethod
+    def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
+        sensor = cls(config.name)
+        return sensor
+
+    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
+        with open("/proc/net/wireless") as wifi_stats:
+            content = wifi_stats.readlines()
+        wifi_signal = [x for x in content[2].split(" ") if x != ""]
+        return {"link": wifi_signal[2], "level": wifi_signal[3], "noise": wifi_signal[4]}
+
+    async def get_geometries(self) -> List[Geometry]:
+        raise NotImplementedError
+
+
+# Anything below this line is optional and will be replaced later, but may come in handy for debugging and testing.
+# To use, call `python wifi_sensor.py` in the command line while in the `src` directory.
+async def main():
+    Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+    wifi = MySensor(name="wifi")
