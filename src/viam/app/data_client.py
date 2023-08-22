@@ -675,11 +675,11 @@ class DataClient:
             mime_type=mime_type,
             interval=(
                 CaptureInterval(
-                    start=datetime_to_timestamp(start_time) if start_time else None,
-                    end=datetime_to_timestamp(end_time) if end_time else None,
+                    start=datetime_to_timestamp(start_time),
+                    end=datetime_to_timestamp(end_time),
                 )
             )
-            if start_time and end_time
+            if start_time or end_time
             else None,
             tags_filter=TagsFilter(tags=tags),
             bbox_labels=bbox_labels,
