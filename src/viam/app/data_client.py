@@ -174,7 +174,7 @@ class DataClient:
         return data
 
     async def binary_data_by_filter(
-        self, filter: Optional[Filter] = None, dest: Optional[str] = None, include_file_data: bool = False, num_files: Optional[int] = None
+        self, filter: Optional[Filter] = None, dest: Optional[str] = None, include_file_data: bool = True, num_files: Optional[int] = None
     ) -> List[BinaryData]:
         """Filter and download binary data.
 
