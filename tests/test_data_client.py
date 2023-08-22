@@ -16,6 +16,7 @@ from viam.proto.app.data import (
 
 from .mocks.services import MockData
 
+INCLUDE_BINARY = True
 COMPONENT_NAME = "component_name"
 COMPONENT_TYPE = "component_type"
 METHOD = "method"
@@ -136,7 +137,8 @@ class TestClient:
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            binary_data = await client.binary_data_by_filter(filter=FILTER)
+            binary_data = await client.binary_data_by_filter(filter=FILTER, include_binary=INCLUDE_BINARY)
+            assert service.include_binary == INCLUDE_BINARY
             assert binary_data == BINARY_RESPONSE
             self.assert_filter(filter=service.filter)
 
