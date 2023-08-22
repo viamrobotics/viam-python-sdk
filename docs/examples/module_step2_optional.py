@@ -50,8 +50,6 @@ class MySensor(Sensor):
         self.multiplier = config.attributes.fields["multiplier"].number_value
 
 
-# Anything below this line is optional and will be replaced later, but may come in handy for debugging and testing.
-# To use, call `python wifi_sensor.py` in the command line while in the `src` directory.
 async def main():
     Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new, MySensor.validate_config))
 

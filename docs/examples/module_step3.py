@@ -31,8 +31,6 @@ class MySensor(Sensor):
         raise NotImplementedError
 
 
-# Anything below this line is optional and will be replaced later, but may come in handy for debugging and testing.
-# To use, call `python wifi_sensor.py` in the command line while in the `src` directory.
 async def main():
     """
     This function creates and starts a new module, after adding all desired resource model.
