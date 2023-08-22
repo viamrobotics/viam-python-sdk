@@ -177,12 +177,15 @@ class DataClient:
         self,
         filter: Optional[Filter] = None,
         dest: Optional[str] = None,
+        include_binary: bool = False
     ) -> List[BinaryData]:
         """Filter and download binary data.
 
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all binary data.
             dest (str): Optional filepath for writing retrieved data.
+            include_binary (bool): Boolean specifying whether to actually include theh binary file data with each retrieved file. Defaults
+                to false (i.e., only the files' metadata is returned).
 
         Returns:
             List[bytes]: The binary data.
@@ -194,8 +197,8 @@ class DataClient:
         # `DataRequest`s are limited to 100 pieces of data, so we loop through calls until
         # we are certain we've received everything.
         while True:
-            data_request = DataRequest(filter=filter, limit=100, last=last)
-            request = BinaryDataByFilterRequest(data_request=data_request, count_only=False)
+            data_request = DataRequest(filter=filter, limit=1 if include_binary else 100, last=last)
+            request = BinaryDataByFilterRequest(data_request=data_request, count_only=False, include_binary=include_binary)
             response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
