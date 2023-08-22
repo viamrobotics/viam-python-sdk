@@ -473,26 +473,26 @@ class DataClient:
             AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
-        sensor_contents = [SensorData()] * len(tabular_data)
+        sensor_contents = []
         if data_request_times:
             assert len(data_request_times) == len(tabular_data)
 
-        for i in range(len(tabular_data)):
+        for idx, tab in enumerate(tabular_data):
             s = Struct()
-            s.update(tabular_data[i])
-            sensor_contents[i] = SensorData(
+            s.update(tab)
+            sensor_contents.append(SensorData(
                 metadata=(
                     SensorMetadata(
-                        time_requested=datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
+                        time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx][0] else None,
+                        time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx][1] else None,
                     )
-                    if data_request_times[i]
+                    if data_request_times[idx]
                     else None
                 )
                 if data_request_times
                 else None,
-                struct=s,
-            )
+                struct=s
+            ))
 
         metadata = UploadMetadata(
             part_id=part_id,
