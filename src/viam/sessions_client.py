@@ -133,7 +133,7 @@ def _init_process(args, level):
     logging.setLevel(level)
 
 
-def _start_heartbeat_process(address: str, dial_options: DialOptions | None, id: str, wait: float):
+def _start_heartbeat_process(address: str, dial_options: Optional[DialOptions], id: str, wait: float):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     loop.run_until_complete(heartbeat_process(address, dial_options, id, wait))
@@ -152,7 +152,7 @@ async def _heartbeat_tick(client: RobotServiceStub, id: str):
         LOGGER.debug("Sent heartbeat successfully")
 
 
-async def heartbeat_process(address: str, dial_options: DialOptions | None, id: str, wait: float):
+async def heartbeat_process(address: str, dial_options: Optional[DialOptions], id: str, wait: float):
     if dial_options is not None:
         dial_options.disable_webrtc = True
     channel = await dial(address=address, options=dial_options)
