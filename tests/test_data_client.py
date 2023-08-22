@@ -137,7 +137,7 @@ class TestClient:
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            binary_data = await client.binary_data_by_filter(filter=FILTER, include_binary=INCLUDE_BINARY)
+            binary_data = await client.binary_data_by_filter(filter=FILTER, include_file_data=INCLUDE_BINARY)
             assert service.include_binary == INCLUDE_BINARY
             assert binary_data == BINARY_RESPONSE
             self.assert_filter(filter=service.filter)
