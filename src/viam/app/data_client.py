@@ -475,7 +475,8 @@ class DataClient:
         """
         sensor_contents = []
         if data_request_times:
-            assert len(data_request_times) == len(tabular_data)
+            if len(data_request_times) != len(tabular_data):
+                raise ValueError("data_request_times and tabular_data lengths must be equal.")
 
         for idx, tab in enumerate(tabular_data):
             s = Struct()
