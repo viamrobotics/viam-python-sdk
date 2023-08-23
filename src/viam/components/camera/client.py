@@ -5,7 +5,7 @@ from grpclib.client import Channel
 from PIL import Image
 
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse, ResponseMetadata
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
@@ -20,7 +20,7 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Camera, Geometry, RawImage
+from . import Camera, RawImage
 
 
 def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: Optional[str] = None) -> Union[Image.Image, RawImage]:
