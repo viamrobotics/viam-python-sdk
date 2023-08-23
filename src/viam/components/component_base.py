@@ -5,6 +5,7 @@ from typing_extensions import Self
 
 from viam.proto.common import Geometry
 from viam.resource.base import ResourceBase
+from viam.errors import MethodNotImplementedError
 
 if TYPE_CHECKING:
     from viam.resource.types import Subtype
@@ -49,4 +50,4 @@ class ComponentBase(abc.ABC, ResourceBase):
         Returns:
             List[Geometry]: The geometries associated with the Component.
         """
-        raise NotImplementedError()
+        raise MethodNotImplementedError("get_geometries")
