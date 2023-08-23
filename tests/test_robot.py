@@ -8,12 +8,12 @@ from grpclib.exceptions import GRPCError
 from grpclib.server import Stream
 from grpclib.testing import ChannelFor
 
-from viam.components.arm import Arm, Geometry, KinematicsFileFormat
+from viam.components.arm import Arm, KinematicsFileFormat
 from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
+from viam.proto.common import GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3, Geometry
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus

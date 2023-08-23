@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Mapping, Optional
 from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
 
-from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse
+from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -29,7 +29,7 @@ from viam.proto.component.board import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Board, Geometry
+from . import Board
 from .board import PostProcessor
 
 
