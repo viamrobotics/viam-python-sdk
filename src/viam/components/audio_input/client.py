@@ -4,7 +4,7 @@ from grpclib.client import Channel
 
 from viam.media import MediaStream, MediaStreamWithIterator
 from viam.media.audio import Audio
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.audioinput import (
     AudioInputServiceStub,
     ChunksRequest,
@@ -16,7 +16,7 @@ from viam.proto.component.audioinput import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .audio_input import AudioInput, Geometry
+from .audio_input import AudioInput
 
 
 class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):

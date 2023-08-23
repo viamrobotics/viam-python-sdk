@@ -1,4 +1,3 @@
-from viam.proto.common import Geometry
 from viam.proto.component.inputcontroller import Status as InputStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
@@ -14,7 +13,6 @@ __all__ = [
     "ControlFunction",
     "Event",
     "EventType",
-    "Geometry",
 ]
 
 

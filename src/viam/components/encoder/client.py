@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.encoder import (
     EncoderServiceStub,
     GetPositionRequest,
@@ -15,7 +15,6 @@ from viam.proto.component.encoder import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Geometry
 from .encoder import Encoder
 
 

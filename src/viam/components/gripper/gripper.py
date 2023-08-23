@@ -1,10 +1,8 @@
 import abc
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, Optional
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
-
-from . import Geometry
 
 
 class Gripper(ComponentBase):
@@ -67,15 +65,5 @@ class Gripper(ComponentBase):
 
         Returns:
             bool: Whether the gripper is moving.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the gripper, in their current configuration, in the frame of the gripper.
-
-        Returns:
-            List[Geometry]: The geometries associated with the gripper.
         """
         ...

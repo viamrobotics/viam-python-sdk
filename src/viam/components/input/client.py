@@ -10,7 +10,7 @@ from grpclib.client import Channel
 import viam
 from viam.errors import NotSupportedError
 from viam.logging import getLogger
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -24,7 +24,6 @@ from viam.proto.component.inputcontroller import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Geometry
 from .input import Control, ControlFunction, Controller, Event, EventType
 
 LOGGER = getLogger(__name__)

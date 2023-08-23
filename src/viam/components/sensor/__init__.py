@@ -1,4 +1,3 @@
-from viam.proto.common import Geometry
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import SensorClient
@@ -7,7 +6,6 @@ from .service import SensorRPCService
 
 __all__ = [
     "Sensor",
-    "Geometry",
 ]
 
 Registry.register_subtype(
