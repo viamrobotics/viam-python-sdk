@@ -1,10 +1,8 @@
-import abc
-from typing import Final, List
+from typing import Final
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import Geometry
 
 
 class Generic(ComponentBase):
@@ -68,13 +66,3 @@ class Generic(ComponentBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "generic")
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the generic component, in their current configuration, in the frame of the generic component.
-
-        Returns:
-            List[Geometry]: The geometries associated with the generic component.
-        """
-        ...
