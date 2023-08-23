@@ -16,7 +16,7 @@ from viam.proto.component.base import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import Base, Geometry, Vector3
 
@@ -119,7 +119,11 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return Base.Properties(width_meters=response.width_meters, turning_radius_meters=response.turning_radius_meters)
+        return Base.Properties(
+            width_meters=response.width_meters,
+            turning_radius_meters=response.turning_radius_meters,
+            wheel_circumference_meters=response.wheel_circumference_meters,
+        )
 
     async def do_command(
         self,

@@ -179,7 +179,6 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     CREATED_ON_FIELD_NUMBER: builtins.int
     LAST_MODIFIED_FIELD_NUMBER: builtins.int
     SYNCED_MODEL_ID_FIELD_NUMBER: builtins.int
-    USER_EMAIL_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
     ERROR_STATUS_FIELD_NUMBER: builtins.int
 
@@ -196,20 +195,19 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     def last_modified(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
     synced_model_id: builtins.str
-    user_email: builtins.str
     id: builtins.str
 
     @property
     def error_status(self) -> google.rpc.status_pb2.Status:
         ...
 
-    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., status: global___TrainingStatus.ValueType=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., user_email: builtins.str=..., id: builtins.str=..., error_status: google.rpc.status_pb2.Status | None=...) -> None:
+    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., status: global___TrainingStatus.ValueType=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., id: builtins.str=..., error_status: google.rpc.status_pb2.Status | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'request', b'request']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'id', b'id', 'last_modified', b'last_modified', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id', 'user_email', b'user_email']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'id', b'id', 'last_modified', b'last_modified', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id']) -> None:
         ...
 global___TrainingJobMetadata = TrainingJobMetadata
 

@@ -47,6 +47,8 @@ from viam.proto.app.datasync import (
     DataSyncServiceBase,
     FileUploadRequest,
     FileUploadResponse,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
 )
 from viam.proto.app import (
     AppServiceBase,
@@ -152,6 +154,8 @@ from viam.proto.app import (
     AddRoleResponse,
     RemoveRoleRequest,
     RemoveRoleResponse,
+    ChangeRoleRequest,
+    ChangeRoleResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     CheckPermissionsRequest,
@@ -180,10 +184,7 @@ class MockData(DataServiceBase):
                 datetime(2022, 12, 31, 23, 59, 59),
             ),
             DataClient.TabularData(
-                {"PowerPct": 0, "IsPowered": False},
-                CaptureMetadata(location_id="loc-id"),
-                datetime(2023, 1, 2),
-                datetime(2023, 3, 4)
+                {"PowerPct": 0, "IsPowered": False}, CaptureMetadata(location_id="loc-id"), datetime(2023, 1, 2), datetime(2023, 3, 4)
             ),
             DataClient.TabularData(
                 {"Position": 0},
@@ -207,11 +208,13 @@ class MockData(DataServiceBase):
                     data=dict_to_struct(tabular_data.data),
                     metadata_index=idx,
                     time_requested=datetime_to_timestamp(tabular_data.time_requested),
-                    time_received=datetime_to_timestamp(tabular_data.time_received)
+                    time_received=datetime_to_timestamp(tabular_data.time_received),
                 )
             )
-        await stream.send_message(TabularDataByFilterResponse(
-            data=tabular_structs, metadata=tabular_metadata,
+        await stream.send_message(
+            TabularDataByFilterResponse(
+                data=tabular_structs,
+                metadata=tabular_metadata,
             )
         )
 
@@ -234,35 +237,28 @@ class MockData(DataServiceBase):
         pass
 
     async def AddTagsToBinaryDataByFilter(
-        self,
-        stream: Stream[AddTagsToBinaryDataByFilterRequest, AddTagsToBinaryDataByFilterResponse]
+        self, stream: Stream[AddTagsToBinaryDataByFilterRequest, AddTagsToBinaryDataByFilterResponse]
     ) -> None:
         pass
 
     async def RemoveTagsFromBinaryDataByIDs(
-        self,
-        stream: Stream[RemoveTagsFromBinaryDataByIDsRequest, RemoveTagsFromBinaryDataByIDsResponse]
+        self, stream: Stream[RemoveTagsFromBinaryDataByIDsRequest, RemoveTagsFromBinaryDataByIDsResponse]
     ) -> None:
         pass
 
     async def RemoveTagsFromBinaryDataByFilter(
-        self,
-        stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
+        self, stream: Stream[RemoveTagsFromBinaryDataByFilterRequest, RemoveTagsFromBinaryDataByFilterResponse]
     ) -> None:
         pass
 
     async def TagsByFilter(self, stream: Stream[TagsByFilterRequest, TagsByFilterResponse]) -> None:
         pass
 
-    async def AddBoundingBoxToImageByID(
-        self,
-        stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]
-    ) -> None:
+    async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
         pass
 
     async def RemoveBoundingBoxFromImageByID(
-        self,
-        stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
+        self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
     ) -> None:
         pass
 
@@ -277,15 +273,15 @@ class MockDataSync(DataSyncServiceBase):
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
         pass
 
+    async def StreamingDataCaptureUpload(
+        self, stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
+    ) -> None:
+        pass
+
 
 class MockApp(AppServiceBase):
     def __init__(self):
-        self.organization = Organization(
-            id="id",
-            name="name",
-            public_namespace="public_namespace",
-            default_region="default_region"
-        )
+        self.organization = Organization(id="id", name="name", public_namespace="public_namespace", default_region="default_region")
         self.locations = [Location()]
         self.robots = [Robot(name=f"robot-{i}") for i in range(4)]
         self.new_id = "new_id"
@@ -296,20 +292,26 @@ class MockApp(AppServiceBase):
             time=Timestamp(seconds=1690824474, nanos=501000000),
             logger_name="robot_server",
             message="module config validation error; skipping",
-            caller=dict_to_struct({
-                "Line": 922,
-                "Function": "go.viam.com/rdk/robot/impl.(*resourceManager).updateResources",
-                "File": "/__w/rdk/rdk/robot/impl/resource_manager.go",
-                "Defined": True
-            }),
-            fields=[dict_to_struct({"Type": 15, "String": "my-module", "Key": "module", "Interface": 0, "Integer": 0}),
-                    dict_to_struct({
+            caller=dict_to_struct(
+                {
+                    "Line": 922,
+                    "Function": "go.viam.com/rdk/robot/impl.(*resourceManager).updateResources",
+                    "File": "/__w/rdk/rdk/robot/impl/resource_manager.go",
+                    "Defined": True,
+                }
+            ),
+            fields=[
+                dict_to_struct({"Type": 15, "String": "my-module", "Key": "module", "Interface": 0, "Integer": 0}),
+                dict_to_struct(
+                    {
                         "Type": 26,
                         "String": "module modules.0 executable path error: stat /Users/user-1/Desktop/run.sh: no such file or directory",
                         "Key": "error",
                         "Interface": value_to_primitive(value=Value(struct_value=Struct())),
-                        "Integer": 0
-                    })]
+                        "Integer": 0,
+                    }
+                ),
+            ],
         )
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
@@ -329,8 +331,7 @@ class MockApp(AppServiceBase):
         pass
 
     async def GetOrganizationNamespaceAvailability(
-        self,
-        stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
+        self, stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
     ) -> None:
         pass
 
@@ -347,8 +348,7 @@ class MockApp(AppServiceBase):
         pass
 
     async def UpdateOrganizationInviteAuthorizations(
-        self,
-        stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
+        self, stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
     ) -> None:
         pass
 
@@ -472,6 +472,9 @@ class MockApp(AppServiceBase):
     async def RemoveRole(self, stream: Stream[RemoveRoleRequest, RemoveRoleResponse]) -> None:
         pass
 
+    async def ChangeRole(self, stream: Stream[ChangeRoleRequest, ChangeRoleResponse]) -> None:
+        pass
+
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
         pass
 
@@ -494,11 +497,12 @@ class MockApp(AppServiceBase):
         pass
 
 
-async def main(*, host: str = '127.0.0.1', port: int = 9092) -> None:
+async def main(*, host: str = "127.0.0.1", port: int = 9092) -> None:
     server = Server([MockData(), MockDataSync(), MockApp()])
     with graceful_exit([server]):
         await server.start(host, port)
         await server.wait_closed()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     asyncio.run(main())

@@ -17,7 +17,7 @@ from viam.proto.component.arm import (
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, get_geometries, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import Arm, Geometry, KinematicsFileFormat, Pose
 

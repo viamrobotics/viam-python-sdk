@@ -184,7 +184,7 @@ class ExampleBase(Base):
         self.angular_pwr = Vector3(x=0, y=0, z=0)
         self.linear_vel = Vector3(x=0, y=0, z=0)
         self.angular_vel = Vector3(x=0, y=0, z=0)
-        self.props = Base.Properties(1.0, 1.0)
+        self.props = Base.Properties(1.0, 1.0, 1.0)
         super().__init__(name)
 
     async def move_straight(self, distance: int, velocity: float, extra: Optional[Dict[str, Any]] = None, **kwargs):

@@ -23,6 +23,7 @@ class Base(ComponentBase):
     class Properties:
         width_meters: float
         turning_radius_meters: float
+        wheel_circumference_meters: float
 
     @abc.abstractmethod
     async def move_straight(

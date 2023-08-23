@@ -1,6 +1,6 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, runtime_checkable, Sequence
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -10,7 +10,7 @@ else:
 from typing_extensions import Self
 
 from viam.proto.app.robot import ComponentConfig
-from viam.proto.common import ResourceName, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import GetGeometriesRequest, GetGeometriesResponse, ResourceName
 
 if TYPE_CHECKING:
     from .base import ResourceBase
@@ -33,9 +33,9 @@ class Subtype:
     """The subtype of the resource e.g. `servo`, `arm`, `vision`"""
 
     def __init__(self, namespace: str, resource_type: str, resource_subtype: str):
-        self.namespace = namespace.lower()
-        self.resource_type = resource_type.lower()
-        self.resource_subtype = resource_subtype.lower()
+        self.namespace = namespace
+        self.resource_type = resource_type
+        self.resource_subtype = resource_subtype
 
     def __str__(self) -> str:
         return f"{self.namespace}:{self.resource_type}:{self.resource_subtype}"
@@ -95,8 +95,8 @@ class ModelFamily:
     DEFAULT: ClassVar["ModelFamily"]
 
     def __init__(self, namespace: str, family: str):
-        self.namespace = namespace.lower()
-        self.family = family.lower()
+        self.namespace = namespace
+        self.family = family
 
     def __str__(self) -> str:
         return f"{self.namespace}:{self.family}"
@@ -125,7 +125,7 @@ class Model:
 
     def __init__(self, model_family: ModelFamily, name: str):
         self.model_family = model_family
-        self.name = name.lower()
+        self.name = name
 
     def __str__(self) -> str:
         return f"{self.model_family}:{self.name}"

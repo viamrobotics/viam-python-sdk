@@ -120,10 +120,12 @@ class DataClient:
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
         self._data_sync_client = DataSyncServiceStub(channel)
+        self._channel = channel
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
     _metadata: Mapping[str, str]
+    _channel: Channel
 
     async def tabular_data_by_filter(
         self,
@@ -152,12 +154,15 @@ class DataClient:
             response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
             if not response.data or len(response.data) == 0:
                 break
-            data += [DataClient.TabularData(
-                struct_to_dict(struct.data),
-                response.metadata[struct.metadata_index],
-                struct.time_requested.ToDatetime(),
-                struct.time_received.ToDatetime(),
-            ) for struct in response.data]
+            data += [
+                DataClient.TabularData(
+                    struct_to_dict(struct.data),
+                    response.metadata[struct.metadata_index],
+                    struct.time_requested.ToDatetime(),
+                    struct.time_received.ToDatetime(),
+                )
+                for struct in response.data
+            ]
             last = response.last
 
         if dest:
@@ -326,7 +331,7 @@ class DataClient:
         Args:
             tags (List[str]): List of tags to remove from specified binary data.
             filter (viam.proto.app.data.Filter): `Filter` specifying binary data to untag. If no `Filter` is provided, all data will be
-                tagged.
+                untagged.
 
         Raises:
             GRPCError: If no tags are provided.
@@ -392,11 +397,11 @@ class DataClient:
     ) -> None:
         """Upload binary sensor data.
 
-        Sync binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-        app.viam.com. Binary data can be found under the "Files" tab in Data on app.viam.com.
+        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
 
         Args:
-            binary_data (bytes): The data to be uploaded, respresented in bytes.
+            binary_data (bytes): The data to be uploaded, represented in bytes.
             part_id (str): Part ID of the component used to capture the data.
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
@@ -404,7 +409,7 @@ class DataClient:
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
-                denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -445,8 +450,8 @@ class DataClient:
     ) -> None:
         """Upload tabular sensor data.
 
-        Sync tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata with
-        app.viam.com. Tabular data can be found under the "Sensors" tab in Data on app.viam.com.
+        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
@@ -457,7 +462,7 @@ class DataClient:
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
-                `datetime` objects denoting the times this data was requested[0] and received[1] by the appropriate sensor.
+                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
 
 
         Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
@@ -465,28 +470,31 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
-            AssertionError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
+            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
         """
-        sensor_contents = [SensorData()] * len(tabular_data)
+        sensor_contents = []
         if data_request_times:
-            assert len(data_request_times) == len(tabular_data)
+            if len(data_request_times) != len(tabular_data):
+                raise ValueError("data_request_times and tabular_data lengths must be equal.")
 
-        for i in range(len(tabular_data)):
+        for idx, tab in enumerate(tabular_data):
             s = Struct()
-            s.update(tabular_data[i])
-            sensor_contents[i] = SensorData(
-                metadata=(
-                    SensorMetadata(
-                        time_requested=datetime_to_timestamp(data_request_times[i][0]) if data_request_times[i][0] else None,
-                        time_received=datetime_to_timestamp(data_request_times[i][1]) if data_request_times[i][1] else None,
+            s.update(tab)
+            sensor_contents.append(
+                SensorData(
+                    metadata=(
+                        SensorMetadata(
+                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx][0] else None,
+                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx][1] else None,
+                        )
+                        if data_request_times[idx]
+                        else None
                     )
-                    if data_request_times[i]
-                    else None
+                    if data_request_times
+                    else None,
+                    struct=s,
                 )
-                if data_request_times
-                else None,
-                struct=s,
             )
 
         metadata = UploadMetadata(
@@ -516,26 +524,30 @@ class DataClient:
         file_extension: Optional[str] = None,
         tags: Optional[List[str]] = None,
         data: Optional[bytes] = None,
-    ) -> None:
+    ) -> str:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             part_id (str): Part ID of the resource associated with the file.
             component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
-            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if a one isn't
+            file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if one isn't
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
                 provided.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
-            data: (Optional[bytes]): Optional bytes representing file data to upload.
+            data (Optional[bytes]): Optional bytes representing file data to upload.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
+
+        Returns:
+            str: ID of the new file.
         """
         metadata = UploadMetadata(
             part_id=part_id,
@@ -548,7 +560,8 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        return response.file_id
 
     async def file_upload_from_path(
         self,
@@ -559,10 +572,11 @@ class DataClient:
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
-    ) -> None:
+    ) -> str:
         """Upload arbitrary file data.
 
-        Sync file data that may be stored on a robot along with the relevant metadata to app.viam.com.
+        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
+        "Files" subtab of the Data tab on app.viam.com.
 
         Args:
             filepath (str): Absolute filepath of file to be uploaded.
@@ -577,6 +591,9 @@ class DataClient:
         Raises:
             GRPCError: If an invalid part ID is passed.
             FileNotFoundError: If the provided filepath is not found.
+
+        Returns:
+            str: ID of the new file.
         """
         path = Path(filepath)
         file_name = path.stem
@@ -596,7 +613,8 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        return response.file_id
 
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)
@@ -660,11 +678,11 @@ class DataClient:
             mime_type=mime_type,
             interval=(
                 CaptureInterval(
-                    start=datetime_to_timestamp(start_time) if start_time else None,
-                    end=datetime_to_timestamp(end_time) if end_time else None,
+                    start=datetime_to_timestamp(start_time),
+                    end=datetime_to_timestamp(end_time),
                 )
             )
-            if start_time and end_time
+            if start_time or end_time
             else None,
             tags_filter=TagsFilter(tags=tags),
             bbox_labels=bbox_labels,

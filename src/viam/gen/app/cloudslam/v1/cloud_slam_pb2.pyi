@@ -28,6 +28,7 @@ class StartMappingSessionRequest(google.protobuf.message.Message):
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_ID_FIELD_NUMBER: builtins.int
     VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
+    IS_ONLINE_FIELD_NUMBER: builtins.int
 
     @property
     def slam_config(self) -> google.protobuf.struct_pb2.Struct:
@@ -40,14 +41,15 @@ class StartMappingSessionRequest(google.protobuf.message.Message):
     robot_id: builtins.str
     viam_server_version: builtins.str
     'Version to use for viam, defaults stable'
+    is_online: builtins.bool
 
-    def __init__(self, *, slam_config: google.protobuf.struct_pb2.Struct | None=..., slam_version: builtins.str=..., map_name: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., viam_server_version: builtins.str=...) -> None:
+    def __init__(self, *, slam_config: google.protobuf.struct_pb2.Struct | None=..., slam_version: builtins.str=..., map_name: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., viam_server_version: builtins.str=..., is_online: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['slam_config', b'slam_config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'map_name', b'map_name', 'organization_id', b'organization_id', 'robot_id', b'robot_id', 'slam_config', b'slam_config', 'slam_version', b'slam_version', 'viam_server_version', b'viam_server_version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['is_online', b'is_online', 'location_id', b'location_id', 'map_name', b'map_name', 'organization_id', b'organization_id', 'robot_id', b'robot_id', 'slam_config', b'slam_config', 'slam_version', b'slam_version', 'viam_server_version', b'viam_server_version']) -> None:
         ...
 global___StartMappingSessionRequest = StartMappingSessionRequest
 
@@ -165,14 +167,12 @@ class StopMappingSessionRequest(google.protobuf.message.Message):
     """StopMappingSession"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SESSION_ID_FIELD_NUMBER: builtins.int
-    SAVE_MAP_FIELD_NUMBER: builtins.int
     session_id: builtins.str
-    save_map: builtins.bool
 
-    def __init__(self, *, session_id: builtins.str=..., save_map: builtins.bool=...) -> None:
+    def __init__(self, *, session_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['save_map', b'save_map', 'session_id', b'session_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['session_id', b'session_id']) -> None:
         ...
 global___StopMappingSessionRequest = StopMappingSessionRequest
 
@@ -190,6 +190,72 @@ class StopMappingSessionResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['package_id', b'package_id', 'version', b'version']) -> None:
         ...
 global___StopMappingSessionResponse = StopMappingSessionResponse
+
+@typing_extensions.final
+class GetMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
+    """GetMappingSessionMetadataByID"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SESSION_ID_FIELD_NUMBER: builtins.int
+    session_id: builtins.str
+
+    def __init__(self, *, session_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['session_id', b'session_id']) -> None:
+        ...
+global___GetMappingSessionMetadataByIDRequest = GetMappingSessionMetadataByIDRequest
+
+@typing_extensions.final
+class GetMappingSessionMetadataByIDResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SESSION_METADATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def session_metadata(self) -> global___MappingMetadata:
+        ...
+
+    def __init__(self, *, session_metadata: global___MappingMetadata | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['session_metadata', b'session_metadata']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['session_metadata', b'session_metadata']) -> None:
+        ...
+global___GetMappingSessionMetadataByIDResponse = GetMappingSessionMetadataByIDResponse
+
+@typing_extensions.final
+class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
+    """UpdateMappingSessionMetadataByID"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SESSION_ID_FIELD_NUMBER: builtins.int
+    END_STATUS_FIELD_NUMBER: builtins.int
+    TIME_CLOUD_RUN_JOB_ENDED_FIELD_NUMBER: builtins.int
+    session_id: builtins.str
+    end_status: builtins.str
+    '“success”, “failed to start”, etc'
+
+    @property
+    def time_cloud_run_job_ended(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """set at the time of job closeout and used as the package version"""
+
+    def __init__(self, *, session_id: builtins.str=..., end_status: builtins.str=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['end_status', b'end_status', 'session_id', b'session_id', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> None:
+        ...
+global___UpdateMappingSessionMetadataByIDRequest = UpdateMappingSessionMetadataByIDRequest
+
+@typing_extensions.final
+class UpdateMappingSessionMetadataByIDResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___UpdateMappingSessionMetadataByIDResponse = UpdateMappingSessionMetadataByIDResponse
 
 @typing_extensions.final
 class MappingMetadata(google.protobuf.message.Message):

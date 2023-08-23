@@ -172,6 +172,7 @@ class Organization(google.protobuf.message.Message):
     CREATED_ON_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     DEFAULT_REGION_FIELD_NUMBER: builtins.int
+    CID_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -181,14 +182,18 @@ class Organization(google.protobuf.message.Message):
     public_namespace: builtins.str
     default_region: builtins.str
     'GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages\n    associated with this org will be stored in this region.\n    '
+    cid: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., public_namespace: builtins.str=..., default_region: builtins.str=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., public_namespace: builtins.str=..., default_region: builtins.str=..., cid: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_cid', b'_cid']) -> typing_extensions.Literal['cid'] | None:
         ...
 global___Organization = Organization
 
@@ -198,6 +203,7 @@ class OrganizationMember(google.protobuf.message.Message):
     USER_ID_FIELD_NUMBER: builtins.int
     EMAILS_FIELD_NUMBER: builtins.int
     DATE_ADDED_FIELD_NUMBER: builtins.int
+    LAST_LOGIN_FIELD_NUMBER: builtins.int
     user_id: builtins.str
 
     @property
@@ -208,13 +214,20 @@ class OrganizationMember(google.protobuf.message.Message):
     def date_added(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    @property
+    def last_login(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['date_added', b'date_added']) -> builtins.bool:
+    def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['date_added', b'date_added', 'emails', b'emails', 'user_id', b'user_id']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_last_login', b'_last_login']) -> typing_extensions.Literal['last_login'] | None:
         ...
 global___OrganizationMember = OrganizationMember
 
@@ -356,19 +369,25 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     REGION_FIELD_NUMBER: builtins.int
+    CID_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     name: builtins.str
     public_namespace: builtins.str
     region: builtins.str
     'The new GCS region to associate the org with.'
+    cid: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_cid', b'_cid']) -> typing_extensions.Literal['cid'] | None:
         ...
 
     @typing.overload
@@ -1991,6 +2010,38 @@ class RemoveRoleResponse(google.protobuf.message.Message):
 global___RemoveRoleResponse = RemoveRoleResponse
 
 @typing_extensions.final
+class ChangeRoleRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    OLD_AUTHORIZATION_FIELD_NUMBER: builtins.int
+    NEW_AUTHORIZATION_FIELD_NUMBER: builtins.int
+
+    @property
+    def old_authorization(self) -> global___Authorization:
+        ...
+
+    @property
+    def new_authorization(self) -> global___Authorization:
+        ...
+
+    def __init__(self, *, old_authorization: global___Authorization | None=..., new_authorization: global___Authorization | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> None:
+        ...
+global___ChangeRoleRequest = ChangeRoleRequest
+
+@typing_extensions.final
+class ChangeRoleResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ChangeRoleResponse = ChangeRoleResponse
+
+@typing_extensions.final
 class ListAuthorizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2296,20 +2347,19 @@ global___GetModuleResponse = GetModuleResponse
 class Module(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     VERSIONS_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
-    ENTRYPOINT_FIELD_NUMBER: builtins.int
     TOTAL_ROBOT_USAGE_FIELD_NUMBER: builtins.int
     TOTAL_ORGANIZATION_USAGE_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
+    PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     module_id: builtins.str
     'The id of the module, containing module name or namespace and module name'
-    organization_id: builtins.str
-    'The id of the organization that owns the module'
     name: builtins.str
     'The name of the module'
     visibility: global___Visibility.ValueType
@@ -2317,7 +2367,9 @@ class Module(google.protobuf.message.Message):
 
     @property
     def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]:
-        """The versions of the module that are available"""
+        """The versions of the module that are available
+        When this is returned from the backend, the versions are sorted in ascending order by the semver version
+        """
     url: builtins.str
     'The url to reference for documentation, code, etc.'
     description: builtins.str
@@ -2326,17 +2378,21 @@ class Module(google.protobuf.message.Message):
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
-    entrypoint: builtins.str
-    'The executable to run to start the module program'
     total_robot_usage: builtins.int
     'The total number of robots using this module'
     total_organization_usage: builtins.int
     'The total number of organizations using this module'
+    organization_id: builtins.str
+    'The id of the organization that owns the module'
+    entrypoint: builtins.str
+    'The executable to run to start the module program'
+    public_namespace: builtins.str
+    'The public namespace of the organization that owns the module\n    This is empty if no public namespace is set\n    '
 
-    def __init__(self, *, module_id: builtins.str=..., organization_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
         ...
 global___Module = Module
 

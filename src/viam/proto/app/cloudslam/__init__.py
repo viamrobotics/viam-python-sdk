@@ -6,6 +6,8 @@ from ....gen.app.cloudslam.v1.cloud_slam_grpc import CloudSLAMServiceBase, Cloud
 from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     GetActiveMappingSessionsForRobotRequest,
     GetActiveMappingSessionsForRobotResponse,
+    GetMappingSessionMetadataByIDRequest,
+    GetMappingSessionMetadataByIDResponse,
     GetMappingSessionPointCloudRequest,
     GetMappingSessionPointCloudResponse,
     ListMappingSessionsRequest,
@@ -15,6 +17,8 @@ from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     StartMappingSessionResponse,
     StopMappingSessionRequest,
     StopMappingSessionResponse,
+    UpdateMappingSessionMetadataByIDRequest,
+    UpdateMappingSessionMetadataByIDResponse,
 )
 
 __all__ = [
@@ -22,6 +26,8 @@ __all__ = [
     "CloudSLAMServiceStub",
     "GetActiveMappingSessionsForRobotRequest",
     "GetActiveMappingSessionsForRobotResponse",
+    "GetMappingSessionMetadataByIDRequest",
+    "GetMappingSessionMetadataByIDResponse",
     "GetMappingSessionPointCloudRequest",
     "GetMappingSessionPointCloudResponse",
     "ListMappingSessionsRequest",
@@ -31,4 +37,6 @@ __all__ = [
     "StartMappingSessionResponse",
     "StopMappingSessionRequest",
     "StopMappingSessionResponse",
+    "UpdateMappingSessionMetadataByIDRequest",
+    "UpdateMappingSessionMetadataByIDResponse",
 ]

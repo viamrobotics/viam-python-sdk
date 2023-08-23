@@ -153,7 +153,9 @@ def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
 
 
-def datetime_to_timestamp(dt: datetime) -> Timestamp:
+def datetime_to_timestamp(dt: Optional[datetime]) -> Optional[Timestamp]:
+    if dt is None:
+        return None
     timestamp = Timestamp()
     timestamp.FromDatetime(dt)
     return timestamp

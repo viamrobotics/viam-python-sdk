@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from typing import List
+from typing import List, cast, Mapping, Any
 
 from grpclib.testing import ChannelFor
 
@@ -29,6 +29,7 @@ METHOD_PARAMETERS = {}
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
 FILE_EXT = ".file_extension"
+FILE_UPLOAD_RESPONSE = "ID"
 
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -36,7 +37,7 @@ DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
 @pytest.fixture(scope="function")
 def service() -> MockDataSync:
-    return MockDataSync()
+    return MockDataSync(file_upload_response=FILE_UPLOAD_RESPONSE)
 
 
 class TestClient:
@@ -54,7 +55,7 @@ class TestClient:
                 data_request_times=DATETIMES,
                 binary_data=BINARY_DATA
             )
-            self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=True)
+            self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
 
     @pytest.mark.asyncio
@@ -69,16 +70,16 @@ class TestClient:
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
                 data_request_times=[DATETIMES],
-                tabular_data=TABULAR_DATA
+                tabular_data=cast(List[Mapping[str, Any]], TABULAR_DATA)
             )
-            self.assert_sensor_contents(sensor_contents=service.sensor_contents, is_binary=False)
+            self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=False)
             self.assert_metadata(metadata=service.metadata)
 
     @pytest.mark.asyncio
     async def test_file_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.file_upload(
+            file_id = await client.file_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -89,6 +90,7 @@ class TestClient:
                 tags=TAGS,
                 data=BINARY_DATA
             )
+            assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
             assert service.metadata.file_name == FILE_NAME
             assert service.metadata.file_extension == FILE_EXT
@@ -100,7 +102,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             path = tmp_path / (FILE_NAME + FILE_EXT)
             path.write_bytes(BINARY_DATA)
-            await client.file_upload_from_path(
+            file_id = await client.file_upload_from_path(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -109,21 +111,22 @@ class TestClient:
                 tags=TAGS,
                 filepath=path.resolve()
             )
+            assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
             assert service.metadata.file_name == FILE_NAME
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
     def assert_sensor_contents(self, sensor_contents: List[SensorData], is_binary: bool):
-        for i in range(len(sensor_contents)):
-            assert sensor_contents[i].metadata.time_requested.seconds == TIMESTAMPS[0].seconds
-            assert sensor_contents[i].metadata.time_requested.nanos == TIMESTAMPS[0].nanos
-            assert sensor_contents[i].metadata.time_received.seconds == TIMESTAMPS[1].seconds
-            assert sensor_contents[i].metadata.time_received.nanos == TIMESTAMPS[1].nanos
-        if is_binary:
-            assert sensor_contents[0].binary == BINARY_DATA
-        else:
-            assert struct_to_dict(sensor_contents[i].struct) == TABULAR_DATA[i]
+        for idx, sensor_content in enumerate(sensor_contents):
+            assert sensor_content.metadata.time_requested.seconds == TIMESTAMPS[0].seconds
+            assert sensor_content.metadata.time_requested.nanos == TIMESTAMPS[0].nanos
+            assert sensor_content.metadata.time_received.seconds == TIMESTAMPS[1].seconds
+            assert sensor_content.metadata.time_received.nanos == TIMESTAMPS[1].nanos
+            if is_binary:
+                assert sensor_content.binary == BINARY_DATA
+            else:
+                assert struct_to_dict(sensor_content.struct) == TABULAR_DATA[idx]
 
     def assert_metadata(self, metadata: UploadMetadata) -> None:
         assert metadata.part_id == PART_ID
