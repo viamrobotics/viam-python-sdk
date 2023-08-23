@@ -3,9 +3,9 @@ from typing import TYPE_CHECKING, ClassVar, List, Mapping, Optional, SupportsByt
 
 from typing_extensions import Self
 
+from viam.errors import MethodNotImplementedError
 from viam.proto.common import Geometry
 from viam.resource.base import ResourceBase
-from viam.errors import MethodNotImplementedError
 
 if TYPE_CHECKING:
     from viam.resource.types import Subtype
