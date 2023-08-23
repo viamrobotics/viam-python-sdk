@@ -43,4 +43,10 @@ class ComponentBase(abc.ABC, ResourceBase):
         raise NotImplementedError()
 
     async def get_geometries(self) -> List[Geometry]:
+        """
+        Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+        Returns:
+            List[Geometry]: The geometries associated with the Component.
+        """
         raise NotImplementedError()

@@ -1,11 +1,11 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import Geometry, Vector3
+from . import Vector3
 
 
 class Base(ComponentBase):
@@ -146,15 +146,5 @@ class Base(ComponentBase):
 
         Returns:
             Properties: The properties of the base
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the base, in their current configuration, in the frame of the base.
-
-        Returns:
-            List[Geometry]: The geometries associated with the base.
         """
         ...

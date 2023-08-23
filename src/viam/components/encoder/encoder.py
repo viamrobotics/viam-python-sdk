@@ -1,12 +1,11 @@
 import abc
 from dataclasses import dataclass
-from typing import Any, Dict, Final, List, Optional, Tuple
+from typing import Any, Dict, Final, Optional, Tuple
 
 from viam.proto.component.encoder import PositionType
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import Geometry
 
 
 class Encoder(ComponentBase):
@@ -76,15 +75,5 @@ class Encoder(ComponentBase):
 
         Returns:
             Encoder.Properties: Map of position types to supported status.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the encoder, in their current configuration, in the frame of the encoder.
-
-        Returns:
-            List[Geometry]: The geometries associated with the encoder.
         """
         ...

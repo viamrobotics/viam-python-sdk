@@ -1,10 +1,9 @@
 import abc
-from typing import Any, List, Mapping, Optional
+from typing import Any, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import Geometry
 
 
 class Sensor(ComponentBase):
@@ -27,15 +26,5 @@ class Sensor(ComponentBase):
 
         Returns:
             Mapping[str, Any]: The measurements. Can be of any type.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the sensor, in their current configuration, in the frame of the sensor.
-
-        Returns:
-            List[Geometry]: The geometries associated with the sensor.
         """
         ...
