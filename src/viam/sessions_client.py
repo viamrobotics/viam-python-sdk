@@ -1,6 +1,7 @@
 import asyncio
 from concurrent.futures import ProcessPoolExecutor
 from datetime import timedelta
+from enum import IntEnum
 from multiprocessing import Value
 from multiprocessing.sharedctypes import Synchronized
 from typing import Optional
@@ -33,6 +34,12 @@ EXEMPT_METADATA_METHODS = frozenset(
 )
 
 
+class _SupportedState(IntEnum):
+    UNKNOWN = 0
+    TRUE = 1
+    FALSE = 2
+
+
 class SessionsClient:
     """
     A Session allows a client to express that it is actively connected and
@@ -51,8 +58,8 @@ class SessionsClient:
         self._address = address
         self._dial_options = dial_options
 
-        # can only synchronize numbers and chars across processes, so 0 = Unknown, 1 = True, 2 = False
-        self._supported: Synchronized = Value("b", 0)
+        # can only synchronize numbers and chars across processes, so using an IntEnum here.
+        self._supported: Synchronized = Value("b", _SupportedState.UNKNOWN)
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
@@ -76,7 +83,7 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
-        if self._disabled or self._supported.value != 0:
+        if self._disabled or self._supported.value != _SupportedState.UNKNOWN:
             return self._metadata
 
         request = StartSessionRequest(resume=self._current_id)
@@ -85,7 +92,7 @@ class SessionsClient:
             response = await self.client.StartSession(request)
         except GRPCError as error:
             if error.status == Status.UNIMPLEMENTED:
-                self._supported.value = 2
+                self._supported.value = _SupportedState.FALSE
                 return self._metadata
             else:
                 raise
@@ -96,14 +103,14 @@ class SessionsClient:
         if response.heartbeat_window is None:
             raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
 
-        self._supported.value = 1
+        self._supported.value = _SupportedState.TRUE
         self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
         self._current_id = response.id
 
         # tick once to ensure heartbeats are supported
         await _heartbeat_tick(self.client, self._current_id, self._supported)
 
-        if self._supported.value == 1:
+        if self._supported.value == _SupportedState.TRUE:
             # We send heartbeats slightly faster than the interval window to
             # ensure that we don't fall outside of it and expire the session.
             wait = self._heartbeat_interval.total_seconds() / 5
@@ -115,7 +122,7 @@ class SessionsClient:
 
     @property
     def _metadata(self) -> _MetadataLike:
-        if self._supported.value == 1 and self._current_id != "":
+        if self._supported.value == _SupportedState.TRUE and self._current_id != "":
             return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
@@ -129,7 +136,7 @@ def _init_process(supported: Synchronized, log_level: int):
 
 def _reset(_supported: Synchronized):
     LOGGER.debug("resetting session")
-    _supported.value = 0
+    _supported.value = _SupportedState.UNKNOWN
 
 
 def _start_heartbeat_process(address: str, dial_options: Optional[DialOptions], id: str, wait: float):
@@ -155,6 +162,6 @@ async def heartbeat_process(address: str, dial_options: Optional[DialOptions], i
         dial_options.disable_webrtc = True
     channel = await dial(address=address, options=dial_options)
     client = RobotServiceStub(channel.channel)
-    while heartbeat_supported.value == 1:
+    while heartbeat_supported.value == _SupportedState.TRUE:
         await asyncio.sleep(wait)
         await _heartbeat_tick(client, id, heartbeat_supported)
