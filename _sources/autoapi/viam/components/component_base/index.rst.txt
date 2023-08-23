@@ -72,8 +72,12 @@ Attributes
 
 
    .. py:method:: get_geometries() -> List[viam.proto.common.Geometry]
-      :abstractmethod:
       :async:
+
+      Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
 
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName

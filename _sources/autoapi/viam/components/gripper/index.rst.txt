@@ -23,71 +23,8 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.gripper.Geometry
    viam.components.gripper.Gripper
 
-
-
-
-.. py:class:: Geometry(*, center: global___Pose | None = ..., sphere: global___Sphere | None = ..., box: global___RectangularPrism | None = ..., capsule: global___Capsule | None = ..., label: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.
-
-   .. py:property:: center
-      :type: global___Pose
-
-      Pose of a geometries center point
-
-   .. py:property:: sphere
-      :type: global___Sphere
-
-
-   .. py:property:: box
-      :type: global___RectangularPrism
-
-
-   .. py:property:: capsule
-      :type: global___Capsule
-
-
-   .. py:attribute:: label
-      :type: str
-
-      Label of the geometry. If none supplied, will be an empty string.
-
-   .. py:method:: HasField(field_name: Literal[box, b'box', capsule, b'capsule', center, b'center', geometry_type, b'geometry_type', sphere, b'sphere']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-   .. py:method:: WhichOneof(oneof_group: Literal[geometry_type, b'geometry_type']) -> Literal[sphere, box, capsule] | None
-
-      Returns the name of the field that is set inside a oneof group.
-
-      If no field is set, returns None.
-
-      :param oneof_group: the name of the oneof group to check.
-      :type oneof_group: str
-
-      :returns: The name of the group that is set, or None.
-      :rtype: str or None
-
-      :raises ValueError: no group with the given name exists
 
 
 
@@ -139,16 +76,6 @@ Classes
 
       :returns: Whether the gripper is moving.
       :rtype: bool
-
-
-   .. py:method:: get_geometries() -> List[viam.components.gripper.Geometry]
-      :abstractmethod:
-      :async:
-
-      Get all geometries associated with the gripper, in their current configuration, in the frame of the gripper.
-
-      :returns: The geometries associated with the gripper.
-      :rtype: List[Geometry]
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
