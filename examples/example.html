@@ -163,69 +163,69 @@
 </summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;mlmodel&quot;
 name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
 name: &quot;sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;encoder&quot;
 name: &quot;encoder0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
 name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;gantry&quot;
 name: &quot;gantry0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
 ]
 </pre></div>
 </div>
@@ -1021,7 +1021,7 @@ Time received: 2023-07-08 00:00:00
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">time_recieved_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">time_received_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
     <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span> <span class="c1"># Unique ID of the relevant robot part.</span>
@@ -1030,7 +1030,7 @@ Time received: 2023-07-08 00:00:00
     <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
     <span class="n">method_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
-    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_recieved_1</span><span class="p">)],</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_received_1</span><span class="p">)],</span>
     <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
 <span class="p">)</span>
 </pre></div>
@@ -1086,7 +1086,7 @@ robot-3
 </div>
 </div>
 </div>
-<p>Certain types returned by <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> methods (namely, <code class="docutils literal notranslate"><span class="pre">RobotPart</span></code>, <code class="docutils literal notranslate"><span class="pre">LogEntry</span></code>, <code class="docutils literal notranslate"><span class="pre">Fragment</span></code>, and <code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code> objects) are wrapped in mirror classes that convert proto data into a friendlier, more readable format. Each of these mirrors still allows access to the intial proto type returned by the response as a property.</p>
+<p>Certain types returned by <code class="docutils literal notranslate"><span class="pre">AppClient</span></code> methods (namely, <code class="docutils literal notranslate"><span class="pre">RobotPart</span></code>, <code class="docutils literal notranslate"><span class="pre">LogEntry</span></code>, <code class="docutils literal notranslate"><span class="pre">Fragment</span></code>, and <code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code> objects) are wrapped in mirror classes that convert proto data into a friendlier, more readable format. Each of these mirrors still allows access to the initial proto type returned by the response as a property.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">get_robot_part_logs</span><span class="p">(</span><span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span> <span class="n">num_log_entries</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
