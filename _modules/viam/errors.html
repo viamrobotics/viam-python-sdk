@@ -182,6 +182,16 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">INVALID_ARGUMENT</span></div>
+
+
+<div class="viewcode-block" id="NoCaptureToStoreError"><a class="viewcode-back" href="../../autoapi/viam/errors/index.html#viam.errors.NoCaptureToStoreError">[docs]</a><span class="k">class</span> <span class="nc">NoCaptureToStoreError</span><span class="p">(</span><span class="n">ViamGRPCError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised in filter module to signal that data capture should not be stored</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;no capture from filter module&quot;</span>  <span class="c1"># Do not change the contents of this string</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grpc_code</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="n">FAILED_PRECONDITION</span></div>
 </pre></div>
 
            </div>
