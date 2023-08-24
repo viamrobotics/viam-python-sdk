@@ -1,9 +1,9 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
 from viam.components.power_sensor.power_sensor import PowerSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
+from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
@@ -14,7 +14,7 @@ from viam.proto.component.powersensor import (
     PowerSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
 class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
@@ -55,6 +55,3 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
-
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        return await get_geometries(self.client, self.name, extra, timeout)
