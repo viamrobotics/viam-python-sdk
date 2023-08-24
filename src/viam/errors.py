@@ -101,5 +101,5 @@ class NoCaptureToStoreError(ViamGRPCError):
     """
 
     def __init__(self):
-        self.message = "no capture from filter module"
+        self.message = "no capture from filter module"  # Do not change the contents of this string
         self.grpc_code = Status.FAILED_PRECONDITION
