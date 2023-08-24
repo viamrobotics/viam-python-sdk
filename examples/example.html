@@ -164,52 +164,16 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;gripper&quot;
 name: &quot;gripper0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
-subtype: &quot;slam&quot;
-name: &quot;slam0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;servo&quot;
@@ -219,13 +183,49 @@ type: &quot;component&quot;
 subtype: &quot;sensor&quot;
 name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;slam&quot;
+name: &quot;slam0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
 ]
 </pre></div>
 </div>
@@ -748,7 +748,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stopped</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>

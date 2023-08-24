@@ -89,13 +89,14 @@
   <h1>Source code for viam.resource.types</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">runtime_checkable</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">runtime_checkable</span>
 
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
 
+<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
@@ -293,7 +294,7 @@
 <span class="k">class</span> <span class="nc">SupportsGetGeometries</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SupportsGetGeometries.GetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.SupportsGetGeometries.GetGeometries">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGeometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetGeometriesResponse</span><span class="p">:</span>
+<div class="viewcode-block" id="SupportsGetGeometries.GetGeometries"><a class="viewcode-back" href="../../../autoapi/viam/resource/types/index.html#viam.resource.types.SupportsGetGeometries.GetGeometries">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetGeometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="o">...</span></div></div>
 </pre></div>
 

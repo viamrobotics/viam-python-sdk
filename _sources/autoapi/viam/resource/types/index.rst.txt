@@ -252,7 +252,7 @@ Attributes
 
    The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.
 
-   .. py:method:: GetGeometries(request: viam.proto.common.GetGeometriesRequest, timeout: Optional[float] = None) -> viam.proto.common.GetGeometriesResponse
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[viam.proto.common.GetGeometriesRequest, viam.proto.common.GetGeometriesResponse]) -> None
       :async:
 
 

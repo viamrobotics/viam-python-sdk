@@ -71,7 +71,7 @@ Attributes
       :rtype: Mapping[str, ValueTypes]
 
 
-   .. py:method:: get_geometries() -> List[viam.proto.common.Geometry]
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
       :async:
 
       Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
