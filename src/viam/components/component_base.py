@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, ClassVar, List, Mapping, Optional, SupportsByt
 
 from typing_extensions import Self
 
+from viam.errors import MethodNotImplementedError
 from viam.proto.common import Geometry
 from viam.resource.base import ResourceBase
 
@@ -43,4 +44,10 @@ class ComponentBase(abc.ABC, ResourceBase):
         raise NotImplementedError()
 
     async def get_geometries(self) -> List[Geometry]:
-        raise NotImplementedError()
+        """
+        Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+        Returns:
+            List[Geometry]: The geometries associated with the Component.
+        """
+        raise MethodNotImplementedError("get_geometries")

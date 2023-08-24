@@ -12,8 +12,6 @@ from viam.errors import NotSupportedError
 from viam.proto.component.inputcontroller import Event as PBEvent
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
-from . import Geometry
-
 
 class EventType(str, Enum):
     """
@@ -194,13 +192,3 @@ class Controller(ComponentBase):
             event (Event): The event to trigger
         """
         raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
-
-    @abc.abstractmethod
-    async def get_geometries(self) -> List[Geometry]:
-        """
-        Get all geometries associated with the input controller, in their current configuration, in the frame of the input controller.
-
-        Returns:
-            List[Geometry]: The geometries associated with the input.
-        """
-        ...

@@ -3,12 +3,11 @@ from typing import Any, Dict, List, Mapping, Optional
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.generic import GenericServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Geometry
 from .generic import Generic
 
 

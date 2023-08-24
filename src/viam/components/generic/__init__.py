@@ -1,5 +1,4 @@
 import viam.gen.component.generic.v1.generic_pb2  # Need this import for Generic service descriptors to resolve
-from viam.proto.common import Geometry
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import GenericClient
@@ -8,7 +7,6 @@ from .service import GenericRPCService
 
 __all__ = [
     "Generic",
-    "Geometry",
 ]
 
 Registry.register_subtype(

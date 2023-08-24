@@ -1,6 +1,5 @@
 import asyncio
 
-from viam.proto.common import Geometry
 from viam.proto.component.gantry import Status as GantryStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
@@ -12,7 +11,6 @@ from .service import GantryRPCService
 
 __all__ = [
     "Gantry",
-    "Geometry",
 ]
 
 
