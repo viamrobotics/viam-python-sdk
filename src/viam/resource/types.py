@@ -1,6 +1,6 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Protocol, Sequence, runtime_checkable
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
