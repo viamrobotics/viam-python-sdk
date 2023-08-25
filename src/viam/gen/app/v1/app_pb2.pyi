@@ -2402,7 +2402,7 @@ class VersionHistory(google.protobuf.message.Message):
     VERSION_FIELD_NUMBER: builtins.int
     FILES_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
-    ENTRPOINT_FIELD_NUMBER: builtins.int
+    ENTRYPOINT_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
 
@@ -2413,13 +2413,13 @@ class VersionHistory(google.protobuf.message.Message):
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
-    entrpoint: builtins.str
+    entrypoint: builtins.str
     'The entrypoint for this version of the module'
 
-    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrpoint: builtins.str=...) -> None:
+    def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['entrpoint', b'entrpoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
         ...
 global___VersionHistory = VersionHistory
 
