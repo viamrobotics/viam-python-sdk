@@ -9,15 +9,16 @@ from viam.proto.app.robot import ComponentConfig
 from viam.resource.base import ResourceBase
 from viam.proto.common import Geometry, Vector3, ResourceName
 from viam.resource.types import Model, ModelFamily
+from viam.utils import struct_to_dict
 
 
 class MyBase(Base, Reconfigurable):
     """
-    MyBase implements a base that only supports set_power (basic forward/back/turn controls) is_moving (check if in motion), and stop (stop
+    MyBase implements a base that only supports set_power (basic forward/back/turn controls), is_moving (check if in motion), and stop (stop
     all motion).
 
     It inherits from the built-in resource subtype Base and conforms to the ``Reconfigurable`` protocol, which signifies that this component
-    can be reconfigured. Additionally, it specifies a constructor function ``MyBase.new_base`` which confirms to the
+    can be reconfigured. Additionally, it specifies a constructor function ``MyBase.new`` which confirms to the
     ``resource.types.ResourceCreator`` type required for all models.
     """
 
@@ -37,21 +38,24 @@ class MyBase(Base, Reconfigurable):
     # Validates JSON Configuration
     @classmethod
     def validate_config(cls, config: ComponentConfig) -> Tuple[str, str]:
-        left_name = config.attributes.fields["motorL"].string_value
+        attributes_dict = struct_to_dict(config.attributes)
+        left_name = attributes_dict.get("left", "")
+        assert isinstance(left_name, str)
         if left_name == "":
-            raise Exception("A motorL attribute is required for a MyBase component.")
+            raise Exception("A left attribute is required for a MyBase component.")
 
-        right_name = config.attributes.fields["motorR"].string_value
+        right_name = attributes_dict.get("right", "")
+        assert isinstance(right_name, str)
         if right_name == "":
-            raise Exception("A motorR attribute is required for a MyBase component.")
+            raise Exception("A right attribute is required for a MyBase component.")
         return left_name, right_name
 
-    # Handles attribte reconfiguration
-    def reconfigure(self, config: ComponentConfig, dependenciees: Mapping[ResourceName, ResourceBase]):
+    # Handles attribute reconfiguration
+    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         left_name, right_name = self.validate_config(config)
 
-        left_motor = dependenciees[Motor.get_resource_name(left_name)]
-        right_motor = dependenciees[Motor.get_resource_name(right_name)]
+        left_motor = dependencies[Motor.get_resource_name(left_name)]
+        right_motor = dependencies[Motor.get_resource_name(right_name)]
 
         self.left = cast(Motor, left_motor)
         self.right = cast(Motor, right_motor)
