@@ -1,4 +1,4 @@
-from typing import Any, ClassVar, Mapping, Dict, List, Optional, Tuple, cast
+from typing import Any, ClassVar, Mapping, Dict, List, Optional, cast, Sequence
 
 from typing_extensions import Self
 
@@ -37,7 +37,7 @@ class MyBase(Base, Reconfigurable):
 
     # Validates JSON Configuration
     @classmethod
-    def validate_config(cls, config: ComponentConfig) -> Tuple[str, str]:
+    def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
         attributes_dict = struct_to_dict(config.attributes)
         left_name = attributes_dict.get("left", "")
         assert isinstance(left_name, str)
@@ -48,11 +48,15 @@ class MyBase(Base, Reconfigurable):
         assert isinstance(right_name, str)
         if right_name == "":
             raise Exception("A right attribute is required for a MyBase component.")
-        return left_name, right_name
+        return [left_name, right_name]
 
     # Handles attribute reconfiguration
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
-        left_name, right_name = self.validate_config(config)
+        attributes_dict = struct_to_dict(config.attributes)
+        left_name = attributes_dict.get("left")
+        right_name = attributes_dict.get("right")
+
+        assert isinstance(left_name, str) and isinstance(right_name, str)
 
         left_motor = dependencies[Motor.get_resource_name(left_name)]
         right_motor = dependencies[Motor.get_resource_name(right_name)]

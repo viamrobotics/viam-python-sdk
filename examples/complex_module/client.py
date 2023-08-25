@@ -50,7 +50,7 @@ async def main():
     # ####### BASE ####### #
     base = Base.from_robot(robot, name="base1")
     resp = await base.is_moving()
-    print(f"The robot's base is{' not ' if resp else ' '}moving.")
+    print(f"The robot's base is{' ' if resp else ' not '}moving.")
 
     await robot.close()
 

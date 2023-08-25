@@ -6,4 +6,4 @@ from viam.components.base import Base
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from .my_base import MyBase
 
-Registry.register_resource_creator(Base.SUBTYPE, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new))
+Registry.register_resource_creator(Base.SUBTYPE, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))

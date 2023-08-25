@@ -93,7 +93,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
         "right": "motor2"
       },
       "model": "acme:demo:mybase",
-      "depends_on": ["motor1", "motor2"]
+      "depends_on": []
     }
   ],
   "services": [
