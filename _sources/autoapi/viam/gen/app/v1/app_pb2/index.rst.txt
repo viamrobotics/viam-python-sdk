@@ -4524,7 +4524,7 @@ Attributes
 
    
 
-.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ...)
+.. py:class:: VersionHistory(*, version: str = ..., files: collections.abc.Iterable[global___Uploads] | None = ..., models: collections.abc.Iterable[global___Model] | None = ..., entrpoint: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4540,10 +4540,20 @@ Attributes
 
       The uploads that are available for this module version
 
+   .. py:property:: models
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]
+
+      The models that this verion of the module provides
+
    .. py:attribute:: version
       :type: str
 
       The semver string that represents the major/minor/patch version of the module
+
+   .. py:attribute:: entrpoint
+      :type: str
+
+      The entrypoint for this version of the module
 
 
 .. py:data:: global___VersionHistory
