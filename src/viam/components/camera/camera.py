@@ -52,8 +52,8 @@ class Camera(ComponentBase):
 
     @abc.abstractmethod
     async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
-        """Get simultaneous images from different sensors, along with associated metadata.
-        This should not be used for getting a time series of images from the same sensor.
+        """Get simultaneous images from different imagers, along with associated metadata.
+        This should not be used for getting a time series of images from the same imager.
 
         Returns:
             Tuple[List[NamedImage], ResponseMetadata]:
