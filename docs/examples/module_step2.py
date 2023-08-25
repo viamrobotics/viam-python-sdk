@@ -26,7 +26,7 @@ class MySensor(Sensor):
         wifi_signal = [x for x in content[2].split(" ") if x != ""]
         return {"link": wifi_signal[2], "level": wifi_signal[3], "noise": wifi_signal[4]}
 
-    async def get_geometries(self) -> List[Geometry]:
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         raise NotImplementedError
 
 
@@ -36,4 +36,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    wifi = MySensor(name="wifi")

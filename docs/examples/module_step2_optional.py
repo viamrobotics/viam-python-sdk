@@ -43,7 +43,7 @@ class MySensor(Sensor):
             wifi_signal.append(int(result[i]) * self.multiplier)
         return {"link": wifi_signal[0], "level": wifi_signal[1], "noise": wifi_signal[2]}
 
-    async def get_geometries(self) -> List[Geometry]:
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         raise NotImplementedError
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
@@ -56,4 +56,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-    wifi = MySensor(name="wifi")
