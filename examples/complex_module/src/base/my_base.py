@@ -18,8 +18,9 @@ class MyBase(Base, Reconfigurable):
     all motion).
 
     It inherits from the built-in resource subtype Base and conforms to the ``Reconfigurable`` protocol, which signifies that this component
-    can be reconfigured. Additionally, it specifies a constructor function ``MyBase.new`` which confirms to the
-    ``resource.types.ResourceCreator`` type required for all models.
+    can be reconfigured. Additionally, it specifies a constructor function ``MyBase.new`` which conforms to the
+    ``resource.types.ResourceCreator`` type required for all models. It also specifies a validator function `MyBase.validate_config` which
+    conforms to the ``resource.types.Validator`` type and returns implicit dependencies for the model.
     """
 
     # Subclass the Viam Base component and implement the required functions
