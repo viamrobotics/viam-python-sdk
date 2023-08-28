@@ -105,7 +105,7 @@ def _init_process(count: Synchronized):
 @pytest.mark.asyncio
 async def test_sessions_heartbeat_thread_blocked():
     sock = socket.socket()
-    sock.bind(("", 0))
+    sock.bind(("localhost", 9091))
     count = Value("b", 0)
 
     p = ProcessPoolExecutor(initializer=_init_process, initargs=(count,))
