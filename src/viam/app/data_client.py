@@ -183,7 +183,7 @@ class DataClient:
                 binary data.
             dest (Optional[str]): Optional filepath for writing retrieved data.
             include_file_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults
-                to false (i.e., only the files' metadata is returned).
+                to true (i.e., both the files' data and metadata are returned).
             num_files (Optional[str]): Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
                 Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,
                     whichever comes first.
