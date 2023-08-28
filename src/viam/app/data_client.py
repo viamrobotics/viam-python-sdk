@@ -179,7 +179,7 @@ class DataClient:
         """Filter and download binary data.
 
         Args:
-            filter (Optional[viam.proto.app.data.Filter]): Optional `Filter` specifying binary data to retrieve. No `Filter` implies al
+            filter (Optional[viam.proto.app.data.Filter]): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all
                 binary data.
             dest (Optional[str]): Optional filepath for writing retrieved data.
             include_file_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults
