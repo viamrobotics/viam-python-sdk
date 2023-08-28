@@ -128,15 +128,25 @@ Attributes
       :rtype: List[Mapping[str, Any]]
 
 
-   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[BinaryData]
+   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None, include_file_data: bool = True, num_files: Optional[int] = None) -> List[BinaryData]
       :async:
 
       Filter and download binary data.
 
-      :param filter: Optional `Filter` specifying binary data to retrieve. No `Filter` implies all binary data.
-      :type filter: viam.proto.app.data.Filter
+      :param filter: Optional `Filter` specifying binary data to retrieve. No `Filter` implies all
+                     binary data.
+      :type filter: Optional[viam.proto.app.data.Filter]
       :param dest: Optional filepath for writing retrieved data.
-      :type dest: str
+      :type dest: Optional[str]
+      :param include_file_data: Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults
+                                to true (i.e., both the files' data and metadata are returned).
+      :type include_file_data: bool
+      :param num_files: Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
+                        Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,
+                            whichever comes first.
+      :type num_files: Optional[str]
+
+      :raises ValueError: If `num_files` is less than 0.
 
       :returns: The binary data.
       :rtype: List[bytes]
