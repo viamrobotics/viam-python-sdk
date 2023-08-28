@@ -105,14 +105,15 @@ def _init_process(count: Synchronized):
 @pytest.mark.asyncio
 async def test_sessions_heartbeat_thread_blocked():
     sock = socket.socket()
-    sock.bind(("localhost", 9091))
+    sock.bind(("127.0.0.1", 9091))
     count = Value("b", 0)
 
     p = ProcessPoolExecutor(initializer=_init_process, initargs=(count,))
     p.submit(run_server_in_process, sock)
+    await asyncio.sleep(0.5)
 
     port = sock.getsockname()[1]
-    addr = f"localhost:{port}"
+    addr = f"127.0.0.1:{port}"
     options = DialOptions(disable_webrtc=True, insecure=True)
     channel = await dial(address=addr, options=options)
 
