@@ -158,8 +158,9 @@ async def _heartbeat_tick(client: RobotServiceStub, id: str, supported: Synchron
 
 
 async def heartbeat_process(address: str, dial_options: Optional[DialOptions], id: str, wait: float):
-    if dial_options is not None:
-        dial_options.disable_webrtc = True
+    if dial_options is None:
+        dial_options = DialOptions()
+    dial_options.disable_webrtc = True
     channel = await dial(address=address, options=dial_options)
     client = RobotServiceStub(channel.channel)
     while heartbeat_supported.value == _SupportedState.TRUE:
