@@ -459,7 +459,7 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse.value">
 <span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse.value" title="Permalink to this definition"></a></dt>
-<dd><p>A number from 0-359 where
+<dd><p>A number from 0-359 in degrees where
 0 is North, 90 is East, 180 is South, and 270 is   West</p>
 </dd></dl>
 
@@ -531,7 +531,9 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse.orientation">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">orientation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Orientation" title="viam.gen.common.v1.common_pb2.Orientation"><span class="pre">viam.gen.common.v1.common_pb2.Orientation</span></a></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse.orientation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Orientation is returned as an orientation message with
+OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse.HasField">
@@ -624,7 +626,9 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse.coordinate">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coordinate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse.coordinate" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Position is returned in a coordinate of latitute and longitude
+and an altidue in meters</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.component.movementsensor.v1.movementsensor_pb2.GetPositionResponse.altitude_m">

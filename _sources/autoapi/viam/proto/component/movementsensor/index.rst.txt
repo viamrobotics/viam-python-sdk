@@ -309,7 +309,7 @@ Classes
    .. py:attribute:: value
       :type: float
 
-      A number from 0-359 where
+      A number from 0-359 in degrees where
       0 is North, 90 is East, 180 is South, and 270 is   West
 
 
@@ -512,6 +512,8 @@ Classes
    .. py:property:: orientation
       :type: viam.gen.common.v1.common_pb2.Orientation
 
+      Orientation is returned as an orientation message with
+      OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
 
    .. py:method:: HasField(field_name: Literal[orientation, b'orientation']) -> bool
 
@@ -584,6 +586,8 @@ Classes
    .. py:property:: coordinate
       :type: viam.gen.common.v1.common_pb2.GeoPoint
 
+      Position is returned in a coordinate of latitute and longitude
+      and an altidue in meters
 
    .. py:attribute:: altitude_m
       :type: float
