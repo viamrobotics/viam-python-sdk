@@ -3,9 +3,9 @@ import asyncio
 from viam.module.module import Module
 from viam.components.arm import Arm
 
-from .arm.my_arm import MyArm
-from .gizmo import Gizmo, MyGizmo
-from .summation import MySummationService, SummationService
+from src.arm.my_arm import MyArm
+from src.gizmo import Gizmo, MyGizmo
+from src.summation import MySummationService, SummationService
 
 
 async def main():
