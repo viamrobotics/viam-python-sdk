@@ -105,7 +105,7 @@ def _init_process(count: Synchronized):
 @pytest.mark.asyncio
 async def test_sessions_heartbeat_thread_blocked():
     sock = socket.socket()
-    sock.bind(("127.0.0.1", 9091))
+    sock.bind(("localhost", 0))
     count = Value("b", 0)
 
     p = ProcessPoolExecutor(initializer=_init_process, initargs=(count,))
@@ -124,6 +124,7 @@ async def test_sessions_heartbeat_thread_blocked():
     assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == MockRobot.HEARTBEAT_INTERVAL
     assert client._current_id == MockRobot.SESSION_ID
     time.sleep(3)
+    sock.close()
 
     assert count.value >= 5
 
