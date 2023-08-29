@@ -315,11 +315,9 @@ class MockMotion(MotionServiceBase):
     def __init__(
         self,
         move_responses: Dict[str, bool],
-        move_single_component_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
     ):
         self.move_responses = move_responses
-        self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
         self.constraints: Optional[Constraints] = None
         self.extra: Optional[Mapping[str, Any]] = None
