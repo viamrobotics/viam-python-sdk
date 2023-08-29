@@ -1,5 +1,5 @@
 import abc
-from typing import Final, List, NamedTuple, Optional, Tuple, Union
+from typing import Final, List, NamedTuple, Optional, Tuple, Union, Any, Dict
 
 from PIL.Image import Image
 
@@ -36,7 +36,14 @@ class Camera(ComponentBase):
 
     # i think we add a parameter here and to the other methods below but am not sure also don't know what type it is
     @abc.abstractmethod
-    async def get_image(self, mime_type: str = "", *, timeout: Optional[float] = None, **kwargs) -> Union[Image, RawImage]:
+    async def get_image(
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs
+    ) -> Union[Image, RawImage]:
         """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 

@@ -39,7 +39,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         camera = self.get_resource(name)
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
+        image = await camera.get_image(request.mime_type, extra=request.extra, timeout=timeout, metadata=stream.metadata)
         try:
             if not request.mime_type:
                 if camera.name not in self._camera_mime_types:

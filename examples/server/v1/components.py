@@ -351,7 +351,7 @@ class ExampleCamera(Camera):
     def __del__(self):
         self.image.close()
 
-    async def get_image(self, mime_type: str = "", **kwargs) -> Image.Image:
+    async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> Image.Image:
         return self.image.copy()
 
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
