@@ -125,7 +125,7 @@ class GetCompassHeadingResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
     value: builtins.float
-    'A number from 0-359 where\n    0 is North, 90 is East, 180 is South, and 270 is   West\n    '
+    'A number from 0-359 in degrees where\n    0 is North, 90 is East, 180 is South, and 270 is   West\n    '
 
     def __init__(self, *, value: builtins.float=...) -> None:
         ...
@@ -163,7 +163,9 @@ class GetOrientationResponse(google.protobuf.message.Message):
 
     @property
     def orientation(self) -> common.v1.common_pb2.Orientation:
-        ...
+        """Orientation is returned as an orientation message with 
+        OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
+        """
 
     def __init__(self, *, orientation: common.v1.common_pb2.Orientation | None=...) -> None:
         ...
@@ -205,7 +207,9 @@ class GetPositionResponse(google.protobuf.message.Message):
 
     @property
     def coordinate(self) -> common.v1.common_pb2.GeoPoint:
-        ...
+        """Position is returned in a coordinate of latitute and longitude 
+        and an altidue in meters
+        """
     altitude_m: builtins.float
 
     def __init__(self, *, coordinate: common.v1.common_pb2.GeoPoint | None=..., altitude_m: builtins.float=...) -> None:

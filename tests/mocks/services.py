@@ -315,11 +315,9 @@ class MockMotion(MotionServiceBase):
     def __init__(
         self,
         move_responses: Dict[str, bool],
-        move_single_component_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
     ):
         self.move_responses = move_responses
-        self.move_single_component_responses = move_single_component_responses
         self.get_pose_responses = get_pose_responses
         self.constraints: Optional[Constraints] = None
         self.extra: Optional[Mapping[str, Any]] = None
@@ -528,6 +526,7 @@ class MockData(DataServiceBase):
             await stream.send_message(BinaryDataByFilterResponse())
             return
         self.filter = request.data_request.filter
+        self.include_binary = request.include_binary
         await stream.send_message(
             BinaryDataByFilterResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )

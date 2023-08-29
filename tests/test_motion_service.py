@@ -12,7 +12,6 @@ from .mocks.services import MockMotion
 
 MOVE_CONSTRAINTS = Constraints(linear_constraint=[LinearConstraint(), LinearConstraint(line_tolerance_mm=2)])
 MOVE_RESPONSES = {"arm": False, "gantry": True}
-MOVE_SINGLE_COMPONENT_RESPONSES = {"arm": True, "gantry": False}
 GET_POSE_RESPONSES = {
     "arm": PoseInFrame(reference_frame="arm", pose=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)),
     "gantry": PoseInFrame(reference_frame="gantry", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
@@ -33,7 +32,6 @@ MOTION_SERVICE_NAME = "motion1"
 def service() -> MockMotion:
     return MockMotion(
         move_responses=MOVE_RESPONSES,
-        move_single_component_responses=MOVE_SINGLE_COMPONENT_RESPONSES,
         get_pose_responses=GET_POSE_RESPONSES,
     )
 

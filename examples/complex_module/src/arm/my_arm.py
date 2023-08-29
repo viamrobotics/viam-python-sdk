@@ -95,7 +95,7 @@ class MyArm(Arm):
     async def is_moving(self) -> bool:
         return not self.is_stopped
 
-    async def get_geometries(self) -> List[Geometry]:
+    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         return self.geometries
 
     async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
