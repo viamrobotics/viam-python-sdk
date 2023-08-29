@@ -84,17 +84,17 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobo
         assert client._supported.value == _SupportedState.UNKNOWN
 
 
-async def run_server(sock: socket.socket):
-    server = GRPCServer([MockRobot(heartbeat_count)])
-    await server.start(sock=sock)
-    await asyncio.sleep(3)
-    server.close()
-
-
-def run_server_in_process(sock: socket.socket):
+def _run_server_in_process(sock: socket.socket):
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(run_server(sock))
+
+    async def _run_server(sock: socket.socket):
+        server = GRPCServer([MockRobot(heartbeat_count)])
+        await server.start(sock=sock)
+        await asyncio.sleep(3)
+        server.close()
+
+    loop.run_until_complete(_run_server(sock))
 
 
 def _init_process(count: Synchronized):
@@ -109,7 +109,7 @@ async def test_sessions_heartbeat_thread_blocked():
     count = Value("b", 0)
 
     p = ProcessPoolExecutor(initializer=_init_process, initargs=(count,))
-    p.submit(run_server_in_process, sock)
+    p.submit(_run_server_in_process, sock)
     await asyncio.sleep(0.5)
 
     port = sock.getsockname()[1]
