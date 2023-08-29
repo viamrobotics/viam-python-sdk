@@ -50,8 +50,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#connect-as-a-client">Connect as a client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-custom-modules">Create custom modules</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subclass-a-resource">1. Subclass a resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#register-the-new-modular-resource">2. Register the new modular resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-an-entry-point-file">3. Create an entry point file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-the-new-modular-resource">2. Register the new modular resource</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optional-validator-and-reconfiguration-functions">Optional Validator and Reconfiguration Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#start-the-module">3. Start the module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#make-the-module-executable">4. Make the module executable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configure-a-modular-resource">5. Configure a modular resource</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#custom-modular-arm-example">Custom Modular Arm Example</a></li>
@@ -164,64 +167,64 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;motor&quot;
 name: &quot;motor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;servo&quot;
 name: &quot;servo0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;board&quot;
 name: &quot;board&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;gripper&quot;
 name: &quot;gripper0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
@@ -295,7 +298,7 @@ name: &quot;slam0&quot;
 </ul>
 </li>
 <li><p><strong>Register a new model.</strong> This will register the new modular resource model into the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>.</p></li>
-<li><p><strong>Create an entry point file.</strong> Create and start the new module.</p></li>
+<li><p><strong>Start the module.</strong> Create and start the new module.</p></li>
 <li><p><strong>Make the module executable.</strong> This allows <code class="docutils literal notranslate"><span class="pre">viam-server</span></code> to access and execute the module.</p></li>
 <li><p><strong>Configure a modular resource.</strong> Use the new module and instantiate a new resource to a robot!</p></li>
 </ol>
@@ -304,9 +307,9 @@ name: &quot;slam0&quot;
 <h3>1. Subclass a resource<a class="headerlink" href="#subclass-a-resource" title="Permalink to this heading"></a></h3>
 <p>The SDK provides a wide array of resource APIs to customize. You can browse through the API Reference to see the available resources. Subclass a resource and implement the required functions. You may leave the other methods unimplemented by putting <code class="docutils literal notranslate"><span class="pre">pass</span></code> or <code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">NotImplementedError()</span></code> in the function.</p>
 <p>This example uses a <code class="docutils literal notranslate"><span class="pre">Sensor</span></code> as an example.</p>
-<p>Create a sensor that returns the Wi-Fi signal of a Pi. Start by creating a directory on the Pi named <code class="docutils literal notranslate"><span class="pre">wifi-sensor</span></code>, then create a directory inside the <code class="docutils literal notranslate"><span class="pre">wifi-sensor</span></code> directory named <code class="docutils literal notranslate"><span class="pre">src</span></code>. Then, inside the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, create a new file named <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code>.
-Copy the code below into your <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code> file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor.py</span>
+<p>Create a sensor that returns the Wi-Fi signal of a Pi. Start by creating a directory on the Pi named <code class="docutils literal notranslate"><span class="pre">wifi-sensor</span></code>, then create a directory inside the <code class="docutils literal notranslate"><span class="pre">wifi-sensor</span></code> directory named <code class="docutils literal notranslate"><span class="pre">src</span></code>. Then, inside the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, create a new file named <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code>.
+Copy the code below into your <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor_module.py</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
@@ -320,9 +323,12 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
             <span class="n">content</span> <span class="o">=</span> <span class="n">wifi_stats</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
         <span class="n">wifi_signal</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">4</span><span class="p">]}</span>
+    
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
 <span class="c1"># Anything below this line is optional and will be replaced later, but may come in handy for debugging and testing.</span>
-<span class="c1"># To use, call `python wifi_sensor.py` in the command line while in the `src` directory.</span>
+<span class="c1"># To use, call `python wifi_sensor_module.py` in the command line while in the `src` directory.</span>
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">wifi</span><span class="o">=</span><span class="n">MySensor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;wifi&quot;</span><span class="p">)</span>
     <span class="n">signal</span> <span class="o">=</span> <span class="k">await</span> <span class="n">wifi</span><span class="o">.</span><span class="n">get_readings</span><span class="p">()</span>
@@ -338,15 +344,13 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <h3>2. Register the new modular resource<a class="headerlink" href="#register-the-new-modular-resource" title="Permalink to this heading"></a></h3>
 <p>Now that we’ve created the modular resource model, we must register it to the registry.</p>
 <p>Define a <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#models"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a> name and a creator function in the resource. A creator function is a function that can create a resource given a config and map of dependencies.</p>
-<p>To define a creator function and <code class="docutils literal notranslate"><span class="pre">Model</span></code> in <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code>, import <code class="docutils literal notranslate"><span class="pre">ComponentConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code>, <code class="docutils literal notranslate"><span class="pre">Model</span></code>, and <code class="docutils literal notranslate"><span class="pre">ModelFamily</span></code> from the relative viam packages. Please note that the import packages also have to be changed to include <code class="docutils literal notranslate"><span class="pre">Mapping</span></code> and <code class="docutils literal notranslate"><span class="pre">ClassVar</span></code> from <code class="docutils literal notranslate"><span class="pre">typing</span></code> and <code class="docutils literal notranslate"><span class="pre">Self</span></code> from <code class="docutils literal notranslate"><span class="pre">typing_extensions</span></code>. The changes can be seen in the example below.</p>
-<p>In your <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code>, define a new <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> variable in your <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class, shown below. Then add a <code class="docutils literal notranslate"><span class="pre">new()</span></code> function that will act as our creator function. We get the name from the config and return the resource. We can also assign class variables based on what the config has.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor.py</span>
+<p>To define a creator function and <code class="docutils literal notranslate"><span class="pre">Model</span></code> in <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code>, import <code class="docutils literal notranslate"><span class="pre">ComponentConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code>, <code class="docutils literal notranslate"><span class="pre">ResourceBase</span></code>, <code class="docutils literal notranslate"><span class="pre">Model</span></code>, and <code class="docutils literal notranslate"><span class="pre">ModelFamily</span></code> from the relative viam packages. Please note that the import packages also have to be changed to include <code class="docutils literal notranslate"><span class="pre">Mapping</span></code> and <code class="docutils literal notranslate"><span class="pre">ClassVar</span></code> from <code class="docutils literal notranslate"><span class="pre">typing</span></code> and <code class="docutils literal notranslate"><span class="pre">Self</span></code> from <code class="docutils literal notranslate"><span class="pre">typing_extensions</span></code>. The changes can be seen in the example below.</p>
+<p>In your <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code>, define a new <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> variable in your <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class, shown below. Then add a <code class="docutils literal notranslate"><span class="pre">new()</span></code> function that will act as our creator function. We get the name from the config and return the resource. We can also assign class variables based on what the config has.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor_module.py</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
-<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
 <span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
@@ -363,29 +367,76 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 <p>After the resource model has a defined model and creator function, the resource model must be registered to the <code class="docutils literal notranslate"><span class="pre">Registry</span></code>. This can be done using <a class="reference external" href="https://python.viam.dev/autoapi/viam/resource/registry/index.html#viam.resource.registry.Registry.register_resource_creator"><code class="docutils literal notranslate"><span class="pre">register_resource_creator()</span></code></a> and passing a <a class="reference external" href="https://python.viam.dev/autoapi/viam/resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration"><code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code></a> object with the creator function as a parameter.</p>
-<p>In the main function of <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code>, call <code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code> with the subtype of the resource that was subclassed, the model name, and a <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object with the creator function defined in the modular resource. In a more complex module, it makes sense to call the function in an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the same folder as the new resource model. See <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module/src/arm/__init__.py">here</a> for an example.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor.py</span>
+<p>In the main function of <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code>, call <code class="docutils literal notranslate"><span class="pre">Registry.register_resource_creator()</span></code> with the subtype of the resource that was subclassed, the model name, and a <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object with the creator function defined in the modular resource. In a more complex module, it makes sense to call the function in an <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file in the same folder as the new resource model. See <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module/src/arm/__init__.py">here</a> for an example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor_module.py</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
-<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
 </pre></div>
 </div>
-</section>
-<section id="create-an-entry-point-file">
-<h3>3. Create an entry point file<a class="headerlink" href="#create-an-entry-point-file" title="Permalink to this heading"></a></h3>
-<p>The module now has to be created and started. In the <code class="docutils literal notranslate"><span class="pre">wifi_sensor.py</span></code> file, update the main function to the following. In a more complex module, it makes sense to create an entirely new entrypoint file. See <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module/src/main.py">here</a> for an example.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor.py</span>
-<span class="kn">import</span> <span class="nn">asyncio</span>
+<p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2.py">here</a> to see the file with its new <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> variable, creator function, and <code class="docutils literal notranslate"><span class="pre">main()</span></code> function.</p>
+<section id="optional-validator-and-reconfiguration-functions">
+<h4>Optional Validator and Reconfiguration Functions<a class="headerlink" href="#optional-validator-and-reconfiguration-functions" title="Permalink to this heading"></a></h4>
+<p>Modules also have support for validator and reconfiguration functions.</p>
+<p>Custom validation can be done by specifiying a validate function. Validate functions can raise errors that will be returned to the parent through gRPC. Validate functions return a sequence of strings representing the implicit dependencies of the resource. If there are none, return an empty sequence <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
+<p>For example, let’s say <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> had a <code class="docutils literal notranslate"><span class="pre">multiplier</span></code> argument that is used to multiply the returned readings in <code class="docutils literal notranslate"><span class="pre">get_readings()</span></code>. The validation function can check if a multiplier attribute was provided or default the multiplier to 1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADD `Sequence` FROM `typing`.</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
 
+<span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
+    <span class="c1"># ADD `multiplier` AS A CLASS VARIABLE.</span>
+    <span class="n">multiplier</span><span class="p">:</span> <span class="nb">float</span>
+
+    <span class="c1"># ADD A VALIDATOR FUNCTION </span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">validate_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="s2">&quot;multiplier&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Multiplier must be a float.&quot;</span><span class="p">)</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
+            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Multiplier cannot be 0.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> 
+            <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="c1"># RETURN AN EMPTY SEQUENCE</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/proc/net/wireless&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wifi_stats</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">wifi_stats</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">content</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+        
+        <span class="c1"># MULTIPLY THE READINGS WITH MULTIPLIER</span>
+        <span class="n">wifi_signal</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">wifi_signal</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;link&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">wifi_signal</span><span class="p">[</span><span class="mi">2</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>If a validator function is added, it must also be called when registering the resource. The <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> should now also have the validator function passed in as the second parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+            <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">validate_config</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Reconfiguration specifies what values can change based on a new configuration. To allow this, add a <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> function to the <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
+</pre></div>
+</div>
+<p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2_optional.py">here</a> to see the new <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> with the optional validator and reconfiguration functions.</p>
+</section>
+</section>
+<section id="start-the-module">
+<h3>3. Start the module<a class="headerlink" href="#start-the-module" title="Permalink to this heading"></a></h3>
+<p>The module now has to be created and started. In the <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> file, update the main function to the following. If there is a validator function in the class, don’t forget to add the function to the <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> object. In a more complex module, it makes sense to create an entirely new entrypoint file. See <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/complex_module/src/main.py">here</a> for an example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># wifi-sensor/src/wifi_sensor_module.py</span>
 <span class="kn">from</span> <span class="nn">viam.module.module</span> <span class="kn">import</span> <span class="n">Module</span>
-<span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
-<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
 
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function creates and starts a new module, after adding all desired resource model.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function creates and starts a new module, after adding all desired resource model.</span>
 <span class="sd">    Resource creators must be registered to the resource registry before the module adds the resource model.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>
@@ -399,6 +450,7 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
     <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </pre></div>
 </div>
+<p>To see <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> with all of the changes, click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step3.py">here</a>.</p>
 </section>
 <section id="make-the-module-executable">
 <h3>4. Make the module executable<a class="headerlink" href="#make-the-module-executable" title="Permalink to this heading"></a></h3>
