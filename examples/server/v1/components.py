@@ -357,7 +357,7 @@ class ExampleCamera(Camera):
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         raise NotImplementedError()
 
-    async def get_point_cloud(self, **kwargs) -> Tuple[bytes, str]:
+    async def get_point_cloud(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[bytes, str]:
         raise NotImplementedError()
 
     async def get_properties(self, **kwargs) -> Camera.Properties:

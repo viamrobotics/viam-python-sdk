@@ -74,7 +74,12 @@ class Camera(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_point_cloud(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[bytes, str]:
+    async def get_point_cloud(self,
+                              *,
+                              extra: Optional[Dict[str, Any]] = None,
+                              timeout: Optional[float] = None,
+                              **kwargs
+                              ) -> Tuple[bytes, str]:
         """
         Get the next point cloud from the camera. This will be
         returned as bytes with a mimetype describing

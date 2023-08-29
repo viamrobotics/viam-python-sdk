@@ -66,8 +66,10 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         resp_metadata: ResponseMetadata = response.response_metadata
         return imgs, resp_metadata
 
-    async def get_point_cloud(self, *, timeout: Optional[float] = None) -> Tuple[bytes, str]:
-        request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD)
+    async def get_point_cloud(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[bytes, str]:
+        if extra is None:
+            extra = {}
+        request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD, extra=dict_to_struct(extra))
         response: GetPointCloudResponse = await self.client.GetPointCloud(request, timeout=timeout)
         return (response.point_cloud, response.mime_type)
 
