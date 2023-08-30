@@ -45,7 +45,7 @@ async def test_init_client():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
         assert client._current_id == ""
-        assert client._supported.value == _SupportedState.UNKNOWN
+        assert client._supported == _SupportedState.UNKNOWN
 
 
 @pytest.mark.asyncio
@@ -63,9 +63,9 @@ async def test_sessions_error():
 async def test_sessions_not_supported():
     async with ChannelFor([]) as channel:
         client = SessionsClient(channel, "", None)
-        client._supported.value = _SupportedState.FALSE
+        client._supported = _SupportedState.FALSE
         assert await client.metadata == {}
-        assert client._supported.value == _SupportedState.FALSE
+        assert client._supported == _SupportedState.FALSE
 
 
 @pytest.mark.asyncio
@@ -73,7 +73,7 @@ async def test_sessions_not_implemented(service_without_session: MockRobot):
     async with ChannelFor([service_without_session]) as channel:
         client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported.value == _SupportedState.FALSE
+        assert client._supported == _SupportedState.FALSE
 
 
 @pytest.mark.asyncio
@@ -81,7 +81,7 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobo
     async with ChannelFor([service_without_heartbeat]) as channel:
         client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported.value == _SupportedState.UNKNOWN
+        assert client._supported == _SupportedState.UNKNOWN
 
 
 async def _run_server(sock: socket.socket, handlers: List[IServable], shutdown_signal: asyncio.Event):
@@ -111,7 +111,7 @@ async def test_sessions_heartbeat_thread_blocked():
     client = SessionsClient(channel.channel, addr, options)
     assert await client.metadata == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
 
-    assert client._supported.value == _SupportedState.TRUE
+    assert client._supported == _SupportedState.TRUE
     assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == MockRobot.HEARTBEAT_INTERVAL
 
     time.sleep(3)
@@ -125,5 +125,5 @@ async def test_sessions_disabled(service: MockRobot):
     async with ChannelFor([service]) as channel:
         client = SessionsClient(channel, "", None, disabled=True)
         assert await client.metadata == {}
-        assert client._supported.value == _SupportedState.UNKNOWN
+        assert client._supported == _SupportedState.UNKNOWN
         assert not client._heartbeat_interval
