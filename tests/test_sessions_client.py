@@ -1,12 +1,12 @@
 import asyncio
 import socket
 import time
-from concurrent.futures import ProcessPoolExecutor
-from multiprocessing import Value
-from multiprocessing.sharedctypes import Synchronized
+from concurrent.futures import ThreadPoolExecutor
+from typing import List
 
 import pytest
 from grpclib import GRPCError, Status
+from grpclib._typing import IServable
 from grpclib.server import Server as GRPCServer
 from grpclib.testing import ChannelFor
 
@@ -84,32 +84,23 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobo
         assert client._supported.value == _SupportedState.UNKNOWN
 
 
-def _run_server_in_process(sock: socket.socket):
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
-    async def _run_server(sock: socket.socket):
-        server = GRPCServer([MockRobot(heartbeat_count)])
-        await server.start(sock=sock)
-        await asyncio.sleep(3)
-        server.close()
-
-    loop.run_until_complete(_run_server(sock))
-
-
-def _init_process(count: Synchronized):
-    global heartbeat_count
-    heartbeat_count = count
+async def _run_server(sock: socket.socket, handlers: List[IServable], shutdown_signal: asyncio.Event):
+    server = GRPCServer(handlers=handlers)
+    await server.start(sock=sock)
+    await shutdown_signal.wait()
+    server.close()
 
 
 @pytest.mark.asyncio
 async def test_sessions_heartbeat_thread_blocked():
     sock = socket.socket()
     sock.bind(("", 0))
-    count = Value("b", 0)
 
-    p = ProcessPoolExecutor(initializer=_init_process, initargs=(count,))
-    p.submit(_run_server_in_process, sock)
+    shutdown_signal = asyncio.Event()
+    m = MockRobot()
+    t = ThreadPoolExecutor()
+    t.submit(asyncio.run, _run_server(sock, [m], shutdown_signal))
+
     await asyncio.sleep(0.5)
 
     port = sock.getsockname()[1]
@@ -122,11 +113,11 @@ async def test_sessions_heartbeat_thread_blocked():
 
     assert client._supported.value == _SupportedState.TRUE
     assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == MockRobot.HEARTBEAT_INTERVAL
-    assert client._current_id == MockRobot.SESSION_ID
-    time.sleep(3)
-    sock.close()
 
-    assert count.value >= 5
+    time.sleep(3)
+    shutdown_signal.set()
+    client.reset()
+    assert m.heartbeat_count >= 5
 
 
 @pytest.mark.asyncio

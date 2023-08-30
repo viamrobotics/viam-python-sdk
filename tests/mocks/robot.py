@@ -46,8 +46,8 @@ class MockRobot(RobotServiceBase):
     SESSION_ID = "sid"
     HEARTBEAT_INTERVAL = 2
 
-    def __init__(self, heartbeat_count: Optional[Synchronized] = None):
-        self.heartbeat_count: Synchronized = heartbeat_count if heartbeat_count is not None else Value("b", 0)
+    def __init__(self):
+        self.heartbeat_count = 0
         super().__init__()
 
     async def StartSession(self, stream: Stream[StartSessionRequest, StartSessionResponse]) -> None:
@@ -61,7 +61,7 @@ class MockRobot(RobotServiceBase):
     async def SendSessionHeartbeat(self, stream: Stream[SendSessionHeartbeatRequest, SendSessionHeartbeatResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.heartbeat_count.value += 1
+        self.heartbeat_count += 1
         response = SendSessionHeartbeatResponse()
         await stream.send_message(response)
 
