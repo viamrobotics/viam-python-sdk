@@ -34,7 +34,6 @@ class Camera(ComponentBase):
         distortion_parameters: DistortionParameters
         """The distortion parameters of the camera"""
 
-    # i think we add a parameter here and to the other methods below but am not sure also don't know what type it is
     @abc.abstractmethod
     async def get_image(
         self,

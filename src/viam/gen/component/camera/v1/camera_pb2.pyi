@@ -50,7 +50,6 @@ class GetImageRequest(google.protobuf.message.Message):
     mime_type: builtins.str
     'Requested MIME type of response'
 
-    # ayo... extra is here already
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
