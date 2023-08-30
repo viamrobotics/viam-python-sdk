@@ -119,7 +119,7 @@ class SessionsClient:
 
         with self._lock:
             if self._supported == _SupportedState.TRUE:
-                # We send heartbeats slightly faster than the interval window to
+                # We send heartbeats faster than the interval window to
                 # ensure that we don't fall outside of it and expire the session.
                 wait = self._heartbeat_interval.total_seconds() / 5
 
