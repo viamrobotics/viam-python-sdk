@@ -85,9 +85,12 @@ def generic_service(camera: Camera) -> GenericRPCService:
 
 class TestCamera:
     @pytest.mark.asyncio
-    async def test_get_image(self, camera: Camera, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, image: Image.Image):
         img = await camera.get_image(CameraMimeType.PNG)
         assert img == image
+
+        img = await camera.get_image(CameraMimeType.PNG, {"1": 1})
+        assert camera.extra == {"1": 1}
 
         img = await camera.get_image(CameraMimeType.VIAM_RGBA)
         assert isinstance(img, Image.Image)
@@ -104,9 +107,12 @@ class TestCamera:
         assert md == metadata
 
     @pytest.mark.asyncio
-    async def test_get_point_cloud(self, camera: Camera, point_cloud: bytes):
+    async def test_get_point_cloud(self, camera: MockCamera, point_cloud: bytes):
         pc, _ = await camera.get_point_cloud()
         assert pc == point_cloud
+
+        await camera.get_point_cloud(extra={"1": 1})
+        assert camera.extra == {"1": 1}
 
     @pytest.mark.asyncio
     async def test_get_properties(self, camera: Camera, properties: Camera.Properties):
