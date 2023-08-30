@@ -35,7 +35,7 @@ Functions
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = '', *, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
       :async:
 
       Get the next image from the camera as an Image or RawImage.
@@ -67,7 +67,7 @@ Functions
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
-   .. py:method:: get_point_cloud(*, timeout: Optional[float] = None) -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[bytes, str]
       :async:
 
       Get the next point cloud from the camera. This will be
