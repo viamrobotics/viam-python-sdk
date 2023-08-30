@@ -97,7 +97,8 @@ class SessionsClient:
             response = await self.client.StartSession(request)
         except GRPCError as error:
             if error.status == Status.UNIMPLEMENTED:
-                self._supported = _SupportedState.FALSE
+                with self._lock:
+                    self._supported = _SupportedState.FALSE
                 return self._metadata
             else:
                 raise
