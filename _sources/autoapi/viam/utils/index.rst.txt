@@ -33,6 +33,7 @@ Functions
    viam.utils.sensor_readings_native_to_value
    viam.utils.sensor_readings_value_to_native
    viam.utils.to_thread
+   viam.utils.from_dm_from_extra
 
 
 
@@ -127,5 +128,11 @@ Attributes
    which is only available in python >= 3.9.
 
    See: https://github.com/python/cpython/blob/main/Lib/asyncio/threads.py
+
+
+.. py:function:: from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool
+
+   Used in modular filter components to get the 'fromDataManagement' value from an extra map.
+
 
 
