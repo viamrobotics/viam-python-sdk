@@ -87,7 +87,10 @@ async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobo
 async def _run_server(sock: socket.socket, handlers: List[IServable], shutdown_signal: asyncio.Event):
     server = GRPCServer(handlers=handlers)
     await server.start(sock=sock)
-    await shutdown_signal.wait()
+    # shutdown_signal.wait() seems to be bugged <3.9 and blocks the thread,
+    # so have to do a bit of a busy wait here
+    while not shutdown_signal.is_set():
+        await asyncio.sleep(0.1)
     server.close()
 
 
