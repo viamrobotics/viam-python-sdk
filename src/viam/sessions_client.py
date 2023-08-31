@@ -44,19 +44,16 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
-    _current_id: str = ""
-    _disabled: bool = False
-    _heartbeat_interval: Optional[timedelta] = None
-
     def __init__(self, channel: Channel, address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
-        self._disabled = disabled
-
         self._address = address
         self._dial_options = dial_options
+        self._disabled = disabled
 
         self._lock: Lock = Lock()
+        self._current_id: str = ""
+        self._heartbeat_interval: Optional[timedelta] = None
         self._supported: _SupportedState = _SupportedState.UNKNOWN
         self._thread: Optional[Thread] = None
 
@@ -64,14 +61,17 @@ class SessionsClient:
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
 
     def reset(self):
-        LOGGER.debug("resetting session")
         with self._lock:
-            self._supported = _SupportedState.UNKNOWN
-            self._current_id = ""
-            self._heartbeat_interval = None
-            if self._thread is not None:
-                self._thread.join(timeout=1)
-                self._thread = None
+            self._reset()
+
+    def _reset(self):
+        LOGGER.debug("resetting session")
+        self._supported = _SupportedState.UNKNOWN
+        self._current_id = ""
+        self._heartbeat_interval = None
+        if self._thread is not None:
+            self._thread.join(timeout=1)
+            self._thread = None
 
     async def _send_request(self, event: SendRequest):
         if self._disabled:
@@ -98,6 +98,7 @@ class SessionsClient:
         except GRPCError as error:
             if error.status == Status.UNIMPLEMENTED:
                 with self._lock:
+                    self._reset()
                     self._supported = _SupportedState.FALSE
                 return self._metadata
             else:
@@ -118,6 +119,8 @@ class SessionsClient:
         await self._heartbeat_tick(self.client)
 
         with self._lock:
+            if self._thread is not None:
+                self._reset()
             if self._supported == _SupportedState.TRUE:
                 # We send heartbeats faster than the interval window to
                 # ensure that we don't fall outside of it and expire the session.
@@ -154,13 +157,17 @@ class SessionsClient:
 
         channel = await dial(address=self._address, options=dial_options)
         client = RobotServiceStub(channel.channel)
-        while self._supported == _SupportedState.TRUE:
+        while True:
+            with self._lock:
+                if self._supported != _SupportedState.TRUE:
+                    return
             await self._heartbeat_tick(client)
             await asyncio.sleep(wait)
 
     @property
     def _metadata(self) -> _MetadataLike:
-        if self._supported == _SupportedState.TRUE and self._current_id != "":
-            return {SESSION_METADATA_KEY: self._current_id}
+        with self._lock:
+            if self._supported == _SupportedState.TRUE and self._current_id != "":
+                return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
