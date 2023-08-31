@@ -256,6 +256,11 @@ async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs)
     func_call = functools.partial(ctx.run, func, *args, **kwargs)
     return await loop.run_in_executor(None, func_call)  # type: ignore
 
-FROMDM_FROM_EXTRA = "fromDataManagement"
-"""Used in modular filter components to access the 'fromDataManagement' value from an extra map.
-"""
+
+def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:
+    """Used in modular filter components to get the 'fromDataManagement' value from an extra map.
+    """
+    if extra is None:
+        return False
+
+    return bool(extra["fromDataManagement"])
