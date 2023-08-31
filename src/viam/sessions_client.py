@@ -89,8 +89,9 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
-        if self._disabled or self._supported != _SupportedState.UNKNOWN:
-            return self._metadata
+        with self._lock:
+            if self._disabled or self._supported != _SupportedState.UNKNOWN:
+                return self._metadata
 
         request = StartSessionRequest(resume=self._current_id)
         try:
@@ -100,7 +101,7 @@ class SessionsClient:
                 with self._lock:
                     self._reset()
                     self._supported = _SupportedState.FALSE
-                return self._metadata
+                    return self._metadata
             else:
                 raise
 
@@ -134,7 +135,7 @@ class SessionsClient:
                 )
                 self._thread.start()
 
-        return self._metadata
+            return self._metadata
 
     async def _heartbeat_tick(self, client: RobotServiceStub):
         with self._lock:
@@ -166,8 +167,7 @@ class SessionsClient:
 
     @property
     def _metadata(self) -> _MetadataLike:
-        with self._lock:
-            if self._supported == _SupportedState.TRUE and self._current_id != "":
-                return {SESSION_METADATA_KEY: self._current_id}
+        if self._supported == _SupportedState.TRUE and self._current_id != "":
+            return {SESSION_METADATA_KEY: self._current_id}
 
         return {}
