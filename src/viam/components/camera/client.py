@@ -43,12 +43,9 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(self,
-                        mime_type: str = "",
-                        *,
-                        extra: Optional[Dict[str, Any]] = None,
-                        timeout: Optional[float] = None
-                        ) -> Union[Image.Image, RawImage]:
+    async def get_image(
+        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> Union[Image.Image, RawImage]:
         if extra is None:
             extra = {}
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
