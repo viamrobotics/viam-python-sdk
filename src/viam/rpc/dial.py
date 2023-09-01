@@ -315,4 +315,4 @@ async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Ch
 
 
 async def _dial_app(options: DialOptions) -> Channel:
-     return await _dial_direct("app.viam.com:443")
+    return await _dial_direct("app.viam.com:443")
