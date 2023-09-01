@@ -191,7 +191,7 @@ class _Runtime:
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
+        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
         self._lib.dial.restype = ctypes.c_void_p
 
         self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
@@ -215,6 +215,7 @@ class _Runtime:
         path_ptr = await to_thread(
             self._lib.dial,
             address.encode("utf-8"),
+            options.auth_entity.encode("utf-8") if options.auth_entity else None,
             type.encode("utf-8") if type else None,
             payload.encode("utf-8") if payload else None,
             insecure,
@@ -314,4 +315,5 @@ async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Ch
 
 
 async def _dial_app(options: DialOptions) -> Channel:
-    return await _dial_direct("app.viam.com:443")
+#     return await _dial_direct("app.viam.com:443")
+     return await _dial_direct("localhost:8080")
