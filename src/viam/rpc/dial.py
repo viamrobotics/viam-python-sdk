@@ -66,6 +66,10 @@ class DialOptions:
     if detected, even with credentials present. This is generally
     unsafe to use, but can be requested."""
 
+    max_reconnect_attempts: int = 3
+    """Max number of times the client attempts to reconnect when connection
+    is lost to reduce power usage when the wifi microcontroller is asleep"""
+
     def __init__(
         self,
         disable_webrtc: bool = False,
@@ -74,6 +78,7 @@ class DialOptions:
         insecure: bool = False,
         allow_insecure_downgrade: bool = False,
         allow_insecure_with_creds_downgrade: bool = False,
+        max_reconnect_attempts: int = 3,
     ) -> None:
         self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
@@ -81,6 +86,7 @@ class DialOptions:
         self.insecure = insecure
         self.allow_insecure_downgrade = allow_insecure_downgrade
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
+        self.max_reconnect_attempts = max_reconnect_attempts
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
