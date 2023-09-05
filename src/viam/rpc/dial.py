@@ -66,6 +66,10 @@ class DialOptions:
     if detected, even with credentials present. This is generally
     unsafe to use, but can be requested."""
 
+    timeout: float = 20
+    """Number of seconds before the dial connection times out
+    Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go"""
+
     def __init__(
         self,
         disable_webrtc: bool = False,
@@ -74,6 +78,7 @@ class DialOptions:
         insecure: bool = False,
         allow_insecure_downgrade: bool = False,
         allow_insecure_with_creds_downgrade: bool = False,
+        timeout: float = 20,
     ) -> None:
         self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
@@ -81,6 +86,7 @@ class DialOptions:
         self.insecure = insecure
         self.allow_insecure_downgrade = allow_insecure_downgrade
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
+        self.timeout = timeout
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
@@ -280,7 +286,7 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
 
         # Test if downgrade is required.
         downgrade = False
-        with socket.create_connection((host, port)) as sock:
+        with socket.create_connection((host, port), timeout=opts.timeout) as sock:
             try:
                 with ctx.wrap_socket(sock, server_hostname=server_hostname) as ssock:
                     _ = ssock.version()
