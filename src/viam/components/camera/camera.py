@@ -1,5 +1,5 @@
 import abc
-from typing import Final, List, NamedTuple, Optional, Tuple, Union, Any, Dict
+from typing import Any, Dict, Final, List, NamedTuple, Optional, Tuple, Union
 
 from PIL.Image import Image
 
@@ -36,12 +36,7 @@ class Camera(ComponentBase):
 
     @abc.abstractmethod
     async def get_image(
-        self,
-        mime_type: str = "",
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **kwargs
+        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Union[Image, RawImage]:
         """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
@@ -73,12 +68,9 @@ class Camera(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_point_cloud(self,
-                              *,
-                              extra: Optional[Dict[str, Any]] = None,
-                              timeout: Optional[float] = None,
-                              **kwargs
-                              ) -> Tuple[bytes, str]:
+    async def get_point_cloud(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[bytes, str]:
         """
         Get the next point cloud from the camera. This will be
         returned as bytes with a mimetype describing
