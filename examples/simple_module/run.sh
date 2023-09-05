@@ -5,7 +5,7 @@ cd `dirname $0`
 VENV_NAME="venv"
 PYTHON="$VENV_NAME/bin/python"
 
-if python3 -m venv $VENV_NAME >/dev/null 2>&1; then
+if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
     echo "Failed to create virtualenv."
     if command -v apt-get >/dev/null; then
         echo "Detected Debian/Ubuntu, attempting to install python3-venv automatically."
