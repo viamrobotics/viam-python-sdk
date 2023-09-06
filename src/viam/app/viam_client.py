@@ -1,4 +1,4 @@
-from typing import Mapping
+from typing import Mapping, Optional
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -20,13 +20,14 @@ class ViamClient:
     """
 
     @classmethod
-    async def create_from_dial_options(cls, dial_options: DialOptions) -> Self:
-        """Create `ViamClient` that establishes a connection to app.viam.com.
+    async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
+        """Create `ViamClient` that establishes a connection to the Viam app.
 
         Args:
 
             dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and
                 `auth_entity` fields are required.
+            app_url: (Optional[str]): URL of app. Uses https://app.viam.com if not specified.
 
         Raises:
             ValueError: If the input parameters are missing a required field or simply invalid.
@@ -42,8 +43,12 @@ class ViamClient:
             raise ValueError("dial_options.auth_entity cannot be None.")
 
         self = cls()
-        self._location_id = dial_options.auth_entity.split(".")[1]
-        self._channel = await _dial_app(dial_options)
+        self._location_id = None
+        if dial_options.credentials.type == "robot-location-secret":
+            self._location_id = dial_options.auth_entity.split(".")[1]
+        if app_url is None:
+            app_url = "https://app.viam.com"
+        self._channel = await _dial_app(app_url)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
         return self
@@ -51,7 +56,7 @@ class ViamClient:
     _channel: Channel
     _metadata: Mapping[str, str]
     _closed: bool = False
-    _location_id: str
+    _location_id: Optional[str]
 
     @property
     def data_client(self) -> DataClient:
