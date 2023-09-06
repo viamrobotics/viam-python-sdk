@@ -1,10 +1,12 @@
 import asyncio
 import contextvars
 import functools
+import numpy as np
 import sys
 import threading
 from datetime import datetime
 from typing import Any, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
+from numpy.typing import NDArray
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -15,6 +17,20 @@ from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeome
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import Subtype, SupportsGetGeometries
+from viam.proto.service.mlmodel import (
+    FlatTensors,
+    FlatTensor,
+    FlatTensorDataDouble,
+    FlatTensorDataFloat,
+    FlatTensorDataInt16,
+    FlatTensorDataInt32,
+    FlatTensorDataInt64,
+    FlatTensorDataInt8,
+    FlatTensorDataUInt16,
+    FlatTensorDataUInt32,
+    FlatTensorDataUInt64,
+    FlatTensorDataUInt8,
+)
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
@@ -149,6 +165,61 @@ def dict_to_struct(obj: Mapping[str, ValueTypes]) -> Struct:
     return struct
 
 
+def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
+    property_name_to_dtype = {
+        "float_tensor": np.float32,
+        "double_tensor": np.float64,
+        "int8_tensor": np.int8,
+        "int16_tensor": np.int16,
+        "int32_tensor": np.int32,
+        "int64_tensor": np.int64,
+        "uint8_tensor": np.uint8,
+        "uint16_tensor": np.uint16,
+        "uint32_tensor": np.uint32,
+        "uint64_tensor": np.uint64,
+        "tensor": np.float32,
+    }
+
+    acc = {}
+    for name, flat_tensor in flat_tensors.tensors.items():
+        property_name = flat_tensor.WhichOneof("tensor") or flat_tensor.WhichOneof(b"tensor")  # sus...
+        if property_name:
+            tensor_data_obj, dtype = getattr(flat_tensor, property_name), property_name_to_dtype[property_name]
+            acc[name] = np.array(tensor_data_obj.data, dtype)
+    return acc
+
+
+def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
+    # gets the the data class to instantiate using the ndarray
+    dtype_to_tensor_data_class = {
+        "float32": FlatTensorDataFloat,
+        "float64": FlatTensorDataDouble,
+        "int8": FlatTensorDataInt8,
+        "int16": FlatTensorDataInt16,
+        "int32": FlatTensorDataInt32,
+        "int64": FlatTensorDataInt64,
+        "uint8": FlatTensorDataUInt8,
+        "uint16": FlatTensorDataUInt16,
+        "uint32": FlatTensorDataUInt32,
+        "uint64": FlatTensorDataUInt64,
+    }
+
+    # returns the property name (of FlatTensor) to set
+    def dtype_to_property_name(dtype):
+        if dtype == "float32":
+            return "float_tensor"
+        elif dtype == "float64":
+            return "double_tensor"
+        return f"{dtype}_tensor"
+
+    tensors_mapping: Dict[str, FlatTensor] = {}
+    for name, ndarray in ndarrays.items():
+        TensorDataClass = dtype_to_tensor_data_class[ndarray.dtype.name]
+        property_name, property_value = dtype_to_property_name(ndarray.dtype.name), TensorDataClass(ndarray)
+        tensors_mapping[name] = FlatTensor(**{property_name: property_value})
+    return FlatTensors(tensors=tensors_mapping)
+
+
 def struct_to_dict(struct: Struct) -> Dict[str, ValueTypes]:
     return {key: value_to_primitive(value) for (key, value) in struct.fields.items()}
 
@@ -258,8 +329,7 @@ async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs)
 
 
 def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:
-    """Used in modular filter components to get the 'fromDataManagement' value from an extra map.
-    """
+    """Used in modular filter components to get the 'fromDataManagement' value from an extra map."""
     if extra is None:
         return False
 

@@ -5,7 +5,8 @@ from grpclib.client import Channel
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict, flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
+from numpy.typing import NDArray
 
 from .mlmodel import Metadata, MLModel
 
@@ -16,10 +17,10 @@ class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
         self.client = MLModelServiceStub(channel)
         super().__init__(name)
 
-    async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
-        request = InferRequest(name=self.name, input_data=dict_to_struct(input_data))
+    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float] = None) -> Dict[str, NDArray]:
+        request = InferRequest(name=self.name, input_tensors=ndarrays_to_flat_tensors(input_tensors))
         response: InferResponse = await self.client.Infer(request)
-        return struct_to_dict(response.output_data)
+        return flat_tensors_to_ndarrays(response.output_tensors)
 
     async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
         request = MetadataRequest(name=self.name)
@@ -28,5 +29,5 @@ class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, tiemout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(request, tiemout=timeout)  # ayo what is this typo O.o
         return struct_to_dict(response.result)
