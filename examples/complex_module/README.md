@@ -36,6 +36,8 @@ The `run.sh` script is the entrypoint for this module. To connect this module wi
 
 Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
 
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/extend/modular-resources/key-concepts/#namespace-1).
+
 An example configuration for an Arm component, a Gizmo component, and a Summation service could look like this:
 
 ```json
@@ -44,7 +46,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
     {
       "name": "arm1",
       "type": "arm",
-      "model": "acme:demo:myarm",
+      "model": "viam:arm:myarm",
       "attributes": {},
       "depends_on": []
     },
@@ -52,7 +54,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
       "name": "gizmo1",
       "type": "gizmo",
       "namespace": "acme",
-      "model": "acme:demo:mygizmo",
+      "model": "viam:gizmo:mygizmo",
       "attributes": {
         "arg1": "arg1",
         "motor": "motor1"
@@ -92,7 +94,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
         "left": "motor1",
         "right": "motor2"
       },
-      "model": "acme:demo:mybase",
+      "model": "viam:base:mybase",
       "depends_on": []
     }
   ],
@@ -101,7 +103,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
       "name": "mysum1",
       "type": "summation",
       "namespace": "acme",
-      "model": "acme:demo:mysum",
+      "model": "viam:sum:mysum",
       "attributes": {
         "subtract": false
       }
