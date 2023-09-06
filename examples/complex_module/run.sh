@@ -4,6 +4,7 @@ cd `dirname $0`
 # Create a virtual environment to run our code
 VENV_NAME="venv"
 PYTHON="$VENV_NAME/bin/python"
+ENV_ERROR="This module requires Python >=3.8, pip, and virtualenv to be installed."
 
 if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
     echo "Failed to create virtualenv."
@@ -19,11 +20,11 @@ if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
 		fi
         $SUDO apt install -qqy python3-venv >/dev/null 2>&1
         if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
-            echo "This module requires Python >=3.8 and pip to be installed." >&2
+            echo $ENV_ERROR >&2
             exit 1
         fi
     else
-        echo "This module requires Python >=3.8 and pip to be installed." >&2
+        echo $ENV_ERROR >&2
         exit 1
     fi
 fi
