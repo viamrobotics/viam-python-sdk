@@ -14,7 +14,7 @@ if ! python3 -m venv $VENV_NAME >/dev/null 2>&1; then
             SUDO=""
         fi
 		if ! apt info python3-venv >/dev/null 2>&1; then
-			echo "package info not found, trying apt update"
+			echo "Package info not found, trying apt update"
 			$SUDO apt -qq update >/dev/null
 		fi
         $SUDO apt install -qqy python3-venv >/dev/null 2>&1
