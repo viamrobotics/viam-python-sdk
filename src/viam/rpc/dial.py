@@ -25,10 +25,7 @@ LOGGER = logging.getLogger(__name__)
 
 @dataclass
 class Credentials:
-    """Credentials to connect to the robot.
-
-    Currently only supports robot location secret.
-    """
+    """Credentials to connect to the robot and the Viam app."""
 
     type: Union[Literal["robot-location-secret"], Literal["robot-secret"], Literal["api-key"]]
     """The type of credential
