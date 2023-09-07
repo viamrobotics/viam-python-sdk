@@ -180,20 +180,20 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         "tensor": np.float32,
     }
 
-    def make_np_array(flat_data, dtype, shape):
-        """Takes flat data (protobuf RepeatedScalarFieldContainer | bytes) to output an np array
+    def make_ndarray(flat_data, dtype, shape):
+        """Takes flat data (protobuf RepeatedScalarFieldContainer | bytes) to output an ndarray
         of appropriate dtype and shape"""
         make_array = np.frombuffer if dtype == np.int8 or dtype == np.uint8 else np.array
         return make_array(flat_data, dtype).reshape(shape)
 
-    np_arrays: Dict[str, NDArray] = dict()
+    ndarrays: Dict[str, NDArray] = dict()
     for name, flat_tensor in flat_tensors.tensors.items():
         property_name = flat_tensor.WhichOneof("tensor") or flat_tensor.WhichOneof(b"tensor")  # sus...
         if property_name:
             tensor_data = getattr(flat_tensor, property_name)
             flat_data, dtype, shape = tensor_data.data, property_name_to_dtype[property_name], flat_tensor.shape
-            np_arrays[name] = make_np_array(flat_data, dtype, shape)
-    return np_arrays
+            ndarrays[name] = make_ndarray(flat_data, dtype, shape)
+    return ndarrays
 
 
 def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
