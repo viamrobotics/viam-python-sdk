@@ -27,7 +27,7 @@ class ViamClient:
 
             dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and
                 `auth_entity` fields are required.
-            app_url: (Optional[str]): URL of app. Uses https://app.viam.com if not specified.
+            app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
 
         Raises:
             ValueError: If the input parameters are missing a required field or simply invalid.
@@ -47,7 +47,7 @@ class ViamClient:
         if dial_options.credentials.type == "robot-location-secret":
             self._location_id = dial_options.auth_entity.split(".")[1]
         if app_url is None:
-            app_url = "https://app.viam.com"
+            app_url = "app.viam.com"
         self._channel = await _dial_app(app_url)
         access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
         self._metadata = {"authorization": f"Bearer {access_token}"}
