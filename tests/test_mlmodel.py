@@ -1,12 +1,11 @@
-from typing import List
-
 import pytest
 from grpclib.testing import ChannelFor
+
+import numpy as np
 
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
 from viam.services.mlmodel import MLModelClient, MLModelRPCService
-from viam.utils import struct_to_dict
 
 from .mocks.services import MockMLModel
 
@@ -17,8 +16,8 @@ class TestMLModel:
 
     @pytest.mark.asyncio
     async def test_infer(self):
-        resp = await self.mlmodel.infer(input_data=MockMLModel.INPUT_DATA)
-        assert resp == MockMLModel.OUTPUT_DATA
+        resp = await self.mlmodel.infer(input_tensors=MockMLModel.EMPTY_NDARRAYS)
+        assert resp == MockMLModel.EMPTY_NDARRAYS
 
     @pytest.mark.asyncio
     async def test_metadata(self):
@@ -46,7 +45,7 @@ class TestService:
             client = MLModelServiceStub(channel)
             request = InferRequest(name=self.name)
             response: InferResponse = await client.Infer(request)
-            assert struct_to_dict(response.output_data) == MockMLModel.OUTPUT_DATA
+            assert response.output_tensors == MockMLModel.EMPTY_TENSORS
 
     @pytest.mark.asyncio
     async def test_metadata(self):
@@ -67,21 +66,37 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_infer(self):
-        OUTPUT_DATA = MockMLModel.OUTPUT_DATA
         async with ChannelFor([self.service]) as channel:
             client = MLModelClient(self.name, channel)
-            response = await client.infer(MockMLModel.INPUT_DATA)
-            assert "confidence_scores" in response.keys()
-            assert "labels" in response.keys()
-            assert "locations" in response.keys()
-            assert isinstance(response["confidence_scores"], List)
-            assert isinstance(response["labels"], List)
-            assert isinstance(response["locations"], List)
-            assert response["n_detections"] == OUTPUT_DATA["n_detections"]
-            assert len(response["confidence_scores"][0]) == len(OUTPUT_DATA["confidence_scores"][0])
-            assert len(response["labels"][0]) == len(OUTPUT_DATA["labels"][0])
-            assert response["locations"][0][0] == OUTPUT_DATA["locations"][0][0]
-            assert response == OUTPUT_DATA
+            response = await client.infer(MockMLModel.EMPTY_NDARRAYS)
+            assert len(response.keys()) == 0
+
+            response = await client.infer(MockMLModel.DOUBLE_NDARRAYS)
+            assert len(response.keys()) == 1
+            assert "0" in response.keys()
+            assert np.array_equal(response["0"], MockMLModel.DOUBLE_NDARRAY)
+
+            response = await client.infer(MockMLModel.INTS_NDARRAYS)
+            assert len(response.keys()) == 4
+            assert (name in response.keys() for name in ["0", "1", "2", "3"])
+            assert np.array_equal(response["0"], MockMLModel.INT8_NDARRAY)
+            assert np.array_equal(response["1"], MockMLModel.INT16_NDARRAY)
+            assert np.array_equal(response["2"], MockMLModel.INT32_NDARRAY)
+            assert np.array_equal(response["3"], MockMLModel.INT64_NDARRAY)
+
+            response = await client.infer(MockMLModel.UINTS_NDARRAYS)
+            assert len(response.keys()) == 4
+            assert (name in response.keys() for name in ["0", "1", "2", "3"])
+            assert np.array_equal(response["0"], MockMLModel.UINT8_NDARRAY)
+            assert np.array_equal(response["1"], MockMLModel.UINT16_NDARRAY)
+            assert np.array_equal(response["2"], MockMLModel.UINT32_NDARRAY)
+            assert np.array_equal(response["3"], MockMLModel.UINT64_NDARRAY)
+
+            response = await client.infer(MockMLModel.SQUARE_INT_UINT_NDARRAYS)
+            assert len(response.keys()) == 2
+            assert (name in response.keys() for name in ["0", "1"])
+            assert np.array_equal(response["0"], MockMLModel.SQUARE_INT16_NDARRAY)
+            assert np.array_equal(response["1"], MockMLModel.UINT64_NDARRAY)
 
     @pytest.mark.asyncio
     async def test_metadata(self):

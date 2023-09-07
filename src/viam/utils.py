@@ -180,43 +180,61 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         "tensor": np.float32,
     }
 
-    acc = {}
+    def make_np_array(flat_data, dtype, shape):
+        """Takes flat data (protobuf RepeatedScalarFieldContainer | bytes) to output an np array
+        of appropriate dtype and shape"""
+        make_array = np.frombuffer if dtype == np.int8 or dtype == np.uint8 else np.array
+        return make_array(flat_data, dtype).reshape(shape)
+
+    np_arrays: Dict[str, NDArray] = dict()
     for name, flat_tensor in flat_tensors.tensors.items():
         property_name = flat_tensor.WhichOneof("tensor") or flat_tensor.WhichOneof(b"tensor")  # sus...
         if property_name:
-            tensor_data_obj, dtype = getattr(flat_tensor, property_name), property_name_to_dtype[property_name]
-            acc[name] = np.array(tensor_data_obj.data, dtype)
-    return acc
+            tensor_data = getattr(flat_tensor, property_name)
+            flat_data, dtype, shape = tensor_data.data, property_name_to_dtype[property_name], flat_tensor.shape
+            np_arrays[name] = make_np_array(flat_data, dtype, shape)
+    return np_arrays
 
 
 def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
-    # gets the the data class to instantiate using the ndarray
-    dtype_to_tensor_data_class = {
-        "float32": FlatTensorDataFloat,
-        "float64": FlatTensorDataDouble,
-        "int8": FlatTensorDataInt8,
-        "int16": FlatTensorDataInt16,
-        "int32": FlatTensorDataInt32,
-        "int64": FlatTensorDataInt64,
-        "uint8": FlatTensorDataUInt8,
-        "uint16": FlatTensorDataUInt16,
-        "uint32": FlatTensorDataUInt32,
-        "uint64": FlatTensorDataUInt64,
-    }
+    def get_tensor_data(ndarray: NDArray):
+        """Takes an ndarray and returns the corresponding tensor data class instance
+        e.g. FlatTensorDataInt8, FlatTensorDataUInt8 etc."""
+        dtype_name_to_tensor_data_class = {
+            "float32": FlatTensorDataFloat,
+            "float64": FlatTensorDataDouble,
+            "int8": FlatTensorDataInt8,
+            "int16": FlatTensorDataInt16,
+            "int32": FlatTensorDataInt32,
+            "int64": FlatTensorDataInt64,
+            "uint8": FlatTensorDataUInt8,
+            "uint16": FlatTensorDataUInt16,
+            "uint32": FlatTensorDataUInt32,
+            "uint64": FlatTensorDataUInt64,
+        }
 
-    # returns the property name (of FlatTensor) to set
-    def dtype_to_property_name(dtype):
-        if dtype == "float32":
+        tensor_data_class = dtype_name_to_tensor_data_class[ndarray.dtype.name]
+        data = ndarray.flatten()
+        if tensor_data_class == FlatTensorDataInt8 or tensor_data_class == FlatTensorDataUInt8:
+            data = data.tobytes()  # as per the proto, int8 and uint8 are stored as bytes
+        elif tensor_data_class == FlatTensorDataInt16 or tensor_data_class == FlatTensorDataUInt16:
+            data = data.astype(np.uint32)  # as per the proto, int16 and uint16 are stored as uint32
+        tensor_data = tensor_data_class(data=data)
+        return tensor_data
+
+    def get_tensor_data_type(ndarray: NDArray):
+        """Takes ndarray and returns a FlatTensor datatype property to be set
+        e.g. "float_tensor", "uint32_tensor" etc."""
+        if ndarray.dtype == np.float32:
             return "float_tensor"
-        elif dtype == "float64":
+        elif ndarray.dtype == np.float64:
             return "double_tensor"
-        return f"{dtype}_tensor"
+        return f"{ndarray.dtype.name}_tensor"
 
-    tensors_mapping: Dict[str, FlatTensor] = {}
+    tensors_mapping: Dict[str, FlatTensor] = dict()
     for name, ndarray in ndarrays.items():
-        TensorDataClass = dtype_to_tensor_data_class[ndarray.dtype.name]
-        property_name, property_value = dtype_to_property_name(ndarray.dtype.name), TensorDataClass(ndarray)
-        tensors_mapping[name] = FlatTensor(**{property_name: property_value})
+        prop_name, prop_value = get_tensor_data_type(ndarray), get_tensor_data(ndarray)
+        tensors_mapping[name] = FlatTensor(shape=ndarray.shape, **{prop_name: prop_value})
     return FlatTensors(tensors=tensors_mapping)
 
 

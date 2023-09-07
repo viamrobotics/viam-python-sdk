@@ -1,3 +1,5 @@
+from numpy.typing import NDArray
+import numpy as np
 from typing import Any, Dict, List, Mapping, Optional, Union
 from datetime import datetime
 
@@ -177,6 +179,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
 )
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
+from viam.proto.service.mlmodel import FlatTensors
 from viam.proto.service.motion import (
     Constraints,
     GetPoseRequest,
@@ -204,7 +207,7 @@ from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import Vision
-from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict, ndarrays_to_flat_tensors, flat_tensors_to_ndarrays
 
 
 class MockVision(Vision):
@@ -269,13 +272,26 @@ class MockVision(Vision):
 
 
 class MockMLModel(MLModel):
-    INPUT_DATA: Dict = {"image": [10, 10, 255, 0, 0, 255, 255, 0, 100]}
-    OUTPUT_DATA = {
-        "n_detections": [3],
-        "confidence_scores": [[0.9084375, 0.7359375, 0.33984375]],
-        "labels": [[0, 0, 4]],
-        "locations": [[[0.1, 0.4, 0.22, 0.4], [0.02, 0.22, 0.77, 0.90], [0.40, 0.50, 0.40, 0.50]]],
-    }
+    INT8_NDARRAY = np.array([[0, -1], [8, 8]], dtype=np.int8)
+    INT16_NDARRAY = np.array([1, 0, 0, 69, -1, 16], dtype=np.int16)
+    INT32_NDARRAY = np.array([0, -1, 32], dtype=np.int32)
+    INT64_NDARRAY = np.array([(-2) ** 63, -1, 64], dtype=np.int64)
+    UINT8_NDARRAY = np.array([0, 1, 8], dtype=np.uint8)
+    UINT16_NDARRAY = np.array([[0, 1], [16, 16]], dtype=np.uint16)
+    UINT32_NDARRAY = np.array([0, 1, 32], dtype=np.uint32)
+    UINT64_NDARRAY = np.array([0, 1, 2**63], dtype=np.uint64)
+    FLOAT_NDARRAY = np.array([[0, 0], [32, 32.8]], dtype=np.float32)
+    DOUBLE_NDARRAY = np.array([0, 0.8, 88888888], dtype=np.float64)
+    SQUARE_INT16_NDARRAY = np.array([[-257, 0, 256], [-257, 0, 256], [-257, 0, 256]], dtype=np.int16)
+
+    EMPTY_NDARRAYS = {}
+    EMPTY_TENSORS = FlatTensors(tensors=None)
+    DOUBLE_NDARRAYS = {"0": DOUBLE_NDARRAY}
+    DOUBLE_FLOAT_NDARRAYS = {"0": DOUBLE_NDARRAY, "1": FLOAT_NDARRAY}
+    INTS_NDARRAYS = {"0": INT8_NDARRAY, "1": INT16_NDARRAY, "2": INT32_NDARRAY, "3": INT64_NDARRAY}
+    UINTS_NDARRAYS = {"0": UINT8_NDARRAY, "1": UINT16_NDARRAY, "2": UINT32_NDARRAY, "3": UINT64_NDARRAY}
+    SQUARE_INT_UINT_NDARRAYS = {"0": SQUARE_INT16_NDARRAY, "1": UINT64_NDARRAY}
+
     META_INPUTS = [TensorInfo(name="image", description="i0", data_type="uint8", shape=[300, 200])]
     META_OUTPUTS = [
         TensorInfo(name="n_detections", description="o0", data_type="int32", shape=[1]),
@@ -302,9 +318,11 @@ class MockMLModel(MLModel):
 
         super().__init__(name)
 
-    async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float] = None) -> Dict[str, NDArray]:
         self.timeout = timeout
-        return self.OUTPUT_DATA
+        request_data = ndarrays_to_flat_tensors(input_tensors)
+        response_data = flat_tensors_to_ndarrays(request_data)
+        return response_data
 
     async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
         self.timeout = timeout
@@ -656,7 +674,7 @@ class MockApp(AppServiceBase):
         url: str,
         module: Module,
         members: List[OrganizationMember],
-        invite: OrganizationInvite
+        invite: OrganizationInvite,
     ):
         self.organizations = organizations
         self.location = location
