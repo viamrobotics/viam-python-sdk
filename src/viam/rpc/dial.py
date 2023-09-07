@@ -25,12 +25,9 @@ LOGGER = logging.getLogger(__name__)
 
 @dataclass
 class Credentials:
-    """Credentials to connect to the robot.
+    """Credentials to connect to the robot and the Viam app."""
 
-    Currently only supports robot location secret.
-    """
-
-    type: Union[Literal["robot-location-secret"], Literal["robot-secret"]]
+    type: Union[Literal["robot-location-secret"], Literal["robot-secret"], Literal["api-key"]]
     """The type of credential
     """
 
@@ -314,5 +311,5 @@ async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Ch
     return await _dial_direct(address, options)
 
 
-async def _dial_app(options: DialOptions) -> Channel:
-    return await _dial_direct("app.viam.com:443")
+async def _dial_app(app_url: str) -> Channel:
+    return await _dial_direct(app_url)
