@@ -114,12 +114,9 @@
 
 <div class="viewcode-block" id="Credentials"><a class="viewcode-back" href="../../../autoapi/viam/rpc/dial/index.html#viam.rpc.dial.Credentials">[docs]</a><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">Credentials</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Credentials to connect to the robot.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Credentials to connect to the robot and the Viam app.&quot;&quot;&quot;</span>
 
-<span class="sd">    Currently only supports robot location secret.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="nb">type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot-location-secret&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot-secret&quot;</span><span class="p">]]</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot-location-secret&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot-secret&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;api-key&quot;</span><span class="p">]]</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of credential</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -403,8 +400,8 @@
     <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span></div>
 
 
-<span class="k">async</span> <span class="k">def</span> <span class="nf">_dial_app</span><span class="p">(</span><span class="n">options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="s2">&quot;app.viam.com:443&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_dial_app</span><span class="p">(</span><span class="n">app_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channel</span><span class="p">:</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">_dial_direct</span><span class="p">(</span><span class="n">app_url</span><span class="p">)</span>
 </pre></div>
 
            </div>

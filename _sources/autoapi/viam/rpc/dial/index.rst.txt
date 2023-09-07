@@ -44,12 +44,10 @@ Attributes
 .. py:class:: Credentials
 
 
-   Credentials to connect to the robot.
-
-   Currently only supports robot location secret.
+   Credentials to connect to the robot and the Viam app.
 
    .. py:attribute:: type
-      :type: Union[Literal[robot-location-secret], Literal[robot-secret]]
+      :type: Union[Literal[robot-location-secret], Literal[robot-secret], Literal[api-key]]
 
       The type of credential
 

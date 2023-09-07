@@ -87,7 +87,7 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.app.viam_client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
@@ -109,13 +109,14 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="ViamClient.create_from_dial_options"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.create_from_dial_options">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_dial_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` that establishes a connection to app.viam.com.</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_dial_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">app_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` that establishes a connection to the Viam app.</span>
 
 <span class="sd">        Args:</span>
 
 <span class="sd">            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and</span>
 <span class="sd">                `auth_entity` fields are required.</span>
+<span class="sd">            app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If the input parameters are missing a required field or simply invalid.</span>
@@ -131,8 +132,12 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dial_options.auth_entity cannot be None.&quot;</span><span class="p">)</span>
 
         <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_app</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;robot-location-secret&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span> <span class="o">=</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">app_url</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">app_url</span> <span class="o">=</span> <span class="s2">&quot;app.viam.com&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_dial_app</span><span class="p">(</span><span class="n">app_url</span><span class="p">)</span>
         <span class="n">access_token</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_get_access_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="n">dial_options</span><span class="o">.</span><span class="n">auth_entity</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">access_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -140,7 +145,7 @@
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_closed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">_location_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClient</span><span class="p">:</span>

@@ -48,15 +48,16 @@ Attributes
 
       Insantiate and return an `AppClient` used to make  `app` method calls.
 
-   .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions) -> typing_extensions.Self
+   .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
       :classmethod:
       :async:
 
-      Create `ViamClient` that establishes a connection to app.viam.com.
+      Create `ViamClient` that establishes a connection to the Viam app.
 
       :param dial_options: Required information for authorization and connection to app. `creds` and
                            `auth_entity` fields are required.
       :type dial_options: viam.rpc.dial.DialOptions
+      :param app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
 
       :raises ValueError: If the input parameters are missing a required field or simply invalid.
 
