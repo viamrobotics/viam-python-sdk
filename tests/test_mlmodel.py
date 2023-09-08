@@ -69,34 +69,52 @@ class TestClient:
         async with ChannelFor([self.service]) as channel:
             client = MLModelClient(self.name, channel)
             response = await client.infer(MockMLModel.EMPTY_NDARRAYS)
-            assert len(response.keys()) == 0
+            assert not response
 
             response = await client.infer(MockMLModel.DOUBLE_NDARRAYS)
             assert len(response.keys()) == 1
             assert "0" in response.keys()
             assert np.array_equal(response["0"], MockMLModel.DOUBLE_NDARRAY)
+            assert response["0"].dtype == np.float64
+
+            response = await client.infer(MockMLModel.DOUBLE_FLOAT_NDARRAYS)
+            assert len(response.keys()) == 2
+            assert response["0"].dtype == np.float64
+            assert np.array_equal(response["0"], MockMLModel.DOUBLE_NDARRAY)
+            assert response["1"].dtype == np.float32
+            assert np.array_equal(response["1"], MockMLModel.FLOAT_NDARRAY)
 
             response = await client.infer(MockMLModel.INTS_NDARRAYS)
             assert len(response.keys()) == 4
             assert (name in response.keys() for name in ["0", "1", "2", "3"])
             assert np.array_equal(response["0"], MockMLModel.INT8_NDARRAY)
+            assert response["0"].dtype == np.int8
             assert np.array_equal(response["1"], MockMLModel.INT16_NDARRAY)
+            assert response["1"].dtype == np.int16
             assert np.array_equal(response["2"], MockMLModel.INT32_NDARRAY)
+            assert response["2"].dtype == np.int32
             assert np.array_equal(response["3"], MockMLModel.INT64_NDARRAY)
+            assert response["3"].dtype == np.int64
 
             response = await client.infer(MockMLModel.UINTS_NDARRAYS)
             assert len(response.keys()) == 4
             assert (name in response.keys() for name in ["0", "1", "2", "3"])
             assert np.array_equal(response["0"], MockMLModel.UINT8_NDARRAY)
+            assert response["0"].dtype == np.uint8
             assert np.array_equal(response["1"], MockMLModel.UINT16_NDARRAY)
+            assert response["1"].dtype == np.uint16
             assert np.array_equal(response["2"], MockMLModel.UINT32_NDARRAY)
+            assert response["2"].dtype == np.uint32
             assert np.array_equal(response["3"], MockMLModel.UINT64_NDARRAY)
+            assert response["3"].dtype == np.uint64
 
             response = await client.infer(MockMLModel.SQUARE_INT_UINT_NDARRAYS)
             assert len(response.keys()) == 2
             assert (name in response.keys() for name in ["0", "1"])
             assert np.array_equal(response["0"], MockMLModel.SQUARE_INT16_NDARRAY)
+            assert response["0"].dtype == np.int16
             assert np.array_equal(response["1"], MockMLModel.UINT64_NDARRAY)
+            assert response["1"].dtype == np.uint64
 
     @pytest.mark.asyncio
     async def test_metadata(self):
