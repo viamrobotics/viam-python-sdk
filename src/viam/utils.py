@@ -177,7 +177,6 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
         "uint16_tensor": np.uint16,
         "uint32_tensor": np.uint32,
         "uint64_tensor": np.uint64,
-        "tensor": np.float32,
     }
 
     def make_ndarray(flat_data, dtype, shape):
@@ -188,7 +187,7 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
 
     ndarrays: Dict[str, NDArray] = dict()
     for name, flat_tensor in flat_tensors.tensors.items():
-        property_name = flat_tensor.WhichOneof("tensor") or flat_tensor.WhichOneof(b"tensor")  # sus...
+        property_name = flat_tensor.WhichOneof("tensor") or flat_tensor.WhichOneof(b"tensor")
         if property_name:
             tensor_data = getattr(flat_tensor, property_name)
             flat_data, dtype, shape = tensor_data.data, property_name_to_dtype[property_name], flat_tensor.shape
@@ -197,22 +196,22 @@ def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:
 
 
 def ndarrays_to_flat_tensors(ndarrays: Dict[str, NDArray]) -> FlatTensors:
+    dtype_name_to_tensor_data_class = {
+        "float32": FlatTensorDataFloat,
+        "float64": FlatTensorDataDouble,
+        "int8": FlatTensorDataInt8,
+        "int16": FlatTensorDataInt16,
+        "int32": FlatTensorDataInt32,
+        "int64": FlatTensorDataInt64,
+        "uint8": FlatTensorDataUInt8,
+        "uint16": FlatTensorDataUInt16,
+        "uint32": FlatTensorDataUInt32,
+        "uint64": FlatTensorDataUInt64,
+    }
+
     def get_tensor_data(ndarray: NDArray):
         """Takes an ndarray and returns the corresponding tensor data class instance
         e.g. FlatTensorDataInt8, FlatTensorDataUInt8 etc."""
-        dtype_name_to_tensor_data_class = {
-            "float32": FlatTensorDataFloat,
-            "float64": FlatTensorDataDouble,
-            "int8": FlatTensorDataInt8,
-            "int16": FlatTensorDataInt16,
-            "int32": FlatTensorDataInt32,
-            "int64": FlatTensorDataInt64,
-            "uint8": FlatTensorDataUInt8,
-            "uint16": FlatTensorDataUInt16,
-            "uint32": FlatTensorDataUInt32,
-            "uint64": FlatTensorDataUInt64,
-        }
-
         tensor_data_class = dtype_name_to_tensor_data_class[ndarray.dtype.name]
         data = ndarray.flatten()
         if tensor_data_class == FlatTensorDataInt8 or tensor_data_class == FlatTensorDataUInt8:
