@@ -1,4 +1,5 @@
 from datetime import datetime
+from numpy.typing import NDArray
 from typing import Dict, List, Optional
 from tests.mocks.services import MockMLModel, MockSLAM
 from viam.services.slam import Pose, SLAM
@@ -13,7 +14,7 @@ class ExampleMLModel(MLModel):
         self.meta = MockMLModel.META
         super().__init__(name)
 
-    async def infer(self, input_tensors: Dict[str, ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, ValueTypes]:
+    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float] = None) -> Dict[str, NDArray]:
         return self.output_data
 
     async def metadata(self, *, timeout: Optional[float] = None) -> Metadata:
