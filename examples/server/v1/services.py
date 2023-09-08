@@ -4,7 +4,6 @@ from typing import Dict, List, Optional
 from tests.mocks.services import MockMLModel, MockSLAM
 from viam.services.slam import Pose, SLAM
 from viam.services.mlmodel import Metadata, MLModel
-from viam.utils import ValueTypes
 
 
 class ExampleMLModel(MLModel):
