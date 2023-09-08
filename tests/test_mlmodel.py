@@ -86,7 +86,7 @@ class TestClient:
 
             response = await client.infer(MockMLModel.INTS_NDARRAYS)
             assert len(response.keys()) == 4
-            assert (name in response.keys() for name in ["0", "1", "2", "3"])
+            assert all(name in response.keys() for name in ["0", "1", "2", "3"])
             assert np.array_equal(response["0"], MockMLModel.INT8_NDARRAY)
             assert response["0"].dtype == np.int8
             assert np.array_equal(response["1"], MockMLModel.INT16_NDARRAY)
@@ -98,7 +98,7 @@ class TestClient:
 
             response = await client.infer(MockMLModel.UINTS_NDARRAYS)
             assert len(response.keys()) == 4
-            assert (name in response.keys() for name in ["0", "1", "2", "3"])
+            assert all(name in response.keys() for name in ["0", "1", "2", "3"])
             assert np.array_equal(response["0"], MockMLModel.UINT8_NDARRAY)
             assert response["0"].dtype == np.uint8
             assert np.array_equal(response["1"], MockMLModel.UINT16_NDARRAY)
@@ -110,7 +110,7 @@ class TestClient:
 
             response = await client.infer(MockMLModel.SQUARE_INT_UINT_NDARRAYS)
             assert len(response.keys()) == 2
-            assert (name in response.keys() for name in ["0", "1"])
+            assert all(name in response for name in ["0", "1"])
             assert np.array_equal(response["0"], MockMLModel.SQUARE_INT16_NDARRAY)
             assert response["0"].dtype == np.int16
             assert np.array_equal(response["1"], MockMLModel.UINT64_NDARRAY)
