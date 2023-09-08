@@ -54,7 +54,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
       "name": "gizmo1",
       "type": "gizmo",
       "namespace": "acme",
-      "model": "viam:gizmo:mygizmo",
+      "model": "acme:demo:mygizmo",
       "attributes": {
         "arg1": "arg1",
         "motor": "motor1"
@@ -103,7 +103,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
       "name": "mysum1",
       "type": "summation",
       "namespace": "acme",
-      "model": "viam:sum:mysum",
+      "model": "acme:demo:mysum",
       "attributes": {
         "subtract": false
       }

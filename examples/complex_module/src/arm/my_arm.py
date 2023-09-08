@@ -14,7 +14,7 @@ from viam.resource.types import Model, ModelFamily
 
 class MyArm(Arm):
     # Subclass the Viam Arm component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "myarm")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "arm"), "myarm")
 
     def __init__(self, name: str):
         # Starting position

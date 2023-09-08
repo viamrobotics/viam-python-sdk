@@ -15,7 +15,7 @@ from viam.utils import ValueTypes
 
 class MySensor(Sensor):
     # Subclass the Viam Sensor component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mysensor")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "sensor"), "mysensor")
     multiplier: float
 
     def __init__(self, name: str):
