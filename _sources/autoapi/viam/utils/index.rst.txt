@@ -27,6 +27,8 @@ Functions
    viam.utils.message_to_struct
    viam.utils.struct_to_message
    viam.utils.dict_to_struct
+   viam.utils.flat_tensors_to_ndarrays
+   viam.utils.ndarrays_to_flat_tensors
    viam.utils.struct_to_dict
    viam.utils.datetime_to_timestamp
    viam.utils.get_geometries
@@ -85,6 +87,12 @@ Attributes
 .. py:function:: dict_to_struct(obj: Mapping[str, ValueTypes]) -> google.protobuf.struct_pb2.Struct
 
 
+.. py:function:: flat_tensors_to_ndarrays(flat_tensors: viam.proto.service.mlmodel.FlatTensors) -> Dict[str, numpy.typing.NDArray]
+
+
+.. py:function:: ndarrays_to_flat_tensors(ndarrays: Dict[str, numpy.typing.NDArray]) -> viam.proto.service.mlmodel.FlatTensors
+
+
 .. py:function:: struct_to_dict(struct: google.protobuf.struct_pb2.Struct) -> Dict[str, ValueTypes]
 
 
@@ -133,6 +141,5 @@ Attributes
 .. py:function:: from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool
 
    Used in modular filter components to get the 'fromDataManagement' value from an extra map.
-
 
 

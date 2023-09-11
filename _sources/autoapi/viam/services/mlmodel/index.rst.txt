@@ -173,16 +173,16 @@ Classes
    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
-   .. py:method:: infer(input_data: Dict[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Dict[str, viam.utils.ValueTypes]
+   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float] = None) -> Dict[str, numpy.typing.NDArray]
       :async:
 
       Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
-      :param input_data: A dictionary of input arrays/tensors as specified in the metadata
-      :type input_data: Dict[str, ValueTypes]
+      :param input_tensors: A dictionary of input flat tensors as specified in the metadata
+      :type input_tensors: Dict[str, NDArray]
 
-      :returns: A dictionary of output arrays/tensors as specified in the metadata
-      :rtype: Dict[str, ValueTypes]
+      :returns: A dictionary of output flat tensors as specified in the metadata
+      :rtype: Dict[str, NDArray]
 
 
    .. py:method:: metadata(*, timeout: Optional[float] = None) -> viam.services.mlmodel.mlmodel.Metadata
@@ -263,17 +263,17 @@ Classes
 
       
 
-   .. py:method:: infer(input_data: Dict[str, viam.utils.ValueTypes], *, timeout: Optional[float]) -> Dict[str, viam.utils.ValueTypes]
+   .. py:method:: infer(input_tensors: Dict[str, numpy.typing.NDArray], *, timeout: Optional[float]) -> Dict[str, numpy.typing.NDArray]
       :abstractmethod:
       :async:
 
       Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
-      :param input_data: A dictionary of input arrays/tensors as specified in the metadata
-      :type input_data: Dict[str, ValueTypes]
+      :param input_tensors: A dictionary of input flat tensors as specified in the metadata
+      :type input_tensors: Dict[str, NDArray]
 
-      :returns: A dictionary of output arrays/tensors as specified in the metadata
-      :rtype: Dict[str, ValueTypes]
+      :returns: A dictionary of output flat tensors as specified in the metadata
+      :rtype: Dict[str, NDArray]
 
 
    .. py:method:: metadata(*, timeout: Optional[float]) -> viam.proto.service.mlmodel.Metadata
