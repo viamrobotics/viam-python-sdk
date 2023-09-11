@@ -4,10 +4,10 @@ from viam.module.module import Module
 from viam.components.arm import Arm
 from viam.components.base import Base
 
-from .arm.my_arm import MyArm
-from .base.my_base import MyBase
-from .gizmo.my_gizmo import Gizmo, MyGizmo
-from .summation.my_summation import SummationService, MySummationService
+from src.arm.my_arm import MyArm
+from src.base.my_base import MyBase
+from src.gizmo import Gizmo, MyGizmo
+from src.summation import MySummationService, SummationService
 
 
 async def main():

@@ -31,7 +31,7 @@ class MySensor(Sensor):
                 raise Exception("Multiplier cannot be 0.")
         else:
             cls.multiplier = 1.0
-        return [""]
+        return []
 
     async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
         with open("/proc/net/wireless") as wifi_stats:
