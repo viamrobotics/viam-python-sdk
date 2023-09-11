@@ -1,6 +1,7 @@
 import asyncio
-import sys
 from datetime import timedelta
+from enum import IntEnum
+from threading import Thread, Lock
 from typing import Optional
 
 from grpclib import Status
@@ -9,8 +10,9 @@ from grpclib.events import RecvTrailingMetadata, SendRequest, listen
 from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
-from viam import _TASK_PREFIX, logging
-from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
+from viam import logging
+from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest
+from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
 SESSION_METADATA_KEY = "viam-sid"
@@ -30,10 +32,10 @@ EXEMPT_METADATA_METHODS = frozenset(
 )
 
 
-def loop_kwargs():
-    if sys.version_info <= (3, 9):
-        return {"loop": asyncio.get_running_loop()}
-    return {}
+class _SupportedState(IntEnum):
+    UNKNOWN = 0
+    TRUE = 1
+    FALSE = 2
 
 
 class SessionsClient:
@@ -42,26 +44,34 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
-    _current_id: str = ""
-    _disabled: bool = False
-    _supported: Optional[bool] = None
-    _heartbeat_interval: Optional[timedelta] = None
-
-    def __init__(self, channel: Channel, *, disabled: bool = False):
+    def __init__(self, channel: Channel, address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
+        self._address = address
+        self._dial_options = dial_options
         self._disabled = disabled
-        self._lock = asyncio.Lock(**loop_kwargs())
+
+        self._lock: Lock = Lock()
+        self._current_id: str = ""
+        self._heartbeat_interval: Optional[timedelta] = None
+        self._supported: _SupportedState = _SupportedState.UNKNOWN
+        self._thread: Optional[Thread] = None
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
 
     def reset(self):
-        if self._lock.locked():
-            return
+        with self._lock:
+            self._reset()
 
+    def _reset(self):
         LOGGER.debug("resetting session")
-        self._supported = None
+        self._supported = _SupportedState.UNKNOWN
+        self._current_id = ""
+        self._heartbeat_interval = None
+        if self._thread is not None:
+            self._thread.join(timeout=1)
+            self._thread = None
 
     async def _send_request(self, event: SendRequest):
         if self._disabled:
@@ -79,77 +89,85 @@ class SessionsClient:
 
     @property
     async def metadata(self) -> _MetadataLike:
-        if self._disabled:
-            return self._metadata
-
-        if self._supported:
-            return self._metadata
-
-        async with self._lock:
-            if self._supported is False:
+        with self._lock:
+            if self._disabled or self._supported != _SupportedState.UNKNOWN:
                 return self._metadata
 
-            request = StartSessionRequest(resume=self._current_id)
-            response: Optional[StartSessionResponse] = None
-
-            try:
-                response = await self.client.StartSession(request)
-            except GRPCError as error:
-                if error.status == Status.UNIMPLEMENTED:
-                    self._supported = False
+        request = StartSessionRequest(resume=self._current_id)
+        try:
+            response = await self.client.StartSession(request)
+        except GRPCError as error:
+            if error.status == Status.UNIMPLEMENTED:
+                with self._lock:
+                    self._reset()
+                    self._supported = _SupportedState.FALSE
                     return self._metadata
-                else:
-                    raise
             else:
-                if response is None:
-                    raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
+                raise
 
-                if response.heartbeat_window is None:
-                    raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
+        if response is None:
+            raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
 
-                self._supported = True
-                self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
-                self._current_id = response.id
-
-        # tick once to ensure heartbeats are supported
-        await self._heartbeat_tick()
-
-        if self._supported:
-            # We send heartbeats slightly faster than the interval window to
-            # ensure that we don't fall outside of it and expire the session.
-            wait = self._heartbeat_interval.total_seconds() / 5
-            asyncio.create_task(self._heartbeat_task(wait), name=f"{_TASK_PREFIX}-heartbeat")
-
-        return self._metadata
-
-    async def _heartbeat_task(self, wait: float):
-        while self._supported:
-            await asyncio.sleep(wait)
-            await self._heartbeat_tick()
-
-    async def _heartbeat_tick(self):
-        if not self._supported:
-            return
-
-        while self._lock.locked():
-            pass
-
-        request = SendSessionHeartbeatRequest(id=self._current_id)
-
-        if self._heartbeat_interval is None:
+        if response.heartbeat_window is None:
             raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
 
+        with self._lock:
+            self._supported = _SupportedState.TRUE
+            self._heartbeat_interval = response.heartbeat_window.ToTimedelta()
+            self._current_id = response.id
+
+        # tick once to ensure heartbeats are supported
+        await self._heartbeat_tick(self.client)
+
+        with self._lock:
+            if self._thread is not None:
+                self._reset()
+            if self._supported == _SupportedState.TRUE:
+                # We send heartbeats faster than the interval window to
+                # ensure that we don't fall outside of it and expire the session.
+                wait = self._heartbeat_interval.total_seconds() / 5
+
+                self._thread = Thread(
+                    name="heartbeat-thread",
+                    target=asyncio.run,
+                    args=(self._heartbeat_process(wait),),
+                    daemon=True,
+                )
+                self._thread.start()
+
+            return self._metadata
+
+    async def _heartbeat_tick(self, client: RobotServiceStub):
+        with self._lock:
+            if not self._current_id:
+                LOGGER.debug("Failed to send heartbeat, session client reset")
+                return
+            request = SendSessionHeartbeatRequest(id=self._current_id)
+
         try:
-            await self.client.SendSessionHeartbeat(request)
+            await client.SendSessionHeartbeat(request)
         except (GRPCError, StreamTerminatedError):
             LOGGER.debug("Heartbeat terminated", exc_info=True)
             self.reset()
         else:
             LOGGER.debug("Sent heartbeat successfully")
 
+    async def _heartbeat_process(self, wait: float):
+        dial_options = self._dial_options if self._dial_options is not None else DialOptions()
+        dial_options.disable_webrtc = True
+
+        channel = await dial(address=self._address, options=dial_options)
+        client = RobotServiceStub(channel.channel)
+        while True:
+            with self._lock:
+                if self._supported != _SupportedState.TRUE:
+                    return
+            await self._heartbeat_tick(client)
+            await asyncio.sleep(wait)
+
     @property
     def _metadata(self) -> _MetadataLike:
-        if self._supported and self._current_id != "":
+        if self._supported == _SupportedState.TRUE and self._current_id != "":
             return {SESSION_METADATA_KEY: self._current_id}
 
         return {}

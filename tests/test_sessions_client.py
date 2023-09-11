@@ -1,68 +1,57 @@
-from datetime import timedelta
+import asyncio
+import socket
+import time
+from concurrent.futures import ThreadPoolExecutor
+from typing import List
 
 import pytest
-from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError, Status
-from grpclib.server import Stream
+from grpclib._typing import IServable
+from grpclib.server import Server as GRPCServer
 from grpclib.testing import ChannelFor
 
-from viam.proto.robot import SendSessionHeartbeatRequest, SendSessionHeartbeatResponse, StartSessionRequest, StartSessionResponse
-from viam.resource.manager import ResourceManager
-from viam.robot.service import RobotService
-from viam.sessions_client import SESSION_METADATA_KEY, SessionsClient
+from viam.errors import MethodNotImplementedError
+from viam.rpc.dial import DialOptions, dial
+from viam.sessions_client import SESSION_METADATA_KEY, SessionsClient, _SupportedState
 
-SESSION_ID = "sid"
-HEARTBEAT_INTERVAL = 2
+from .mocks.robot import MockRobot
 
 
 @pytest.fixture(scope="function")
-def service() -> RobotService:
-    async def StartSession(stream: Stream[StartSessionRequest, StartSessionResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        heartbeat_window = Duration()
-        heartbeat_window.FromTimedelta(timedelta(seconds=HEARTBEAT_INTERVAL))
-        response = StartSessionResponse(id=SESSION_ID, heartbeat_window=heartbeat_window)
-        await stream.send_message(response)
+def service() -> MockRobot:
+    return MockRobot()
 
-    async def SendSessionHeartbeat(stream: Stream[SendSessionHeartbeatRequest, SendSessionHeartbeatResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        response = SendSessionHeartbeatResponse()
-        await stream.send_message(response)
 
-    manager = ResourceManager([])
-    service = RobotService(manager)
+@pytest.fixture(scope="function")
+def service_without_session(service: MockRobot) -> MockRobot:
+    async def StartSession(stream) -> None:
+        raise MethodNotImplementedError("StartSession").grpc_error
+
     service.StartSession = StartSession
+    return service
+
+
+@pytest.fixture(scope="function")
+def service_without_heartbeat(service: MockRobot) -> MockRobot:
+    async def SendSessionHeartbeat(stream) -> None:
+        raise MethodNotImplementedError("SendSessionHeartbeat").grpc_error
+
     service.SendSessionHeartbeat = SendSessionHeartbeat
-
-    return service
-
-
-@pytest.fixture(scope="function")
-def service_without_session(service: RobotService) -> RobotService:
-    del service.StartSession
-    return service
-
-
-@pytest.fixture(scope="function")
-def service_without_heartbeat(service: RobotService) -> RobotService:
-    del service.SendSessionHeartbeat
     return service
 
 
 @pytest.mark.asyncio
 async def test_init_client():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert client._current_id == ""
-        assert client._supported is None
+        assert client._supported == _SupportedState.UNKNOWN
 
 
 @pytest.mark.asyncio
 async def test_sessions_error():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
 
         with pytest.raises(GRPCError) as e_info:
             assert await client.metadata == {}
@@ -73,42 +62,71 @@ async def test_sessions_error():
 @pytest.mark.asyncio
 async def test_sessions_not_supported():
     async with ChannelFor([]) as channel:
-        client = SessionsClient(channel)
-        client._supported = False
+        client = SessionsClient(channel, "", None)
+        client._supported = _SupportedState.FALSE
         assert await client.metadata == {}
-        assert client._supported is False
+        assert client._supported == _SupportedState.FALSE
 
 
 @pytest.mark.asyncio
-async def test_sessions_not_implemented(service_without_session: RobotService):
+async def test_sessions_not_implemented(service_without_session: MockRobot):
     async with ChannelFor([service_without_session]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported is False
+        assert client._supported == _SupportedState.FALSE
 
 
 @pytest.mark.asyncio
-async def test_sessions_heartbeat_disconnect(service_without_heartbeat: RobotService):
+async def test_sessions_heartbeat_disconnect(service_without_heartbeat: MockRobot):
     async with ChannelFor([service_without_heartbeat]) as channel:
-        client = SessionsClient(channel)
+        client = SessionsClient(channel, "", None)
         assert await client.metadata == {}
-        assert client._supported is None
+        assert client._supported == _SupportedState.UNKNOWN
+
+
+async def _run_server(sock: socket.socket, handlers: List[IServable], shutdown_signal: asyncio.Event):
+    server = GRPCServer(handlers=handlers)
+    await server.start(sock=sock)
+    # shutdown_signal.wait() seems to be bugged <3.9 and blocks the thread,
+    # so have to do a bit of a busy wait here
+    while not shutdown_signal.is_set():
+        await asyncio.sleep(0.1)
+    server.close()
 
 
 @pytest.mark.asyncio
-async def test_sessions_heartbeat(service: RobotService):
-    async with ChannelFor([service]) as channel:
-        client = SessionsClient(channel)
-        assert await client.metadata == {SESSION_METADATA_KEY: SESSION_ID}
-        assert client._supported
-        assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == HEARTBEAT_INTERVAL
-        assert client._current_id == SESSION_ID
+async def test_sessions_heartbeat_thread_blocked():
+    sock = socket.socket()
+    sock.bind(("", 0))
+
+    shutdown_signal = asyncio.Event()
+    m = MockRobot()
+    t = ThreadPoolExecutor()
+    t.submit(asyncio.run, _run_server(sock, [m], shutdown_signal))
+
+    await asyncio.sleep(0.5)
+
+    port = sock.getsockname()[1]
+    addr = f"localhost:{port}"
+    options = DialOptions(disable_webrtc=True, insecure=True)
+    channel = await dial(address=addr, options=options)
+
+    client = SessionsClient(channel.channel, addr, options)
+    assert await client.metadata == {SESSION_METADATA_KEY: MockRobot.SESSION_ID}
+
+    assert client._supported == _SupportedState.TRUE
+    assert client._heartbeat_interval and client._heartbeat_interval.total_seconds() == MockRobot.HEARTBEAT_INTERVAL
+
+    time.sleep(3)
+    shutdown_signal.set()
+    client.reset()
+    assert m.heartbeat_count >= 5
 
 
 @pytest.mark.asyncio
-async def test_sessions_disabled(service: RobotService):
+async def test_sessions_disabled(service: MockRobot):
     async with ChannelFor([service]) as channel:
-        client = SessionsClient(channel, disabled=True)
+        client = SessionsClient(channel, "", None, disabled=True)
         assert await client.metadata == {}
-        assert client._supported is None
+        assert client._supported == _SupportedState.UNKNOWN
         assert not client._heartbeat_interval
