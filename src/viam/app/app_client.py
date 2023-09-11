@@ -435,8 +435,8 @@ class AppClient:
 
         Args:
             email (str): Email of the user the invite was sent to.
-            add_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
-            remove_authorization (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
+            add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
+            remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
 
         Raises:
             GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
