@@ -1,9 +1,9 @@
 import abc
+from numpy.typing import NDArray
 from typing import Dict, Final, Optional
 
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
-from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
 
@@ -20,14 +20,14 @@ class MLModel(ServiceBase):
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel")
 
     @abc.abstractmethod
-    async def infer(self, input_data: Dict[str, ValueTypes], *, timeout: Optional[float]) -> Dict[str, ValueTypes]:
+    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]) -> Dict[str, NDArray]:
         """Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
         Args:
-            input_data (Dict[str, ValueTypes]): A dictionary of input arrays/tensors as specified in the metadata
+            input_tensors (Dict[str, NDArray]): A dictionary of input flat tensors as specified in the metadata
 
         Returns:
-            Dict[str, ValueTypes]: A dictionary of output arrays/tensors as specified in the metadata
+            Dict[str, NDArray]: A dictionary of output flat tensors as specified in the metadata
         """
         ...
 
