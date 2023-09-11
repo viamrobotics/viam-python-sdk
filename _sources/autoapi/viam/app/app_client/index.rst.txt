@@ -398,10 +398,10 @@ Attributes
 
       :param email: Email of the user the invite was sent to.
       :type email: str
-      :param add_authorization: Optional list of authorizations to add to the invite.
-      :type add_authorization: Optional[List[viam.proto.app.Authorization]]
-      :param remove_authorization: Optional list of authorizations to remove from the invite.
-      :type remove_authorization: Optional[List[viam.proto.app.Authorization]]
+      :param add_authorizations: Optional list of authorizations to add to the invite.
+      :type add_authorizations: Optional[List[viam.proto.app.Authorization]]
+      :param remove_authorizations: Optional list of authorizations to remove from the invite.
+      :type remove_authorizations: Optional[List[viam.proto.app.Authorization]]
 
       :raises GRPCError: If no authorizations are passed or if an invalid combination of authorizations is passed (e.g. an authorization to
           remove when the invite only contains one authorization).
