@@ -167,12 +167,28 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;gantry&quot;
@@ -183,52 +199,36 @@ subtype: &quot;mlmodel&quot;
 name: &quot;mlmodel0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;encoder&quot;
 name: &quot;encoder0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
 name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
 subtype: &quot;sensor&quot;
 name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
 ]
 </pre></div>
 </div>
@@ -467,13 +467,41 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <span class="c1"># Create a virtual environment to run our code</span>
 <span class="nv">VENV_NAME</span><span class="o">=</span><span class="s2">&quot;venv&quot;</span>
 <span class="nv">PYTHON</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$VENV_NAME</span><span class="s2">/bin/python&quot;</span>
+<span class="nv">ENV_ERROR</span><span class="o">=</span><span class="s2">&quot;This module requires Python &gt;=3.8, pip, and virtualenv to be installed.&quot;</span>
 
-python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$VENV_NAME</span>
-<span class="nv">$PYTHON</span><span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-U<span class="w"> </span><span class="c1"># remove -U if viam-sdk should not be upgraded whenever possible</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$VENV_NAME</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Failed to create virtualenv.&quot;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span>apt-get<span class="w"> </span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Detected Debian/Ubuntu, attempting to install python3-venv automatically.&quot;</span>
+<span class="w">        </span><span class="nv">SUDO</span><span class="o">=</span><span class="s2">&quot;sudo&quot;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">command</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">$SUDO</span><span class="w"> </span>&gt;/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="nv">SUDO</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">		</span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>apt<span class="w"> </span>info<span class="w"> </span>python3-venv<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">			</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Package info not found, trying apt update&quot;</span>
+<span class="w">			</span><span class="nv">$SUDO</span><span class="w"> </span>apt<span class="w"> </span>-qq<span class="w"> </span>update<span class="w"> </span>&gt;/dev/null
+<span class="w">		</span><span class="k">fi</span>
+<span class="w">        </span><span class="nv">$SUDO</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-qqy<span class="w"> </span>python3-venv<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span><span class="nv">$VENV_NAME</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ENV_ERROR</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">            </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="k">fi</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$ENV_ERROR</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">fi</span>
 
+<span class="c1"># remove -U if viam-sdk should not be upgraded whenever possible</span>
+<span class="c1"># -qq suppresses extraneous output from pip</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Virtualenv found/created. Installing/upgrading Python packages...&quot;</span>
+<span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nv">$PYTHON</span><span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>-Uqq<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
 
 <span class="c1"># Be sure to use `exec` so that termination signals reach the python process,</span>
 <span class="c1"># or handle forwarding termination signals manually</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Starting module...&quot;</span>
 <span class="nb">exec</span><span class="w"> </span><span class="nv">$PYTHON</span><span class="w"> </span>src/wifi-sensor.py<span class="w"> </span><span class="nv">$@</span>
 </pre></div>
 </div>
