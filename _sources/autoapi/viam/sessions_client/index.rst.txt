@@ -16,14 +16,6 @@ Classes
 
 
 
-Functions
-~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.sessions_client.loop_kwargs
-
-
 
 Attributes
 ~~~~~~~~~~
@@ -48,10 +40,7 @@ Attributes
 
    
 
-.. py:function:: loop_kwargs()
-
-
-.. py:class:: SessionsClient(channel: grpclib.client.Channel, *, disabled: bool = False)
+.. py:class:: SessionsClient(channel: grpclib.client.Channel, address: str, dial_options: Optional[viam.rpc.dial.DialOptions], *, disabled: bool = False)
 
 
    A Session allows a client to express that it is actively connected and
