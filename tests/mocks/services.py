@@ -155,8 +155,8 @@ from viam.proto.app.data import (
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
-    DeleteTabularDataByFilterRequest,
-    DeleteTabularDataByFilterResponse,
+    DeleteTabularDataRequest,
+    DeleteTabularDataResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -603,11 +603,12 @@ class MockData(DataServiceBase):
             BinaryDataByIDsResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
 
-    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
+    async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.filter = request.filter
-        await stream.send_message(DeleteTabularDataByFilterResponse(deleted_count=self.delete_remove_response))
+        self.organization_id = request.organization_id
+        self.delete_older_than_days = request.delete_older_than_days
+        await stream.send_message(DeleteTabularDataResponse(deleted_count=self.delete_remove_response))
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
         request = await stream.recv_message()
