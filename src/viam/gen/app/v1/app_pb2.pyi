@@ -253,22 +253,25 @@ class OrganizationInvite(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     EMAIL_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
-    ROBOT_COUNT_FIELD_NUMBER: builtins.int
+    AUTHORIZATIONS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
 
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
-    robot_count: builtins.int
 
-    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=...) -> None:
+    @property
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+        ...
+
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id', 'robot_count', b'robot_count']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id']) -> None:
         ...
 global___OrganizationInvite = OrganizationInvite
 
@@ -1941,17 +1944,19 @@ class Authorization(google.protobuf.message.Message):
     RESOURCE_ID_FIELD_NUMBER: builtins.int
     IDENTITY_ID_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    IDENTITY_TYPE_FIELD_NUMBER: builtins.int
     authorization_type: builtins.str
     authorization_id: builtins.str
     resource_type: builtins.str
     resource_id: builtins.str
     identity_id: builtins.str
     organization_id: builtins.str
+    identity_type: builtins.str
 
-    def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., identity_id: builtins.str=..., organization_id: builtins.str=...) -> None:
+    def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., identity_id: builtins.str=..., organization_id: builtins.str=..., identity_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'identity_id', b'identity_id', 'organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'identity_id', b'identity_id', 'identity_type', b'identity_type', 'organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___Authorization = Authorization
 
@@ -2151,7 +2156,7 @@ class CreateModuleResponse(google.protobuf.message.Message):
     MODULE_ID_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
     module_id: builtins.str
-    'The id of the module containing the namespace and name'
+    "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     url: builtins.str
     'The detail page of the module'
 
@@ -2166,16 +2171,13 @@ global___CreateModuleResponse = CreateModuleResponse
 class UpdateModuleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     VISIBILITY_FIELD_NUMBER: builtins.int
     URL_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     MODELS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     module_id: builtins.str
-    'The id of the module being updated, containing module name or namespace and module name'
-    organization_id: builtins.str
-    'The organization of the module being updated, required if no namespace exists in the module_id'
+    "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     visibility: global___Visibility.ValueType
     'The visibility that should be set for the module'
     url: builtins.str
@@ -2189,16 +2191,10 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     entrypoint: builtins.str
     'The executable to run to start the module program'
 
-    def __init__(self, *, module_id: builtins.str=..., organization_id: builtins.str | None=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'organization_id', b'organization_id', 'url', b'url', 'visibility', b'visibility']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_organization_id', b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
 
@@ -2237,28 +2233,19 @@ global___Model = Model
 class ModuleFileInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     PLATFORM_FIELD_NUMBER: builtins.int
     module_id: builtins.str
-    'The id of the module being uploaded, containing module name or namespace and module name'
-    organization_id: builtins.str
-    'The organization of the module being updated, required if no namespace exists in the module_id'
+    "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     version: builtins.str
     'The semver string that represents the new major/minor/patch version of the module'
     platform: builtins.str
     'The platform that the file is built to run on'
 
-    def __init__(self, *, module_id: builtins.str=..., organization_id: builtins.str | None=..., version: builtins.str=..., platform: builtins.str=...) -> None:
+    def __init__(self, *, module_id: builtins.str=..., version: builtins.str=..., platform: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'module_id', b'module_id', 'organization_id', b'organization_id', 'platform', b'platform', 'version', b'version']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_organization_id', b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id', 'platform', b'platform', 'version', b'version']) -> None:
         ...
 global___ModuleFileInfo = ModuleFileInfo
 
@@ -2305,22 +2292,13 @@ global___UploadModuleFileResponse = UploadModuleFileResponse
 class GetModuleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
-    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     module_id: builtins.str
-    'The id of the module being retrieved, containing module name or namespace and module name'
-    organization_id: builtins.str
-    'The organization of the module being updated, required if no namespace exists in the module_id'
+    "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
 
-    def __init__(self, *, module_id: builtins.str=..., organization_id: builtins.str | None=...) -> None:
+    def __init__(self, *, module_id: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'module_id', b'module_id', 'organization_id', b'organization_id']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_organization_id', b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id']) -> None:
         ...
 global___GetModuleRequest = GetModuleRequest
 
@@ -2359,7 +2337,7 @@ class Module(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
     module_id: builtins.str
-    'The id of the module, containing module name or namespace and module name'
+    "The id of the module (formatted as prefix:name where prefix is the module owner's orgid or namespace)"
     name: builtins.str
     'The name of the module'
     visibility: global___Visibility.ValueType
@@ -2550,3 +2528,36 @@ class ListOrganizationsByUserResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['orgs', b'orgs']) -> None:
         ...
 global___ListOrganizationsByUserResponse = ListOrganizationsByUserResponse
+
+@typing_extensions.final
+class CreateKeyRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+
+    @property
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
+        ...
+    name: builtins.str
+
+    def __init__(self, *, authorizations: collections.abc.Iterable[global___Authorization] | None=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'name', b'name']) -> None:
+        ...
+global___CreateKeyRequest = CreateKeyRequest
+
+@typing_extensions.final
+class CreateKeyResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    KEY_FIELD_NUMBER: builtins.int
+    ID_FIELD_NUMBER: builtins.int
+    key: builtins.str
+    id: builtins.str
+
+    def __init__(self, *, key: builtins.str=..., id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+        ...
+global___CreateKeyResponse = CreateKeyResponse

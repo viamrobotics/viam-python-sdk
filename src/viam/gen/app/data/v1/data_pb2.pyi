@@ -269,19 +269,21 @@ class TabularDataByFilterRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     COUNT_ONLY_FIELD_NUMBER: builtins.int
+    INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
     def data_request(self) -> global___DataRequest:
         ...
     count_only: builtins.bool
+    include_internal_data: builtins.bool
 
-    def __init__(self, *, data_request: global___DataRequest | None=..., count_only: builtins.bool=...) -> None:
+    def __init__(self, *, data_request: global___DataRequest | None=..., count_only: builtins.bool=..., include_internal_data: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['data_request', b'data_request']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request', 'include_internal_data', b'include_internal_data']) -> None:
         ...
 global___TabularDataByFilterRequest = TabularDataByFilterRequest
 
@@ -372,20 +374,22 @@ class BinaryDataByFilterRequest(google.protobuf.message.Message):
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
     COUNT_ONLY_FIELD_NUMBER: builtins.int
+    INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
     def data_request(self) -> global___DataRequest:
         ...
     include_binary: builtins.bool
     count_only: builtins.bool
+    include_internal_data: builtins.bool
 
-    def __init__(self, *, data_request: global___DataRequest | None=..., include_binary: builtins.bool=..., count_only: builtins.bool=...) -> None:
+    def __init__(self, *, data_request: global___DataRequest | None=..., include_binary: builtins.bool=..., count_only: builtins.bool=..., include_internal_data: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['data_request', b'data_request']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request', 'include_binary', b'include_binary']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request', 'include_binary', b'include_binary', 'include_internal_data', b'include_internal_data']) -> None:
         ...
 global___BinaryDataByFilterRequest = BinaryDataByFilterRequest
 
@@ -587,22 +591,57 @@ class DeleteTabularDataByFilterResponse(google.protobuf.message.Message):
 global___DeleteTabularDataByFilterResponse = DeleteTabularDataByFilterResponse
 
 @typing_extensions.final
+class DeleteTabularDataRequest(google.protobuf.message.Message):
+    """DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
+    For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
+    If it is 0, all existing data is deleted.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    DELETE_OLDER_THAN_DAYS_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    delete_older_than_days: builtins.int
+
+    def __init__(self, *, organization_id: builtins.str=..., delete_older_than_days: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['delete_older_than_days', b'delete_older_than_days', 'organization_id', b'organization_id']) -> None:
+        ...
+global___DeleteTabularDataRequest = DeleteTabularDataRequest
+
+@typing_extensions.final
+class DeleteTabularDataResponse(google.protobuf.message.Message):
+    """DeleteBinaryDataResponse returns the number of tabular datapoints deleted."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DELETED_COUNT_FIELD_NUMBER: builtins.int
+    deleted_count: builtins.int
+
+    def __init__(self, *, deleted_count: builtins.int=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
+        ...
+global___DeleteTabularDataResponse = DeleteTabularDataResponse
+
+@typing_extensions.final
 class DeleteBinaryDataByFilterRequest(google.protobuf.message.Message):
     """DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
+    INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
     def filter(self) -> global___Filter:
         ...
+    include_internal_data: builtins.bool
 
-    def __init__(self, *, filter: global___Filter | None=...) -> None:
+    def __init__(self, *, filter: global___Filter | None=..., include_internal_data: builtins.bool=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'include_internal_data', b'include_internal_data']) -> None:
         ...
 global___DeleteBinaryDataByFilterRequest = DeleteBinaryDataByFilterRequest
 
@@ -931,3 +970,29 @@ class BoundingBoxLabelsByFilterResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['labels', b'labels']) -> None:
         ...
 global___BoundingBoxLabelsByFilterResponse = BoundingBoxLabelsByFilterResponse
+
+@typing_extensions.final
+class GetDatabaseConnectionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+        ...
+global___GetDatabaseConnectionRequest = GetDatabaseConnectionRequest
+
+@typing_extensions.final
+class GetDatabaseConnectionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HOSTNAME_FIELD_NUMBER: builtins.int
+    hostname: builtins.str
+
+    def __init__(self, *, hostname: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['hostname', b'hostname']) -> None:
+        ...
+global___GetDatabaseConnectionResponse = GetDatabaseConnectionResponse
