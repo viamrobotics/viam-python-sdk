@@ -560,7 +560,7 @@ class AppClient:
                 instantiation.
 
         Returns:
-            LocationAuth: The `LocationAuth` containing location secrets.
+            viam.proto.app.LocationAuth: The `LocationAuth` containing location secrets.
         """
         request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
         response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
