@@ -1,20 +1,3 @@
-try:
-    import numpy as np
-    from numpy.typing import NDArray
-except ImportError:
-    import warnings
-
-    warnings.warn(
-        (
-            "MLModel support in Viam Python SDK requires the installation of optional "
-            "dependencies: specifically, numpy.  Update your package using the extra [mlmodel]"
-            "e.g. `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager"
-        )  # will want to replace the e.g. suggestion with a link to docs when that is available
-    )
-    raise
-
-from typing import Dict
-
 from viam.proto.service.mlmodel import (
     FlatTensors,
     FlatTensor,
@@ -29,6 +12,18 @@ from viam.proto.service.mlmodel import (
     FlatTensorDataUInt64,
     FlatTensorDataUInt8,
 )
+from viam.utils import _numpy_import_error_string
+
+try:
+    import numpy as np
+    from numpy.typing import NDArray
+except ImportError:
+    import warnings
+
+    warnings.warn(_numpy_import_error_string)  # will want to replace the e.g. suggestion with a link to docs when that is available
+    raise
+
+from typing import Dict
 
 
 def flat_tensors_to_ndarrays(flat_tensors: FlatTensors) -> Dict[str, NDArray]:

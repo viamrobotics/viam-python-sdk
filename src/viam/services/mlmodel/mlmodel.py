@@ -2,6 +2,7 @@ import abc
 from typing import Dict, Final, Optional
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+from viam.utils import _numpy_import_error_string
 
 from ..service_base import ServiceBase
 
@@ -10,13 +11,7 @@ try:
 except ImportError:
     import warnings
 
-    warnings.warn(
-        (
-            "MLModel support in Viam Python SDK requires the installation of optional "
-            "dependencies: specifically, numpy.  Update your package using the extra [mlmodel]"
-            "e.g. `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager"
-        )  # will want to replace the e.g. suggestion with a link to docs when that is available
-    )
+    warnings.warn(_numpy_import_error_string)  # will want to replace the e.g. suggestion with a link to docs when that is available
     raise
 
 

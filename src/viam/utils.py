@@ -265,3 +265,8 @@ def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:
         return False
 
     return bool(extra["fromDataManagement"])
+
+
+_numpy_import_error_string = """MLModel support in Viam Python SDK requires the installation of optional
+dependencies: specifically, numpy.  Update your package using the extra [mlmodel]
+e.g. `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager"""
