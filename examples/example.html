@@ -167,7 +167,23 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
+subtype: &quot;gantry&quot;
+name: &quot;gantry0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;board&quot;
+name: &quot;board&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
 name: &quot;movement_sensor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
@@ -175,60 +191,44 @@ subtype: &quot;pose_tracker&quot;
 name: &quot;pose_tracker0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;motor&quot;
-name: &quot;motor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
 subtype: &quot;arm&quot;
 name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gantry&quot;
-name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
 name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;motor&quot;
+name: &quot;motor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;audio_input&quot;
 name: &quot;audio_input0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;board&quot;
-name: &quot;board&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
 ]
 </pre></div>
 </div>
@@ -358,7 +358,7 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 
 <span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
     <span class="c1"># Subclass the Viam Sensor component and implement the required functions</span>
-    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;acme&quot;</span><span class="p">,</span><span class="s2">&quot;wifi_sensor&quot;</span><span class="p">),</span> <span class="s2">&quot;linux&quot;</span><span class="p">)</span>
+    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;viam&quot;</span><span class="p">,</span><span class="s2">&quot;sensor&quot;</span><span class="p">),</span> <span class="s2">&quot;linux-wifi&quot;</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
@@ -513,12 +513,12 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <section id="configure-a-modular-resource">
 <h3>5. Configure a modular resource<a class="headerlink" href="#configure-a-modular-resource" title="Permalink to this heading"></a></h3>
 <p><strong>NOTE:</strong> <em>If you are adding your module to the registry, follow <a class="reference external" href="https://docs.viam.com/extend/modular-resources/configure/">these instructions</a> instead. Otherwise, continue with these instructions, which will show you how to configure the module locally.</em></p>
-<p><a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-module">Configure your new module</a> on your robot by navigating to the <strong>Config</strong> tab of the robot’s page on the Viam app, then click on the <strong>Modules</strong> subtab. Add the name of your module and the executable path. For our example, the path would be <code class="docutils literal notranslate"><span class="pre">&lt;path-on-your-filesystem&gt;/wifi-sensor/run.sh</span></code>.</p>
+<p><a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-module">Configure your new module</a> on your robot by navigating to the <strong>Config</strong> tab of the robot’s page on the Viam app, then click on the <strong>Modules</strong> subtab. Add the name of your module and the executable path. For our example, the path would be <code class="docutils literal notranslate"><span class="pre">&lt;path-on-your-filesystem&gt;/linux-wifi/run.sh</span></code>.</p>
 <p>Once you have configured a module as part of your robot configuration, <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-modular-resource">configure your modular resource</a> made available by that module by adding new components or services configured with your modular resources’ new type or model. To instantiate a new resource from your module, specify the <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> of your modular resource. The aforementioned <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> should be the same as those in the <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> class attribute defined in your <span class="xref myst">component class</span>. This is a JSON example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;acme:wifi_sensor:linux&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;viam:sensor:linux-wifi&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;attributes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
 <span class="w">      </span><span class="nt">&quot;depends_on&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my-sensor&quot;</span><span class="p">,</span>
@@ -527,13 +527,19 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;modules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;executable_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path-on-your-filesystem&gt;/wifi-sensor/run.sh&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;executable_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;path-on-your-filesystem&gt;/linux-wifi/run.sh&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wifi_sensor&quot;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Note the nomenclature of the above <code class="docutils literal notranslate"><span class="pre">model</span></code> field, <code class="docutils literal notranslate"><span class="pre">viam:sensor:linux-wifi</span></code>. Models are uniquely namespaced as colon-delimited-triplets in the form <code class="docutils literal notranslate"><span class="pre">namespace:family:name</span></code>, and are named according to the Viam API that your model implements. A model with the <code class="docutils literal notranslate"><span class="pre">viam</span></code> namespace is always Viam-provided. Read more about making custom namespaces <a class="reference external" href="https://docs.viam.com/extend/modular-resources/key-concepts/#models">here</a>.</p>
+<p>Viam also provides many built-in models that implement API capabilities, each using <code class="docutils literal notranslate"><span class="pre">rdk</span></code> as the <code class="docutils literal notranslate"><span class="pre">namespace</span></code>, and <code class="docutils literal notranslate"><span class="pre">builtin</span></code> as the <code class="docutils literal notranslate"><span class="pre">family</span></code>:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">rdk:builtin:gpio</span></code> model of the <code class="docutils literal notranslate"><span class="pre">rdk:component:motor</span></code> API provides RDK support for <a class="reference external" href="https://docs.viam.com/components/motor/gpio/">GPIO-controlled DC motors</a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">rdk:builtin:DMC4000</span></code> model of the same <code class="docutils literal notranslate"><span class="pre">rdk:component:motor</span></code> API provides RDK support for the <a class="reference external" href="https://docs.viam.com/components/motor/dmc4000/">DMC4000</a> motor.</p></li>
+</ul>
 </section>
 <section id="custom-modular-arm-example">
 <h3>Custom Modular Arm Example<a class="headerlink" href="#custom-modular-arm-example" title="Permalink to this heading"></a></h3>
@@ -558,7 +564,7 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 
 <span class="k">class</span> <span class="nc">MyModularArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
     <span class="c1"># Subclass the Viam Arm component and implement the required functions</span>
-    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;acme&quot;</span><span class="p">,</span> <span class="s2">&quot;demo&quot;</span><span class="p">),</span> <span class="s2">&quot;myarm&quot;</span><span class="p">)</span>
+    <span class="n">MODEL</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="s2">&quot;viam&quot;</span><span class="p">,</span> <span class="s2">&quot;arm&quot;</span><span class="p">),</span> <span class="s2">&quot;my-arm&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Starting joint positions</span>
