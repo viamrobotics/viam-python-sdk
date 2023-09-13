@@ -67,8 +67,7 @@ class DialOptions:
     unsafe to use, but can be requested."""
 
     max_reconnect_attempts: int = 3
-    """Max number of times the client attempts to reconnect when connection
-    is lost to reduce power usage when the wifi microcontroller is asleep"""
+    """Max number of times the client attempts to reconnect when connection is lost"""
 
     def __init__(
         self,
