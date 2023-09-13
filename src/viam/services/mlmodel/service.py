@@ -2,7 +2,7 @@ from grpclib.server import Stream
 
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
+from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 
 from .mlmodel import MLModel
 

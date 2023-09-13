@@ -5,28 +5,9 @@ from grpclib.client import Channel
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import (
-    ValueTypes,
-    dict_to_struct,
-    struct_to_dict,
-    flat_tensors_to_ndarrays,
-    ndarrays_to_flat_tensors,
-)
-
-try:
-    from numpy.typing import NDArray
-except ImportError:
-    import warnings
-
-    warnings.warn(
-        (
-            "MLModel support in Viam Python SDK requires the installation of optional "
-            "dependencies: specifically, numpy.  Update your package using the extra [mlmodel]"
-            "e.g. `pip install viam-sdk[mlmode]` or the equivalent update in your dependency manager"
-        )  # will want to replace the e.g. suggestion with a link to docs when that is available
-    )
-    raise
-
+from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
+from numpy.typing import NDArray  #  bare NDArray import since it occurs after utils import check above
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .mlmodel import Metadata, MLModel
 

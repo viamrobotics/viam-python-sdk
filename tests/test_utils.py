@@ -10,6 +10,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from .mocks.services import MockMLModel
 
 from viam.proto.common import ActuatorStatus, GeoPoint, Orientation, ResourceName, Vector3
+from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.utils import (
     PointerCounter,
     dict_to_struct,
@@ -21,8 +22,6 @@ from viam.utils import (
     struct_to_message,
     value_to_primitive,
     datetime_to_timestamp,
-    flat_tensors_to_ndarrays,
-    ndarrays_to_flat_tensors,
 )
 
 
@@ -214,6 +213,9 @@ def test_struct_to_dict():
     assert struct_to_dict(struct) == expected
 
 
+#  ignore warning about our out-of-bound int casting (i.e. uint32 -> int16) because we don't store uint32s for int16 & uint16 tensor data
+# > 2^16-1 in the first place (inherently they are int16, we just cast them to uint32 for the grpc message)
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
 def test_flat_tensors_to_ndarrays():
     output = flat_tensors_to_ndarrays(MockMLModel.INTS_FLAT_TENSORS)
     assert len(output.keys()) == 4
@@ -248,6 +250,9 @@ def test_flat_tensors_to_ndarrays():
     assert output["1"].dtype == np.float32
 
 
+#  ignore warning about our out-of-bound int casting (i.e. uint32 -> int16) because we don't store uint32s for int16 & uint16 tensor data
+# > 2^16-1 in the first place (inherently they are int16, we just cast them to uint32 for the grpc message)
+@pytest.mark.filterwarnings("ignore::DeprecationWarning")
 def test_ndarrays_to_flat_tensors():
     output = ndarrays_to_flat_tensors(MockMLModel.INTS_NDARRAYS)
     assert len(output.tensors) == 4

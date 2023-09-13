@@ -14,7 +14,7 @@ except ImportError:
         (
             "MLModel support in Viam Python SDK requires the installation of optional "
             "dependencies: specifically, numpy.  Update your package using the extra [mlmodel]"
-            "e.g. `pip install viam-sdk[mlmode]` or the equivalent update in your dependency manager"
+            "e.g. `pip install viam-sdk[mlmodel]` or the equivalent update in your dependency manager"
         )  # will want to replace the e.g. suggestion with a link to docs when that is available
     )
     raise

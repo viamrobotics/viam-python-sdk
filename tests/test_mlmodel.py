@@ -64,6 +64,9 @@ class TestClient:
         cls.manager = ResourceManager([cls.mlmodel])
         cls.service = MLModelRPCService(cls.manager)
 
+    #  ignore warning about our out-of-bound int casting (i.e. uint32 -> int16) because we don't store uint32s for int16 & uint16 tensor
+    #  data > 2^16-1 in the first place (inherently they are int16, we just cast them to uint32 for the grpc message)
+    @pytest.mark.filterwarnings("ignore::DeprecationWarning")
     @pytest.mark.asyncio
     async def test_infer(self):
         async with ChannelFor([self.service]) as channel:
