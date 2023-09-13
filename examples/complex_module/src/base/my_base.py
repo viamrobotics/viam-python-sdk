@@ -24,7 +24,7 @@ class MyBase(Base, Reconfigurable):
     """
 
     # Subclass the Viam Base component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mybase")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "base"), "mybase")
 
     def __init__(self, name: str):
         super().__init__(name)
