@@ -264,7 +264,7 @@ class RobotClient:
 
             # Failure to grab resources could be for spurious, non-networking reasons. Try three times just to be safe.
             connection_error = None
-            for attempt in range(3):
+            for _ in range(3):
                 try:
                     _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
                     connection_error = None
@@ -285,7 +285,9 @@ class RobotClient:
             if reconnect_every <= 0:
                 continue
 
-            while not self._connected:
+            reconnect_attempts = self._options.dial_options.max_reconnect_attempts if self._options.dial_options else 3
+
+            for _ in range(reconnect_attempts):
                 try:
                     self._sessions_client.reset()
 
@@ -315,6 +317,7 @@ class RobotClient:
                     await self.refresh()
                     self._connected = True
                     LOGGER.debug("Successfully reconnected robot")
+                    break
                 except Exception as e:
                     LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
                     self._sessions_client.reset()
