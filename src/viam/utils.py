@@ -1,12 +1,25 @@
 import asyncio
 import contextvars
 import functools
-import numpy as np
+
+try:
+    import numpy as np
+    from numpy.typing import NDArray
+except ImportError:
+    import warnings
+
+    warnings.warn(
+        (
+            "MLModel support in Viam Python SDK requires the installation of optional "
+            "dependencies: specifically, numpy.  Update your package using the extra [mlmodel]"
+            "e.g. `pip install viam-sdk[mlmode]` or the equivalent update in your dependency manager"
+        )  # will want to replace the e.g. suggestion with a link to docs when that is available
+    )
+    raise
 import sys
 import threading
 from datetime import datetime
 from typing import Any, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
-from numpy.typing import NDArray
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
