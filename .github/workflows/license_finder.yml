@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_call:
   pull_request:
-    branches: ['main']
+    branches: ["main"]
 
 jobs:
   license_finder:
@@ -26,7 +26,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install package
-        run: poetry install
+        run: poetry install --all-extras
 
       - name: Generate requirements.txt (exclude dev dependencies)
         run: |
