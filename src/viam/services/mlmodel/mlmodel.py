@@ -1,18 +1,11 @@
 import abc
+from numpy.typing import NDArray
 from typing import Dict, Final, Optional
+
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
-from viam.utils import _numpy_import_error_string
 
 from ..service_base import ServiceBase
-
-try:
-    from numpy.typing import NDArray
-except ImportError:
-    import warnings
-
-    warnings.warn(_numpy_import_error_string)  # will want to replace the e.g. suggestion with a link to docs when that is available
-    raise
 
 
 class MLModel(ServiceBase):
