@@ -7,7 +7,6 @@ from google.protobuf.struct_pb2 import Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.app.data_client import DataClient
-from viam.gen import app
 from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDResponse,
@@ -232,7 +231,7 @@ class MockData(DataServiceBase):
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
         pass
 
-     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
+    async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         pass
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
