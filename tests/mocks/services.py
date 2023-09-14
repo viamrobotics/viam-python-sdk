@@ -227,10 +227,11 @@ from viam.proto.service.sensors import (
 from viam.proto.service.vision import Classification, Detection
 from viam.app.data_client import DataClient
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
+from viam.services.mlmodel.utils import ndarrays_to_flat_tensors, flat_tensors_to_ndarrays
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import Vision
-from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict, ndarrays_to_flat_tensors, flat_tensors_to_ndarrays
+from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
 class MockVision(Vision):

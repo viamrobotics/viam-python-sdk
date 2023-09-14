@@ -17,7 +17,7 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   typing-extensions = "^4.7.1"
   Pillow = "^10.0.0"
   protobuf = "^4.23.4"
-  numpy = ">=1.21"
+  numpy = { version = ">=1.21", optional = true }
 
   [tool.poetry.group.dev.dependencies]
   pytest = "^7.4.0"
@@ -60,3 +60,6 @@ line_length = 140
 [build-system]
 requires = [ "poetry-core>=1.0.0" ]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.extras]
+mlmodel = ["numpy"]
