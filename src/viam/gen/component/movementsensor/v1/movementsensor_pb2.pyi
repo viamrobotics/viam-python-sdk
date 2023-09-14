@@ -163,7 +163,7 @@ class GetOrientationResponse(google.protobuf.message.Message):
 
     @property
     def orientation(self) -> common.v1.common_pb2.Orientation:
-        """Orientation is returned as an orientation message with 
+        """Orientation is returned as an orientation message with
         OX OY OZ as unit-normalized components of the axis of the vector, and Theta in degrees
         """
 
@@ -207,7 +207,7 @@ class GetPositionResponse(google.protobuf.message.Message):
 
     @property
     def coordinate(self) -> common.v1.common_pb2.GeoPoint:
-        """Position is returned in a coordinate of latitute and longitude 
+        """Position is returned in a coordinate of latitute and longitude
         and an altidue in meters
         """
     altitude_m: builtins.float
