@@ -6,6 +6,7 @@ from ...gen.app.v1.app_grpc import AppServiceBase, AppServiceStub
 from ...gen.app.v1.app_pb2 import (
     AddRoleRequest,
     AddRoleResponse,
+    APIKey,
     Authorization,
     AuthorizedPermissions,
     ChangeRoleRequest,
@@ -57,6 +58,8 @@ from ...gen.app.v1.app_pb2 import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -148,6 +151,7 @@ from ...gen.app.v1.app_pb2 import (
 __all__ = [
     "AppServiceBase",
     "AppServiceStub",
+    "APIKey",
     "AddRoleRequest",
     "AddRoleResponse",
     "Authorization",
@@ -201,6 +205,8 @@ __all__ = [
     "GetOrganizationNamespaceAvailabilityResponse",
     "GetOrganizationRequest",
     "GetOrganizationResponse",
+    "GetRobotAPIKeysRequest",
+    "GetRobotAPIKeysResponse",
     "GetRobotPartHistoryRequest",
     "GetRobotPartHistoryResponse",
     "GetRobotPartLogsRequest",

@@ -971,6 +971,32 @@ class BoundingBoxLabelsByFilterResponse(google.protobuf.message.Message):
         ...
 global___BoundingBoxLabelsByFilterResponse = BoundingBoxLabelsByFilterResponse
 
+class ConfigureDatabaseUserRequest(google.protobuf.message.Message):
+    """ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
+    being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
+    flight, including the password.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    PASSWORD_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    password: builtins.str
+
+    def __init__(self, *, organization_id: builtins.str=..., password: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'password', b'password']) -> None:
+        ...
+global___ConfigureDatabaseUserRequest = ConfigureDatabaseUserRequest
+
+@typing_extensions.final
+class ConfigureDatabaseUserResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ConfigureDatabaseUserResponse = ConfigureDatabaseUserResponse
+
 @typing_extensions.final
 class GetDatabaseConnectionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

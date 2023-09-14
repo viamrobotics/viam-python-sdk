@@ -1500,6 +1500,60 @@ class DeleteRobotPartRequest(google.protobuf.message.Message):
 global___DeleteRobotPartRequest = DeleteRobotPartRequest
 
 @typing_extensions.final
+class GetRobotAPIKeysRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOT_ID_FIELD_NUMBER: builtins.int
+    robot_id: builtins.str
+
+    def __init__(self, *, robot_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['robot_id', b'robot_id']) -> None:
+        ...
+global___GetRobotAPIKeysRequest = GetRobotAPIKeysRequest
+
+@typing_extensions.final
+class APIKey(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    KEY_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    key: builtins.str
+    name: builtins.str
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., key: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'key', b'key', 'name', b'name']) -> None:
+        ...
+global___APIKey = APIKey
+
+@typing_extensions.final
+class GetRobotAPIKeysResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    API_KEYS_FIELD_NUMBER: builtins.int
+
+    @property
+    def api_keys(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKey]:
+        ...
+
+    def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKey] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['api_keys', b'api_keys']) -> None:
+        ...
+global___GetRobotAPIKeysResponse = GetRobotAPIKeysResponse
+
+@typing_extensions.final
 class DeleteRobotPartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 

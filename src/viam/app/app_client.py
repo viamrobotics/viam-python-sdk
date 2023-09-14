@@ -604,7 +604,7 @@ class AppClient:
         """Get a robot.
 
         Args:
-            id (str): ID of the robot to get.
+            robot_id (str): ID of the robot to get.
 
         Raises:
             GRPCError: If an invalid robot ID is passed.
