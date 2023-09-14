@@ -7,6 +7,7 @@ from google.protobuf.struct_pb2 import Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.app.data_client import DataClient
+from viam.gen import app
 from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDResponse,
@@ -29,6 +30,10 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    DeleteTabularDataByFilterRequest,
+    DeleteTabularDataByFilterResponse,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -224,10 +229,13 @@ class MockData(DataServiceBase):
     async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
         pass
 
-    async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
+    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
         pass
 
-    async def DeleteBinaryData(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
+     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
+        pass
+
+    async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
         pass
 
     async def DeleteBinaryDataByIDs(self, stream: Stream[DeleteBinaryDataByIDsRequest, DeleteBinaryDataByIDsResponse]) -> None:
@@ -263,6 +271,9 @@ class MockData(DataServiceBase):
         pass
 
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
+        pass
+
+    async def GetDatabaseConnection(self, stream: Stream[GetDatabaseConnectionRequest, GetDatabaseConnectionResponse]) -> None:
         pass
 
 
