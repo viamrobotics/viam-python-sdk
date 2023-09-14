@@ -22,13 +22,19 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
+    ConfigureDatabaseUserRequest,
+    ConfigureDatabaseUserResponse,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteTabularDataRequest,
+    DeleteTabularDataResponse,
     DeleteTabularDataByFilterRequest,
     DeleteTabularDataByFilterResponse,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -54,6 +60,8 @@ from viam.proto.app import (
     AppServiceBase,
     GetUserIDByEmailRequest,
     GetUserIDByEmailResponse,
+    CreateKeyRequest,
+    CreateKeyResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
     ListOrganizationsRequest,
@@ -64,6 +72,8 @@ from viam.proto.app import (
     GetOrganizationResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     DeleteOrganizationRequest,
@@ -227,6 +237,9 @@ class MockData(DataServiceBase):
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
         pass
 
+    async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
+        pass
+
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
         pass
 
@@ -263,6 +276,12 @@ class MockData(DataServiceBase):
         pass
 
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
+        pass
+
+    async def GetDatabaseConnection(self, stream: Stream[GetDatabaseConnectionRequest, GetDatabaseConnectionResponse]) -> None:
+        pass
+
+    async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
         pass
 
 
@@ -494,6 +513,12 @@ class MockApp(AppServiceBase):
         pass
 
     async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
+        pass
+
+    async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
+        pass
+
+    async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
         pass
 
 

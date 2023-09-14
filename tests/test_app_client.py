@@ -166,7 +166,6 @@ VERSION = "version"
 PLATFORM = "platform"
 MODULE_FILE_INFO = ModuleFileInfo(
     module_id=ID,
-    organization_id=ID,
     version=VERSION,
     platform=PLATFORM
 )
@@ -538,7 +537,6 @@ class TestClient:
             assert service.description == DESCRIPTION
             assert service.models == MODELS
             assert service.entrypoint == ENTRYPOINT
-            assert service.organization_id == ID
             assert service.visibility == VISIBILITY
 
     @pytest.mark.asyncio

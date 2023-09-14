@@ -25,9 +25,11 @@ from viam.proto.app.data import (
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
-    DeleteTabularDataByFilterRequest,
-    DeleteTabularDataByFilterResponse,
+    DeleteTabularDataRequest,
+    DeleteTabularDataResponse,
     Filter,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
@@ -259,17 +261,21 @@ class DataClient:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
 
-    async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
-        """Filter and delete tabular data.
+    async def delete_tabular_data(self, organization_id: str, delete_older_than_days: int) -> int:
+        """Delete tabular data older than a specified number of days.
 
         Args:
-            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Passing an empty `Filter` will lead to
-                all data being deleted. Exercise caution when using this option.
+            organization_id (str): ID of organization to delete data from.
+            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
+                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
         """
-        filter = filter if filter else Filter()
-        request = DeleteTabularDataByFilterRequest(filter=filter)
-        response: DeleteTabularDataByFilterResponse = await self._data_client.DeleteTabularDataByFilter(request, metadata=self._metadata)
+        request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days)
+        response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
+
+    async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
+        """Deprecated: use delete_tabular_data instead."""
+        raise NotImplementedError()
 
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Filter and delete binary data.
@@ -404,6 +410,25 @@ class DataClient:
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
         return list(response.labels)
+
+    async def get_database_connection(self, organization_id: str) -> str:
+        """Get a connection to access a MongoDB Atlas Data federation instance.
+
+        Args:
+            organization_id (str): Organization to retrieve the connection for.
+
+        Returns:
+            str: The hostname of the federated database.
+        """
+        request = GetDatabaseConnectionRequest(organization_id=organization_id)
+        response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(
+            request, metadata=self._metadata
+        )
+        return response.hostname
+
+    # TODO: implement
+    async def configure_database_user(self) -> None:
+        raise NotImplementedError()
 
     async def binary_data_capture_upload(
         self,
