@@ -18,7 +18,7 @@ jobs:
         with:
           organization: viamrobotics
           username: ${{ github.actor }}
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cancelling - user not part of organization
         uses: andymckay/cancel-action@0.2
@@ -32,7 +32,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install Package
-        run: poetry install
+        run: poetry install --all-extras
 
       - name: Clean Format Test
         run: make clean better_imports format test
@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           releaseName: v${{ env.SDK_VERSION }}
-          doNotFailIfNotFound: 'true'
+          doNotFailIfNotFound: "true"
 
       - name: Cancelling - release already exists
         uses: andymckay/cancel-action@0.2
@@ -106,7 +106,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install package
-        run: poetry install
+        run: poetry install --all-extras
 
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}

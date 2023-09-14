@@ -4,15 +4,15 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'The type of version bump. All versions will have `rc*` appended. `rc` version bumps will happen automatically, so select the type of version bump for the final release. Use `-s` for no change.'
+        description: "The type of version bump. All versions will have `rc*` appended. `rc` version bumps will happen automatically, so select the type of version bump for the final release. Use `-s` for no change."
         type: choice
         required: true
-        default: '-s'
+        default: "-s"
         options:
-        - major
-        - minor
-        - patch
-        - '-s'
+          - major
+          - minor
+          - patch
+          - "-s"
 
 jobs:
   prepare:
@@ -33,7 +33,7 @@ jobs:
         with:
           organization: viamrobotics
           username: ${{ github.actor }}
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cancelling - user not part of organization
         uses: andymckay/cancel-action@0.2
@@ -56,7 +56,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install Package
-        run: poetry install
+        run: poetry install --all-extras
 
       - name: Clean Format Test
         run: make clean better_imports format test
@@ -88,7 +88,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           releaseName: v${{ env.SDK_RC_VERSION }}
-          doNotFailIfNotFound: 'true'
+          doNotFailIfNotFound: "true"
 
       - name: Cancelling - release already exists
         uses: andymckay/cancel-action@0.2
@@ -141,7 +141,7 @@ jobs:
         uses: snok/install-poetry@v1
 
       - name: Install package
-        run: poetry install
+        run: poetry install --all-extras
 
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
