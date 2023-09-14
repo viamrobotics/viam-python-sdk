@@ -22,6 +22,8 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
+    ConfigureDatabaseUserRequest,
+    ConfigureDatabaseUserResponse,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
@@ -70,6 +72,8 @@ from viam.proto.app import (
     GetOrganizationResponse,
     GetOrganizationNamespaceAvailabilityRequest,
     GetOrganizationNamespaceAvailabilityResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
     DeleteOrganizationRequest,
@@ -275,6 +279,9 @@ class MockData(DataServiceBase):
         pass
 
     async def GetDatabaseConnection(self, stream: Stream[GetDatabaseConnectionRequest, GetDatabaseConnectionResponse]) -> None:
+        pass
+
+    async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
         pass
 
 
@@ -509,6 +516,9 @@ class MockApp(AppServiceBase):
         pass
 
     async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
+        pass
+
+    async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
         pass
 
 

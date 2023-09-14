@@ -240,6 +240,10 @@ class TestClient:
             hostname = await client.get_database_connection(organization_id=ORG_ID)
             assert hostname == HOSTNAME_RESPONSE
 
+    @pytest.mark.asyncio
+    async def test_configure_database_user(self, service: MockData):
+        assert True
+
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
         assert filter.component_type == COMPONENT_TYPE

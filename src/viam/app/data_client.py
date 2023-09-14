@@ -426,6 +426,10 @@ class DataClient:
         )
         return response.hostname
 
+    # TODO: implement
+    async def configure_database_user(self) -> None:
+        raise NotImplementedError()
+
     async def binary_data_capture_upload(
         self,
         binary_data: bytes,

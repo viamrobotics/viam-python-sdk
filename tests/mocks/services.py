@@ -136,7 +136,9 @@ from viam.proto.app import (
     RobotPart,
     LogEntry,
     CreateKeyRequest,
-    CreateKeyResponse
+    CreateKeyResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse
 )
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
@@ -152,6 +154,8 @@ from viam.proto.app.data import (
     BinaryDataByIDsResponse,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    ConfigureDatabaseUserRequest,
+    ConfigureDatabaseUserResponse,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
@@ -693,6 +697,9 @@ class MockData(DataServiceBase):
         self.organization_id = request.organization_id
         await stream.send_message(GetDatabaseConnectionResponse(hostname=self.hostname_response))
 
+    async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
+        raise NotImplementedError()
+
 
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
@@ -1094,4 +1101,7 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListModulesResponse(modules=[self.module]))
 
     async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
         raise NotImplementedError()
