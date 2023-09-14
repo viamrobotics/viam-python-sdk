@@ -58,6 +58,8 @@ from viam.proto.app import (
     AppServiceBase,
     GetUserIDByEmailRequest,
     GetUserIDByEmailResponse,
+    CreateKeyRequest,
+    CreateKeyResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
     ListOrganizationsRequest,
@@ -504,6 +506,9 @@ class MockApp(AppServiceBase):
         pass
 
     async def ListModules(self, stream: Stream[ListModulesRequest, ListModulesResponse]) -> None:
+        pass
+
+    async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
         pass
 
 
