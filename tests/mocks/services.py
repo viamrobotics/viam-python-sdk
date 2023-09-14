@@ -5,7 +5,6 @@ from datetime import datetime
 
 from grpclib.server import Stream
 from PIL import Image
-from viam.gen import app
 
 from viam.media.video import RawImage
 from viam.proto.app import (

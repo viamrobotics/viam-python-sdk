@@ -1183,7 +1183,6 @@ class AppClient:
         Returns:
             viam.proto.app.Module: The module.
         """
-        organization_id = await self._get_organization_id()
         request = GetModuleRequest(module_id=module_id)
         response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
         return response.module
