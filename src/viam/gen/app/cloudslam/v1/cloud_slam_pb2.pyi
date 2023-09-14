@@ -231,6 +231,7 @@ class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
     SESSION_ID_FIELD_NUMBER: builtins.int
     END_STATUS_FIELD_NUMBER: builtins.int
     TIME_CLOUD_RUN_JOB_ENDED_FIELD_NUMBER: builtins.int
+    ERROR_MSG_FIELD_NUMBER: builtins.int
     session_id: builtins.str
     end_status: builtins.str
     '“success”, “failed to start”, etc'
@@ -238,14 +239,16 @@ class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
     @property
     def time_cloud_run_job_ended(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """set at the time of job closeout and used as the package version"""
+    error_msg: builtins.str
+    'additional details on the end status if needed, such as errors'
 
-    def __init__(self, *, session_id: builtins.str=..., end_status: builtins.str=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, session_id: builtins.str=..., end_status: builtins.str=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., error_msg: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['end_status', b'end_status', 'session_id', b'session_id', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['end_status', b'end_status', 'error_msg', b'error_msg', 'session_id', b'session_id', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> None:
         ...
 global___UpdateMappingSessionMetadataByIDRequest = UpdateMappingSessionMetadataByIDRequest
 
@@ -273,6 +276,7 @@ class MappingMetadata(google.protobuf.message.Message):
     MAP_NAME_FIELD_NUMBER: builtins.int
     SLAM_VERSION_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
+    ERROR_MSG_FIELD_NUMBER: builtins.int
     org_id: builtins.str
     'org associated with the slam session'
     location_id: builtins.str
@@ -307,13 +311,15 @@ class MappingMetadata(google.protobuf.message.Message):
     'version tag from request, defaults to stable'
     config: builtins.str
     'a robot config for a slam session'
+    error_msg: builtins.str
+    'additional details on the end status if needed, such as errors'
 
-    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None=..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., end_status: builtins.str=..., cloud_run_job_id: builtins.str=..., viam_server_version: builtins.str=..., map_name: builtins.str=..., slam_version: builtins.str=..., config: builtins.str=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None=..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., end_status: builtins.str=..., cloud_run_job_id: builtins.str=..., viam_server_version: builtins.str=..., map_name: builtins.str=..., slam_version: builtins.str=..., config: builtins.str=..., error_msg: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended', 'time_cloud_run_job_started', b'time_cloud_run_job_started', 'time_end_submitted', b'time_end_submitted', 'time_start_submitted', b'time_start_submitted']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['cloud_run_job_id', b'cloud_run_job_id', 'config', b'config', 'end_status', b'end_status', 'location_id', b'location_id', 'map_name', b'map_name', 'org_id', b'org_id', 'robot_id', b'robot_id', 'slam_version', b'slam_version', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended', 'time_cloud_run_job_started', b'time_cloud_run_job_started', 'time_end_submitted', b'time_end_submitted', 'time_start_submitted', b'time_start_submitted', 'viam_server_version', b'viam_server_version']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['cloud_run_job_id', b'cloud_run_job_id', 'config', b'config', 'end_status', b'end_status', 'error_msg', b'error_msg', 'location_id', b'location_id', 'map_name', b'map_name', 'org_id', b'org_id', 'robot_id', b'robot_id', 'slam_version', b'slam_version', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended', 'time_cloud_run_job_started', b'time_cloud_run_job_started', 'time_end_submitted', b'time_end_submitted', 'time_start_submitted', b'time_start_submitted', 'viam_server_version', b'viam_server_version']) -> None:
         ...
 global___MappingMetadata = MappingMetadata

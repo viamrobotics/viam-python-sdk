@@ -135,6 +135,10 @@ from viam.proto.app import (
     Robot,
     RobotPart,
     LogEntry,
+    CreateKeyRequest,
+    CreateKeyResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse
 )
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
@@ -150,13 +154,19 @@ from viam.proto.app.data import (
     BinaryDataByIDsResponse,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
+    ConfigureDatabaseUserRequest,
+    ConfigureDatabaseUserResponse,
     DataServiceBase,
     DeleteBinaryDataByFilterRequest,
     DeleteBinaryDataByFilterResponse,
     DeleteBinaryDataByIDsRequest,
     DeleteBinaryDataByIDsResponse,
+    DeleteTabularDataRequest,
+    DeleteTabularDataResponse,
     DeleteTabularDataByFilterRequest,
     DeleteTabularDataByFilterResponse,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -552,12 +562,14 @@ class MockData(DataServiceBase):
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
+        hostname_response: str,
     ):
         self.tabular_response = tabular_response
         self.binary_response = binary_response
         self.delete_remove_response = delete_remove_response
         self.tags_response = tags_response
         self.bbox_labels_response = bbox_labels_response
+        self.hostname_response = hostname_response
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
 
@@ -604,10 +616,14 @@ class MockData(DataServiceBase):
         )
 
     async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.filter = request.filter
-        await stream.send_message(DeleteTabularDataByFilterResponse(deleted_count=self.delete_remove_response))
+        self.organization_id = request.organization_id
+        self.delete_older_than_days = request.delete_older_than_days
+        await stream.send_message(DeleteTabularDataResponse(deleted_count=self.delete_remove_response))
 
     async def DeleteBinaryDataByFilter(self, stream: Stream[DeleteBinaryDataByFilterRequest, DeleteBinaryDataByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -674,6 +690,15 @@ class MockData(DataServiceBase):
         assert request is not None
         self.filter = request.filter
         await stream.send_message(BoundingBoxLabelsByFilterResponse(labels=self.bbox_labels_response))
+
+    async def GetDatabaseConnection(self, stream: Stream[GetDatabaseConnectionRequest, GetDatabaseConnectionResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        await stream.send_message(GetDatabaseConnectionResponse(hostname=self.hostname_response))
+
+    async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
+        raise NotImplementedError()
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -1052,7 +1077,6 @@ class MockApp(AppServiceBase):
         self.description = request.description
         self.models = request.models
         self.entrypoint = request.entrypoint
-        self.organization_id = request.organization_id
         self.visibility = request.visibility
         await stream.send_message(UpdateModuleResponse(url=self.url))
 
@@ -1075,3 +1099,9 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(ListModulesResponse(modules=[self.module]))
+
+    async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
+        raise NotImplementedError()

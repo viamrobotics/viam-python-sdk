@@ -1,36 +1,36 @@
 import asyncio
 import contextvars
 import functools
-import numpy as np
 import sys
 import threading
 from datetime import datetime
 from typing import Any, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
-from numpy.typing import NDArray
 
+import numpy as np
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
+from numpy.typing import NDArray
 
 from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
-from viam.resource.base import ResourceBase
-from viam.resource.registry import Registry
-from viam.resource.types import Subtype, SupportsGetGeometries
 from viam.proto.service.mlmodel import (
-    FlatTensors,
     FlatTensor,
     FlatTensorDataDouble,
     FlatTensorDataFloat,
+    FlatTensorDataInt8,
     FlatTensorDataInt16,
     FlatTensorDataInt32,
     FlatTensorDataInt64,
-    FlatTensorDataInt8,
+    FlatTensorDataUInt8,
     FlatTensorDataUInt16,
     FlatTensorDataUInt32,
     FlatTensorDataUInt64,
-    FlatTensorDataUInt8,
+    FlatTensors,
 )
+from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry
+from viam.resource.types import Subtype, SupportsGetGeometries
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable
