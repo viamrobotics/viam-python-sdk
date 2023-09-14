@@ -971,6 +971,7 @@ class BoundingBoxLabelsByFilterResponse(google.protobuf.message.Message):
         ...
 global___BoundingBoxLabelsByFilterResponse = BoundingBoxLabelsByFilterResponse
 
+@typing_extensions.final
 class ConfigureDatabaseUserRequest(google.protobuf.message.Message):
     """ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
     being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
