@@ -26,7 +26,7 @@ from .navigation import Navigation
 
 class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
     """
-    Connect to the NavigationService, which allows the robot to create a map of its surroundings and find its location in that map.
+    Connect to the NavigationService, which allows the robot to navigate to specified locations.
     """
 
     client: NavigationServiceStub

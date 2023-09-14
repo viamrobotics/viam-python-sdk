@@ -24,7 +24,7 @@ class MyBase(Base, Reconfigurable):
     """
 
     # Subclass the Viam Base component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mybase")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "base"), "mybase")
 
     def __init__(self, name: str):
         super().__init__(name)
@@ -102,12 +102,13 @@ class MyBase(Base, Reconfigurable):
         # stop the base if absolute value of linear and angular velocity is less than 0.01
         if abs(linear.y) < 0.01 and abs(angular.z) < 0.01:
             await self.stop(extra=extra, timeout=timeout)
+            return
 
         # use linear and angular velocity to calculate percentage of max power to pass to SetPower for left & right motors
         sum = abs(linear.y) + abs(angular.z)
 
         await self.left.set_power(power=((linear.y - angular.z) / sum), extra=extra, timeout=timeout)
-        await self.right.set_power(power=((linear.y - angular.z) / sum), extra=extra, timeout=timeout)
+        await self.right.set_power(power=((linear.y + angular.z) / sum), extra=extra, timeout=timeout)
 
     # Not implemented
     async def set_velocity(

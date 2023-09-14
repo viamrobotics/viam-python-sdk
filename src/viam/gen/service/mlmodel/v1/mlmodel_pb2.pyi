@@ -42,55 +42,45 @@ global___LabelType = LabelType
 class InferRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
-    INPUT_DATA_FIELD_NUMBER: builtins.int
     INPUT_TENSORS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'name of the model service'
 
     @property
-    def input_data(self) -> google.protobuf.struct_pb2.Struct:
-        """this is a struct of input arrays/tensors as specified in the metadata"""
-
-    @property
     def input_tensors(self) -> global___FlatTensors:
-        """the input data can also be provided as set of named flat tensors"""
+        """the input data is provided as set of named flat tensors"""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., input_data: google.protobuf.struct_pb2.Struct | None=..., input_tensors: global___FlatTensors | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., input_tensors: global___FlatTensors | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_data', b'input_data', 'input_tensors', b'input_tensors']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_tensors', b'input_tensors']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_data', b'input_data', 'input_tensors', b'input_tensors', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'input_tensors', b'input_tensors', 'name', b'name']) -> None:
         ...
 global___InferRequest = InferRequest
 
 @typing_extensions.final
 class InferResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    OUTPUT_DATA_FIELD_NUMBER: builtins.int
     OUTPUT_TENSORS_FIELD_NUMBER: builtins.int
 
     @property
-    def output_data(self) -> google.protobuf.struct_pb2.Struct:
-        """this is a struct of output arrays/tensors as specified in the metadata"""
-
-    @property
     def output_tensors(self) -> global___FlatTensors:
-        """the output data can be provided as a set of named flat tensors"""
+        """the output data is provided as a set of named flat tensors"""
 
-    def __init__(self, *, output_data: google.protobuf.struct_pb2.Struct | None=..., output_tensors: global___FlatTensors | None=...) -> None:
+    def __init__(self, *, output_tensors: global___FlatTensors | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['output_data', b'output_data', 'output_tensors', b'output_tensors']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['output_tensors', b'output_tensors']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['output_data', b'output_data', 'output_tensors', b'output_tensors']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['output_tensors', b'output_tensors']) -> None:
         ...
 global___InferResponse = InferResponse
 

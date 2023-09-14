@@ -34,7 +34,9 @@ These steps assume that you have a robot available at [app.viam.com](app.viam.co
 
 The `run.sh` script is the entrypoint for this module. To connect this module with your robot, you must add this module's entrypoint to the robot's config. For example, the entrypoint file may be at `/home/viam-python-sdk/examples/complex_module/run.sh` and you must add this file path to your configuration. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#use-a-modular-resource-with-your-robot) for more details.
 
-Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/program/extend/modular-resources/#configure-a-component-instance-for-a-modular-resource) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
+Once the module has been added to your robot, add a `Gizmo` component that uses the `MyGizmo` model. See the [documentation](https://docs.viam.com/extend/modular-resources/configure/) for more details. You can also add an `Arm` component that uses the `MyArm` model and a `Summation` service that uses the `MySum` model in a similar manner.
+
+Models are uniquely namespaced as colon-delimited-triplets in the form `namespace:family:name`, and are named according to the Viam API that your model implements. A model with the `viam` namespace is always Viam-provided. Read more about making custom namespaces [here](https://docs.viam.com/extend/modular-resources/key-concepts/#models).
 
 An example configuration for an Arm component, a Gizmo component, and a Summation service could look like this:
 
@@ -44,7 +46,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
     {
       "name": "arm1",
       "type": "arm",
-      "model": "acme:demo:myarm",
+      "model": "viam:arm:myarm",
       "attributes": {},
       "depends_on": []
     },
@@ -92,7 +94,7 @@ An example configuration for an Arm component, a Gizmo component, and a Summatio
         "left": "motor1",
         "right": "motor2"
       },
-      "model": "acme:demo:mybase",
+      "model": "viam:base:mybase",
       "depends_on": []
     }
   ],

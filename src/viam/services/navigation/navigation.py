@@ -12,7 +12,7 @@ class Navigation(ServiceBase):
     Navigation represents a Navigation service.
 
     This acts as an abstract base class for any drivers representing specific
-    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+    navigation service implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
 

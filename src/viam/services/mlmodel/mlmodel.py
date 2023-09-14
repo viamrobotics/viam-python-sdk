@@ -1,6 +1,7 @@
 import abc
-from numpy.typing import NDArray
 from typing import Dict, Final, Optional
+
+from numpy.typing import NDArray
 
 from viam.proto.service.mlmodel import Metadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype

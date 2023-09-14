@@ -1,7 +1,7 @@
 import asyncio
 from datetime import timedelta
 from enum import IntEnum
-from threading import Thread, Lock
+from threading import Lock, Thread
 from typing import Optional
 
 from grpclib import Status

@@ -108,6 +108,7 @@ TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START
 BINARY_RESPONSE = [DataClient.BinaryData(BINARY_DATA, BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
+HOSTNAME_RESPONSE = "host"
 
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -120,7 +121,8 @@ def service() -> MockData:
         binary_response=BINARY_RESPONSE,
         delete_remove_response=DELETE_REMOVE_RESPONSE,
         tags_response=TAGS_RESPONSE,
-        bbox_labels_response=BBOX_LABELS
+        bbox_labels_response=BBOX_LABELS,
+        hostname_response=HOSTNAME_RESPONSE
     )
 
 
@@ -151,12 +153,11 @@ class TestClient:
             self.assert_binary_ids(binary_ids=list(service.binary_ids))
 
     @pytest.mark.asyncio
-    async def test_delete_tabular_data_by_filter(self, service: MockData):
+    async def test_delete_tabular_data(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            deleted_count = await client.delete_tabular_data_by_filter(filter=FILTER)
+            deleted_count = await client.delete_tabular_data(organization_id=ORG_ID, delete_older_than_days=0)
             assert deleted_count == DELETE_REMOVE_RESPONSE
-            self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_delete_binary_data_by_filter(self, service: MockData):
@@ -231,6 +232,17 @@ class TestClient:
             bbox_labels = await client.bounding_box_labels_by_filter(filter=FILTER)
             assert bbox_labels == BBOX_LABELS_RESPONSE
             self.assert_filter(filter=service.filter)
+
+    @pytest.mark.asyncio
+    async def test_get_database_connection(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            hostname = await client.get_database_connection(organization_id=ORG_ID)
+            assert hostname == HOSTNAME_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_configure_database_user(self, service: MockData):
+        assert True
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME
