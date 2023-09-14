@@ -123,12 +123,6 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.dict_to_struct" title="viam.utils.dict_to_struct"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict_to_struct</span></code></a>(→ google.protobuf.struct_pb2.Struct)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.flat_tensors_to_ndarrays" title="viam.utils.flat_tensors_to_ndarrays"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flat_tensors_to_ndarrays</span></code></a>(→ Dict[str, numpy.typing.NDArray])</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.utils.ndarrays_to_flat_tensors" title="viam.utils.ndarrays_to_flat_tensors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ndarrays_to_flat_tensors</span></code></a>(...)</p></td>
-<td><p></p></td>
-</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.utils.struct_to_dict" title="viam.utils.struct_to_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">struct_to_dict</span></code></a>(→ Dict[str, ValueTypes])</p></td>
 <td><p></p></td>
 </tr>
@@ -219,16 +213,6 @@ Supports primitive types of
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.utils.dict_to_struct">
 <span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">dict_to_struct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">google.protobuf.struct_pb2.Struct</span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#dict_to_struct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.dict_to_struct" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="viam.utils.flat_tensors_to_ndarrays">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">flat_tensors_to_ndarrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flat_tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../proto/service/mlmodel/index.html#viam.proto.service.mlmodel.FlatTensors" title="viam.proto.service.mlmodel.FlatTensors"><span class="pre">viam.proto.service.mlmodel.FlatTensors</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#flat_tensors_to_ndarrays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.flat_tensors_to_ndarrays" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="viam.utils.ndarrays_to_flat_tensors">
-<span class="sig-prename descclassname"><span class="pre">viam.utils.</span></span><span class="sig-name descname"><span class="pre">ndarrays_to_flat_tensors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ndarrays</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.typing.NDArray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../proto/service/mlmodel/index.html#viam.proto.service.mlmodel.FlatTensors" title="viam.proto.service.mlmodel.FlatTensors"><span class="pre">viam.proto.service.mlmodel.FlatTensors</span></a></span></span><a class="reference internal" href="../../../_modules/viam/utils.html#ndarrays_to_flat_tensors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.utils.ndarrays_to_flat_tensors" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
