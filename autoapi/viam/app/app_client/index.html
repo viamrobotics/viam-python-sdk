@@ -177,6 +177,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.AppClient.upload_module_file"><code class="docutils literal notranslate"><span class="pre">AppClient.upload_module_file()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.AppClient.get_module"><code class="docutils literal notranslate"><span class="pre">AppClient.get_module()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.AppClient.list_modules"><code class="docutils literal notranslate"><span class="pre">AppClient.list_modules()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.app_client.AppClient.create_key"><code class="docutils literal notranslate"><span class="pre">AppClient.create_key()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1420,8 +1421,6 @@ are provided, all resource authorizations within the organizations are returned.
 <li><p><strong>description</strong> (<em>str</em>) – A short description of the module that explains its purpose.</p></li>
 <li><p><strong>models</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Model" title="viam.proto.app.Model"><em>viam.proto.app.Model</em></a><em>]</em><em>]</em>) – list of models that are available in the module.</p></li>
 <li><p><strong>entrypoint</strong> (<em>str</em>) – The executable to run to start the module program.</p></li>
-<li><p><strong>organization_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of organization of the module being updated, required if no namespace exists in the
-module ID.</p></li>
 <li><p><strong>public</strong> (<em>bool</em>) – The visibility that should be set for the module. Defaults to False (private).</p></li>
 </ul>
 </dd>
@@ -1490,6 +1489,11 @@ module ID.</p></li>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_key">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><span class="pre">viam.proto.app.Authorization</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

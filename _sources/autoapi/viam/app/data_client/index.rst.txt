@@ -168,14 +168,23 @@ Attributes
       :rtype: List[bytes]
 
 
-   .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
+   .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int) -> int
       :async:
 
-      Filter and delete tabular data.
+      Delete tabular data older than a specified number of days.
 
-      :param filter: Optional `Filter` specifying tabular data to delete. Passing an empty `Filter` will lead to
-                     all data being deleted. Exercise caution when using this option.
-      :type filter: viam.proto.app.data.Filter
+      :param organization_id: ID of organization to delete data from.
+      :type organization_id: str
+      :param delete_older_than_days: Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
+                                     is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
+      :type delete_older_than_days: int
+
+
+   .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
+      :abstractmethod:
+      :async:
+
+      Deprecated: use delete_tabular_data instead.
 
 
    .. py:method:: delete_binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
@@ -296,6 +305,23 @@ Attributes
 
       :returns: The list of bounding box labels.
       :rtype: List[str]
+
+
+   .. py:method:: get_database_connection(organization_id: str) -> str
+      :async:
+
+      Get a connection to access a MongoDB Atlas Data federation instance.
+
+      :param organization_id: Organization to retrieve the connection for.
+      :type organization_id: str
+
+      :returns: The hostname of the federated database.
+      :rtype: str
+
+
+   .. py:method:: configure_database_user() -> None
+      :abstractmethod:
+      :async:
 
 
    .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> None

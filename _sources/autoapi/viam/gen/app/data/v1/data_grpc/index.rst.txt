@@ -46,6 +46,11 @@ Classes
       :async:
 
 
+   .. py:method:: DeleteTabularData(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteTabularDataRequest, app.data.v1.data_pb2.DeleteTabularDataResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: DeleteBinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest, app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse]) -> None
       :abstractmethod:
       :async:
@@ -92,6 +97,16 @@ Classes
 
 
    .. py:method:: BoundingBoxLabelsByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest, app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: GetDatabaseConnection(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetDatabaseConnectionRequest, app.data.v1.data_pb2.GetDatabaseConnectionResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ConfigureDatabaseUser(stream: grpclib.server.Stream[app.data.v1.data_pb2.ConfigureDatabaseUserRequest, app.data.v1.data_pb2.ConfigureDatabaseUserResponse]) -> None
       :abstractmethod:
       :async:
 

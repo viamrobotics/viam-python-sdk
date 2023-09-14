@@ -1222,8 +1222,6 @@
 <span class="sd">            description (str): A short description of the module that explains its purpose.</span>
 <span class="sd">            models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.</span>
 <span class="sd">            entrypoint (str): The executable to run to start the module program.</span>
-<span class="sd">            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the</span>
-<span class="sd">                module ID.</span>
 <span class="sd">            public (bool): The visibility that should be set for the module. Defaults to False (private).</span>
 
 <span class="sd">        Raises:</span>
@@ -1234,7 +1232,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateModuleRequest</span><span class="p">(</span>
             <span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span> <span class="k">if</span> <span class="n">organization_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">visibility</span><span class="o">=</span><span class="n">Visibility</span><span class="o">.</span><span class="n">VISIBILITY_PUBLIC</span> <span class="k">if</span> <span class="n">public</span> <span class="k">else</span> <span class="n">Visibility</span><span class="o">.</span><span class="n">VISIBILITY_PRIVATE</span><span class="p">,</span>
             <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
             <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span>
@@ -1275,8 +1272,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Module: The module.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetModuleRequest</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">module</span></div>
 
@@ -1289,7 +1285,11 @@
         <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListModulesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListModules</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span></div>
+
+    <span class="c1"># TODO: implement</span>
+<div class="viewcode-block" id="AppClient.create_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

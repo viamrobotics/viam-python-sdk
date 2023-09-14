@@ -252,7 +252,7 @@ Classes
 
 
 
-.. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: str = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ...)
+.. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: str = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ..., error_msg: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -327,6 +327,11 @@ Classes
       :type: str
 
       a robot config for a slam session
+
+   .. py:attribute:: error_msg
+      :type: str
+
+      additional details on the end status if needed, such as errors
 
    .. py:method:: HasField(field_name: Literal[time_cloud_run_job_ended, b'time_cloud_run_job_ended', time_cloud_run_job_started, b'time_cloud_run_job_started', time_end_submitted, b'time_end_submitted', time_start_submitted, b'time_start_submitted']) -> bool
 
@@ -463,7 +468,7 @@ Classes
       
 
 
-.. py:class:: UpdateMappingSessionMetadataByIDRequest(*, session_id: str = ..., end_status: str = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: UpdateMappingSessionMetadataByIDRequest(*, session_id: str = ..., end_status: str = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., error_msg: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -484,6 +489,11 @@ Classes
       :type: str
 
       “success”, “failed to start”, etc
+
+   .. py:attribute:: error_msg
+      :type: str
+
+      additional details on the end status if needed, such as errors
 
    .. py:method:: HasField(field_name: Literal[time_cloud_run_job_ended, b'time_cloud_run_job_ended']) -> bool
 

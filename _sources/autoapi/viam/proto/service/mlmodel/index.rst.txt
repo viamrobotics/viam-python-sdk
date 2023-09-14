@@ -407,7 +407,7 @@ Classes
       A name-indexed collection of flat tensor objects
 
 
-.. py:class:: InferRequest(*, name: str = ..., input_data: google.protobuf.struct_pb2.Struct | None = ..., input_tensors: global___FlatTensors | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: InferRequest(*, name: str = ..., input_tensors: global___FlatTensors | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -418,15 +418,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: input_data
-      :type: google.protobuf.struct_pb2.Struct
-
-      this is a struct of input arrays/tensors as specified in the metadata
-
    .. py:property:: input_tensors
       :type: global___FlatTensors
 
-      the input data can also be provided as set of named flat tensors
+      the input data is provided as set of named flat tensors
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
@@ -438,7 +433,7 @@ Classes
 
       name of the model service
 
-   .. py:method:: HasField(field_name: Literal[extra, b'extra', input_data, b'input_data', input_tensors, b'input_tensors']) -> bool
+   .. py:method:: HasField(field_name: Literal[extra, b'extra', input_tensors, b'input_tensors']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -456,7 +451,7 @@ Classes
 
 
 
-.. py:class:: InferResponse(*, output_data: google.protobuf.struct_pb2.Struct | None = ..., output_tensors: global___FlatTensors | None = ...)
+.. py:class:: InferResponse(*, output_tensors: global___FlatTensors | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -467,17 +462,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: output_data
-      :type: google.protobuf.struct_pb2.Struct
-
-      this is a struct of output arrays/tensors as specified in the metadata
-
    .. py:property:: output_tensors
       :type: global___FlatTensors
 
-      the output data can be provided as a set of named flat tensors
+      the output data is provided as a set of named flat tensors
 
-   .. py:method:: HasField(field_name: Literal[output_data, b'output_data', output_tensors, b'output_tensors']) -> bool
+   .. py:method:: HasField(field_name: Literal[output_tensors, b'output_tensors']) -> bool
 
       Checks if a certain field is set for the message.
 

@@ -90,36 +90,36 @@
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">import</span> <span class="nn">contextvars</span>
 <span class="kn">import</span> <span class="nn">functools</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">SupportsBytes</span><span class="p">,</span> <span class="n">SupportsFloat</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Union</span>
-<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">NDArray</span>
 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.json_format</span> <span class="kn">import</span> <span class="n">MessageToDict</span><span class="p">,</span> <span class="n">ParseDict</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.message</span> <span class="kn">import</span> <span class="n">Message</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">ListValue</span><span class="p">,</span> <span class="n">Struct</span><span class="p">,</span> <span class="n">Value</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.timestamp_pb2</span> <span class="kn">import</span> <span class="n">Timestamp</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">NDArray</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Vector3</span>
-<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
-<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
-<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">SupportsGetGeometries</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.mlmodel</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FlatTensors</span><span class="p">,</span>
     <span class="n">FlatTensor</span><span class="p">,</span>
     <span class="n">FlatTensorDataDouble</span><span class="p">,</span>
     <span class="n">FlatTensorDataFloat</span><span class="p">,</span>
+    <span class="n">FlatTensorDataInt8</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt16</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt32</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt64</span><span class="p">,</span>
-    <span class="n">FlatTensorDataInt8</span><span class="p">,</span>
+    <span class="n">FlatTensorDataUInt8</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt16</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt32</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt64</span><span class="p">,</span>
-    <span class="n">FlatTensorDataUInt8</span><span class="p">,</span>
+    <span class="n">FlatTensors</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
+<span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
+<span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">Subtype</span><span class="p">,</span> <span class="n">SupportsGetGeometries</span>
 
 <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
     <span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span>

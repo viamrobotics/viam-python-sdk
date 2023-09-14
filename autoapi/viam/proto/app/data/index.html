@@ -75,6 +75,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BinaryDataByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BinaryDataByFilter()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BinaryDataByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BinaryDataByIDs()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteTabularDataByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteTabularDataByFilter()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteTabularData"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteTabularData()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteBinaryDataByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteBinaryDataByFilter()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteBinaryDataByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteBinaryDataByIDs()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddTagsToBinaryDataByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddTagsToBinaryDataByIDs()</span></code></a></li>
@@ -85,6 +86,8 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.AddBoundingBoxToImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.AddBoundingBoxToImageByID()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.RemoveBoundingBoxFromImageByID"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.RemoveBoundingBoxFromImageByID()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BoundingBoxLabelsByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BoundingBoxLabelsByFilter()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.GetDatabaseConnection"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.GetDatabaseConnection()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.ConfigureDatabaseUser()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -130,6 +133,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.BinaryDataByFilterRequest.data_request"><code class="docutils literal notranslate"><span class="pre">BinaryDataByFilterRequest.data_request</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.BinaryDataByFilterRequest.include_binary"><code class="docutils literal notranslate"><span class="pre">BinaryDataByFilterRequest.include_binary</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.BinaryDataByFilterRequest.count_only"><code class="docutils literal notranslate"><span class="pre">BinaryDataByFilterRequest.count_only</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.BinaryDataByFilterRequest.include_internal_data"><code class="docutils literal notranslate"><span class="pre">BinaryDataByFilterRequest.include_internal_data</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.BinaryDataByFilterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">BinaryDataByFilterRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -213,6 +217,12 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata.mime_type"><code class="docutils literal notranslate"><span class="pre">CaptureMetadata.mime_type</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest.organization_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest.password"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest.password</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataRequest"><code class="docutils literal notranslate"><span class="pre">DataRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataRequest.filter"><code class="docutils literal notranslate"><span class="pre">DataRequest.filter</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataRequest.limit"><code class="docutils literal notranslate"><span class="pre">DataRequest.limit</span></code></a></li>
@@ -223,6 +233,7 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest"><code class="docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest.filter"><code class="docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest.filter</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest.include_internal_data"><code class="docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest.include_internal_data</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">DeleteBinaryDataByFilterRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -247,6 +258,15 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataByFilterResponse.deleted_count"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterResponse.deleted_count</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.organization_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataRequest.delete_older_than_days</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse.deleted_count"><code class="docutils literal notranslate"><span class="pre">DeleteTabularDataResponse.deleted_count</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Filter"><code class="docutils literal notranslate"><span class="pre">Filter</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.Filter.location_ids"><code class="docutils literal notranslate"><span class="pre">Filter.location_ids</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.Filter.organization_ids"><code class="docutils literal notranslate"><span class="pre">Filter.organization_ids</span></code></a></li>
@@ -262,6 +282,14 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.Filter.part_name"><code class="docutils literal notranslate"><span class="pre">Filter.part_name</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.Filter.part_id"><code class="docutils literal notranslate"><span class="pre">Filter.part_id</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.Filter.HasField"><code class="docutils literal notranslate"><span class="pre">Filter.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest.organization_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse.hostname"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse.hostname</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a></li>
@@ -302,6 +330,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest.data_request"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterRequest.data_request</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest.count_only"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterRequest.count_only</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest.include_internal_data"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterRequest.include_internal_data</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterRequest.HasField()</span></code></a></li>
 </ul>
 </li>
@@ -455,6 +484,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureMetadata</span></code></a></p></td>
 <td><p>CaptureMetadata contains information on the settings used for the data capture</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserRequest" title="viam.proto.app.data.ConfigureDatabaseUserRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserRequest</span></code></a></p></td>
+<td><p>ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.ConfigureDatabaseUserResponse" title="viam.proto.app.data.ConfigureDatabaseUserResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigureDatabaseUserResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DataRequest" title="viam.proto.app.data.DataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataRequest</span></code></a></p></td>
 <td><p>DataRequest encapsulates the filter for the data, a limit on the maximum results returned,</p></td>
 </tr>
@@ -476,8 +511,20 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataByFilterResponse" title="viam.proto.app.data.DeleteTabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataByFilterResponse</span></code></a></p></td>
 <td><p>DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataRequest" title="viam.proto.app.data.DeleteTabularDataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataRequest</span></code></a></p></td>
+<td><p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.DeleteTabularDataResponse" title="viam.proto.app.data.DeleteTabularDataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteTabularDataResponse</span></code></a></p></td>
+<td><p>DeleteBinaryDataResponse returns the number of tabular datapoints deleted.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Filter</span></code></a></p></td>
 <td><p>Filter defines the fields over which we can filter data using a logic AND.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="viam.proto.app.data.GetDatabaseConnectionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p>Order specifies the order in which data is returned.</p></td>
@@ -550,6 +597,11 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.DeleteTabularData">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteTabularData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest"><span class="pre">app.data.v1.data_pb2.DeleteTabularDataRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteTabularDataResponse" title="viam.gen.app.data.v1.data_pb2.DeleteTabularDataResponse"><span class="pre">app.data.v1.data_pb2.DeleteTabularDataResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.DeleteTabularData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.DeleteTabularData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.DeleteBinaryDataByFilter">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteBinaryDataByFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest"><span class="pre">app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse"><span class="pre">app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.DeleteBinaryDataByFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.DeleteBinaryDataByFilter" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -597,6 +649,16 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.BoundingBoxLabelsByFilter">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BoundingBoxLabelsByFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest"><span class="pre">app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse" title="viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse"><span class="pre">app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.BoundingBoxLabelsByFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.BoundingBoxLabelsByFilter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.GetDatabaseConnection">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetDatabaseConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest" title="viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest"><span class="pre">app.data.v1.data_pb2.GetDatabaseConnectionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse" title="viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse"><span class="pre">app.data.v1.data_pb2.GetDatabaseConnectionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.GetDatabaseConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.GetDatabaseConnection" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ConfigureDatabaseUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserRequest" title="viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserRequest"><span class="pre">app.data.v1.data_pb2.ConfigureDatabaseUserRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserResponse" title="viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserResponse"><span class="pre">app.data.v1.data_pb2.ConfigureDatabaseUserResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.ConfigureDatabaseUser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.ConfigureDatabaseUser" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -823,7 +885,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.BinaryDataByFilterRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">BinaryDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.BinaryDataByFilterRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">BinaryDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.BinaryDataByFilterRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided</p>
 <dl class="py property">
@@ -839,6 +901,11 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.BinaryDataByFilterRequest.count_only">
 <span class="sig-name descname"><span class="pre">count_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.BinaryDataByFilterRequest.count_only" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.BinaryDataByFilterRequest.include_internal_data">
+<span class="sig-name descname"><span class="pre">include_internal_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.BinaryDataByFilterRequest.include_internal_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1267,6 +1334,35 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.ConfigureDatabaseUserRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">ConfigureDatabaseUserRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.ConfigureDatabaseUserRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
+being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
+flight, including the password.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.ConfigureDatabaseUserRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.ConfigureDatabaseUserRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.ConfigureDatabaseUserRequest.password">
+<span class="sig-name descname"><span class="pre">password</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.ConfigureDatabaseUserRequest.password" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.ConfigureDatabaseUserResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">ConfigureDatabaseUserResponse</span></span><a class="headerlink" href="#viam.proto.app.data.ConfigureDatabaseUserResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Filter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Order</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DataRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1323,12 +1419,17 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteBinaryDataByFilterRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Filter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteBinaryDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Filter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.data.DeleteBinaryDataByFilterRequest.filter">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Filter</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest.filter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteBinaryDataByFilterRequest.include_internal_data">
+<span class="sig-name descname"><span class="pre">include_internal_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteBinaryDataByFilterRequest.include_internal_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1440,6 +1541,37 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DeleteTabularDataRequest deletes the data from the organization that is older than <cite>delete_older_than_days</cite>.
+For example if <cite>delete_older_than_days</cite> is 10, this deletes any data that was captured up to 10 days ago.
+If it is 0, all existing data is deleted.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days">
+<span class="sig-name descname"><span class="pre">delete_older_than_days</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataRequest.delete_older_than_days" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">DeleteTabularDataResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deleted_count</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>DeleteBinaryDataResponse returns the number of tabular datapoints deleted.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.DeleteTabularDataResponse.deleted_count">
+<span class="sig-name descname"><span class="pre">deleted_count</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.DeleteTabularDataResponse.deleted_count" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.Filter">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mime_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CaptureInterval</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___TagsFilter</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bbox_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.Filter" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1536,6 +1668,36 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">GetDatabaseConnectionRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">GetDatabaseConnectionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse.hostname">
+<span class="sig-name descname"><span class="pre">hostname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse.hostname" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -1735,7 +1897,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByFilterRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByFilterRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByFilterRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataRequest</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByFilterRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>TabularDataByFilterRequest requests tabular data based on filter values</p>
 <dl class="py property">
@@ -1746,6 +1908,11 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByFilterRequest.count_only">
 <span class="sig-name descname"><span class="pre">count_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByFilterRequest.count_only" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByFilterRequest.include_internal_data">
+<span class="sig-name descname"><span class="pre">include_internal_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByFilterRequest.include_internal_data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

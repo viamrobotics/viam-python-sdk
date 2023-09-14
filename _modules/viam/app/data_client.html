@@ -114,9 +114,11 @@
     <span class="n">DeleteBinaryDataByFilterResponse</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByIDsResponse</span><span class="p">,</span>
-    <span class="n">DeleteTabularDataByFilterRequest</span><span class="p">,</span>
-    <span class="n">DeleteTabularDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">DeleteTabularDataRequest</span><span class="p">,</span>
+    <span class="n">DeleteTabularDataResponse</span><span class="p">,</span>
     <span class="n">Filter</span><span class="p">,</span>
+    <span class="n">GetDatabaseConnectionRequest</span><span class="p">,</span>
+    <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterResponse</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByIDsRequest</span><span class="p">,</span>
@@ -348,17 +350,21 @@
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete tabular data.</span>
+<div class="viewcode-block" id="DataClient.delete_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete tabular data older than a specified number of days.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to delete. Passing an empty `Filter` will lead to</span>
-<span class="sd">                all data being deleted. Exercise caution when using this option.</span>
+<span class="sd">            organization_id (str): ID of organization to delete data from.</span>
+<span class="sd">            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`</span>
+<span class="sd">                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">deleted_count</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Deprecated: use delete_tabular_data instead.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DataClient.delete_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
@@ -493,6 +499,25 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">BoundingBoxLabelsByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BoundingBoxLabelsByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">labels</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.get_database_connection"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_database_connection">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_database_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a connection to access a MongoDB Atlas Data federation instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): Organization to retrieve the connection for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The hostname of the federated database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDatabaseConnectionRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetDatabaseConnectionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetDatabaseConnection</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">hostname</span></div>
+
+    <span class="c1"># TODO: implement</span>
+<div class="viewcode-block" id="DataClient.configure_database_user"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.configure_database_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">configure_database_user</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="DataClient.binary_data_capture_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

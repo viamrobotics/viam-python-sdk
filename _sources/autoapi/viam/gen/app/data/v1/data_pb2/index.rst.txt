@@ -39,6 +39,8 @@ Classes
    viam.gen.app.data.v1.data_pb2.BinaryMetadata
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse
+   viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest
@@ -59,6 +61,10 @@ Classes
    viam.gen.app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse
    viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest
    viam.gen.app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse
+   viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserRequest
+   viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserResponse
+   viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest
+   viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse
 
 
 
@@ -97,6 +103,8 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___BinaryMetadata
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataByFilterResponse
+   viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataRequest
+   viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByIDsRequest
@@ -117,6 +125,10 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___RemoveBoundingBoxFromImageByIDResponse
    viam.gen.app.data.v1.data_pb2.global___BoundingBoxLabelsByFilterRequest
    viam.gen.app.data.v1.data_pb2.global___BoundingBoxLabelsByFilterResponse
+   viam.gen.app.data.v1.data_pb2.global___ConfigureDatabaseUserRequest
+   viam.gen.app.data.v1.data_pb2.global___ConfigureDatabaseUserResponse
+   viam.gen.app.data.v1.data_pb2.global___GetDatabaseConnectionRequest
+   viam.gen.app.data.v1.data_pb2.global___GetDatabaseConnectionResponse
 
 
 .. py:data:: DESCRIPTOR
@@ -496,7 +508,7 @@ Attributes
 
    
 
-.. py:class:: TabularDataByFilterRequest(*, data_request: global___DataRequest | None = ..., count_only: bool = ...)
+.. py:class:: TabularDataByFilterRequest(*, data_request: global___DataRequest | None = ..., count_only: bool = ..., include_internal_data: bool = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -508,6 +520,11 @@ Attributes
 
 
    .. py:attribute:: count_only
+      :type: bool
+
+      
+
+   .. py:attribute:: include_internal_data
       :type: bool
 
       
@@ -661,7 +678,7 @@ Attributes
 
    
 
-.. py:class:: BinaryDataByFilterRequest(*, data_request: global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ...)
+.. py:class:: BinaryDataByFilterRequest(*, data_request: global___DataRequest | None = ..., include_binary: bool = ..., count_only: bool = ..., include_internal_data: bool = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -678,6 +695,11 @@ Attributes
       
 
    .. py:attribute:: count_only
+      :type: bool
+
+      
+
+   .. py:attribute:: include_internal_data
       :type: bool
 
       
@@ -986,7 +1008,48 @@ Attributes
 
    
 
-.. py:class:: DeleteBinaryDataByFilterRequest(*, filter: global___Filter | None = ...)
+.. py:class:: DeleteTabularDataRequest(*, organization_id: str = ..., delete_older_than_days: int = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   DeleteTabularDataRequest deletes the data from the organization that is older than `delete_older_than_days`.
+   For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
+   If it is 0, all existing data is deleted.
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: delete_older_than_days
+      :type: int
+
+      
+
+
+.. py:data:: global___DeleteTabularDataRequest
+
+   
+
+.. py:class:: DeleteTabularDataResponse(*, deleted_count: int = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   DeleteBinaryDataResponse returns the number of tabular datapoints deleted.
+
+   .. py:attribute:: deleted_count
+      :type: int
+
+      
+
+
+.. py:data:: global___DeleteTabularDataResponse
+
+   
+
+.. py:class:: DeleteBinaryDataByFilterRequest(*, filter: global___Filter | None = ..., include_internal_data: bool = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -996,6 +1059,11 @@ Attributes
    .. py:property:: filter
       :type: global___Filter
 
+
+   .. py:attribute:: include_internal_data
+      :type: bool
+
+      
 
    .. py:method:: HasField(field_name: Literal[filter, b'filter']) -> bool
 
@@ -1493,6 +1561,88 @@ Attributes
 
 
 .. py:data:: global___BoundingBoxLabelsByFilterResponse
+
+   
+
+.. py:class:: ConfigureDatabaseUserRequest(*, organization_id: str = ..., password: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   ConfigureDatabaseUserRequest accepts a Viam organization ID and a password for the database user
+   being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
+   flight, including the password.
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: password
+      :type: str
+
+      
+
+
+.. py:data:: global___ConfigureDatabaseUserRequest
+
+   
+
+.. py:class:: ConfigureDatabaseUserResponse
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___ConfigureDatabaseUserResponse
+
+   
+
+.. py:class:: GetDatabaseConnectionRequest(*, organization_id: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+
+.. py:data:: global___GetDatabaseConnectionRequest
+
+   
+
+.. py:class:: GetDatabaseConnectionResponse(*, hostname: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: hostname
+      :type: str
+
+      
+
+
+.. py:data:: global___GetDatabaseConnectionResponse
 
    
 

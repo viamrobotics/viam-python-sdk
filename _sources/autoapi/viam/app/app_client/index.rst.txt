@@ -980,9 +980,6 @@ Attributes
       :type models: Optional[List[viam.proto.app.Model]]
       :param entrypoint: The executable to run to start the module program.
       :type entrypoint: str
-      :param organization_id: ID of organization of the module being updated, required if no namespace exists in the
-                              module ID.
-      :type organization_id: Optional[str]
       :param public: The visibility that should be set for the module. Defaults to False (private).
       :type public: bool
 
@@ -1027,6 +1024,11 @@ Attributes
 
       :returns: The list of modules.
       :rtype: List[viam.proto.app.Module]
+
+
+   .. py:method:: create_key(authorizations: List[viam.proto.app.Authorization], name: str) -> Tuple[str, str]
+      :abstractmethod:
+      :async:
 
 
 
