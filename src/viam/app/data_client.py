@@ -28,6 +28,8 @@ from viam.proto.app.data import (
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
     Filter,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
@@ -271,6 +273,10 @@ class DataClient:
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
         return response.deleted_count
 
+    async def delete_tabular_data_by_filter(self, filter: Optional[Filter]) -> int:
+        """Deprecated: use delete_tabular_data instead."""
+        raise NotImplementedError()
+
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Filter and delete binary data.
 
@@ -404,6 +410,21 @@ class DataClient:
         request = BoundingBoxLabelsByFilterRequest(filter=filter)
         response: BoundingBoxLabelsByFilterResponse = await self._data_client.BoundingBoxLabelsByFilter(request, metadata=self._metadata)
         return list(response.labels)
+
+    async def get_database_connection(self, organization_id: str) -> str:
+        """Get a connection to access a MongoDB Atlas Data federation instance.
+
+        Args:
+            organization_id (str): Organization to retrieve the connection for.
+
+        Returns:
+            str: The hostname of the federated database.
+        """
+        request = GetDatabaseConnectionRequest(organization_id=organization_id)
+        response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(
+            request, metadata=self._metadata
+        )
+        return response.hostname
 
     async def binary_data_capture_upload(
         self,

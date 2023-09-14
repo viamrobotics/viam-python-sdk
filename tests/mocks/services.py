@@ -5,6 +5,7 @@ from datetime import datetime
 
 from grpclib.server import Stream
 from PIL import Image
+from viam.gen import app
 
 from viam.media.video import RawImage
 from viam.proto.app import (
@@ -135,6 +136,8 @@ from viam.proto.app import (
     Robot,
     RobotPart,
     LogEntry,
+    CreateKeyRequest,
+    CreateKeyResponse
 )
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
@@ -157,6 +160,10 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
+    DeleteTabularDataByFilterRequest,
+    DeleteTabularDataByFilterResponse,
+    GetDatabaseConnectionRequest,
+    GetDatabaseConnectionResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -552,12 +559,14 @@ class MockData(DataServiceBase):
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
+        hostname_response: str,
     ):
         self.tabular_response = tabular_response
         self.binary_response = binary_response
         self.delete_remove_response = delete_remove_response
         self.tags_response = tags_response
         self.bbox_labels_response = bbox_labels_response
+        self.hostname_response = hostname_response
         self.was_tabular_data_requested = False
         self.was_binary_data_requested = False
 
@@ -602,6 +611,9 @@ class MockData(DataServiceBase):
         await stream.send_message(
             BinaryDataByIDsResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
+
+    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
+        raise NotImplementedError()
 
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         request = await stream.recv_message()
@@ -675,6 +687,12 @@ class MockData(DataServiceBase):
         assert request is not None
         self.filter = request.filter
         await stream.send_message(BoundingBoxLabelsByFilterResponse(labels=self.bbox_labels_response))
+
+    async def GetDatabaseConnection(self, stream: Stream[GetDatabaseConnectionRequest, GetDatabaseConnectionResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        await stream.send_message(GetDatabaseConnectionResponse(hostname=self.hostname_response))
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -1053,7 +1071,6 @@ class MockApp(AppServiceBase):
         self.description = request.description
         self.models = request.models
         self.entrypoint = request.entrypoint
-        self.organization_id = request.organization_id
         self.visibility = request.visibility
         await stream.send_message(UpdateModuleResponse(url=self.url))
 
@@ -1076,3 +1093,6 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(ListModulesResponse(modules=[self.module]))
+
+    async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
+        raise NotImplementedError()

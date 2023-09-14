@@ -1133,8 +1133,6 @@ class AppClient:
             description (str): A short description of the module that explains its purpose.
             models (Optional[List[viam.proto.app.Model]]): list of models that are available in the module.
             entrypoint (str): The executable to run to start the module program.
-            organization_id (Optional[str]): ID of organization of the module being updated, required if no namespace exists in the
-                module ID.
             public (bool): The visibility that should be set for the module. Defaults to False (private).
 
         Raises:
@@ -1145,7 +1143,6 @@ class AppClient:
         """
         request = UpdateModuleRequest(
             module_id=module_id,
-            organization_id=organization_id if organization_id else "",
             visibility=Visibility.VISIBILITY_PUBLIC if public else Visibility.VISIBILITY_PRIVATE,
             url=url,
             description=description,
@@ -1187,7 +1184,7 @@ class AppClient:
             viam.proto.app.Module: The module.
         """
         organization_id = await self._get_organization_id()
-        request = GetModuleRequest(module_id=module_id, organization_id=organization_id)
+        request = GetModuleRequest(module_id=module_id)
         response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
         return response.module
 
@@ -1201,3 +1198,7 @@ class AppClient:
         request = ListModulesRequest(organization_id=organization_id)
         response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
         return list(response.modules)
+
+    # TODO: implement
+    async def create_key(self, authorizations: List[Authorization], name: str) -> Tuple[str, str]:
+        raise NotImplementedError()
