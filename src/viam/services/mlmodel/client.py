@@ -1,12 +1,12 @@
 from typing import Dict, Mapping, Optional
 
 from grpclib.client import Channel
+from numpy.typing import NDArray
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict, flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
-from numpy.typing import NDArray
+from viam.utils import ValueTypes, dict_to_struct, flat_tensors_to_ndarrays, ndarrays_to_flat_tensors, struct_to_dict
 
 from .mlmodel import Metadata, MLModel
 
