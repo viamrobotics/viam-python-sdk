@@ -1,20 +1,21 @@
-import numpy as np
-from numpy.typing import NDArray
 from typing import Dict
 
+import numpy as np
+from numpy.typing import NDArray
+
 from viam.proto.service.mlmodel import (
-    FlatTensors,
     FlatTensor,
     FlatTensorDataDouble,
     FlatTensorDataFloat,
+    FlatTensorDataInt8,
     FlatTensorDataInt16,
     FlatTensorDataInt32,
     FlatTensorDataInt64,
-    FlatTensorDataInt8,
+    FlatTensorDataUInt8,
     FlatTensorDataUInt16,
     FlatTensorDataUInt32,
     FlatTensorDataUInt64,
-    FlatTensorDataUInt8,
+    FlatTensors,
 )
 
 
