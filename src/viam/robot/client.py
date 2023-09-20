@@ -285,6 +285,9 @@ class RobotClient:
             if reconnect_every <= 0:
                 continue
 
+            if self._connected:
+                continue
+
             reconnect_attempts = self._options.dial_options.max_reconnect_attempts if self._options.dial_options else 3
 
             for _ in range(reconnect_attempts):
