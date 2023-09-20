@@ -16,7 +16,6 @@ from viam.utils import ValueTypes
 class MySensor(Sensor):
     # Subclass the Viam Sensor component and implement the required functions
     MODEL: ClassVar[Model] = Model(ModelFamily("viam", "sensor"), "mysensor")
-    multiplier: float
 
     def __init__(self, name: str):
         super().__init__(name)
@@ -24,6 +23,7 @@ class MySensor(Sensor):
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
         sensor = cls(config.name)
+        sensor.reconfigure(config, dependencies)
         return sensor
 
     @classmethod
@@ -31,11 +31,9 @@ class MySensor(Sensor):
         if "multiplier" in config.attributes.fields:
             if not isinstance(config.attributes.fields["multiplier"], float):
                 raise Exception("Multiplier must be a float.")
-            cls.multiplier = config.attributes.fields["multiplier"].number_value
-            if cls.multiplier == 0:
+            multiplier = config.attributes.fields["multiplier"].number_value
+            if multiplier == 0:
                 raise Exception("Multiplier cannot be 0.")
-        else:
-            cls.multiplier = 1.0
         return []
 
     async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
@@ -45,7 +43,11 @@ class MySensor(Sensor):
         return command
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
-        self.multiplier = config.attributes.fields["multiplier"].number_value
+        if "multiplier" in config.attributes.fields:
+            multiplier = config.attributes.fields["multiplier"].number_value
+        else:
+            multiplier = 1.0
+        self.multiplier = multiplier
 
 
 async def main():
