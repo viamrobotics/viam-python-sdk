@@ -1,9 +1,9 @@
 # wifi-sensor/src/wifi_sensor_module.py
 import asyncio
-from typing import Any, ClassVar, Dict, List, Mapping, Optional
+from typing import Any, ClassVar, Dict, Mapping, Optional
 from typing_extensions import Self
 
-from viam.components.sensor import Geometry, Sensor
+from viam.components.sensor import Sensor
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
@@ -13,7 +13,7 @@ from viam.resource.types import Model, ModelFamily
 
 class MySensor(Sensor):
     # Subclass the Viam Sensor component and implement the required functions
-    MODEL: ClassVar[Model] = Model(ModelFamily("acme", "wifi_sensor"), "linux")
+    MODEL: ClassVar[Model] = Model(ModelFamily("viam", "sensor"), "linux-wifi")
 
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
@@ -25,9 +25,6 @@ class MySensor(Sensor):
             content = wifi_stats.readlines()
         wifi_signal = [x for x in content[2].split(" ") if x != ""]
         return {"link": wifi_signal[2], "level": wifi_signal[3], "noise": wifi_signal[4]}
-
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
-        raise NotImplementedError
 
 
 async def main():
