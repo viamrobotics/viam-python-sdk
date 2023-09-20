@@ -87,23 +87,24 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.mlmodel.utils</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">NDArray</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.service.mlmodel</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">FlatTensors</span><span class="p">,</span>
     <span class="n">FlatTensor</span><span class="p">,</span>
     <span class="n">FlatTensorDataDouble</span><span class="p">,</span>
     <span class="n">FlatTensorDataFloat</span><span class="p">,</span>
+    <span class="n">FlatTensorDataInt8</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt16</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt32</span><span class="p">,</span>
     <span class="n">FlatTensorDataInt64</span><span class="p">,</span>
-    <span class="n">FlatTensorDataInt8</span><span class="p">,</span>
+    <span class="n">FlatTensorDataUInt8</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt16</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt32</span><span class="p">,</span>
     <span class="n">FlatTensorDataUInt64</span><span class="p">,</span>
-    <span class="n">FlatTensorDataUInt8</span><span class="p">,</span>
+    <span class="n">FlatTensors</span><span class="p">,</span>
 <span class="p">)</span>
 
 
