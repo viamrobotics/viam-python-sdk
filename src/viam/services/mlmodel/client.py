@@ -1,6 +1,7 @@
+from typing import Dict, Mapping, Optional
+
 from grpclib.client import Channel
 from numpy.typing import NDArray
-from typing import Dict, Mapping, Optional
 
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub

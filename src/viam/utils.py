@@ -1,7 +1,6 @@
 import asyncio
 import contextvars
 import functools
-
 import sys
 import threading
 from datetime import datetime
@@ -16,7 +15,6 @@ from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeome
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import Subtype, SupportsGetGeometries
-
 
 if sys.version_info >= (3, 9):
     from collections.abc import Callable

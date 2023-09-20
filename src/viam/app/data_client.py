@@ -421,9 +421,7 @@ class DataClient:
             str: The hostname of the federated database.
         """
         request = GetDatabaseConnectionRequest(organization_id=organization_id)
-        response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(
-            request, metadata=self._metadata
-        )
+        response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
         return response.hostname
 
     # TODO: implement
