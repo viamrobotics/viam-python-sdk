@@ -171,6 +171,46 @@ subtype: &quot;motor&quot;
 name: &quot;motor0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
+subtype: &quot;movement_sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;pose_tracker&quot;
+name: &quot;pose_tracker0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;movement_sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;gripper&quot;
+name: &quot;gripper0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;base&quot;
+name: &quot;base0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;sensor&quot;
+name: &quot;sensor0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;servo&quot;
+name: &quot;servo0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;audio_input&quot;
+name: &quot;audio_input0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;encoder&quot;
+name: &quot;encoder0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;service&quot;
+subtype: &quot;mlmodel&quot;
+name: &quot;mlmodel0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
 subtype: &quot;board&quot;
 name: &quot;board&quot;
 , namespace: &quot;rdk&quot;
@@ -178,57 +218,17 @@ type: &quot;component&quot;
 subtype: &quot;gantry&quot;
 name: &quot;gantry0&quot;
 , namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;movement_sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;arm&quot;
-name: &quot;arm0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;service&quot;
-subtype: &quot;mlmodel&quot;
-name: &quot;mlmodel0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;pose_tracker&quot;
-name: &quot;pose_tracker0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;camera&quot;
-name: &quot;camera0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;gripper&quot;
-name: &quot;gripper0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;movement_sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;audio_input&quot;
-name: &quot;audio_input0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;sensor&quot;
-name: &quot;sensor0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;encoder&quot;
-name: &quot;encoder0&quot;
-, namespace: &quot;rdk&quot;
-type: &quot;component&quot;
-subtype: &quot;servo&quot;
-name: &quot;servo0&quot;
-, namespace: &quot;rdk&quot;
 type: &quot;service&quot;
 subtype: &quot;slam&quot;
 name: &quot;slam0&quot;
 , namespace: &quot;rdk&quot;
 type: &quot;component&quot;
-subtype: &quot;base&quot;
-name: &quot;base0&quot;
+subtype: &quot;arm&quot;
+name: &quot;arm0&quot;
+, namespace: &quot;rdk&quot;
+type: &quot;component&quot;
+subtype: &quot;camera&quot;
+name: &quot;camera0&quot;
 ]
 </pre></div>
 </div>
@@ -380,27 +380,37 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <h4>Optional Validator and Reconfiguration Functions<a class="headerlink" href="#optional-validator-and-reconfiguration-functions" title="Permalink to this heading"></a></h4>
 <p>Modules also have support for validator and reconfiguration functions.</p>
 <p>Custom validation can be done by specifiying a validate function. Validate functions can raise errors that will be returned to the parent through gRPC. Validate functions return a sequence of strings representing the implicit dependencies of the resource. If there are none, return an empty sequence <code class="docutils literal notranslate"><span class="pre">[]</span></code>.</p>
-<p>For example, let’s say <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> had a <code class="docutils literal notranslate"><span class="pre">multiplier</span></code> argument that is used to multiply the returned readings in <code class="docutils literal notranslate"><span class="pre">get_readings()</span></code>. The validation function can check if a multiplier attribute was provided or default the multiplier to 1.</p>
+<p>For example, let’s say <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> had a <code class="docutils literal notranslate"><span class="pre">multiplier</span></code> argument that is used to multiply the returned readings in <code class="docutils literal notranslate"><span class="pre">get_readings()</span></code>. The validation function can check if a multiplier attribute was provided and prevent erroneous resource start ups.</p>
+<p>Reconfiguration specifies what values can change based on a new configuration. To allow this, add a <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> function to the <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class. A good pattern is to call <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> within <code class="docutils literal notranslate"><span class="pre">new()</span></code>, since initialization and reconfiguration are usually very similar.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ADD `Sequence` FROM `typing`.</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
 
 <span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
-    <span class="c1"># ADD `multiplier` AS A CLASS VARIABLE.</span>
-    <span class="n">multiplier</span><span class="p">:</span> <span class="nb">float</span>
-
     <span class="c1"># ADD A VALIDATOR FUNCTION </span>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">validate_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
         <span class="k">if</span> <span class="s2">&quot;multiplier&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">],</span> <span class="nb">float</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Multiplier must be a float.&quot;</span><span class="p">)</span>
-            <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
-            <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
+            <span class="k">if</span> <span class="n">multiplier</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Multiplier cannot be 0.&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span> 
-            <span class="bp">cls</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="c1"># RETURN AN EMPTY SEQUENCE</span>
         <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="n">sensor</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># CALL RECONFIGURE TO INITIALIZE THE RESOURCE</span>
+        <span class="n">sensor</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>        
+        <span class="k">return</span> <span class="n">sensor</span>
+
+    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="s2">&quot;multiplier&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">multiplier</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">multiplier</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;/proc/net/wireless&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">wifi_stats</span><span class="p">:</span>
@@ -417,11 +427,6 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <p>If a validator function is added, it must also be called when registering the resource. The <code class="docutils literal notranslate"><span class="pre">ResourceCreatorRegistration</span></code> should now also have the validator function passed in as the second parameter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
             <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span><span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="n">MySensor</span><span class="o">.</span><span class="n">new</span><span class="p">,</span> <span class="n">MySensor</span><span class="o">.</span><span class="n">validate_config</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>Reconfiguration specifies what values can change based on a new configuration. To allow this, add a <code class="docutils literal notranslate"><span class="pre">reconfigure()</span></code> function to the <code class="docutils literal notranslate"><span class="pre">MySensor</span></code> class.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">multiplier</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;multiplier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">number_value</span>
 </pre></div>
 </div>
 <p>Click <a class="reference external" href="https://github.com/viamrobotics/viam-python-sdk/blob/main/docs/examples/module_step2_optional.py">here</a> to see the new <code class="docutils literal notranslate"><span class="pre">wifi_sensor_module.py</span></code> with the optional validator and reconfiguration functions.</p>
