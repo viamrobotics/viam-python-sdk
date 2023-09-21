@@ -258,8 +258,8 @@ async def to_thread(func: Callable[_P, _R], *args: _P.args, **kwargs: _P.kwargs)
 
 
 def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:
-    """Used in modular filter components to get the 'fromDataManagement' value from an extra map."""
+    """Used in modular filter components to return whether 'fromDataManagement' was set in the extra map."""
     if extra is None:
         return False
 
-    return bool(extra["fromDataManagement"])
+    return "fromDataManagement" in extra
