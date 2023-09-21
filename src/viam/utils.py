@@ -262,4 +262,4 @@ def from_dm_from_extra(extra: Optional[Dict[str, Any]]) -> bool:
     if extra is None or "fromDataManagement" not in extra:
         return False
 
-    return bool(extra["fromDataManagement"])
+    return bool(extra.get("fromDataManagement", False))
