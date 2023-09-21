@@ -10,7 +10,7 @@ Modular resources allow you to define custom components and services, and add th
 
 For more information, see the [documentation](https://docs.viam.com/program/extend/modular-resources/). For a simpler example, take a look at the [simple module example](https://github.com/viamrobotics/viam-python-sdk/tree/main/examples/simple_module), which only contains one custom resource model in one file.
 
-For a fully fleshed-out example of a Python module that uses Github CI to upload to the Viam Registry, take a look at [python-example-module](https://github.com/viam-labs/python-example-module). For an example that uses Docker to manage dependencies, take a look at [python-container-module](https://github.com/viamrobotics/python-container-module).
+For a fully fleshed-out example of a Python module that uses Github CI to upload to the Viam Registry, take a look at [python-example-module](https://github.com/viam-labs/python-example-module). For an example that uses Docker to manage dependencies, take a look at [python-container-module](https://github.com/viamrobotics/python-container-module). For a list of example modules in different Viam SDKs, take a look [here](https://github.com/viamrobotics/upload-module/#example-repos).
 
 ## Project structure
 
