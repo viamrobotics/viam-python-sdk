@@ -42,7 +42,7 @@ class TestClient:
     async def test_binary_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            response = await client.binary_data_capture_upload(
+            file_id = await client.binary_data_capture_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -54,13 +54,13 @@ class TestClient:
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
-            assert response == FILE_UPLOAD_RESPONSE
+            assert file_id == FILE_UPLOAD_RESPONSE
 
     @pytest.mark.asyncio
     async def test_tabular_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            response = await client.tabular_data_capture_upload(
+            file_id = await client.tabular_data_capture_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -72,7 +72,7 @@ class TestClient:
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=False)
             self.assert_metadata(metadata=service.metadata)
-            assert response == FILE_UPLOAD_RESPONSE
+            assert file_id == FILE_UPLOAD_RESPONSE
 
     @pytest.mark.asyncio
     async def test_file_upload(self, service: MockDataSync):
