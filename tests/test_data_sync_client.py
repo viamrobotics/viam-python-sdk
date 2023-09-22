@@ -5,10 +5,7 @@ from typing import List, cast, Mapping, Any
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.datasync import (
-    UploadMetadata,
-    SensorData
-)
+from viam.proto.app.datasync import UploadMetadata, SensorData
 from viam.utils import struct_to_dict, datetime_to_timestamp
 
 from .mocks.services import MockDataSync
@@ -21,7 +18,7 @@ NANOS_START = 10
 SECONDS_END = 1689256810
 NANOS_END = 10
 TAGS = ["tag"]
-BINARY_DATA = b'binary_data'
+BINARY_DATA = b"binary_data"
 METHOD_NAME = "method_name"
 DATETIMES = (datetime.now(), datetime.now())
 TIMESTAMPS = (datetime_to_timestamp(DATETIMES[0]), datetime_to_timestamp(DATETIMES[1]))
@@ -45,7 +42,7 @@ class TestClient:
     async def test_binary_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.binary_data_capture_upload(
+            response = await client.binary_data_capture_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -53,16 +50,17 @@ class TestClient:
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
                 data_request_times=DATETIMES,
-                binary_data=BINARY_DATA
+                binary_data=BINARY_DATA,
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
+            assert response == FILE_UPLOAD_RESPONSE
 
     @pytest.mark.asyncio
     async def test_tabular_data_capture_upload(self, service: MockDataSync):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            await client.tabular_data_capture_upload(
+            response = await client.tabular_data_capture_upload(
                 part_id=PART_ID,
                 component_type=COMPONENT_TYPE,
                 component_name=COMPONENT_NAME,
@@ -70,10 +68,11 @@ class TestClient:
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
                 data_request_times=[DATETIMES],
-                tabular_data=cast(List[Mapping[str, Any]], TABULAR_DATA)
+                tabular_data=cast(List[Mapping[str, Any]], TABULAR_DATA),
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=False)
             self.assert_metadata(metadata=service.metadata)
+            assert response == FILE_UPLOAD_RESPONSE
 
     @pytest.mark.asyncio
     async def test_file_upload(self, service: MockDataSync):
@@ -88,7 +87,7 @@ class TestClient:
                 method_parameters=METHOD_PARAMETERS,
                 file_extension=FILE_EXT,
                 tags=TAGS,
-                data=BINARY_DATA
+                data=BINARY_DATA,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
@@ -109,7 +108,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 tags=TAGS,
-                filepath=path.resolve()
+                filepath=path.resolve(),
             )
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
