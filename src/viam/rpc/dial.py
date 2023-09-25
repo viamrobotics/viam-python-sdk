@@ -66,6 +66,10 @@ class DialOptions:
     max_reconnect_attempts: int = 3
     """Max number of times the client attempts to reconnect when connection is lost"""
 
+    timeout: float = 20
+    """Number of seconds before the dial connection times out
+    Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go"""
+
     def __init__(
         self,
         disable_webrtc: bool = False,
@@ -75,6 +79,7 @@ class DialOptions:
         allow_insecure_downgrade: bool = False,
         allow_insecure_with_creds_downgrade: bool = False,
         max_reconnect_attempts: int = 3,
+        timeout: float = 20,
     ) -> None:
         self.disable_webrtc = disable_webrtc
         self.auth_entity = auth_entity
@@ -83,6 +88,7 @@ class DialOptions:
         self.allow_insecure_downgrade = allow_insecure_downgrade
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
         self.max_reconnect_attempts = max_reconnect_attempts
+        self.timeout = timeout
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
@@ -193,7 +199,15 @@ class _Runtime:
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
 
-        self._lib.dial.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_char_p, ctypes.c_bool, ctypes.c_void_p)
+        self._lib.dial.argtypes = (
+            ctypes.c_char_p,
+            ctypes.c_char_p,
+            ctypes.c_char_p,
+            ctypes.c_char_p,
+            ctypes.c_bool,
+            ctypes.c_float,
+            ctypes.c_void_p,
+        )
         self._lib.dial.restype = ctypes.c_void_p
 
         self._lib.free_rust_runtime.argtypes = (ctypes.c_void_p,)
@@ -221,6 +235,7 @@ class _Runtime:
             type.encode("utf-8") if type else None,
             payload.encode("utf-8") if payload else None,
             insecure,
+            ctypes.c_float(options.timeout),
             self._ptr,
         )
         path = ctypes.cast(path_ptr, ctypes.c_char_p).value
@@ -283,7 +298,7 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
 
         # Test if downgrade is required.
         downgrade = False
-        with socket.create_connection((host, port)) as sock:
+        with socket.create_connection((host, port), timeout=opts.timeout) as sock:
             try:
                 with ctx.wrap_socket(sock, server_hostname=server_hostname) as ssock:
                     _ = ssock.version()
