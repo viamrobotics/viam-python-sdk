@@ -161,7 +161,17 @@ def _grpc_error_wrapper(func: Callable):
         except ViamGRPCError as e:
             raise e.grpc_error
         except Exception as e:
-            raise GRPCError(Status.UNKNOWN, f"{e.__class__.__name__} - {e}")
+            tb = e.__traceback__
+            file_name = None
+            func_name = None
+            line_num = None
+            # only print the last entry in the stacktrace - not perfect but gives users a starting point
+            while tb is not None:
+                file_name = tb.tb_frame.f_code.co_filename
+                func_name = tb.tb_frame.f_code.co_name
+                line_num = tb.tb_lineno
+                tb = tb.tb_next
+            raise GRPCError(Status.UNKNOWN, f"{e.__class__.__name__} - {e} - {file_name=} {func_name=} {line_num=}")
 
     return interceptor
 
