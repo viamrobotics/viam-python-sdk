@@ -57,7 +57,7 @@ Attributes
       The credential
 
 
-.. py:class:: DialOptions(disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3)
+.. py:class:: DialOptions(disable_webrtc: bool = False, auth_entity: Optional[str] = None, credentials: Optional[Credentials] = None, insecure: bool = False, allow_insecure_downgrade: bool = False, allow_insecure_with_creds_downgrade: bool = False, max_reconnect_attempts: int = 3, timeout: float = 20)
 
 
    .. py:attribute:: disable_webrtc
@@ -103,6 +103,13 @@ Attributes
       :value: 3
 
       Max number of times the client attempts to reconnect when connection is lost
+
+   .. py:attribute:: timeout
+      :type: float
+      :value: 20
+
+      Number of seconds before the dial connection times out
+      Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
 
 
 .. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, ssl: Union[None, bool, AuthenticatedChannel.__init__.ssl] = None, server_hostname: Optional[str] = None)
