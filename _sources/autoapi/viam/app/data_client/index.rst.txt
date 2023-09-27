@@ -324,7 +324,7 @@ Attributes
       :async:
 
 
-   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> None
+   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
       :async:
 
       Upload binary sensor data.
@@ -353,7 +353,7 @@ Attributes
       :raises GRPCError: If an invalid part ID is passed.
 
 
-   .. py:method:: tabular_data_capture_upload(tabular_data: List[Mapping[str, Any]], part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]] = None) -> None
+   .. py:method:: tabular_data_capture_upload(tabular_data: List[Mapping[str, Any]], part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]] = None) -> str
       :async:
 
       Upload tabular sensor data.
