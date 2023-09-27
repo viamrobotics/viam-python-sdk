@@ -138,7 +138,7 @@ from viam.proto.app import (
     CreateKeyRequest,
     CreateKeyResponse,
     GetRobotAPIKeysRequest,
-    GetRobotAPIKeysResponse
+    GetRobotAPIKeysResponse,
 )
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
@@ -711,7 +711,7 @@ class MockDataSync(DataSyncServiceBase):
         assert request is not None
         self.metadata = request.metadata
         self.sensor_contents = request.sensor_contents
-        await stream.send_message(DataCaptureUploadResponse())
+        await stream.send_message(DataCaptureUploadResponse(file_id=self.file_upload_response))
 
     async def FileUpload(self, stream: Stream[FileUploadRequest, FileUploadResponse]) -> None:
         request_metadata = await stream.recv_message()

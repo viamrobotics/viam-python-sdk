@@ -438,7 +438,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
-    ) -> None:
+    ) -> str:
         """Upload binary sensor data.
 
         Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
@@ -479,7 +479,8 @@ class DataClient:
             method_parameters=method_parameters,
             tags=tags,
         )
-        await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
+        response = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
+        return response.file_id
 
     async def tabular_data_capture_upload(
         self,
@@ -491,7 +492,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         data_request_times: Optional[List[Tuple[datetime, datetime]]] = None,
-    ) -> None:
+    ) -> str:
         """Upload tabular sensor data.
 
         Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
@@ -550,7 +551,8 @@ class DataClient:
             method_parameters=method_parameters,
             tags=tags,
         )
-        await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
+        response = await self._data_capture_upload(metadata=metadata, sensor_contents=sensor_contents)
+        return response.file_id
 
     async def _data_capture_upload(self, metadata: UploadMetadata, sensor_contents: List[SensorData]) -> DataCaptureUploadResponse:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
