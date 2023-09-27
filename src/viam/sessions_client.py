@@ -44,12 +44,23 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
-    def __init__(self, channel: Channel, address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
+    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
-        self._address = address
+        self._address = direct_dial_address
         self._dial_options = dial_options
         self._disabled = disabled
+        if dial_options is not None:
+            self._dial_options = DialOptions(
+                disable_webrtc=True,
+                auth_entity=dial_options.auth_entity,
+                credentials=dial_options.credentials,
+                insecure=dial_options.insecure,
+                allow_insecure_downgrade=dial_options.allow_insecure_downgrade,
+                allow_insecure_with_creds_downgrade=dial_options.allow_insecure_with_creds_downgrade,
+            )
+        else:
+            self._dial_options = DialOptions(disable_webrtc=True)
 
         self._lock: Lock = Lock()
         self._current_id: str = ""
@@ -70,7 +81,10 @@ class SessionsClient:
         self._current_id = ""
         self._heartbeat_interval = None
         if self._thread is not None:
-            self._thread.join(timeout=1)
+            try:
+                self._thread.join(timeout=1)
+            except RuntimeError:
+                LOGGER.debug("failed to join session heartbeat thread")
             self._thread = None
 
     async def _send_request(self, event: SendRequest):
@@ -153,10 +167,7 @@ class SessionsClient:
             LOGGER.debug("Sent heartbeat successfully")
 
     async def _heartbeat_process(self, wait: float):
-        dial_options = self._dial_options if self._dial_options is not None else DialOptions()
-        dial_options.disable_webrtc = True
-
-        channel = await dial(address=self._address, options=dial_options)
+        channel = await dial(address=self._address, options=self._dial_options)
         client = RobotServiceStub(channel.channel)
         while True:
             with self._lock:
