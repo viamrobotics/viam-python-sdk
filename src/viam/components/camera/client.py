@@ -23,7 +23,7 @@ from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dic
 from . import Camera, RawImage
 
 
-def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: Optional[str] = None) -> Union[Image.Image, RawImage]:
+def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> Union[Image.Image, RawImage]:
     if not request_mime_type:
         request_mime_type = response_mime_type
     mime_type, is_lazy = CameraMimeType.from_lazy(request_mime_type)
