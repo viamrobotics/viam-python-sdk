@@ -310,9 +310,10 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
+                    direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
-                        address=self._address,
+                        direct_dial_address=direct_dial_address,
                         dial_options=self._options.dial_options,
                         disabled=self._options.disable_sessions,
                     )
