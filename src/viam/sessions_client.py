@@ -1,4 +1,5 @@
 import asyncio
+from copy import deepcopy
 from datetime import timedelta
 from enum import IntEnum
 from threading import Lock, Thread
@@ -50,18 +51,8 @@ class SessionsClient:
         self._address = direct_dial_address
         self._dial_options = dial_options
         self._disabled = disabled
-        if dial_options is not None:
-            self._dial_options = DialOptions(
-                disable_webrtc=True,
-                auth_entity=dial_options.auth_entity,
-                credentials=dial_options.credentials,
-                insecure=dial_options.insecure,
-                allow_insecure_downgrade=dial_options.allow_insecure_downgrade,
-                allow_insecure_with_creds_downgrade=dial_options.allow_insecure_with_creds_downgrade,
-            )
-        else:
-            self._dial_options = DialOptions(disable_webrtc=True)
-
+        self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
+        self._dial_options.disable_webrtc = True
         self._lock: Lock = Lock()
         self._current_id: str = ""
         self._heartbeat_interval: Optional[timedelta] = None
