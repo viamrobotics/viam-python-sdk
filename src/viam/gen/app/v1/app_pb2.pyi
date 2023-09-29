@@ -2615,3 +2615,154 @@ class CreateKeyResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___CreateKeyResponse = CreateKeyResponse
+
+@typing_extensions.final
+class DeleteKeyRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+        ...
+global___DeleteKeyRequest = DeleteKeyRequest
+
+@typing_extensions.final
+class DeleteKeyResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteKeyResponse = DeleteKeyResponse
+
+@typing_extensions.final
+class AuthorizationDetails(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    AUTHORIZATION_TYPE_FIELD_NUMBER: builtins.int
+    AUTHORIZATION_ID_FIELD_NUMBER: builtins.int
+    RESOURCE_TYPE_FIELD_NUMBER: builtins.int
+    RESOURCE_ID_FIELD_NUMBER: builtins.int
+    ORG_ID_FIELD_NUMBER: builtins.int
+    authorization_type: builtins.str
+    authorization_id: builtins.str
+    resource_type: builtins.str
+    resource_id: builtins.str
+    org_id: builtins.str
+
+    def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'org_id', b'org_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+        ...
+global___AuthorizationDetails = AuthorizationDetails
+
+@typing_extensions.final
+class APIKeyWithAuthorizations(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    API_KEY_FIELD_NUMBER: builtins.int
+    AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+
+    @property
+    def api_key(self) -> global___APIKey:
+        ...
+
+    @property
+    def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthorizationDetails]:
+        ...
+
+    def __init__(self, *, api_key: global___APIKey | None=..., authorizations: collections.abc.Iterable[global___AuthorizationDetails] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['api_key', b'api_key']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['api_key', b'api_key', 'authorizations', b'authorizations']) -> None:
+        ...
+global___APIKeyWithAuthorizations = APIKeyWithAuthorizations
+
+@typing_extensions.final
+class ListKeysRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+        ...
+global___ListKeysRequest = ListKeysRequest
+
+@typing_extensions.final
+class ListKeysResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    API_KEYS_FIELD_NUMBER: builtins.int
+
+    @property
+    def api_keys(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKeyWithAuthorizations]:
+        ...
+
+    def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['api_keys', b'api_keys']) -> None:
+        ...
+global___ListKeysResponse = ListKeysResponse
+
+@typing_extensions.final
+class RotateKeyRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+        ...
+global___RotateKeyRequest = RotateKeyRequest
+
+@typing_extensions.final
+class RotateKeyResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    KEY_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    key: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., key: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+        ...
+global___RotateKeyResponse = RotateKeyResponse
+
+@typing_extensions.final
+class CreateKeyFromExistingKeyAuthorizationsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+        ...
+global___CreateKeyFromExistingKeyAuthorizationsRequest = CreateKeyFromExistingKeyAuthorizationsRequest
+
+@typing_extensions.final
+class CreateKeyFromExistingKeyAuthorizationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    KEY_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    key: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., key: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+        ...
+global___CreateKeyFromExistingKeyAuthorizationsResponse = CreateKeyFromExistingKeyAuthorizationsResponse

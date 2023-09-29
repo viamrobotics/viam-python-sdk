@@ -321,6 +321,40 @@ class ReadAnalogReaderResponse(google.protobuf.message.Message):
 global___ReadAnalogReaderResponse = ReadAnalogReaderResponse
 
 @typing_extensions.final
+class WriteAnalogRequest(google.protobuf.message.Message):
+    """Analog Writer"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    PIN_FIELD_NUMBER: builtins.int
+    VALUE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    pin: builtins.str
+    value: builtins.int
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., pin: builtins.str=..., value: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'pin', b'pin', 'value', b'value']) -> None:
+        ...
+global___WriteAnalogRequest = WriteAnalogRequest
+
+@typing_extensions.final
+class WriteAnalogResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___WriteAnalogResponse = WriteAnalogResponse
+
+@typing_extensions.final
 class GetDigitalInterruptValueRequest(google.protobuf.message.Message):
     """Digital Interrupt"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

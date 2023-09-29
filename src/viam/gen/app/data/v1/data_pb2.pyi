@@ -44,21 +44,21 @@ class _TagsFilterTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper.
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     TAGS_FILTER_TYPE_UNSPECIFIED: _TagsFilterType.ValueType
     TAGS_FILTER_TYPE_MATCH_BY_OR: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter'
+    'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.'
     TAGS_FILTER_TYPE_TAGGED: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned'
+    'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.'
     TAGS_FILTER_TYPE_UNTAGGED: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned'
+    'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.'
 
 class TagsFilterType(_TagsFilterType, metaclass=_TagsFilterTypeEnumTypeWrapper):
-    """TagsFilterType specifies how data can be filtered based on tags"""
+    """TagsFilterType specifies how data can be filtered based on tags."""
 TAGS_FILTER_TYPE_UNSPECIFIED: TagsFilterType.ValueType
 TAGS_FILTER_TYPE_MATCH_BY_OR: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter'
+'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.'
 TAGS_FILTER_TYPE_TAGGED: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned'
+'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.'
 TAGS_FILTER_TYPE_UNTAGGED: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned'
+'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.'
 global___TagsFilterType = TagsFilterType
 
 @typing_extensions.final
@@ -115,6 +115,7 @@ class Filter(google.protobuf.message.Message):
     INTERVAL_FIELD_NUMBER: builtins.int
     TAGS_FILTER_FIELD_NUMBER: builtins.int
     BBOX_LABELS_FIELD_NUMBER: builtins.int
+    DATASET_ID_FIELD_NUMBER: builtins.int
     component_name: builtins.str
     component_type: builtins.str
     method: builtins.str
@@ -145,15 +146,16 @@ class Filter(google.protobuf.message.Message):
 
     @property
     def bbox_labels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        """bbox_labels are used to match documents with the specified bounding box labels (using logical OR)"""
+        """bbox_labels are used to match documents with the specified bounding box labels (using logical OR)."""
+    dataset_id: builtins.str
 
-    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., method: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., organization_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=..., tags_filter: global___TagsFilter | None=..., bbox_labels: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., method: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., organization_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=..., tags_filter: global___TagsFilter | None=..., bbox_labels: collections.abc.Iterable[builtins.str] | None=..., dataset_id: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['interval', b'interval', 'tags_filter', b'tags_filter']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['bbox_labels', b'bbox_labels', 'component_name', b'component_name', 'component_type', b'component_type', 'interval', b'interval', 'location_ids', b'location_ids', 'method', b'method', 'mime_type', b'mime_type', 'organization_ids', b'organization_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags_filter', b'tags_filter']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['bbox_labels', b'bbox_labels', 'component_name', b'component_name', 'component_type', b'component_type', 'dataset_id', b'dataset_id', 'interval', b'interval', 'location_ids', b'location_ids', 'method', b'method', 'mime_type', b'mime_type', 'organization_ids', b'organization_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags_filter', b'tags_filter']) -> None:
         ...
 global___Filter = Filter
 
@@ -167,7 +169,7 @@ class TagsFilter(google.protobuf.message.Message):
 
     @property
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        """Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR"""
+        """Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR."""
 
     def __init__(self, *, type: global___TagsFilterType.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
@@ -178,7 +180,7 @@ global___TagsFilter = TagsFilter
 
 @typing_extensions.final
 class CaptureMetadata(google.protobuf.message.Message):
-    """CaptureMetadata contains information on the settings used for the data capture"""
+    """CaptureMetadata contains information on the settings used for the data capture."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -240,7 +242,7 @@ global___CaptureMetadata = CaptureMetadata
 
 @typing_extensions.final
 class CaptureInterval(google.protobuf.message.Message):
-    """CaptureInterval describes the start and end time of the capture in this file"""
+    """CaptureInterval describes the start and end time of the capture in this file."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     START_FIELD_NUMBER: builtins.int
     END_FIELD_NUMBER: builtins.int
@@ -265,7 +267,7 @@ global___CaptureInterval = CaptureInterval
 
 @typing_extensions.final
 class TabularDataByFilterRequest(google.protobuf.message.Message):
-    """TabularDataByFilterRequest requests tabular data based on filter values"""
+    """TabularDataByFilterRequest requests tabular data based on filter values."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     COUNT_ONLY_FIELD_NUMBER: builtins.int
@@ -289,7 +291,7 @@ global___TabularDataByFilterRequest = TabularDataByFilterRequest
 
 @typing_extensions.final
 class TabularDataByFilterResponse(google.protobuf.message.Message):
-    """TabularDataByFilterResponse provides the data and metadata of tabular data"""
+    """TabularDataByFilterResponse provides the data and metadata of tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
@@ -317,6 +319,7 @@ global___TabularDataByFilterResponse = TabularDataByFilterResponse
 
 @typing_extensions.final
 class TabularData(google.protobuf.message.Message):
+    """TabularData contains data and metadata associated with tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     METADATA_INDEX_FIELD_NUMBER: builtins.int
@@ -348,6 +351,7 @@ global___TabularData = TabularData
 
 @typing_extensions.final
 class BinaryData(google.protobuf.message.Message):
+    """BinaryData contains data and metadata associated with binary data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
@@ -369,7 +373,7 @@ global___BinaryData = BinaryData
 
 @typing_extensions.final
 class BinaryDataByFilterRequest(google.protobuf.message.Message):
-    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided"""
+    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
@@ -395,7 +399,7 @@ global___BinaryDataByFilterRequest = BinaryDataByFilterRequest
 
 @typing_extensions.final
 class BinaryDataByFilterResponse(google.protobuf.message.Message):
-    """BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided"""
+    """BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
@@ -418,6 +422,7 @@ global___BinaryDataByFilterResponse = BinaryDataByFilterResponse
 
 @typing_extensions.final
 class BinaryID(google.protobuf.message.Message):
+    """BinaryID is the unique identifier for a file that one can request to be retrieved or modified."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -435,7 +440,7 @@ global___BinaryID = BinaryID
 
 @typing_extensions.final
 class BinaryDataByIDsRequest(google.protobuf.message.Message):
-    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids"""
+    """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
     BINARY_IDS_FIELD_NUMBER: builtins.int
@@ -454,7 +459,7 @@ global___BinaryDataByIDsRequest = BinaryDataByIDsRequest
 
 @typing_extensions.final
 class BinaryDataByIDsResponse(google.protobuf.message.Message):
-    """BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided"""
+    """BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
@@ -516,6 +521,7 @@ global___Annotations = Annotations
 
 @typing_extensions.final
 class BinaryMetadata(google.protobuf.message.Message):
+    """BinaryMetadata is the metadata associated with binary data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     CAPTURE_METADATA_FIELD_NUMBER: builtins.int
@@ -525,6 +531,7 @@ class BinaryMetadata(google.protobuf.message.Message):
     FILE_EXT_FIELD_NUMBER: builtins.int
     URI_FIELD_NUMBER: builtins.int
     ANNOTATIONS_FIELD_NUMBER: builtins.int
+    DATASET_IDS_FIELD_NUMBER: builtins.int
     id: builtins.str
 
     @property
@@ -546,49 +553,19 @@ class BinaryMetadata(google.protobuf.message.Message):
     def annotations(self) -> global___Annotations:
         ...
 
-    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=...) -> None:
+    @property
+    def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
         ...
 global___BinaryMetadata = BinaryMetadata
-
-@typing_extensions.final
-class DeleteTabularDataByFilterRequest(google.protobuf.message.Message):
-    """DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    FILTER_FIELD_NUMBER: builtins.int
-
-    @property
-    def filter(self) -> global___Filter:
-        ...
-
-    def __init__(self, *, filter: global___Filter | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
-        ...
-global___DeleteTabularDataByFilterRequest = DeleteTabularDataByFilterRequest
-
-@typing_extensions.final
-class DeleteTabularDataByFilterResponse(google.protobuf.message.Message):
-    """DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    DELETED_COUNT_FIELD_NUMBER: builtins.int
-    deleted_count: builtins.int
-
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
-global___DeleteTabularDataByFilterResponse = DeleteTabularDataByFilterResponse
 
 @typing_extensions.final
 class DeleteTabularDataRequest(google.protobuf.message.Message):
@@ -625,7 +602,7 @@ global___DeleteTabularDataResponse = DeleteTabularDataResponse
 
 @typing_extensions.final
 class DeleteBinaryDataByFilterRequest(google.protobuf.message.Message):
-    """DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided"""
+    """DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
@@ -647,7 +624,7 @@ global___DeleteBinaryDataByFilterRequest = DeleteBinaryDataByFilterRequest
 
 @typing_extensions.final
 class DeleteBinaryDataByFilterResponse(google.protobuf.message.Message):
-    """DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided"""
+    """DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
@@ -661,7 +638,7 @@ global___DeleteBinaryDataByFilterResponse = DeleteBinaryDataByFilterResponse
 
 @typing_extensions.final
 class DeleteBinaryDataByIDsRequest(google.protobuf.message.Message):
-    """DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided"""
+    """DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
 
@@ -678,7 +655,7 @@ global___DeleteBinaryDataByIDsRequest = DeleteBinaryDataByIDsRequest
 
 @typing_extensions.final
 class DeleteBinaryDataByIDsResponse(google.protobuf.message.Message):
-    """DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided"""
+    """DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
@@ -692,7 +669,7 @@ global___DeleteBinaryDataByIDsResponse = DeleteBinaryDataByIDsResponse
 
 @typing_extensions.final
 class AddTagsToBinaryDataByIDsRequest(google.protobuf.message.Message):
-    """AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided"""
+    """AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -722,7 +699,7 @@ global___AddTagsToBinaryDataByIDsResponse = AddTagsToBinaryDataByIDsResponse
 
 @typing_extensions.final
 class AddTagsToBinaryDataByFilterRequest(google.protobuf.message.Message):
-    """AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided"""
+    """AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -755,7 +732,7 @@ global___AddTagsToBinaryDataByFilterResponse = AddTagsToBinaryDataByFilterRespon
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByIDsRequest(google.protobuf.message.Message):
-    """RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided"""
+    """RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -791,7 +768,7 @@ global___RemoveTagsFromBinaryDataByIDsResponse = RemoveTagsFromBinaryDataByIDsRe
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByFilterRequest(google.protobuf.message.Message):
-    """RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided"""
+    """RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
@@ -816,7 +793,7 @@ global___RemoveTagsFromBinaryDataByFilterRequest = RemoveTagsFromBinaryDataByFil
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByFilterResponse(google.protobuf.message.Message):
-    """RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed"""
+    """RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
@@ -830,7 +807,7 @@ global___RemoveTagsFromBinaryDataByFilterResponse = RemoveTagsFromBinaryDataByFi
 
 @typing_extensions.final
 class TagsByFilterRequest(google.protobuf.message.Message):
-    """TagsByFilterRequest requests the unique tags from data based on given filter"""
+    """TagsByFilterRequest requests the unique tags from data based on given filter."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
 
@@ -850,7 +827,7 @@ global___TagsByFilterRequest = TagsByFilterRequest
 
 @typing_extensions.final
 class TagsByFilterResponse(google.protobuf.message.Message):
-    """TagsByFilterResponse returns the unique tags from data based on given filter"""
+    """TagsByFilterResponse returns the unique tags from data based on given filter."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TAGS_FIELD_NUMBER: builtins.int
 
@@ -867,6 +844,9 @@ global___TagsByFilterResponse = TagsByFilterResponse
 
 @typing_extensions.final
 class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
+    """AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+    with the associated label and position in normalized coordinates will be added.
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
@@ -896,6 +876,7 @@ global___AddBoundingBoxToImageByIDRequest = AddBoundingBoxToImageByIDRequest
 
 @typing_extensions.final
 class AddBoundingBoxToImageByIDResponse(google.protobuf.message.Message):
+    """AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BBOX_ID_FIELD_NUMBER: builtins.int
     bbox_id: builtins.str
@@ -909,6 +890,7 @@ global___AddBoundingBoxToImageByIDResponse = AddBoundingBoxToImageByIDResponse
 
 @typing_extensions.final
 class RemoveBoundingBoxFromImageByIDRequest(google.protobuf.message.Message):
+    """RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
     BBOX_ID_FIELD_NUMBER: builtins.int
@@ -938,6 +920,7 @@ global___RemoveBoundingBoxFromImageByIDResponse = RemoveBoundingBoxFromImageByID
 
 @typing_extensions.final
 class BoundingBoxLabelsByFilterRequest(google.protobuf.message.Message):
+    """BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
 
@@ -957,6 +940,7 @@ global___BoundingBoxLabelsByFilterRequest = BoundingBoxLabelsByFilterRequest
 
 @typing_extensions.final
 class BoundingBoxLabelsByFilterResponse(google.protobuf.message.Message):
+    """BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LABELS_FIELD_NUMBER: builtins.int
 
@@ -1000,6 +984,7 @@ global___ConfigureDatabaseUserResponse = ConfigureDatabaseUserResponse
 
 @typing_extensions.final
 class GetDatabaseConnectionRequest(google.protobuf.message.Message):
+    """GetDatabaseConnectionRequest requests the database connection hostname."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
@@ -1013,6 +998,7 @@ global___GetDatabaseConnectionRequest = GetDatabaseConnectionRequest
 
 @typing_extensions.final
 class GetDatabaseConnectionResponse(google.protobuf.message.Message):
+    """GetDatabaseConnectionResponse returns the database connection hostname endpoint."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HOSTNAME_FIELD_NUMBER: builtins.int
     hostname: builtins.str
@@ -1023,3 +1009,57 @@ class GetDatabaseConnectionResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['hostname', b'hostname']) -> None:
         ...
 global___GetDatabaseConnectionResponse = GetDatabaseConnectionResponse
+
+@typing_extensions.final
+class AddBinaryDataToDatasetByIDsRequest(google.protobuf.message.Message):
+    """AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BINARY_IDS_FIELD_NUMBER: builtins.int
+    DATASET_ID_FIELD_NUMBER: builtins.int
+
+    @property
+    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
+        ...
+    dataset_id: builtins.str
+
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
+        ...
+global___AddBinaryDataToDatasetByIDsRequest = AddBinaryDataToDatasetByIDsRequest
+
+@typing_extensions.final
+class AddBinaryDataToDatasetByIDsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___AddBinaryDataToDatasetByIDsResponse = AddBinaryDataToDatasetByIDsResponse
+
+@typing_extensions.final
+class RemoveBinaryDataFromDatasetByIDsRequest(google.protobuf.message.Message):
+    """RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    BINARY_IDS_FIELD_NUMBER: builtins.int
+    DATASET_ID_FIELD_NUMBER: builtins.int
+
+    @property
+    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
+        ...
+    dataset_id: builtins.str
+
+    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
+        ...
+global___RemoveBinaryDataFromDatasetByIDsRequest = RemoveBinaryDataFromDatasetByIDsRequest
+
+@typing_extensions.final
+class RemoveBinaryDataFromDatasetByIDsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___RemoveBinaryDataFromDatasetByIDsResponse = RemoveBinaryDataFromDatasetByIDsResponse

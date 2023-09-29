@@ -21,37 +21,89 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class StartMappingSessionRequest(google.protobuf.message.Message):
     """StartMappingSession"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SLAM_CONFIG_FIELD_NUMBER: builtins.int
     SLAM_VERSION_FIELD_NUMBER: builtins.int
+    VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
     MAP_NAME_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_ID_FIELD_NUMBER: builtins.int
-    VIAM_SERVER_VERSION_FIELD_NUMBER: builtins.int
-    IS_ONLINE_FIELD_NUMBER: builtins.int
-
-    @property
-    def slam_config(self) -> google.protobuf.struct_pb2.Struct:
-        """The given config contains details such as sensor, map package and algorithm-specific fields required to run slam."""
+    CAPTURE_INTERVAL_FIELD_NUMBER: builtins.int
+    SENSORS_FIELD_NUMBER: builtins.int
+    SLAM_ALGORITHM_PARAMS_FIELD_NUMBER: builtins.int
+    EXISTING_MAP_VERSION_FIELD_NUMBER: builtins.int
     slam_version: builtins.str
     'Version to use for slam, defaults stable'
+    viam_server_version: builtins.str
+    'Version to use for viam, defaults stable'
     map_name: builtins.str
     organization_id: builtins.str
     location_id: builtins.str
     robot_id: builtins.str
-    viam_server_version: builtins.str
-    'Version to use for viam, defaults stable'
-    is_online: builtins.bool
 
-    def __init__(self, *, slam_config: google.protobuf.struct_pb2.Struct | None=..., slam_version: builtins.str=..., map_name: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., viam_server_version: builtins.str=..., is_online: builtins.bool=...) -> None:
+    @property
+    def capture_interval(self) -> global___CaptureInterval:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['slam_config', b'slam_config']) -> builtins.bool:
+    @property
+    def sensors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_online', b'is_online', 'location_id', b'location_id', 'map_name', b'map_name', 'organization_id', b'organization_id', 'robot_id', b'robot_id', 'slam_config', b'slam_config', 'slam_version', b'slam_version', 'viam_server_version', b'viam_server_version']) -> None:
+    @property
+    def slam_algorithm_params(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+    existing_map_version: builtins.str
+
+    def __init__(self, *, slam_version: builtins.str=..., viam_server_version: builtins.str=..., map_name: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., capture_interval: global___CaptureInterval | None=..., sensors: collections.abc.Iterable[global___SensorInfo] | None=..., slam_algorithm_params: google.protobuf.struct_pb2.Struct | None=..., existing_map_version: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['capture_interval', b'capture_interval', 'slam_algorithm_params', b'slam_algorithm_params']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['capture_interval', b'capture_interval', 'existing_map_version', b'existing_map_version', 'location_id', b'location_id', 'map_name', b'map_name', 'organization_id', b'organization_id', 'robot_id', b'robot_id', 'sensors', b'sensors', 'slam_algorithm_params', b'slam_algorithm_params', 'slam_version', b'slam_version', 'viam_server_version', b'viam_server_version']) -> None:
         ...
 global___StartMappingSessionRequest = StartMappingSessionRequest
+
+@typing_extensions.final
+class SensorInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SOURCE_COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    DATA_FREQUENCY_HZ_FIELD_NUMBER: builtins.int
+    source_component_name: builtins.str
+    type: builtins.str
+    'type is the RDK component type'
+    data_frequency_hz: builtins.str
+
+    def __init__(self, *, source_component_name: builtins.str=..., type: builtins.str=..., data_frequency_hz: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data_frequency_hz', b'data_frequency_hz', 'source_component_name', b'source_component_name', 'type', b'type']) -> None:
+        ...
+global___SensorInfo = SensorInfo
+
+@typing_extensions.final
+class CaptureInterval(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    START_TIME_FIELD_NUMBER: builtins.int
+    END_TIME_FIELD_NUMBER: builtins.int
+
+    @property
+    def start_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    @property
+    def end_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """if no end_time specified cloud slam will be run using live sensors"""
+
+    def __init__(self, *, start_time: google.protobuf.timestamp_pb2.Timestamp | None=..., end_time: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['end_time', b'end_time', 'start_time', b'start_time']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['end_time', b'end_time', 'start_time', b'start_time']) -> None:
+        ...
+global___CaptureInterval = CaptureInterval
 
 @typing_extensions.final
 class StartMappingSessionResponse(google.protobuf.message.Message):

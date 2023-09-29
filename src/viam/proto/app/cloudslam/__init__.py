@@ -4,6 +4,7 @@ Do not edit manually!
 """
 from ....gen.app.cloudslam.v1.cloud_slam_grpc import CloudSLAMServiceBase, CloudSLAMServiceStub
 from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
+    CaptureInterval,
     GetActiveMappingSessionsForRobotRequest,
     GetActiveMappingSessionsForRobotResponse,
     GetMappingSessionMetadataByIDRequest,
@@ -13,6 +14,7 @@ from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     ListMappingSessionsRequest,
     ListMappingSessionsResponse,
     MappingMetadata,
+    SensorInfo,
     StartMappingSessionRequest,
     StartMappingSessionResponse,
     StopMappingSessionRequest,
@@ -24,6 +26,7 @@ from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
 __all__ = [
     "CloudSLAMServiceBase",
     "CloudSLAMServiceStub",
+    "CaptureInterval",
     "GetActiveMappingSessionsForRobotRequest",
     "GetActiveMappingSessionsForRobotResponse",
     "GetMappingSessionMetadataByIDRequest",
@@ -33,6 +36,7 @@ __all__ = [
     "ListMappingSessionsRequest",
     "ListMappingSessionsResponse",
     "MappingMetadata",
+    "SensorInfo",
     "StartMappingSessionRequest",
     "StartMappingSessionResponse",
     "StopMappingSessionRequest",
