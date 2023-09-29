@@ -24,6 +24,8 @@ from viam.proto.component.board import (
     SetPWMResponse,
     StatusRequest,
     StatusResponse,
+    WriteAnalogRequest,
+    WriteAnalogResponse,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -161,6 +163,21 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase):
         await stream.send_message(response)
 
     async def SetPowerMode(self, stream: Stream[SetPowerModeRequest, SetPowerModeResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        board = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await board.set_power_mode(
+            mode=request.power_mode,
+            duration=request.duration.ToTimedelta(),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
+        response = SetPowerModeResponse()
+        await stream.send_message(response)
+
+    async def WriteAnalog(self, stream: Stream[WriteAnalogRequest, WriteAnalogResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name

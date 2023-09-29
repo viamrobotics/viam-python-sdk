@@ -1,146 +1,157 @@
-from numpy.typing import NDArray
-import numpy as np
-from typing import Any, Dict, List, Mapping, Optional, Union
 from datetime import datetime
+from typing import Any, Dict, List, Mapping, Optional, Union
 
+import numpy as np
 from grpclib.server import Stream
+from numpy.typing import NDArray
 from PIL import Image
 
+from viam.app.data_client import DataClient
 from viam.media.video import RawImage
 from viam.proto.app import (
+    AddRoleRequest,
+    AddRoleResponse,
     AppServiceBase,
-    GetUserIDByEmailRequest,
-    GetUserIDByEmailResponse,
-    CreateOrganizationRequest,
-    CreateOrganizationResponse,
-    OrganizationMember,
-    OrganizationInvite,
-    RobotPartHistoryEntry,
-    ListOrganizationsRequest,
-    ListOrganizationsResponse,
-    ListOrganizationsByUserRequest,
     Authorization,
-    ListOrganizationsByUserResponse,
-    GetOrganizationRequest,
-    LocationAuth,
-    GetOrganizationResponse,
-    GetOrganizationNamespaceAvailabilityRequest,
-    GetOrganizationNamespaceAvailabilityResponse,
-    UpdateOrganizationRequest,
-    UpdateOrganizationResponse,
-    DeleteOrganizationRequest,
-    DeleteOrganizationResponse,
-    ListOrganizationMembersRequest,
-    ListOrganizationMembersResponse,
-    CreateOrganizationInviteRequest,
-    CreateOrganizationInviteResponse,
-    UpdateOrganizationInviteAuthorizationsRequest,
-    UpdateOrganizationInviteAuthorizationsResponse,
-    DeleteOrganizationMemberRequest,
-    DeleteOrganizationMemberResponse,
-    DeleteOrganizationInviteRequest,
-    Module,
-    DeleteOrganizationInviteResponse,
-    ResendOrganizationInviteRequest,
-    ResendOrganizationInviteResponse,
+    ChangeRoleRequest,
+    ChangeRoleResponse,
+    CheckPermissionsRequest,
+    CheckPermissionsResponse,
+    CreateFragmentRequest,
+    CreateFragmentResponse,
+    CreateKeyFromExistingKeyAuthorizationsRequest,
+    CreateKeyFromExistingKeyAuthorizationsResponse,
+    CreateKeyRequest,
+    CreateKeyResponse,
     CreateLocationRequest,
     CreateLocationResponse,
-    GetLocationRequest,
-    GetLocationResponse,
-    UpdateLocationRequest,
-    UpdateLocationResponse,
-    DeleteLocationRequest,
-    DeleteLocationResponse,
-    ListLocationsRequest,
-    ListLocationsResponse,
-    ShareLocationRequest,
-    ShareLocationResponse,
-    UnshareLocationRequest,
-    UnshareLocationResponse,
-    LocationAuthRequest,
-    LocationAuthResponse,
     CreateLocationSecretRequest,
     CreateLocationSecretResponse,
+    CreateModuleRequest,
+    CreateModuleResponse,
+    CreateOrganizationInviteRequest,
+    CreateOrganizationInviteResponse,
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
+    CreateRobotPartSecretRequest,
+    CreateRobotPartSecretResponse,
+    DeleteFragmentRequest,
+    DeleteFragmentResponse,
+    DeleteKeyRequest,
+    DeleteKeyResponse,
+    DeleteLocationRequest,
+    DeleteLocationResponse,
     DeleteLocationSecretRequest,
     DeleteLocationSecretResponse,
+    DeleteOrganizationInviteRequest,
+    DeleteOrganizationInviteResponse,
+    DeleteOrganizationMemberRequest,
+    DeleteOrganizationMemberResponse,
+    DeleteOrganizationRequest,
+    DeleteOrganizationResponse,
+    DeleteRobotPartRequest,
+    DeleteRobotPartResponse,
+    DeleteRobotPartSecretRequest,
+    DeleteRobotPartSecretResponse,
+    DeleteRobotRequest,
+    DeleteRobotResponse,
+    Fragment,
+    GetFragmentRequest,
+    GetFragmentResponse,
+    GetLocationRequest,
+    GetLocationResponse,
+    GetModuleRequest,
+    GetModuleResponse,
+    GetOrganizationNamespaceAvailabilityRequest,
+    GetOrganizationNamespaceAvailabilityResponse,
+    GetOrganizationRequest,
+    GetOrganizationResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
+    GetRobotPartHistoryRequest,
+    GetRobotPartHistoryResponse,
+    GetRobotPartLogsRequest,
+    GetRobotPartLogsResponse,
+    GetRobotPartRequest,
+    GetRobotPartResponse,
+    GetRobotPartsRequest,
+    GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
-    GetRobotPartsRequest,
-    GetRobotPartsResponse,
-    GetRobotPartRequest,
-    GetRobotPartResponse,
-    GetRobotPartLogsRequest,
-    GetRobotPartLogsResponse,
-    TailRobotPartLogsRequest,
-    TailRobotPartLogsResponse,
-    GetRobotPartHistoryRequest,
-    GetRobotPartHistoryResponse,
-    UpdateRobotPartRequest,
-    UpdateRobotPartResponse,
-    NewRobotPartRequest,
-    NewRobotPartResponse,
-    DeleteRobotPartRequest,
-    DeleteRobotPartResponse,
+    GetUserIDByEmailRequest,
+    GetUserIDByEmailResponse,
+    ListAuthorizationsRequest,
+    ListAuthorizationsResponse,
+    ListFragmentsRequest,
+    ListFragmentsResponse,
+    ListKeysRequest,
+    ListKeysResponse,
+    ListLocationsRequest,
+    ListLocationsResponse,
+    ListModulesRequest,
+    ListModulesResponse,
+    ListOrganizationMembersRequest,
+    ListOrganizationMembersResponse,
+    ListOrganizationsByUserRequest,
+    ListOrganizationsByUserResponse,
+    ListOrganizationsRequest,
+    ListOrganizationsResponse,
+    ListRobotsRequest,
+    ListRobotsResponse,
+    Location,
+    LocationAuth,
+    LocationAuthRequest,
+    LocationAuthResponse,
+    LogEntry,
     MarkPartAsMainRequest,
     MarkPartAsMainResponse,
     MarkPartForRestartRequest,
     MarkPartForRestartResponse,
-    CreateRobotPartSecretRequest,
-    CreateRobotPartSecretResponse,
-    DeleteRobotPartSecretRequest,
-    DeleteRobotPartSecretResponse,
-    ListRobotsRequest,
-    ListRobotsResponse,
+    Module,
+    NewRobotPartRequest,
+    NewRobotPartResponse,
     NewRobotRequest,
     NewRobotResponse,
-    UpdateRobotRequest,
-    UpdateRobotResponse,
-    DeleteRobotRequest,
-    DeleteRobotResponse,
-    ListFragmentsRequest,
-    ListFragmentsResponse,
-    GetFragmentRequest,
-    GetFragmentResponse,
-    CreateFragmentRequest,
-    CreateFragmentResponse,
-    UpdateFragmentRequest,
-    UpdateFragmentResponse,
-    DeleteFragmentRequest,
-    DeleteFragmentResponse,
-    AddRoleRequest,
-    AddRoleResponse,
-    Fragment,
+    Organization,
+    OrganizationInvite,
+    OrganizationMember,
     RemoveRoleRequest,
     RemoveRoleResponse,
-    ChangeRoleRequest,
-    ChangeRoleResponse,
-    ListAuthorizationsRequest,
-    ListAuthorizationsResponse,
-    CheckPermissionsRequest,
-    CheckPermissionsResponse,
-    CreateModuleRequest,
-    CreateModuleResponse,
-    UpdateModuleRequest,
-    UpdateModuleResponse,
-    UploadModuleFileRequest,
-    UploadModuleFileResponse,
-    GetModuleRequest,
-    GetModuleResponse,
-    ListModulesRequest,
-    ListModulesResponse,
-    Location,
-    Organization,
+    ResendOrganizationInviteRequest,
+    ResendOrganizationInviteResponse,
     Robot,
     RobotPart,
-    LogEntry,
-    CreateKeyRequest,
-    CreateKeyResponse,
-    GetRobotAPIKeysRequest,
-    GetRobotAPIKeysResponse,
+    RobotPartHistoryEntry,
+    RotateKeyRequest,
+    RotateKeyResponse,
+    ShareLocationRequest,
+    ShareLocationResponse,
+    TailRobotPartLogsRequest,
+    TailRobotPartLogsResponse,
+    UnshareLocationRequest,
+    UnshareLocationResponse,
+    UpdateFragmentRequest,
+    UpdateFragmentResponse,
+    UpdateLocationRequest,
+    UpdateLocationResponse,
+    UpdateModuleRequest,
+    UpdateModuleResponse,
+    UpdateOrganizationInviteAuthorizationsRequest,
+    UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationRequest,
+    UpdateOrganizationResponse,
+    UpdateRobotPartRequest,
+    UpdateRobotPartResponse,
+    UpdateRobotRequest,
+    UpdateRobotResponse,
+    UploadModuleFileRequest,
+    UploadModuleFileResponse,
 )
 from viam.proto.app.data import (
+    AddBinaryDataToDatasetByIDsRequest,
+    AddBinaryDataToDatasetByIDsResponse,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
@@ -163,10 +174,10 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
-    DeleteTabularDataByFilterRequest,
-    DeleteTabularDataByFilterResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    RemoveBinaryDataFromDatasetByIDsRequest,
+    RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveBoundingBoxFromImageByIDResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -190,30 +201,38 @@ from viam.proto.app.datasync import (
 )
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.mlmodel import (
-    FlatTensors,
     FlatTensor,
     FlatTensorDataDouble,
     FlatTensorDataFloat,
+    FlatTensorDataInt8,
     FlatTensorDataInt16,
     FlatTensorDataInt32,
     FlatTensorDataInt64,
-    FlatTensorDataInt8,
+    FlatTensorDataUInt8,
     FlatTensorDataUInt16,
     FlatTensorDataUInt32,
     FlatTensorDataUInt64,
-    FlatTensorDataUInt8,
+    FlatTensors,
 )
 from viam.proto.service.motion import (
     Constraints,
+    GetPlanRequest,
+    GetPlanResponse,
     GetPoseRequest,
     GetPoseResponse,
+    ListPlanStatusesRequest,
+    ListPlanStatusesResponse,
     MotionServiceBase,
+    MoveOnGlobeNewRequest,
+    MoveOnGlobeNewResponse,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
+    StopPlanRequest,
+    StopPlanResponse,
 )
 from viam.proto.service.navigation import Mode, Waypoint
 from viam.proto.service.sensors import (
@@ -225,9 +244,8 @@ from viam.proto.service.sensors import (
     SensorsServiceBase,
 )
 from viam.proto.service.vision import Classification, Detection
-from viam.app.data_client import DataClient
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
-from viam.services.mlmodel.utils import ndarrays_to_flat_tensors, flat_tensors_to_ndarrays
+from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
 from viam.services.vision import Vision
@@ -441,6 +459,18 @@ class MockMotion(MotionServiceBase):
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
 
+    async def MoveOnGlobeNew(self, stream: Stream[MoveOnGlobeNewRequest, MoveOnGlobeNewResponse]) -> None:
+        raise NotImplementedError()
+
+    async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ListPlanStatuses(self, stream: Stream[ListPlanStatusesRequest, ListPlanStatusesResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetPlan(self, stream: Stream[GetPlanRequest, GetPlanResponse]) -> None:
+        raise NotImplementedError()
+
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -616,9 +646,6 @@ class MockData(DataServiceBase):
             BinaryDataByIDsResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
         )
 
-    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
-        raise NotImplementedError()
-
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -699,6 +726,16 @@ class MockData(DataServiceBase):
         await stream.send_message(GetDatabaseConnectionResponse(hostname=self.hostname_response))
 
     async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
+        raise NotImplementedError()
+
+    async def AddBinaryDataToDatasetByIDs(
+        self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
+    ) -> None:
+        raise NotImplementedError()
+
+    async def RemoveBinaryDataFromDatasetByIDs(
+        self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
+    ) -> None:
         raise NotImplementedError()
 
 
@@ -1105,4 +1142,18 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteKey(self, stream: Stream[DeleteKeyRequest, DeleteKeyResponse]) -> None:
+        raise NotImplementedError()
+
+    async def ListKeys(self, stream: Stream[ListKeysRequest, ListKeysResponse]) -> None:
+        raise NotImplementedError()
+
+    async def RotateKey(self, stream: Stream[RotateKeyRequest, RotateKeyResponse]) -> None:
+        raise NotImplementedError()
+
+    async def CreateKeyFromExistingKeyAuthorizations(
+        self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
+    ) -> None:
         raise NotImplementedError()
