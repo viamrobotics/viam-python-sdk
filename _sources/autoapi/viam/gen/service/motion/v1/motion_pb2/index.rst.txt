@@ -18,6 +18,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.gen.service.motion.v1.motion_pb2.PlanState
    viam.gen.service.motion.v1.motion_pb2.MoveRequest
    viam.gen.service.motion.v1.motion_pb2.MoveResponse
    viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest
@@ -25,12 +26,26 @@ Classes
    viam.gen.service.motion.v1.motion_pb2.MotionConfiguration
    viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest
    viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse
+   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewRequest
+   viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewResponse
    viam.gen.service.motion.v1.motion_pb2.GetPoseRequest
    viam.gen.service.motion.v1.motion_pb2.GetPoseResponse
+   viam.gen.service.motion.v1.motion_pb2.StopPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.StopPlanResponse
+   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesRequest
+   viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesResponse
+   viam.gen.service.motion.v1.motion_pb2.GetPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.GetPlanResponse
    viam.gen.service.motion.v1.motion_pb2.Constraints
    viam.gen.service.motion.v1.motion_pb2.LinearConstraint
    viam.gen.service.motion.v1.motion_pb2.OrientationConstraint
    viam.gen.service.motion.v1.motion_pb2.CollisionSpecification
+   viam.gen.service.motion.v1.motion_pb2.PlanWithStatus
+   viam.gen.service.motion.v1.motion_pb2.PlanStatusWithID
+   viam.gen.service.motion.v1.motion_pb2.PlanStatus
+   viam.gen.service.motion.v1.motion_pb2.Plan
+   viam.gen.service.motion.v1.motion_pb2.PlanStep
+   viam.gen.service.motion.v1.motion_pb2.ComponentState
 
 
 
@@ -41,6 +56,12 @@ Attributes
 .. autoapisummary::
 
    viam.gen.service.motion.v1.motion_pb2.DESCRIPTOR
+   viam.gen.service.motion.v1.motion_pb2.PLAN_STATE_UNSPECIFIED
+   viam.gen.service.motion.v1.motion_pb2.PLAN_STATE_IN_PROGRESS
+   viam.gen.service.motion.v1.motion_pb2.PLAN_STATE_STOPPED
+   viam.gen.service.motion.v1.motion_pb2.PLAN_STATE_SUCCEEDED
+   viam.gen.service.motion.v1.motion_pb2.PLAN_STATE_FAILED
+   viam.gen.service.motion.v1.motion_pb2.global___PlanState
    viam.gen.service.motion.v1.motion_pb2.global___MoveRequest
    viam.gen.service.motion.v1.motion_pb2.global___MoveResponse
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapRequest
@@ -48,16 +69,71 @@ Attributes
    viam.gen.service.motion.v1.motion_pb2.global___MotionConfiguration
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse
+   viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeNewRequest
+   viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeNewResponse
    viam.gen.service.motion.v1.motion_pb2.global___GetPoseRequest
    viam.gen.service.motion.v1.motion_pb2.global___GetPoseResponse
+   viam.gen.service.motion.v1.motion_pb2.global___StopPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.global___StopPlanResponse
+   viam.gen.service.motion.v1.motion_pb2.global___ListPlanStatusesRequest
+   viam.gen.service.motion.v1.motion_pb2.global___ListPlanStatusesResponse
+   viam.gen.service.motion.v1.motion_pb2.global___GetPlanRequest
+   viam.gen.service.motion.v1.motion_pb2.global___GetPlanResponse
    viam.gen.service.motion.v1.motion_pb2.global___Constraints
    viam.gen.service.motion.v1.motion_pb2.global___LinearConstraint
    viam.gen.service.motion.v1.motion_pb2.global___OrientationConstraint
    viam.gen.service.motion.v1.motion_pb2.global___CollisionSpecification
+   viam.gen.service.motion.v1.motion_pb2.global___PlanWithStatus
+   viam.gen.service.motion.v1.motion_pb2.global___PlanStatusWithID
+   viam.gen.service.motion.v1.motion_pb2.global___PlanStatus
+   viam.gen.service.motion.v1.motion_pb2.global___Plan
+   viam.gen.service.motion.v1.motion_pb2.global___PlanStep
+   viam.gen.service.motion.v1.motion_pb2.global___ComponentState
 
 
 .. py:data:: DESCRIPTOR
    :type: google.protobuf.descriptor.FileDescriptor
+
+   
+
+.. py:class:: PlanState
+
+
+   Bases: :py:obj:`_PlanState`
+
+   The states that a plan can be in.
+   InProgress if the plan is executing.
+   Stopped if the plan was stopped.
+   Suceeded if the robot reached its destination successfully.
+   Failed if the robot did not reach its destination.
+
+
+.. py:data:: PLAN_STATE_UNSPECIFIED
+   :type: PlanState
+
+   
+
+.. py:data:: PLAN_STATE_IN_PROGRESS
+   :type: PlanState
+
+   
+
+.. py:data:: PLAN_STATE_STOPPED
+   :type: PlanState
+
+   
+
+.. py:data:: PLAN_STATE_SUCCEEDED
+   :type: PlanState
+
+   
+
+.. py:data:: PLAN_STATE_FAILED
+   :type: PlanState
+
+   
+
+.. py:data:: global___PlanState
 
    
 
@@ -429,6 +505,118 @@ Attributes
 
    
 
+.. py:class:: MoveOnGlobeNewRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoObstacle] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: destination
+      :type: viam.gen.common.v1.common_pb2.GeoPoint
+
+      Destination, encoded as a GeoPoint
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Component on the robot to move to the specified destination
+
+   .. py:property:: movement_sensor_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      Name of the movement sensor which will be used to check robot location
+
+   .. py:property:: obstacles
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoObstacle]
+
+      Obstacles to be considered for motion planning
+
+   .. py:property:: motion_configuration
+      :type: global___MotionConfiguration
+
+      Optional set of motion configuration options
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+   .. py:attribute:: name
+      :type: str
+
+      Name of the motion service
+
+   .. py:attribute:: heading
+      :type: float
+
+      Optional compass heading to achieve at the destination, in degrees [0-360)
+
+   .. py:method:: HasField(field_name: Literal[_heading, b'_heading', _motion_configuration, b'_motion_configuration', component_name, b'component_name', destination, b'destination', extra, b'extra', heading, b'heading', motion_configuration, b'motion_configuration', movement_sensor_name, b'movement_sensor_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_heading, b'_heading']) -> Literal[heading] | None
+                  WhichOneof(oneof_group: Literal[_motion_configuration, b'_motion_configuration']) -> Literal[motion_configuration] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___MoveOnGlobeNewRequest
+
+   
+
+.. py:class:: MoveOnGlobeNewResponse(*, execution_id: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: execution_id
+      :type: str
+
+      The unique ID which identifies the execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning.
+
+
+.. py:data:: global___MoveOnGlobeNewResponse
+
+   
+
 .. py:class:: GetPoseRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., destination_frame: str = ..., supplemental_transforms: collections.abc.Iterable[viam.gen.common.v1.common_pb2.Transform] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
@@ -524,6 +712,258 @@ Attributes
 
 
 .. py:data:: global___GetPoseResponse
+
+   
+
+.. py:class:: StopPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      The component of the currently executing plan to stop
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the motion service
+
+   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___StopPlanRequest
+
+   
+
+.. py:class:: StopPlanResponse
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___StopPlanResponse
+
+   
+
+.. py:class:: ListPlanStatusesRequest(*, name: str = ..., only_active_plans: bool = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the motion service
+
+   .. py:attribute:: only_active_plans
+      :type: bool
+
+      If supplied, the response will filter the
+      plan results for the supplied state
+
+   .. py:method:: HasField(field_name: Literal[extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ListPlanStatusesRequest
+
+   
+
+.. py:class:: ListPlanStatusesResponse(*, plan_statuses_with_ids: collections.abc.Iterable[global___PlanStatusWithID] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL
+
+   .. py:property:: plan_statuses_with_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatusWithID]
+
+      List of last known statuses with the associated IDs of all plans within the TTL
+      ordered by timestamp in ascending order
+
+
+.. py:data:: global___ListPlanStatusesResponse
+
+   
+
+.. py:class:: GetPlanRequest(*, name: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., last_plan_only: bool = ..., execution_id: str | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      The name of the component which the MoveOnGlobeRequest
+      asked to be moved.
+
+   .. py:property:: extra
+      :type: google.protobuf.struct_pb2.Struct
+
+      Additional arguments to the method
+
+   .. py:attribute:: name
+      :type: str
+
+      The name of the motion service
+
+   .. py:attribute:: last_plan_only
+      :type: bool
+
+      If supplied, the response will only return
+      the the last plan for the component / execution
+
+   .. py:attribute:: execution_id
+      :type: str
+
+      If you want to know about the plans of a previous execution
+
+   .. py:method:: HasField(field_name: Literal[_execution_id, b'_execution_id', component_name, b'component_name', execution_id, b'execution_id', extra, b'extra']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_execution_id, b'_execution_id']) -> Literal[execution_id] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___GetPlanRequest
+
+   
+
+.. py:class:: GetPlanResponse(*, current_plan_with_status: global___PlanWithStatus | None = ..., replan_history: collections.abc.Iterable[global___PlanWithStatus] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:property:: current_plan_with_status
+      :type: global___PlanWithStatus
+
+      The current plan and status that matches the request query
+
+   .. py:property:: replan_history
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanWithStatus]
+
+      Returns the history of all previous plans that were
+      generated in ascending order.
+      This field will be empty if the motion service
+      did not need to re-plan.
+
+   .. py:method:: HasField(field_name: Literal[current_plan_with_status, b'current_plan_with_status']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___GetPlanResponse
 
    
 
@@ -695,6 +1135,318 @@ Attributes
 
 
 .. py:data:: global___CollisionSpecification
+
+   
+
+.. py:class:: PlanWithStatus(*, plan: global___Plan | None = ..., status: global___PlanStatus | None = ..., status_history: collections.abc.Iterable[global___PlanStatus] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Describes a plan, its current status & all status changes
+   that have occured previously on that plan
+
+   .. py:property:: plan
+      :type: global___Plan
+
+      The plan
+
+   .. py:property:: status
+      :type: global___PlanStatus
+
+      The current status of the plan
+
+   .. py:property:: status_history
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatus]
+
+      The prior status changes that have happened during plan execution
+
+   .. py:method:: HasField(field_name: Literal[plan, b'plan', status, b'status']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___PlanWithStatus
+
+   
+
+.. py:class:: PlanStatusWithID(*, plan_id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., status: global___PlanStatus | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   PlanStatusWithID describes the state of a given plan at a
+   point in time plus the plan_id, component_name and execution_id
+   the status is associated with
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      The component to be moved.
+      Used for tracking & stopping.
+      NOTE: A plan may move more components than just the
+      component_name.
+
+   .. py:property:: status
+      :type: global___PlanStatus
+
+
+   .. py:attribute:: plan_id
+      :type: str
+
+      The unique ID of the plan
+
+   .. py:attribute:: execution_id
+      :type: str
+
+      The unique ID which identifies the plan execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning.
+
+   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', status, b'status']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___PlanStatusWithID
+
+   
+
+.. py:class:: PlanStatus(*, state: global___PlanState = ..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ..., reason: str | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Plan status describes the state of a given plan at a
+   point in time
+
+   .. py:property:: timestamp
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      The time the executing plan transtioned to the state
+
+   .. py:attribute:: state
+      :type: global___PlanState
+
+      The state of the plan execution
+
+   .. py:attribute:: reason
+      :type: str
+
+      The reason for the state change. If motion plan failed
+      this will return the error message.
+      If motion needed to re-plan, this will return
+      the re-plan reason.
+
+   .. py:method:: HasField(field_name: Literal[_reason, b'_reason', reason, b'reason', timestamp, b'timestamp']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_reason, b'_reason']) -> Literal[reason] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:data:: global___PlanStatus
+
+   
+
+.. py:class:: Plan(*, id: str = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., execution_id: str = ..., steps: collections.abc.Iterable[global___PlanStep] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   A plan describes a motion plan
+
+   .. py:property:: component_name
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+      The component requested to be moved.
+      Used for tracking & stopping.
+      NOTE: A plan may move more components than just the
+      root component.
+
+   .. py:property:: steps
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]
+
+      The steps of a plan is an ordered list of plan steps
+
+   .. py:attribute:: id
+      :type: str
+
+      The plan's unique ID
+
+   .. py:attribute:: execution_id
+      :type: str
+
+      The unique ID which identifies the execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning
+
+   .. py:method:: HasField(field_name: Literal[component_name, b'component_name']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___Plan
+
+   
+
+.. py:class:: PlanStep(*, step: collections.abc.Mapping[str, global___ComponentState] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:class:: StepEntry(*, key: str = ..., value: global___ComponentState | None = ...)
+
+
+      Bases: :py:obj:`google.protobuf.message.Message`
+
+      Abstract base class for protocol messages.
+
+      Protocol message classes are almost always generated by the protocol
+      compiler.  These generated types subclass Message and implement the methods
+      shown below.
+
+      .. py:property:: value
+         :type: global___ComponentState
+
+
+      .. py:attribute:: key
+         :type: str
+
+         
+
+      .. py:method:: HasField(field_name: Literal[value, b'value']) -> bool
+
+         Checks if a certain field is set for the message.
+
+         For a oneof group, checks if any field inside is set. Note that if the
+         field_name is not defined in the message descriptor, :exc:`ValueError` will
+         be raised.
+
+         :param field_name: The name of the field to check for presence.
+         :type field_name: str
+
+         :returns: Whether a value has been set for the named field.
+         :rtype: bool
+
+         :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:property:: step
+      :type: google.protobuf.internal.containers.MessageMap[str, global___ComponentState]
+
+      A step is the component state each
+      component resource should reach while executing
+      that step of the plan.
+      Keys are the fully qualified component name.
+
+
+.. py:data:: global___PlanStep
+
+   
+
+.. py:class:: ComponentState(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   A pose
+
+   .. py:property:: pose
+      :type: viam.gen.common.v1.common_pb2.Pose
+
+
+   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ComponentState
 
    
 

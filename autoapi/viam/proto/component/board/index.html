@@ -84,6 +84,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetPWMFrequency"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetPWMFrequency()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.ReadAnalogReader"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.ReadAnalogReader()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.WriteAnalog"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.WriteAnalog()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.GetDigitalInterruptValue"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.GetDigitalInterruptValue()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetPowerMode"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetPowerMode()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.GetGeometries"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.GetGeometries()</span></code></a></li>
@@ -195,6 +196,15 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StatusResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest.extra"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest.name"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest.pin"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest.pin</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest.value"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest.value</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest.HasField"><code class="docutils literal notranslate"><span class="pre">WriteAnalogRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.WriteAnalogResponse"><code class="docutils literal notranslate"><span class="pre">WriteAnalogResponse</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -334,6 +344,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.StatusResponse" title="viam.proto.component.board.StatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StatusResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest" title="viam.proto.component.board.WriteAnalogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogRequest</span></code></a></p></td>
+<td><p>Analog Writer</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogResponse" title="viam.proto.component.board.WriteAnalogResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -385,6 +401,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.board.BoardServiceBase.ReadAnalogReader">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ReadAnalogReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.ReadAnalogReaderRequest" title="viam.gen.component.board.v1.board_pb2.ReadAnalogReaderRequest"><span class="pre">component.board.v1.board_pb2.ReadAnalogReaderRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.ReadAnalogReaderResponse" title="viam.gen.component.board.v1.board_pb2.ReadAnalogReaderResponse"><span class="pre">component.board.v1.board_pb2.ReadAnalogReaderResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/board/v1/board_grpc.html#BoardServiceBase.ReadAnalogReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.board.BoardServiceBase.ReadAnalogReader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.board.BoardServiceBase.WriteAnalog">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">WriteAnalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.WriteAnalogRequest" title="viam.gen.component.board.v1.board_pb2.WriteAnalogRequest"><span class="pre">component.board.v1.board_pb2.WriteAnalogRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.WriteAnalogResponse" title="viam.gen.component.board.v1.board_pb2.WriteAnalogResponse"><span class="pre">component.board.v1.board_pb2.WriteAnalogResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/board/v1/board_grpc.html#BoardServiceBase.WriteAnalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.board.BoardServiceBase.WriteAnalog" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1097,6 +1118,67 @@ be raised.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">WriteAnalogRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Analog Writer</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest.pin">
+<span class="sig-name descname"><span class="pre">pin</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest.pin" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.WriteAnalogRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.WriteAnalogResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">WriteAnalogResponse</span></span><a class="headerlink" href="#viam.proto.component.board.WriteAnalogResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 </section>

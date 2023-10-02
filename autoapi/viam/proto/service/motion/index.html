@@ -81,7 +81,11 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.Move"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.Move()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveOnMap"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.MoveOnMap()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveOnGlobe"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.MoveOnGlobe()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.MoveOnGlobeNew"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.MoveOnGlobeNew()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.GetPose"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.GetPose()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.StopPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.StopPlan()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.ListPlanStatuses"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.ListPlanStatuses()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.GetPlan"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.GetPlan()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">MotionServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -96,10 +100,31 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification.allows"><code class="docutils literal notranslate"><span class="pre">CollisionSpecification.allows</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.ComponentState"><code class="docutils literal notranslate"><span class="pre">ComponentState</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ComponentState.pose"><code class="docutils literal notranslate"><span class="pre">ComponentState.pose</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ComponentState.HasField"><code class="docutils literal notranslate"><span class="pre">ComponentState.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.Constraints"><code class="docutils literal notranslate"><span class="pre">Constraints</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.linear_constraint"><code class="docutils literal notranslate"><span class="pre">Constraints.linear_constraint</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.orientation_constraint"><code class="docutils literal notranslate"><span class="pre">Constraints.orientation_constraint</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Constraints.collision_specification"><code class="docutils literal notranslate"><span class="pre">Constraints.collision_specification</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.component_name"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.last_plan_only"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.last_plan_only</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.execution_id"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.execution_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.HasField"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetPlanRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPlanResponse"><code class="docutils literal notranslate"><span class="pre">GetPlanResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanResponse.current_plan_with_status"><code class="docutils literal notranslate"><span class="pre">GetPlanResponse.current_plan_with_status</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanResponse.replan_history"><code class="docutils literal notranslate"><span class="pre">GetPlanResponse.replan_history</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.GetPlanResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetPlanResponse.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest"><code class="docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a><ul>
@@ -123,6 +148,17 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint.WhichOneof"><code class="docutils literal notranslate"><span class="pre">LinearConstraint.WhichOneof()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest.extra"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest.name"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest.only_active_plans"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesRequest.only_active_plans</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest.HasField"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesResponse"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesResponse.plan_statuses_with_ids"><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesResponse.plan_statuses_with_ids</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration.vision_services"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration.vision_services</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration.position_polling_frequency_hz"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration.position_polling_frequency_hz</span></code></a></li>
@@ -132,6 +168,23 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration.angular_degs_per_sec"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration.angular_degs_per_sec</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration.HasField"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration.HasField()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MotionConfiguration.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.destination"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.destination</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.component_name"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.movement_sensor_name"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.movement_sensor_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.obstacles"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.obstacles</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.motion_configuration"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.motion_configuration</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.extra"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.name"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.heading"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.heading</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.HasField"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewResponse"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewResponse.execution_id"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeNewResponse.execution_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeRequest"><code class="docutils literal notranslate"><span class="pre">MoveOnGlobeRequest</span></code></a><ul>
@@ -185,6 +238,56 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint.WhichOneof"><code class="docutils literal notranslate"><span class="pre">OrientationConstraint.WhichOneof()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.Plan"><code class="docutils literal notranslate"><span class="pre">Plan</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Plan.component_name"><code class="docutils literal notranslate"><span class="pre">Plan.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Plan.steps"><code class="docutils literal notranslate"><span class="pre">Plan.steps</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Plan.id"><code class="docutils literal notranslate"><span class="pre">Plan.id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Plan.execution_id"><code class="docutils literal notranslate"><span class="pre">Plan.execution_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.Plan.HasField"><code class="docutils literal notranslate"><span class="pre">Plan.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.PlanState"><code class="docutils literal notranslate"><span class="pre">PlanState</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus"><code class="docutils literal notranslate"><span class="pre">PlanStatus</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus.timestamp"><code class="docutils literal notranslate"><span class="pre">PlanStatus.timestamp</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus.state"><code class="docutils literal notranslate"><span class="pre">PlanStatus.state</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus.reason"><code class="docutils literal notranslate"><span class="pre">PlanStatus.reason</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus.HasField"><code class="docutils literal notranslate"><span class="pre">PlanStatus.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatus.WhichOneof"><code class="docutils literal notranslate"><span class="pre">PlanStatus.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID.component_name"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID.status"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID.status</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID.plan_id"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID.plan_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID.execution_id"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID.execution_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID.HasField"><code class="docutils literal notranslate"><span class="pre">PlanStatusWithID.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.PlanStep"><code class="docutils literal notranslate"><span class="pre">PlanStep</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStep.StepEntry"><code class="docutils literal notranslate"><span class="pre">PlanStep.StepEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.PlanStep.StepEntry.value"><code class="docutils literal notranslate"><span class="pre">PlanStep.StepEntry.value</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.PlanStep.StepEntry.key"><code class="docutils literal notranslate"><span class="pre">PlanStep.StepEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.service.motion.PlanStep.StepEntry.HasField"><code class="docutils literal notranslate"><span class="pre">PlanStep.StepEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanStep.step"><code class="docutils literal notranslate"><span class="pre">PlanStep.step</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus"><code class="docutils literal notranslate"><span class="pre">PlanWithStatus</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus.plan"><code class="docutils literal notranslate"><span class="pre">PlanWithStatus.plan</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus.status"><code class="docutils literal notranslate"><span class="pre">PlanWithStatus.status</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus.status_history"><code class="docutils literal notranslate"><span class="pre">PlanWithStatus.status_history</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus.HasField"><code class="docutils literal notranslate"><span class="pre">PlanWithStatus.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest"><code class="docutils literal notranslate"><span class="pre">StopPlanRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest.component_name"><code class="docutils literal notranslate"><span class="pre">StopPlanRequest.component_name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest.extra"><code class="docutils literal notranslate"><span class="pre">StopPlanRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest.name"><code class="docutils literal notranslate"><span class="pre">StopPlanRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StopPlanRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.motion.StopPlanResponse"><code class="docutils literal notranslate"><span class="pre">StopPlanResponse</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -252,41 +355,86 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.CollisionSpecification" title="viam.proto.service.motion.CollisionSpecification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollisionSpecification</span></code></a></p></td>
 <td><p>CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraints</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.ComponentState" title="viam.proto.service.motion.ComponentState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ComponentState</span></code></a></p></td>
+<td><p>A pose</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constraints</span></code></a></p></td>
 <td><p>Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest" title="viam.proto.service.motion.GetPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPlanRequest" title="viam.proto.service.motion.GetPlanRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlanRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse" title="viam.proto.service.motion.GetPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPlanResponse" title="viam.proto.service.motion.GetPlanResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPlanResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint" title="viam.proto.service.motion.LinearConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearConstraint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseRequest" title="viam.proto.service.motion.GetPoseRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.GetPoseResponse" title="viam.proto.service.motion.GetPoseResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPoseResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.LinearConstraint" title="viam.proto.service.motion.LinearConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LinearConstraint</span></code></a></p></td>
 <td><p>LinearConstraint specifies that the component being moved should move linearly relative to its goal.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration" title="viam.proto.service.motion.MotionConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotionConfiguration</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesRequest" title="viam.proto.service.motion.ListPlanStatusesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPlanStatusesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeRequest" title="viam.proto.service.motion.MoveOnGlobeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.ListPlanStatusesResponse" title="viam.proto.service.motion.ListPlanStatusesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPlanStatusesResponse</span></code></a></p></td>
+<td><p>Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MotionConfiguration" title="viam.proto.service.motion.MotionConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MotionConfiguration</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeResponse" title="viam.proto.service.motion.MoveOnGlobeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewRequest" title="viam.proto.service.motion.MoveOnGlobeNewRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeNewRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnMapRequest" title="viam.proto.service.motion.MoveOnMapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnMapRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeNewResponse" title="viam.proto.service.motion.MoveOnGlobeNewResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeNewResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnMapResponse" title="viam.proto.service.motion.MoveOnMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnMapResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeRequest" title="viam.proto.service.motion.MoveOnGlobeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveRequest" title="viam.proto.service.motion.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnGlobeResponse" title="viam.proto.service.motion.MoveOnGlobeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnGlobeResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnMapRequest" title="viam.proto.service.motion.MoveOnMapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnMapRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveOnMapResponse" title="viam.proto.service.motion.MoveOnMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveOnMapResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveRequest" title="viam.proto.service.motion.MoveRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveRequest</span></code></a></p></td>
 <td><p>Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveResponse" title="viam.proto.service.motion.MoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.MoveResponse" title="viam.proto.service.motion.MoveResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MoveResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint" title="viam.proto.service.motion.OrientationConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.OrientationConstraint" title="viam.proto.service.motion.OrientationConstraint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrientationConstraint</span></code></a></p></td>
 <td><p>OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.Plan" title="viam.proto.service.motion.Plan"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Plan</span></code></a></p></td>
+<td><p>A plan describes a motion plan</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.PlanState" title="viam.proto.service.motion.PlanState"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanState</span></code></a></p></td>
+<td><p>The states that a plan can be in.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.PlanStatus" title="viam.proto.service.motion.PlanStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanStatus</span></code></a></p></td>
+<td><p>Plan status describes the state of a given plan at a</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.PlanStatusWithID" title="viam.proto.service.motion.PlanStatusWithID"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanStatusWithID</span></code></a></p></td>
+<td><p>PlanStatusWithID describes the state of a given plan at a</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.PlanStep" title="viam.proto.service.motion.PlanStep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanStep</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.PlanWithStatus" title="viam.proto.service.motion.PlanWithStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PlanWithStatus</span></code></a></p></td>
+<td><p>Describes a plan, its current status &amp; all status changes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.motion.StopPlanRequest" title="viam.proto.service.motion.StopPlanRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopPlanRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.motion.StopPlanResponse" title="viam.proto.service.motion.StopPlanResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopPlanResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
 </table>
@@ -312,8 +460,28 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.MoveOnGlobeNew">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MoveOnGlobeNew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewRequest" title="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewRequest"><span class="pre">service.motion.v1.motion_pb2.MoveOnGlobeNewRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewResponse" title="viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeNewResponse"><span class="pre">service.motion.v1.motion_pb2.MoveOnGlobeNewResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.MoveOnGlobeNew"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.MoveOnGlobeNew" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.GetPose">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.GetPoseRequest" title="viam.gen.service.motion.v1.motion_pb2.GetPoseRequest"><span class="pre">service.motion.v1.motion_pb2.GetPoseRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.GetPoseResponse" title="viam.gen.service.motion.v1.motion_pb2.GetPoseResponse"><span class="pre">service.motion.v1.motion_pb2.GetPoseResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.GetPose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.GetPose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.StopPlan">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopPlan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.StopPlanRequest" title="viam.gen.service.motion.v1.motion_pb2.StopPlanRequest"><span class="pre">service.motion.v1.motion_pb2.StopPlanRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.StopPlanResponse" title="viam.gen.service.motion.v1.motion_pb2.StopPlanResponse"><span class="pre">service.motion.v1.motion_pb2.StopPlanResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.StopPlan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.StopPlan" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.ListPlanStatuses">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListPlanStatuses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesRequest" title="viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesRequest"><span class="pre">service.motion.v1.motion_pb2.ListPlanStatusesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesResponse" title="viam.gen.service.motion.v1.motion_pb2.ListPlanStatusesResponse"><span class="pre">service.motion.v1.motion_pb2.ListPlanStatusesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.ListPlanStatuses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.ListPlanStatuses" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MotionServiceBase.GetPlan">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPlan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.GetPlanRequest" title="viam.gen.service.motion.v1.motion_pb2.GetPlanRequest"><span class="pre">service.motion.v1.motion_pb2.GetPlanRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.GetPlanResponse" title="viam.gen.service.motion.v1.motion_pb2.GetPlanResponse"><span class="pre">service.motion.v1.motion_pb2.GetPlanResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/motion/v1/motion_grpc.html#MotionServiceBase.GetPlan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.motion.MotionServiceBase.GetPlan" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -367,6 +535,41 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ComponentState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">ComponentState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.ComponentState" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A pose</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ComponentState.pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Pose" title="viam.gen.common.v1.common_pb2.Pose"><span class="pre">viam.gen.common.v1.common_pb2.Pose</span></a></em><a class="headerlink" href="#viam.proto.service.motion.ComponentState.pose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ComponentState.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">pose</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'pose'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.ComponentState.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.Constraints">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">Constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LinearConstraint</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___OrientationConstraint</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_specification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.Constraints" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -386,6 +589,140 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.service.motion.Constraints.collision_specification">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collision_specification</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___CollisionSpecification</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.Constraints.collision_specification" title="Permalink to this definition"></a></dt>
 <dd><p>Arc constraint, Time constraint, and others will be added here when they are supported</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">GetPlanRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_plan_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the component which the MoveOnGlobeRequest
+asked to be moved.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the motion service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.last_plan_only">
+<span class="sig-name descname"><span class="pre">last_plan_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.last_plan_only" title="Permalink to this definition"></a></dt>
+<dd><p>If supplied, the response will only return
+the the last plan for the component / execution</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.execution_id">
+<span class="sig-name descname"><span class="pre">execution_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.execution_id" title="Permalink to this definition"></a></dt>
+<dd><p>If you want to know about the plans of a previous execution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_execution_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_execution_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">execution_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'execution_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_execution_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_execution_id'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">execution_id</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPlanRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">GetPlanResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_plan_with_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PlanWithStatus</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replan_history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanWithStatus</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.GetPlanResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanResponse.current_plan_with_status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">current_plan_with_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PlanWithStatus</span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanResponse.current_plan_with_status" title="Permalink to this definition"></a></dt>
+<dd><p>The current plan and status that matches the request query</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanResponse.replan_history">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">replan_history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanWithStatus</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.GetPlanResponse.replan_history" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the history of all previous plans that were
+generated in ascending order.
+This field will be empty if the motion service
+did not need to re-plan.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.GetPlanResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">current_plan_with_status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'current_plan_with_status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.GetPlanResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -560,6 +897,72 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">ListPlanStatusesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_active_plans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the motion service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesRequest.only_active_plans">
+<span class="sig-name descname"><span class="pre">only_active_plans</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesRequest.only_active_plans" title="Permalink to this definition"></a></dt>
+<dd><p>If supplied, the response will filter the
+plan results for the supplied state</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">ListPlanStatusesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_statuses_with_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStatusWithID</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.ListPlanStatusesResponse.plan_statuses_with_ids">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan_statuses_with_ids</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStatusWithID</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.ListPlanStatusesResponse.plan_statuses_with_ids" title="Permalink to this definition"></a></dt>
+<dd><p>List of last known statuses with the associated IDs of all plans within the TTL
+ordered by timestamp in ascending order</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.motion.MotionConfiguration">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MotionConfiguration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vision_services</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_polling_frequency_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_polling_frequency_hz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_deviation_m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linear_m_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_degs_per_sec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.MotionConfiguration" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -653,6 +1056,128 @@ be raised.</p>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveOnGlobeNewRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heading</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">movement_sensor_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><span class="pre">viam.gen.common.v1.common_pb2.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motion_configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___MotionConfiguration</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.destination">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.destination" title="Permalink to this definition"></a></dt>
+<dd><p>Destination, encoded as a GeoPoint</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>Component on the robot to move to the specified destination</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.movement_sensor_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">movement_sensor_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.movement_sensor_name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the movement sensor which will be used to check robot location</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.obstacles">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">obstacles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><span class="pre">viam.gen.common.v1.common_pb2.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.obstacles" title="Permalink to this definition"></a></dt>
+<dd><p>Obstacles to be considered for motion planning</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.motion_configuration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">motion_configuration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___MotionConfiguration</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.motion_configuration" title="Permalink to this definition"></a></dt>
+<dd><p>Optional set of motion configuration options</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the motion service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.heading">
+<span class="sig-name descname"><span class="pre">heading</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.heading" title="Permalink to this definition"></a></dt>
+<dd><p>Optional compass heading to achieve at the destination, in degrees [0-360)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_heading'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_motion_configuration</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_motion_configuration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">destination</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'destination'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'heading'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">motion_configuration</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'motion_configuration'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">movement_sensor_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'movement_sensor_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_heading</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_heading'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">heading</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_motion_configuration</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_motion_configuration'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">motion_configuration</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">MoveOnGlobeNewResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.MoveOnGlobeNewResponse.execution_id">
+<span class="sig-name descname"><span class="pre">execution_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.MoveOnGlobeNewResponse.execution_id" title="Permalink to this definition"></a></dt>
+<dd><p>The unique ID which identifies the execution.
+Multiple plans will share the same execution_id if they were
+generated due to replanning.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1015,6 +1540,381 @@ be raised.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">Plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStep</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.Plan" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A plan describes a motion plan</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.Plan.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>The component requested to be moved.
+Used for tracking &amp; stopping.
+NOTE: A plan may move more components than just the
+root component.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan.steps">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStep</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.Plan.steps" title="Permalink to this definition"></a></dt>
+<dd><p>The steps of a plan is an ordered list of plan steps</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.Plan.id" title="Permalink to this definition"></a></dt>
+<dd><p>The plan’s unique ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan.execution_id">
+<span class="sig-name descname"><span class="pre">execution_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.Plan.execution_id" title="Permalink to this definition"></a></dt>
+<dd><p>The unique ID which identifies the execution.
+Multiple plans will share the same execution_id if they were
+generated due to replanning</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.Plan.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.Plan.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanState</span></span><a class="headerlink" href="#viam.proto.service.motion.PlanState" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_PlanState</span></code></p>
+<p>The states that a plan can be in.
+InProgress if the plan is executing.
+Stopped if the plan was stopped.
+Suceeded if the robot reached its destination successfully.
+Failed if the robot did not reach its destination.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PlanState</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.PlanStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Plan status describes the state of a given plan at a
+point in time</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus.timestamp">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timestamp</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatus.timestamp" title="Permalink to this definition"></a></dt>
+<dd><p>The time the executing plan transtioned to the state</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus.state">
+<span class="sig-name descname"><span class="pre">state</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PlanState</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatus.state" title="Permalink to this definition"></a></dt>
+<dd><p>The state of the plan execution</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus.reason">
+<span class="sig-name descname"><span class="pre">reason</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatus.reason" title="Permalink to this definition"></a></dt>
+<dd><p>The reason for the state change. If motion plan failed
+this will return the error message.
+If motion needed to re-plan, this will return
+the re-plan reason.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_reason</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_reason'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">reason</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'reason'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">timestamp</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'timestamp'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.PlanStatus.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatus.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_reason</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_reason'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">reason</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.motion.PlanStatus.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanStatusWithID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PlanStatus</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>PlanStatusWithID describes the state of a given plan at a
+point in time plus the plan_id, component_name and execution_id
+the status is associated with</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>The component to be moved.
+Used for tracking &amp; stopping.
+NOTE: A plan may move more components than just the
+component_name.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PlanStatus</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID.status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID.plan_id">
+<span class="sig-name descname"><span class="pre">plan_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID.plan_id" title="Permalink to this definition"></a></dt>
+<dd><p>The unique ID of the plan</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID.execution_id">
+<span class="sig-name descname"><span class="pre">execution_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID.execution_id" title="Permalink to this definition"></a></dt>
+<dd><p>The unique ID which identifies the plan execution.
+Multiple plans will share the same execution_id if they were
+generated due to replanning.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStatusWithID.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.PlanStatusWithID.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___ComponentState</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.PlanStep" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep.StepEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StepEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ComponentState</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.PlanStep.StepEntry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep.StepEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ComponentState</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStep.StepEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep.StepEntry.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStep.StepEntry.key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep.StepEntry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">value</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'value'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.PlanStep.StepEntry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanStep.step">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">global___ComponentState</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.PlanStep.step" title="Permalink to this definition"></a></dt>
+<dd><p>A step is the component state each
+component resource should reach while executing
+that step of the plan.
+Keys are the fully qualified component name.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanWithStatus">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">PlanWithStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___Plan</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___PlanStatus</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status_history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStatus</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.PlanWithStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Describes a plan, its current status &amp; all status changes
+that have occured previously on that plan</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanWithStatus.plan">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___Plan</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanWithStatus.plan" title="Permalink to this definition"></a></dt>
+<dd><p>The plan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanWithStatus.status">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___PlanStatus</span></em><a class="headerlink" href="#viam.proto.service.motion.PlanWithStatus.status" title="Permalink to this definition"></a></dt>
+<dd><p>The current status of the plan</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanWithStatus.status_history">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status_history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___PlanStatus</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.motion.PlanWithStatus.status_history" title="Permalink to this definition"></a></dt>
+<dd><p>The prior status changes that have happened during plan execution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.PlanWithStatus.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">plan</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'plan'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.PlanWithStatus.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">StopPlanRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.motion.StopPlanRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanRequest.component_name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">component_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><span class="pre">viam.gen.common.v1.common_pb2.ResourceName</span></a></em><a class="headerlink" href="#viam.proto.service.motion.StopPlanRequest.component_name" title="Permalink to this definition"></a></dt>
+<dd><p>The component of the currently executing plan to stop</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.motion.StopPlanRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.motion.StopPlanRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>The name of the motion service</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">component_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'component_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.motion.StopPlanRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.motion.StopPlanResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.motion.</span></span><span class="sig-name descname"><span class="pre">StopPlanResponse</span></span><a class="headerlink" href="#viam.proto.service.motion.StopPlanResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
 </dd></dl>
 
 </section>

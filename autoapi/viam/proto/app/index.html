@@ -68,6 +68,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="cloudslam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.cloudslam</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="dataset/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.dataset</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="datasync/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="mltraining/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.mltraining</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="packages/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.packages</span></code></a></li>
@@ -75,6 +76,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="billing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.billing</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="end_user/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.end_user</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.robot</span></code></a></li>
 </ul>
 </li>
@@ -140,6 +142,10 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.GetModule"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.GetModule()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListModules"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListModules()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateKey"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateKey()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteKey"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteKey()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListKeys"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListKeys()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.RotateKey"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.RotateKey()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateKeyFromExistingKeyAuthorizations"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateKeyFromExistingKeyAuthorizations()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -158,6 +164,12 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.APIKey.HasField"><code class="docutils literal notranslate"><span class="pre">APIKey.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations"><code class="docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations.api_key"><code class="docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations.api_key</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations.authorizations"><code class="docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations.authorizations</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations.HasField"><code class="docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.Authorization"><code class="docutils literal notranslate"><span class="pre">Authorization</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Authorization.authorization_type"><code class="docutils literal notranslate"><span class="pre">Authorization.authorization_type</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Authorization.authorization_id"><code class="docutils literal notranslate"><span class="pre">Authorization.authorization_id</span></code></a></li>
@@ -166,6 +178,14 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Authorization.identity_id"><code class="docutils literal notranslate"><span class="pre">Authorization.identity_id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Authorization.organization_id"><code class="docutils literal notranslate"><span class="pre">Authorization.organization_id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.Authorization.identity_type"><code class="docutils literal notranslate"><span class="pre">Authorization.identity_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails.authorization_type"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails.authorization_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails.authorization_id"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails.authorization_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails.resource_type"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails.resource_type</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails.resource_id"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails.resource_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AuthorizationDetails.org_id"><code class="docutils literal notranslate"><span class="pre">AuthorizationDetails.org_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions"><code class="docutils literal notranslate"><span class="pre">AuthorizedPermissions</span></code></a><ul>
@@ -199,6 +219,15 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateFragmentResponse"><code class="docutils literal notranslate"><span class="pre">CreateFragmentResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.CreateFragmentResponse.fragment"><code class="docutils literal notranslate"><span class="pre">CreateFragmentResponse.fragment</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.CreateFragmentResponse.HasField"><code class="docutils literal notranslate"><span class="pre">CreateFragmentResponse.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest"><code class="docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest.id"><code class="docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse"><code class="docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.id"><code class="docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsResponse.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.key"><code class="docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsResponse.key</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.CreateKeyRequest"><code class="docutils literal notranslate"><span class="pre">CreateKeyRequest</span></code></a><ul>
@@ -277,6 +306,11 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteFragmentResponse"><code class="docutils literal notranslate"><span class="pre">DeleteFragmentResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteKeyRequest"><code class="docutils literal notranslate"><span class="pre">DeleteKeyRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteKeyRequest.id"><code class="docutils literal notranslate"><span class="pre">DeleteKeyRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteKeyResponse"><code class="docutils literal notranslate"><span class="pre">DeleteKeyResponse</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteLocationRequest"><code class="docutils literal notranslate"><span class="pre">DeleteLocationRequest</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteLocationRequest.location_id"><code class="docutils literal notranslate"><span class="pre">DeleteLocationRequest.location_id</span></code></a></li>
 </ul>
@@ -468,6 +502,14 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListFragmentsResponse"><code class="docutils literal notranslate"><span class="pre">ListFragmentsResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListFragmentsResponse.fragments"><code class="docutils literal notranslate"><span class="pre">ListFragmentsResponse.fragments</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListKeysRequest"><code class="docutils literal notranslate"><span class="pre">ListKeysRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListKeysRequest.org_id"><code class="docutils literal notranslate"><span class="pre">ListKeysRequest.org_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListKeysResponse"><code class="docutils literal notranslate"><span class="pre">ListKeysResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.ListKeysResponse.api_keys"><code class="docutils literal notranslate"><span class="pre">ListKeysResponse.api_keys</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.ListLocationsRequest"><code class="docutils literal notranslate"><span class="pre">ListLocationsRequest</span></code></a><ul>
@@ -701,6 +743,15 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry.HasField"><code class="docutils literal notranslate"><span class="pre">RobotPartHistoryEntry.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RotateKeyRequest"><code class="docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RotateKeyRequest.id"><code class="docutils literal notranslate"><span class="pre">RotateKeyRequest.id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RotateKeyResponse"><code class="docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RotateKeyResponse.id"><code class="docutils literal notranslate"><span class="pre">RotateKeyResponse.id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RotateKeyResponse.key"><code class="docutils literal notranslate"><span class="pre">RotateKeyResponse.key</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot.robot_id"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot.robot_id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.RoverRentalRobot.location_id"><code class="docutils literal notranslate"><span class="pre">RoverRentalRobot.location_id</span></code></a></li>
@@ -918,6 +969,7 @@ Do not edit manually!</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cloudslam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.cloudslam</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.dataset</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="datasync/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="mltraining/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.mltraining</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="packages/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.packages</span></code></a></li>
@@ -929,6 +981,7 @@ Do not edit manually!</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="billing/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.billing</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="end_user/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.end_user</span></code></a></li>
 <li class="toctree-l1"><a class="reference internal" href="robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.robot</span></code></a></li>
 </ul>
 </div>
@@ -954,7 +1007,13 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.APIKey" title="viam.proto.app.APIKey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKey</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Authorization</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.APIKeyWithAuthorizations" title="viam.proto.app.APIKeyWithAuthorizations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">APIKeyWithAuthorizations</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Authorization</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.AuthorizationDetails" title="viam.proto.app.AuthorizationDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthorizationDetails</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthorizedPermissions</span></code></a></p></td>
@@ -976,6 +1035,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.CreateFragmentResponse" title="viam.proto.app.CreateFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateFragmentResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest" title="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse" title="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateKeyFromExistingKeyAuthorizationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.CreateKeyRequest" title="viam.proto.app.CreateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreateKeyRequest</span></code></a></p></td>
@@ -1024,6 +1089,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.DeleteFragmentResponse" title="viam.proto.app.DeleteFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteFragmentResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.DeleteKeyRequest" title="viam.proto.app.DeleteKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteKeyRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.DeleteKeyResponse" title="viam.proto.app.DeleteKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteKeyResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.DeleteLocationRequest" title="viam.proto.app.DeleteLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteLocationRequest</span></code></a></p></td>
@@ -1167,6 +1238,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ListFragmentsResponse" title="viam.proto.app.ListFragmentsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListFragmentsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ListKeysRequest" title="viam.proto.app.ListKeysRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ListKeysResponse" title="viam.proto.app.ListKeysResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListKeysResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ListLocationsRequest" title="viam.proto.app.ListLocationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListLocationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -1285,6 +1362,12 @@ Do not edit manually!</p>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry" title="viam.proto.app.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyRequest" title="viam.proto.app.RotateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyResponse" title="viam.proto.app.RotateKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RoverRentalRobot" title="viam.proto.app.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
@@ -1675,6 +1758,26 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.DeleteKey">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteKeyRequest" title="viam.gen.app.v1.app_pb2.DeleteKeyRequest"><span class="pre">app.v1.app_pb2.DeleteKeyRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteKeyResponse" title="viam.gen.app.v1.app_pb2.DeleteKeyResponse"><span class="pre">app.v1.app_pb2.DeleteKeyResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.DeleteKey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.DeleteKey" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.ListKeys">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListKeys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListKeysRequest" title="viam.gen.app.v1.app_pb2.ListKeysRequest"><span class="pre">app.v1.app_pb2.ListKeysRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListKeysResponse" title="viam.gen.app.v1.app_pb2.ListKeysResponse"><span class="pre">app.v1.app_pb2.ListKeysResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.ListKeys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.ListKeys" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.RotateKey">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RotateKey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.RotateKeyRequest" title="viam.gen.app.v1.app_pb2.RotateKeyRequest"><span class="pre">app.v1.app_pb2.RotateKeyRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.RotateKeyResponse" title="viam.gen.app.v1.app_pb2.RotateKeyResponse"><span class="pre">app.v1.app_pb2.RotateKeyResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.RotateKey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.RotateKey" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.CreateKeyFromExistingKeyAuthorizations">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreateKeyFromExistingKeyAuthorizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest" title="viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest"><span class="pre">app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse" title="viam.gen.app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse"><span class="pre">app.v1.app_pb2.CreateKeyFromExistingKeyAuthorizationsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.CreateKeyFromExistingKeyAuthorizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.CreateKeyFromExistingKeyAuthorizations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.__mapping__">
 <span class="sig-name descname"><span class="pre">__mapping__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">grpclib.const.Handler</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.__mapping__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.__mapping__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1788,6 +1891,49 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.APIKeyWithAuthorizations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">APIKeyWithAuthorizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___APIKey</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AuthorizationDetails</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.APIKeyWithAuthorizations" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.APIKeyWithAuthorizations.api_key">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___APIKey</span></em><a class="headerlink" href="#viam.proto.app.APIKeyWithAuthorizations.api_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.APIKeyWithAuthorizations.authorizations">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">authorizations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___AuthorizationDetails</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.APIKeyWithAuthorizations.authorizations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.APIKeyWithAuthorizations.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">api_key</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'api_key'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.APIKeyWithAuthorizations.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.Authorization">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">Authorization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorization_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">identity_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.Authorization" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -1828,6 +1974,41 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.Authorization.identity_type">
 <span class="sig-name descname"><span class="pre">identity_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.Authorization.identity_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">AuthorizationDetails</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorization_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.AuthorizationDetails" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails.authorization_type">
+<span class="sig-name descname"><span class="pre">authorization_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizationDetails.authorization_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails.authorization_id">
+<span class="sig-name descname"><span class="pre">authorization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizationDetails.authorization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails.resource_type">
+<span class="sig-name descname"><span class="pre">resource_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizationDetails.resource_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails.resource_id">
+<span class="sig-name descname"><span class="pre">resource_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizationDetails.resource_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.AuthorizationDetails.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.AuthorizationDetails.org_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -2023,6 +2204,41 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">CreateKeyFromExistingKeyAuthorizationsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">CreateKeyFromExistingKeyAuthorizationsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.CreateKeyFromExistingKeyAuthorizationsResponse.key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -2467,6 +2683,31 @@ shown below.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.DeleteFragmentResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteFragmentResponse</span></span><a class="headerlink" href="#viam.proto.app.DeleteFragmentResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteKeyRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteKeyRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.DeleteKeyRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteKeyRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.DeleteKeyRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteKeyResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteKeyResponse</span></span><a class="headerlink" href="#viam.proto.app.DeleteKeyResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -3456,6 +3697,36 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.ListFragmentsResponse.fragments">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fragments</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Fragment</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.ListFragmentsResponse.fragments" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.ListKeysRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">ListKeysRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.ListKeysRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.ListKeysRequest.org_id">
+<span class="sig-name descname"><span class="pre">org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.ListKeysRequest.org_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.ListKeysResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">ListKeysResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKeyWithAuthorizations</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.ListKeysResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.ListKeysResponse.api_keys">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKeyWithAuthorizations</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.ListKeysResponse.api_keys" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4768,6 +5039,41 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.RotateKeyRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">RotateKeyRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.RotateKeyRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.RotateKeyRequest.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.RotateKeyRequest.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.RotateKeyResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">RotateKeyResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.RotateKeyResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.RotateKeyResponse.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.RotateKeyResponse.id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.RotateKeyResponse.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.RotateKeyResponse.key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

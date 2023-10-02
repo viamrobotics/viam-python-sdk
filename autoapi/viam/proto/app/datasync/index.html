@@ -23,7 +23,7 @@
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="viam.proto.app.mltraining" href="../mltraining/index.html" />
-    <link rel="prev" title="viam.proto.app.data" href="../data/index.html" /> 
+    <link rel="prev" title="viam.proto.app.dataset" href="../dataset/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,6 +68,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="../cloudslam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.cloudslam</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../data/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../dataset/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.dataset</span></code></a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.datasync</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
@@ -246,46 +247,46 @@ Do not edit manually!</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval" title="viam.proto.app.datasync.CaptureInterval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureInterval</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>CaptureInterval specifies the start and end times of the data capture.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata" title="viam.proto.app.datasync.DataCaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureMetadata</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>DataCaptureMetadata contains the metadata for data captured by collectors.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadMetadata" title="viam.proto.app.datasync.DataCaptureUploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadMetadata</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadRequest" title="viam.proto.app.datasync.DataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="viam.proto.app.datasync.DataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataType" title="viam.proto.app.datasync.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a></p></td>
-<td><p></p></td>
+<td><p>DataType specifies the type of data uploaded.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileData" title="viam.proto.app.datasync.FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileData</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>FileData contains the contents of binary (image + file) data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadRequest" title="viam.proto.app.datasync.FileUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse" title="viam.proto.app.datasync.FileUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorData" title="viam.proto.app.datasync.SensorData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorData</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>SensorData contains the contents and metadata for tabular data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata" title="viam.proto.app.datasync.SensorMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorMetadata</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>SensorMetadata contains the time the sensor data was requested and was received.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadRequest" title="viam.proto.app.datasync.StreamingDataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadRequest</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="viam.proto.app.datasync.StreamingDataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata" title="viam.proto.app.datasync.UploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
+<td><p>UploadMetadata contains the metadata for binary (image + file) data.</p></td>
 </tr>
 </tbody>
 </table>
@@ -326,10 +327,7 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.CaptureInterval">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">CaptureInterval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.CaptureInterval" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>CaptureInterval specifies the start and end times of the data capture.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.CaptureInterval.start">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.datasync.CaptureInterval.start" title="Permalink to this definition"></a></dt>
@@ -369,10 +367,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureMetadata">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.any_pb2.Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureMetadata" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>DataCaptureMetadata contains the metadata for data captured by collectors.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MethodParametersEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.any_pb2.Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureMetadata.MethodParametersEntry" title="Permalink to this definition"></a></dt>
@@ -457,10 +452,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadMetadata">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upload_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___UploadMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___SensorMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadMetadata" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadMetadata.upload_metadata">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">upload_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___UploadMetadata</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadMetadata.upload_metadata" title="Permalink to this definition"></a></dt>
@@ -500,10 +492,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___UploadMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sensor_contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___SensorData</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadRequest.metadata">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___UploadMetadata</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadRequest.metadata" title="Permalink to this definition"></a></dt>
@@ -543,10 +532,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataCaptureUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.DataCaptureUploadResponse.file_id" title="Permalink to this definition"></a></dt>
@@ -558,16 +544,14 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataType</span></span><a class="headerlink" href="#viam.proto.app.datasync.DataType" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_DataType</span></code></p>
+<p>DataType specifies the type of data uploaded.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileData" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>FileData contains the contents of binary (image + file) data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileData.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileData.data" title="Permalink to this definition"></a></dt>
@@ -579,10 +563,8 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___UploadMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_contents</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___FileData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
+The first packet must be the UploadMetadata associated with the binary data.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadRequest.metadata">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___UploadMetadata</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileUploadRequest.metadata" title="Permalink to this definition"></a></dt>
@@ -643,10 +625,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">FileUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.FileUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.FileUploadResponse.file_id" title="Permalink to this definition"></a></dt>
@@ -658,10 +637,7 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.SensorData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">SensorData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___SensorMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">struct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.SensorData" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>SensorData contains the contents and metadata for tabular data.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.SensorData.metadata">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___SensorMetadata</span></em><a class="headerlink" href="#viam.proto.app.datasync.SensorData.metadata" title="Permalink to this definition"></a></dt>
@@ -727,10 +703,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.SensorMetadata">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">SensorMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_requested</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_received</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.SensorMetadata" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>SensorMetadata contains the time the sensor data was requested and was received.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.SensorMetadata.time_requested">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_requested</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.datasync.SensorMetadata.time_requested" title="Permalink to this definition"></a></dt>
@@ -770,10 +743,8 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">StreamingDataCaptureUploadRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataCaptureUploadMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
+The first packet must be the DataCaptureUploadMetadata associated with the data.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadRequest.metadata">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___DataCaptureUploadMetadata</span></em><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadRequest.metadata" title="Permalink to this definition"></a></dt>
@@ -834,10 +805,7 @@ be raised.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">StreamingDataCaptureUploadResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.StreamingDataCaptureUploadResponse.file_id">
 <span class="sig-name descname"><span class="pre">file_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse.file_id" title="Permalink to this definition"></a></dt>
@@ -849,10 +817,7 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.UploadMetadata">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">UploadMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___DataType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">google.protobuf.any_pb2.Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.UploadMetadata" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
+<p>UploadMetadata contains the metadata for binary (image + file) data.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.UploadMetadata.MethodParametersEntry">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MethodParametersEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.any_pb2.Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.datasync.UploadMetadata.MethodParametersEntry" title="Permalink to this definition"></a></dt>
@@ -951,7 +916,7 @@ be raised.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../data/index.html" class="btn btn-neutral float-left" title="viam.proto.app.data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dataset/index.html" class="btn btn-neutral float-left" title="viam.proto.app.dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../mltraining/index.html" class="btn btn-neutral float-right" title="viam.proto.app.mltraining" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

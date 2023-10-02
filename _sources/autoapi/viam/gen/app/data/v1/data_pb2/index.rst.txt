@@ -37,8 +37,6 @@ Classes
    viam.gen.app.data.v1.data_pb2.BoundingBox
    viam.gen.app.data.v1.data_pb2.Annotations
    viam.gen.app.data.v1.data_pb2.BinaryMetadata
-   viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterRequest
-   viam.gen.app.data.v1.data_pb2.DeleteTabularDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataRequest
    viam.gen.app.data.v1.data_pb2.DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest
@@ -65,6 +63,10 @@ Classes
    viam.gen.app.data.v1.data_pb2.ConfigureDatabaseUserResponse
    viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionRequest
    viam.gen.app.data.v1.data_pb2.GetDatabaseConnectionResponse
+   viam.gen.app.data.v1.data_pb2.AddBinaryDataToDatasetByIDsRequest
+   viam.gen.app.data.v1.data_pb2.AddBinaryDataToDatasetByIDsResponse
+   viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest
+   viam.gen.app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse
 
 
 
@@ -101,8 +103,6 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___BoundingBox
    viam.gen.app.data.v1.data_pb2.global___Annotations
    viam.gen.app.data.v1.data_pb2.global___BinaryMetadata
-   viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataByFilterRequest
-   viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataByFilterResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataRequest
    viam.gen.app.data.v1.data_pb2.global___DeleteTabularDataResponse
    viam.gen.app.data.v1.data_pb2.global___DeleteBinaryDataByFilterRequest
@@ -129,6 +129,10 @@ Attributes
    viam.gen.app.data.v1.data_pb2.global___ConfigureDatabaseUserResponse
    viam.gen.app.data.v1.data_pb2.global___GetDatabaseConnectionRequest
    viam.gen.app.data.v1.data_pb2.global___GetDatabaseConnectionResponse
+   viam.gen.app.data.v1.data_pb2.global___AddBinaryDataToDatasetByIDsRequest
+   viam.gen.app.data.v1.data_pb2.global___AddBinaryDataToDatasetByIDsResponse
+   viam.gen.app.data.v1.data_pb2.global___RemoveBinaryDataFromDatasetByIDsRequest
+   viam.gen.app.data.v1.data_pb2.global___RemoveBinaryDataFromDatasetByIDsResponse
 
 
 .. py:data:: DESCRIPTOR
@@ -168,7 +172,7 @@ Attributes
 
    Bases: :py:obj:`_TagsFilterType`
 
-   TagsFilterType specifies how data can be filtered based on tags
+   TagsFilterType specifies how data can be filtered based on tags.
 
 
 .. py:data:: TAGS_FILTER_TYPE_UNSPECIFIED
@@ -179,17 +183,17 @@ Attributes
 .. py:data:: TAGS_FILTER_TYPE_MATCH_BY_OR
    :type: TagsFilterType
 
-   TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter
+   TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.
 
 .. py:data:: TAGS_FILTER_TYPE_TAGGED
    :type: TagsFilterType
 
-   TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned
+   TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.
 
 .. py:data:: TAGS_FILTER_TYPE_UNTAGGED
    :type: TagsFilterType
 
-   TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned
+   TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.
 
 .. py:data:: global___TagsFilterType
 
@@ -248,7 +252,7 @@ Attributes
 
    
 
-.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[str] | None = ..., organization_ids: collections.abc.Iterable[str] | None = ..., mime_type: collections.abc.Iterable[str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[str] | None = ...)
+.. py:class:: Filter(*, component_name: str = ..., component_type: str = ..., method: str = ..., robot_name: str = ..., robot_id: str = ..., part_name: str = ..., part_id: str = ..., location_ids: collections.abc.Iterable[str] | None = ..., organization_ids: collections.abc.Iterable[str] | None = ..., mime_type: collections.abc.Iterable[str] | None = ..., interval: global___CaptureInterval | None = ..., tags_filter: global___TagsFilter | None = ..., bbox_labels: collections.abc.Iterable[str] | None = ..., dataset_id: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -282,7 +286,7 @@ Attributes
    .. py:property:: bbox_labels
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
-      bbox_labels are used to match documents with the specified bounding box labels (using logical OR)
+      bbox_labels are used to match documents with the specified bounding box labels (using logical OR).
 
    .. py:attribute:: component_name
       :type: str
@@ -319,6 +323,11 @@ Attributes
 
       
 
+   .. py:attribute:: dataset_id
+      :type: str
+
+      
+
    .. py:method:: HasField(field_name: Literal[interval, b'interval', tags_filter, b'tags_filter']) -> bool
 
       Checks if a certain field is set for the message.
@@ -351,7 +360,7 @@ Attributes
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
-      Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR
+      Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR.
 
    .. py:attribute:: type
       :type: global___TagsFilterType
@@ -368,7 +377,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   CaptureMetadata contains information on the settings used for the data capture
+   CaptureMetadata contains information on the settings used for the data capture.
 
    .. py:class:: MethodParametersEntry(*, key: str = ..., value: google.protobuf.any_pb2.Any | None = ...)
 
@@ -476,7 +485,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   CaptureInterval describes the start and end time of the capture in this file
+   CaptureInterval describes the start and end time of the capture in this file.
 
    .. py:property:: start
       :type: google.protobuf.timestamp_pb2.Timestamp
@@ -513,7 +522,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   TabularDataByFilterRequest requests tabular data based on filter values
+   TabularDataByFilterRequest requests tabular data based on filter values.
 
    .. py:property:: data_request
       :type: global___DataRequest
@@ -556,7 +565,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   TabularDataByFilterResponse provides the data and metadata of tabular data
+   TabularDataByFilterResponse provides the data and metadata of tabular data.
 
    .. py:property:: metadata
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]
@@ -591,11 +600,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   TabularData contains data and metadata associated with tabular data.
 
    .. py:property:: data
       :type: google.protobuf.struct_pb2.Struct
@@ -641,11 +646,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   BinaryData contains data and metadata associated with binary data.
 
    .. py:property:: metadata
       :type: global___BinaryMetadata
@@ -683,7 +684,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided
+   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided.
 
    .. py:property:: data_request
       :type: global___DataRequest
@@ -731,7 +732,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided
+   BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 
    .. py:property:: data
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
@@ -762,11 +763,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   BinaryID is the unique identifier for a file that one can request to be retrieved or modified.
 
    .. py:attribute:: file_id
       :type: str
@@ -793,7 +790,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids
+   BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids.
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -814,7 +811,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided
+   BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided.
 
    .. py:property:: data
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]
@@ -889,16 +886,12 @@ Attributes
 
    
 
-.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ...)
+.. py:class:: BinaryMetadata(*, id: str = ..., capture_metadata: global___CaptureMetadata | None = ..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_received: google.protobuf.timestamp_pb2.Timestamp | None = ..., file_name: str = ..., file_ext: str = ..., uri: str = ..., annotations: global___Annotations | None = ..., dataset_ids: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   BinaryMetadata is the metadata associated with binary data.
 
    .. py:property:: capture_metadata
       :type: global___CaptureMetadata
@@ -914,6 +907,10 @@ Attributes
 
    .. py:property:: annotations
       :type: global___Annotations
+
+
+   .. py:property:: dataset_ids
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
 
    .. py:attribute:: id
@@ -955,56 +952,6 @@ Attributes
 
 
 .. py:data:: global___BinaryMetadata
-
-   
-
-.. py:class:: DeleteTabularDataByFilterRequest(*, filter: global___Filter | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   DeleteTabularDataByFilterRequest deletes the data and metadata of tabular data when a filter is provided
-
-   .. py:property:: filter
-      :type: global___Filter
-
-
-   .. py:method:: HasField(field_name: Literal[filter, b'filter']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:data:: global___DeleteTabularDataByFilterRequest
-
-   
-
-.. py:class:: DeleteTabularDataByFilterResponse(*, deleted_count: int = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   DeleteBinaryDataByFilterResponse returns the number of tabular datapoints deleted when a filter is provided
-
-   .. py:attribute:: deleted_count
-      :type: int
-
-      
-
-
-.. py:data:: global___DeleteTabularDataByFilterResponse
 
    
 
@@ -1054,7 +1001,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided
+   DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided.
 
    .. py:property:: filter
       :type: global___Filter
@@ -1092,7 +1039,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided
+   DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided.
 
    .. py:attribute:: deleted_count
       :type: int
@@ -1109,7 +1056,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided
+   DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided.
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -1125,7 +1072,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided
+   DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided.
 
    .. py:attribute:: deleted_count
       :type: int
@@ -1142,7 +1089,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided
+   AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided.
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -1178,7 +1125,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided
+   AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided.
 
    .. py:property:: filter
       :type: global___Filter
@@ -1231,7 +1178,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided
+   RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided.
 
    .. py:property:: binary_ids
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
@@ -1268,7 +1215,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided
+   RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided.
 
    .. py:property:: filter
       :type: global___Filter
@@ -1305,7 +1252,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed
+   RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed.
 
    .. py:attribute:: deleted_count
       :type: int
@@ -1322,7 +1269,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   TagsByFilterRequest requests the unique tags from data based on given filter
+   TagsByFilterRequest requests the unique tags from data based on given filter.
 
    .. py:property:: filter
       :type: global___Filter
@@ -1355,7 +1302,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   TagsByFilterResponse returns the unique tags from data based on given filter
+   TagsByFilterResponse returns the unique tags from data based on given filter.
 
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -1371,11 +1318,8 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
+   with the associated label and position in normalized coordinates will be added.
 
    .. py:property:: binary_id
       :type: global___BinaryID
@@ -1433,11 +1377,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box.
 
    .. py:attribute:: bbox_id
       :type: str
@@ -1454,11 +1394,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id.
 
    .. py:property:: binary_id
       :type: global___BinaryID
@@ -1512,11 +1448,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter.
 
    .. py:property:: filter
       :type: global___Filter
@@ -1549,11 +1481,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter.
 
    .. py:property:: labels
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
@@ -1609,11 +1537,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   GetDatabaseConnectionRequest requests the database connection hostname.
 
    .. py:attribute:: organization_id
       :type: str
@@ -1630,11 +1554,7 @@ Attributes
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   Abstract base class for protocol messages.
-
-   Protocol message classes are almost always generated by the protocol
-   compiler.  These generated types subclass Message and implement the methods
-   shown below.
+   GetDatabaseConnectionResponse returns the database connection hostname endpoint.
 
    .. py:attribute:: hostname
       :type: str
@@ -1643,6 +1563,80 @@ Attributes
 
 
 .. py:data:: global___GetDatabaseConnectionResponse
+
+   
+
+.. py:class:: AddBinaryDataToDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., dataset_id: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id.
+
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+   .. py:attribute:: dataset_id
+      :type: str
+
+      
+
+
+.. py:data:: global___AddBinaryDataToDatasetByIDsRequest
+
+   
+
+.. py:class:: AddBinaryDataToDatasetByIDsResponse
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___AddBinaryDataToDatasetByIDsResponse
+
+   
+
+.. py:class:: RemoveBinaryDataFromDatasetByIDsRequest(*, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ..., dataset_id: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id.
+
+   .. py:property:: binary_ids
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]
+
+
+   .. py:attribute:: dataset_id
+      :type: str
+
+      
+
+
+.. py:data:: global___RemoveBinaryDataFromDatasetByIDsRequest
+
+   
+
+.. py:class:: RemoveBinaryDataFromDatasetByIDsResponse
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+
+.. py:data:: global___RemoveBinaryDataFromDatasetByIDsResponse
 
    
 
