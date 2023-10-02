@@ -31,7 +31,7 @@ class _DataTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumT
     DATA_TYPE_FILE: _DataType.ValueType
 
 class DataType(_DataType, metaclass=_DataTypeEnumTypeWrapper):
-    ...
+    """DataType specifies the type of data uploaded."""
 DATA_TYPE_UNSPECIFIED: DataType.ValueType
 DATA_TYPE_BINARY_SENSOR: DataType.ValueType
 DATA_TYPE_TABULAR_SENSOR: DataType.ValueType
@@ -40,6 +40,7 @@ global___DataType = DataType
 
 @typing_extensions.final
 class DataCaptureUploadRequest(google.protobuf.message.Message):
+    """DataCaptureUploadRequest requests to upload the contents and metadata for tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     SENSOR_CONTENTS_FIELD_NUMBER: builtins.int
@@ -64,6 +65,7 @@ global___DataCaptureUploadRequest = DataCaptureUploadRequest
 
 @typing_extensions.final
 class DataCaptureUploadResponse(google.protobuf.message.Message):
+    """DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
@@ -77,6 +79,9 @@ global___DataCaptureUploadResponse = DataCaptureUploadResponse
 
 @typing_extensions.final
 class FileUploadRequest(google.protobuf.message.Message):
+    """FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
+    The first packet must be the UploadMetadata associated with the binary data.
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     FILE_CONTENTS_FIELD_NUMBER: builtins.int
@@ -104,6 +109,7 @@ global___FileUploadRequest = FileUploadRequest
 
 @typing_extensions.final
 class FileUploadResponse(google.protobuf.message.Message):
+    """FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
@@ -117,6 +123,9 @@ global___FileUploadResponse = FileUploadResponse
 
 @typing_extensions.final
 class StreamingDataCaptureUploadRequest(google.protobuf.message.Message):
+    """StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
+    The first packet must be the DataCaptureUploadMetadata associated with the data.
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
@@ -141,6 +150,7 @@ global___StreamingDataCaptureUploadRequest = StreamingDataCaptureUploadRequest
 
 @typing_extensions.final
 class StreamingDataCaptureUploadResponse(google.protobuf.message.Message):
+    """StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
@@ -154,6 +164,7 @@ global___StreamingDataCaptureUploadResponse = StreamingDataCaptureUploadResponse
 
 @typing_extensions.final
 class SensorMetadata(google.protobuf.message.Message):
+    """SensorMetadata contains the time the sensor data was requested and was received."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TIME_REQUESTED_FIELD_NUMBER: builtins.int
     TIME_RECEIVED_FIELD_NUMBER: builtins.int
@@ -178,6 +189,7 @@ global___SensorMetadata = SensorMetadata
 
 @typing_extensions.final
 class SensorData(google.protobuf.message.Message):
+    """SensorData contains the contents and metadata for tabular data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     STRUCT_FIELD_NUMBER: builtins.int
@@ -207,6 +219,7 @@ global___SensorData = SensorData
 
 @typing_extensions.final
 class FileData(google.protobuf.message.Message):
+    """FileData contains the contents of binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     data: builtins.bytes
@@ -220,6 +233,7 @@ global___FileData = FileData
 
 @typing_extensions.final
 class UploadMetadata(google.protobuf.message.Message):
+    """UploadMetadata contains the metadata for binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -275,6 +289,7 @@ global___UploadMetadata = UploadMetadata
 
 @typing_extensions.final
 class CaptureInterval(google.protobuf.message.Message):
+    """CaptureInterval specifies the start and end times of the data capture."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     START_FIELD_NUMBER: builtins.int
     END_FIELD_NUMBER: builtins.int
@@ -299,6 +314,7 @@ global___CaptureInterval = CaptureInterval
 
 @typing_extensions.final
 class DataCaptureMetadata(google.protobuf.message.Message):
+    """DataCaptureMetadata contains the metadata for data captured by collectors."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -350,6 +366,7 @@ global___DataCaptureMetadata = DataCaptureMetadata
 
 @typing_extensions.final
 class DataCaptureUploadMetadata(google.protobuf.message.Message):
+    """DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UPLOAD_METADATA_FIELD_NUMBER: builtins.int
     SENSOR_METADATA_FIELD_NUMBER: builtins.int

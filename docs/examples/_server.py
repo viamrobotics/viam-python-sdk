@@ -1,16 +1,152 @@
 import asyncio
 from datetime import datetime
 
-from grpclib.utils import graceful_exit
-from grpclib.server import Server, Stream
 from google.protobuf.struct_pb2 import Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.server import Server, Stream
+from grpclib.utils import graceful_exit
 
 from viam.app.data_client import DataClient
-from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
+from viam.proto.app import (
+    AddRoleRequest,
+    AddRoleResponse,
+    AppServiceBase,
+    ChangeRoleRequest,
+    ChangeRoleResponse,
+    CheckPermissionsRequest,
+    CheckPermissionsResponse,
+    CreateFragmentRequest,
+    CreateFragmentResponse,
+    CreateKeyFromExistingKeyAuthorizationsRequest,
+    CreateKeyFromExistingKeyAuthorizationsResponse,
+    CreateKeyRequest,
+    CreateKeyResponse,
+    CreateLocationRequest,
+    CreateLocationResponse,
+    CreateLocationSecretRequest,
+    CreateLocationSecretResponse,
+    CreateModuleRequest,
+    CreateModuleResponse,
+    CreateOrganizationInviteRequest,
+    CreateOrganizationInviteResponse,
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
+    CreateRobotPartSecretRequest,
+    CreateRobotPartSecretResponse,
+    DeleteFragmentRequest,
+    DeleteFragmentResponse,
+    DeleteKeyRequest,
+    DeleteKeyResponse,
+    DeleteLocationRequest,
+    DeleteLocationResponse,
+    DeleteLocationSecretRequest,
+    DeleteLocationSecretResponse,
+    DeleteOrganizationInviteRequest,
+    DeleteOrganizationInviteResponse,
+    DeleteOrganizationMemberRequest,
+    DeleteOrganizationMemberResponse,
+    DeleteOrganizationRequest,
+    DeleteOrganizationResponse,
+    DeleteRobotPartRequest,
+    DeleteRobotPartResponse,
+    DeleteRobotPartSecretRequest,
+    DeleteRobotPartSecretResponse,
+    DeleteRobotRequest,
+    DeleteRobotResponse,
+    GetFragmentRequest,
+    GetFragmentResponse,
+    GetLocationRequest,
+    GetLocationResponse,
+    GetModuleRequest,
+    GetModuleResponse,
+    GetOrganizationNamespaceAvailabilityRequest,
+    GetOrganizationNamespaceAvailabilityResponse,
+    GetOrganizationRequest,
+    GetOrganizationResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
+    GetRobotPartHistoryRequest,
+    GetRobotPartHistoryResponse,
+    GetRobotPartLogsRequest,
+    GetRobotPartLogsResponse,
+    GetRobotPartRequest,
+    GetRobotPartResponse,
+    GetRobotPartsRequest,
+    GetRobotPartsResponse,
+    GetRobotRequest,
+    GetRobotResponse,
+    GetRoverRentalRobotsRequest,
+    GetRoverRentalRobotsResponse,
+    GetUserIDByEmailRequest,
+    GetUserIDByEmailResponse,
+    ListAuthorizationsRequest,
+    ListAuthorizationsResponse,
+    ListFragmentsRequest,
+    ListFragmentsResponse,
+    ListKeysRequest,
+    ListKeysResponse,
+    ListLocationsRequest,
+    ListLocationsResponse,
+    ListModulesRequest,
+    ListModulesResponse,
+    ListOrganizationMembersRequest,
+    ListOrganizationMembersResponse,
+    ListOrganizationsByUserRequest,
+    ListOrganizationsByUserResponse,
+    ListOrganizationsRequest,
+    ListOrganizationsResponse,
+    ListRobotsRequest,
+    ListRobotsResponse,
+    Location,
+    LocationAuthRequest,
+    LocationAuthResponse,
+)
+from viam.proto.app import LogEntry as LogEntryPB
+from viam.proto.app import (
+    MarkPartAsMainRequest,
+    MarkPartAsMainResponse,
+    MarkPartForRestartRequest,
+    MarkPartForRestartResponse,
+    NewRobotPartRequest,
+    NewRobotPartResponse,
+    NewRobotRequest,
+    NewRobotResponse,
+    Organization,
+    RemoveRoleRequest,
+    RemoveRoleResponse,
+    ResendOrganizationInviteRequest,
+    ResendOrganizationInviteResponse,
+    Robot,
+    RotateKeyRequest,
+    RotateKeyResponse,
+    ShareLocationRequest,
+    ShareLocationResponse,
+    TailRobotPartLogsRequest,
+    TailRobotPartLogsResponse,
+    UnshareLocationRequest,
+    UnshareLocationResponse,
+    UpdateFragmentRequest,
+    UpdateFragmentResponse,
+    UpdateLocationRequest,
+    UpdateLocationResponse,
+    UpdateModuleRequest,
+    UpdateModuleResponse,
+    UpdateOrganizationInviteAuthorizationsRequest,
+    UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationRequest,
+    UpdateOrganizationResponse,
+    UpdateRobotPartRequest,
+    UpdateRobotPartResponse,
+    UpdateRobotRequest,
+    UpdateRobotResponse,
+    UploadModuleFileRequest,
+    UploadModuleFileResponse,
+)
 from viam.proto.app.data import (
-    AddBoundingBoxToImageByIDResponse,
+    AddBinaryDataToDatasetByIDsRequest,
+    AddBinaryDataToDatasetByIDsResponse,
     AddBoundingBoxToImageByIDRequest,
+    AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByFilterResponse,
     AddTagsToBinaryDataByIDsRequest,
@@ -31,12 +167,12 @@ from viam.proto.app.data import (
     DeleteBinaryDataByIDsResponse,
     DeleteTabularDataRequest,
     DeleteTabularDataResponse,
-    DeleteTabularDataByFilterRequest,
-    DeleteTabularDataByFilterResponse,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
-    RemoveBoundingBoxFromImageByIDResponse,
+    RemoveBinaryDataFromDatasetByIDsRequest,
+    RemoveBinaryDataFromDatasetByIDsResponse,
     RemoveBoundingBoxFromImageByIDRequest,
+    RemoveBoundingBoxFromImageByIDResponse,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
@@ -56,131 +192,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadRequest,
     StreamingDataCaptureUploadResponse,
 )
-from viam.proto.app import (
-    AppServiceBase,
-    GetUserIDByEmailRequest,
-    GetUserIDByEmailResponse,
-    CreateKeyRequest,
-    CreateKeyResponse,
-    CreateOrganizationRequest,
-    CreateOrganizationResponse,
-    ListOrganizationsRequest,
-    ListOrganizationsResponse,
-    ListOrganizationsByUserRequest,
-    ListOrganizationsByUserResponse,
-    GetOrganizationRequest,
-    GetOrganizationResponse,
-    GetOrganizationNamespaceAvailabilityRequest,
-    GetOrganizationNamespaceAvailabilityResponse,
-    GetRobotAPIKeysRequest,
-    GetRobotAPIKeysResponse,
-    UpdateOrganizationRequest,
-    UpdateOrganizationResponse,
-    DeleteOrganizationRequest,
-    DeleteOrganizationResponse,
-    ListOrganizationMembersRequest,
-    ListOrganizationMembersResponse,
-    CreateOrganizationInviteRequest,
-    CreateOrganizationInviteResponse,
-    UpdateOrganizationInviteAuthorizationsRequest,
-    UpdateOrganizationInviteAuthorizationsResponse,
-    DeleteOrganizationMemberRequest,
-    DeleteOrganizationMemberResponse,
-    DeleteOrganizationInviteRequest,
-    DeleteOrganizationInviteResponse,
-    ResendOrganizationInviteRequest,
-    ResendOrganizationInviteResponse,
-    CreateLocationRequest,
-    CreateLocationResponse,
-    GetLocationRequest,
-    GetLocationResponse,
-    UpdateLocationRequest,
-    UpdateLocationResponse,
-    Organization,
-    Location,
-    LogEntry as LogEntryPB,
-    Robot,
-    DeleteLocationRequest,
-    DeleteLocationResponse,
-    ListLocationsRequest,
-    ListLocationsResponse,
-    ShareLocationRequest,
-    ShareLocationResponse,
-    UnshareLocationRequest,
-    UnshareLocationResponse,
-    LocationAuthRequest,
-    LocationAuthResponse,
-    CreateLocationSecretRequest,
-    CreateLocationSecretResponse,
-    DeleteLocationSecretRequest,
-    DeleteLocationSecretResponse,
-    GetRobotRequest,
-    GetRobotResponse,
-    GetRoverRentalRobotsRequest,
-    GetRoverRentalRobotsResponse,
-    GetRobotPartsRequest,
-    GetRobotPartsResponse,
-    GetRobotPartRequest,
-    GetRobotPartResponse,
-    GetRobotPartLogsRequest,
-    GetRobotPartLogsResponse,
-    TailRobotPartLogsRequest,
-    TailRobotPartLogsResponse,
-    GetRobotPartHistoryRequest,
-    GetRobotPartHistoryResponse,
-    UpdateRobotPartRequest,
-    UpdateRobotPartResponse,
-    NewRobotPartRequest,
-    NewRobotPartResponse,
-    DeleteRobotPartRequest,
-    DeleteRobotPartResponse,
-    MarkPartAsMainRequest,
-    MarkPartAsMainResponse,
-    MarkPartForRestartRequest,
-    MarkPartForRestartResponse,
-    CreateRobotPartSecretRequest,
-    CreateRobotPartSecretResponse,
-    DeleteRobotPartSecretRequest,
-    DeleteRobotPartSecretResponse,
-    ListRobotsRequest,
-    ListRobotsResponse,
-    NewRobotRequest,
-    NewRobotResponse,
-    UpdateRobotRequest,
-    UpdateRobotResponse,
-    DeleteRobotRequest,
-    DeleteRobotResponse,
-    ListFragmentsRequest,
-    ListFragmentsResponse,
-    GetFragmentRequest,
-    GetFragmentResponse,
-    CreateFragmentRequest,
-    CreateFragmentResponse,
-    UpdateFragmentRequest,
-    UpdateFragmentResponse,
-    DeleteFragmentRequest,
-    DeleteFragmentResponse,
-    AddRoleRequest,
-    AddRoleResponse,
-    RemoveRoleRequest,
-    RemoveRoleResponse,
-    ChangeRoleRequest,
-    ChangeRoleResponse,
-    ListAuthorizationsRequest,
-    ListAuthorizationsResponse,
-    CheckPermissionsRequest,
-    CheckPermissionsResponse,
-    CreateModuleRequest,
-    CreateModuleResponse,
-    UpdateModuleRequest,
-    UpdateModuleResponse,
-    UploadModuleFileRequest,
-    UploadModuleFileResponse,
-    GetModuleRequest,
-    GetModuleResponse,
-    ListModulesRequest,
-    ListModulesResponse,
-)
+from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 
 
 class MockData(DataServiceBase):
@@ -234,9 +246,6 @@ class MockData(DataServiceBase):
     async def BinaryDataByIDs(self, stream: Stream[BinaryDataByIDsRequest, BinaryDataByIDsResponse]) -> None:
         pass
 
-    async def DeleteTabularDataByFilter(self, stream: Stream[DeleteTabularDataByFilterRequest, DeleteTabularDataByFilterResponse]) -> None:
-        pass
-
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         pass
 
@@ -282,6 +291,16 @@ class MockData(DataServiceBase):
         pass
 
     async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
+        pass
+
+    async def AddBinaryDataToDatasetByIDs(
+        self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
+    ) -> None:
+        pass
+
+    async def RemoveBinaryDataFromDatasetByIDs(
+        self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
+    ) -> None:
         pass
 
 
@@ -519,6 +538,20 @@ class MockApp(AppServiceBase):
         pass
 
     async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
+        pass
+
+    async def DeleteKey(self, stream: Stream[DeleteKeyRequest, DeleteKeyResponse]) -> None:
+        pass
+
+    async def ListKeys(self, stream: Stream[ListKeysRequest, ListKeysResponse]) -> None:
+        pass
+
+    async def RotateKey(self, stream: Stream[RotateKeyRequest, RotateKeyResponse]) -> None:
+        pass
+
+    async def CreateKeyFromExistingKeyAuthorizations(
+        self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
+    ) -> None:
         pass
 
 

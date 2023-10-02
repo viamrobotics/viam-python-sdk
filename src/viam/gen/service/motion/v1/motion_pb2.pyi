@@ -7,15 +7,43 @@ import collections.abc
 from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
+import google.protobuf.timestamp_pb2
 import sys
 import typing
-if sys.version_info >= (3, 8):
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _PlanState:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _PlanStateEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PlanState.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    PLAN_STATE_UNSPECIFIED: _PlanState.ValueType
+    PLAN_STATE_IN_PROGRESS: _PlanState.ValueType
+    PLAN_STATE_STOPPED: _PlanState.ValueType
+    PLAN_STATE_SUCCEEDED: _PlanState.ValueType
+    PLAN_STATE_FAILED: _PlanState.ValueType
+
+class PlanState(_PlanState, metaclass=_PlanStateEnumTypeWrapper):
+    """The states that a plan can be in.
+    InProgress if the plan is executing.
+    Stopped if the plan was stopped.
+    Suceeded if the robot reached its destination successfully.
+    Failed if the robot did not reach its destination.
+    """
+PLAN_STATE_UNSPECIFIED: PlanState.ValueType
+PLAN_STATE_IN_PROGRESS: PlanState.ValueType
+PLAN_STATE_STOPPED: PlanState.ValueType
+PLAN_STATE_SUCCEEDED: PlanState.ValueType
+PLAN_STATE_FAILED: PlanState.ValueType
+global___PlanState = PlanState
 
 @typing_extensions.final
 class MoveRequest(google.protobuf.message.Message):
@@ -259,6 +287,78 @@ class MoveOnGlobeResponse(google.protobuf.message.Message):
 global___MoveOnGlobeResponse = MoveOnGlobeResponse
 
 @typing_extensions.final
+class MoveOnGlobeNewRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    HEADING_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
+    OBSTACLES_FIELD_NUMBER: builtins.int
+    MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the motion service'
+
+    @property
+    def destination(self) -> common.v1.common_pb2.GeoPoint:
+        """Destination, encoded as a GeoPoint"""
+    heading: builtins.float
+    'Optional compass heading to achieve at the destination, in degrees [0-360)'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """Component on the robot to move to the specified destination"""
+
+    @property
+    def movement_sensor_name(self) -> common.v1.common_pb2.ResourceName:
+        """Name of the movement sensor which will be used to check robot location"""
+
+    @property
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
+        """Obstacles to be considered for motion planning"""
+
+    @property
+    def motion_configuration(self) -> global___MotionConfiguration:
+        """Optional set of motion configuration options"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_heading', b'_heading']) -> typing_extensions.Literal['heading'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
+        ...
+global___MoveOnGlobeNewRequest = MoveOnGlobeNewRequest
+
+@typing_extensions.final
+class MoveOnGlobeNewResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    execution_id: builtins.str
+    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
+
+    def __init__(self, *, execution_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
+        ...
+global___MoveOnGlobeNewResponse = MoveOnGlobeNewResponse
+
+@typing_extensions.final
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -312,6 +412,151 @@ class GetPoseResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
         ...
 global___GetPoseResponse = GetPoseResponse
+
+@typing_extensions.final
+class StopPlanRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The name of the motion service'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """The component of the currently executing plan to stop"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___StopPlanRequest = StopPlanRequest
+
+@typing_extensions.final
+class StopPlanResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___StopPlanResponse = StopPlanResponse
+
+@typing_extensions.final
+class ListPlanStatusesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    ONLY_ACTIVE_PLANS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The name of the motion service'
+    only_active_plans: builtins.bool
+    'If supplied, the response will filter the\n    plan results for the supplied state\n    '
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., only_active_plans: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'only_active_plans', b'only_active_plans']) -> None:
+        ...
+global___ListPlanStatusesRequest = ListPlanStatusesRequest
+
+@typing_extensions.final
+class ListPlanStatusesResponse(google.protobuf.message.Message):
+    """Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PLAN_STATUSES_WITH_IDS_FIELD_NUMBER: builtins.int
+
+    @property
+    def plan_statuses_with_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatusWithID]:
+        """List of last known statuses with the associated IDs of all plans within the TTL
+        ordered by timestamp in ascending order
+        """
+
+    def __init__(self, *, plan_statuses_with_ids: collections.abc.Iterable[global___PlanStatusWithID] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['plan_statuses_with_ids', b'plan_statuses_with_ids']) -> None:
+        ...
+global___ListPlanStatusesResponse = ListPlanStatusesResponse
+
+@typing_extensions.final
+class GetPlanRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    LAST_PLAN_ONLY_FIELD_NUMBER: builtins.int
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'The name of the motion service'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """The name of the component which the MoveOnGlobeRequest
+        asked to be moved.
+        """
+    last_plan_only: builtins.bool
+    'If supplied, the response will only return\n    the the last plan for the component / execution\n    '
+    execution_id: builtins.str
+    'If you want to know about the plans of a previous execution'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., last_plan_only: builtins.bool=..., execution_id: builtins.str | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra', 'last_plan_only', b'last_plan_only', 'name', b'name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_execution_id', b'_execution_id']) -> typing_extensions.Literal['execution_id'] | None:
+        ...
+global___GetPlanRequest = GetPlanRequest
+
+@typing_extensions.final
+class GetPlanResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CURRENT_PLAN_WITH_STATUS_FIELD_NUMBER: builtins.int
+    REPLAN_HISTORY_FIELD_NUMBER: builtins.int
+
+    @property
+    def current_plan_with_status(self) -> global___PlanWithStatus:
+        """The current plan and status that matches the request query"""
+
+    @property
+    def replan_history(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanWithStatus]:
+        """Returns the history of all previous plans that were
+        generated in ascending order.
+        This field will be empty if the motion service
+        did not need to re-plan.
+        """
+
+    def __init__(self, *, current_plan_with_status: global___PlanWithStatus | None=..., replan_history: collections.abc.Iterable[global___PlanWithStatus] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['current_plan_with_status', b'current_plan_with_status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['current_plan_with_status', b'current_plan_with_status', 'replan_history', b'replan_history']) -> None:
+        ...
+global___GetPlanResponse = GetPlanResponse
 
 @typing_extensions.final
 class Constraints(google.protobuf.message.Message):
@@ -424,3 +669,199 @@ class CollisionSpecification(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['allows', b'allows']) -> None:
         ...
 global___CollisionSpecification = CollisionSpecification
+
+@typing_extensions.final
+class PlanWithStatus(google.protobuf.message.Message):
+    """Describes a plan, its current status & all status changes
+    that have occured previously on that plan
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PLAN_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
+    STATUS_HISTORY_FIELD_NUMBER: builtins.int
+
+    @property
+    def plan(self) -> global___Plan:
+        """The plan"""
+
+    @property
+    def status(self) -> global___PlanStatus:
+        """The current status of the plan"""
+
+    @property
+    def status_history(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStatus]:
+        """The prior status changes that have happened during plan execution"""
+
+    def __init__(self, *, plan: global___Plan | None=..., status: global___PlanStatus | None=..., status_history: collections.abc.Iterable[global___PlanStatus] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['plan', b'plan', 'status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['plan', b'plan', 'status', b'status', 'status_history', b'status_history']) -> None:
+        ...
+global___PlanWithStatus = PlanWithStatus
+
+@typing_extensions.final
+class PlanStatusWithID(google.protobuf.message.Message):
+    """PlanStatusWithID describes the state of a given plan at a
+    point in time plus the plan_id, component_name and execution_id
+    the status is associated with
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PLAN_ID_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
+    plan_id: builtins.str
+    'The unique ID of the plan'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """The component to be moved.
+        Used for tracking & stopping.
+        NOTE: A plan may move more components than just the
+        component_name.
+        """
+    execution_id: builtins.str
+    'The unique ID which identifies the plan execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
+
+    @property
+    def status(self) -> global___PlanStatus:
+        ...
+
+    def __init__(self, *, plan_id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., status: global___PlanStatus | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'plan_id', b'plan_id', 'status', b'status']) -> None:
+        ...
+global___PlanStatusWithID = PlanStatusWithID
+
+@typing_extensions.final
+class PlanStatus(google.protobuf.message.Message):
+    """Plan status describes the state of a given plan at a
+    point in time
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    STATE_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    REASON_FIELD_NUMBER: builtins.int
+    state: global___PlanState.ValueType
+    'The state of the plan execution'
+
+    @property
+    def timestamp(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """The time the executing plan transtioned to the state"""
+    reason: builtins.str
+    'The reason for the state change. If motion plan failed\n    this will return the error message.\n    If motion needed to re-plan, this will return\n    the re-plan reason.\n    '
+
+    def __init__(self, *, state: global___PlanState.ValueType=..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None=..., reason: builtins.str | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_reason', b'_reason', 'reason', b'reason', 'timestamp', b'timestamp']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_reason', b'_reason', 'reason', b'reason', 'state', b'state', 'timestamp', b'timestamp']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_reason', b'_reason']) -> typing_extensions.Literal['reason'] | None:
+        ...
+global___PlanStatus = PlanStatus
+
+@typing_extensions.final
+class Plan(google.protobuf.message.Message):
+    """A plan describes a motion plan"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    STEPS_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    "The plan's unique ID"
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """The component requested to be moved.
+        Used for tracking & stopping.
+        NOTE: A plan may move more components than just the
+        root component.
+        """
+    execution_id: builtins.str
+    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning\n    '
+
+    @property
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]:
+        """The steps of a plan is an ordered list of plan steps"""
+
+    def __init__(self, *, id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., steps: collections.abc.Iterable[global___PlanStep] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'id', b'id', 'steps', b'steps']) -> None:
+        ...
+global___Plan = Plan
+
+@typing_extensions.final
+class PlanStep(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class StepEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> global___ComponentState:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: global___ComponentState | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    STEP_FIELD_NUMBER: builtins.int
+
+    @property
+    def step(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ComponentState]:
+        """A step is the component state each
+        component resource should reach while executing
+        that step of the plan.
+        Keys are the fully qualified component name.
+        """
+
+    def __init__(self, *, step: collections.abc.Mapping[builtins.str, global___ComponentState] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['step', b'step']) -> None:
+        ...
+global___PlanStep = PlanStep
+
+@typing_extensions.final
+class ComponentState(google.protobuf.message.Message):
+    """A pose"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    POSE_FIELD_NUMBER: builtins.int
+
+    @property
+    def pose(self) -> common.v1.common_pb2.Pose:
+        ...
+
+    def __init__(self, *, pose: common.v1.common_pb2.Pose | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+        ...
+global___ComponentState = ComponentState

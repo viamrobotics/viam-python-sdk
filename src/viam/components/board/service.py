@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError
+from viam.errors import ResourceNotFoundError, MethodNotImplementedError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceBase,
@@ -24,6 +24,8 @@ from viam.proto.component.board import (
     SetPWMResponse,
     StatusRequest,
     StatusResponse,
+    WriteAnalogRequest,
+    WriteAnalogResponse,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -174,6 +176,9 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase):
         )
         response = SetPowerModeResponse()
         await stream.send_message(response)
+
+    async def WriteAnalog(self, stream: Stream[WriteAnalogRequest, WriteAnalogResponse]) -> None:
+        raise MethodNotImplementedError("WriteAnalog")
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
