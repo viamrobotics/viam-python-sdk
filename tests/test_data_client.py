@@ -16,6 +16,7 @@ from viam.proto.app.data import (
 )
 
 from .mocks.services import MockData
+from viam.utils import create_filter
 
 INCLUDE_BINARY = True
 COMPONENT_NAME = "component_name"
@@ -42,7 +43,7 @@ START_DATETIME = START_TS.ToDatetime()
 END_DATETIME = END_TS.ToDatetime()
 TAGS = ["tag"]
 BBOX_LABELS = ["bbox_label"]
-FILTER = ViamClient.create_filter(
+FILTER = create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
     method=METHOD,

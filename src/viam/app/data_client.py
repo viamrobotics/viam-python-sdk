@@ -51,8 +51,7 @@ from viam.proto.app.datasync import (
     SensorMetadata,
     UploadMetadata,
 )
-from viam.app.viam_client import ViamClient
-from viam.utils import datetime_to_timestamp, struct_to_dict
+from viam.utils import create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -690,7 +689,7 @@ class DataClient:
         bbox_labels: Optional[List[str]] = None,
     ) -> Filter:
         warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stackLevel=2)
-        return ViamClient.create_filter(
+        return create_filter(
             component_name,
             component_type,
             method,

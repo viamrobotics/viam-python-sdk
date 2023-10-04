@@ -11,6 +11,7 @@ from viam.proto.app.mltraining import (
 )
 from viam.app.viam_client import ViamClient
 from viam.app.ml_training_client import MLTrainingClient
+from viam.utils import create_filter
 
 from .mocks.services import MockMLTraining
 
@@ -29,7 +30,7 @@ TRAINING_STATUS = TrainingStatus.TRAINING_STATUS_UNSPECIFIED
 CREATED_ON = Timestamp(seconds=100, nanos=0)
 LAST_MODIFIED = Timestamp(seconds=101, nanos=0)
 TAGS = ["tag"]
-FILTER = ViamClient.create_filter(
+FILTER = create_filter(
     component_name="component",
     component_type="type",
     method="method",
