@@ -1,5 +1,4 @@
-from datetime import datetime
-from typing import Mapping, Optional, List
+from typing import Mapping, Optional
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -9,7 +8,6 @@ from viam.app.app_client import AppClient
 from viam.app.data_client import DataClient
 from viam.app.ml_training_client import MLTrainingClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
-from viam.utils import datetime_to_timestamp
 
 LOGGER = logging.getLogger(__name__)
 

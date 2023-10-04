@@ -9,7 +9,6 @@ from viam.proto.app.mltraining import (
     TrainingJobMetadata,
     TrainingStatus,
 )
-from viam.app.viam_client import ViamClient
 from viam.app.ml_training_client import MLTrainingClient
 from viam.utils import create_filter
 

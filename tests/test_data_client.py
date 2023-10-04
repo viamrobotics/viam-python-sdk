@@ -4,7 +4,6 @@ from typing import List
 from grpclib.testing import ChannelFor
 from google.protobuf.timestamp_pb2 import Timestamp
 
-from viam.app.viam_client import ViamClient
 from viam.app.data_client import DataClient
 from viam.proto.app.data import (
     Annotations,
