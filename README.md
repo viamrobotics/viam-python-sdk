@@ -10,7 +10,7 @@ Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), 
 
 `pip install viam-sdk`
 
-If your system is not supported, read further on how to install from source.
+Windows is not supported. If you are using Windows, try using installing `viam-sdk` using WSL. For other unsupported systems, read further on how to install from source.
 
 ### Upgrading
 To upgrade, simply run the `pip install` command with the `-U` option:
@@ -34,6 +34,7 @@ The Viam Python SDK uses native libraries to support communication over WebRTC, 
 If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the [releases](https://github.com/viamrobotics/rust-utils/releases/latest) page of the rust-utils library.
 
 
+### Installing from Source without Native library
 If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
 
 1. Download/clone this repository
