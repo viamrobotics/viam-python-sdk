@@ -52,6 +52,7 @@ from viam.proto.app.datasync import (
     SensorMetadata,
     UploadMetadata,
 )
+from viam.app.viam_client import ViamClient
 from viam.utils import datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
@@ -689,47 +690,20 @@ class DataClient:
         tags: Optional[List[str]] = None,
         bbox_labels: Optional[List[str]] = None,
     ) -> Filter:
-        """Create a `Filter`.
-
-        Args:
-            component_name (Optional[str]): Optional name of the component that captured the data being filtered (e.g., "left_motor").
-            component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (e.g., "motor").
-            method (Optional[str]): Optional name of the method used to capture the data being filtered (e.g., "IsPowered").
-            robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (e.g., "viam_rover_1").
-            robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.
-            part_name (Optional[str]): Optional name of the system part associated with the data being filtered (e.g., "viam_rover_1-main").
-            part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.
-            location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.
-            organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.
-            mime_type (Optional[List[str]]): Optional mime type of data being filtered (e.g., "image/png").
-            start_time (Optional[datetime.datetime]): Optional start time of an interval to filter data by.
-            end_time (Optional[datetime.datetime]): Optional end time of an interval to filter data by.
-            tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., ["test"]).
-            bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
-                "circle"]).
-
-        Returns:
-            viam.proto.app.data.Filter: The `Filter` object.
-        """
-        return Filter(
-            component_name=component_name if component_name else "",
-            component_type=component_type if component_type else "",
-            method=method if method else "",
-            robot_name=robot_name if robot_name else "",
-            robot_id=robot_id if robot_id else "",
-            part_name=part_name if part_name else "",
-            part_id=part_id if part_id else "",
-            location_ids=location_ids,
-            organization_ids=organization_ids,
-            mime_type=mime_type,
-            interval=(
-                CaptureInterval(
-                    start=datetime_to_timestamp(start_time),
-                    end=datetime_to_timestamp(end_time),
-                )
-            )
-            if start_time or end_time
-            else None,
-            tags_filter=TagsFilter(tags=tags),
-            bbox_labels=bbox_labels,
+        warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stackLevel=2)
+        return ViamClient.create_filter(
+            component_name,
+            component_type,
+            method,
+            robot_name,
+            robot_id,
+            part_name,
+            part_id,
+            location_ids,
+            organization_ids,
+            mime_type,
+            start_time,
+            end_time,
+            tags,
+            bbox_labels,
         )

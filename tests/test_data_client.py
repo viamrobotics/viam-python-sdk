@@ -4,6 +4,7 @@ from typing import List
 from grpclib.testing import ChannelFor
 from google.protobuf.timestamp_pb2 import Timestamp
 
+from viam.app.viam_client import ViamClient
 from viam.app.data_client import DataClient
 from viam.proto.app.data import (
     Annotations,
@@ -41,7 +42,7 @@ START_DATETIME = START_TS.ToDatetime()
 END_DATETIME = END_TS.ToDatetime()
 TAGS = ["tag"]
 BBOX_LABELS = ["bbox_label"]
-FILTER = DataClient.create_filter(
+FILTER = ViamClient.create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
     method=METHOD,

@@ -199,6 +199,18 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadRequest,
     StreamingDataCaptureUploadResponse,
 )
+from viam.proto.app.mltraining import (
+    CancelTrainingJobRequest,
+    CancelTrainingJobResponse,
+    GetTrainingJobRequest,
+    GetTrainingJobResponse,
+    ListTrainingJobsRequest,
+    ListTrainingJobsResponse,
+    MLTrainingServiceBase,
+    SubmitTrainingJobRequest,
+    SubmitTrainingJobResponse,
+    TrainingJobMetadata,
+)
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.mlmodel import (
     FlatTensor,
@@ -763,6 +775,42 @@ class MockDataSync(DataSyncServiceBase):
         self, stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
     ) -> None:
         raise NotImplementedError()
+
+
+class MockMLTraining(MLTrainingServiceBase):
+    def __init__(self, job_id: str, training_metadata: TrainingJobMetadata):
+        self.job_id = job_id
+        self.training_metadata = training_metadata
+
+    async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.filter = request.filter
+        self.org_id = request.organization_id
+        self.model_name = request.model_name
+        self.model_version = request.model_version
+        self.model_type = request.model_type
+        self.tags = request.tags
+        await stream.send_message(SubmitTrainingJobResponse(id=self.job_id))
+
+    async def GetTrainingJob(self, stream: Stream[GetTrainingJobRequest, GetTrainingJobResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.training_job_id = request.id
+        await stream.send_message(GetTrainingJobResponse(metadata=self.training_metadata))
+
+    async def ListTrainingJobs(self, stream: Stream[ListTrainingJobsRequest, ListTrainingJobsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.training_status = request.status
+        self.org_id = request.organization_id
+        await stream.send_message(ListTrainingJobsResponse(jobs=[self.training_metadata]))
+
+    async def CancelTrainingJob(self, stream: Stream[CancelTrainingJobRequest, CancelTrainingJobResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.cancel_job_id = request.id
+        await stream.send_message(CancelTrainingJobResponse())
 
 
 class MockApp(AppServiceBase):
