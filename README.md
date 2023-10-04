@@ -10,7 +10,7 @@ Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), 
 
 `pip install viam-sdk`
 
-Windows is not supported. If you are using Windows, try using installing `viam-sdk` using WSL. For other unsupported systems, read further on how to install from source.
+Windows is not supported. If you are using Windows, try using installing `viam-sdk` in WSL. For other unsupported systems, read further on how to install from source.
 
 ### Upgrading
 To upgrade, simply run the `pip install` command with the `-U` option:
