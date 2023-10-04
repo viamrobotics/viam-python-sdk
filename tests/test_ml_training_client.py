@@ -61,6 +61,7 @@ TRAINING_METADATA = TrainingJobMetadata(
 def service() -> MockMLTraining:
     return MockMLTraining(job_id=JOB_ID, training_metadata=TRAINING_METADATA)
 
+
 class TestClient:
     @pytest.mark.asyncio
     async def test_cancel_training_job(self, service: MockMLTraining):

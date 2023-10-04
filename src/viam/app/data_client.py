@@ -1,3 +1,4 @@
+import warnings
 from datetime import datetime
 from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
@@ -17,7 +18,6 @@ from viam.proto.app.data import (
     BinaryMetadata,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
-    CaptureInterval,
     CaptureMetadata,
     DataRequest,
     DataServiceStub,
@@ -38,7 +38,6 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    TagsFilter,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,

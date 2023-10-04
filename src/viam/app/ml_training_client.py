@@ -1,11 +1,10 @@
-from typing import Mapping, List
+from typing import Mapping, List, Optional
 
 from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
-    CancelTrainingJobResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
@@ -22,6 +21,7 @@ from viam.proto.app.data import (
 )
 
 LOGGER = logging.getLogger(__name__)
+
 
 class MLTrainingClient:
     """gRPC client for working with ML training jobs.
@@ -41,22 +41,38 @@ class MLTrainingClient:
         self._ml_training_client = MLTrainingServiceStub(channel)
         self._channel = channel
 
-    async def submit_training_job(self, filter: Optional[Filter], org_id: str, model_name: str, model_version: str, model_type: ModelType, tags: List[str]) -> str:
+    async def submit_training_job(
+        self,
+        org_id: str,
+        model_name: str,
+        model_version: str,
+        model_type: ModelType,
+        tags: List[str],
+        filter: Optional[Filter] = None,
+    ) -> str:
         """Submits a training job to be processed by the training job manager.
 
         Args:
-            filter (Optional[viam.proto.app.data.Filter]): `Filter` specifying which data to include when training.
             org_id (str): the ID of the organization whose data will be used for training.
             model_name (str): the training model name.
             model_version (str): the training model version.
             model_type (viam.proto.app.mltraining.ModelType): the training model type.
             tags (List[str]): list of tags to apply to the training model output.
+            filter (Optional[viam.proto.app.data.Filter]): `Filter` specifying which data to include when training.
+            If unspecified, all data will be included.
 
         Returns:
             str: the id assigned to the training job.
         """
 
-        request = SubmitTrainingJobRequest(filter=filter, organization_id=org_id, model_name=model_name, model_version=model_version, model_type=model_type, tags=tags)
+        request = SubmitTrainingJobRequest(
+            organization_id=org_id,
+            model_name=model_name,
+            model_version=model_version,
+            model_type=model_type,
+            tags=tags,
+            filter=filter,
+        )
         response: SubmitTrainingJobResponse = await self._ml_training_client.SubmitTrainingJob(request, metadata=self._metadata)
 
         return response.id
