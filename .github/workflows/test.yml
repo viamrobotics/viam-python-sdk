@@ -13,9 +13,8 @@ on:
 
 jobs:
   test:
-    # if: github.repository_owner == 'viamrobotics'
-    # runs-on: [self-hosted, x64]
-    runs-on: ubuntu-latest
+    if: github.repository_owner == 'viamrobotics'
+    runs-on: [self-hosted, x64]
     container:
       image: python:${{ matrix.python-version }}
     strategy:
@@ -38,12 +37,12 @@ jobs:
       - name: Fix Poetry
         run: poetry config installer.modern-installation false
 
-      - name: Install minimum package versions
-        run: pip install -r requirements-test.txt
-        if: ${{ matrix.requirements-version == 'min' }}
-
       - name: Install package
         run: make install
+
+      - name: Install minimum package versions
+        run: poetry run pip install -r requirements-test.txt
+        if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Lint
         run: make lint
