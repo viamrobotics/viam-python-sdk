@@ -90,7 +90,11 @@ class MLTrainingClient:
 
         return response.metadata
 
-    async def list_training_jobs(self, org_id: str, training_status: Optional[TrainingStatus.ValueType]) -> List[TrainingJobMetadata]:
+    async def list_training_jobs(
+        self,
+        org_id: str,
+        training_status: Optional[TrainingStatus.ValueType] = None,
+    ) -> List[TrainingJobMetadata]:
         """Returns training job data for all jobs within an org.
 
         Args:
