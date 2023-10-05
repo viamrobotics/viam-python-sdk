@@ -688,7 +688,7 @@ class DataClient:
         tags: Optional[List[str]] = None,
         bbox_labels: Optional[List[str]] = None,
     ) -> Filter:
-        warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stackLevel=2)
+        warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stacklevel=2)
         return create_filter(
             component_name,
             component_type,
