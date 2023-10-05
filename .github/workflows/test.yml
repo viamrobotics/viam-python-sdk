@@ -7,9 +7,9 @@ concurrency:
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request_target:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -20,6 +20,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
+        requirements-version: ["min", "max"]
     steps:
       - name: Checkout Push/Workflow Dispatch
         if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
@@ -38,6 +39,10 @@ jobs:
 
       - name: Install package
         run: make install
+
+      - name: Install minimum package versions
+        run: poetry run pip install -r requirements-test.txt
+        if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Lint
         run: make lint
