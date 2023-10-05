@@ -16,9 +16,7 @@ from viam.proto.app.mltraining import (
     TrainingStatus,
     TrainingJobMetadata,
 )
-from viam.proto.app.data import (
-    Filter,
-)
+from viam.proto.app.data import Filter
 
 LOGGER = logging.getLogger(__name__)
 
