@@ -7,19 +7,21 @@ concurrency:
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request_target:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
-    if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
+    # if: github.repository_owner == 'viamrobotics'
+    # runs-on: [self-hosted, x64]
+    runs-on: ubuntu-latest
     container:
       image: python:${{ matrix.python-version }}
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
+        requirements-version: ["min", "max"]
     steps:
       - name: Checkout Push/Workflow Dispatch
         if: github.event_name == 'workflow_dispatch' || github.event_name == 'push'
@@ -35,6 +37,10 @@ jobs:
 
       - name: Fix Poetry
         run: poetry config installer.modern-installation false
+
+      - name: Install minimum package versions
+        run: pip install -r requirements-test.txt
+        if: ${{ matrix.requirements-version == 'min' }}
 
       - name: Install package
         run: make install
