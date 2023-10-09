@@ -11,8 +11,6 @@ from viam.proto.app.mltraining import (
     ListTrainingJobsResponse,
     MLTrainingServiceStub,
     ModelType,
-    SubmitTrainingJobRequest,
-    SubmitTrainingJobResponse,
     TrainingStatus,
     TrainingJobMetadata,
 )
