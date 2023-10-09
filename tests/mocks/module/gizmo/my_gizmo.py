@@ -59,3 +59,6 @@ class MyGizmo(Gizmo, Reconfigurable):
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value
+
+    async def close(self):
+        return
