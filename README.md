@@ -1,11 +1,19 @@
 # Viam Python SDK
+
 ![PyPI](https://img.shields.io/pypi/v/viam-sdk)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/viam-sdk)
 [![documentation](https://img.shields.io/static/v1?label=docs&message=python.viam.dev&color=lightgray)](https://python.viam.dev)
 ![build status](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE)
 
+The Viam Python SDK allows you to build Smart Machines, access existing Viam Smart Machines, and manage your fleet of Viam Smart Machines.
+
+If you would like a blueprint on setting up a Python environment with Viam from scratch, you can follow our [Setup](https://python.viam.dev/setup.html) guide.
+
+If you would like to develop and contribute to Viam's Python SDK, take a look at the [Development](#development) portion of the README.
+
 ## Installation
+
 Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip
 
 `pip install viam-sdk`
@@ -13,26 +21,27 @@ Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), 
 Windows is not supported. If you are using Windows, install `viam-sdk` in WSL. For other unsupported systems, read further on how to install from source.
 
 ### Upgrading
+
 To upgrade, simply run the `pip install` command with the `-U` option:
 `pip install -U viam-sdk`
 
 ### Installing from Source
+
 The Viam Python SDK uses native libraries to support communication over WebRTC, which will allow you to connect to robots that are not on the same network. In order to facilitate that communication, there is a [rust-utils repo](https://github.com/viamrobotics/rust-utils) that contains the necessary protocols. Therefore, to build from source, you will need both the Rust utils and the Rust compiler.
 
 1. Download/clone this [repository](https://github.com/viamrobotics/viam-python-sdk)
 1. Download/clone the [rust-utils](https://github.com/viamrobotics/rust-utils)
 1. [Install Rust](https://www.rust-lang.org/tools/install) if not already available
 1. From the `rust-utils` directory, run `cargo build`
-    * You can optionally provide the `--release` flag: `cargo build --release`
+   - You can optionally provide the `--release` flag: `cargo build --release`
 1. Find the compiled library in `rust-utils/target/debug/libviam_rust_utils.*`
-    * If you provided the `--release` flag, the enclosing directory will be `release`: `rust-utils/target/release/libviam_rust_utils.*`
-    * The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam_rust_utils.dylib`, whereas on Linux it will be `libviam_rust_utils.so`
+   - If you provided the `--release` flag, the enclosing directory will be `release`: `rust-utils/target/release/libviam_rust_utils.*`
+   - The extension of the executable will depend on your operating system. For example, on macOS it will be `libviam_rust_utils.dylib`, whereas on Linux it will be `libviam_rust_utils.so`
 1. Copy the compiled library to the directory `viam-python-sdk/src/viam/rpc/`
 1. From the `viam-python-sdk` directory, run `poetry build` to create an installable package
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 
 If you have a macOS or Linux based operating system and do not want to build rust-utils manually, you can also look for the executable in the [releases](https://github.com/viamrobotics/rust-utils/releases/latest) page of the rust-utils library.
-
 
 If you do **NOT** need communication over WebRTC (and thus, do not need the native library), the steps are:
 
@@ -40,7 +49,7 @@ If you do **NOT** need communication over WebRTC (and thus, do not need the nati
 1. Run `poetry build` from the `viam-python-sdk` directory
 1. Find the newly created installable package located in `viam-python-sdk/dist/` and pip install it directly, e.g.: `pip install viam-python-sdk/dist/viam_sdk-0.1.0-py3-none-any.whl`
 1. Ensure that every connection has the option `disable_webrtc` set to `True`: `viam.rpc.dial.DialOptions(disable_webrtc=True)`
-    * For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)
+   - For more information about connecting to a robot, see the [documentation](https://python.viam.dev) and [example usage](https://python.viam.dev/examples/example.html)
 
 ## Configure a client application at [app.viam.com](https://app.viam.com)
 
@@ -79,31 +88,37 @@ The Viam Python SDK utilizes gRPC and, optionally WebRTC (defaults to on). gRPC 
 Sessions are a safety feature that automatically cancel operations made by the python client if it loses connection to a robot. Sessions are enabled by default but can be disabled by setting `RobotClient.Options.disable_sessions = True`. Please see the [RDK session documentation](https://pkg.go.dev/go.viam.com/rdk/session) for more details and server-side configuration options.
 
 ## Examples
+
 Read the [Example Usage](https://python.viam.dev/examples/example.html) page, to learn how to access a component, build a custom component, and expose
 custom components as a remote to existing robots.
 
 More examples can be found in the [`examples`](/examples) directory.
 
 ## Documentation
+
 Documentation, like this entire project, is under active development, and can be found at [python.viam.dev](https://python.viam.dev).
 
 ---
+
 ## Development
+
 To contribute to the python SDK, please see the [contribution guidelines](https://python.viam.dev/contributing.html).
 
 ### Adding new resource types
+
 The SDK provides a number of abstract base components and services (collectively: resources). To add more abstract resources, follow these steps:
 
 1. Create a new directory in `viam.components` or `viam.services` with the name of the new component
 1. Create 4 new files in the newly created directory:
-    1. Define all requirements of the resource in `{RESOURCE_NAME}.py`
-    1. Implement the gRPC service for the new resource in `service.py`
-    1. Create a gRPC client for the new resource in `client.py`
-    1. Register the subtype and define package exports in `__init__.py`
+   1. Define all requirements of the resource in `{RESOURCE_NAME}.py`
+   1. Implement the gRPC service for the new resource in `service.py`
+   1. Create a gRPC client for the new resource in `client.py`
+   1. Register the subtype and define package exports in `__init__.py`
 1. Write tests for the new resource and add the resource to `tests.mocks.{components|services}`
 1. If the resource is a component, add the component to `examples.server.v1.components` and its corresponding concrete type in `examples.server.v1.server`
 
 ## License
+
 Copyright 2021-2023 Viam Inc.
 
 Apache 2.0 - See [LICENSE](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE) file
