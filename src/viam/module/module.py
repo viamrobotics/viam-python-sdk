@@ -161,6 +161,7 @@ class Module:
                 await resource.stop()
             else:
                 resource.stop()
+        await resource.close()
         self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
