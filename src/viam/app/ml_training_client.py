@@ -48,32 +48,7 @@ class MLTrainingClient:
         tags: List[str],
         filter: Optional[Filter] = None,
     ) -> str:
-        """Submits a training job to be processed by the training job manager.
-
-        Args:
-            org_id (str): the ID of the organization whose data will be used for training.
-            model_name (str): the training model name.
-            model_version (str): the training model version.
-            model_type (viam.proto.app.mltraining.ModelType): the training model type.
-            tags (List[str]): list of tags to apply to the training model output.
-            filter (Optional[viam.proto.app.data.Filter]): `Filter` specifying which data to include when training.
-            If unspecified, all data will be included.
-
-        Returns:
-            str: the id assigned to the training job.
-        """
-
-        request = SubmitTrainingJobRequest(
-            organization_id=org_id,
-            model_name=model_name,
-            model_version=model_version,
-            model_type=model_type,
-            tags=tags,
-            filter=filter,
-        )
-        response: SubmitTrainingJobResponse = await self._ml_training_client.SubmitTrainingJob(request, metadata=self._metadata)
-
-        return response.id
+        raise NotImplementedError()
 
     async def get_training_job(self, id: str) -> TrainingJobMetadata:
         """Gets training job data.
@@ -117,6 +92,9 @@ class MLTrainingClient:
 
         Args:
             id (str): the id of the job to be canceled.
+
+        Raises:
+            GRPCError: if no training job exists with the given id.
         """
 
         request = CancelTrainingJobRequest(id=id)
