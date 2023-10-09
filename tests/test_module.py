@@ -151,6 +151,7 @@ class TestModule:
             req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
             await self.module.remove_resource(req)
             assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
+            # test defined close
             mocked.assert_called_once()
 
         with mock.patch("tests.mocks.module.summation.MySummationService.close") as mocked:
@@ -158,6 +159,7 @@ class TestModule:
             req = RemoveResourceRequest(name="acme:service:summation/mysum1")
             await self.module.remove_resource(req)
             assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
+            # test default close
             mocked.assert_called_once()
 
     @pytest.mark.asyncio
