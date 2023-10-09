@@ -85,7 +85,6 @@ class ResourceBase(Protocol):
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
 
-    @abstractmethod
     async def close(self):
         """Safely shut down the resource and prevent further use.
 
@@ -93,4 +92,4 @@ class ResourceBase(Protocol):
         If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
         non-Close methods are called.
         """
-        ...
+        return
