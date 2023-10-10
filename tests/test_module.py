@@ -146,13 +146,13 @@ class TestModule:
 
     @pytest.mark.asyncio
     async def test_remove_resource(self):
-        with mock.patch("tests.mocks.module.gizmo.MyGizmo.close") as mocked:
-            assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
-            req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
-            await self.module.remove_resource(req)
-            assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
-            # test defined close
-            mocked.assert_called_once()
+        gizmo = self.module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
+        assert gizmo.closed is False
+        assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
+        req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
+        await self.module.remove_resource(req)
+        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
+        assert gizmo.closed is True
 
         with mock.patch("tests.mocks.module.summation.MySummationService.close") as mocked:
             assert SummationService.get_resource_name("mysum1") in self.module.server.resources
