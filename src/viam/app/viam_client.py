@@ -6,6 +6,7 @@ from typing_extensions import Self
 from viam import logging
 from viam.app.app_client import AppClient
 from viam.app.data_client import DataClient
+from viam.app.ml_training_client import MLTrainingClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)
@@ -68,10 +69,15 @@ class ViamClient:
         """Insantiate and return an `AppClient` used to make  `app` method calls."""
         return AppClient(self._channel, self._metadata, self._location_id)
 
+    @property
+    def ml_training_client(self) -> MLTrainingClient:
+        """Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls."""
+        return MLTrainingClient(self._channel, self._metadata)
+
     def close(self):
         """Close opened channels used for the various service stubs initialized."""
         if self._closed:
-            LOGGER.debug("AppClient is already closed.")
+            LOGGER.debug("ViamClient is already closed.")
             return
         LOGGER.debug("Closing gRPC channel to app.")
         self._channel.close()
