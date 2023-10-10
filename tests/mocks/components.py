@@ -830,6 +830,7 @@ class MockMovementSensor(MovementSensor):
         orientation: Orientation,
         properties: MovementSensor.Properties,
         accuracy: Mapping[str, float],
+        readings: Mapping[str, float],
     ):
         super().__init__(name)
         self.coordinates = coordinates
@@ -841,6 +842,7 @@ class MockMovementSensor(MovementSensor):
         self.orientation = orientation
         self.properties = properties
         self.accuracy = accuracy
+        self.readings = readings
         self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None
@@ -892,6 +894,13 @@ class MockMovementSensor(MovementSensor):
         self.extra = extra
         self.timeout = timeout
         return self.accuracy
+
+    async def get_readings(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, float]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.readings
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra

@@ -3,8 +3,15 @@ from grpclib.testing import ChannelFor
 
 from viam.components.sensor import SensorClient
 from viam.components.sensor.service import SensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
-from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceStub
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
+)
+from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict
 

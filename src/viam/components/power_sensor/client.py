@@ -3,7 +3,7 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.power_sensor.power_sensor import PowerSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
@@ -14,7 +14,7 @@ from viam.proto.component.powersensor import (
     PowerSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
+from viam.utils import ValueTypes, dict_to_struct, struct_to_dict, sensor_readings_value_to_native
 
 
 class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
@@ -49,7 +49,9 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
     async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
         if extra is None:
             extra = {}
-        return await super().get_readings(extra=extra, timeout=timeout)
+        request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
+        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
+        return sensor_readings_value_to_native(response.readings)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

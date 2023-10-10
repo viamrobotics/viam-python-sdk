@@ -1,7 +1,7 @@
 from grpclib.server import Stream
 
 from viam.components.power_sensor.power_sensor import PowerSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
@@ -12,7 +12,7 @@ from viam.proto.component.powersensor import (
     PowerSensorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_native_to_value
 
 
 class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase):
@@ -21,6 +21,16 @@ class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase):
     """
 
     RESOURCE_TYPE = PowerSensor
+
+    async def GetReadings(self, stream: Stream[GetReadingsRequest, GetReadingsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        sensor = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        response = GetReadingsResponse(readings=sensor_readings_native_to_value(readings))
+        await stream.send_message(response)
 
     async def GetVoltage(self, stream: Stream[GetVoltageRequest, GetVoltageResponse]) -> None:
         request = await stream.recv_message()
