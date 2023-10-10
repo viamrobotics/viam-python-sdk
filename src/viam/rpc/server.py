@@ -112,10 +112,10 @@ class Server(ResourceManager):
             else:
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
+            await self._server.wait_closed()
             for _, resource in self.resources.items():
                 LOGGER.debug(f"{resource} closing...")
                 await resource.close()
-            await self._server.wait_closed()
             LOGGER.debug("gRPC server closed")
 
     @classmethod
