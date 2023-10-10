@@ -147,6 +147,7 @@ class MovementSensor(Sensor):
                 compass: float,
                 orientation: Orientation,
             }
+
         """
         (pos, lv, av, la, comp, orient) = await asyncio.gather(
             self.get_position(extra=extra, timeout=timeout),

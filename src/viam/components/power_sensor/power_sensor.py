@@ -57,6 +57,7 @@ class PowerSensor(ComponentBase):
                is_ac: bool
                power: float
             }
+
         """
         (vol, cur, pow) = await asyncio.gather(
             self.get_voltage(extra=extra, timeout=timeout),
