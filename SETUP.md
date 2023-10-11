@@ -18,10 +18,13 @@ Now that we are in the project directory, let's create and activate a virtual en
 > **INFO**
 > Creating a virtual environment (`venv`) is important as it isolates this python environment from any other you might already have. This allows us to ensure a clean project and easier dependency management, and it avoids bloating your global python environment.
 
-```bask
+```bash
 python3 -m venv viam-env
 source viam-env/bin/activate
 ```
+
+> **NOTE**
+> Some Linux environments may not have the necessary requirements to create a virtual environment. If you receive an error, you can try running `apt install python3-venv` and then running the above commands.
 
 You will now see `(viam-env)` prepend the commands in your terminal window. This shows that the python packages being used are from this particular environment.
 
