@@ -16,7 +16,7 @@ cd viam-python
 Now that we are in the project directory, let's create and activate a virtual environment for python to run in.
 
 > **INFO**
-> Creating a virtual environment (`venv`) is important as it isolates this python environment from any other you might already have. This allows us to ensure a clean project and easier dependency management, as well so not bloating your global python environment.
+> Creating a virtual environment (`venv`) is important as it isolates this python environment from any other you might already have. This allows us to ensure a clean project and easier dependency management, and it avoids bloating your global python environment.
 
 ```bask
 python3 -m venv viam-env
