@@ -39,6 +39,8 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
+    WriteAnalogRequest,
+    WriteAnalogResponse,
 )
 from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, struct_to_dict
@@ -143,6 +145,15 @@ class TestBoard:
     async def test_get_geometries(self, board: MockBoard):
         geometries = await board.get_geometries()
         assert geometries == GEOMETRIES
+
+    @pytest.mark.asyncio
+    async def test_write_analog(self, board: MockBoard):
+        value = 10
+        pin = "pin1"
+        await board.write_analog(pin=pin, value=value, timeout=1.11)
+        assert board.timeout == loose_approx(1.11)
+        assert board.analog_write_value == value
+        assert board.analog_write_pin == pin
 
 
 class TestService:
@@ -319,6 +330,19 @@ class TestService:
             assert board.timeout == loose_approx(6.66)
             assert board.power_mode == PowerMode.POWER_MODE_OFFLINE_DEEP
             assert board.power_mode_duration == pm_duration.ToTimedelta()
+
+    @pytest.mark.asyncio
+    async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            pin = "pin1"
+            value = 10
+            request = WriteAnalogRequest(name=board.name, pin=pin, value=value)
+            response: WriteAnalogResponse = await client.WriteAnalog(request, timeout=6.66)
+            assert response == WriteAnalogResponse()
+            assert board.timeout == loose_approx(6.66)
+            assert board.analog_write_value == value
+            assert board.analog_write_pin == pin
 
 
 class TestClient:
@@ -501,3 +525,14 @@ class TestGPIOPinClient:
             mock_pin = cast(MockGPIOPin, board.gpios["pin1"])
             assert mock_pin.extra == extra
             assert mock_pin.timeout is None
+
+    @pytest.mark.asyncio
+    async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(name=board.name, channel=channel)
+            pin = "pin1"
+            value = 42
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
+            await client.write_analog(pin, value, extra=extra)
+            assert board.analog_write_pin == "pin1"
+            assert board.analog_write_value == 42

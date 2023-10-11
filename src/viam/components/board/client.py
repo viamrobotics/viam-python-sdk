@@ -25,6 +25,7 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
+    WriteAnalogRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -178,3 +179,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)
+
+    async def write_analog(self, pin: str, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+        request = WriteAnalogRequest(name=self.name, pin=pin, value=value)
+        await self.client.WriteAnalog(request, timeout=timeout)
