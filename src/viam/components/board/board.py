@@ -271,6 +271,6 @@ class Board(ComponentBase):
 
         Args:
             pin (str): name of the pin.
-            value (int): value to write
+            value (int): value to write.
         """
         ...

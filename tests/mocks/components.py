@@ -411,9 +411,12 @@ class MockCamera(Camera):
         self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
-    async def get_image(
-        self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Union[Image.Image, RawImage]:
+    async def get_image(self,
+                        mime_type: str = "",
+                        extra: Optional[Dict[str, Any]] = None,
+                        timeout: Optional[float] = None,
+                        **kwargs
+                        ) -> Union[Image.Image, RawImage]:
         self.extra = extra
         self.timeout = timeout
         mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
@@ -434,9 +437,12 @@ class MockCamera(Camera):
             )
         ], self.metadata
 
-    async def get_point_cloud(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Tuple[bytes, str]:
+    async def get_point_cloud(self,
+                              *,
+                              extra: Optional[Dict[str, Any]] = None,
+                              timeout: Optional[float] = None,
+                              **kwargs
+                              ) -> Tuple[bytes, str]:
         self.extra = extra
         self.timeout = timeout
         return self.point_cloud, CameraMimeType.PCD

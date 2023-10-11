@@ -179,7 +179,6 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase):
 
     async def WriteAnalog(self, stream: Stream[WriteAnalogRequest, WriteAnalogResponse]) -> None:
         request = await stream.recv_message()
-        print(request)
         assert request is not None
         name = request.name
         board = self.get_resource(name)
