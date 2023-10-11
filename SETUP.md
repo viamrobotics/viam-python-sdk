@@ -23,7 +23,7 @@ python3 -m venv viam-env
 source viam-env/bin/activate
 ```
 
-> **NOTE**
+> **INFO**
 > Some Linux environments may not have the necessary requirements to create a virtual environment. If you receive an error, you can try running `apt install python3-venv` and then running the above commands.
 
 You will now see `(viam-env)` prepend the commands in your terminal window. This shows that the python packages being used are from this particular environment.
@@ -39,6 +39,9 @@ pip3 install viam-sdk
 ```
 
 This will install Viam and all required dependencies.
+
+> **INFO**
+> Some features of the Viam SDK require additional dependencies. For example, the ML Models feature requires extras, which can be installed with `pip3 install viam-sdk[mlmodel]`. Read the documentation to determine if a specific feature requires extra dependencies.
 
 Should you need to install your own requirements, be sure to do so in this environment.
 
