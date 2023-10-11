@@ -150,7 +150,7 @@ class Module:
                 else:
                     resource.stop()
             add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
-            self.server.remove_resource(rn)
+            await self.server.remove_resource(rn)
             await self.add_resource(add_request)
 
     async def remove_resource(self, request: RemoveResourceRequest):
@@ -161,8 +161,7 @@ class Module:
                 await resource.stop()
             else:
                 resource.stop()
-        await resource.close()
-        self.server.remove_resource(rn)
+        await self.server.remove_resource(rn)
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address

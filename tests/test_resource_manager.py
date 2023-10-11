@@ -96,13 +96,15 @@ class TestGetComponent:
 class TestClose:
     async def test_close(self):
         servo1 = MockServo(name="servo1")
-        servo2 = MockArm(name="arm1")
-        manager = ResourceManager([servo1, servo2])
+        arm1 = MockArm(name="arm1")
+        manager = ResourceManager([servo1, arm1])
         with mock.patch("tests.mocks.components.MockServo.close") as mockedServo:
             mockedServo.assert_not_called()
-            await manager.close()
+            rn = MockServo.get_resource_name(servo1.name)
+            await manager.remove_resource(rn)
             mockedServo.assert_called()
         with mock.patch("tests.mocks.components.MockArm.close") as mockedArm:
             mockedArm.assert_not_called()
-            await manager.close()
+            rn = MockArm.get_resource_name(arm1.name)
+            await manager.remove_resource(rn)
             mockedArm.assert_called()

@@ -91,13 +91,16 @@ class ResourceManager:
                 return self.get_resource(of_type, self._short_to_long_name[name.name][0])
             raise ResourceNotFoundError(name.subtype, name.name)
 
-    def remove_resource(self, name: ResourceName):
+    async def remove_resource(self, name: ResourceName):
         """Remove the resource with the specified ```ResourceName```.
 
         Args:
             name (viam.proto.common.ResourceName): The ResourceName of the resource
         """
         with self._lock:
+            resource = self._resource_by_name_only(name.name)
+            print(f"{resource} closing...")
+            await resource.close()
             del self.resources[name]
 
     def _resource_by_name_only(self, name: str) -> ResourceBase:
@@ -105,7 +108,3 @@ class ResourceManager:
             if rname.name == name:
                 return resource
         raise ResourceNotFoundError("resource", name)
-
-    async def close(self):
-        for _, resource in self.resources.items():
-            await resource.close()
