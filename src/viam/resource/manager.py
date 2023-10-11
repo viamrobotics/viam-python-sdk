@@ -105,3 +105,7 @@ class ResourceManager:
             if rname.name == name:
                 return resource
         raise ResourceNotFoundError("resource", name)
+
+    async def close(self):
+        for _, resource in self.resources.items():
+            await resource.close()

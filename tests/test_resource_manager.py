@@ -1,4 +1,5 @@
 import pytest
+from unittest import mock
 
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.manager import ResourceManager
@@ -90,3 +91,18 @@ class TestGetComponent:
         assert component.name == "remote2:arm"
         component = manager.get_resource(MockArm, MockArm.get_resource_name("remote3:remote2:arm"))
         assert component.name == "remote3:remote2:arm"
+
+
+class TestClose:
+    async def test_close(self):
+        servo1 = MockServo(name="servo1")
+        servo2 = MockArm(name="arm1")
+        manager = ResourceManager([servo1, servo2])
+        with mock.patch("tests.mocks.components.MockServo.close") as mockedServo:
+            mockedServo.assert_not_called()
+            await manager.close()
+            mockedServo.assert_called()
+        with mock.patch("tests.mocks.components.MockArm.close") as mockedArm:
+            mockedArm.assert_not_called()
+            await manager.close()
+            mockedArm.assert_called()
