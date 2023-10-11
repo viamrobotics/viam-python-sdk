@@ -99,7 +99,6 @@ class ResourceManager:
         """
         with self._lock:
             resource = self._resource_by_name_only(name.name)
-            print(f"{resource} closing...")
             await resource.close()
             del self.resources[name]
 
