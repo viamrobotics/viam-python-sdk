@@ -49,6 +49,10 @@ class MySensor(Sensor):
             multiplier = 1.0
         self.multiplier = multiplier
 
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is closed.
+        print(f"{self.name} is closed.")
+
 
 async def main():
     """This function creates and starts a new module, after adding all desired resource models.

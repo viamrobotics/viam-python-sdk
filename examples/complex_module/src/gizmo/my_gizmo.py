@@ -68,3 +68,7 @@ class MyGizmo(Gizmo, Reconfigurable):
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value
+
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is closed.
+        print(f"{self.name} is closed.")

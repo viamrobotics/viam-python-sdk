@@ -102,3 +102,7 @@ class MyCoolArm(Arm):
 
     async def get_kinematics(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Tuple[KinematicsFileFormat.ValueType, bytes]:
         return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
+
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is closed.
+        print(f"{self.name} is closed.")

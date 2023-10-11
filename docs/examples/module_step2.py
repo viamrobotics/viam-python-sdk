@@ -26,6 +26,10 @@ class MySensor(Sensor):
         wifi_signal = [x for x in content[2].split(" ") if x != ""]
         return {"link": wifi_signal[2], "level": wifi_signal[3], "noise": wifi_signal[4]}
 
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is closed.
+        print(f"{self.name} is closed.")
+
 
 async def main():
     Registry.register_resource_creator(Sensor.SUBTYPE, MySensor.MODEL, ResourceCreatorRegistration(MySensor.new))

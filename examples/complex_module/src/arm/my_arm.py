@@ -104,3 +104,7 @@ class MyArm(Arm):
         with open(filepath, mode="rb") as f:
             file_data = f.read()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
+
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is closed.
+        print(f"{self.name} is closed.")
