@@ -6,7 +6,7 @@
 ![build status](https://github.com/viamrobotics/python-sdk/actions/workflows/test.yml/badge.svg)
 [![license](https://img.shields.io/badge/license-Apache_2.0-blue)](https://github.com/viamrobotics/viam-python-sdk/blob/main/LICENSE)
 
-The Viam Python SDK allows you to build Smart Machines, access existing Viam Smart Machines, and manage your fleet of Viam Smart Machines.
+The Viam Python SDK allows you to build robots, access existing Viam robots, and manage your fleet of Viam robots.
 
 If you would like a blueprint on setting up a Python environment with Viam from scratch, you can follow our [Setup](https://python.viam.dev/setup.html) guide.
 
