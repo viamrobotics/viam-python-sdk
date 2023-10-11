@@ -157,6 +157,8 @@ class TestModule:
         with mock.patch("tests.mocks.module.summation.MySummationService.close") as mocked:
             assert SummationService.get_resource_name("mysum1") in self.module.server.resources
             req = RemoveResourceRequest(name="acme:service:summation/mysum1")
+
+            mocked.assert_not_called()
             await self.module.remove_resource(req)
             assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
             # test default close
