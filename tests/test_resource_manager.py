@@ -101,10 +101,25 @@ class TestClose:
         with mock.patch("tests.mocks.components.MockServo.close") as mockedServo:
             mockedServo.assert_not_called()
             rn = MockServo.get_resource_name(servo1.name)
+            assert rn in manager.resources.keys()
             await manager.remove_resource(rn)
+            assert rn not in manager.resources.keys()
             mockedServo.assert_called()
         with mock.patch("tests.mocks.components.MockArm.close") as mockedArm:
             mockedArm.assert_not_called()
             rn = MockArm.get_resource_name(arm1.name)
+            assert rn in manager.resources.keys()
             await manager.remove_resource(rn)
+            assert rn not in manager.resources.keys()
             mockedArm.assert_called()
+
+    # test to see if the resource is gone from manager even after failed close function
+    async def test_failed_close(self):
+        servo1 = MockServo(name="servo1")
+        manager = ResourceManager([servo1])
+        rn = MockServo.get_resource_name(servo1.name)
+        assert rn in manager.resources.keys()
+        rn.name = "bad_name"
+        with pytest.raises(Exception):
+            await manager.remove_resource(rn)
+        assert rn not in manager.resources.keys()

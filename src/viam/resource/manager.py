@@ -98,9 +98,13 @@ class ResourceManager:
             name (viam.proto.common.ResourceName): The ResourceName of the resource
         """
         with self._lock:
-            resource = self._resource_by_name_only(name.name)
-            await resource.close()
-            del self.resources[name]
+            try:
+                resource = self._resource_by_name_only(name.name)
+                await resource.close()
+            except Exception as e:
+                raise e
+            finally:
+                del self.resources[name]
 
     def _resource_by_name_only(self, name: str) -> ResourceBase:
         for rname, resource in self.resources.items():
