@@ -166,6 +166,7 @@ def service() -> RobotService:
                 compass_heading_supported=False,
             ),
             accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
+            readings={"a": 1, "b": 2, "c": 3}
         ),
         MockMLModel("mlmodel1"),
     ]

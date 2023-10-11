@@ -988,6 +988,12 @@ class MockPowerSensor(PowerSensor):
         self.timeout = timeout
         return self.power
 
+    async def get_readings(
+            self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]:
+        self.extra = extra
+        self.timeout = timeout
+        return self.readings
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 

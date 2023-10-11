@@ -34,7 +34,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockMovementSensor
@@ -291,7 +291,7 @@ class TestService:
             request = GetReadingsRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert movement_sensor.extra is None
             response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
-            assert response.readings == pytest.approx(READINGS)
+            assert response.readings == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(8.90)
 
@@ -402,7 +402,7 @@ class TestClient:
             client = MovementSensorClient(movement_sensor.name, channel)
             assert movement_sensor.extra is None
             value = await client.get_readings(extra=EXTRA_PARAMS, timeout=2.34)
-            assert value == pytest.approx(READINGS)
+            assert value == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 
