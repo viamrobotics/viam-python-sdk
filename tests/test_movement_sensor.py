@@ -1,7 +1,4 @@
-from typing import Any, Dict, Optional
-
 import pytest
-from grpclib import GRPCError, Status
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
@@ -37,7 +34,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
+from viam.utils import dict_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockMovementSensor
@@ -152,38 +149,9 @@ class TestMovementSensor:
     @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
-        readings = await movement_sensor.get_readings(extra=EXTRA_PARAMS, timeout=1.23)
+        readings = await movement_sensor.get_readings(extra=EXTRA_PARAMS)
         assert readings == READINGS
         assert movement_sensor.extra == EXTRA_PARAMS
-        assert movement_sensor.timeout == loose_approx(1.23)
-
-        # A mock method to replace some get functions just for testing that should result in omitted entries in the dictionary
-        async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
-            raise GRPCError(Status(2), "Unimplemented")
-
-        async def get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
-            raise GRPCError(Status(2), "Unimplemented")
-
-        movement_sensor.get_linear_velocity = get_reading
-        movement_sensor.get_linear_acceleration = get_reading
-        movement_sensor.get_angular_velocity = get_reading
-        movement_sensor.get_compass_heading = get_compass_heading
-
-        value = await movement_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {
-            "position": COORDINATE,
-            "altitude": ALTITUDE,
-            "orientation": ORIENTATION,
-        }
-
-        # A mock method to replace some get functions just for testing that should result in a raised error
-        async def get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Orientation:
-            raise GRPCError(Status(2), "not implemented")
-
-        movement_sensor.get_orientation = get_orientation
-
-        with pytest.raises(GRPCError):
-            await movement_sensor.get_readings(extra=EXTRA_PARAMS)
 
     @pytest.mark.asyncio
     async def test_timeout(self, movement_sensor: MockMovementSensor):
@@ -317,6 +285,17 @@ class TestService:
             assert movement_sensor.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
+    async def test_get_readings(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MovementSensorServiceStub(channel)
+            request = GetReadingsRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            assert movement_sensor.extra is None
+            response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
+            assert response.readings == pytest.approx(READINGS)
+            assert movement_sensor.extra == EXTRA_PARAMS
+            assert movement_sensor.timeout == loose_approx(8.90)
+
+    @pytest.mark.asyncio
     async def test_do(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = MovementSensorServiceStub(channel)
@@ -420,11 +399,10 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_readings(self, movement_sensor: MockMovementSensor, service: MovementSensorRPCService):
         async with ChannelFor([service]) as channel:
-            client = MovementSensorServiceStub(channel)
-            request = GetReadingsRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            client = MovementSensorClient(movement_sensor.name, channel)
             assert movement_sensor.extra is None
-            result: GetReadingsResponse = await client.GetReadings(request, timeout=2.34)
-            assert result.readings == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
+            value = await client.get_readings(extra=EXTRA_PARAMS, timeout=2.34)
+            assert value == pytest.approx(READINGS)
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(2.34)
 

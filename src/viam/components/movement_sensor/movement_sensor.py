@@ -1,12 +1,9 @@
 import abc
-import asyncio
 from dataclasses import dataclass
-from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
-from grpclib import GRPCError
 from typing_extensions import Self
 
-from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -149,37 +146,4 @@ class MovementSensor(Sensor):
             }
 
         """
-        (pos, lv, av, la, comp, orient) = await asyncio.gather(
-            self.get_position(extra=extra, timeout=timeout),
-            self.get_linear_velocity(extra=extra, timeout=timeout),
-            self.get_angular_velocity(extra=extra, timeout=timeout),
-            self.get_linear_acceleration(extra=extra, timeout=timeout),
-            self.get_compass_heading(extra=extra, timeout=timeout),
-            self.get_orientation(extra=extra, timeout=timeout),
-            return_exceptions=True,
-        )
-
-        readings = {}
-
-        # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
-        def add_reading(name: str, reading, returntype: List) -> None:
-            possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
-            if type(reading) in returntype:
-                if name == "position":
-                    readings["position"] = reading[0]
-                    readings["altitude"] = reading[1]
-                else:
-                    readings[name] = reading
-                return
-            elif isinstance(reading, possible_error_types) or (isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message)):
-                return
-            raise reading
-
-        add_reading("position", pos, [tuple])
-        add_reading("linear_velocity", lv, [Vector3])
-        add_reading("angular_velocity", av, [Vector3])
-        add_reading("linear_acceleration", la, [Vector3])
-        add_reading("compass", comp, [float, int])
-        add_reading("orientation", orient, [Orientation])
-
-        return readings
+        ...

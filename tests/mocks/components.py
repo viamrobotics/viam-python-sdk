@@ -962,12 +962,13 @@ class MockPoseTracker(PoseTracker):
 
 
 class MockPowerSensor(PowerSensor):
-    def __init__(self, name: str, voltage: float, current: float, is_ac: bool, power: float):
+    def __init__(self, name: str, voltage: float, current: float, is_ac: bool, power: float, readings: Mapping[str, float]):
         super().__init__(name)
         self.voltage = voltage
         self.current = current
         self.is_ac = is_ac
         self.power = power
+        self.readings = readings
         self.geometries = GEOMETRIES
         self.extra: Optional[Dict[str, Any]] = None
         self.timeout: Optional[float] = None

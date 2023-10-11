@@ -29,7 +29,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_native_to_value
+from viam.utils import dict_to_struct, struct_to_dict
 
 
 class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase):
@@ -143,5 +143,5 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
         sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         readings = await sensor.get_readings(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetReadingsResponse(readings=sensor_readings_native_to_value(readings))
+        response = GetReadingsResponse(readings=readings)
         await stream.send_message(response)
