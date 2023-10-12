@@ -99,7 +99,7 @@ class ResourceManager:
         """
         with self._lock:
             try:
-                resource = self._resource_by_name_only(name.name)
+                resource = self.resources[name]
                 await resource.close()
             except Exception as e:
                 raise e
