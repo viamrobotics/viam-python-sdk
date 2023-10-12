@@ -1,6 +1,6 @@
 from grpclib.server import Stream
 
-from viam.errors import ResourceNotFoundError, MethodNotImplementedError
+from viam.errors import MethodNotImplementedError, ResourceNotFoundError
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceBase,
