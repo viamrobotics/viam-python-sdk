@@ -109,18 +109,15 @@ class ResourceManager:
                 del self.resources[name]
 
     async def close(self):
-        """Close the resourcce manager by removing all resources"""
+        """Close the resourcce manager by removing all resources.
+        Please note that any errors will not raise an exception. Errors will still be logged."""
         rns = [key for key in self.resources.keys()]
         with self._lock:
-            errors = {}
             for rn in rns:
                 try:
                     await self.remove_resource(rn)
                 except Exception as e:
-                    errors[rn] = e
                     LOGGER.error(f"Error while closing {rn.name}:", e)
-            if errors != {}:
-                raise Exception(errors)
 
     def _resource_by_name_only(self, name: str) -> ResourceBase:
         for rname, resource in self.resources.items():
