@@ -84,3 +84,12 @@ class ResourceBase(Protocol):
             viam.operations.Operation: The operation associated with this function
         """
         return kwargs.get(Operation.ARG_NAME, Operation._noop())
+
+    async def close(self):
+        """Safely shut down the resource and prevent further use.
+
+        Close must be idempotent. Later configuration may allow a resource to be "open" again.
+        If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+        non-Close methods are called.
+        """
+        return

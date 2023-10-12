@@ -5,11 +5,14 @@ from typing import Any, ClassVar, Dict, List, Mapping, Optional, Tuple
 from typing_extensions import Self
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
+from viam.logging import getLogger
 from viam.operations import run_with_operation
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import Capsule, Geometry, ResourceName, Sphere
 from viam.resource.base import ResourceBase
 from viam.resource.types import Model, ModelFamily
+
+LOGGER = getLogger(__name__)
 
 
 class MyArm(Arm):
@@ -104,3 +107,8 @@ class MyArm(Arm):
         with open(filepath, mode="rb") as f:
             file_data = f.read()
         return (KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, file_data)
+
+    def close(self):
+        # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
+        # is shutting down.
+        LOGGER.debug(f"{self.name} is closed.")

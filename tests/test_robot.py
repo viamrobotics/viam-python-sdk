@@ -483,7 +483,7 @@ class TestRobotClient:
             # No change in channel
             arm_client = ArmClient.from_robot(client, "arm1")
             assert arm_client.channel is client._channel
-            client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+            await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
             assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
             assert arm_client.channel is client._channel
 
@@ -491,7 +491,7 @@ class TestRobotClient:
             async with ChannelFor([service]) as channel2:
                 arm_client.reset_channel(channel2)
                 assert arm_client.channel is not client._channel
-                client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
                 assert arm_client is client.get_component(Arm.get_resource_name(arm_client.name))
                 assert arm_client.channel is client._channel
 
@@ -570,7 +570,7 @@ class TestRobotClient:
             async with ChannelFor([service]) as channel2:
                 arm_client.channel = channel2
                 assert arm_client.channel is not client._channel
-                client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
+                await client._create_or_reset_client(Arm.get_resource_name(arm_client.name))
                 assert arm_client is not client.get_component(Arm.get_resource_name(arm_client.name))  # Should be a new client now
 
             await client.close()
