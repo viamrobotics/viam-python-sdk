@@ -1,6 +1,7 @@
 from threading import RLock
 from typing import Dict, List, Type, TypeVar
 
+from viam.logging import getLogger
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
@@ -9,6 +10,7 @@ from ..components.component_base import ComponentBase
 from ..errors import DuplicateResourceError, ResourceNotFoundError
 from ..services.service_base import ServiceBase
 
+LOGGER = getLogger(__name__)
 ResourceType = TypeVar("ResourceType", bound=ResourceBase)
 
 
@@ -105,6 +107,20 @@ class ResourceManager:
                 raise e
             finally:
                 del self.resources[name]
+
+    async def close(self):
+        """Close the resourcce manager by removing all resources"""
+        rns = [key for key in self.resources.keys()]
+        with self._lock:
+            errors = {}
+            for rn in rns:
+                try:
+                    await self.remove_resource(rn)
+                except Exception as e:
+                    errors[rn] = e
+                    LOGGER.error(f"Error while closing {rn.name}:", e)
+            if errors != {}:
+                raise Exception(errors)
 
     def _resource_by_name_only(self, name: str) -> ResourceBase:
         for rname, resource in self.resources.items():

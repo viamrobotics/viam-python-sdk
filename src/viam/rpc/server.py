@@ -113,12 +113,7 @@ class Server(ResourceManager):
                 await self._server.start(host, port)
                 LOGGER.info(f"Serving on {host}:{port}")
             await self._server.wait_closed()
-            rns = [key for key in self.resources.keys()]
-            for rn in rns:
-                try:
-                    await self.remove_resource(rn)
-                except Exception as e:
-                    LOGGER.error(f"Error while closing {rn.name}:", e)
+            await self.close()
             LOGGER.debug("gRPC server closed")
 
     @classmethod
