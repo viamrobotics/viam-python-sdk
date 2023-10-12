@@ -2,6 +2,7 @@ from typing import ClassVar, Mapping, Sequence
 
 from typing_extensions import Self
 
+from viam.logging import getLogger
 from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
@@ -9,6 +10,8 @@ from viam.resource.base import ResourceBase
 from viam.resource.types import Model, ModelFamily
 
 from ..gizmo.api import Gizmo
+
+LOGGER = getLogger(__name__)
 
 
 class MyGizmo(Gizmo, Reconfigurable):
@@ -70,5 +73,6 @@ class MyGizmo(Gizmo, Reconfigurable):
         self.my_arg = config.attributes.fields["arg1"].string_value
 
     def close(self):
-        # This is a completely optional function to include. This will be called when the resource is closed.
-        print(f"{self.name} is closed.")
+        # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
+        # is shutting down.
+        LOGGER.debug(f"{self.name} is closed.")

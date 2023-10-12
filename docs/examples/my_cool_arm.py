@@ -5,8 +5,11 @@ import json
 from typing import Any, Dict, List, Optional, Tuple
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat, Pose
+from viam.logging import getLogger
 from viam.operations import run_with_operation
 from viam.proto.common import Capsule, Geometry, Sphere
+
+LOGGER = getLogger(__name__)
 
 
 class MyCoolArm(Arm):
@@ -104,5 +107,6 @@ class MyCoolArm(Arm):
         return KinematicsFileFormat.KINEMATICS_FILE_FORMAT_SVA, self.kinematics
 
     def close(self):
-        # This is a completely optional function to include. This will be called when the resource is closed.
-        print(f"{self.name} is closed.")
+        # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
+        # is shutting down.
+        LOGGER.debug(f"{self.name} is closed.")
