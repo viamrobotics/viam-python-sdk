@@ -55,7 +55,7 @@ class RGBAImage(ImageFile):
         width = int.from_bytes(header[4:8], "big")
         height = int.from_bytes(header[8:12], "big")
         self._size = width, height
-        self.mode = "RGBA"
+        self._mode = "RGBA"
 
         # data descriptor
         self.tile = [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), RGBA_HEADER_LENGTH, (self.mode, 0, 1))]
