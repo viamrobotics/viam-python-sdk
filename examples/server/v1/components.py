@@ -338,7 +338,7 @@ class ExampleBoard(Board):
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()
 
-    async def write_analog(self, pin: str, value: int, *, timeout: float | None = None, **kwargs):
+    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
         raise NotImplementedError()
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
