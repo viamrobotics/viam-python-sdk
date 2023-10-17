@@ -454,7 +454,8 @@ class DataClient:
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd
+            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+                The backend will route the binary to its corresponding mime type based on this extension.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
