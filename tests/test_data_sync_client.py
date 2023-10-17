@@ -52,7 +52,7 @@ class TestClient:
                 tags=TAGS,
                 data_request_times=DATETIMES,
                 binary_data=BINARY_DATA,
-                extension=".txt",
+                file_extension=".txt",
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
@@ -69,7 +69,7 @@ class TestClient:
                 tags=TAGS,
                 data_request_times=DATETIMES,
                 binary_data=BINARY_DATA,
-                extension="txt",
+                file_extension="txt",
             )
             assert service.metadata.file_extension == ".txt"
 
