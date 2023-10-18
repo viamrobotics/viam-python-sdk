@@ -5,6 +5,7 @@ Do not edit manually!
 from ....gen.app.cloudslam.v1.cloud_slam_grpc import CloudSLAMServiceBase, CloudSLAMServiceStub
 from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     CaptureInterval,
+    EndStatus,
     GetActiveMappingSessionsForRobotRequest,
     GetActiveMappingSessionsForRobotResponse,
     GetMappingSessionMetadataByIDRequest,
@@ -27,6 +28,7 @@ __all__ = [
     "CloudSLAMServiceBase",
     "CloudSLAMServiceStub",
     "CaptureInterval",
+    "EndStatus",
     "GetActiveMappingSessionsForRobotRequest",
     "GetActiveMappingSessionsForRobotResponse",
     "GetMappingSessionMetadataByIDRequest",

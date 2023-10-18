@@ -7,15 +7,36 @@ import collections.abc
 from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _EndStatus:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _EndStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_EndStatus.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    END_STATUS_UNSPECIFIED: _EndStatus.ValueType
+    END_STATUS_SUCCESS: _EndStatus.ValueType
+    END_STATUS_TIMEOUT: _EndStatus.ValueType
+    END_STATUS_FAIL: _EndStatus.ValueType
+
+class EndStatus(_EndStatus, metaclass=_EndStatusEnumTypeWrapper):
+    ...
+END_STATUS_UNSPECIFIED: EndStatus.ValueType
+END_STATUS_SUCCESS: EndStatus.ValueType
+END_STATUS_TIMEOUT: EndStatus.ValueType
+END_STATUS_FAIL: EndStatus.ValueType
+global___EndStatus = EndStatus
 
 @typing_extensions.final
 class StartMappingSessionRequest(google.protobuf.message.Message):
@@ -285,8 +306,8 @@ class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
     TIME_CLOUD_RUN_JOB_ENDED_FIELD_NUMBER: builtins.int
     ERROR_MSG_FIELD_NUMBER: builtins.int
     session_id: builtins.str
-    end_status: builtins.str
-    '“success”, “failed to start”, etc'
+    end_status: global___EndStatus.ValueType
+    'enums that represent “success”, “failed”, etc'
 
     @property
     def time_cloud_run_job_ended(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -294,7 +315,7 @@ class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
     error_msg: builtins.str
     'additional details on the end status if needed, such as errors'
 
-    def __init__(self, *, session_id: builtins.str=..., end_status: builtins.str=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., error_msg: builtins.str=...) -> None:
+    def __init__(self, *, session_id: builtins.str=..., end_status: global___EndStatus.ValueType=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., error_msg: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> builtins.bool:
@@ -351,8 +372,8 @@ class MappingMetadata(google.protobuf.message.Message):
     @property
     def time_cloud_run_job_ended(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """time the cloud run job ended"""
-    end_status: builtins.str
-    '“success”, “failed to start”, etc'
+    end_status: global___EndStatus.ValueType
+    'enums that represent “success”, “failed”, etc'
     cloud_run_job_id: builtins.str
     'initially unset'
     viam_server_version: builtins.str
@@ -366,7 +387,7 @@ class MappingMetadata(google.protobuf.message.Message):
     error_msg: builtins.str
     'additional details on the end status if needed, such as errors'
 
-    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None=..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., end_status: builtins.str=..., cloud_run_job_id: builtins.str=..., viam_server_version: builtins.str=..., map_name: builtins.str=..., slam_version: builtins.str=..., config: builtins.str=..., error_msg: builtins.str=...) -> None:
+    def __init__(self, *, org_id: builtins.str=..., location_id: builtins.str=..., robot_id: builtins.str=..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None=..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., end_status: global___EndStatus.ValueType=..., cloud_run_job_id: builtins.str=..., viam_server_version: builtins.str=..., map_name: builtins.str=..., slam_version: builtins.str=..., config: builtins.str=..., error_msg: builtins.str=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended', 'time_cloud_run_job_started', b'time_cloud_run_job_started', 'time_end_submitted', b'time_end_submitted', 'time_start_submitted', b'time_start_submitted']) -> builtins.bool:

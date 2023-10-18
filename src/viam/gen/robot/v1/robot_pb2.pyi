@@ -500,6 +500,7 @@ class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
+    LAST_RECONFIGURED_FIELD_NUMBER: builtins.int
 
     @property
     def name(self) -> common.v1.common_pb2.ResourceName:
@@ -509,13 +510,17 @@ class Status(google.protobuf.message.Message):
     def status(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., status: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    @property
+    def last_reconfigured(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['name', b'name', 'status', b'status']) -> builtins.bool:
+    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., status: google.protobuf.struct_pb2.Struct | None=..., last_reconfigured: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'status', b'status']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['last_reconfigured', b'last_reconfigured', 'name', b'name', 'status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['last_reconfigured', b'last_reconfigured', 'name', b'name', 'status', b'status']) -> None:
         ...
 global___Status = Status
 

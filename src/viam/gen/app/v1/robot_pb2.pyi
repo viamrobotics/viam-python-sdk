@@ -245,6 +245,20 @@ global___ResourceLevelServiceConfig = ResourceLevelServiceConfig
 class ProcessConfig(google.protobuf.message.Message):
     """A ProcessConfig describes how to manage a system process."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class EnvEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+
+        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -253,6 +267,7 @@ class ProcessConfig(google.protobuf.message.Message):
     LOG_FIELD_NUMBER: builtins.int
     STOP_SIGNAL_FIELD_NUMBER: builtins.int
     STOP_TIMEOUT_FIELD_NUMBER: builtins.int
+    ENV_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
 
@@ -268,13 +283,17 @@ class ProcessConfig(google.protobuf.message.Message):
     def stop_timeout(self) -> google.protobuf.duration_pb2.Duration:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., args: collections.abc.Iterable[builtins.str] | None=..., cwd: builtins.str=..., one_shot: builtins.bool=..., log: builtins.bool=..., stop_signal: builtins.int=..., stop_timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
+    @property
+    def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+        """additional environment variables passed to the process"""
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., args: collections.abc.Iterable[builtins.str] | None=..., cwd: builtins.str=..., one_shot: builtins.bool=..., log: builtins.bool=..., stop_signal: builtins.int=..., stop_timeout: google.protobuf.duration_pb2.Duration | None=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['stop_timeout', b'stop_timeout']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['args', b'args', 'cwd', b'cwd', 'id', b'id', 'log', b'log', 'name', b'name', 'one_shot', b'one_shot', 'stop_signal', b'stop_signal', 'stop_timeout', b'stop_timeout']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['args', b'args', 'cwd', b'cwd', 'env', b'env', 'id', b'id', 'log', b'log', 'name', b'name', 'one_shot', b'one_shot', 'stop_signal', b'stop_signal', 'stop_timeout', b'stop_timeout']) -> None:
         ...
 global___ProcessConfig = ProcessConfig
 
@@ -953,19 +972,44 @@ global___NeedsRestartResponse = NeedsRestartResponse
 class ModuleConfig(google.protobuf.message.Message):
     """ModuleConfig is the configuration for a module."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing_extensions.final
+    class EnvEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        value: builtins.str
+
+        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
     NAME_FIELD_NUMBER: builtins.int
     PATH_FIELD_NUMBER: builtins.int
     LOG_LEVEL_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    MODULE_ID_FIELD_NUMBER: builtins.int
+    ENV_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
     log_level: builtins.str
     'log level for module'
+    type: builtins.str
+    'type of the module ("local" or "registry")'
+    module_id: builtins.str
+    'the id of the module if it is a registry module'
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=...) -> None:
+    @property
+    def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+        """additional environment variables passed to the module process"""
+
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['log_level', b'log_level', 'name', b'name', 'path', b'path']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
