@@ -1,8 +1,9 @@
-from typing import Mapping, List, Optional
+from typing import List, Mapping, Optional
 
 from grpclib.client import Channel
 
 from viam import logging
+from viam.proto.app.data import Filter
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
     GetTrainingJobRequest,
@@ -11,10 +12,9 @@ from viam.proto.app.mltraining import (
     ListTrainingJobsResponse,
     MLTrainingServiceStub,
     ModelType,
-    TrainingStatus,
     TrainingJobMetadata,
+    TrainingStatus,
 )
-from viam.proto.app.data import Filter
 
 LOGGER = logging.getLogger(__name__)
 

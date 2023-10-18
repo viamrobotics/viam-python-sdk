@@ -11,12 +11,8 @@ from google.protobuf.message import Message
 from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
+from viam.proto.app.data import CaptureInterval, Filter, TagsFilter
 from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
-from viam.proto.app.data import (
-    CaptureInterval,
-    Filter,
-    TagsFilter,
-)
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import Subtype, SupportsGetGeometries

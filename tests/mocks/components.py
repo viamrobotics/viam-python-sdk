@@ -388,6 +388,11 @@ class MockBoard(Board):
         self.power_mode = mode
         self.power_mode_duration = duration
 
+    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
+        self.timeout = timeout
+        self.analog_write_pin = pin
+        self.analog_write_value = value
+
 
 class MockCamera(Camera):
     def __init__(self, name: str):

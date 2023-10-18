@@ -263,3 +263,14 @@ class Board(ComponentBase):
             mode: the desired power mode
         """
         ...
+
+    @abc.abstractmethod
+    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
+        """
+        Write an analog value to a pin on the board.
+
+        Args:
+            pin (str): name of the pin.
+            value (int): value to write.
+        """
+        ...

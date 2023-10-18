@@ -15,6 +15,7 @@ from ..gizmo.api import Gizmo
 class MyGizmo(Gizmo, Reconfigurable):
     MODEL: ClassVar[Model] = Model(ModelFamily("acme", "demo"), "mygizmo")
     my_arg: str
+    closed: bool = False
 
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]) -> Self:
@@ -59,3 +60,7 @@ class MyGizmo(Gizmo, Reconfigurable):
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ComponentBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value
+
+    async def close(self):
+        self.closed = True
+        return
