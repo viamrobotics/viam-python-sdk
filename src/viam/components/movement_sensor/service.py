@@ -29,7 +29,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import dict_to_struct, struct_to_dict, sensor_readings_native_to_value
+from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 
 
 class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase):
