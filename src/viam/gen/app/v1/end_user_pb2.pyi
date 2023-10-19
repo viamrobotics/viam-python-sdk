@@ -15,14 +15,8 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 @typing_extensions.final
 class IsLegalAcceptedRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    USER_ID_FIELD_NUMBER: builtins.int
-    user_id: builtins.str
-    'The user ID to check.'
 
-    def __init__(self, *, user_id: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['user_id', b'user_id']) -> None:
+    def __init__(self) -> None:
         ...
 global___IsLegalAcceptedRequest = IsLegalAcceptedRequest
 
@@ -43,14 +37,8 @@ global___IsLegalAcceptedResponse = IsLegalAcceptedResponse
 @typing_extensions.final
 class AcceptLegalRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    USER_ID_FIELD_NUMBER: builtins.int
-    user_id: builtins.str
-    'The user ID to accept legal terms for.'
 
-    def __init__(self, *, user_id: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['user_id', b'user_id']) -> None:
+    def __init__(self) -> None:
         ...
 global___AcceptLegalRequest = AcceptLegalRequest
 

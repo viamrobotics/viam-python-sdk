@@ -162,9 +162,34 @@ class MoveOnMapResponse(google.protobuf.message.Message):
 global___MoveOnMapResponse = MoveOnMapResponse
 
 @typing_extensions.final
+class ObstacleDetector(google.protobuf.message.Message):
+    """Pairs a vision service with a camera, informing the service about which camera it may use"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VISION_SERVICE_FIELD_NUMBER: builtins.int
+    CAMERA_FIELD_NUMBER: builtins.int
+
+    @property
+    def vision_service(self) -> common.v1.common_pb2.ResourceName:
+        ...
+
+    @property
+    def camera(self) -> common.v1.common_pb2.ResourceName:
+        ...
+
+    def __init__(self, *, vision_service: common.v1.common_pb2.ResourceName | None=..., camera: common.v1.common_pb2.ResourceName | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> None:
+        ...
+global___ObstacleDetector = ObstacleDetector
+
+@typing_extensions.final
 class MotionConfiguration(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    VISION_SERVICES_FIELD_NUMBER: builtins.int
+    OBSTACLE_DETECTORS_FIELD_NUMBER: builtins.int
     POSITION_POLLING_FREQUENCY_HZ_FIELD_NUMBER: builtins.int
     OBSTACLE_POLLING_FREQUENCY_HZ_FIELD_NUMBER: builtins.int
     PLAN_DEVIATION_M_FIELD_NUMBER: builtins.int
@@ -172,8 +197,8 @@ class MotionConfiguration(google.protobuf.message.Message):
     ANGULAR_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
 
     @property
-    def vision_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.ResourceName]:
-        """The name of the vision service(s) that will be used to detect obstacles"""
+    def obstacle_detectors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]:
+        """The ObstacleDetectors that will be used for transient obstacle avoidance"""
     position_polling_frequency_hz: builtins.float
     'Sets the frequency to poll for the position of the robot'
     obstacle_polling_frequency_hz: builtins.float
@@ -185,13 +210,13 @@ class MotionConfiguration(google.protobuf.message.Message):
     angular_degs_per_sec: builtins.float
     'Optional angular velocity to target when turning'
 
-    def __init__(self, *, vision_services: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=..., position_polling_frequency_hz: builtins.float | None=..., obstacle_polling_frequency_hz: builtins.float | None=..., plan_deviation_m: builtins.float | None=..., linear_m_per_sec: builtins.float | None=..., angular_degs_per_sec: builtins.float | None=...) -> None:
+    def __init__(self, *, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None=..., position_polling_frequency_hz: builtins.float | None=..., obstacle_polling_frequency_hz: builtins.float | None=..., plan_deviation_m: builtins.float | None=..., linear_m_per_sec: builtins.float | None=..., angular_degs_per_sec: builtins.float | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz', 'vision_services', b'vision_services']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_detectors', b'obstacle_detectors', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> None:
         ...
 
     @typing.overload
