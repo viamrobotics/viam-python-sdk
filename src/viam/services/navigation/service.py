@@ -10,6 +10,8 @@ from viam.proto.service.navigation import (
     GetModeResponse,
     GetObstaclesRequest,
     GetObstaclesResponse,
+    GetPathsRequest,
+    GetPathsResponse,
     GetWaypointsRequest,
     GetWaypointsResponse,
     NavigationServiceBase,
@@ -30,6 +32,16 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
     """
 
     RESOURCE_TYPE = Navigation
+
+    async def GetPaths(self, stream: Stream[GetPathsRequest, GetPathsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        navigation = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        paths = await navigation.get_paths(timeout=timeout)
+        response = GetPathsResponse(paths=paths)
+        await stream.send_message(response)
 
     async def GetLocation(self, stream: Stream[GetLocationRequest, GetLocationResponse]) -> None:
         request = await stream.recv_message()

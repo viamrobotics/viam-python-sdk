@@ -11,11 +11,14 @@ from viam.proto.service.navigation import (
     GetModeResponse,
     GetObstaclesRequest,
     GetObstaclesResponse,
+    GetPathsRequest,
+    GetPathsResponse,
     GetWaypointsRequest,
     GetWaypointsResponse,
     NavigationServiceStub,
     RemoveWaypointRequest,
     SetModeRequest,
+    Path,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
@@ -35,6 +38,11 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
         self.channel = channel
         self.client = NavigationServiceStub(channel)
         super().__init__(name)
+
+    async def get_paths(self, *, timeout: Optional[float] = None) -> List[Path]:
+        request = GetPathsRequest(name=self.name)
+        response: GetPathsResponse = await self.client.GetPaths(request, timeout=timeout)
+        return list(response.paths)
 
     async def get_location(self, *, timeout: Optional[float] = None) -> GeoPoint:
         request = GetLocationRequest(name=self.name)

@@ -246,7 +246,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.proto.service.navigation import Mode, Waypoint
+from viam.proto.service.navigation import Mode, Waypoint, Path
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -556,6 +556,7 @@ class MockNavigation(Navigation):
     LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
     OBSTACLES = [GeoObstacle(location=GeoPoint(latitude=200.0, longitude=250.0))]
     WAYPOINTS = [Waypoint(location=GeoPoint(latitude=300.0, longitude=350.0))]
+    PATHS = [Path(destination_waypoint_id="foo", geopoints=[LOCATION])]
 
     def __init__(self, name: str):
         self.name = name
@@ -564,6 +565,10 @@ class MockNavigation(Navigation):
         self.mode = Mode.MODE_UNSPECIFIED
         self.timeout: Optional[float] = None
         super().__init__(name)
+
+    async def get_paths(self, *, timeout: Optional[float] = None) -> List[Path]:
+        self.timeout = timeout
+        return self.PATHS
 
     async def get_location(self, *, timeout: Optional[float] = None) -> GeoPoint:
         self.timeout = timeout
