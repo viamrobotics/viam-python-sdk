@@ -1,6 +1,7 @@
 import pytest
 from datetime import datetime
-from typing import List, cast, Mapping, Any
+from typing import List, Tuple, cast, Mapping, Any
+from google.protobuf.timestamp_pb2 import Timestamp
 
 from grpclib.testing import ChannelFor
 
@@ -21,7 +22,7 @@ TAGS = ["tag"]
 BINARY_DATA = b"binary_data"
 METHOD_NAME = "method_name"
 DATETIMES = (datetime.now(), datetime.now())
-TIMESTAMPS = (datetime_to_timestamp(DATETIMES[0]), datetime_to_timestamp(DATETIMES[1]))
+TIMESTAMPS = cast(Tuple[Timestamp, Timestamp], (datetime_to_timestamp(DATETIMES[0]), datetime_to_timestamp(DATETIMES[1])))
 METHOD_PARAMETERS = {}
 TABULAR_DATA = [{"key": "value"}]
 FILE_NAME = "file_name"
@@ -51,10 +52,26 @@ class TestClient:
                 tags=TAGS,
                 data_request_times=DATETIMES,
                 binary_data=BINARY_DATA,
+                file_extension=".txt",
             )
             self.assert_sensor_contents(sensor_contents=list(service.sensor_contents), is_binary=True)
             self.assert_metadata(metadata=service.metadata)
+            assert service.metadata.file_extension == ".txt"
             assert file_id == FILE_UPLOAD_RESPONSE
+
+            # Test extension dot prepend
+            file_id = await client.binary_data_capture_upload(
+                part_id=PART_ID,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                tags=TAGS,
+                data_request_times=DATETIMES,
+                binary_data=BINARY_DATA,
+                file_extension="txt",
+            )
+            assert service.metadata.file_extension == ".txt"
 
     @pytest.mark.asyncio
     async def test_tabular_data_capture_upload(self, service: MockDataSync):

@@ -437,6 +437,7 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
+        file_extension: Optional[str] = None,
     ) -> str:
         """Upload binary sensor data.
 
@@ -453,6 +454,8 @@ class DataClient:
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+                The backend will route the binary to its corresponding mime type based on this extension.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -478,6 +481,8 @@ class DataClient:
             method_parameters=method_parameters,
             tags=tags,
         )
+        if file_extension:
+            metadata.file_extension = file_extension if file_extension[0] == "." else f".{file_extension}"
         response = await self._data_capture_upload(metadata=metadata, sensor_contents=[sensor_contents])
         return response.file_id
 
