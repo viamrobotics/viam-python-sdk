@@ -41,7 +41,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
-from viam.rpc.dial import DialOptions, ViamChannel, dial
+from viam.rpc.dial import Credentials, DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
 from viam.utils import dict_to_struct
@@ -100,6 +100,24 @@ class RobotClient:
         """
         Whether sessions are disabled
         """
+
+        @classmethod
+        def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
+            """
+            Create dial options with an API key for credentials and default values for other arguments.
+
+            Args:
+                api_key (str): your API key
+                api_key_id (str): your API key ID
+
+            returns:
+                Self: the RobotClient options
+            """
+            credentials = Credentials(type="api-key", payload=api_key)
+            dial_opts = DialOptions(credentials=credentials, auth_entity=api_key_id)
+            self = cls()
+            self.dial_options = dial_opts
+            return self
 
     @classmethod
     async def at_address(cls, address: str, options: Options) -> Self:
