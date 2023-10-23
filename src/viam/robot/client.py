@@ -1,4 +1,5 @@
 import asyncio
+import re
 from dataclasses import dataclass
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
@@ -110,9 +111,17 @@ class RobotClient:
                 api_key (str): your API key
                 api_key_id (str): your API key ID
 
-            returns:
+            Raises:
+                ValueError: Raised if the `api_key_id` is not a valid uuid
+
+            Returns:
                 Self: the RobotClient options
             """
+            key_id_regex = re.compile(r"^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$")
+            match = key_id_regex.match(api_key_id)
+            if not match:
+                raise ValueError(f"{api_key_id} is not a valid UUID")
+
             credentials = Credentials(type="api-key", payload=api_key)
             dial_opts = DialOptions(credentials=credentials, auth_entity=api_key_id)
             self = cls()
