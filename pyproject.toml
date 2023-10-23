@@ -37,6 +37,8 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   tox = "^4.11.3"
   isort = "^5.12.0"
   pytest-watcher = "^0.3.4"
+  # TODO(RSDK-5450) - Update myst-nb so this can be unpinned.
+  astroid = "<=2.15.6"
 
 [tool.pytest.ini_options]
 addopts = "-ra"
