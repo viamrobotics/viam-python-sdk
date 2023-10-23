@@ -302,15 +302,15 @@
                 <span class="k">if</span> <span class="n">rname</span><span class="o">.</span><span class="n">subtype</span> <span class="o">==</span> <span class="n">Sensor</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="o">.</span><span class="n">resource_subtype</span> <span class="ow">and</span> <span class="n">MovementSensor</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="n">rname</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
                     <span class="k">continue</span>
 
-                <span class="bp">self</span><span class="o">.</span><span class="n">_create_or_reset_client</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_or_reset_client</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">rname</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource_names</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">rname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">resource_names</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
+                    <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rname</span><span class="p">)</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">_resource_names</span> <span class="o">=</span> <span class="n">resource_names</span></div>
 
-    <span class="k">def</span> <span class="nf">_create_or_reset_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resourceName</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_or_reset_client</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resourceName</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">resourceName</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">ResourceBase</span><span class="p">,</span> <span class="n">resourceName</span><span class="p">)</span>
 
@@ -322,7 +322,7 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
                 <span class="n">res</span><span class="o">.</span><span class="n">reset_channel</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">resourceName</span><span class="p">)</span>
+                <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">resourceName</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_manager</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
                     <span class="n">Registry</span><span class="o">.</span><span class="n">lookup_subtype</span><span class="p">(</span><span class="n">Subtype</span><span class="o">.</span><span class="n">from_resource_name</span><span class="p">(</span><span class="n">resourceName</span><span class="p">))</span><span class="o">.</span><span class="n">create_rpc_client</span><span class="p">(</span><span class="n">resourceName</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">)</span>
                 <span class="p">)</span>

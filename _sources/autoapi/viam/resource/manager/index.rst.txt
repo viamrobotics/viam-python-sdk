@@ -22,8 +22,13 @@ Attributes
 
 .. autoapisummary::
 
+   viam.resource.manager.LOGGER
    viam.resource.manager.ResourceType
 
+
+.. py:data:: LOGGER
+
+   
 
 .. py:data:: ResourceType
 
@@ -71,11 +76,19 @@ Attributes
 
 
    .. py:method:: remove_resource(name: viam.proto.common.ResourceName)
+      :async:
 
       Remove the resource with the specified ```ResourceName```.
 
       :param name: The ResourceName of the resource
       :type name: viam.proto.common.ResourceName
+
+
+   .. py:method:: close()
+      :async:
+
+      Close the resourcce manager by removing all resources.
+      Please note that any errors will not raise an exception. Errors will still be logged.
 
 
 

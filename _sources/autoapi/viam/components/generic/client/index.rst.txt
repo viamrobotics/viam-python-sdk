@@ -93,6 +93,16 @@ Functions
       :rtype: viam.operations.Operation
 
 
+   .. py:method:: close()
+      :async:
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+      non-Close methods are called.
+
+
 
 .. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
    :async:

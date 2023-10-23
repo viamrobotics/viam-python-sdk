@@ -48,6 +48,11 @@ Attributes
 
       Insantiate and return an `AppClient` used to make  `app` method calls.
 
+   .. py:property:: ml_training_client
+      :type: viam.app.ml_training_client.MLTrainingClient
+
+      Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.
+
    .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
       :classmethod:
       :async:

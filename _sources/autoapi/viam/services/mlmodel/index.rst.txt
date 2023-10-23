@@ -247,6 +247,16 @@ Classes
       :rtype: viam.operations.Operation
 
 
+   .. py:method:: close()
+      :async:
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+      non-Close methods are called.
+
+
 
 .. py:class:: MLModel(name: str)
 
@@ -338,6 +348,16 @@ Classes
 
       :returns: The operation associated with this function
       :rtype: viam.operations.Operation
+
+
+   .. py:method:: close()
+      :async:
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+      non-Close methods are called.
 
 
 

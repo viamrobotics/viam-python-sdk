@@ -79,6 +79,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAImage"><code class="docutils literal notranslate"><span class="pre">RGBAImage</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAImage.format"><code class="docutils literal notranslate"><span class="pre">RGBAImage.format</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAImage.format_description"><code class="docutils literal notranslate"><span class="pre">RGBAImage.format_description</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBAImage.close"><code class="docutils literal notranslate"><span class="pre">RGBAImage.close()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.media.viam_rgba_plugin.RGBADecoder"><code class="docutils literal notranslate"><span class="pre">RGBADecoder</span></code></a><ul>
@@ -220,6 +221,18 @@ Err codes are from <code class="xref py py-data docutils literal notranslate"><s
 <dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage.format_description">
 <span class="sig-name descname"><span class="pre">format_description</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;Viam's</span> <span class="pre">Raw</span> <span class="pre">RGBA</span> <span class="pre">Format&quot;</span></em><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage.format_description" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.media.viam_rgba_plugin.RGBAImage.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.media.viam_rgba_plugin.RGBAImage.close" title="Permalink to this definition"></a></dt>
+<dd><p>Closes the file pointer, if possible.</p>
+<p>This operation will destroy the image core and release its memory.
+The image data will be unusable afterward.</p>
+<p>This function is required to close images that have multiple frames or
+have not had their file read and closed by the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">load()</span></code> method. See <span class="xref std std-ref">file-handling</span> for
+more information.</p>
+</dd></dl>
 
 </dd></dl>
 

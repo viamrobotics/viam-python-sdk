@@ -239,7 +239,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
             <span class="n">add_request</span> <span class="o">=</span> <span class="n">AddResourceRequest</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">dependencies</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span>
             <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">add_request</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Module.remove_resource"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.remove_resource">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">RemoveResourceRequest</span><span class="p">):</span>
@@ -250,7 +250,7 @@
                 <span class="k">await</span> <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">resource</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span></div>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">remove_resource</span><span class="p">(</span><span class="n">rn</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Module.ready"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.ready">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReadyRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReadyResponse</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_address</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">parent_address</span>

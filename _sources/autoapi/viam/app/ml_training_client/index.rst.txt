@@ -1,0 +1,84 @@
+:py:mod:`viam.app.ml_training_client`
+=====================================
+
+.. py:module:: viam.app.ml_training_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.ml_training_client.MLTrainingClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.ml_training_client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: MLTrainingClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
+
+
+   gRPC client for working with ML training jobs.
+
+   Constructor is used by `ViamClient` to instantiate relevant service stubs.
+   Calls to `MLTrainingClient` methods should be made through `ViamClient`.
+
+   .. py:method:: submit_training_job(org_id: str, model_name: str, model_version: str, model_type: viam.proto.app.mltraining.ModelType, tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> str
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_training_job(id: str) -> viam.proto.app.mltraining.TrainingJobMetadata
+      :async:
+
+      Gets training job data.
+
+      :param id: id of the requested training job.
+      :type id: str
+
+      :returns: training job data.
+      :rtype: viam.proto.app.mltraining.TrainingJobMetadata
+
+
+   .. py:method:: list_training_jobs(org_id: str, training_status: Optional[viam.proto.app.mltraining.TrainingStatus.ValueType] = None) -> List[viam.proto.app.mltraining.TrainingJobMetadata]
+      :async:
+
+      Returns training job data for all jobs within an org.
+
+      :param org_id: the id of the org to request training job data from.
+      :type org_id: str
+      :param training_status: status of training jobs to filter the list by.
+      :type training_status: Optional[TrainingStatus]
+      :param If unspecified:
+      :param all training jobs will be returned.:
+
+      :returns: a list of training job data.
+      :rtype: List[viam.proto.app.mltraining.TrainingJobMetadata]
+
+
+   .. py:method:: cancel_training_job(id: str) -> None
+      :async:
+
+      Cancels the specified training job.
+
+      :param id: the id of the job to be canceled.
+      :type id: str
+
+      :raises GRPCError: if no training job exists with the given id.
+
+
+

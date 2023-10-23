@@ -95,6 +95,7 @@
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.app.app_client</span> <span class="kn">import</span> <span class="n">AppClient</span>
 <span class="kn">from</span> <span class="nn">viam.app.data_client</span> <span class="kn">import</span> <span class="n">DataClient</span>
+<span class="kn">from</span> <span class="nn">viam.app.ml_training_client</span> <span class="kn">import</span> <span class="n">MLTrainingClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">_dial_app</span><span class="p">,</span> <span class="n">_get_access_token</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -157,10 +158,15 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return an `AppClient` used to make  `app` method calls.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">AppClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span><span class="p">)</span>
 
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ml_training_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MLTrainingClient</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">MLTrainingClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+
 <div class="viewcode-block" id="ViamClient.close"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Close opened channels used for the various service stubs initialized.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;AppClient is already closed.&quot;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;ViamClient is already closed.&quot;</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing gRPC channel to app.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>

@@ -165,7 +165,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fc9e88414f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/movement_sensor0 at 0x7fc9e9a2fd10&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fc9e77e83b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fc9e47aaea0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fc9e47aa1d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fc9e47aaae0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fc9e43f1d10&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fc9e43f1db0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fc9e43f1e00&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fc9e43f1e50&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fc9e43f1ea0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fc9e43f1ef0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fc9e43f1f40&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fc9e43f1f90&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fc9e4394040&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fc9e4394090&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f72ccf0ff40&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f72c84f3a40&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f72cbeb31d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f72ccee7ef0&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f72ce26ef90&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f72c813ce50&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/movement_sensor0 at 0x7f72c813cdb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f72c813cf40&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f72c813cef0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f72c813cf90&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f72c80d9040&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f72c80d9090&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f72c80d90e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f72c80d9130&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f72c80d9180&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f72c80d91d0&gt;]
 </pre></div>
 </div>
 </div>
@@ -251,6 +251,9 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.sensor</span> <span class="kn">import</span> <span class="n">Sensor</span>
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">MySensor</span><span class="p">(</span><span class="n">Sensor</span><span class="p">):</span>
@@ -263,6 +266,11 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
     
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Geometry</span><span class="p">]:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This is a completely optional function to include. This will be called when the resource is removed from the config or the module</span>
+        <span class="c1"># is shutting down.</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is closed.&quot;</span><span class="p">)</span>
 
 <span class="c1"># Anything below this line is optional and will be replaced later, but may come in handy for debugging and testing.</span>
 <span class="c1"># To use, call `python wifi_sensor_module.py` in the command line while in the `src` directory.</span>
@@ -684,8 +692,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">viam.components.arm</span> <span class="kn">import</span> <span class="n">Arm</span><span class="p">,</span> <span class="n">JointPositions</span><span class="p">,</span> <span class="n">KinematicsFileFormat</span><span class="p">,</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.operations</span> <span class="kn">import</span> <span class="n">run_with_operation</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">Capsule</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">Sphere</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">MyCoolArm</span><span class="p">(</span><span class="n">Arm</span><span class="p">):</span>
@@ -781,6 +792,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_kinematics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">KinematicsFileFormat</span><span class="o">.</span><span class="n">KINEMATICS_FILE_FORMAT_SVA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinematics</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># This is a completely optional function to include. This will be called when the resource is removed from the config or the module</span>
+        <span class="c1"># is shutting down.</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is closed.&quot;</span><span class="p">)</span>
 </pre></div>
 </div></div>
 </div>

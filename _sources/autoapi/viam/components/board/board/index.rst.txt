@@ -96,6 +96,15 @@ Attributes
          :rtype: Mapping[str, ValueTypes]
 
 
+      .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+         :async:
+
+         Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+         :returns: The geometries associated with the Component.
+         :rtype: List[Geometry]
+
+
       .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
          :classmethod:
 
@@ -118,6 +127,16 @@ Attributes
 
          :returns: The operation associated with this function
          :rtype: viam.operations.Operation
+
+
+      .. py:method:: close()
+         :async:
+
+         Safely shut down the resource and prevent further use.
+
+         Close must be idempotent. Later configuration may allow a resource to be "open" again.
+         If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+         non-Close methods are called.
 
 
 
@@ -206,6 +225,15 @@ Attributes
          :rtype: Mapping[str, ValueTypes]
 
 
+      .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+         :async:
+
+         Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+         :returns: The geometries associated with the Component.
+         :rtype: List[Geometry]
+
+
       .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
          :classmethod:
 
@@ -228,6 +256,16 @@ Attributes
 
          :returns: The operation associated with this function
          :rtype: viam.operations.Operation
+
+
+      .. py:method:: close()
+         :async:
+
+         Safely shut down the resource and prevent further use.
+
+         Close must be idempotent. Later configuration may allow a resource to be "open" again.
+         If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+         non-Close methods are called.
 
 
 
@@ -328,6 +366,15 @@ Attributes
          :rtype: Mapping[str, ValueTypes]
 
 
+      .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+         :async:
+
+         Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+         :returns: The geometries associated with the Component.
+         :rtype: List[Geometry]
+
+
       .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
          :classmethod:
 
@@ -350,6 +397,16 @@ Attributes
 
          :returns: The operation associated with this function
          :rtype: viam.operations.Operation
+
+
+      .. py:method:: close()
+         :async:
+
+         Safely shut down the resource and prevent further use.
+
+         Close must be idempotent. Later configuration may allow a resource to be "open" again.
+         If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+         non-Close methods are called.
 
 
 
@@ -446,6 +503,18 @@ Attributes
       :param mode: the desired power mode
 
 
+   .. py:method:: write_analog(pin: str, value: int, *, timeout: Optional[float] = None, **kwargs)
+      :abstractmethod:
+      :async:
+
+      Write an analog value to a pin on the board.
+
+      :param pin: name of the pin.
+      :type pin: str
+      :param value: value to write.
+      :type value: int
+
+
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
@@ -475,6 +544,15 @@ Attributes
       :rtype: Mapping[str, ValueTypes]
 
 
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+      Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
       :classmethod:
 
@@ -497,6 +575,16 @@ Attributes
 
       :returns: The operation associated with this function
       :rtype: viam.operations.Operation
+
+
+   .. py:method:: close()
+      :async:
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+      non-Close methods are called.
 
 
 

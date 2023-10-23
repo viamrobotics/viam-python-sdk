@@ -69,6 +69,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.mlmodel.client.MLModelClient.from_robot"><code class="docutils literal notranslate"><span class="pre">MLModelClient.from_robot()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.mlmodel.client.MLModelClient.get_resource_name"><code class="docutils literal notranslate"><span class="pre">MLModelClient.get_resource_name()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.mlmodel.client.MLModelClient.get_operation"><code class="docutils literal notranslate"><span class="pre">MLModelClient.get_operation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.mlmodel.client.MLModelClient.close"><code class="docutils literal notranslate"><span class="pre">MLModelClient.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -251,6 +252,15 @@ If the <code class="docutils literal notranslate"><span class="pre">Operation</s
 <dd class="field-odd"><p><a class="reference internal" href="../../../operations/index.html#viam.operations.Operation" title="viam.operations.Operation">viam.operations.Operation</a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.mlmodel.client.MLModelClient.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.mlmodel.client.MLModelClient.close" title="Permalink to this definition"></a></dt>
+<dd><p>Safely shut down the resource and prevent further use.</p>
+<p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
+If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+non-Close methods are called.</p>
 </dd></dl>
 
 </dd></dl>

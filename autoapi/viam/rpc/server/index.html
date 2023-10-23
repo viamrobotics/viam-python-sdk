@@ -72,6 +72,7 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.server.Server"><code class="docutils literal notranslate"><span class="pre">Server</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.serve"><code class="docutils literal notranslate"><span class="pre">Server.serve()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.create_and_serve"><code class="docutils literal notranslate"><span class="pre">Server.create_and_serve()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.server.Server.close"><code class="docutils literal notranslate"><span class="pre">Server.close()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -180,6 +181,13 @@ Defaults to logging.INFO</p></li>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.server.Server.close">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.rpc.server.Server.close" title="Permalink to this definition"></a></dt>
+<dd><p>Close the resourcce manager by removing all resources.
+Please note that any errors will not raise an exception. Errors will still be logged.</p>
 </dd></dl>
 
 </dd></dl>

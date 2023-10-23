@@ -100,6 +100,7 @@
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">ListValue</span><span class="p">,</span> <span class="n">Struct</span><span class="p">,</span> <span class="n">Value</span>
 <span class="kn">from</span> <span class="nn">google.protobuf.timestamp_pb2</span> <span class="kn">import</span> <span class="n">Timestamp</span>
 
+<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">CaptureInterval</span><span class="p">,</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">TagsFilter</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">Geometry</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span><span class="p">,</span> <span class="n">Orientation</span><span class="p">,</span> <span class="n">ResourceName</span><span class="p">,</span> <span class="n">Vector3</span>
 <span class="kn">from</span> <span class="nn">viam.resource.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.registry</span> <span class="kn">import</span> <span class="n">Registry</span>
@@ -352,6 +353,68 @@
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">extra</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fromDataManagement&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="create_filter"><a class="viewcode-back" href="../../autoapi/viam/utils/index.html#viam.utils.create_filter">[docs]</a><span class="k">def</span> <span class="nf">create_filter</span><span class="p">(</span>
+    <span class="n">component_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">component_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">robot_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">robot_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">part_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">part_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">location_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">organization_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mime_type</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bbox_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Filter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a `Filter`.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        component_name (Optional[str]): Optional name of the component that captured the data being filtered (e.g., &quot;left_motor&quot;).</span>
+<span class="sd">        component_type (Optional[str]): Optional type of the componenet that captured the data being filtered (e.g., &quot;motor&quot;).</span>
+<span class="sd">        method (Optional[str]): Optional name of the method used to capture the data being filtered (e.g., &quot;IsPowered&quot;).</span>
+<span class="sd">        robot_name (Optional[str]): Optional name of the robot associated with the data being filtered (e.g., &quot;viam_rover_1&quot;).</span>
+<span class="sd">        robot_id (Optional[str]): Optional ID of the robot associated with the data being filtered.</span>
+<span class="sd">        part_name (Optional[str]): Optional name of the system part associated with the data being filtered (e.g., &quot;viam_rover_1-main&quot;).</span>
+<span class="sd">        part_id (Optional[str]): Optional ID of the system part associated with the data being filtered.</span>
+<span class="sd">        location_ids (Optional[List[str]]): Optional list of location IDs associated with the data being filtered.</span>
+<span class="sd">        organization_ids (Optional[List[str]]): Optional list of organization IDs associated with the data being filtered.</span>
+<span class="sd">        mime_type (Optional[List[str]]): Optional mime type of data being filtered (e.g., &quot;image/png&quot;).</span>
+<span class="sd">        start_time (Optional[datetime.datetime]): Optional start time of an interval to filter data by.</span>
+<span class="sd">        end_time (Optional[datetime.datetime]): Optional end time of an interval to filter data by.</span>
+<span class="sd">        tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., [&quot;test&quot;]).</span>
+<span class="sd">        bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., [&quot;square&quot;,</span>
+<span class="sd">            &quot;circle&quot;]).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        viam.proto.app.data.Filter: The `Filter` object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">Filter</span><span class="p">(</span>
+        <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span> <span class="k">if</span> <span class="n">component_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">component_type</span><span class="o">=</span><span class="n">component_type</span> <span class="k">if</span> <span class="n">component_type</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="n">method</span> <span class="k">if</span> <span class="n">method</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">robot_name</span><span class="o">=</span><span class="n">robot_name</span> <span class="k">if</span> <span class="n">robot_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span> <span class="k">if</span> <span class="n">robot_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">part_name</span><span class="o">=</span><span class="n">part_name</span> <span class="k">if</span> <span class="n">part_name</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">part_id</span><span class="o">=</span><span class="n">part_id</span> <span class="k">if</span> <span class="n">part_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">location_ids</span><span class="o">=</span><span class="n">location_ids</span><span class="p">,</span>
+        <span class="n">organization_ids</span><span class="o">=</span><span class="n">organization_ids</span><span class="p">,</span>
+        <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
+        <span class="n">interval</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">CaptureInterval</span><span class="p">(</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">),</span>
+                <span class="n">end</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">start_time</span> <span class="ow">or</span> <span class="n">end_time</span>
+        <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">tags_filter</span><span class="o">=</span><span class="n">TagsFilter</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">),</span>
+        <span class="n">bbox_labels</span><span class="o">=</span><span class="n">bbox_labels</span><span class="p">,</span>
+    <span class="p">)</span></div>
 </pre></div>
 
            </div>
