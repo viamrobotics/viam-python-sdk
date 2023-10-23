@@ -3,15 +3,14 @@ from dataclasses import dataclass
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from typing_extensions import Self
-
+from viam.components.component_base import ComponentBase
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
-from ..sensor import Sensor
 from . import GeoPoint, Orientation, Vector3
 
 
-class MovementSensor(Sensor):
+class MovementSensor(ComponentBase):
     """MovementSensor reports information about the robot's direction, position and speed.
 
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
@@ -134,16 +133,7 @@ class MovementSensor(Sensor):
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
 
         Returns:
-            Mapping[str, Any]: The readings for the MovementSensor:
-            {
-                position: GeoPoint,
-                altitude: float,
-                linear_velocity: Vector3,
-                angular_velocity: Vector3,
-                linear_acceleration: Vector3,
-                compass: float,
-                orientation: Orientation,
-            }
+            Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.
 
         """
         ...
