@@ -11,7 +11,7 @@ packages = [
 include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
 
   [tool.poetry.dependencies]
-  python = ">=3.8.1,<3.12"
+  python = ">=3.8.1,<3.13"
   grpclib = ">=0.4.6,<1"
   googleapis-common-protos = ">=1.60.0,<2"
   typing-extensions = ">=4.8.0,<5"
@@ -39,6 +39,10 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   pytest-watcher = "^0.3.4"
   # TODO(RSDK-5450) - Update myst-nb so this can be unpinned.
   astroid = "<=2.15.6"
+  numpy = [
+    {version = "<1.25.0", python = "<3.9"},
+    {version = ">=1.25.0", python = ">=3.9"},
+  ]
 
 [tool.pytest.ini_options]
 addopts = "-ra"
