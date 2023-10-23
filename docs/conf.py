@@ -44,7 +44,7 @@ def skip_member(app, what, name, obj, skip, options) -> bool:
     if "proto" in name:
         if "google" in name:
             return True
-    should_keep = ["from_robot", "do_command", "get_resource_name", "get_operation"]
+    should_keep = ["do_command", "get_geometries", "close", "from_robot", "get_resource_name", "get_operation"]
     if obj.inherited and not any(method in name for method in should_keep):
         return True
     if what == "attribute":
