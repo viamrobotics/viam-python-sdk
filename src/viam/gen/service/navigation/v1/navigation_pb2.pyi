@@ -27,12 +27,14 @@ class _ModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeW
     MODE_UNSPECIFIED: _Mode.ValueType
     MODE_MANUAL: _Mode.ValueType
     MODE_WAYPOINT: _Mode.ValueType
+    MODE_EXPLORE: _Mode.ValueType
 
 class Mode(_Mode, metaclass=_ModeEnumTypeWrapper):
     ...
 MODE_UNSPECIFIED: Mode.ValueType
 MODE_MANUAL: Mode.ValueType
 MODE_WAYPOINT: Mode.ValueType
+MODE_EXPLORE: Mode.ValueType
 global___Mode = Mode
 
 @typing_extensions.final
@@ -307,3 +309,66 @@ class GetObstaclesResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles']) -> None:
         ...
 global___GetObstaclesResponse = GetObstaclesResponse
+
+@typing_extensions.final
+class Path(google.protobuf.message.Message):
+    """A user provided destination and the set of geopoints that
+    the robot is expected to take to get there
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESTINATION_WAYPOINT_ID_FIELD_NUMBER: builtins.int
+    GEOPOINTS_FIELD_NUMBER: builtins.int
+    destination_waypoint_id: builtins.str
+    'The id of the user specified waypoint'
+
+    @property
+    def geopoints(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoPoint]:
+        """List of geopoints that the motion planner output to reach the destination
+        The first geopoint is the starting position of the robot for that path
+        """
+
+    def __init__(self, *, destination_waypoint_id: builtins.str=..., geopoints: collections.abc.Iterable[common.v1.common_pb2.GeoPoint] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['destination_waypoint_id', b'destination_waypoint_id', 'geopoints', b'geopoints']) -> None:
+        ...
+global___Path = Path
+
+@typing_extensions.final
+class GetPathsRequest(google.protobuf.message.Message):
+    """Returns all the paths known to the navigation service"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the navigation service'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetPathsRequest = GetPathsRequest
+
+@typing_extensions.final
+class GetPathsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PATHS_FIELD_NUMBER: builtins.int
+
+    @property
+    def paths(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Path]:
+        ...
+
+    def __init__(self, *, paths: collections.abc.Iterable[global___Path] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['paths', b'paths']) -> None:
+        ...
+global___GetPathsResponse = GetPathsResponse

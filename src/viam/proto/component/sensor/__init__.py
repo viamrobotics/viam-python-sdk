@@ -3,11 +3,8 @@
 Do not edit manually!
 """
 from ....gen.component.sensor.v1.sensor_grpc import SensorServiceBase, SensorServiceStub
-from ....gen.component.sensor.v1.sensor_pb2 import GetReadingsRequest, GetReadingsResponse
 
 __all__ = [
     "SensorServiceBase",
     "SensorServiceStub",
-    "GetReadingsRequest",
-    "GetReadingsResponse",
 ]

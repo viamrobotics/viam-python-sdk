@@ -1,12 +1,9 @@
-from typing import Any, Dict, Optional
-
 import pytest
-from grpclib import GRPCError, Status
 from grpclib.testing import ChannelFor
 
 from viam.components.generic.service import GenericRPCService
 from viam.components.power_sensor import PowerSensor, PowerSensorClient, PowerSensorRPCService
-from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
 from viam.proto.component.powersensor import (
     GetVoltageRequest,
     GetVoltageResponse,
@@ -18,7 +15,7 @@ from viam.proto.component.powersensor import (
 )
 
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
 
 from . import loose_approx
 from .mocks.components import MockPowerSensor
@@ -27,12 +24,13 @@ VOLTS = 3.2
 AMPERES = 2.0
 WATTS = 1.0
 IS_AC = True
+READINGS = {"a": 1, "b": 2, "c": 3}
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 
 
 @pytest.fixture(scope="function")
 def power_sensor() -> PowerSensor:
-    return MockPowerSensor("power_sensor", VOLTS, AMPERES, IS_AC, WATTS)
+    return MockPowerSensor("power_sensor", VOLTS, AMPERES, IS_AC, WATTS, READINGS)
 
 
 @pytest.fixture(scope="function")
@@ -72,17 +70,8 @@ class TestPowerSensor:
     async def test_get_readings(self, power_sensor: MockPowerSensor):
         assert power_sensor.extra is None
         value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {"voltage": VOLTS, "current": AMPERES, "is_ac": IS_AC, "power": WATTS}
+        assert value == READINGS
         assert power_sensor.extra == EXTRA_PARAMS
-
-        # A mock method to replace some get functions just for testing that should result in omitted entries in the dictionary
-        async def get_reading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
-            raise GRPCError(Status(2), "Unimplemented")
-
-        power_sensor.get_power = get_reading
-
-        value = await power_sensor.get_readings(extra=EXTRA_PARAMS)
-        assert value == {"voltage": VOLTS, "current": AMPERES, "is_ac": IS_AC}
 
     @pytest.mark.asyncio
     async def test_timeout(self, power_sensor: MockPowerSensor):
@@ -144,6 +133,17 @@ class TestService:
             assert power_sensor.timeout == loose_approx(1.23)
 
     @pytest.mark.asyncio
+    async def test_get_readings(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = PowerSensorServiceStub(channel)
+            request = GetReadingsRequest(name=power_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
+            assert power_sensor.extra is None
+            response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
+            assert response.readings == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
+            assert power_sensor.extra == EXTRA_PARAMS
+            assert power_sensor.timeout == loose_approx(8.90)
+
+    @pytest.mark.asyncio
     async def test_do(self, power_sensor: MockPowerSensor, service: PowerSensorRPCService):
         async with ChannelFor([service]) as channel:
             client = PowerSensorServiceStub(channel)
@@ -192,15 +192,10 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = PowerSensorClient(power_sensor.name, channel)
             assert power_sensor.extra is None
-            value = await client.get_readings(extra=EXTRA_PARAMS, timeout=8.90)
-            assert value == {
-                "voltage": VOLTS,
-                "current": AMPERES,
-                "is_ac": IS_AC,
-                "power": WATTS,
-            }
+            value = await client.get_readings(extra=EXTRA_PARAMS, timeout=2.34)
+            assert value == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
             assert power_sensor.extra == EXTRA_PARAMS
-            assert power_sensor.timeout == loose_approx(8.90)
+            assert power_sensor.timeout == loose_approx(2.34)
 
     @pytest.mark.asyncio
     async def test_do(self, power_sensor: PowerSensor, service: PowerSensorRPCService):

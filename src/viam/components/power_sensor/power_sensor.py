@@ -1,11 +1,7 @@
 import abc
-import asyncio
-from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
-
-from grpclib import GRPCError
+from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
-from viam.errors import MethodNotImplementedError, NotSupportedError
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 
@@ -57,35 +53,6 @@ class PowerSensor(ComponentBase):
                is_ac: bool
                power: float
             }
+
         """
-        (vol, cur, pow) = await asyncio.gather(
-            self.get_voltage(extra=extra, timeout=timeout),
-            self.get_current(extra=extra, timeout=timeout),
-            self.get_power(extra=extra, timeout=timeout),
-            return_exceptions=True,
-        )
-
-        readings = {}
-
-        # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
-        def add_reading(name: str, reading, returntype: List) -> None:
-            possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
-            if type(reading) in returntype:
-                if name == "voltage":
-                    readings["voltage"] = reading[0]
-                    readings["is_ac"] = reading[1]
-                elif name == "current":
-                    readings["current"] = reading[0]
-                    readings["is_ac"] = reading[1]
-                else:
-                    readings[name] = reading
-                return
-            elif isinstance(reading, possible_error_types) or (isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message)):
-                return
-            raise reading
-
-        add_reading("voltage", vol, [tuple])
-        add_reading("current", cur, [tuple])
-        add_reading("power", pow, [float])
-
-        return readings
+        ...

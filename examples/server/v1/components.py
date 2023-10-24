@@ -653,6 +653,7 @@ class ExampleMovementSensor(MovementSensor):
         accuracy: Mapping[str, float],
     ):
         super().__init__(name)
+        self.num_readings = random.randint(1, 10)
         self.coordinates = coordinates
         self.altitude = altitude
         self.lin_vel = lin_vel
@@ -662,6 +663,9 @@ class ExampleMovementSensor(MovementSensor):
         self.orientation = orientation
         self.properties = properties
         self.accuracy = accuracy
+
+    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
+        return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
     async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
         return (self.coordinates, self.altitude)

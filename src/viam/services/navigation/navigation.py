@@ -4,7 +4,7 @@ from typing import Final, List, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import GeoObstacle, GeoPoint, Mode, Waypoint
+from . import GeoObstacle, GeoPoint, Mode, Waypoint, Path
 
 
 class Navigation(ServiceBase):
@@ -17,6 +17,10 @@ class Navigation(ServiceBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "navigation")
+
+    @abc.abstractmethod
+    async def get_paths(self, *, timeout: Optional[float]) -> List[Path]:
+        ...
 
     @abc.abstractmethod
     async def get_location(self, *, timeout: Optional[float]) -> GeoPoint:

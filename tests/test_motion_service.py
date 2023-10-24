@@ -4,7 +4,7 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.gantry import Gantry
 from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
-from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration
+from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration, ObstacleDetector
 from viam.services.motion import MotionClient
 
 from . import loose_approx
@@ -17,7 +17,8 @@ GET_POSE_RESPONSES = {
     "gantry": PoseInFrame(reference_frame="gantry", pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21)),
 }
 MOTION_CONFIGURATION = MotionConfiguration(
-    vision_services=[ResourceName(namespace="rdk", type="service", subtype="vision", name="viz1")],
+    obstacle_detectors=[ObstacleDetector(vision_service=ResourceName(namespace="rdk", type="service", subtype="vision", name="viz1"),
+                                         camera=ResourceName(namespace="rdk", type="component", subtype="camera", name="cam1"))],
     position_polling_frequency_hz=144,
     obstacle_polling_frequency_hz=182,
     plan_deviation_m=41,

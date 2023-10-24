@@ -1,20 +1,16 @@
 import abc
-import asyncio
 from dataclasses import dataclass
-from typing import Any, Dict, Final, List, Mapping, Optional, Tuple
+from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
-from grpclib import GRPCError
 from typing_extensions import Self
-
-from viam.errors import MethodNotImplementedError, NotSupportedError
+from viam.components.component_base import ComponentBase
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
-from ..sensor import Sensor
 from . import GeoPoint, Orientation, Vector3
 
 
-class MovementSensor(Sensor):
+class MovementSensor(ComponentBase):
     """MovementSensor reports information about the robot's direction, position and speed.
 
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
@@ -137,48 +133,7 @@ class MovementSensor(Sensor):
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
 
         Returns:
-            Mapping[str, Any]: The readings for the MovementSensor:
-            {
-                position: GeoPoint,
-                altitude: float,
-                linear_velocity: Vector3,
-                angular_velocity: Vector3,
-                linear_acceleration: Vector3,
-                compass: float,
-                orientation: Orientation,
-            }
+            Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.
+
         """
-        (pos, lv, av, la, comp, orient) = await asyncio.gather(
-            self.get_position(extra=extra, timeout=timeout),
-            self.get_linear_velocity(extra=extra, timeout=timeout),
-            self.get_angular_velocity(extra=extra, timeout=timeout),
-            self.get_linear_acceleration(extra=extra, timeout=timeout),
-            self.get_compass_heading(extra=extra, timeout=timeout),
-            self.get_orientation(extra=extra, timeout=timeout),
-            return_exceptions=True,
-        )
-
-        readings = {}
-
-        # Add returned value to the readings dictionary if value is of expected type; omit if unimplemented.
-        def add_reading(name: str, reading, returntype: List) -> None:
-            possible_error_types = (NotImplementedError, MethodNotImplementedError, NotSupportedError)
-            if type(reading) in returntype:
-                if name == "position":
-                    readings["position"] = reading[0]
-                    readings["altitude"] = reading[1]
-                else:
-                    readings[name] = reading
-                return
-            elif isinstance(reading, possible_error_types) or (isinstance(reading, GRPCError) and "Unimplemented" in str(reading.message)):
-                return
-            raise reading
-
-        add_reading("position", pos, [tuple])
-        add_reading("linear_velocity", lv, [Vector3])
-        add_reading("angular_velocity", av, [Vector3])
-        add_reading("linear_acceleration", la, [Vector3])
-        add_reading("compass", comp, [float, int])
-        add_reading("orientation", orient, [Orientation])
-
-        return readings
+        ...

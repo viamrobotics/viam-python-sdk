@@ -1,7 +1,14 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
-from viam.proto.component.sensor import GetReadingsRequest, GetReadingsResponse, SensorServiceBase
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
+)
+from viam.proto.component.sensor import SensorServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 
