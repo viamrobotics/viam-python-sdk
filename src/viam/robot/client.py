@@ -105,25 +105,19 @@ class RobotClient:
         @classmethod
         def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
             """
-            Create dial options with an API key for credentials and default values for other arguments.
+            Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
             Args:
                 api_key (str): your API key
-                api_key_id (str): your API key ID
+                api_key_id (str): your API key ID. Must be a valid UUID
 
             Raises:
-                ValueError: Raised if the `api_key_id` is not a valid uuid
+                ValueError: Raised if the api_key_id is not a valid UUID
 
             Returns:
-                Self: the RobotClient options
+                Self: the RobotClient.Options
             """
-            key_id_regex = re.compile(r"^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$")
-            match = key_id_regex.match(api_key_id)
-            if not match:
-                raise ValueError(f"{api_key_id} is not a valid UUID")
-
-            credentials = Credentials(type="api-key", payload=api_key)
-            dial_opts = DialOptions(credentials=credentials, auth_entity=api_key_id)
+            dial_opts = DialOptions.with_api_key(api_key, api_key_id)
             self = cls()
             self.dial_options = dial_opts
             return self

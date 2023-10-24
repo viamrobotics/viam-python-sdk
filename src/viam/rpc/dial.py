@@ -4,9 +4,11 @@ import re
 import socket
 import ssl
 import sys
+import uuid
 import warnings
 from dataclasses import dataclass
 from typing import Callable, Literal, Optional, Tuple, Type, Union
+from typing_extensions import Self
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
@@ -89,6 +91,28 @@ class DialOptions:
         self.allow_insecure_with_creds_downgrade = allow_insecure_with_creds_downgrade
         self.max_reconnect_attempts = max_reconnect_attempts
         self.timeout = timeout
+
+    @classmethod
+    def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
+        """Create `DialOptions` with an API key for credentials and default values for other arguments.
+
+        Args:
+            api_key (str): your API key
+            api_key_id (str): your API key ID. Must be a valid UUID.
+
+        Raises:
+            ValueError: Raised if the `api_key_id` is not a valid UUID
+
+        Returns:
+            Self: the `DialOptions`
+        """
+        try:
+            uuid.UUID(api_key_id)
+        except ValueError:
+            raise ValueError(f"{api_key_id} is not a valid UUID")
+
+        credentials = Credentials(type="api-key", payload=api_key)
+        return cls(credentials=credentials, auth_entity=api_key_id)
 
 
 def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
