@@ -60,7 +60,6 @@ RESOURCE_NAMES = [
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="camera", name="camera1"),
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="motor", name="motor1"),
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="movement_sensor", name="movement_sensor1"),
-    ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_COMPONENT, subtype="sensor", name="movement_sensor1"),
     ResourceName(namespace=RESOURCE_NAMESPACE_RDK, type=RESOURCE_TYPE_SERVICE, subtype="mlmodel", name="mlmodel1"),
 ]
 

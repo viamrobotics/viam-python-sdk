@@ -6,6 +6,6 @@ from .client import NavigationClient
 from .navigation import Navigation
 from .service import NavigationRPCService
 
-__all__ = ["GeoPoint", "GeoObstacle", "NavigationClient", "Navigation", "Waypoint", "Mode"]
+__all__ = ["GeoPoint", "GeoObstacle", "NavigationClient", "Navigation", "Waypoint", "Mode", "Path"]
 
 Registry.register_subtype(ResourceRegistration(Navigation, NavigationRPCService, lambda name, channel: NavigationClient(name, channel)))
