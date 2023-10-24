@@ -1,5 +1,4 @@
 import asyncio
-import re
 from dataclasses import dataclass
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
@@ -42,7 +41,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
-from viam.rpc.dial import Credentials, DialOptions, ViamChannel, dial
+from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
 from viam.utils import dict_to_struct
