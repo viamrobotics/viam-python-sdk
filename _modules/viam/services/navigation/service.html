@@ -99,6 +99,8 @@
     <span class="n">GetModeResponse</span><span class="p">,</span>
     <span class="n">GetObstaclesRequest</span><span class="p">,</span>
     <span class="n">GetObstaclesResponse</span><span class="p">,</span>
+    <span class="n">GetPathsRequest</span><span class="p">,</span>
+    <span class="n">GetPathsResponse</span><span class="p">,</span>
     <span class="n">GetWaypointsRequest</span><span class="p">,</span>
     <span class="n">GetWaypointsResponse</span><span class="p">,</span>
     <span class="n">NavigationServiceBase</span><span class="p">,</span>
@@ -119,6 +121,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Navigation</span>
+
+<div class="viewcode-block" id="NavigationRPCService.GetPaths"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/service/index.html#viam.services.navigation.service.NavigationRPCService.GetPaths">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetPaths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPathsRequest</span><span class="p">,</span> <span class="n">GetPathsResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">navigation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="k">await</span> <span class="n">navigation</span><span class="o">.</span><span class="n">get_paths</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetPathsResponse</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="n">paths</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NavigationRPCService.GetLocation"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/service/index.html#viam.services.navigation.service.NavigationRPCService.GetLocation">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetLocation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetLocationRequest</span><span class="p">,</span> <span class="n">GetLocationResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>

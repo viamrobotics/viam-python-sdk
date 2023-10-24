@@ -86,8 +86,14 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Waypoint.HasField"><code class="docutils literal notranslate"><span class="pre">Waypoint.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.navigation.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Path.geopoints"><code class="docutils literal notranslate"><span class="pre">Path.geopoints</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Path.destination_waypoint_id"><code class="docutils literal notranslate"><span class="pre">Path.destination_waypoint_id</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.navigation.Navigation"><code class="docutils literal notranslate"><span class="pre">Navigation</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">Navigation.SUBTYPE</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_paths"><code class="docutils literal notranslate"><span class="pre">Navigation.get_paths()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_location"><code class="docutils literal notranslate"><span class="pre">Navigation.get_location()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_obstacles"><code class="docutils literal notranslate"><span class="pre">Navigation.get_obstacles()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_waypoints"><code class="docutils literal notranslate"><span class="pre">Navigation.get_waypoints()</span></code></a></li>
@@ -180,7 +186,10 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Waypoint" title="viam.services.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Navigation" title="viam.services.navigation.Navigation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Path" title="viam.services.navigation.Path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code></a></p></td>
+<td><p>A user provided destination and the set of geopoints that</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Navigation" title="viam.services.navigation.Navigation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigation</span></code></a></p></td>
 <td><p>Navigation represents a Navigation service.</p></td>
 </tr>
 </tbody>
@@ -298,6 +307,27 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.Path">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.</span></span><span class="sig-name descname"><span class="pre">Path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination_waypoint_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geopoints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.services.navigation.Path" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>A user provided destination and the set of geopoints that
+the robot is expected to take to get there</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.services.navigation.Path.geopoints">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geopoints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoPoint" title="viam.gen.common.v1.common_pb2.GeoPoint"><span class="pre">viam.gen.common.v1.common_pb2.GeoPoint</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.services.navigation.Path.geopoints" title="Permalink to this definition"></a></dt>
+<dd><p>List of geopoints that the motion planner output to reach the destination
+The first geopoint is the starting position of the robot for that path</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.navigation.Path.destination_waypoint_id">
+<span class="sig-name descname"><span class="pre">destination_waypoint_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.services.navigation.Path.destination_waypoint_id" title="Permalink to this definition"></a></dt>
+<dd><p>The id of the user specified waypoint</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.services.navigation.Navigation">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.</span></span><span class="sig-name descname"><span class="pre">Navigation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/navigation/navigation.html#Navigation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.Navigation" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="../service_base/index.html#viam.services.service_base.ServiceBase" title="viam.services.service_base.ServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">viam.services.service_base.ServiceBase</span></code></a></p>
@@ -308,6 +338,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.services.navigation.Navigation.SUBTYPE">
 <span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.navigation.Navigation.SUBTYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.Navigation.get_paths">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.services.navigation.Path" title="viam.services.navigation.Path"><span class="pre">viam.services.navigation.Path</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.Navigation.get_paths" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

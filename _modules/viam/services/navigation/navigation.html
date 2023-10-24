@@ -93,7 +93,7 @@
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 
 <span class="kn">from</span> <span class="nn">..service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">GeoObstacle</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Waypoint</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">GeoObstacle</span><span class="p">,</span> <span class="n">GeoPoint</span><span class="p">,</span> <span class="n">Mode</span><span class="p">,</span> <span class="n">Waypoint</span><span class="p">,</span> <span class="n">Path</span>
 
 
 <div class="viewcode-block" id="Navigation"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation">[docs]</a><span class="k">class</span> <span class="nc">Navigation</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
@@ -106,6 +106,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;navigation&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Navigation.get_paths"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_paths">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+        <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Navigation.get_location"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/navigation/index.html#viam.services.navigation.Navigation.get_location">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">GeoPoint</span><span class="p">:</span>

@@ -27,7 +27,7 @@ Classes
 
 
 
-.. py:class:: MotionConfiguration(*, vision_services: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
+.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -38,10 +38,10 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: vision_services
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+   .. py:property:: obstacle_detectors
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
 
-      The name of the vision service(s) that will be used to detect obstacles
+      The ObstacleDetectors that will be used for transient obstacle avoidance
 
    .. py:attribute:: position_polling_frequency_hz
       :type: float

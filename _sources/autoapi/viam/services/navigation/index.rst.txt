@@ -27,6 +27,7 @@ Classes
    viam.services.navigation.GeoPoint
    viam.services.navigation.Mode
    viam.services.navigation.Waypoint
+   viam.services.navigation.Path
    viam.services.navigation.Navigation
 
 
@@ -134,6 +135,26 @@ Classes
 
 
 
+.. py:class:: Path(*, destination_waypoint_id: str = ..., geopoints: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoPoint] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   A user provided destination and the set of geopoints that
+   the robot is expected to take to get there
+
+   .. py:property:: geopoints
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoPoint]
+
+      List of geopoints that the motion planner output to reach the destination
+      The first geopoint is the starting position of the robot for that path
+
+   .. py:attribute:: destination_waypoint_id
+      :type: str
+
+      The id of the user specified waypoint
+
+
 .. py:class:: Navigation(name: str)
 
 
@@ -149,6 +170,11 @@ Classes
       :type: Final
 
       
+
+   .. py:method:: get_paths(*, timeout: Optional[float]) -> List[viam.services.navigation.Path]
+      :abstractmethod:
+      :async:
+
 
    .. py:method:: get_location(*, timeout: Optional[float]) -> viam.services.navigation.GeoPoint
       :abstractmethod:

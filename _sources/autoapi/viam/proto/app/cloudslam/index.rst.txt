@@ -21,6 +21,7 @@ Classes
    viam.proto.app.cloudslam.CloudSLAMServiceBase
    viam.proto.app.cloudslam.CloudSLAMServiceStub
    viam.proto.app.cloudslam.CaptureInterval
+   viam.proto.app.cloudslam.EndStatus
    viam.proto.app.cloudslam.GetActiveMappingSessionsForRobotRequest
    viam.proto.app.cloudslam.GetActiveMappingSessionsForRobotResponse
    viam.proto.app.cloudslam.GetMappingSessionMetadataByIDRequest
@@ -128,6 +129,12 @@ Classes
 
       :raises ValueError: if the `field_name` is not a member of this message.
 
+
+
+.. py:class:: EndStatus
+
+
+   Bases: :py:obj:`_EndStatus`
 
 
 .. py:class:: GetActiveMappingSessionsForRobotRequest(*, robot_id: str = ...)
@@ -292,7 +299,7 @@ Classes
 
 
 
-.. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: str = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ..., error_msg: str = ...)
+.. py:class:: MappingMetadata(*, org_id: str = ..., location_id: str = ..., robot_id: str = ..., time_start_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_end_submitted: google.protobuf.timestamp_pb2.Timestamp | None = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_status: global___EndStatus = ..., cloud_run_job_id: str = ..., viam_server_version: str = ..., map_name: str = ..., slam_version: str = ..., config: str = ..., error_msg: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -339,9 +346,9 @@ Classes
       robot associated with slam session
 
    .. py:attribute:: end_status
-      :type: str
+      :type: global___EndStatus
 
-      “success”, “failed to start”, etc
+      enums that represent “success”, “failed”, etc
 
    .. py:attribute:: cloud_run_job_id
       :type: str
@@ -542,7 +549,7 @@ Classes
       
 
 
-.. py:class:: UpdateMappingSessionMetadataByIDRequest(*, session_id: str = ..., end_status: str = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., error_msg: str = ...)
+.. py:class:: UpdateMappingSessionMetadataByIDRequest(*, session_id: str = ..., end_status: global___EndStatus = ..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., error_msg: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -560,9 +567,9 @@ Classes
       
 
    .. py:attribute:: end_status
-      :type: str
+      :type: global___EndStatus
 
-      “success”, “failed to start”, etc
+      enums that represent “success”, “failed”, etc
 
    .. py:attribute:: error_msg
       :type: str

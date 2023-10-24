@@ -20,7 +20,7 @@ Classes
 .. py:class:: MovementSensor(name: str)
 
 
-   Bases: :py:obj:`viam.components.sensor.Sensor`
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
 
    MovementSensor reports information about the robot's direction, position and speed.
 
@@ -160,16 +160,7 @@ Classes
       Obtain the measurements/data specific to this sensor.
       If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
 
-      :returns: The readings for the MovementSensor:
-                {
-                    position: GeoPoint,
-                    altitude: float,
-                    linear_velocity: Vector3,
-                    angular_velocity: Vector3,
-                    linear_acceleration: Vector3,
-                    compass: float,
-                    orientation: Orientation,
-                }
+      :returns: The readings for the MovementSensor. Can be of any type.
       :rtype: Mapping[str, Any]
 
 

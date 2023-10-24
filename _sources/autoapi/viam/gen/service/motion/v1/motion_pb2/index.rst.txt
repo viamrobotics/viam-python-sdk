@@ -23,6 +23,7 @@ Classes
    viam.gen.service.motion.v1.motion_pb2.MoveResponse
    viam.gen.service.motion.v1.motion_pb2.MoveOnMapRequest
    viam.gen.service.motion.v1.motion_pb2.MoveOnMapResponse
+   viam.gen.service.motion.v1.motion_pb2.ObstacleDetector
    viam.gen.service.motion.v1.motion_pb2.MotionConfiguration
    viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeRequest
    viam.gen.service.motion.v1.motion_pb2.MoveOnGlobeResponse
@@ -66,6 +67,7 @@ Attributes
    viam.gen.service.motion.v1.motion_pb2.global___MoveResponse
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapRequest
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnMapResponse
+   viam.gen.service.motion.v1.motion_pb2.global___ObstacleDetector
    viam.gen.service.motion.v1.motion_pb2.global___MotionConfiguration
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeRequest
    viam.gen.service.motion.v1.motion_pb2.global___MoveOnGlobeResponse
@@ -313,7 +315,44 @@ Attributes
 
    
 
-.. py:class:: MotionConfiguration(*, vision_services: collections.abc.Iterable[viam.gen.common.v1.common_pb2.ResourceName] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
+.. py:class:: ObstacleDetector(*, vision_service: viam.gen.common.v1.common_pb2.ResourceName | None = ..., camera: viam.gen.common.v1.common_pb2.ResourceName | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Pairs a vision service with a camera, informing the service about which camera it may use
+
+   .. py:property:: vision_service
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+   .. py:property:: camera
+      :type: viam.gen.common.v1.common_pb2.ResourceName
+
+
+   .. py:method:: HasField(field_name: Literal[camera, b'camera', vision_service, b'vision_service']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+.. py:data:: global___ObstacleDetector
+
+   
+
+.. py:class:: MotionConfiguration(*, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None = ..., position_polling_frequency_hz: float | None = ..., obstacle_polling_frequency_hz: float | None = ..., plan_deviation_m: float | None = ..., linear_m_per_sec: float | None = ..., angular_degs_per_sec: float | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -324,10 +363,10 @@ Attributes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:property:: vision_services
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.ResourceName]
+   .. py:property:: obstacle_detectors
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]
 
-      The name of the vision service(s) that will be used to detect obstacles
+      The ObstacleDetectors that will be used for transient obstacle avoidance
 
    .. py:attribute:: position_polling_frequency_hz
       :type: float

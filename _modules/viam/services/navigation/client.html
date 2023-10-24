@@ -100,11 +100,14 @@
     <span class="n">GetModeResponse</span><span class="p">,</span>
     <span class="n">GetObstaclesRequest</span><span class="p">,</span>
     <span class="n">GetObstaclesResponse</span><span class="p">,</span>
+    <span class="n">GetPathsRequest</span><span class="p">,</span>
+    <span class="n">GetPathsResponse</span><span class="p">,</span>
     <span class="n">GetWaypointsRequest</span><span class="p">,</span>
     <span class="n">GetWaypointsResponse</span><span class="p">,</span>
     <span class="n">NavigationServiceStub</span><span class="p">,</span>
     <span class="n">RemoveWaypointRequest</span><span class="p">,</span>
     <span class="n">SetModeRequest</span><span class="p">,</span>
+    <span class="n">Path</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
@@ -124,6 +127,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">NavigationServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NavigationClient.get_paths"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_paths">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPathsRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetPathsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPaths</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="NavigationClient.get_location"><a class="viewcode-back" href="../../../../autoapi/viam/services/navigation/client/index.html#viam.services.navigation.client.NavigationClient.get_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeoPoint</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetLocationRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>

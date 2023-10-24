@@ -920,7 +920,7 @@ Attributes
 
    
 
-.. py:class:: Status(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: Status(*, name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., status: google.protobuf.struct_pb2.Struct | None = ..., last_reconfigured: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -939,7 +939,11 @@ Attributes
       :type: google.protobuf.struct_pb2.Struct
 
 
-   .. py:method:: HasField(field_name: Literal[name, b'name', status, b'status']) -> bool
+   .. py:property:: last_reconfigured
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+
+   .. py:method:: HasField(field_name: Literal[last_reconfigured, b'last_reconfigured', name, b'name', status, b'status']) -> bool
 
       Checks if a certain field is set for the message.
 
