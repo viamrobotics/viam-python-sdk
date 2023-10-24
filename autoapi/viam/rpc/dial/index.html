@@ -83,6 +83,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.allow_insecure_with_creds_downgrade"><code class="docutils literal notranslate"><span class="pre">DialOptions.allow_insecure_with_creds_downgrade</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.max_reconnect_attempts"><code class="docutils literal notranslate"><span class="pre">DialOptions.max_reconnect_attempts</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.timeout"><code class="docutils literal notranslate"><span class="pre">DialOptions.timeout</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.rpc.dial.DialOptions.with_api_key"><code class="docutils literal notranslate"><span class="pre">DialOptions.with_api_key()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.rpc.dial.AuthenticatedChannel"><code class="docutils literal notranslate"><span class="pre">AuthenticatedChannel</span></code></a><ul>
@@ -265,6 +266,29 @@ unsafe to use, but can be requested.</p>
 <span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#viam.rpc.dial.DialOptions.timeout" title="Permalink to this definition"></a></dt>
 <dd><p>Number of seconds before the dial connection times out
 Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.rpc.dial.DialOptions.with_api_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/rpc/dial.html#DialOptions.with_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.rpc.dial.DialOptions.with_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Create DialOptions with an API key for credentials and default values for other arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<em>str</em>) – your API key</p></li>
+<li><p><strong>api_key_id</strong> (<em>str</em>) – your API key ID. Must be a valid UUID</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised if the api_key_id is not a valid UUID</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the DialOptions</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

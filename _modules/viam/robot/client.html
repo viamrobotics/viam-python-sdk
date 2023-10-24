@@ -188,7 +188,27 @@
         <span class="n">disable_sessions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Whether sessions are disabled</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RobotClient.Options.with_api_key"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.Options.with_api_key">[docs]</a>        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">with_api_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Create RobotClient.Options with an API key for credentials and default values for other arguments.</span>
+
+<span class="sd">            Args:</span>
+<span class="sd">                api_key (str): your API key</span>
+<span class="sd">                api_key_id (str): your API key ID. Must be a valid UUID</span>
+
+<span class="sd">            Raises:</span>
+<span class="sd">                ValueError: Raised if the api_key_id is not a valid UUID</span>
+
+<span class="sd">            Returns:</span>
+<span class="sd">                Self: the RobotClient.Options</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">dial_opts</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">)</span>
+            <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dial_options</span> <span class="o">=</span> <span class="n">dial_opts</span>
+            <span class="k">return</span> <span class="bp">self</span></div></div>
 
 <div class="viewcode-block" id="RobotClient.at_address"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.at_address">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">at_address</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>

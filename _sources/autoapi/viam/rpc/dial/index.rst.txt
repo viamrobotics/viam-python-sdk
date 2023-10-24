@@ -111,6 +111,22 @@ Attributes
       Number of seconds before the dial connection times out
       Set to 20sec to match _defaultOfferDeadline in goutils/rpc/wrtc_call_queue.go
 
+   .. py:method:: with_api_key(api_key: str, api_key_id: str) -> typing_extensions.Self
+      :classmethod:
+
+      Create DialOptions with an API key for credentials and default values for other arguments.
+
+      :param api_key: your API key
+      :type api_key: str
+      :param api_key_id: your API key ID. Must be a valid UUID
+      :type api_key_id: str
+
+      :raises ValueError: Raised if the api_key_id is not a valid UUID
+
+      :returns: the DialOptions
+      :rtype: Self
+
+
 
 .. py:class:: AuthenticatedChannel(host: Optional[str] = None, port: Optional[int] = None, *, ssl: Union[None, bool, AuthenticatedChannel.__init__.ssl] = None, server_hostname: Optional[str] = None)
 

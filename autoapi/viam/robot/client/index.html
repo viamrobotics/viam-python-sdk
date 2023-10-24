@@ -71,6 +71,7 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.check_connection_interval"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.check_connection_interval</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.attempt_reconnect_interval"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.attempt_reconnect_interval</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.disable_sessions"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.disable_sessions</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.robot.client.RobotClient.Options.with_api_key"><code class="docutils literal notranslate"><span class="pre">RobotClient.Options.with_api_key()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.resource_names"><code class="docutils literal notranslate"><span class="pre">RobotClient.resource_names</span></code></a></li>
@@ -220,6 +221,29 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.disable_sessions">
 <span class="sig-name descname"><span class="pre">disable_sessions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#viam.robot.client.RobotClient.Options.disable_sessions" title="Permalink to this definition"></a></dt>
 <dd><p>Whether sessions are disabled</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.with_api_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.Options.with_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.Options.with_api_key" title="Permalink to this definition"></a></dt>
+<dd><p>Create RobotClient.Options with an API key for credentials and default values for other arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<em>str</em>) – your API key</p></li>
+<li><p><strong>api_key_id</strong> (<em>str</em>) – your API key ID. Must be a valid UUID</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – Raised if the api_key_id is not a valid UUID</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the RobotClient.Options</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Self</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
