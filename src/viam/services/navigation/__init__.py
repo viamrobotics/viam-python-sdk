@@ -1,5 +1,5 @@
 from viam.proto.common import GeoObstacle, GeoPoint
-from viam.proto.service.navigation import Mode, Waypoint, Path
+from viam.proto.service.navigation import Mode, Path, Waypoint
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import NavigationClient

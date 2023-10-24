@@ -67,6 +67,7 @@ global___TrainingStatus = TrainingStatus
 class SubmitTrainingJobRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
+    DATASET_ID_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MODEL_NAME_FIELD_NUMBER: builtins.int
     MODEL_VERSION_FIELD_NUMBER: builtins.int
@@ -76,6 +77,7 @@ class SubmitTrainingJobRequest(google.protobuf.message.Message):
     @property
     def filter(self) -> app.data.v1.data_pb2.Filter:
         ...
+    dataset_id: builtins.str
     organization_id: builtins.str
     model_name: builtins.str
     model_version: builtins.str
@@ -85,13 +87,13 @@ class SubmitTrainingJobRequest(google.protobuf.message.Message):
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, filter: app.data.v1.data_pb2.Filter | None=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, filter: app.data.v1.data_pb2.Filter | None=..., dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'tags', b'tags']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['dataset_id', b'dataset_id', 'filter', b'filter', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'tags', b'tags']) -> None:
         ...
 global___SubmitTrainingJobRequest = SubmitTrainingJobRequest
 
