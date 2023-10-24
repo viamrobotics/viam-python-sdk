@@ -94,7 +94,7 @@ class DialOptions:
 
     @classmethod
     def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
-        """Create `DialOptions` with an API key for credentials and default values for other arguments.
+        """Create DialOptions with an API key for credentials and default values for other arguments.
 
         Args:
             api_key (str): your API key
