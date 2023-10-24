@@ -5,24 +5,14 @@ from grpclib.client import Channel
 from viam import logging
 from viam.proto.app.billing import (
         BillingServiceStub,
-        GetBillingSummaryRequest,
-        GetBillingSummaryResponse,
         GetCurrentMonthUsageRequest,
         GetCurrentMonthUsageResponse,
-        GetCurrentMonthUsageSummaryRequest,
-        GetCurrentMonthUsageSummaryResponse,
-        GetInvoiceHistoryRequest,
-        GetInvoiceHistoryResponse,
         GetInvoicePdfRequest,
         GetInvoicePdfResponse,
         GetInvoicesSummaryRequest,
         GetInvoicesSummaryResponse,
-        GetItemizedInvoiceRequest,
-        GetItemizedInvoiceResponse,
         GetOrgBillingInformationRequest,
         GetOrgBillingInformationResponse,
-        GetUnpaidBalanceRequest,
-        GetUnpaidBalanceResponse,
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -51,39 +41,60 @@ class BillingClient:
     _metadata: Mapping[str, str]
 
     # CR erodkin: add timeouts
-    async def get_billing_summary(self, org_id: str) -> GetBillingSummaryResponse:
-        request = GetBillingSummaryRequest(org_id=org_id)
-        return await self._billing_client.GetBillingSummary(request, metadata=self._metadata)
-
     async def get_current_month_usage(self, org_id: str) -> GetCurrentMonthUsageResponse:
+        """Access data usage information for the current month for a given organization.
+
+        Args:
+            org_id (str): the ID of the organization to request usage data for
+
+        Returns:
+            viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information
+        """
         request = GetCurrentMonthUsageRequest(org_id=org_id)
         return await self._billing_client.GetCurrentMonthUsage(request, metadata=self._metadata)
 
-    async def get_current_month_usage_summary(self, org_id: str) -> GetCurrentMonthUsageSummaryResponse:
-        request = GetCurrentMonthUsageRequest(org_id=org_id)
-        return await self._billing_client.GetCurrentMonthUsageSummary(request, metadata=self._metadata)
+    async def get_invoice_pdf(self, invoice_id: str, org_id: str, dest: Optional[str] = None) -> bytes:
+        """Access invoice PDF data and optionally save it to a provided file path.
 
-    async def get_invoice_history(self, org_id: str) -> GetInvoiceHistoryResponse:
-        request = GetInvoiceHistoryRequest(org_id=org_id)
-        return await self._billing_client.GetInvoiceHistory(request, metadata=self._metadata)
+        Args:
+            invoice_id (str): the ID of the invoice being requested
+            org_id (str): the ID of the org to request data from
+            dest (Optional[str]): optional filepath to save the invoice to
 
-    async def get_invoice_pdf(self, id: str, org_id: str) -> GetInvoicePdfResponse:
-        request = GetInvoicePdfRequest(id=id, org_id=org_id)
-        return await self._billing_client.GetInvoicePdf(request, metadata=self._metadata)
+        Returns:
+            bytes: the invoice
+        """
+        request = GetInvoicePdfRequest(id=invoice_id, org_id=org_id)
+        response: GetInvoicePdfResponse = await self._billing_client.GetInvoicePdf(request, metadata=self._metadata)
+        data = response.chunk
+        if dest:
+            try:
+                file = open(dest, "w")
+                file.write(f"{data}")
+            except Exception as e:
+                LOGGER.error(f"Failed to write invoide PDF to file {dest}", exc_info=e)
+        return data
 
     async def get_invoices_summary(self, org_id: str) -> GetInvoicesSummaryResponse:
+        """Access total outstanding balance plus invoice summaries for a given org.
+
+        Args:
+            org_id (str): the ID of the org to request data for
+
+        Returns:
+            viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices
+        """
         request = GetInvoicesSummaryRequest(org_id=org_id)
         return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata)
 
-    async def get_itemized_invoice(self, id: str) -> GetItemizedInvoiceResponse:
-        request = GetItemizedInvoiceRequest(id=id)
-        return await self._billing_client.GetItemizedInvoice(request, metadata=self._metadata)
-
     async def get_org_billing_information(self, org_id: str) -> GetOrgBillingInformationResponse:
+        """Access billing information (payment method, billing tier, etc.) for a given org.
+
+        Args:
+            org_id (str): the ID of the org to request data for
+
+        Returns:
+            viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information"""
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata)
-
-    async def get_unpaid_balance(self, org_id: str) -> GetUnpaidBalanceResponse:
-        request = GetUnpaidBalanceRequest(org_id=org_id)
-        return await self._billing_client.GetUnpaidBalance(request, metadata=self._metadata)
 
