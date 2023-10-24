@@ -98,13 +98,13 @@ class DialOptions:
 
         Args:
             api_key (str): your API key
-            api_key_id (str): your API key ID. Must be a valid UUID.
+            api_key_id (str): your API key ID. Must be a valid UUID
 
         Raises:
-            ValueError: Raised if the `api_key_id` is not a valid UUID
+            ValueError: Raised if the api_key_id is not a valid UUID
 
         Returns:
-            Self: the `DialOptions`
+            Self: the DialOptions
         """
         try:
             uuid.UUID(api_key_id)
