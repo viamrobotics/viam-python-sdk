@@ -361,10 +361,7 @@ class AppClient:
         return self._organization_id
 
     async def get_user_id_by_email(self, email: str) -> str:
-        request = GetUserIDByEmailRequest(email=email)
-        response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
-        return response.user_id
-        # raise NotImplementedError()
+        raise NotImplementedError()
 
     async def create_organization(self, name: str) -> Organization:
         raise NotImplementedError()
