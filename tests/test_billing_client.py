@@ -13,7 +13,6 @@ from viam.proto.app.billing import (
 
 from .mocks.services import MockBilling
 
-# CR erodkin: probably don't need PDF unless we change the GetInvoicePdf api
 PDF = b'abc123'
 CLOUD_STORAGE_USAGE_COST = 100.0
 DATA_UPLOAD_USAGE_COST = 101.0
