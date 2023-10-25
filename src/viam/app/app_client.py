@@ -49,8 +49,6 @@ from viam.proto.app import (
     GetRobotPartsResponse,
     GetRobotRequest,
     GetRobotResponse,
-    GetUserIDByEmailRequest,
-    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
