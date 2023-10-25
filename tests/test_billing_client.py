@@ -75,7 +75,7 @@ def service() -> MockBilling:
     return MockBilling(
         pdf=PDF,
         curr_month_usage=CURR_MONTH_USAGE,
-        invoice_summary=INVOICES_SUMMARY,
+        invoices_summary=INVOICES_SUMMARY,
         billing_info=ORG_BILLING_INFO,
     )
 
