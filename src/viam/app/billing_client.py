@@ -1,4 +1,4 @@
-from typing import Mapping
+from typing import Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -40,8 +40,7 @@ class BillingClient:
     _channel: Channel
     _metadata: Mapping[str, str]
 
-    # CR erodkin: add timeouts
-    async def get_current_month_usage(self, org_id: str) -> GetCurrentMonthUsageResponse:
+    async def get_current_month_usage(self, org_id: str, timeout: Optional[float] = None) -> GetCurrentMonthUsageResponse:
         """Access data usage information for the current month for a given organization.
 
         Args:
@@ -51,31 +50,23 @@ class BillingClient:
             viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information
         """
         request = GetCurrentMonthUsageRequest(org_id=org_id)
-        return await self._billing_client.GetCurrentMonthUsage(request, metadata=self._metadata)
+        return await self._billing_client.GetCurrentMonthUsage(request, metadata=self._metadata, timeout=timeout)
 
-    async def get_invoice_pdf(self, invoice_id: str, org_id: str, dest: Optional[str] = None) -> bytes:
+    async def get_invoice_pdf(self, invoice_id: str, org_id: str, dest: str, timeout: Optional[float] = None) -> None:
         """Access invoice PDF data and optionally save it to a provided file path.
 
         Args:
             invoice_id (str): the ID of the invoice being requested
             org_id (str): the ID of the org to request data from
-            dest (Optional[str]): optional filepath to save the invoice to
-
-        Returns:
-            bytes: the invoice
+            dest (str): filepath to save the invoice to
         """
         request = GetInvoicePdfRequest(id=invoice_id, org_id=org_id)
-        response: GetInvoicePdfResponse = await self._billing_client.GetInvoicePdf(request, metadata=self._metadata)
-        data = response.chunk
-        if dest:
-            try:
-                file = open(dest, "w")
-                file.write(f"{data}")
-            except Exception as e:
-                LOGGER.error(f"Failed to write invoide PDF to file {dest}", exc_info=e)
-        return data
+        response: GetInvoicePdfResponse = await self._billing_client.GetInvoicePdf(request, metadata=self._metadata, timeout=timeout)
+        data: bytes = response[0].chunk
+        file = open(dest, "wb")
+        file.write(data)
 
-    async def get_invoices_summary(self, org_id: str) -> GetInvoicesSummaryResponse:
+    async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.
 
         Args:
@@ -85,9 +76,9 @@ class BillingClient:
             viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices
         """
         request = GetInvoicesSummaryRequest(org_id=org_id)
-        return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata)
+        return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata, timeout=timeout)
 
-    async def get_org_billing_information(self, org_id: str) -> GetOrgBillingInformationResponse:
+    async def get_org_billing_information(self, org_id: str, timeout: Optional[float] = None) -> GetOrgBillingInformationResponse:
         """Access billing information (payment method, billing tier, etc.) for a given org.
 
         Args:
@@ -96,5 +87,5 @@ class BillingClient:
         Returns:
             viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information"""
         request = GetOrgBillingInformationRequest(org_id=org_id)
-        return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata)
+        return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
 
