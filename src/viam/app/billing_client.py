@@ -63,9 +63,8 @@ class BillingClient:
         request = GetInvoicePdfRequest(id=invoice_id, org_id=org_id)
         response: GetInvoicePdfResponse = await self._billing_client.GetInvoicePdf(request, metadata=self._metadata, timeout=timeout)
         data: bytes = response[0].chunk
-        file = open(dest, "wb")
-        file.write(data)
-        file.flush()
+        with open(dest, "wb") as file:
+            file.write(data)
 
     async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.
