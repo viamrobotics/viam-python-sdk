@@ -6,8 +6,8 @@ from viam.components.base import Base
 
 from src.arm.my_arm import MyArm
 from src.base.my_base import MyBase
-from src.gizmo import Gizmo, MyGizmo
-from src.summation import MySummationService, SummationService
+from src.gizmo.my_gizmo import Gizmo, MyGizmo
+from src.summation.my_summation import MySummationService, SummationService
 
 
 async def main():

@@ -6,6 +6,7 @@ from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model
 
 from ..summation.api import SummationService
@@ -42,3 +43,6 @@ class MySummationService(SummationService, Reconfigurable):
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.subtract = config.attributes.fields["subtract"].bool_value or False
+
+
+Registry.register_resource_creator(SummationService.SUBTYPE, MySummationService.MODEL, ResourceCreatorRegistration(MySummationService.new))

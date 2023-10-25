@@ -8,6 +8,7 @@ from viam.module.types import Reconfigurable
 from viam.proto.app.robot import ComponentConfig
 from viam.resource.base import ResourceBase
 from viam.proto.common import Geometry, Vector3, ResourceName
+from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
 from viam.utils import struct_to_dict
 
@@ -144,3 +145,6 @@ class MyBase(Base, Reconfigurable):
     # Not implemented
     async def get_geometries(self) -> List[Geometry]:
         raise NotImplementedError()
+
+
+Registry.register_resource_creator(Base.SUBTYPE, MyBase.MODEL, ResourceCreatorRegistration(MyBase.new, MyBase.validate_config))
