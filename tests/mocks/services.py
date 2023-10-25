@@ -221,6 +221,16 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
+    GetBillingSummaryRequest,
+    GetBillingSummaryResponse,
+    GetCurrentMonthUsageSummaryRequest,
+    GetCurrentMonthUsageSummaryResponse,
+    GetInvoiceHistoryRequest,
+    GetInvoiceHistoryResponse,
+    GetItemizedInvoiceRequest,
+    GetItemizedInvoiceResponse,
+    GetUnpaidBalanceRequest,
+    GetUnpaidBalanceResponse,
 )
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.mlmodel import (
@@ -867,6 +877,21 @@ class MockBilling(BillingServiceBase):
         assert request is not None
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
+
+    async def GetBillingSummary(self, stream: Stream[GetBillingSummaryRequest, GetBillingSummaryResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetCurrentMonthUsageSummary(self, stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonth]) -> None:
+        raise NotImplementedError()
+
+    async def GetInvoiceHistory(self, stream: Stream[GetInvoiceHistoryRequest, GetInvoiceHistoryResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetItemizedInvoice(self, stream: Stream[GetItemizedInvoiceRequest, GetItemizedInvoiceResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetUnpaidBalance(self, stream: Stream[GetUnpaidBalanceRequest, GetUnpaidBalanceResponse]) -> None:
+        raise NotImplementedError()
 
 
 class MockApp(AppServiceBase):
