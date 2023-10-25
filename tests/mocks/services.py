@@ -870,7 +870,7 @@ class MockBilling(BillingServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.org_id = request.org_id
-        await stream.send_message(self.invoice_summary)
+        await stream.send_message(self.invoices_summary)
 
     async def GetOrgBillingInformation(self, stream: Stream[GetOrgBillingInformationRequest, GetOrgBillingInformationResponse]) -> None:
         request = await stream.recv_message()
