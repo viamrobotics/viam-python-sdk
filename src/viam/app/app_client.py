@@ -656,6 +656,7 @@ class AppClient:
             try:
                 file = open(dest, "w")
                 file.write(f"{json.dumps(json.loads(response.config_json), indent=indent)}")
+                file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write config JSON to file {dest}", exc_info=e)
 
@@ -716,6 +717,7 @@ class AppClient:
                     file_name = log.caller["File"] + ":" + str(int(log.caller["Line"]))
                     message = log.message
                     file.write(f"{time}\t{level}\t{logger_name}\t{file_name:<64}{message}\n")
+                    file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}", exc_info=e)
 

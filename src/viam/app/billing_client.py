@@ -65,6 +65,7 @@ class BillingClient:
         data: bytes = response[0].chunk
         file = open(dest, "wb")
         file.write(data)
+        file.flush()
 
     async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.

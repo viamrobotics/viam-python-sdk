@@ -170,6 +170,7 @@ class DataClient:
             try:
                 file = open(dest, "w")
                 file.write(f"{[str(d) for d in data]}")
+                file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
         return data
@@ -222,6 +223,7 @@ class DataClient:
             try:
                 file = open(dest, "w")
                 file.write(f"{[str(d) for d in data]}")
+                file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
 
@@ -256,6 +258,7 @@ class DataClient:
             try:
                 file = open(dest, "w")
                 file.write(f"{response.data}")
+                file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
         return [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
