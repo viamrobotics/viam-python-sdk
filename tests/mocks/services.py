@@ -881,7 +881,7 @@ class MockBilling(BillingServiceBase):
     async def GetBillingSummary(self, stream: Stream[GetBillingSummaryRequest, GetBillingSummaryResponse]) -> None:
         raise NotImplementedError()
 
-    async def GetCurrentMonthUsageSummary(self, stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonth]) -> None:
+    async def GetCurrentMonthUsageSummary(self, stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonthUsageSummaryResponse]) -> None:
         raise NotImplementedError()
 
     async def GetInvoiceHistory(self, stream: Stream[GetInvoiceHistoryRequest, GetInvoiceHistoryResponse]) -> None:
