@@ -76,7 +76,7 @@ class ViamClient:
         return MLTrainingClient(self._channel, self._metadata)
 
     @property
-    def billing_client(self) ->BillingClient:
+    def billing_client(self) -> BillingClient:
         """Instantiate and return a `BillingClient` used to make `billing` method calls."""
         return BillingClient(self._channel, self._metadata)
 

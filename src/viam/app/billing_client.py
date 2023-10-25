@@ -88,4 +88,3 @@ class BillingClient:
             viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information"""
         request = GetOrgBillingInformationRequest(org_id=org_id)
         return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
-

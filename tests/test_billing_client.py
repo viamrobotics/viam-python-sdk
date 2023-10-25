@@ -9,7 +9,6 @@ from viam.proto.app.billing import (
     GetInvoicesSummaryResponse,
     GetOrgBillingInformationResponse,
     InvoiceSummary,
-    PaymentMethodType,
 )
 
 from .mocks.services import MockBilling
@@ -70,6 +69,7 @@ ORG_BILLING_INFO = GetOrgBillingInformationResponse(
 AUTH_TOKEN = "auth_token"
 BILLING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
+
 @pytest.fixture(scope="function")
 def service() -> MockBilling:
     return MockBilling(
@@ -111,5 +111,3 @@ class TestClient:
             org_billing_info = await client.get_org_billing_information(org_id=org_id)
             assert org_billing_info == ORG_BILLING_INFO
             assert service.org_id == org_id
-
-
