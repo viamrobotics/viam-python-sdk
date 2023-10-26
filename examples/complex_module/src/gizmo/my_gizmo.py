@@ -73,7 +73,7 @@ class MyGizmo(Gizmo, Reconfigurable):
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         self.my_arg = config.attributes.fields["arg1"].string_value
 
-    def close(self):
+    async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
         LOGGER.debug(f"{self.name} is closed.")
