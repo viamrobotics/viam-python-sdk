@@ -52,7 +52,7 @@ class MySensor(Sensor):
             multiplier = 1.0
         self.multiplier = multiplier
 
-    def close(self):
+    async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
         LOGGER.debug(f"{self.name} is closed.")
