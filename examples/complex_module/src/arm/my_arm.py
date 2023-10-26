@@ -10,6 +10,7 @@ from viam.operations import run_with_operation
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.common import Capsule, Geometry, ResourceName, Sphere
 from viam.resource.base import ResourceBase
+from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
 
 LOGGER = getLogger(__name__)
@@ -112,3 +113,6 @@ class MyArm(Arm):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
         LOGGER.debug(f"{self.name} is closed.")
+
+
+Registry.register_resource_creator(Arm.SUBTYPE, MyArm.MODEL, ResourceCreatorRegistration(MyArm.new))
