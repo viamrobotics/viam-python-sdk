@@ -4,7 +4,7 @@ from typing import Final, List, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import GeoObstacle, GeoPoint, Mode, Waypoint, Path
+from . import GeoObstacle, GeoPoint, Mode, Path, Waypoint
 
 
 class Navigation(ServiceBase):

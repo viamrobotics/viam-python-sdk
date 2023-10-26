@@ -16,9 +16,9 @@ from viam.proto.service.navigation import (
     GetWaypointsRequest,
     GetWaypointsResponse,
     NavigationServiceStub,
+    Path,
     RemoveWaypointRequest,
     SetModeRequest,
-    Path,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict

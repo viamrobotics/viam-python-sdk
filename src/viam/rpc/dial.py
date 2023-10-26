@@ -8,13 +8,13 @@ import uuid
 import warnings
 from dataclasses import dataclass
 from typing import Callable, Literal, Optional, Tuple, Type, Union
-from typing_extensions import Self
 
 from grpclib.client import Channel, Stream
 from grpclib.const import Cardinality
 from grpclib.metadata import Deadline, _MetadataLike
 from grpclib.protocol import H2Protocol
 from grpclib.stream import _RecvType, _SendType
+from typing_extensions import Self
 
 from viam import logging
 from viam.errors import InsecureConnectionError, ViamError
