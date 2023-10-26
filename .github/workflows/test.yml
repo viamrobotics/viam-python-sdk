@@ -14,7 +14,7 @@ on:
 jobs:
   test:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
+    runs-on: buildjet-2vcpu-ubuntu-2204
     container:
       image: python:${{ matrix.python-version }}
     strategy:
