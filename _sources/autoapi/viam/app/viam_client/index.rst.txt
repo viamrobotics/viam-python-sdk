@@ -53,6 +53,11 @@ Attributes
 
       Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.
 
+   .. py:property:: billing_client
+      :type: viam.app.billing_client.BillingClient
+
+      Instantiate and return a `BillingClient` used to make `billing` method calls.
+
    .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
       :classmethod:
       :async:

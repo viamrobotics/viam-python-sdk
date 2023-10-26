@@ -1,0 +1,89 @@
+:py:mod:`viam.app.billing_client`
+=================================
+
+.. py:module:: viam.app.billing_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.billing_client.BillingClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.billing_client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: BillingClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
+
+
+   gRPC client for retrieving billing data from app.
+
+   Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to
+   `BillingClient` methods should be made through `ViamClient`.
+
+   .. py:method:: get_current_month_usage(org_id: str, timeout: Optional[float] = None) -> viam.proto.app.billing.GetCurrentMonthUsageResponse
+      :async:
+
+      Access data usage information for the current month for a given organization.
+
+      :param org_id: the ID of the organization to request usage data for
+      :type org_id: str
+
+      :returns: Current month usage information
+      :rtype: viam.proto.app.billing.GetCurrentMonthUsageResponse
+
+
+   .. py:method:: get_invoice_pdf(invoice_id: str, org_id: str, dest: str, timeout: Optional[float] = None) -> None
+      :async:
+
+      Access invoice PDF data and optionally save it to a provided file path.
+
+      :param invoice_id: the ID of the invoice being requested
+      :type invoice_id: str
+      :param org_id: the ID of the org to request data from
+      :type org_id: str
+      :param dest: filepath to save the invoice to
+      :type dest: str
+
+
+   .. py:method:: get_invoices_summary(org_id: str, timeout: Optional[float] = None) -> viam.proto.app.billing.GetInvoicesSummaryResponse
+      :async:
+
+      Access total outstanding balance plus invoice summaries for a given org.
+
+      :param org_id: the ID of the org to request data for
+      :type org_id: str
+
+      :returns: Summary of org invoices
+      :rtype: viam.proto.app.billing.GetInvoicesSummaryResponse
+
+
+   .. py:method:: get_org_billing_information(org_id: str, timeout: Optional[float] = None) -> viam.proto.app.billing.GetOrgBillingInformationResponse
+      :async:
+
+      Access billing information (payment method, billing tier, etc.) for a given org.
+
+      :param org_id: the ID of the org to request data for
+      :type org_id: str
+
+      :returns: The org billing information
+      :rtype: viam.proto.app.billing.GetOrgBillingInformationResponse
+
+
+
