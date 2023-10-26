@@ -194,7 +194,7 @@ Classes
    Bases: :py:obj:`_ModelType`
 
 
-.. py:class:: SubmitTrainingJobRequest(*, filter: viam.gen.app.data.v1.data_pb2.Filter | None = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: SubmitTrainingJobRequest(*, filter: viam.gen.app.data.v1.data_pb2.Filter | None = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., tags: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -212,6 +212,11 @@ Classes
    .. py:property:: tags
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
+
+   .. py:attribute:: dataset_id
+      :type: str
+
+      
 
    .. py:attribute:: organization_id
       :type: str
