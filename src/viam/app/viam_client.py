@@ -5,6 +5,7 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.app.app_client import AppClient
+from viam.app.billing_client import BillingClient
 from viam.app.data_client import DataClient
 from viam.app.ml_training_client import MLTrainingClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
@@ -73,6 +74,11 @@ class ViamClient:
     def ml_training_client(self) -> MLTrainingClient:
         """Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls."""
         return MLTrainingClient(self._channel, self._metadata)
+
+    @property
+    def billing_client(self) -> BillingClient:
+        """Instantiate and return a `BillingClient` used to make `billing` method calls."""
+        return BillingClient(self._channel, self._metadata)
 
     def close(self):
         """Close opened channels used for the various service stubs initialized."""

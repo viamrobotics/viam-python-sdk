@@ -211,6 +211,27 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
 )
+from viam.proto.app.billing import (
+    BillingServiceBase,
+    GetCurrentMonthUsageRequest,
+    GetCurrentMonthUsageResponse,
+    GetInvoicePdfRequest,
+    GetInvoicePdfResponse,
+    GetInvoicesSummaryRequest,
+    GetInvoicesSummaryResponse,
+    GetOrgBillingInformationRequest,
+    GetOrgBillingInformationResponse,
+    GetBillingSummaryRequest,
+    GetBillingSummaryResponse,
+    GetCurrentMonthUsageSummaryRequest,
+    GetCurrentMonthUsageSummaryResponse,
+    GetInvoiceHistoryRequest,
+    GetInvoiceHistoryResponse,
+    GetItemizedInvoiceRequest,
+    GetItemizedInvoiceResponse,
+    GetUnpaidBalanceRequest,
+    GetUnpaidBalanceResponse,
+)
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.mlmodel import (
     FlatTensor,
@@ -816,6 +837,64 @@ class MockMLTraining(MLTrainingServiceBase):
         assert request is not None
         self.cancel_job_id = request.id
         await stream.send_message(CancelTrainingJobResponse())
+
+
+class MockBilling(BillingServiceBase):
+    def __init__(
+        self,
+        pdf: bytes,
+        curr_month_usage: GetCurrentMonthUsageResponse,
+        invoices_summary: GetInvoicesSummaryResponse,
+        billing_info: GetOrgBillingInformationResponse,
+    ):
+        self.pdf = pdf
+        self.curr_month_usage = curr_month_usage
+        self.invoices_summary = invoices_summary
+        self.billing_info = billing_info
+
+    async def GetCurrentMonthUsage(self, stream: Stream[GetCurrentMonthUsageRequest, GetCurrentMonthUsageResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.org_id
+        await stream.send_message(self.curr_month_usage)
+
+    async def GetInvoicePdf(self, stream: Stream[GetInvoicePdfRequest, GetInvoicePdfResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.org_id
+        self.invoice_id = request.id
+        response = GetInvoicePdfResponse(chunk=self.pdf)
+        await stream.send_message(response)
+
+    async def GetInvoicesSummary(self, stream: Stream[GetInvoicesSummaryRequest, GetInvoicePdfResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.org_id
+        await stream.send_message(self.invoices_summary)
+
+    async def GetOrgBillingInformation(self, stream: Stream[GetOrgBillingInformationRequest, GetOrgBillingInformationResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.org_id
+        await stream.send_message(self.billing_info)
+
+    async def GetBillingSummary(self, stream: Stream[GetBillingSummaryRequest, GetBillingSummaryResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetCurrentMonthUsageSummary(
+        self,
+        stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonthUsageSummaryResponse],
+    ) -> None:
+        raise NotImplementedError()
+
+    async def GetInvoiceHistory(self, stream: Stream[GetInvoiceHistoryRequest, GetInvoiceHistoryResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetItemizedInvoice(self, stream: Stream[GetItemizedInvoiceRequest, GetItemizedInvoiceResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetUnpaidBalance(self, stream: Stream[GetUnpaidBalanceRequest, GetUnpaidBalanceResponse]) -> None:
+        raise NotImplementedError()
 
 
 class MockApp(AppServiceBase):
