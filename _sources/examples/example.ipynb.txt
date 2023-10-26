@@ -285,7 +285,7 @@
     "    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:\n",
     "        raise NotImplementedError\n",
     "\n",
-    "    def close(self):\n",
+    "    async def close(self):\n",
     "        # This is a completely optional function to include. This will be called when the resource is removed from the config or the module\n",
     "        # is shutting down.\n",
     "        LOGGER.debug(f\"{self.name} is closed.\")\n",
