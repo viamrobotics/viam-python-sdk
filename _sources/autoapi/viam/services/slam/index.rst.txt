@@ -24,7 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.services.slam.Pose
-   viam.services.slam.SLAMClient
+   viam.services.slam.SLAM
 
 
 
@@ -79,28 +79,34 @@ Classes
       degrees
 
 
-.. py:class:: SLAMClient(name: str, channel: grpclib.client.Channel)
+.. py:class:: SLAM(name: str)
 
 
-   Bases: :py:obj:`viam.services.slam.slam.SLAM`, :py:obj:`viam.resource.rpc_client_base.ReconfigurableResourceRPCClientBase`
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
 
-   Connect to the SLAMService, which allows the robot to create a map of its surroundings and find its location in that map.
+   SLAM represents a SLAM service.
 
-   .. py:attribute:: client
-      :type: viam.proto.service.slam.SLAMServiceStub
+   This acts as an abstract base class for any drivers representing specific
+   arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+   overridden, it must call the ``super().__init__()`` function.
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
 
       
 
-   .. py:method:: get_position(*, timeout: Optional[float] = None) -> viam.services.slam.Pose
+   .. py:method:: get_internal_state(*, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
       :async:
 
-      Get current position of the specified component in the SLAM Map.
+      Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
-      :returns: The current position of the specified component
-      :rtype: Pose
+      :returns: Chunks of the internal state of the SLAM algorithm
+      :rtype: List[GetInternalStateResponse]
 
 
-   .. py:method:: get_point_cloud_map(*, timeout: Optional[float] = None) -> List[viam.proto.service.slam.GetPointCloudMapResponse]
+   .. py:method:: get_point_cloud_map(*, timeout: Optional[float]) -> List[bytes]
+      :abstractmethod:
       :async:
 
       Get the point cloud map.
@@ -112,16 +118,8 @@ Classes
       :rtype: List[GetPointCloudMapResponse]
 
 
-   .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[viam.proto.service.slam.GetInternalStateResponse]
-      :async:
-
-      Get the internal state of the SLAM algorithm required to continue mapping/localization.
-
-      :returns: Chunks of the internal state of the SLAM algorithm
-      :rtype: List[GetInternalStateResponse]
-
-
-   .. py:method:: get_latest_map_info(*, timeout: Optional[float] = None) -> datetime.datetime
+   .. py:method:: get_latest_map_info(*, timeout: Optional[float]) -> datetime.datetime
+      :abstractmethod:
       :async:
 
       Get the timestamp of the last update to the point cloud SLAM map.
@@ -130,18 +128,14 @@ Classes
       :rtype: datetime
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: get_position(*, timeout: Optional[float]) -> viam.services.slam.Pose
+      :abstractmethod:
       :async:
 
-      Send/Receive arbitrary commands to the Resource
+      Get current position of the specified component in the SLAM Map.
 
-      :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
-
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
-
-      :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
+      :returns: The current position of the specified component
+      :rtype: Pose
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
@@ -156,6 +150,21 @@ Classes
 
       :returns: The service, if it exists on the robot
       :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
 
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
