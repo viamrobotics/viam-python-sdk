@@ -4,15 +4,15 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.billing import (
-        BillingServiceStub,
-        GetCurrentMonthUsageRequest,
-        GetCurrentMonthUsageResponse,
-        GetInvoicePdfRequest,
-        GetInvoicePdfResponse,
-        GetInvoicesSummaryRequest,
-        GetInvoicesSummaryResponse,
-        GetOrgBillingInformationRequest,
-        GetOrgBillingInformationResponse,
+    BillingServiceStub,
+    GetCurrentMonthUsageRequest,
+    GetCurrentMonthUsageResponse,
+    GetInvoicePdfRequest,
+    GetInvoicePdfResponse,
+    GetInvoicesSummaryRequest,
+    GetInvoicesSummaryResponse,
+    GetOrgBillingInformationRequest,
+    GetOrgBillingInformationResponse,
 )
 
 LOGGER = logging.getLogger(__name__)
