@@ -28,9 +28,6 @@ from viam.proto.app import (
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
-)
-from viam.proto.app import Fragment as FragmentPB
-from viam.proto.app import (
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -67,9 +64,6 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
-)
-from viam.proto.app import LogEntry as LogEntryPB
-from viam.proto.app import (
     MarkPartAsMainRequest,
     MarkPartForRestartRequest,
     Model,
@@ -85,10 +79,6 @@ from viam.proto.app import (
     OrgDetails,
     RemoveRoleRequest,
     Robot,
-)
-from viam.proto.app import RobotPart as RobotPartPB
-from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
-from viam.proto.app import (
     SharedSecret,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
@@ -107,6 +97,10 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import LogEntry as LogEntryPB
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
