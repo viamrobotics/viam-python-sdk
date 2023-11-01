@@ -2,7 +2,7 @@ clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
 _lint:
-	ruff --exclude=*_grpc.py,*_pb2.py,*_pb2.pyi,.tox .
+	ruff --exclude=.tox .
 
 lint:
 	poetry run $(MAKE) _lint
