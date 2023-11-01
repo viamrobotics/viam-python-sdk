@@ -6,15 +6,15 @@ from grpclib.server import Stream
 from viam import logging
 from viam.components.movement_sensor import MovementSensor
 from viam.components.sensor import Sensor
-from viam.errors import MethodNotImplementedError, ViamGRPCError
 from viam.proto.common import ResourceName
+from viam.errors import ViamGRPCError, MethodNotImplementedError
 from viam.proto.robot import (
-    BlockForOperationRequest,
     BlockForOperationResponse,
     CancelOperationRequest,
     CancelOperationResponse,
     DiscoverComponentsRequest,
     DiscoverComponentsResponse,
+    BlockForOperationRequest,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
     GetOperationsRequest,
@@ -80,7 +80,9 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
                         raise e.grpc_error
 
         if resource_names:
-            statuses = [s for s in statuses if s.name in resource_names]
+            statuses = [
+                s for s in statuses if s.name in resource_names
+            ]
         return statuses
 
     async def ResourceNames(self, stream: Stream[ResourceNamesRequest, ResourceNamesResponse]) -> None:
