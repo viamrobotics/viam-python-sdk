@@ -2,14 +2,14 @@ clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
 _lint:
-	ruff check src
+	ruff src
 
 lint:
 	poetry run $(MAKE) _lint
 
 _format:
-	black --exclude ".*/gen/.*" ./src
-	isort ./src
+	ruff format ./src
+	ruff --select I001 --fix src
 
 format:
 	poetry run $(MAKE) _format
