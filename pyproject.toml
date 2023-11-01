@@ -66,3 +66,17 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.extras]
 mlmodel = ["numpy"]
+
+[tool.ruff]
+extend-exclude = [
+    "**/gen/**",
+    "*_grpc.py",
+    "*_pb2.py",
+    "*_pb2.pyi",
+    ".tox"
+]
+line-length = 140
+ignore = ["E203"]
+
+[tool.ruff.extend-per-file-ignores]
+"__init__.py" = ["F401"]
