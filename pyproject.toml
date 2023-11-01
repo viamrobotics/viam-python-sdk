@@ -70,6 +70,7 @@ mlmodel = ["numpy"]
 [tool.ruff]
 line-length = 140
 ignore = ["E203"]
+extend-exclude = ["**/gen/**"]
 
 [tool.ruff.extend-per-file-ignores]
 "__init__.py" = ["F401"]
