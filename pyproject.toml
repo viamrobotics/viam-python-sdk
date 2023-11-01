@@ -68,13 +68,6 @@ build-backend = "poetry.core.masonry.api"
 mlmodel = ["numpy"]
 
 [tool.ruff]
-extend-exclude = [
-    "**/gen/**",
-    "*_grpc.py",
-    "*_pb2.py",
-    "*_pb2.pyi",
-    ".tox"
-]
 line-length = 140
 ignore = ["E203"]
 
