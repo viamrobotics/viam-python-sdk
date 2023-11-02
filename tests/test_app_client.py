@@ -696,4 +696,4 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             api_keys = await client.list_keys()
-            assert api_keys = API_KEYS_WITH_AUTHORIZATIONS
+            assert api_keys == API_KEYS_WITH_AUTHORIZATIONS
