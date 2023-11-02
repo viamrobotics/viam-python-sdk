@@ -33,7 +33,7 @@ class MySensor(Sensor):
     async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
-        LOGGER.debug(f"{self.name} is closed.")
+        LOGGER.info(f"{self.name} is closed.")
 
 
 async def main():
