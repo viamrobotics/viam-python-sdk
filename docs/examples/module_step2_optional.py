@@ -27,7 +27,7 @@ class MySensor(Sensor):
     @classmethod
     def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
         if "multiplier" in config.attributes.fields:
-            if not isinstance(config.attributes.fields["multiplier"], float):
+            if not config.attributes.fields["multiplier"].HasField("number_value"):
                 raise Exception("Multiplier must be a float.")
             multiplier = config.attributes.fields["multiplier"].number_value
             if multiplier == 0:
