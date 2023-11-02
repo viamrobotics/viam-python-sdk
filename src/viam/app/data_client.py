@@ -8,6 +8,8 @@ from grpclib.client import Channel
 
 from viam import logging
 from viam.proto.app.data import (
+    AddBoundingBoxToImageByIDRequest,
+    AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryDataByFilterRequest,
@@ -19,6 +21,7 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
+    ConfigureDatabaseUserRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -30,6 +33,7 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
@@ -390,13 +394,51 @@ class DataClient:
         response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
         return list(response.tags)
 
-    # TODO: implement
-    async def add_bounding_box_to_image_by_id(self):
-        raise NotImplementedError()
+    async def add_bounding_box_to_image_by_id(
+        self,
+        binary_id: BinaryID,
+        label: str,
+        x_min_normalized: float,
+        y_min_normalized: float,
+        x_max_normalized: float,
+        y_max_normalized: float,
+    ) -> str:
+        """Add a bounding box to an image.
 
-    # TODO: implement
-    async def remove_bounding_box_from_image_by_id(self):
-        raise NotImplementedError()
+        Args:
+            binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.
+            label (str): A label for the bounding box.
+            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
+            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
+            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.
+            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.
+
+        Raises:
+            GRPCError: If the X or Y values are outside of the [0, 1] range.
+
+        Returns:
+            str: The bounding box ID
+            """
+        request = AddBoundingBoxToImageByIDRequest(
+            label=label,
+            binary_id=binary_id,
+            x_max_normalized=x_max_normalized,
+            x_min_normalized=x_min_normalized,
+            y_max_normalized=y_max_normalized,
+            y_min_normalized=y_min_normalized,
+        )
+        response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
+        return response.bbox_id
+
+    async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: BinaryID) -> None:
+        """Removes a bounding box from an image.
+
+        Args:
+            bbox_id (str): The ID of the bounding box to remove.
+            Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from
+        """
+        request = RemoveBoundingBoxFromImageByIDRequest(bbox_id=bbox_id, binary_id=binary_id)
+        await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
 
     async def bounding_box_labels_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
         """Get a list of bounding box labels using a `Filter`.
@@ -426,8 +468,8 @@ class DataClient:
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
         return response.hostname
 
-    # TODO: implement
-    async def configure_database_user(self) -> None:
+    # TODO(RSDK-5569): implement
+    async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
 
     async def binary_data_capture_upload(

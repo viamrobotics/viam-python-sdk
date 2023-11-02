@@ -11,6 +11,7 @@ from viam.media.video import RawImage
 from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
+    APIKeyWithAuthorizations,
     AppServiceBase,
     Authorization,
     ChangeRoleRequest,
@@ -126,6 +127,7 @@ from viam.proto.app import (
     RobotPartHistoryEntry,
     RotateKeyRequest,
     RotateKeyResponse,
+    RoverRentalRobot,
     ShareLocationRequest,
     ShareLocationResponse,
     TailRobotPartLogsRequest,
@@ -744,12 +746,19 @@ class MockData(DataServiceBase):
         await stream.send_message(TagsByFilterResponse(tags=self.tags_response))
 
     async def AddBoundingBoxToImageByID(self, stream: Stream[AddBoundingBoxToImageByIDRequest, AddBoundingBoxToImageByIDResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(AddBoundingBoxToImageByIDResponse(bbox_id=self.bbox_labels_response[0]))
         raise NotImplementedError()
 
     async def RemoveBoundingBoxFromImageByID(
         self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.removed_label = request.bbox_id
+        self.removed_id = request.binary_id
+        await stream.send_message(RemoveBoundingBoxFromImageByIDResponse())
 
     async def BoundingBoxLabelsByFilter(self, stream: Stream[BoundingBoxLabelsByFilterRequest, BoundingBoxLabelsByFilterResponse]) -> None:
         request = await stream.recv_message()
@@ -915,6 +924,9 @@ class MockApp(AppServiceBase):
         module: Module,
         members: List[OrganizationMember],
         invite: OrganizationInvite,
+        rover_rental_robots: List[RoverRentalRobot],
+        api_key: str,
+        api_keys_with_authorizations: List[APIKeyWithAuthorizations],
     ):
         self.organizations = organizations
         self.location = location
@@ -931,6 +943,9 @@ class MockApp(AppServiceBase):
         self.module = module
         self.members = members
         self.invite = invite
+        self.rover_rental_robots = rover_rental_robots
+        self.api_key = api_key
+        self.api_keys_with_authorizations = api_keys_with_authorizations
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         raise NotImplementedError()
@@ -947,7 +962,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def GetOrganization(self, stream: Stream[GetOrganizationRequest, GetOrganizationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetOrganizationResponse(organization=self.organizations[0]))
 
     async def GetOrganizationNamespaceAvailability(
         self, stream: Stream[GetOrganizationNamespaceAvailabilityRequest, GetOrganizationNamespaceAvailabilityResponse]
@@ -958,10 +975,19 @@ class MockApp(AppServiceBase):
         await stream.send_message(GetOrganizationNamespaceAvailabilityResponse(available=self.available))
 
     async def UpdateOrganization(self, stream: Stream[UpdateOrganizationRequest, UpdateOrganizationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.update_region = request.region
+        self.update_cid = request.cid
+        self.update_name = request.name
+        self.update_namespace = request.public_namespace
+        await stream.send_message(UpdateOrganizationResponse(organization=ORGANIZATIONS[0]))
 
     async def DeleteOrganization(self, stream: Stream[DeleteOrganizationRequest, DeleteOrganizationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_org_called = True
+        await stream.send_message(DeleteOrganizationResponse())
 
     async def ListOrganizationMembers(self, stream: Stream[ListOrganizationMembersRequest, ListOrganizationMembersResponse]) -> None:
         request = await stream.recv_message()
@@ -969,7 +995,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListOrganizationMembersResponse(members=self.members, invites=[self.invite]))
 
     async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CreateOrganizationInviteResponse(invite=self.invite))
 
     async def UpdateOrganizationInviteAuthorizations(
         self, stream: Stream[UpdateOrganizationInviteAuthorizationsRequest, UpdateOrganizationInviteAuthorizationsResponse]
@@ -982,13 +1010,22 @@ class MockApp(AppServiceBase):
         await stream.send_message(UpdateOrganizationInviteAuthorizationsResponse(invite=self.invite))
 
     async def DeleteOrganizationMember(self, stream: Stream[DeleteOrganizationMemberRequest, DeleteOrganizationMemberResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_member_id = request.user_id
+        await stream.send_message(DeleteOrganizationMemberResponse())
 
     async def DeleteOrganizationInvite(self, stream: Stream[DeleteOrganizationInviteRequest, DeleteOrganizationInviteResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_invite_email = request.email
+        await stream.send_message(DeleteOrganizationInviteResponse())
 
     async def ResendOrganizationInvite(self, stream: Stream[ResendOrganizationInviteRequest, ResendOrganizationInviteResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.resent_invite_email = request.email
+        await stream.send_message(ResendOrganizationInviteResponse())
 
     async def CreateLocation(self, stream: Stream[CreateLocationRequest, CreateLocationResponse]) -> None:
         request = await stream.recv_message()
@@ -1062,7 +1099,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(GetRobotResponse(robot=self.robot))
 
     async def GetRoverRentalRobots(self, stream: Stream[GetRoverRentalRobotsRequest, GetRoverRentalRobotsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRoverRentalRobotsResponse(robots=self.rover_rental_robots))
 
     async def GetRobotParts(self, stream: Stream[GetRobotPartsRequest, GetRobotPartsResponse]) -> None:
         request = await stream.recv_message()
@@ -1231,7 +1270,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListAuthorizationsResponse(authorizations=self.authorizations))
 
     async def CheckPermissions(self, stream: Stream[CheckPermissionsRequest, CheckPermissionsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CheckPermissionsResponse(authorized_permissions=request.permissions))
 
     async def CreateModule(self, stream: Stream[CreateModuleRequest, CreateModuleResponse]) -> None:
         request = await stream.recv_message()
@@ -1271,7 +1312,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListModulesResponse(modules=[self.module]))
 
     async def CreateKey(self, stream: Stream[CreateKeyRequest, CreateKeyResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CreateKeyResponse(key=self.api_key, id=self.id))
 
     async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
         raise NotImplementedError()
@@ -1280,7 +1323,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def ListKeys(self, stream: Stream[ListKeysRequest, ListKeysResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListKeysResponse(api_keys=self.api_keys_with_authorizations))
 
     async def RotateKey(self, stream: Stream[RotateKeyRequest, RotateKeyResponse]) -> None:
         raise NotImplementedError()
@@ -1288,4 +1333,6 @@ class MockApp(AppServiceBase):
     async def CreateKeyFromExistingKeyAuthorizations(
         self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CreateKeyFromExistingKeyAuthorizationsResponse(key=self.api_key, id=self.id))
