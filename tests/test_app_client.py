@@ -265,7 +265,7 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             org = await client.update_organization(
                     name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
-            assert org = ORGANIZATION
+            assert org == ORGANIZATION
             assert service.update_region == DEFAULT_REGION
             assert service.update_cid == CID
             assert service.update_name == NAME
