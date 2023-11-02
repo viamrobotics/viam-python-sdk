@@ -222,7 +222,14 @@ class TestClient:
     async def test_add_bounding_box_to_image_by_id(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            bbox_label = await client.add_bounding_box_to_image_by_id(BINARY_ID, "label", 0, .1, .2, .3)
+            bbox_label = await client.add_bounding_box_to_image_by_id(
+                binary_id=BINARY_ID,
+                label="label",
+                x_min_normalized=0,
+                y_min_normalized=.1,
+                x_max_normalized=.2,
+                y_max_normalized=.3,
+            )
             assert bbox_label == BBOX_LABEL
 
     @pytest.mark.asyncio
