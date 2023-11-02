@@ -512,7 +512,7 @@ class AppClient:
             viam.proto.app.Organization: The updated organization.
         """
         organization_id = await self._get_organization_id()
-        request = UpdateOrganizationRequest(organization_id=organization_id, public_namespace=public_namespace, region=region, cid=None)
+        request = UpdateOrganizationRequest(organization_id=organization_id, public_namespace=public_namespace, region=region, cid=cid)
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 

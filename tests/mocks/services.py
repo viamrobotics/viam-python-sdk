@@ -749,7 +749,6 @@ class MockData(DataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(AddBoundingBoxToImageByIDResponse(bbox_id=self.bbox_labels_response[0]))
-        raise NotImplementedError()
 
     async def RemoveBoundingBoxFromImageByID(
         self, stream: Stream[RemoveBoundingBoxFromImageByIDRequest, RemoveBoundingBoxFromImageByIDResponse]
