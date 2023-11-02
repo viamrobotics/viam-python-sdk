@@ -26,6 +26,7 @@ Classes
    viam.components.movement_sensor.GeoPoint
    viam.components.movement_sensor.Orientation
    viam.components.movement_sensor.Vector3
+   viam.components.movement_sensor.MovementSensor
 
 
 
@@ -109,5 +110,225 @@ Classes
       :type: float
 
       
+
+
+.. py:class:: MovementSensor(name: str)
+
+
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`
+
+   MovementSensor reports information about the robot's direction, position and speed.
+
+   This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
+   This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
+
+   .. py:class:: Properties
+
+
+      .. py:property:: proto
+         :type: viam.proto.component.movementsensor.GetPropertiesResponse
+
+
+      .. py:attribute:: linear_acceleration_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: angular_velocity_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: orientation_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: position_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: compass_heading_supported
+         :type: bool
+
+         
+
+      .. py:attribute:: linear_velocity_supported
+         :type: bool
+
+         
+
+      .. py:method:: from_proto(proto: viam.proto.component.movementsensor.GetPropertiesResponse) -> typing_extensions.Self
+         :classmethod:
+
+
+
+   .. py:attribute:: SUBTYPE
+      :type: Final
+
+      
+
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
+      :abstractmethod:
+      :async:
+
+      Get the current GeoPoint (latitude, longitude) and altitude (m)
+
+      :returns: The current lat/long, along with the altitude in m
+      :rtype: Tuple[GeoPoint, float]
+
+
+   .. py:method:: get_linear_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
+      :abstractmethod:
+      :async:
+
+      Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
+
+      :returns: The linear velocity in m/sec
+      :rtype: Vector3
+
+
+   .. py:method:: get_angular_velocity(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
+      :abstractmethod:
+      :async:
+
+      Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
+
+      :returns: The angular velocity in degrees/sec
+      :rtype: Vector3
+
+
+   .. py:method:: get_linear_acceleration(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Vector3
+      :abstractmethod:
+      :async:
+
+      Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
+
+      :returns: The linear acceleration in m/sec^2
+      :rtype: Vector3
+
+
+   .. py:method:: get_compass_heading(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float
+      :abstractmethod:
+      :async:
+
+      Get the current compass heading in degrees
+
+      :returns: The compass heading in degrees
+      :rtype: float
+
+
+   .. py:method:: get_orientation(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.components.movement_sensor.Orientation
+      :abstractmethod:
+      :async:
+
+      Get the current orientation
+
+      :returns: The orientation
+      :rtype: Orientation
+
+
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties
+      :abstractmethod:
+      :async:
+
+      Get the supported properties of this sensor
+
+      :returns: The properties
+      :rtype: MovementSensor.Properties
+
+
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]
+      :abstractmethod:
+      :async:
+
+      Get the accuracy of the various sensors
+
+      :returns: The accuracy
+      :rtype: Dict[str, float]
+
+
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]
+      :async:
+
+      Obtain the measurements/data specific to this sensor.
+      If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+      :returns: The readings for the MovementSensor. Can be of any type.
+      :rtype: Mapping[str, Any]
+
+
+   .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
+      :classmethod:
+
+      Get the component named ``name`` from the provided robot.
+
+      :param robot: The robot
+      :type robot: RobotClient
+      :param name: The name of the component
+      :type name: str
+
+      :returns: The component, if it exists on the robot
+      :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/Receive arbitrary commands to the Resource
+
+      :param command: The command to execute
+      :type command: Mapping[str, ValueTypes]
+
+      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+
+      :returns: Result of the executed command
+      :rtype: Mapping[str, ValueTypes]
+
+
+   .. py:method:: get_geometries(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.common.Geometry]
+      :async:
+
+      Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+      :returns: The geometries associated with the Component.
+      :rtype: List[Geometry]
+
+
+   .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
+      :classmethod:
+
+      Get the ResourceName for this Resource with the given name
+
+      :param name: The name of the Resource
+      :type name: str
+
+
+   .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
+
+      Get the ``Operation`` associated with the currently running function.
+
+      When writing custom resources, you should get the ``Operation`` by calling this function and check to see if it's cancelled.
+      If the ``Operation`` is cancelled, then you can perform any necessary (terminating long running tasks, cleaning up connections, etc.
+      ).
+
+      :param kwargs: The kwargs object containing the operation
+      :type kwargs: Mapping[str, Any]
+
+      :returns: The operation associated with this function
+      :rtype: viam.operations.Operation
+
+
+   .. py:method:: close()
+      :async:
+
+      Safely shut down the resource and prevent further use.
+
+      Close must be idempotent. Later configuration may allow a resource to be "open" again.
+      If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+      non-Close methods are called.
+
 
 
