@@ -83,7 +83,7 @@ ROBOT_PART = RobotPart(
 ROBOT_PARTS = [ROBOT_PART]
 ROVER_RENTAL_ROBOT = RoverRentalRobot(
     robot_id=ID,
-    location_id=LOCATION,
+    location_id="location",
     robot_name=NAME,
     robot_main_part_id=ID,
 )
