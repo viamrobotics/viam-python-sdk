@@ -21,7 +21,6 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
-    ConfigureDatabaseUserRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,

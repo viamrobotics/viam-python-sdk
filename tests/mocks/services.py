@@ -981,7 +981,7 @@ class MockApp(AppServiceBase):
         self.update_cid = request.cid
         self.update_name = request.name
         self.update_namespace = request.public_namespace
-        await stream.send_message(UpdateOrganizationResponse(organization=ORGANIZATIONS[0]))
+        await stream.send_message(UpdateOrganizationResponse(organization=self.organizations[0]))
 
     async def DeleteOrganization(self, stream: Stream[DeleteOrganizationRequest, DeleteOrganizationResponse]) -> None:
         request = await stream.recv_message()

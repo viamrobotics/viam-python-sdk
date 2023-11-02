@@ -29,15 +29,12 @@ from viam.proto.app import (
     CreateOrganizationInviteResponse,
     CreateModuleRequest,
     CreateModuleResponse,
-    CreateOrganizationRequest,
-    CreateOrganizationResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
     DeleteLocationRequest,
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
-    DeleteOrganizationInviteResponse,
     DeleteOrganizationMemberRequest,
     DeleteOrganizationRequest,
     DeleteRobotPartRequest,
@@ -68,8 +65,6 @@ from viam.proto.app import (
     GetRobotResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
-    GetUserIDByEmailRequest,
-    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
@@ -80,8 +75,6 @@ from viam.proto.app import (
     ListLocationsResponse,
     ListModulesRequest,
     ListModulesResponse,
-    ListOrganizationsByUserRequest,
-    ListOrganizationsByUserResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
     ListOrganizationsRequest,
@@ -362,7 +355,7 @@ class APIKeyAuthorization:
 
     def __init__(self, role: str, resource_type: str, resource_id: str):
         """role (str): The role to add (i.e., either "owner" or "operator").
-        resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot"). 
+        resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot").
         Must match `resource_id`.
         resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
         """
@@ -413,7 +406,14 @@ class AppClient:
         self._organization_id = organizations[0].id
         return self._organization_id
 
-    async def _create_authorization(self, identity_id: str, identity_type: str, role: str, resource_type: str, resource_id: str) -> Authorization:
+    async def _create_authorization(
+        self,
+        identity_id: str,
+        identity_type: str,
+        role: str,
+        resource_type: str,
+        resource_id: str,
+    ) -> Authorization:
         organization_id = await self._get_organization_id()
         return Authorization(
             authorization_type="role",
@@ -428,7 +428,7 @@ class AppClient:
     async def _create_authorization_for_new_api_key(self, auth: APIKeyAuthorization) -> Authorization:
         """Creates a new Authorization specifically for creating an API key."""
         return await self._create_authorization(
-            identity_id="", # setting `identity_id` when creating an API key results in an error
+            identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
             role=auth._role,
             resource_type=auth._resource_type,
@@ -516,7 +516,6 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-
     async def delete_organization(self, org_id: Optional[str] = None) -> None:
         """Deletes an organization.
 
@@ -549,7 +548,7 @@ class AppClient:
         Args:
             email (str): The email address to send the invite to.
             authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
-            authorizations to include in the invite. If not provided, full owner permissions will 
+            authorizations to include in the invite. If not provided, full owner permissions will
             be granted.
 
         Raises:
@@ -1219,7 +1218,13 @@ class AppClient:
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
         """
-        authorization = await self._create_authorization(identity_id=identity_id, identity_type="", role=role, resource_type=resource_type, resource_id=resource_id)
+        authorization = await self._create_authorization(
+            identity_id=identity_id,
+            identity_type="",
+            role=role,
+            resource_type=resource_type,
+            resource_id=resource_id,
+        )
         request = AddRoleRequest(authorization=authorization)
         await self._app_client.AddRole(request, metadata=self._metadata)
 
@@ -1236,7 +1241,13 @@ class AppClient:
         Raises:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
         """
-        authorization = await self._create_authorization(identity_id=identity_id, identity_type="", role=role, resource_type=resource_type, resource_id=resource_id)
+        authorization = await self._create_authorization(
+            identity_id=identity_id,
+            identity_type="",
+            role=role,
+            resource_type=resource_type,
+            resource_id=resource_id,
+        )
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
@@ -1409,7 +1420,10 @@ class AppClient:
             Tuple[str, str] The API key and API key id
         """
         request = CreateKeyFromExistingKeyAuthorizationsRequest(id=id)
-        response: CreateKeyFromExistingKeyAuthorizationsResponse = await self._app_client.CreateKeyFromExistingKeyAuthorizations(request, metadata=self._metadata)
+        response: CreateKeyFromExistingKeyAuthorizationsResponse = await self._app_client.CreateKeyFromExistingKeyAuthorizations(
+            request,
+            metadata=self._metadata,
+        )
         return (response.key, response.id)
 
     async def list_keys(self) -> List[APIKeyWithAuthorizations]:
@@ -1421,4 +1435,3 @@ class AppClient:
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
         return response.api_keys
-
