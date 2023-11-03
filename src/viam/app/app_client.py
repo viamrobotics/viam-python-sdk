@@ -532,7 +532,7 @@ class AppClient:
         Raises:
             GRPCError: if the organization is not authed to, or has locations in it.
         """
-        organization_id = org_id if org_id else await self._get_organization_id()
+        organization_id = org_id if org_id is not None else await self._get_organization_id()
         request = DeleteOrganizationRequest(organization_id=organization_id)
         await self._app_client.DeleteOrganization(request, metadata=self._metadata)
 
