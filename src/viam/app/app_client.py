@@ -399,7 +399,7 @@ class AppClient:
     # then we can probably still rely on it for org id?), and also update other APIs to ask for
     # an org id (optionally?) instead of just assuming we'll get it from this method.
     async def _get_organization_id(self) -> str:
-        return self._organization_id if self._organization_id else await self._request_organization_id()
+        return self._organization_id if self._organization_id is not None else await self._request_organization_id()
 
     async def _request_organization_id(self) -> str:
         organizations = await self.list_organizations()
