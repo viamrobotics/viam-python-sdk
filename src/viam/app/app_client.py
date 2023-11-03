@@ -1410,7 +1410,7 @@ class AppClient:
         Returns:
             Tuple[str, str]: The api key and api key ID.
         """
-        name = name if name else str(datetime.now())
+        name = name if name is not None else str(datetime.now())
         authorizationspb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
         request = CreateKeyRequest(authorizations=authorizationspb, name=name)
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
