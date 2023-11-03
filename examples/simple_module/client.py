@@ -7,9 +7,9 @@ from viam.components.sensor import Sensor
 
 
 async def connect():
-    # creds = Credentials(type="<your authentication type here>", payload="<your authentication payload here>")
-    opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(insecure=True), log_level=logging.DEBUG)
-    return await RobotClient.at_address("localhost:8080", opts)
+    creds = Credentials(type="<your authentication type here>", payload="<your authentication payload here>")
+    opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(credentials=creds), log_level=logging.DEBUG)
+    return await RobotClient.at_address("<your robot uri here>", opts)
 
 
 async def main():
