@@ -466,7 +466,7 @@ class AppClient:
         Returns:
             viam.proto.app.Organization: The requested organization.
         """
-        org_id = org_id if org_id else await self._get_organization_id()
+        org_id = org_id if org_id is not None else await self._get_organization_id()
         request = GetOrganizationRequest(organization_id=org_id)
         response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
         return response.organization
