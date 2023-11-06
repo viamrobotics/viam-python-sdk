@@ -132,11 +132,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">camera</span><span class="o">.</span><span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_mime_types</span><span class="p">:</span>
-                    <span class="n">props</span> <span class="o">=</span> <span class="k">await</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">supports_pcd</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_camera_mime_types</span><span class="p">[</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_camera_mime_types</span><span class="p">[</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_camera_mime_types</span><span class="p">[</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
 
                 <span class="n">request</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_camera_mime_types</span><span class="p">[</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
 
