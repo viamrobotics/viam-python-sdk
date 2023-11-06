@@ -43,11 +43,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         try:
             if not request.mime_type:
                 if camera.name not in self._camera_mime_types:
-                    props = await camera.get_properties()
-                    if props.supports_pcd:
-                        self._camera_mime_types[camera.name] = CameraMimeType.PCD
-                    else:
-                        self._camera_mime_types[camera.name] = CameraMimeType.JPEG
+                    self._camera_mime_types[camera.name] = CameraMimeType.JPEG
 
                 request.mime_type = self._camera_mime_types[camera.name]
 
