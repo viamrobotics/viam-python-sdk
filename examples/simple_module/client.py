@@ -1,8 +1,6 @@
 import asyncio
 
-from viam import logging
 from viam.robot.client import RobotClient
-from viam.rpc.dial import Credentials, DialOptions
 from viam.components.sensor import Sensor
 
 

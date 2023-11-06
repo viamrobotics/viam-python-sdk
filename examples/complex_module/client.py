@@ -3,9 +3,7 @@ import asyncio
 from src.gizmo import Gizmo
 from src.summation import SummationService
 
-from viam import logging
 from viam.robot.client import RobotClient
-from viam.rpc.dial import Credentials, DialOptions
 from viam.components.base import Base
 
 
