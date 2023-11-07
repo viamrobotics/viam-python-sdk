@@ -1,14 +1,11 @@
 import asyncio
 
-from viam import logging
 from viam.robot.client import RobotClient
-from viam.rpc.dial import Credentials, DialOptions
 from viam.components.sensor import Sensor
 
 
 async def connect():
-    creds = Credentials(type="<your authentication type here>", payload="<your authentication payload here>")
-    opts = RobotClient.Options(refresh_interval=0, dial_options=DialOptions(credentials=creds), log_level=logging.DEBUG)
+    opts = RobotClient.Options.with_api_key(api_key="<your api key here>", api_key_id="<your api key ID here>")
     return await RobotClient.at_address("<your robot uri here>", opts)
 
 
