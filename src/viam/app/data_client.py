@@ -40,6 +40,7 @@ from viam.proto.app.data import (
     TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
+    DataCaptureUploadMetadata,
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
     DataSyncServiceStub,
@@ -49,6 +50,8 @@ from viam.proto.app.datasync import (
     FileUploadResponse,
     SensorData,
     SensorMetadata,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
 from viam.utils import create_filter, datetime_to_timestamp, struct_to_dict
@@ -565,6 +568,47 @@ class DataClient:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
         response: DataCaptureUploadResponse = await self._data_sync_client.DataCaptureUpload(request, metadata=self._metadata)
         return response
+
+    async def streaming_data_capture_upload(
+        self,
+        data: bytes,
+        part_id: str,
+        component_type: str,
+        component_name: str,
+        method_name: str,
+        method_parameters: Optional[Mapping[str, Any]] = None,
+        date_request_times: Optional[Tuple[datetime, datetime]] = None,
+
+    ) -> StreamingDataCaptureUploadResponse:
+        upload_metadata = UploadMetadata(
+            part_id=part_id,
+            component_type=component_type,
+            component_name=component_name,
+            method_name=method_name,
+            type=DataType.DATA_TYPE_BINARY_SENSOR,
+
+        )
+        metadata = DataCaptureUploadMetadata(
+
+                )
+        request_metadata = StreamingDataCaptureUploadRequest(metadata=metadata)
+        async with self._data_sync_client.StreamingDataCaptureUpload.open(metadata=self._metadata) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(data, end=True)
+            response = await stream.recv_message()
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
+            return response
+
+    async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
+        request_metadata = FileUploadRequest(metadata=metadata)
+        request_file_contents = FileUploadRequest(file_contents=file_contents)
+        async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(request_file_contents, end=True)
+            response = await stream.recv_message()
+            assert response is not None
+            return response
 
     async def file_upload(
         self,
