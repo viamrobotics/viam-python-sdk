@@ -1161,13 +1161,7 @@
     "from viam.app.viam_client import ViamClient\n",
     "\n",
     "async def connect() -> ViamClient:\n",
-    "    dial_options = DialOptions(\n",
-    "        auth_entity='<ADDRESS>',  # The URL of your robot.\n",
-    "        credentials=Credentials(\n",
-    "            type='robot-location-secret',\n",
-    "            payload='<SECRET>'\n",
-    "        )\n",
-    "    )\n",
+    "    dial_options = DialOptions.with_api_key(api_key='<API_KEY>', api_key_id='<API_KEY_ID>')\n",
     "    return await ViamClient.create_from_dial_options(dial_options)"
    ]
   },
