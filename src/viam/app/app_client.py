@@ -1170,7 +1170,8 @@ class AppClient:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
             response = await stream.recv_message()
-            assert response is not None
+            if not response:
+                await stream.recv_message()  # causes us to throw appropriate gRPC error.
             return response.url
 
     async def get_module(self, module_id: str) -> Module:
