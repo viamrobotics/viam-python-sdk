@@ -623,16 +623,6 @@ class DataClient:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
             return response.file_id
 
-    async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
-        request_metadata = FileUploadRequest(metadata=metadata)
-        request_file_contents = FileUploadRequest(file_contents=file_contents)
-        async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
-            await stream.send_message(request_metadata)
-            await stream.send_message(request_file_contents, end=True)
-            response = await stream.recv_message()
-            assert response is not None
-            return response
-
     async def file_upload(
         self,
         part_id: str,
