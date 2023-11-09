@@ -579,6 +579,7 @@ class DataClient:
         method_name: Optional[str] = None,
         method_parameters: Optional[Mapping[str, Any]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
+        tags: Optional[List[str]] = None,
     ) -> str:
         """Uploads the metadata and contents of streaming binary data.
 
@@ -592,6 +593,7 @@ class DataClient:
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -608,6 +610,7 @@ class DataClient:
             method_parameters=method_parameters,
             type=DataType.DATA_TYPE_BINARY_SENSOR,
             file_extension=file_ext if file_ext[0] == "." else f".{file_ext}",
+            tags=tags,
         )
         sensor_metadata = SensorMetadata(
             time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,

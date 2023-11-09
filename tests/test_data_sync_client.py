@@ -146,6 +146,7 @@ class TestClient:
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
                 data_request_times=DATETIMES,
+                tags=TAGS,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
