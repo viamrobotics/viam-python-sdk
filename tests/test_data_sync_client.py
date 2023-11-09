@@ -145,7 +145,7 @@ class TestClient:
                 component_name=COMPONENT_NAME,
                 method_name=METHOD_NAME,
                 method_parameters=METHOD_PARAMETERS,
-                data_request_times=TIMESTAMPS,
+                data_request_times=DATETIMES,
             )
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
