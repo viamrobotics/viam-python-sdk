@@ -133,6 +133,26 @@ class TestClient:
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
+    @pytest.mark.asyncio
+    async def test_streaming_data_capture_upload(self, service: MockDataSync):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            file_id = await client.streaming_data_capture_upload(
+                data=BINARY_DATA,
+                part_id=PART_ID,
+                file_ext=FILE_EXT,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                data_request_times=TIMESTAMPS,
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata)
+            assert service.metadata.file_name == FILE_NAME
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
     def assert_sensor_contents(self, sensor_contents: List[SensorData], is_binary: bool):
         for idx, sensor_content in enumerate(sensor_contents):
             assert sensor_content.metadata.time_requested.seconds == TIMESTAMPS[0].seconds
