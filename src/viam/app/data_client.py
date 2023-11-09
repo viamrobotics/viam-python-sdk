@@ -540,8 +540,8 @@ class DataClient:
                 SensorData(
                     metadata=(
                         SensorMetadata(
-                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx] else None,
-                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx] else None,
+                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times else None,
+                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times else None,
                         )
                         if data_request_times[idx]
                         else None
