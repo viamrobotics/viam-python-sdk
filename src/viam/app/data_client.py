@@ -618,7 +618,7 @@ class DataClient:
         async with self._data_sync_client.StreamingDataCaptureUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(StreamingDataCaptureUploadRequest(data=data), end=True)
-            response = await stream.recv_message()
+            response: StreamingDataCaptureUploadResponse = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
             return response.file_id
