@@ -802,7 +802,7 @@ class MockDataSync(DataSyncServiceBase):
     ) -> None:
         request_metadata = await stream.recv_message()
         assert request_metadata is not None
-        self.metadata = request_metadata.metadata
+        self.metadata = request_metadata.metadata.upload_metadata
         request_data_contents = await stream.recv_message()
         assert request_data_contents is not None
         self.binary_data = request_data_contents.data
