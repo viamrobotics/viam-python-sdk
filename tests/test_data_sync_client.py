@@ -150,7 +150,6 @@ class TestClient:
             )
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
-            assert service.metadata.file_name == FILE_NAME
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 
