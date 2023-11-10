@@ -1171,7 +1171,7 @@ class AppClient:
             await stream.send_message(request_file, end=True)
             response = await stream.recv_message()
             if not response:
-                await stream.recv_message()  # causes us to throw appropriate gRPC error.
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
             return response.url
 
     async def get_module(self, module_id: str) -> Module:
