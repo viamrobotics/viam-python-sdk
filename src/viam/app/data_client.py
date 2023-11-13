@@ -736,7 +736,8 @@ class DataClient:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
             response = await stream.recv_message()
-            assert response is not None
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
             return response
 
     @staticmethod
