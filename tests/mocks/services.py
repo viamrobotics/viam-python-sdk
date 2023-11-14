@@ -800,7 +800,13 @@ class MockDataSync(DataSyncServiceBase):
     async def StreamingDataCaptureUpload(
         self, stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
     ) -> None:
-        raise NotImplementedError()
+        request_metadata = await stream.recv_message()
+        assert request_metadata is not None
+        self.metadata = request_metadata.metadata.upload_metadata
+        request_data_contents = await stream.recv_message()
+        assert request_data_contents is not None
+        self.binary_data = request_data_contents.data
+        await stream.send_message(StreamingDataCaptureUploadResponse(file_id=self.file_upload_response))
 
 
 class MockMLTraining(MLTrainingServiceBase):

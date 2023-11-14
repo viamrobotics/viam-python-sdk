@@ -40,6 +40,7 @@ from viam.proto.app.data import (
     TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
+    DataCaptureUploadMetadata,
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
     DataSyncServiceStub,
@@ -49,6 +50,8 @@ from viam.proto.app.datasync import (
     FileUploadResponse,
     SensorData,
     SensorMetadata,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
 from viam.utils import create_filter, datetime_to_timestamp, struct_to_dict
@@ -466,8 +469,8 @@ class DataClient:
         sensor_contents = SensorData(
             metadata=(
                 SensorMetadata(
-                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
-                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
+                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
+                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times else None,
                 )
                 if data_request_times
                 else None
@@ -537,8 +540,8 @@ class DataClient:
                 SensorData(
                     metadata=(
                         SensorMetadata(
-                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx][0] else None,
-                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx][1] else None,
+                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times else None,
+                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times else None,
                         )
                         if data_request_times[idx]
                         else None
@@ -565,6 +568,63 @@ class DataClient:
         request = DataCaptureUploadRequest(metadata=metadata, sensor_contents=sensor_contents)
         response: DataCaptureUploadResponse = await self._data_sync_client.DataCaptureUpload(request, metadata=self._metadata)
         return response
+
+    async def streaming_data_capture_upload(
+        self,
+        data: bytes,
+        part_id: str,
+        file_ext: str,
+        component_type: Optional[str] = None,
+        component_name: Optional[str] = None,
+        method_name: Optional[str] = None,
+        method_parameters: Optional[Mapping[str, Any]] = None,
+        data_request_times: Optional[Tuple[datetime, datetime]] = None,
+        tags: Optional[List[str]] = None,
+    ) -> str:
+        """Uploads the metadata and contents of streaming binary data.
+
+        Args:
+            data (bytes): the data to be uploaded.
+            part_id (str): Part ID of the resource associated with the file.
+            file_ext (str): file extension type for the data. required for determining MIME type.
+            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
+            component_name (Optional[str]): Optional name of the component associated with the file.
+            method_name (Optional[str]): Optional name of the method associated with the file.
+            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
+
+        Raises:
+            GRPCError: If an invalid part ID is passed.
+
+        Returns:
+            str: the file_id of the uploaded data.
+        """
+
+        upload_metadata = UploadMetadata(
+            part_id=part_id,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
+            method_parameters=method_parameters,
+            type=DataType.DATA_TYPE_BINARY_SENSOR,
+            file_extension=file_ext if file_ext[0] == "." else f".{file_ext}",
+            tags=tags,
+        )
+        sensor_metadata = SensorMetadata(
+            time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
+            time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times else None,
+        )
+        metadata = DataCaptureUploadMetadata(upload_metadata=upload_metadata, sensor_metadata=sensor_metadata)
+        request_metadata = StreamingDataCaptureUploadRequest(metadata=metadata)
+        async with self._data_sync_client.StreamingDataCaptureUpload.open(metadata=self._metadata) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(StreamingDataCaptureUploadRequest(data=data), end=True)
+            response: StreamingDataCaptureUploadResponse = await stream.recv_message()
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
+            return response.file_id
 
     async def file_upload(
         self,
@@ -676,7 +736,8 @@ class DataClient:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
             response = await stream.recv_message()
-            assert response is not None
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
             return response
 
     @staticmethod
