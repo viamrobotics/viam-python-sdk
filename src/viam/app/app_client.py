@@ -36,7 +36,6 @@ from viam.proto.app import (
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
     DeleteOrganizationMemberRequest,
-    DeleteOrganizationRequest,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -527,19 +526,9 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
+    # TODO(RSDK-5569): implement
     async def delete_organization(self, org_id: Optional[str] = None) -> None:
-        """Deletes an organization.
-
-        Args:
-            org_id (Optional[str]): ID of the organization to delete. If None, defaults to the
-            currently-authed org.
-
-        Raises:
-            GRPCError: if the organization is not authed to, or has locations in it.
-        """
-        organization_id = org_id if org_id is not None else await self._get_organization_id()
-        request = DeleteOrganizationRequest(organization_id=organization_id)
-        await self._app_client.DeleteOrganization(request, metadata=self._metadata)
+        raise NotImplementedError()
 
     async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
