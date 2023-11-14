@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from typing import Any, AsyncIterator, List, Mapping, Optional, Tuple
+from typing import Any, AsyncIterator, List, Mapping, Optional, Tuple, Union, Literal
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -353,10 +353,15 @@ class APIKeyAuthorization:
     Use this class when constructing API key authorizations to minimize the risk of malformed or missing data.
     """
 
-    def __init__(self, role: str, resource_type: str, resource_id: str):
-        """role (str): The role to add (i.e., either "owner" or "operator").
-        resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot").
-        Must match `resource_id`.
+    def __init__(
+        self,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
+    ):
+        """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
+        resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+            Must match `resource_id`.
         resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
         """
         self._role = role
@@ -410,8 +415,8 @@ class AppClient:
         self,
         identity_id: str,
         identity_type: str,
-        role: str,
-        resource_type: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
         resource_id: str,
     ) -> Authorization:
         organization_id = await self._get_organization_id()
@@ -1211,14 +1216,20 @@ class AppClient:
         request = DeleteFragmentRequest(id=fragment_id)
         await self._app_client.DeleteFragment(request, metadata=self._metadata)
 
-    async def add_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
+    async def add_role(
+        self,
+        identity_id: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
+    ) -> None:
         """Add a role under the currently authed-to organization.
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
-            role (str): The role to add (i.e., either "owner" or "operator").
-            resource_type (str): Type of the resource to add role to (i.e., either "organization", "location", or "robot"). Must match
-                `resource_id`.
+            role (Union[Literal["owner"], Literal["operator"]]): The role to add.
+            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+                Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
         Raises:
@@ -1234,14 +1245,20 @@ class AppClient:
         request = AddRoleRequest(authorization=authorization)
         await self._app_client.AddRole(request, metadata=self._metadata)
 
-    async def remove_role(self, identity_id: str, role: str, resource_type: str, resource_id: str) -> None:
+    async def remove_role(
+        self,
+        identity_id: str,
+        role: Union[Literal["owner"], Literal["operator"]],
+        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_id: str,
+    ) -> None:
         """Remove a role under the currently authed-to organization.
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
-            role (str): The role to remove (i.e., either "owner" or "operator").
-            resource_type (str): Type of the resource to remove role from (i.e., either "organization", "location", or "robot"). Must match
-                `resource_id`.
+            role (Union[Literal["owner"], Literal["operator"]]): The role to add.
+            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+                Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
         Raises:
