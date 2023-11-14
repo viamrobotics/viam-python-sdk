@@ -16,6 +16,7 @@ Classes
    viam.app.app_client.LogEntry
    viam.app.app_client.Fragment
    viam.app.app_client.RobotPartHistoryEntry
+   viam.app.app_client.APIKeyAuthorization
    viam.app.app_client.AppClient
 
 
@@ -309,6 +310,14 @@ Attributes
 
 
 
+.. py:class:: APIKeyAuthorization(role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str)
+
+
+   A class with the necessary authorization data for creating an API key.
+
+   Use this class when constructing API key authorizations to minimize the risk of malformed or missing data.
+
+
 .. py:class:: AppClient(channel: grpclib.client.Channel, metadata: Mapping[str, str], location_id: Optional[str] = None)
 
 
@@ -316,11 +325,6 @@ Attributes
 
    Constructor is used by `ViamClient` to instantiate relevant service stub. Calls to `AppClient`  methods should be made through
    `ViamClient`.
-
-   .. py:method:: get_user_id_by_email(email: str) -> str
-      :abstractmethod:
-      :async:
-
 
    .. py:method:: create_organization(name: str) -> viam.proto.app.Organization
       :abstractmethod:
@@ -341,9 +345,19 @@ Attributes
       :async:
 
 
-   .. py:method:: get_organization() -> viam.proto.app.Organization
-      :abstractmethod:
+   .. py:method:: get_organization(org_id: Optional[str] = None) -> viam.proto.app.Organization
       :async:
+
+      Return details about the requested organization.
+
+      :param org_id: ID of the organization to query. If None, defaults to the
+      :type org_id: Optional[str]
+      :param currently-authed org.:
+
+      :raises GRPCError: If the provided org_id is invalid, or not currently authed to.
+
+      :returns: The requested organization.
+      :rtype: viam.proto.app.Organization
 
 
    .. py:method:: get_organization_namespace_availability(public_namespace: str) -> bool
@@ -361,12 +375,27 @@ Attributes
       :rtype: bool
 
 
-   .. py:method:: update_organization(name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None) -> viam.proto.app.Organization
-      :abstractmethod:
+   .. py:method:: update_organization(name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None, cid: Optional[str] = None) -> viam.proto.app.Organization
       :async:
 
+      Updates organization details.
 
-   .. py:method:: delete_organization(organization_id: str) -> None
+      :param name: If provided, updates the org's name.
+      :type name: Optional[str]
+      :param public_namespace: If provided, sets the org's namespace if it hasn't already been set.
+      :type public_namespace: Optional[str]
+      :param region: If provided, updates the org's region.
+      :type region: Optional[str]
+      :param cid: If provided, update's the org's CRM ID.
+      :type cid: Optional[str]
+
+      :raises GRPCError: If the org's namespace has already been set, or if the provided namespace is already taken.
+
+      :returns: The updated organization.
+      :rtype: viam.proto.app.Organization
+
+
+   .. py:method:: delete_organization(org_id: Optional[str] = None) -> None
       :abstractmethod:
       :async:
 
@@ -384,8 +413,19 @@ Attributes
 
 
    .. py:method:: create_organization_invite(email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
-      :abstractmethod:
       :async:
+
+      Creates an organization invite and sends it via email.
+
+      :param email: The email address to send the invite to.
+      :type email: str
+      :param authorizations: Specifications of the
+      :type authorizations: Optional[List[viam.proto.app.Authorization]]
+      :param authorizations to include in the invite. If not provided:
+      :param full owner permissions will:
+      :param be granted.:
+
+      :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
 
    .. py:method:: update_organization_invite_authorizations(email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
@@ -411,18 +451,34 @@ Attributes
 
 
    .. py:method:: delete_organization_member(user_id: str) -> None
-      :abstractmethod:
       :async:
+
+      Remove a member from the organization.
+
+      :param user_id: The ID of the user to remove.
+      :type user_id: str
 
 
    .. py:method:: delete_organization_invite(email: str) -> None
-      :abstractmethod:
       :async:
+
+      Deletes a pending organization invite.
+
+      :param email: The email address the pending invite was sent to.
+      :type email: str
+
+      :raises GRPCError: If no pending invite is associated with the provided email address.
 
 
    .. py:method:: resend_organization_invite(email: str) -> viam.proto.app.OrganizationInvite
-      :abstractmethod:
       :async:
+
+      Resends a pending organization invite email.
+
+      :param email: The email address associated with the invite.
+      :type email: str
+
+      :raises GRPCError: If no pending invite is associated with the provided email address.
 
 
    .. py:method:: create_location(name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
@@ -567,9 +623,13 @@ Attributes
       :rtype: viam.proto.app.Robot
 
 
-   .. py:method:: get_rover_rental_parts()
-      :abstractmethod:
+   .. py:method:: get_rover_rental_robots() -> List[viam.proto.app.RoverRentalRobot]
       :async:
+
+      Returns a list of rover rental robots within an org.
+
+      :returns: The list of rover rental robots.
+      :rtype: List[viam.proto.app.RoverRentalRobot]
 
 
    .. py:method:: get_robot_parts(robot_id: str) -> List[RobotPart]
@@ -894,36 +954,36 @@ Attributes
       :raises GRPCError: If an invalid fragment ID is passed.
 
 
-   .. py:method:: add_role(identity_id: str, role: str, resource_type: str, resource_id: str) -> None
+   .. py:method:: add_role(identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
       :async:
 
       Add a role under the currently authed-to organization.
 
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
-      :param role: The role to add (i.e., either "owner" or "operator").
-      :type role: str
-      :param resource_type: Type of the resource to add role to (i.e., either "organization", "location", or "robot"). Must match
-                            `resource_id`.
-      :type resource_type: str
+      :param role: The role to add.
+      :type role: Union[Literal["owner"], Literal["operator"]]
+      :param resource_type: Type of the resource to add role to.
+                            Must match `resource_id`.
+      :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
       :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
       :type resource_id: str
 
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
 
 
-   .. py:method:: remove_role(identity_id: str, role: str, resource_type: str, resource_id: str) -> None
+   .. py:method:: remove_role(identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
       :async:
 
       Remove a role under the currently authed-to organization.
 
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
-      :param role: The role to remove (i.e., either "owner" or "operator").
-      :type role: str
-      :param resource_type: Type of the resource to remove role from (i.e., either "organization", "location", or "robot"). Must match
-                            `resource_id`.
-      :type resource_type: str
+      :param role: The role to add.
+      :type role: Union[Literal["owner"], Literal["operator"]]
+      :param resource_type: Type of the resource to add role to.
+                            Must match `resource_id`.
+      :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
       :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
       :type resource_id: str
 
@@ -936,18 +996,32 @@ Attributes
       List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
       are provided, all resource authorizations within the organizations are returned.
 
-      :param resource_ids: IDs of the resources to retrieve authorizations from. Defaults to None.
+      :param resource_ids: IDs of the resources to retrieve authorizations from.
       :type resource_ids: Optional[List[str]]
+      :param If None:
+      :param defaults to all resources.:
 
       :raises GRPCError: If an invalid resource ID is passed.
 
       :returns: The list of authorizations.
-      :rtype: List[Authorization]
+      :rtype: List[viam.proto.app.Authorization]
 
 
-   .. py:method:: check_permissions(permissions: Optional[List[viam.proto.app.AuthorizedPermissions]] = None) -> List[viam.proto.app.AuthorizedPermissions]
-      :abstractmethod:
+   .. py:method:: check_permissions(permissions: [List[viam.proto.app.AuthorizedPermissions]]) -> List[viam.proto.app.AuthorizedPermissions]
       :async:
+
+      Checks validity of a list of permissions.
+
+      :param permissions: the permissions to validate
+      :type permissions: List[viam.proto.app.AuthorizedPermissions]
+      :param (e.g.:
+      :param "read_organization":
+      :param "control_robot"):
+
+      :raises GRPCError: If the list of permissions to validate is empty.
+
+      :returns: The permissions argument, with invalid permissions filtered out.
+      :rtype: List[viam.proto.app.AuthorizedPermissions]
 
 
    .. py:method:: create_module(name: str) -> Tuple[str, str]
@@ -1026,9 +1100,41 @@ Attributes
       :rtype: List[viam.proto.app.Module]
 
 
-   .. py:method:: create_key(authorizations: List[viam.proto.app.Authorization], name: str) -> Tuple[str, str]
-      :abstractmethod:
+   .. py:method:: create_key(authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]
       :async:
+
+      Creates a new API key.
+
+      :param authorizations: A list of authorizations to associate
+      :type authorizations: List[viam.proto.app.Authorization]
+      :param with the key.:
+      :param name: A name for the key. If None, defaults to the current timestamp.
+      :type name: Optional[str]
+
+      :raises GRPCError: If the authorizations list is empty.
+
+      :returns: The api key and api key ID.
+      :rtype: Tuple[str, str]
+
+
+   .. py:method:: create_key_from_existing_key_authorizations(id: str) -> Tuple[str, str]
+      :async:
+
+      Creates a new API key with an existing key's authorizations
+
+      :param id: the ID of the API key to duplication authorizations from
+      :type id: str
+
+      :returns: Tuple[str, str] The API key and API key id
+
+
+   .. py:method:: list_keys() -> List[viam.proto.app.APIKeyWithAuthorizations]
+      :async:
+
+      Lists all keys for the currently-authed-to org.
+
+      :returns: The existing API keys and authorizations.
+      :rtype: List[viam.proto.app.APIKeyWithAuthorizations]
 
 
 

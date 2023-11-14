@@ -284,14 +284,39 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: add_bounding_box_to_image_by_id()
-      :abstractmethod:
+   .. py:method:: add_bounding_box_to_image_by_id(binary_id: viam.proto.app.data.BinaryID, label: str, x_min_normalized: float, y_min_normalized: float, x_max_normalized: float, y_max_normalized: float) -> str
       :async:
 
+      Add a bounding box to an image.
 
-   .. py:method:: remove_bounding_box_from_image_by_id()
-      :abstractmethod:
+      :param binary_id: The ID of the image to add the bounding box to.
+      :type binary_id: viam.proto.app.data.BinaryID
+      :param label: A label for the bounding box.
+      :type label: str
+      :param x_min_normalized: Min X value of the bounding box normalized from 0 to 1.
+      :type x_min_normalized: float
+      :param y_min_normalized: Min Y value of the bounding box normalized from 0 to 1.
+      :type y_min_normalized: float
+      :param x_max_normalized: Max X value of the bounding box normalized from 0 to 1.
+      :type x_max_normalized: float
+      :param y_max_normalized: Max Y value of the bounding box normalized from 0 to 1.
+      :type y_max_normalized: float
+
+      :raises GRPCError: If the X or Y values are outside of the [0, 1] range.
+
+      :returns: The bounding box ID
+      :rtype: str
+
+
+   .. py:method:: remove_bounding_box_from_image_by_id(bbox_id: str, binary_id: viam.proto.app.data.BinaryID) -> None
       :async:
+
+      Removes a bounding box from an image.
+
+      :param bbox_id: The ID of the bounding box to remove.
+      :type bbox_id: str
+      :param Binary_id: Binary ID of the image to to remove the bounding box from
+      :type Binary_id: viam.proto.arr.data.BinaryID
 
 
    .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
@@ -319,7 +344,7 @@ Attributes
       :rtype: str
 
 
-   .. py:method:: configure_database_user() -> None
+   .. py:method:: configure_database_user(organization_id: str, password: str) -> None
       :abstractmethod:
       :async:
 
