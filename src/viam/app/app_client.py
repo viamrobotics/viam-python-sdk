@@ -462,7 +462,7 @@ class AppClient:
 
         Args:
             org_id (Optional[str]): ID of the organization to query. If None, defaults to the
-            currently-authed org.
+                currently-authed org.
 
         Raises:
             GRPCError: If the provided org_id is invalid, or not currently authed to.
@@ -548,8 +548,8 @@ class AppClient:
         Args:
             email (str): The email address to send the invite to.
             authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
-            authorizations to include in the invite. If not provided, full owner permissions will
-            be granted.
+                authorizations to include in the invite. If not provided, full owner permissions will
+                be granted.
 
         Raises:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
@@ -1269,7 +1269,7 @@ class AppClient:
 
         Args:
             resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.
-            If None, defaults to all resources.
+                If None, defaults to all resources.
 
         Raises:
             GRPCError: If an invalid resource ID is passed.
@@ -1287,7 +1287,7 @@ class AppClient:
 
         Args:
             permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate
-            (e.g., "read_organization", "control_robot")
+                (e.g., "read_organization", "control_robot")
 
         Raises:
             GRPCError: If the list of permissions to validate is empty.
@@ -1408,7 +1408,7 @@ class AppClient:
 
         Args:
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
-            with the key.
+                with the key.
             name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
 
         Raises:
