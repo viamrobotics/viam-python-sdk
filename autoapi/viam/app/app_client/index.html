@@ -610,10 +610,8 @@
 <dd><p>Return details about the requested organization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>org_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of the organization to query. If None, defaults to the</p></li>
-<li><p><strong>org.</strong> (<em>currently-authed</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>org_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of the organization to query. If None, defaults to the
+currently-authed org.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If the provided org_id is invalid, or not currently authed to.</p>
@@ -704,10 +702,9 @@ characters.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>email</strong> (<em>str</em>) – The email address to send the invite to.</p></li>
-<li><p><strong>authorizations</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em><em>]</em>) – Specifications of the</p></li>
-<li><p><strong>provided</strong> (<em>authorizations to include in the invite. If not</em>) – </p></li>
-<li><p><strong>will</strong> (<em>full owner permissions</em>) – </p></li>
-<li><p><strong>granted.</strong> (<em>be</em>) – </p></li>
+<li><p><strong>authorizations</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em><em>]</em>) – Specifications of the
+authorizations to include in the invite. If not provided, full owner permissions will
+be granted.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1464,11 +1461,8 @@ Must match <cite>resource_id</cite>.</p></li>
 are provided, all resource authorizations within the organizations are returned.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>resource_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – IDs of the resources to retrieve authorizations from.</p></li>
-<li><p><strong>None</strong> (<em>If</em>) – </p></li>
-<li><p><strong>resources.</strong> (<em>defaults to all</em>) – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>resource_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – IDs of the resources to retrieve authorizations from.
+If None, defaults to all resources.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid resource ID is passed.</p>
@@ -1488,12 +1482,8 @@ are provided, all resource authorizations within the organizations are returned.
 <dd><p>Checks validity of a list of permissions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>permissions</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><em>viam.proto.app.AuthorizedPermissions</em></a><em>]</em>) – the permissions to validate</p></li>
-<li><p><strong>(</strong><strong>e.g.</strong> – </p></li>
-<li><p><strong>&quot;read_organization&quot;</strong> – </p></li>
-<li><p><strong>&quot;control_robot&quot;</strong><strong>)</strong> – </p></li>
-</ul>
+<dd class="field-odd"><p><strong>permissions</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><em>viam.proto.app.AuthorizedPermissions</em></a><em>]</em>) – the permissions to validate
+(e.g., “read_organization”, “control_robot”)</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>GRPCError</strong> – If the list of permissions to validate is empty.</p>
@@ -1616,8 +1606,8 @@ are provided, all resource authorizations within the organizations are returned.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>authorizations</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em>) – A list of authorizations to associate</p></li>
-<li><p><strong>key.</strong> (<em>with the</em>) – </p></li>
+<li><p><strong>authorizations</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><em>viam.proto.app.Authorization</em></a><em>]</em>) – A list of authorizations to associate
+with the key.</p></li>
 <li><p><strong>name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – A name for the key. If None, defaults to the current timestamp.</p></li>
 </ul>
 </dd>

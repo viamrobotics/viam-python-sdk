@@ -351,8 +351,8 @@ Attributes
       Return details about the requested organization.
 
       :param org_id: ID of the organization to query. If None, defaults to the
+                     currently-authed org.
       :type org_id: Optional[str]
-      :param currently-authed org.:
 
       :raises GRPCError: If the provided org_id is invalid, or not currently authed to.
 
@@ -420,10 +420,9 @@ Attributes
       :param email: The email address to send the invite to.
       :type email: str
       :param authorizations: Specifications of the
+                             authorizations to include in the invite. If not provided, full owner permissions will
+                             be granted.
       :type authorizations: Optional[List[viam.proto.app.Authorization]]
-      :param authorizations to include in the invite. If not provided:
-      :param full owner permissions will:
-      :param be granted.:
 
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
@@ -997,9 +996,8 @@ Attributes
       are provided, all resource authorizations within the organizations are returned.
 
       :param resource_ids: IDs of the resources to retrieve authorizations from.
+                           If None, defaults to all resources.
       :type resource_ids: Optional[List[str]]
-      :param If None:
-      :param defaults to all resources.:
 
       :raises GRPCError: If an invalid resource ID is passed.
 
@@ -1013,10 +1011,8 @@ Attributes
       Checks validity of a list of permissions.
 
       :param permissions: the permissions to validate
+                          (e.g., "read_organization", "control_robot")
       :type permissions: List[viam.proto.app.AuthorizedPermissions]
-      :param (e.g.:
-      :param "read_organization":
-      :param "control_robot"):
 
       :raises GRPCError: If the list of permissions to validate is empty.
 
@@ -1106,8 +1102,8 @@ Attributes
       Creates a new API key.
 
       :param authorizations: A list of authorizations to associate
+                             with the key.
       :type authorizations: List[viam.proto.app.Authorization]
-      :param with the key.:
       :param name: A name for the key. If None, defaults to the current timestamp.
       :type name: Optional[str]
 

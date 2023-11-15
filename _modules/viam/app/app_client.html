@@ -551,7 +551,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (Optional[str]): ID of the organization to query. If None, defaults to the</span>
-<span class="sd">            currently-authed org.</span>
+<span class="sd">                currently-authed org.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the provided org_id is invalid, or not currently authed to.</span>
@@ -637,8 +637,8 @@
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): The email address to send the invite to.</span>
 <span class="sd">            authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the</span>
-<span class="sd">            authorizations to include in the invite. If not provided, full owner permissions will</span>
-<span class="sd">            be granted.</span>
+<span class="sd">                authorizations to include in the invite. If not provided, full owner permissions will</span>
+<span class="sd">                be granted.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if an invalid email is provided, or if the user is already a member of the org.</span>
@@ -1358,7 +1358,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.</span>
-<span class="sd">            If None, defaults to all resources.</span>
+<span class="sd">                If None, defaults to all resources.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid resource ID is passed.</span>
@@ -1376,7 +1376,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate</span>
-<span class="sd">            (e.g., &quot;read_organization&quot;, &quot;control_robot&quot;)</span>
+<span class="sd">                (e.g., &quot;read_organization&quot;, &quot;control_robot&quot;)</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the list of permissions to validate is empty.</span>
@@ -1497,7 +1497,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate</span>
-<span class="sd">            with the key.</span>
+<span class="sd">                with the key.</span>
 <span class="sd">            name (Optional[str]): A name for the key. If None, defaults to the current timestamp.</span>
 
 <span class="sd">        Raises:</span>
