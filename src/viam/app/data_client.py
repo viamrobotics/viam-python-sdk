@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
 from google.protobuf.struct_pb2 import Struct
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.data import (
@@ -660,17 +660,20 @@ class DataClient:
         )
         metadata = DataCaptureUploadMetadata(upload_metadata=upload_metadata, sensor_metadata=sensor_metadata)
         request_metadata = StreamingDataCaptureUploadRequest(metadata=metadata)
+        stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
         async with self._data_sync_client.StreamingDataCaptureUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(StreamingDataCaptureUploadRequest(data=data), end=True)
-            response: StreamingDataCaptureUploadResponse = await stream.recv_message()
+            response = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
+                raise TypeError("Response cannot be empty")
             return response.file_id
 
     async def file_upload(
         self,
         part_id: str,
+        data: bytes,
         component_type: Optional[str] = None,
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
@@ -678,7 +681,6 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         file_extension: Optional[str] = None,
         tags: Optional[List[str]] = None,
-        data: Optional[bytes] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -687,6 +689,7 @@ class DataClient:
 
         Args:
             part_id (str): Part ID of the resource associated with the file.
+            data (bytes): Bytes representing file data to upload.
             component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
@@ -696,7 +699,6 @@ class DataClient:
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
                 provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
-            data (Optional[bytes]): Optional bytes representing file data to upload.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -715,7 +717,7 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
         return response.file_id
 
     async def file_upload_from_path(
@@ -774,12 +776,14 @@ class DataClient:
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)
         request_file_contents = FileUploadRequest(file_contents=file_contents)
+        stream: Stream[FileUploadRequest, FileUploadResponse]
         async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
             response = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                raise TypeError("Response cannot be empty")
             return response
 
     @staticmethod
