@@ -481,10 +481,10 @@ class DataClient:
         component_type: str,
         component_name: str,
         method_name: str,
+        file_extension: str,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
-        file_extension: Optional[str] = None,
     ) -> str:
         """Upload binary sensor data.
 
@@ -497,12 +497,13 @@ class DataClient:
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
+            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+                The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
+                or .png extension will be saved to the images tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
-                The backend will route the binary to its corresponding mime type based on this extension.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -693,7 +694,7 @@ class DataClient:
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                provided.
+                provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
             data (Optional[bytes]): Optional bytes representing file data to upload.
 
