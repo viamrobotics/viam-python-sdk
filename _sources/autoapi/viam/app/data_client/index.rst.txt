@@ -349,7 +349,7 @@ Attributes
       :async:
 
 
-   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None, file_extension: Optional[str] = None) -> str
+   .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
       :async:
 
       Upload binary sensor data.
@@ -367,6 +367,10 @@ Attributes
       :type component_name: str
       :param method_name: Name of the method used to capture the data.
       :type method_name: str
+      :param file_extension: The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+                             The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
+                             or .png extension will be saved to the images tab.
+      :type file_extension: str
       :param method_parameters: Optional dictionary of method parameters. No longer in active use.
       :type method_parameters: Optional[Mapping[str, Any]]
       :param tags: Optional list of tags to allow for tag-based data filtering when retrieving data.
@@ -374,9 +378,6 @@ Attributes
       :param data_request_times: Optional tuple containing `datetime`s objects
                                  denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
       :type data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]]
-      :param file_extension: The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
-                             The backend will route the binary to its corresponding mime type based on this extension.
-      :type file_extension: str
 
       :raises GRPCError: If an invalid part ID is passed.
 
@@ -468,7 +469,7 @@ Attributes
       :param method_parameters: Optional dictionary of the method parameters. No longer in active use.
       :type method_parameters: Optional[str]
       :param file_extension: Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                             provided.
+                             provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
       :type file_extension: Optional[str]
       :param tags: Optional list of tags to allow for tag-based filtering when retrieving data.
       :type tags: Optional[List[str]]
