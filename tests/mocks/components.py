@@ -370,9 +370,6 @@ class MockBoard(Board):
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
 
-    async def model_attributes(self) -> Board.Attributes:
-        return Board.Attributes(remote=True)
-
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
         self.timeout = timeout

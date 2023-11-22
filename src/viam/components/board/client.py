@@ -156,9 +156,6 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         response: StatusResponse = await self.client.Status(request, timeout=timeout)
         return response.status
 
-    async def model_attributes(self) -> Board.Attributes:
-        return Board.Attributes(remote=True)
-
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

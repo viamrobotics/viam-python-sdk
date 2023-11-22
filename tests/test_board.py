@@ -122,11 +122,6 @@ class TestBoard:
         assert board.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
-    async def test_model_attributes(self, board: MockBoard):
-        attrs = await board.model_attributes()
-        assert attrs == Board.Attributes(remote=True)
-
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
         command = {"command": "args"}
         resp = await board.do_command(command)
@@ -414,14 +409,6 @@ class TestClient:
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(1.1)
-
-    @pytest.mark.asyncio
-    async def test_model_attributes(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-
-            attrs = await client.model_attributes()
-            assert attrs == Board.Attributes(remote=True)
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):
