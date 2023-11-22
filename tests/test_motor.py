@@ -298,9 +298,9 @@ class TestClient:
     async def test_set_power(self, motor: MockMotor, service: MotorRPCService):
         async with ChannelFor([service]) as channel:
             client = MotorClient(motor.name, channel)
-            await client.set_power(13, timeout=1.23)
+            await client.set_power(13, timeout=9.10)
             assert motor.power == 13
-            assert motor.timeout == loose_approx(1.23)
+            assert motor.timeout == loose_approx(9.10)
 
     @pytest.mark.asyncio
     async def test_get_position(self, motor: MockMotor, service: MotorRPCService):
