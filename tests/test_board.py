@@ -6,7 +6,7 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import Board, BoardClient
+from viam.components.board import BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -120,11 +120,6 @@ class TestBoard:
         )
         assert board.extra == extra
         assert board.timeout == loose_approx(1.82)
-
-    @pytest.mark.asyncio
-    async def test_model_attributes(self, board: MockBoard):
-        attrs = await board.model_attributes()
-        assert attrs == Board.Attributes(remote=True)
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
@@ -414,14 +409,6 @@ class TestClient:
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(1.1)
-
-    @pytest.mark.asyncio
-    async def test_model_attributes(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-
-            attrs = await client.model_attributes()
-            assert attrs == Board.Attributes(remote=True)
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):

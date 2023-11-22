@@ -243,16 +243,6 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def model_attributes(self) -> Attributes:
-        """
-        Get the attributes related to the model of this board.
-
-        Returns:
-            Attributes: The attributes.
-        """
-        ...
-
-    @abc.abstractmethod
     async def set_power_mode(
         self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs
     ):

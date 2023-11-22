@@ -332,9 +332,6 @@ class ExampleBoard(Board):
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
 
-    async def model_attributes(self) -> Board.Attributes:
-        return Board.Attributes(remote=True)
-
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()
 
