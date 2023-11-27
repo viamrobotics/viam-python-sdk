@@ -23,7 +23,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .audio_input import AudioInput
 
 
-class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase):
+class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioInput]):
     """
     gRPC Service for a generic AudioInput
     """

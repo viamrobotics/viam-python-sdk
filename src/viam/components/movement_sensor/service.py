@@ -32,7 +32,7 @@ from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 
 
-class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase):
+class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase[MovementSensor]):
     """
     gRPC Service for a MovementSensor
     """

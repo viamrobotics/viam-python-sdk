@@ -15,7 +15,7 @@ from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 
 
-class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase):
+class PowerSensorRPCService(PowerSensorServiceBase, ResourceRPCServiceBase[PowerSensor]):
     """
     gRPC Service for a PowerSensor
     """
