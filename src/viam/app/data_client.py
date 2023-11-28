@@ -420,7 +420,7 @@ class DataClient:
 
         Returns:
             str: The bounding box ID
-            """
+        """
         request = AddBoundingBoxToImageByIDRequest(
             label=label,
             binary_id=binary_id,

@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from typing import Any, AsyncIterator, List, Mapping, Optional, Tuple, Union, Literal
+from typing import Any, AsyncIterator, List, Literal, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
 from typing_extensions import Self
@@ -25,10 +25,10 @@ from viam.proto.app import (
     CreateLocationResponse,
     CreateLocationSecretRequest,
     CreateLocationSecretResponse,
-    CreateOrganizationInviteRequest,
-    CreateOrganizationInviteResponse,
     CreateModuleRequest,
     CreateModuleResponse,
+    CreateOrganizationInviteRequest,
+    CreateOrganizationInviteResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
@@ -120,13 +120,13 @@ from viam.proto.app import (
     UpdateModuleResponse,
     UpdateOrganizationInviteAuthorizationsRequest,
     UpdateOrganizationInviteAuthorizationsResponse,
+    UpdateOrganizationRequest,
+    UpdateOrganizationResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
     UploadModuleFileRequest,
-    UpdateOrganizationRequest,
-    UpdateOrganizationResponse,
     Visibility,
 )
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
