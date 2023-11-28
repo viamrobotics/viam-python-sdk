@@ -89,7 +89,7 @@
   <h1>Source code for viam.app.app_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
@@ -114,10 +114,10 @@
     <span class="n">CreateLocationResponse</span><span class="p">,</span>
     <span class="n">CreateLocationSecretRequest</span><span class="p">,</span>
     <span class="n">CreateLocationSecretResponse</span><span class="p">,</span>
-    <span class="n">CreateOrganizationInviteRequest</span><span class="p">,</span>
-    <span class="n">CreateOrganizationInviteResponse</span><span class="p">,</span>
     <span class="n">CreateModuleRequest</span><span class="p">,</span>
     <span class="n">CreateModuleResponse</span><span class="p">,</span>
+    <span class="n">CreateOrganizationInviteRequest</span><span class="p">,</span>
+    <span class="n">CreateOrganizationInviteResponse</span><span class="p">,</span>
     <span class="n">CreateRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">CreateRobotPartSecretResponse</span><span class="p">,</span>
     <span class="n">DeleteFragmentRequest</span><span class="p">,</span>
@@ -209,13 +209,13 @@
     <span class="n">UpdateModuleResponse</span><span class="p">,</span>
     <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">,</span>
     <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationRequest</span><span class="p">,</span>
+    <span class="n">UpdateOrganizationResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotPartRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotPartResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotResponse</span><span class="p">,</span>
     <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
-    <span class="n">UpdateOrganizationRequest</span><span class="p">,</span>
-    <span class="n">UpdateOrganizationResponse</span><span class="p">,</span>
     <span class="n">Visibility</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
