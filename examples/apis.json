@@ -18,7 +18,10 @@
   "audio": { "func": "get_properties" },
   "pose_tracker": { "func": "get_poses" },
   "power_sensor": { "func": "get_power" },
-  "motion": { "func": "get_pose" },
+  "motion": {
+    "func": "get_pose",
+    "comment": "Note this function requires additional arguments. Please provide valid arguments for function to work properly"
+ },
   "vision": {
     "func": "get_classifications_from_camera",
     "args": ["YOURCAMERANAME", "1"],
