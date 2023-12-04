@@ -1,14 +1,12 @@
 import abc
-from typing import Any, Dict, Final, List, NamedTuple, Optional, Tuple, Union
-
-from PIL.Image import Image
+from typing import Any, Dict, Final, List, NamedTuple, Optional, Tuple
 
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import DistortionParameters, IntrinsicParameters, RawImage
+from . import DistortionParameters, IntrinsicParameters
 
 
 class Camera(ComponentBase):

@@ -20,7 +20,7 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Camera, RawImage
+from . import Camera
 
 
 def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> ViamImage:
