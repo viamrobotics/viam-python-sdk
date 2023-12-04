@@ -1,10 +1,8 @@
-from io import BytesIO
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
-from PIL import Image
 
-from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, ViamImage
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -40,9 +38,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(
-        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
-    ) -> ViamImage:
+    async def get_image(self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> ViamImage:
         if extra is None:
             extra = {}
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
