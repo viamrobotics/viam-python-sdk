@@ -15,16 +15,22 @@ from viam.proto.common import (
 )
 from viam.proto.service.motion import (
     Constraints,
+    GetPlanRequest,
+    GetPlanResponse,
     GetPoseRequest,
     GetPoseResponse,
+    ListPlanStatusesRequest,
+    ListPlanStatusesResponse,
     MotionConfiguration,
     MotionServiceStub,
-    MoveOnGlobeRequest,
-    MoveOnGlobeResponse,
+    MoveOnGlobeNewRequest,
+    MoveOnGlobeNewResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
+    StopPlanRequest,
+    StopPlanResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -101,7 +107,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> bool:
+    ) -> str:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
         Args:
@@ -114,11 +120,11 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.
 
         Returns:
-            bool: Whether the request was successful
+            str: ExecutionID of the move_on_globe call
         """
         if extra is None:
             extra = {}
-        request = MoveOnGlobeRequest(
+        request = MoveOnGlobeNewRequest(
             name=self.name,
             component_name=component_name,
             destination=destination,
@@ -128,8 +134,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             motion_configuration=configuration,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
-        return response.success
+        response: MoveOnGlobeNewResponse = await self.client.MoveOnGlobeNew(request, timeout=timeout)
+        return response.execution_id
 
     async def move_on_map(
         self,
@@ -161,6 +167,75 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
         return response.success
+
+    async def stop_plan(
+        self,
+        component_name: ResourceName,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) :
+        """
+        """
+        if extra is None:
+            extra = {}
+
+        request = StopPlanRequest(
+            name=self.name,
+            component_name=component_name,
+            extra=dict_to_struct(extra),
+        )
+        _: StopPlanResponse = await self.client.StopPlan(request, timeout=timeout)
+        return
+
+    async def get_plan(
+        self,
+        component_name: ResourceName,
+        last_plan_only: Optional[bool] = None,
+        execution_id: Optional[str] = None,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> GetPlanResponse:
+        """
+        """
+        if extra is None:
+            extra = {}
+
+        if last_plan_only is None:
+            last_plan_only = False
+        request = GetPlanRequest(
+            name=self.name,
+            component_name=component_name,
+            last_plan_only=last_plan_only,
+            execution_id=execution_id,
+            extra=dict_to_struct(extra),
+        )
+        response: GetPlanResponse = await self.client.GetPlan(request, timeout=timeout)
+        return response
+
+    async def list_plan_statuses(
+        self,
+        only_active_plans: Optional[bool] = None,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> ListPlanStatusesResponse:
+        """
+        """
+        if extra is None:
+            extra = {}
+
+        if only_active_plans is None:
+            only_active_plans = False
+
+        request = ListPlanStatusesRequest(
+            name=self.name,
+            only_active_plans=only_active_plans,
+            extra=dict_to_struct(extra),
+        )
+        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout)
+        return response
 
     async def get_pose(
         self,
