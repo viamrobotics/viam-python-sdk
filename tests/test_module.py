@@ -1,8 +1,6 @@
-import asyncio
 from unittest import mock
 
 import pytest
-import pytest_asyncio
 from grpclib.testing import ChannelFor
 
 from viam.errors import GRPCError
@@ -32,17 +30,8 @@ from .mocks.module.summation.my_summation import MySummationService
 from .test_robot import service as robot_service  # noqa: F401
 
 
-@pytest.fixture(scope="class")
-def event_loop():
-    """Overrides pytest default function scoped event loop"""
-    policy = asyncio.get_event_loop_policy()
-    loop = policy.new_event_loop()
-    yield loop
-    loop.close()
-
-
-@pytest_asyncio.fixture(scope="class")
-async def module(request, event_loop):
+@pytest.fixture
+async def module(request):
     module = Module("some_fake_address")
     module.add_model_from_registry(Gizmo.SUBTYPE, MyGizmo.MODEL)
     request.cls.module = module
@@ -55,12 +44,9 @@ def service(module: Module) -> ModuleRPCService:
     return ModuleRPCService(module)
 
 
-@pytest.mark.usefixtures("module")
 class TestModule:
-    module: Module
-
     @pytest.mark.asyncio
-    async def test_add_resource(self):
+    async def test_add_resource(self, module: Module):
         req = AddResourceRequest(
             config=ComponentConfig(
                 name="gizmo1",
@@ -71,9 +57,9 @@ class TestModule:
                 api="acme:component:gizmo",
             )
         )
-        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
-        await self.module.add_resource(req)
-        assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
+        assert Gizmo.get_resource_name("gizmo1") not in module.server.resources
+        await module.add_resource(req)
+        assert Gizmo.get_resource_name("gizmo1") in module.server.resources
 
         req = AddResourceRequest(
             config=ComponentConfig(
@@ -85,13 +71,15 @@ class TestModule:
                 api="acme:service:summation",
             )
         )
-        assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
-        await self.module.add_resource(req)
-        assert SummationService.get_resource_name("mysum1") in self.module.server.resources
+        assert SummationService.get_resource_name("mysum1") not in module.server.resources
+        await module.add_resource(req)
+        assert SummationService.get_resource_name("mysum1") in module.server.resources
 
     @pytest.mark.asyncio
-    async def test_reconfigure_resource(self):
-        gizmo = self.module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
+    async def test_reconfigure_resource(self, module: Module):
+        await self.test_add_resource(module)
+
+        gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
         assert gizmo.my_arg == "arg1"
         req = ReconfigureResourceRequest(
             config=ComponentConfig(
@@ -103,10 +91,10 @@ class TestModule:
                 api="acme:component:gizmo",
             )
         )
-        await self.module.reconfigure_resource(req)
+        await module.reconfigure_resource(req)
         assert gizmo.my_arg == "arg2"
 
-        summer = self.module.server.get_resource(MySummationService, SummationService.get_resource_name("mysum1"))
+        summer = module.server.get_resource(MySummationService, SummationService.get_resource_name("mysum1"))
         assert summer.subtract is False
         req = ReconfigureResourceRequest(
             config=ComponentConfig(
@@ -118,14 +106,14 @@ class TestModule:
                 api="acme:service:summation",
             )
         )
-        await self.module.reconfigure_resource(req)
+        await module.reconfigure_resource(req)
         assert summer.subtract is True
 
     @pytest.mark.asyncio
-    async def test_add_resource_with_deps(self, robot_service: RobotService):  # noqa: F811
+    async def test_add_resource_with_deps(self, robot_service: RobotService, module: Module):  # noqa: F811
         async with ChannelFor([robot_service]) as channel:
             _ = mock.patch("viam.module.module.Module._connect_to_parent")
-            self.module.parent = await RobotClient.with_channel(channel, RobotClient.Options())
+            module.parent = await RobotClient.with_channel(channel, RobotClient.Options())
             req = AddResourceRequest(
                 config=ComponentConfig(
                     name="gizmo2",
@@ -137,40 +125,42 @@ class TestModule:
                 ),
                 dependencies=["rdk:component:arm/arm1", "rdk:service:mlmodel/mlmodel1"],
             )
-            await self.module.add_resource(req)
-            assert Gizmo.get_resource_name("gizmo2") in self.module.server.resources
+            await module.add_resource(req)
+            assert Gizmo.get_resource_name("gizmo2") in module.server.resources
 
             req = RemoveResourceRequest(name="acme:component:gizmo/gizmo2")
-            await self.module.remove_resource(req)
-            assert Gizmo.get_resource_name("gizmo2") not in self.module.server.resources
+            await module.remove_resource(req)
+            assert Gizmo.get_resource_name("gizmo2") not in module.server.resources
 
     @pytest.mark.asyncio
-    async def test_remove_resource(self):
-        gizmo = self.module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
+    async def test_remove_resource(self, module: Module):
+        await self.test_add_resource(module)
+
+        gizmo = module.server.get_resource(MyGizmo, Gizmo.get_resource_name("gizmo1"))
         assert gizmo.closed is False
-        assert Gizmo.get_resource_name("gizmo1") in self.module.server.resources
+        assert Gizmo.get_resource_name("gizmo1") in module.server.resources
         req = RemoveResourceRequest(name="acme:component:gizmo/gizmo1")
-        await self.module.remove_resource(req)
-        assert Gizmo.get_resource_name("gizmo1") not in self.module.server.resources
+        await module.remove_resource(req)
+        assert Gizmo.get_resource_name("gizmo1") not in module.server.resources
         assert gizmo.closed is True
 
         with mock.patch("tests.mocks.module.summation.MySummationService.close") as mocked:
-            assert SummationService.get_resource_name("mysum1") in self.module.server.resources
+            assert SummationService.get_resource_name("mysum1") in module.server.resources
             req = RemoveResourceRequest(name="acme:service:summation/mysum1")
 
             mocked.assert_not_called()
-            await self.module.remove_resource(req)
-            assert SummationService.get_resource_name("mysum1") not in self.module.server.resources
+            await module.remove_resource(req)
+            assert SummationService.get_resource_name("mysum1") not in module.server.resources
             # test default close
             mocked.assert_called_once()
 
     @pytest.mark.asyncio
-    async def test_ready(self):
+    async def test_ready(self, module: Module):
         p_addr = "SOME_FAKE_ADDRESS"
-        assert self.module._parent_address != p_addr
+        assert module._parent_address != p_addr
         req = ReadyRequest(parent_address=p_addr)
-        resp = await self.module.ready(req)
-        assert self.module._parent_address == p_addr
+        resp = await module.ready(req)
+        assert module._parent_address == p_addr
         assert len(resp.handlermap.handlers) == 2
 
         handler = resp.handlermap.handlers[0]
@@ -195,7 +185,7 @@ class TestModule:
             mod.add_model_from_registry(Subtype.from_string("fake:fake:fake"), Model.from_string("faker:faker:faker"))
 
     @pytest.mark.asyncio
-    async def test_multiple_resources_same_model(self):
+    async def test_multiple_resources_same_model(self, module: Module):
         req = AddResourceRequest(
             config=ComponentConfig(
                 name="gizmo1",
@@ -206,7 +196,7 @@ class TestModule:
                 api="acme:component:gizmo",
             )
         )
-        await self.module.add_resource(req)
+        await module.add_resource(req)
         req = AddResourceRequest(
             config=ComponentConfig(
                 name="gizmo2",
@@ -217,17 +207,20 @@ class TestModule:
                 api="acme:component:gizmo",
             )
         )
-        await self.module.add_resource(req)
+        await module.add_resource(req)
 
-        g1 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo1"))
-        g2 = self.module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo2"))
+        g1 = module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo1"))
+        g2 = module.server.get_resource(Gizmo, Gizmo.get_resource_name("gizmo2"))
 
         assert await g1.do_one("arg1") is True
         assert await g2.do_one("arg1") is False
         assert await g1.do_one("arg2") is False
         assert await g2.do_one("arg2") is True
 
-    async def test_validate_config(self):
+    @pytest.mark.asyncio
+    async def test_validate_config(self, module: Module):
+        await self.test_add_resource(module)
+
         req = ValidateConfigRequest(
             config=(
                 ComponentConfig(
@@ -240,7 +233,7 @@ class TestModule:
                 )
             )
         )
-        response = await self.module.validate_config(req)
+        response = await module.validate_config(req)
         assert response.dependencies == ["motor1"]
 
         req = ValidateConfigRequest(
@@ -256,7 +249,7 @@ class TestModule:
             )
         )
         with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
-            response = await self.module.validate_config(req)
+            response = await module.validate_config(req)
 
         req = ValidateConfigRequest(
             config=(
@@ -271,7 +264,7 @@ class TestModule:
             )
         )
         with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
-            response = await self.module.validate_config(req)
+            response = await module.validate_config(req)
 
         req = ValidateConfigRequest(
             config=(
@@ -286,7 +279,7 @@ class TestModule:
             )
         )
         with pytest.raises(GRPCError, match=r".*Status.INVALID_ARGUMENT.*"):
-            response = await self.module.validate_config(req)
+            response = await module.validate_config(req)
 
         req = ValidateConfigRequest(
             config=ComponentConfig(
@@ -298,7 +291,7 @@ class TestModule:
                 api="acme:service:summation",
             )
         )
-        response = await self.module.validate_config(req)
+        response = await module.validate_config(req)
         assert response.dependencies == []
 
 

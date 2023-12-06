@@ -286,7 +286,7 @@ class RobotClient:
             connection_error = None
             for _ in range(3):
                 try:
-                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
+                    await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
                     connection_error = None
                     break
                 except Exception as e:
@@ -321,7 +321,7 @@ class RobotClient:
                         client = RobotServiceStub(channel)
                     else:
                         client = RobotServiceStub(channel.channel)
-                    _: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
+                    await client.ResourceNames(ResourceNamesRequest())
 
                     if isinstance(channel, Channel):
                         self._channel = channel
