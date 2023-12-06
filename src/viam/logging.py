@@ -32,6 +32,7 @@ class ColorFormatter(logging.Formatter):
 def getLogger(name: str) -> logging.Logger:
     logger = LOGGERS.get(name)
     if logger:
+        print(f"founder logger {name} in cache")
         return logger
 
     logger = logging.getLogger(name)
@@ -44,6 +45,8 @@ def getLogger(name: str) -> logging.Logger:
 
 
 def addHandlers(logger: logging.Logger):
+    logger.handlers.clear()
+
     format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
 
     handler = logging.StreamHandler(stream=sys.stdout)
@@ -65,8 +68,6 @@ def setLevel(level: int):
     LOG_LEVEL = level
     for logger in LOGGERS.values():
         logger.setLevel(LOG_LEVEL)
-        for handler in logger.handlers:
-            logger.removeHandler(handler)
         addHandlers(logger)
 
 

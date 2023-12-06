@@ -102,7 +102,7 @@ class RobotClient:
         """
 
         @classmethod
-        def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
+        def with_api_key(cls, api_key: str, api_key_id: str, **kwargs) -> Self:
             """
             Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
@@ -116,8 +116,8 @@ class RobotClient:
             Returns:
                 Self: the RobotClient.Options
             """
+            self = cls(**kwargs)
             dial_opts = DialOptions.with_api_key(api_key, api_key_id)
-            self = cls()
             self.dial_options = dial_opts
             return self
 
