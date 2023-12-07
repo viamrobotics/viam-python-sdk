@@ -26,6 +26,7 @@ from viam.proto.service.motion import (
     MoveRequest,
     MoveResponse,
 )
+#comment
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
