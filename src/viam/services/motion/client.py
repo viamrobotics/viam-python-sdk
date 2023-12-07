@@ -110,6 +110,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     ) -> str:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
+        Note: Is non blocking.
+
         Args:
             component_name (ResourceName): The component to move
             destination (GeoPoint): The destination point
@@ -120,7 +122,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.
 
         Returns:
-            str: ExecutionID of the move_on_globe call
+            str: ExecutionID of the move_on_globe call, which can be used to track execution progress.
         """
         if extra is None:
             extra = {}
