@@ -269,7 +269,6 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.gen.service.motion.v1.motion_pb2 import PLAN_STATE_IN_PROGRESS, PLAN_STATE_SUCCEEDED, PLAN_STATE_FAILED, PLAN_STATE_STOPPED
 from viam.proto.service.navigation import Mode, Waypoint, Path
 from viam.proto.service.sensors import (
     GetReadingsRequest,
@@ -510,7 +509,7 @@ class MockMotion(MotionServiceBase):
         self.configuration = request.motion_configuration
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.execution_id="some_execution_id"
+        self.execution_id = "some_execution_id"
         await stream.send_message(MoveOnGlobeNewResponse(execution_id=self.execution_id))
 
     async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
@@ -529,7 +528,6 @@ class MockMotion(MotionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         response = self.list_plan_statuses_response
         await stream.send_message(response)
-
 
     async def GetPlan(self, stream: Stream[GetPlanRequest, GetPlanResponse]) -> None:
         request = await stream.recv_message()

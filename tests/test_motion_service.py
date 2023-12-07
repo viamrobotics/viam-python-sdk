@@ -4,8 +4,20 @@ from grpclib.testing import ChannelFor
 from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.gantry import Gantry
-from viam.gen.service.motion.v1.motion_pb2 import GetPlanResponse, ListPlanStatusesResponse, PlanStatusWithID, PlanWithStatus, Plan, PlanStatus, PlanStep, ComponentState
-from viam.gen.service.motion.v1.motion_pb2 import PLAN_STATE_IN_PROGRESS, PLAN_STATE_SUCCEEDED, PLAN_STATE_FAILED, PLAN_STATE_STOPPED
+from viam.gen.service.motion.v1.motion_pb2 import (
+        GetPlanResponse,
+        ListPlanStatusesResponse,
+        PlanStatusWithID,
+        PlanWithStatus,
+        Plan,
+        PlanStatus,
+        PlanStep,
+        ComponentState,
+        PLAN_STATE_IN_PROGRESS,
+        PLAN_STATE_SUCCEEDED,
+        PLAN_STATE_FAILED,
+        PLAN_STATE_STOPPED
+        )
 from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
 from google.protobuf.timestamp_pb2 import Timestamp
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration, ObstacleDetector
@@ -25,7 +37,7 @@ GET_PLAN_RESPONSE = GetPlanResponse(
     current_plan_with_status=PlanWithStatus(
         plan=Plan(
             id="plan_id2",
-            component_name=Base.get_resource_name("get_plan_base"), 
+            component_name=Base.get_resource_name("get_plan_base"),
             execution_id="execution_id",
             steps=[
                 PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21))}),
@@ -39,7 +51,7 @@ GET_PLAN_RESPONSE = GetPlanResponse(
         PlanWithStatus(
             plan=Plan(
                 id="plan_id1",
-                component_name=Base.get_resource_name("get_plan_base"), 
+                component_name=Base.get_resource_name("get_plan_base"),
                 execution_id="execution_id",
                 steps=[
                     PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=1, y=1, z=1, o_x=1, o_y=1, o_z=1, theta=20))}),
@@ -47,13 +59,13 @@ GET_PLAN_RESPONSE = GetPlanResponse(
                     PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=6, y=7, z=8, o_x=9, o_y=10, o_z=11, theta=23))}),
                 ]
             ),
-        status=PlanStatus(state=PLAN_STATE_FAILED, reason="failure reason", timestamp=Timestamp(seconds=2)),
-        status_history=[PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=1))]
+            status=PlanStatus(state=PLAN_STATE_FAILED, reason="failure reason", timestamp=Timestamp(seconds=2)),
+            status_history=[PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=1))]
         )
     ]
 )
 
-LIST_PLAN_STATUSES_RESPONSE=ListPlanStatusesResponse(plan_statuses_with_ids=[
+LIST_PLAN_STATUSES_RESPONSE = ListPlanStatusesResponse(plan_statuses_with_ids=[
     PlanStatusWithID(
         plan_id="plan 5",
         component_name=Base.get_resource_name("list_plan_statuses_base"),
@@ -186,7 +198,7 @@ class TestClient:
                 obstacles,
                 heading=182,
                 configuration=MOTION_CONFIGURATION,
-                extra=extra, 
+                extra=extra,
                 timeout=timeout,
             )
             assert service.component_name == component_rn
@@ -226,7 +238,7 @@ class TestClient:
             assert service.timeout is None
             assert response == GET_PLAN_RESPONSE
             last_plan_only = True
-            execution_id="execution_id"
+            execution_id = "execution_id"
             timeout = 50
             extra = {"some": "extra"}
             response = await client.get_plan(
@@ -238,7 +250,7 @@ class TestClient:
                     )
             assert service.component_name == component_rn
             assert service.last_plan_only == last_plan_only
-            assert service.execution_id == execution_id 
+            assert service.execution_id == execution_id
             assert service.extra == extra
             assert service.timeout == loose_approx(timeout)
             assert response == GET_PLAN_RESPONSE
@@ -248,10 +260,10 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
             response = await client.list_plan_statuses()
-            assert service.only_active_plans == False
+            assert not service.only_active_plans
             assert service.extra == {}
             assert service.timeout is None
-            assert response == LIST_PLAN_STATUSES_RESPONSE 
+            assert response == LIST_PLAN_STATUSES_RESPONSE
             only_active_plans = True
             timeout = 50
             extra = {"some": "extra"}
