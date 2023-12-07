@@ -1,13 +1,12 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Protocol, Sequence, runtime_checkable
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
     from typing_extensions import TypeAlias
 
-from grpclib.server import Stream
 from typing_extensions import Self
 
 from viam.proto.app.robot import ComponentConfig
@@ -205,5 +204,5 @@ Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
 class SupportsGetGeometries(Protocol):
     """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(self, request: GetGeometriesRequest, *, timeout: Optional[float] = None) -> GetGeometriesResponse:
         ...
