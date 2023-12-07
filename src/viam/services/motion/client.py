@@ -174,8 +174,14 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) :
-        """
+    ):
+        """Stops a Plan
+
+        Args:
+            component_name (ResourceName): The component to stop
+
+        Returns:
+            None
         """
         if extra is None:
             extra = {}
@@ -197,7 +203,20 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """
+        """Returns the plan(s) & state history of the most recent execution to move a component.
+
+        Returns a result if the last execution is still executing OR changed state within the last 24 hours AND the robot has not reinitialized.
+        Plans are never mutated.
+        Replans always create new plans.
+        Replans share the execution_id of the previously executing plan.
+
+        Args:
+            component_name (ResourceName): The component to stop
+            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution
+            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id
+
+        Returns:
+            ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus & replan history which matches the request
         """
         if extra is None:
             extra = {}
@@ -221,7 +240,14 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> ListPlanStatusesResponse:
-        """
+        """Returns the status of plans created by MoveOnGlobe requests that are executing
+        OR are part of an execution which changed it statewithin the a 24HR TTL OR until the robot reinitializes.
+
+        Args:
+            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing
+
+        Returns:
+            ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the associated IDs of all plans within the TTL ordered by timestamp in ascending order
         """
         if extra is None:
             extra = {}
