@@ -26,7 +26,6 @@ from viam.proto.service.motion import (
     MoveRequest,
     MoveResponse,
 )
-#comment
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
@@ -34,6 +33,7 @@ from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 
 class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
+#comment
     """Motion is a Viam service that coordinates motion planning across all of the components in a given robot.
 
     The motion planning service calculates a valid path that avoids self collision by default. If additional constraints are supplied in the
