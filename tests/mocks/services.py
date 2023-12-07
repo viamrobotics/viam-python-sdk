@@ -269,6 +269,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
+from viam.gen.service.motion.v1.motion_pb2 import PLAN_STATE_IN_PROGRESS, PLAN_STATE_SUCCEEDED, PLAN_STATE_FAILED, PLAN_STATE_STOPPED
 from viam.proto.service.navigation import Mode, Waypoint, Path
 from viam.proto.service.sensors import (
     GetReadingsRequest,
@@ -443,9 +444,13 @@ class MockMotion(MotionServiceBase):
         self,
         move_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
+        get_plan_response: GetPlanResponse,
+        list_plan_statuses_response: ListPlanStatusesResponse
     ):
         self.move_responses = move_responses
         self.get_pose_responses = get_pose_responses
+        self.get_plan_response = get_plan_response
+        self.list_plan_statuses_response = list_plan_statuses_response
         self.constraints: Optional[Constraints] = None
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
@@ -495,16 +500,46 @@ class MockMotion(MotionServiceBase):
         await stream.send_message(response)
 
     async def MoveOnGlobeNew(self, stream: Stream[MoveOnGlobeNewRequest, MoveOnGlobeNewResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.component_name = request.component_name
+        self.destination = request.destination
+        self.movement_sensor = request.movement_sensor_name
+        self.obstacles = request.obstacles
+        self.heading = request.heading
+        self.configuration = request.motion_configuration
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        self.execution_id="some_execution_id"
+        await stream.send_message(MoveOnGlobeNewResponse(execution_id=self.execution_id))
 
     async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.component_name = request.component_name
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(StopPlanResponse())
 
     async def ListPlanStatuses(self, stream: Stream[ListPlanStatusesRequest, ListPlanStatusesResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.only_active_plans = request.only_active_plans
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        response = self.list_plan_statuses_response
+        await stream.send_message(response)
+
 
     async def GetPlan(self, stream: Stream[GetPlanRequest, GetPlanResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.component_name = request.component_name
+        self.last_plan_only = request.last_plan_only
+        self.execution_id = request.execution_id
+        self.extra = struct_to_dict(request.extra)
+        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await stream.send_message(self.get_plan_response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
