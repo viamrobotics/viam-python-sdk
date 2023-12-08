@@ -2,7 +2,7 @@ clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
 _lint:
-	flake8 --exclude=**/gen/**,*_grpc.py,*_pb2.py,*_pb2.pyi,.tox
+	flake8 --exclude=**/gen/**,*_grpc.py,*_pb2.py,*_pb2.pyi,.tox,**/venv/**
 
 lint:
 	poetry run $(MAKE) _lint
