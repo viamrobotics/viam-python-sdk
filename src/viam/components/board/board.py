@@ -1,5 +1,4 @@
 import abc
-from dataclasses import dataclass
 from datetime import timedelta
 from multiprocessing import Queue
 from typing import Any, Callable, Dict, Final, List, Optional
