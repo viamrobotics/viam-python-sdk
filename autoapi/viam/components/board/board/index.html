@@ -67,10 +67,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.PostProcessor"><code class="docutils literal notranslate"><span class="pre">PostProcessor</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board"><code class="docutils literal notranslate"><span class="pre">Board</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.components.board.board.Board.Attributes"><code class="docutils literal notranslate"><span class="pre">Board.Attributes</span></code></a><ul>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.Attributes.remote"><code class="docutils literal notranslate"><span class="pre">Board.Attributes.remote</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.board.board.Board.AnalogReader"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.AnalogReader.read"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader.read()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.AnalogReader.from_robot"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader.from_robot()</span></code></a></li>
@@ -229,17 +225,6 @@ components such as analog readers, and digital interrupts.</p>
 <p>This acts as an abstract base class for any drivers representing specific
 board implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.Attributes">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Attributes</span></span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.Attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.Attributes" title="Permalink to this definition"></a></dt>
-<dd><dl class="py attribute">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.Attributes.remote">
-<span class="sig-name descname"><span class="pre">remote</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.components.board.board.Board.Attributes.remote" title="Permalink to this definition"></a></dt>
-<dd><p>Indicates whether this board is accessed over a remote connection, e.g. gRPC.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.board.board.Board.AnalogReader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AnalogReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.AnalogReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.AnalogReader" title="Permalink to this definition"></a></dt>
