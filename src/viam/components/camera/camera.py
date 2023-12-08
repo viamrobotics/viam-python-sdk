@@ -1,12 +1,12 @@
 import abc
-from typing import Any, Dict, Final, List, NamedTuple, Optional, Tuple
+from typing import Any, Dict, Final, List, Optional, Tuple
 
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
+from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import DistortionParameters, IntrinsicParameters
 
 
 class Camera(ComponentBase):
@@ -20,17 +20,7 @@ class Camera(ComponentBase):
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera")
 
-    class Properties(NamedTuple):
-        """The camera's supported features and settings"""
-
-        supports_pcd: bool
-        """Whether the camera has a valid implementation of ``get_point_cloud``"""
-
-        intrinsic_parameters: IntrinsicParameters
-        """The properties of the camera"""
-
-        distortion_parameters: DistortionParameters
-        """The distortion parameters of the camera"""
+    type Properties = GetPropertiesResponse
 
     @abc.abstractmethod
     async def get_image(
@@ -39,7 +29,7 @@ class Camera(ComponentBase):
         """Get the next image from the camera as a ViamImage.
         Be sure to close the image when finished.
 
-        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
+        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
         to convert the data to a standard representation.
 
         Args:
