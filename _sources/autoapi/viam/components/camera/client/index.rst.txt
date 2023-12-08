@@ -25,7 +25,7 @@ Functions
 
 
 
-.. py:function:: get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
+.. py:function:: get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> viam.media.video.ViamImage
 
 
 .. py:class:: CameraClient(name: str, channel: grpclib.client.Channel)
@@ -35,10 +35,10 @@ Functions
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.media.video.ViamImage
       :async:
 
-      Get the next image from the camera as an Image or RawImage.
+      Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
 
       NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
@@ -48,7 +48,7 @@ Functions
       :type mime_type: str
 
       :returns: The frame
-      :rtype: Image | RawImage
+      :rtype: ViamImage
 
 
    .. py:method:: get_images(*, timeout: Optional[float] = None) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
