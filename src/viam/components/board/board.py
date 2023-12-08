@@ -1,5 +1,4 @@
 import abc
-from dataclasses import dataclass
 from datetime import timedelta
 from multiprocessing import Queue
 from typing import Any, Callable, Dict, Final, List, Optional
@@ -24,13 +23,6 @@ class Board(ComponentBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board")
-
-    @dataclass
-    class Attributes:
-        remote: bool
-        """
-        Indicates whether this board is accessed over a remote connection, e.g. gRPC.
-        """
 
     class AnalogReader(ComponentBase):
         """
