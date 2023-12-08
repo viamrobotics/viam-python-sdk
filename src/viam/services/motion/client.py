@@ -112,8 +112,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     ) -> bool:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
-        Note: Is non blocking.
-
         Args:
             component_name (ResourceName): The component to move
             destination (GeoPoint): The destination point
