@@ -25,13 +25,6 @@ class Board(ComponentBase):
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board")
 
-    @dataclass
-    class Attributes:
-        remote: bool
-        """
-        Indicates whether this board is accessed over a remote connection, e.g. gRPC.
-        """
-
     class AnalogReader(ComponentBase):
         """
         AnalogReader represents an analog pin reader that resides on a Board.
