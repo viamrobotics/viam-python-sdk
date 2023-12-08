@@ -25,8 +25,6 @@ from viam.proto.service.motion import (
     MotionServiceStub,
     MoveOnGlobeNewRequest,
     MoveOnGlobeNewResponse,
-    MoveOnGlobeRequest,
-    MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -109,59 +107,16 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> bool:
+    ) -> str:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
-        Args:
-            component_name (ResourceName): The component to move
-            destination (GeoPoint): The destination point
-            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location
-            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to be considered for motion planning. Defaults to None.
-            heading (Optional[float]): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
-            linear_meters_per_sec (Optional[float]): Linear velocity to target when moving. Defaults to None.
-            angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.
+        ``move_on_globe()`` is non blocking, meaning the motion service will move the component to the destination
+        GPS point after ``move_on_globe()`` returns.
 
-        Returns:
-            bool: Whether the request was successful
-        """
-        if extra is None:
-            extra = {}
-        request = MoveOnGlobeRequest(
-            name=self.name,
-            component_name=component_name,
-            destination=destination,
-            movement_sensor_name=movement_sensor_name,
-            obstacles=obstacles,
-            heading=heading,
-            motion_configuration=configuration,
-            extra=dict_to_struct(extra),
-        )
-        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
-        return response.success
+        Each successful ``move_on_globe()`` call retuns a unique ExectionID which you can use to identify all plans
+        generated durring the ``move_on_globe()`` call.
 
-    async def move_on_globe_new(
-        self,
-        component_name: ResourceName,
-        destination: GeoPoint,
-        movement_sensor_name: ResourceName,
-        obstacles: Optional[Sequence[GeoObstacle]] = None,
-        heading: Optional[float] = None,
-        configuration: Optional[MotionConfiguration] = None,
-        *,
-        extra: Optional[Mapping[str, ValueTypes]] = None,
-        timeout: Optional[float] = None,
-    ) -> str:
-        """
-        **Experimental**: use move_on_globe instead.
-        Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
-
-        ``move_on_globe_new()`` is non blocking, meaning the motion service will move the component to the destination
-        GPS point after ``move_on_globe_new()`` returns.
-
-        Each successful ``move_on_globe_new()`` call retuns a unique ExectionID which you can use to identify all plans
-        generated durring the ``move_on_globe_new()`` call.
-
-        You can monitor the progress of the ``move_on_globe_new()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
+        You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
         Args:
             component_name (ResourceName): The component to move
@@ -173,7 +128,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.
 
         Returns:
-            str: ExecutionID of the move_on_globe_new call, which can be used to track execution progress.
+            str: ExecutionID of the move_on_globe call, which can be used to track execution progress.
         """
         if extra is None:
             extra = {}
@@ -229,8 +184,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ):
-        """**Experimental**
-        Stop a component being moved by an in progress ``move_on_globe_new()`` call.
+        """Stop a component being moved by an in progress ``move_on_globe()`` call.
 
         Args:
             component_name (ResourceName): The component to stop
@@ -258,14 +212,13 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """**Experimental**
-        By default: returns the plan history of the most recent ``move_on_globe_new()`` call to move a component.
+        """By default: returns the plan history of the most recent ``move_on_globe()`` call to move a component.
 
         The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
 
         Returns a result if both of the following conditions are met:
 
-        - the execution (call to ``move_on_globe_new()``) is still executing **or** changed state within the last 24 hours
+        - the execution (call to ``move_on_globe()``) is still executing **or** changed state within the last 24 hours
         - the robot has not reinitialized
 
         Plans never change.
@@ -287,8 +240,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
 
-        if last_plan_only is None:
-            last_plan_only = False
         request = GetPlanRequest(
             name=self.name,
             component_name=component_name,
@@ -306,8 +257,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> ListPlanStatusesResponse:
-        """**Experimental**
-        Returns the statuses of plans created by `move_on_globe_new()` calls that meet at least one of the following
+        """Returns the statuses of plans created by `move_on_globe()` calls that meet at least one of the following
         conditions since the motion service initialized:
 
         - the plan's status is in progress
