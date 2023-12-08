@@ -104,16 +104,24 @@
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Constraints</span><span class="p">,</span>
+    <span class="n">GetPlanRequest</span><span class="p">,</span>
+    <span class="n">GetPlanResponse</span><span class="p">,</span>
     <span class="n">GetPoseRequest</span><span class="p">,</span>
     <span class="n">GetPoseResponse</span><span class="p">,</span>
+    <span class="n">ListPlanStatusesRequest</span><span class="p">,</span>
+    <span class="n">ListPlanStatusesResponse</span><span class="p">,</span>
     <span class="n">MotionConfiguration</span><span class="p">,</span>
     <span class="n">MotionServiceStub</span><span class="p">,</span>
+    <span class="n">MoveOnGlobeNewRequest</span><span class="p">,</span>
+    <span class="n">MoveOnGlobeNewResponse</span><span class="p">,</span>
     <span class="n">MoveOnGlobeRequest</span><span class="p">,</span>
     <span class="n">MoveOnGlobeResponse</span><span class="p">,</span>
     <span class="n">MoveOnMapRequest</span><span class="p">,</span>
     <span class="n">MoveOnMapResponse</span><span class="p">,</span>
     <span class="n">MoveRequest</span><span class="p">,</span>
     <span class="n">MoveResponse</span><span class="p">,</span>
+    <span class="n">StopPlanRequest</span><span class="p">,</span>
+    <span class="n">StopPlanResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
@@ -197,10 +205,10 @@
 <span class="sd">            component_name (ResourceName): The component to move</span>
 <span class="sd">            destination (GeoPoint): The destination point</span>
 <span class="sd">            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location</span>
-<span class="sd">            obstacles (Optional[Sequence[GeoObstacle]], optional): Obstacles to be considered for motion planning. Defaults to None.</span>
-<span class="sd">            heading (Optional[float], optional): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.</span>
-<span class="sd">            linear_meters_per_sec (Optional[float], optional): Linear velocity to target when moving. Defaults to None.</span>
-<span class="sd">            angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.</span>
+<span class="sd">            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to be considered for motion planning. Defaults to None.</span>
+<span class="sd">            heading (Optional[float]): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.</span>
+<span class="sd">            linear_meters_per_sec (Optional[float]): Linear velocity to target when moving. Defaults to None.</span>
+<span class="sd">            angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the request was successful</span>
@@ -220,6 +228,57 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnGlobeResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnGlobe</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
 
+<div class="viewcode-block" id="MotionClient.move_on_globe_new"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.move_on_globe_new">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_globe_new</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">destination</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span>
+        <span class="n">movement_sensor_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoObstacle</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">heading</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">configuration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MotionConfiguration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        **Experimental**: use move_on_globe instead.</span>
+<span class="sd">        Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.</span>
+
+<span class="sd">        ``move_on_globe_new()`` is non blocking, meaning the motion service will move the component to the destination</span>
+<span class="sd">        GPS point after ``move_on_globe_new()`` returns.</span>
+
+<span class="sd">        Each successful ``move_on_globe_new()`` call retuns a unique ExectionID which you can use to identify all plans</span>
+<span class="sd">        generated durring the ``move_on_globe_new()`` call.</span>
+
+<span class="sd">        You can monitor the progress of the ``move_on_globe_new()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (ResourceName): The component to move</span>
+<span class="sd">            destination (GeoPoint): The destination point</span>
+<span class="sd">            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location</span>
+<span class="sd">            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to be considered for motion planning. Defaults to None.</span>
+<span class="sd">            heading (Optional[float]): Compass heading to achieve at the destination, in degrees [0-360]. Defaults to None.</span>
+<span class="sd">            linear_meters_per_sec (Optional[float]): Linear velocity to target when moving. Defaults to None.</span>
+<span class="sd">            angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: ExecutionID of the move_on_globe_new call, which can be used to track execution progress.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">MoveOnGlobeNewRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
+            <span class="n">movement_sensor_name</span><span class="o">=</span><span class="n">movement_sensor_name</span><span class="p">,</span>
+            <span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">,</span>
+            <span class="n">heading</span><span class="o">=</span><span class="n">heading</span><span class="p">,</span>
+            <span class="n">motion_configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnGlobeNewResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnGlobeNew</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">execution_id</span></div>
+
 <div class="viewcode-block" id="MotionClient.move_on_map"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.move_on_map">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">move_on_map</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
@@ -229,7 +288,8 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Move a component to a specific pose, using a ``SlamService`` for the SLAM map</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Move a component to a specific pose, using a ``SlamService`` for the SLAM map</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to move</span>
@@ -250,6 +310,117 @@
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnMapResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnMap</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">success</span></div>
+
+<div class="viewcode-block" id="MotionClient.stop_plan"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.stop_plan">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_plan</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;**Experimental**</span>
+<span class="sd">        Stop a component being moved by an in progress ``move_on_globe_new()`` call.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (ResourceName): The component to stop</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StopPlanRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">_</span><span class="p">:</span> <span class="n">StopPlanResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">StopPlan</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="MotionClient.get_plan"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.get_plan">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_plan</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
+        <span class="n">last_plan_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">execution_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetPlanResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;**Experimental**</span>
+<span class="sd">        By default: returns the plan history of the most recent ``move_on_globe_new()`` call to move a component.</span>
+
+<span class="sd">        The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.</span>
+
+<span class="sd">        Returns a result if both of the following conditions are met:</span>
+
+<span class="sd">        - the execution (call to ``move_on_globe_new()``) is still executing **or** changed state within the last 24 hours</span>
+<span class="sd">        - the robot has not reinitialized</span>
+
+<span class="sd">        Plans never change.</span>
+
+<span class="sd">        Replans always create new plans.</span>
+
+<span class="sd">        Replans share the ExecutionID of the previously executing plan.</span>
+
+<span class="sd">        All repeated fields are in time ascending order.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            component_name (ResourceName): The component to stop</span>
+<span class="sd">            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution</span>
+<span class="sd">            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus &amp; replan history which matches the request</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">last_plan_only</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">last_plan_only</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPlanRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">component_name</span><span class="o">=</span><span class="n">component_name</span><span class="p">,</span>
+            <span class="n">last_plan_only</span><span class="o">=</span><span class="n">last_plan_only</span><span class="p">,</span>
+            <span class="n">execution_id</span><span class="o">=</span><span class="n">execution_id</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetPlanResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetPlan</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="MotionClient.list_plan_statuses"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.list_plan_statuses">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_plan_statuses</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">only_active_plans</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListPlanStatusesResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;**Experimental**</span>
+<span class="sd">        Returns the statuses of plans created by `move_on_globe_new()` calls that meet at least one of the following</span>
+<span class="sd">        conditions since the motion service initialized:</span>
+
+<span class="sd">        - the plan&#39;s status is in progress</span>
+<span class="sd">        - the plan&#39;s status changed state within the last 24 hours</span>
+
+<span class="sd">        All repeated fields are in chronological order.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the</span>
+<span class="sd">            associated IDs of all plans within the TTL ordered by timestamp in ascending order</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListPlanStatusesRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">only_active_plans</span><span class="o">=</span><span class="n">only_active_plans</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListPlanStatusesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">ListPlanStatuses</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="MotionClient.get_pose"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.get_pose">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_pose</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
