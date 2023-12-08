@@ -257,6 +257,8 @@ class TestClient:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
             response = await client.get_plan(component_rn)
             assert service.component_name == component_rn
+            assert not service.last_plan_only
+            assert service.execution_id == ''
             assert service.extra == {}
             assert service.timeout is None
             assert response == GET_PLAN_RESPONSE
