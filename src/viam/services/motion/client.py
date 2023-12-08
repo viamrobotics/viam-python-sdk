@@ -25,6 +25,8 @@ from viam.proto.service.motion import (
     MotionServiceStub,
     MoveOnGlobeNewRequest,
     MoveOnGlobeNewResponse,
+    MoveOnGlobeRequest,
+    MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -107,8 +109,53 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> str:
+    ) -> bool:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
+
+        Note: Is non blocking.
+
+        Args:
+            component_name (ResourceName): The component to move
+            destination (GeoPoint): The destination point
+            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location
+            obstacles (Optional[Sequence[GeoObstacle]], optional): Obstacles to be considered for motion planning. Defaults to None.
+            heading (Optional[float], optional): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
+            linear_meters_per_sec (Optional[float], optional): Linear velocity to target when moving. Defaults to None.
+            angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.
+
+        Returns:
+            bool: Whether the request was successful
+        """
+        if extra is None:
+            extra = {}
+        request = MoveOnGlobeRequest(
+            name=self.name,
+            component_name=component_name,
+            destination=destination,
+            movement_sensor_name=movement_sensor_name,
+            obstacles=obstacles,
+            heading=heading,
+            motion_configuration=configuration,
+            extra=dict_to_struct(extra),
+        )
+        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
+        return response.success
+
+    async def move_on_globe_new(
+        self,
+        component_name: ResourceName,
+        destination: GeoPoint,
+        movement_sensor_name: ResourceName,
+        obstacles: Optional[Sequence[GeoObstacle]] = None,
+        heading: Optional[float] = None,
+        configuration: Optional[MotionConfiguration] = None,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> str:
+        """
+        **Experimental**: use move_on_globe instead.
+        Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
         Note: Is non blocking.
 
@@ -148,7 +195,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> bool:
-        """Move a component to a specific pose, using a ``SlamService`` for the SLAM map
+        """
+        Move a component to a specific pose, using a ``SlamService`` for the SLAM map
 
         Args:
             component_name (ResourceName): The component to move
@@ -177,7 +225,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ):
-        """Stops a Plan
+        """**Experimental**
+        Stops a Plan
 
         Args:
             component_name (ResourceName): The component to stop
@@ -205,7 +254,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """Returns the plan(s) & state history of the most recent execution to move a component.
+        """**Experimental**
+        Returns the plan(s) & state history of the most recent execution to move a component.
 
         Returns a result if the last execution is still executing OR changed state within the
         last 24 hours AND the robot has not reinitialized.
@@ -243,7 +293,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> ListPlanStatusesResponse:
-        """Returns the status of plans created by MoveOnGlobe requests that are executing
+        """**Experimental**
+        Returns the status of plans created by MoveOnGlobe requests that are executing
         OR are part of an execution which changed it statewithin the a 24HR TTL OR until the robot reinitializes.
 
         Args:
