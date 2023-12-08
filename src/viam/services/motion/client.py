@@ -232,7 +232,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
     ):
         """**Experimental**
-        Stop a component being moved by an in progress ``move_on_globe()`` call.
+        Stop a component being moved by an in progress ``move_on_globe_new()`` call.
 
         Args:
             component_name (ResourceName): The component to stop
