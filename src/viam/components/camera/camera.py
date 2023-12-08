@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Tuple, TypeAlias
+from typing import Any, Dict, Final, List, Optional, Tuple, TYPE_CHECKING
 
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
@@ -7,6 +7,9 @@ from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+
+if TYPE_CHECKING:
+    from typing import TypeAlias
 
 
 class Camera(ComponentBase):
@@ -20,7 +23,7 @@ class Camera(ComponentBase):
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera")
 
-    Properties: TypeAlias = GetPropertiesResponse
+    Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
     async def get_image(
