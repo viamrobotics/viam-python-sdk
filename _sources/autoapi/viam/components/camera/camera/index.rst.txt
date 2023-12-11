@@ -28,31 +28,13 @@ Classes
    camera implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
-   .. py:class:: Properties
-
-
-      Bases: :py:obj:`NamedTuple`
-
-      The camera's supported features and settings
-
-      .. py:attribute:: supports_pcd
-         :type: bool
-
-         Whether the camera has a valid implementation of ``get_point_cloud``
-
-      .. py:attribute:: intrinsic_parameters
-         :type: viam.components.camera.IntrinsicParameters
-
-         The properties of the camera
-
-      .. py:attribute:: distortion_parameters
-         :type: viam.components.camera.DistortionParameters
-
-         The distortion parameters of the camera
-
-
    .. py:attribute:: SUBTYPE
       :type: Final
+
+      
+
+   .. py:attribute:: Properties
+      :type: TypeAlias
 
       
 
@@ -63,7 +45,7 @@ Classes
       Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
 
-      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
+      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
       to convert the data to a standard representation.
 
       :param mime_type: The desired mime type of the image. This does not guarantee output type

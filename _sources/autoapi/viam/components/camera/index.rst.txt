@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.components.camera.RawImage
+   viam.components.camera.ViamImage
    viam.components.camera.DistortionParameters
    viam.components.camera.IntrinsicParameters
    viam.components.camera.Camera
@@ -35,6 +36,8 @@ Classes
 
 
    Bases: :py:obj:`NamedTuple`
+
+   **DEPRECATED** Use ``ViamImage`` instead
 
    A raw bytes representation of an image.
 
@@ -58,6 +61,45 @@ Classes
    .. py:method:: close()
 
       Close the image and release resources. For RawImage, this is a noop.
+
+
+   .. py:method:: bytes_to_depth_array() -> List[List[int]]
+
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
+      a standard representation.
+
+      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+
+      :returns: The standard representation of the image.
+      :rtype: List[List[int]]
+
+
+
+.. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
+
+
+   A native implementation of an image.
+
+   Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
+
+   .. py:property:: data
+      :type: bytes
+
+      The raw bytes of the image
+
+   .. py:property:: mime_type
+      :type: CameraMimeType
+
+      The mime type of the image
+
+   .. py:property:: image
+      :type: Optional[PIL.Image.Image]
+
+      The PIL.Image representation of the image. If the mime type is not supported, this will be None.
+
+   .. py:method:: close()
+
+      Close the image and release resources.
 
 
    .. py:method:: bytes_to_depth_array() -> List[List[int]]
@@ -146,31 +188,13 @@ Classes
    camera implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
-   .. py:class:: Properties
-
-
-      Bases: :py:obj:`NamedTuple`
-
-      The camera's supported features and settings
-
-      .. py:attribute:: supports_pcd
-         :type: bool
-
-         Whether the camera has a valid implementation of ``get_point_cloud``
-
-      .. py:attribute:: intrinsic_parameters
-         :type: viam.components.camera.IntrinsicParameters
-
-         The properties of the camera
-
-      .. py:attribute:: distortion_parameters
-         :type: viam.components.camera.DistortionParameters
-
-         The distortion parameters of the camera
-
-
    .. py:attribute:: SUBTYPE
       :type: Final
+
+      
+
+   .. py:attribute:: Properties
+      :type: TypeAlias
 
       
 
@@ -181,7 +205,7 @@ Classes
       Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
 
-      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.RawImage.bytes_to_depth_array`
+      NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
       to convert the data to a standard representation.
 
       :param mime_type: The desired mime type of the image. This does not guarantee output type

@@ -1379,14 +1379,14 @@
         <li><a href="autoapi/viam/proto/robot/index.html#viam.proto.robot.BlockForOperationResponse">(class in viam.proto.robot)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board">Board (class in viam.components.board)</a>
 
       <ul>
         <li><a href="autoapi/viam/components/board/board/index.html#viam.components.board.board.Board">(class in viam.components.board.board)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/components/board/index.html#viam.components.board.Board.AnalogReader">Board.AnalogReader (class in viam.components.board)</a>
 
       <ul>
@@ -1616,6 +1616,8 @@
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.RawImage.bytes_to_depth_array">bytes_to_depth_array() (viam.components.camera.RawImage method)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage.bytes_to_depth_array">(viam.components.camera.ViamImage method)</a>
+</li>
         <li><a href="autoapi/viam/media/video/index.html#viam.media.video.RawImage.bytes_to_depth_array">(viam.media.video.RawImage method)</a>
 </li>
         <li><a href="autoapi/viam/media/video/index.html#viam.media.video.ViamImage.bytes_to_depth_array">(viam.media.video.ViamImage method)</a>
@@ -1673,12 +1675,6 @@
 
       <ul>
         <li><a href="autoapi/viam/proto/service/motion/index.html#viam.proto.service.motion.ObstacleDetector.camera">(viam.proto.service.motion.ObstacleDetector property)</a>
-</li>
-      </ul></li>
-      <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.Properties">Camera.Properties (class in viam.components.camera)</a>
-
-      <ul>
-        <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.Properties">(class in viam.components.camera.camera)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/service/vision/v1/vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest.camera_name">camera_name (viam.gen.service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest attribute)</a>
@@ -2087,6 +2083,8 @@
         <li><a href="autoapi/viam/components/camera/client/index.html#viam.components.camera.client.CameraClient.close">(viam.components.camera.client.CameraClient method)</a>
 </li>
         <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.RawImage.close">(viam.components.camera.RawImage method)</a>
+</li>
+        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage.close">(viam.components.camera.ViamImage method)</a>
 </li>
         <li><a href="autoapi/viam/components/component_base/index.html#viam.components.component_base.ComponentBase.close">(viam.components.component_base.ComponentBase method)</a>
 </li>
@@ -2995,6 +2993,8 @@
         <li><a href="autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.data">(viam.app.data_client.DataClient.TabularData attribute)</a>
 </li>
         <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.RawImage.data">(viam.components.camera.RawImage attribute)</a>
+</li>
+        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage.data">(viam.components.camera.ViamImage property)</a>
 </li>
         <li><a href="autoapi/viam/gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse.data">(viam.gen.app.data.v1.data_pb2.BinaryDataByFilterResponse property)</a>
 </li>
@@ -3993,13 +3993,9 @@
         <li><a href="autoapi/viam/proto/component/base/index.html#viam.proto.component.base.MoveStraightRequest.distance_mm">(viam.proto.component.base.MoveStraightRequest attribute)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.Properties.distortion_parameters">distortion_parameters (viam.components.camera.camera.Camera.Properties attribute)</a>
+      <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.distortion_parameters">distortion_parameters (viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse property)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.Properties.distortion_parameters">(viam.components.camera.Camera.Properties attribute)</a>
-</li>
-        <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.distortion_parameters">(viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse property)</a>
-</li>
         <li><a href="autoapi/viam/proto/component/camera/index.html#viam.proto.component.camera.GetPropertiesResponse.distortion_parameters">(viam.proto.component.camera.GetPropertiesResponse property)</a>
 </li>
       </ul></li>
@@ -11585,9 +11581,11 @@
         <li><a href="autoapi/viam/proto/component/camera/index.html#viam.proto.component.camera.Image">(class in viam.proto.component.camera)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetImageResponse.image">image (viam.gen.component.camera.v1.camera_pb2.GetImageResponse attribute)</a>
+      <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage.image">image (viam.components.camera.ViamImage property)</a>
 
       <ul>
+        <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetImageResponse.image">(viam.gen.component.camera.v1.camera_pb2.GetImageResponse attribute)</a>
+</li>
         <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image.image">(viam.gen.component.camera.v1.camera_pb2.Image attribute)</a>
 </li>
         <li><a href="autoapi/viam/gen/service/vision/v1/vision_pb2/index.html#viam.gen.service.vision.v1.vision_pb2.GetClassificationsRequest.image">(viam.gen.service.vision.v1.vision_pb2.GetClassificationsRequest attribute)</a>
@@ -11777,13 +11775,9 @@
         <li><a href="autoapi/viam/proto/app/data/index.html#viam.proto.app.data.Filter.interval">(viam.proto.app.data.Filter property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.Properties.intrinsic_parameters">intrinsic_parameters (viam.components.camera.camera.Camera.Properties attribute)</a>
+      <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.intrinsic_parameters">intrinsic_parameters (viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse property)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.Properties.intrinsic_parameters">(viam.components.camera.Camera.Properties attribute)</a>
-</li>
-        <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.intrinsic_parameters">(viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse property)</a>
-</li>
         <li><a href="autoapi/viam/proto/component/camera/index.html#viam.proto.component.camera.GetPropertiesResponse.intrinsic_parameters">(viam.proto.component.camera.GetPropertiesResponse property)</a>
 </li>
       </ul></li>
@@ -13514,6 +13508,8 @@
       <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.RawImage.mime_type">mime_type (viam.components.camera.RawImage attribute)</a>
 
       <ul>
+        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage.mime_type">(viam.components.camera.ViamImage property)</a>
+</li>
         <li><a href="autoapi/viam/gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.CaptureMetadata.mime_type">(viam.gen.app.data.v1.data_pb2.CaptureMetadata attribute)</a>
 </li>
         <li><a href="autoapi/viam/gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.Filter.mime_type">(viam.gen.app.data.v1.data_pb2.Filter property)</a>
@@ -13874,8 +13870,6 @@
         <li><a href="autoapi/viam/components/servo/service/index.html#module-viam.components.servo.service">viam.components.servo.service</a>
 </li>
         <li><a href="autoapi/viam/components/servo/servo/index.html#module-viam.components.servo.servo">viam.components.servo.servo</a>
-</li>
-        <li><a href="autoapi/viam/components/types/index.html#module-viam.components.types">viam.components.types</a>
 </li>
         <li><a href="autoapi/viam/errors/index.html#module-viam.errors">viam.errors</a>
 </li>
@@ -17020,6 +17014,12 @@
         <li><a href="autoapi/viam/proto/app/robot/index.html#viam.proto.app.robot.RobotConfig.processes">(viam.proto.app.robot.RobotConfig property)</a>
 </li>
       </ul></li>
+      <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.Properties">Properties (viam.components.camera.Camera attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.Properties">(viam.components.camera.camera.Camera attribute)</a>
+</li>
+      </ul></li>
       <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Webcam.properties">properties (viam.gen.component.camera.v1.camera_pb2.Webcam property)</a>
 
       <ul>
@@ -19822,13 +19822,9 @@
         <li><a href="autoapi/viam/proto/service/motion/index.html#viam.proto.service.motion.GetPoseRequest.supplemental_transforms">(viam.proto.service.motion.GetPoseRequest property)</a>
 </li>
       </ul></li>
-      <li><a href="autoapi/viam/components/camera/camera/index.html#viam.components.camera.camera.Camera.Properties.supports_pcd">supports_pcd (viam.components.camera.camera.Camera.Properties attribute)</a>
+      <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.supports_pcd">supports_pcd (viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse attribute)</a>
 
       <ul>
-        <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.Camera.Properties.supports_pcd">(viam.components.camera.Camera.Properties attribute)</a>
-</li>
-        <li><a href="autoapi/viam/gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse.supports_pcd">(viam.gen.component.camera.v1.camera_pb2.GetPropertiesResponse attribute)</a>
-</li>
         <li><a href="autoapi/viam/proto/component/camera/index.html#viam.proto.component.camera.GetPropertiesResponse.supports_pcd">(viam.proto.component.camera.GetPropertiesResponse attribute)</a>
 </li>
       </ul></li>
@@ -21638,13 +21634,6 @@
 
       <ul>
         <li><a href="autoapi/viam/components/servo/servo/index.html#module-viam.components.servo.servo">module</a>
-</li>
-      </ul></li>
-      <li>
-    viam.components.types
-
-      <ul>
-        <li><a href="autoapi/viam/components/types/index.html#module-viam.components.types">module</a>
 </li>
       </ul></li>
       <li>
@@ -23638,8 +23627,12 @@
 </li>
       <li><a href="autoapi/viam/errors/index.html#viam.errors.ViamGRPCError">ViamGRPCError</a>
 </li>
-      <li><a href="autoapi/viam/media/video/index.html#viam.media.video.ViamImage">ViamImage (class in viam.media.video)</a>
+      <li><a href="autoapi/viam/components/camera/index.html#viam.components.camera.ViamImage">ViamImage (class in viam.components.camera)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/media/video/index.html#viam.media.video.ViamImage">(class in viam.media.video)</a>
 </li>
+      </ul></li>
       <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.Visibility">Visibility (class in viam.gen.app.v1.app_pb2)</a>
 
       <ul>
