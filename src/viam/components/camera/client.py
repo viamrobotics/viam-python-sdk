@@ -13,7 +13,6 @@ from viam.proto.component.camera import (
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
@@ -64,8 +63,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         return (response.point_cloud, response.mime_type)
 
     async def get_properties(self, *, timeout: Optional[float] = None) -> Camera.Properties:
-        response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
-        return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
+        return await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
