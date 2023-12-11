@@ -123,7 +123,7 @@ class TestService:
             client = InputControllerServiceStub(channel)
             extra = {"foo": "get_controls"}
             request = GetControlsRequest(controller=controller.name, extra=dict_to_struct(extra))
-            response: GetControlsResponse = await client.GetControls(request, timeout=1.23)
+            response: GetControlsResponse = await client.GetControls(request, timeout=2.23)
             controls = list(response.controls)
             assert controls == [
                 Control.ABSOLUTE_X,
@@ -149,7 +149,7 @@ class TestService:
                 Control.BUTTON_E_STOP,
             ]
             assert controller.extra == extra
-            assert controller.timeout == loose_approx(1.23)
+            assert controller.timeout == loose_approx(2.23)
 
     @pytest.mark.asyncio
     async def test_get_events(self, controller: MockInputController, service: InputControllerRPCService):
