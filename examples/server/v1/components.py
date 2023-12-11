@@ -10,7 +10,7 @@ else:
     from typing import AsyncIterator
 
 from datetime import timedelta
-from multiprocessing import Lock, Queue
+from multiprocessing import Lock
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 

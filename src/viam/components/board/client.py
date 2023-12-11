@@ -1,5 +1,4 @@
 from datetime import timedelta
-from multiprocessing import Queue
 from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration

@@ -1,7 +1,6 @@
 import abc
 from datetime import timedelta
-from multiprocessing import Queue
-from typing import Any, Callable, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Optional
 
 from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode
