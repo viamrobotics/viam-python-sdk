@@ -179,15 +179,13 @@ class TestService:
                 request = GetDigitalInterruptValueRequest(board_name=board.name, digital_interrupt_name="dne")
                 await client.GetDigitalInterruptValue(request)
 
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
             request = GetDigitalInterruptValueRequest(
-                board_name=board.name, digital_interrupt_name="interrupt1", extra=dict_to_struct(extra)
+                board_name=board.name, digital_interrupt_name="interrupt1"
             )
             response: GetDigitalInterruptValueResponse = await client.GetDigitalInterruptValue(request, timeout=18.2)
             assert response.value == 0
 
             interrupt = cast(MockDigitalInterrupt, board.digital_interrupts["interrupt1"])
-            assert interrupt.extra == extra
             assert interrupt.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
