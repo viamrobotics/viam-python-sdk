@@ -398,9 +398,9 @@ class MockCamera(Camera):
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.extra = None
         self.props = Camera.Properties(
-            False,
-            IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
-            DistortionParameters(model="no_distortion"),
+            supports_pcd=False,
+            intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+            distortion_parameters=DistortionParameters(model="no_distortion"),
         )
         self.timeout: Optional[float] = None
         ts = Timestamp()

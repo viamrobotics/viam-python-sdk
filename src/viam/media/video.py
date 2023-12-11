@@ -18,7 +18,9 @@ LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
 
 
 class RawImage(NamedTuple):
-    """A raw bytes representation of an image.
+    """**DEPRECATED** Use ``ViamImage`` instead
+
+    A raw bytes representation of an image.
 
     A RawImage should be returned instead of a PIL Image instance under one of
     the following conditions
