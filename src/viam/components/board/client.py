@@ -59,15 +59,6 @@ class DigitalInterruptClient(Board.DigitalInterrupt):
         response: GetDigitalInterruptValueResponse = await self.board.client.GetDigitalInterruptValue(request, timeout=timeout)
         return response.value
 
-    async def tick(self, high: bool, nanos: int):
-        raise NotImplementedError()
-
-    async def add_callback(self, queue: Queue):
-        raise NotImplementedError()
-
-    async def add_post_processor(self, processor: PostProcessor):
-        raise NotImplementedError()
-
 
 class GPIOPinClient(Board.GPIOPin):
     def __init__(self, name: str, board: "BoardClient"):

@@ -241,26 +241,11 @@ class ExampleAnalogReader(Board.AnalogReader):
 
 class ExampleDigitalInterrupt(Board.DigitalInterrupt):
     def __init__(self, name: str):
-        self.high = False
-        self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
-        self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
     async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.num_ticks
-
-    async def tick(self, high: bool, nanos: int):
-        self.high = high
-        self.last_tick = nanos
-        self.num_ticks += 1
-
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
-
-    async def add_post_processor(self, processor: PostProcessor):
-        self.post_processors.append(processor)
 
 
 class ExampleGPIOPin(Board.GPIOPin):
