@@ -31,7 +31,6 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import Board
-from .board import PostProcessor
 
 
 class AnalogReaderClient(Board.AnalogReader):

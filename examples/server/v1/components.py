@@ -20,7 +20,6 @@ from viam.components.arm import Arm
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry

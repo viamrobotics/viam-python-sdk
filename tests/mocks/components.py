@@ -18,7 +18,6 @@ from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry

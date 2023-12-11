@@ -9,8 +9,6 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 
 from ..component_base import ComponentBase
 
-PostProcessor = Callable[[int], int]
-
 
 class Board(ComponentBase):
     """
