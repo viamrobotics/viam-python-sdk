@@ -91,6 +91,8 @@ class CameraMimeType(str, Enum):
 
         if self.name in LIBRARY_SUPPORTED_FORMATS:
             buf = BytesIO()
+            if image.mode == 'RGBA' and self.name == 'JPEG':
+                image = image.convert('RGB')
             image.save(buf, format=self.name)
             return buf.getvalue()
         else:
