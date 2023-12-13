@@ -6,6 +6,8 @@ from ....gen.app.mltraining.v1.ml_training_grpc import MLTrainingServiceBase, ML
 from ....gen.app.mltraining.v1.ml_training_pb2 import (
     CancelTrainingJobRequest,
     CancelTrainingJobResponse,
+    DeleteCompletedTrainingJobRequest,
+    DeleteCompletedTrainingJobResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
@@ -22,6 +24,8 @@ __all__ = [
     "MLTrainingServiceStub",
     "CancelTrainingJobRequest",
     "CancelTrainingJobResponse",
+    "DeleteCompletedTrainingJobRequest",
+    "DeleteCompletedTrainingJobResponse",
     "GetTrainingJobRequest",
     "GetTrainingJobResponse",
     "ListTrainingJobsRequest",

@@ -350,6 +350,82 @@ class TabularData(google.protobuf.message.Message):
 global___TabularData = TabularData
 
 @typing_extensions.final
+class TabularDataBySQLRequest(google.protobuf.message.Message):
+    """TabularDataBySQLRequest requests tabular data using a SQL query."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    SQL_QUERY_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    sql_query: builtins.str
+    'sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database\n    called "sensorData" and a table called readings, so queries should select from "readings"\n    or "sensorData.readings".\n    '
+
+    def __init__(self, *, organization_id: builtins.str=..., sql_query: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'sql_query', b'sql_query']) -> None:
+        ...
+global___TabularDataBySQLRequest = TabularDataBySQLRequest
+
+@typing_extensions.final
+class TabularDataBySQLResponse(google.protobuf.message.Message):
+    """TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___TabularDataBySQLResponse = TabularDataBySQLResponse
+
+@typing_extensions.final
+class TabularDataByMQLRequest(google.protobuf.message.Message):
+    """TabularDataByMQLRequest requests tabular data using an MQL query."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    MQL_QUERY_FIELD_NUMBER: builtins.int
+    MQL_BINARY_FIELD_NUMBER: builtins.int
+    organization_id: builtins.str
+    mql_query: builtins.str
+    'mql_query is deprecated.'
+
+    @property
+    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+        """mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
+        document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
+        namespace, which holds the Viam organization's tabular data.
+        """
+
+    def __init__(self, *, organization_id: builtins.str=..., mql_query: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['mql_binary', b'mql_binary', 'mql_query', b'mql_query', 'organization_id', b'organization_id']) -> None:
+        ...
+global___TabularDataByMQLRequest = TabularDataByMQLRequest
+
+@typing_extensions.final
+class TabularDataByMQLResponse(google.protobuf.message.Message):
+    """TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL."""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
+        ...
+
+    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
+        ...
+global___TabularDataByMQLResponse = TabularDataByMQLResponse
+
+@typing_extensions.final
 class BinaryData(google.protobuf.message.Message):
     """BinaryData contains data and metadata associated with binary data."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -998,15 +1074,22 @@ global___GetDatabaseConnectionRequest = GetDatabaseConnectionRequest
 
 @typing_extensions.final
 class GetDatabaseConnectionResponse(google.protobuf.message.Message):
-    """GetDatabaseConnectionResponse returns the database connection hostname endpoint."""
+    """GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns
+    a URI that can be used to connect to the database instance through MongoDB clients, as well as
+    information on whether the Viam organization has a database user configured.
+    """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HOSTNAME_FIELD_NUMBER: builtins.int
+    MONGODB_URI_FIELD_NUMBER: builtins.int
+    HAS_DATABASE_USER_FIELD_NUMBER: builtins.int
     hostname: builtins.str
+    mongodb_uri: builtins.str
+    has_database_user: builtins.bool
 
-    def __init__(self, *, hostname: builtins.str=...) -> None:
+    def __init__(self, *, hostname: builtins.str=..., mongodb_uri: builtins.str=..., has_database_user: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['hostname', b'hostname']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['has_database_user', b'has_database_user', 'hostname', b'hostname', 'mongodb_uri', b'mongodb_uri']) -> None:
         ...
 global___GetDatabaseConnectionResponse = GetDatabaseConnectionResponse
 

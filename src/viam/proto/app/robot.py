@@ -5,6 +5,7 @@ Do not edit manually!
 from ...gen.app.v1.robot_grpc import RobotServiceBase, RobotServiceStub
 from ...gen.app.v1.robot_pb2 import (
     AgentInfo,
+    AppValidationStatus,
     AuthConfig,
     AuthHandlerConfig,
     CertificateRequest,
@@ -18,6 +19,7 @@ from ...gen.app.v1.robot_pb2 import (
     Frame,
     JWKSFile,
     LocationSecret,
+    LogConfiguration,
     LogRequest,
     LogResponse,
     ModuleConfig,
@@ -40,6 +42,7 @@ __all__ = [
     "RobotServiceBase",
     "RobotServiceStub",
     "AgentInfo",
+    "AppValidationStatus",
     "AuthConfig",
     "AuthHandlerConfig",
     "CertificateRequest",
@@ -53,6 +56,7 @@ __all__ = [
     "Frame",
     "JWKSFile",
     "LocationSecret",
+    "LogConfiguration",
     "LogRequest",
     "LogResponse",
     "ModuleConfig",

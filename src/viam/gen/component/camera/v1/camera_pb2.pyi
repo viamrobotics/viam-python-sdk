@@ -226,6 +226,7 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     SUPPORTS_PCD_FIELD_NUMBER: builtins.int
     INTRINSIC_PARAMETERS_FIELD_NUMBER: builtins.int
     DISTORTION_PARAMETERS_FIELD_NUMBER: builtins.int
+    MIME_TYPES_FIELD_NUMBER: builtins.int
     supports_pcd: builtins.bool
     'A boolean property determining whether the camera supports the return of pointcloud data'
 
@@ -243,13 +244,17 @@ class GetPropertiesResponse(google.protobuf.message.Message):
         Initializing the parameters with 0-values is considered an error
         """
 
-    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=...) -> None:
+    @property
+    def mime_types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Supported MIME types by the camera"""
+
+    def __init__(self, *, supports_pcd: builtins.bool=..., intrinsic_parameters: global___IntrinsicParameters | None=..., distortion_parameters: global___DistortionParameters | None=..., mime_types: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters', 'supports_pcd', b'supports_pcd']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['distortion_parameters', b'distortion_parameters', 'intrinsic_parameters', b'intrinsic_parameters', 'mime_types', b'mime_types', 'supports_pcd', b'supports_pcd']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
 
