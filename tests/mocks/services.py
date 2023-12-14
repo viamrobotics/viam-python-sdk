@@ -272,8 +272,6 @@ from viam.proto.service.motion import (
     ListPlanStatusesRequest,
     ListPlanStatusesResponse,
     MotionServiceBase,
-    MoveOnGlobeNewRequest,
-    MoveOnGlobeNewResponse,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
     MoveOnMapRequest,
@@ -511,20 +509,6 @@ class MockMotion(MotionServiceBase):
         pose = self.get_pose_responses[name.name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
-
-    async def MoveOnGlobeNew(self, stream: Stream[MoveOnGlobeNewRequest, MoveOnGlobeNewResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.component_name = request.component_name
-        self.destination = request.destination
-        self.movement_sensor = request.movement_sensor_name
-        self.obstacles = request.obstacles
-        self.heading = request.heading
-        self.configuration = request.motion_configuration
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.execution_id = "some_execution_id"
-        await stream.send_message(MoveOnGlobeNewResponse(execution_id=self.execution_id))
 
     async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
         request = await stream.recv_message()

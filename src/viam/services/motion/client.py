@@ -23,8 +23,8 @@ from viam.proto.service.motion import (
     ListPlanStatusesResponse,
     MotionConfiguration,
     MotionServiceStub,
-    MoveOnGlobeNewRequest,
-    MoveOnGlobeNewResponse,
+    MoveOnGlobeRequest,
+    MoveOnGlobeResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -132,7 +132,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         """
         if extra is None:
             extra = {}
-        request = MoveOnGlobeNewRequest(
+        request = MoveOnGlobeRequest(
             name=self.name,
             component_name=component_name,
             destination=destination,
@@ -142,7 +142,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             motion_configuration=configuration,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnGlobeNewResponse = await self.client.MoveOnGlobeNew(request, timeout=timeout)
+        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
         return response.execution_id
 
     async def move_on_map(
