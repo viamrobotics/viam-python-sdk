@@ -274,6 +274,8 @@ from viam.proto.service.motion import (
     MotionServiceBase,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
+    MoveOnMapNewRequest,
+    MoveOnMapNewResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -487,6 +489,9 @@ class MockMotion(MotionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         await stream.send_message(MoveOnMapResponse(success=True))
 
+    async def MoveOnMapNew(self, stream: Stream[MoveOnMapNewRequest, MoveOnMapNewResponse]) -> None:
+        raise NotImplementedError()
+
     async def MoveOnGlobe(self, stream: Stream[MoveOnGlobeRequest, MoveOnGlobeResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -498,7 +503,8 @@ class MockMotion(MotionServiceBase):
         self.configuration = request.motion_configuration
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(MoveOnGlobeResponse(success=True))
+        self.execution_id = "some execution id"
+        await stream.send_message(MoveOnGlobeResponse(execution_id=self.execution_id))
 
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
