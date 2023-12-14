@@ -150,6 +150,14 @@ from viam.proto.app import (
     UpdateRobotResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
+    CreateRegistryItemRequest,
+    CreateRegistryItemResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
+    UpdateRegistryItemRequest,
+    UpdateRegistryItemResponse,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -191,6 +199,10 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    TabularDataByMQLRequest,
+    TabularDataByMQLResponse,
+    TabularDataBySQLRequest,
+    TabularDataBySQLResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -819,6 +831,12 @@ class MockData(DataServiceBase):
     ) -> None:
         raise NotImplementedError()
 
+    async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
+        raise NotImplementedError()
+
+    async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
+        raise NotImplementedError()
+
 
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
@@ -1380,3 +1398,17 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(CreateKeyFromExistingKeyAuthorizationsResponse(key=self.api_key, id=self.id))
+
+    async def CreateRegistryItem(self, stream: Stream[CreateRegistryItemRequest, CreateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetOrganizationsWithAccessToLocation(
+        self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
+    ) -> None:
+        raise NotImplementedError()
+
+    async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
