@@ -212,6 +212,8 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
+    DeleteCompletedTrainingJobRequest,
+    DeleteCompletedTrainingJobResponse,
 )
 from viam.proto.app.billing import (
     BillingServiceBase,
@@ -444,7 +446,7 @@ class MockMotion(MotionServiceBase):
         move_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
         get_plan_response: GetPlanResponse,
-        list_plan_statuses_response: ListPlanStatusesResponse
+        list_plan_statuses_response: ListPlanStatusesResponse,
     ):
         self.move_responses = move_responses
         self.get_pose_responses = get_pose_responses
@@ -858,7 +860,6 @@ class MockMLTraining(MLTrainingServiceBase):
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.filter = request.filter
         self.org_id = request.organization_id
         self.model_name = request.model_name
         self.model_version = request.model_version
@@ -884,6 +885,11 @@ class MockMLTraining(MLTrainingServiceBase):
         assert request is not None
         self.cancel_job_id = request.id
         await stream.send_message(CancelTrainingJobResponse())
+
+    async def DeleteCompletedTrainingJob(
+        self, stream: Stream[DeleteCompletedTrainingJobRequest, DeleteCompletedTrainingJobResponse]
+    ) -> None:
+        raise NotImplementedError()
 
 
 class MockBilling(BillingServiceBase):
@@ -913,7 +919,7 @@ class MockBilling(BillingServiceBase):
         response = GetInvoicePdfResponse(chunk=self.pdf)
         await stream.send_message(response)
 
-    async def GetInvoicesSummary(self, stream: Stream[GetInvoicesSummaryRequest, GetInvoicePdfResponse]) -> None:
+    async def GetInvoicesSummary(self, stream: Stream[GetInvoicesSummaryRequest, GetInvoicesSummaryResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.org_id = request.org_id
