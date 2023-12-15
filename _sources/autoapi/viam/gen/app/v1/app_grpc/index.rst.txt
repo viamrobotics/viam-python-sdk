@@ -41,6 +41,11 @@ Classes
       :async:
 
 
+   .. py:method:: GetOrganizationsWithAccessToLocation(stream: grpclib.server.Stream[app.v1.app_pb2.GetOrganizationsWithAccessToLocationRequest, app.v1.app_pb2.GetOrganizationsWithAccessToLocationResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: ListOrganizationsByUser(stream: grpclib.server.Stream[app.v1.app_pb2.ListOrganizationsByUserRequest, app.v1.app_pb2.ListOrganizationsByUserResponse]) -> None
       :abstractmethod:
       :async:
@@ -287,6 +292,21 @@ Classes
 
 
    .. py:method:: CheckPermissions(stream: grpclib.server.Stream[app.v1.app_pb2.CheckPermissionsRequest, app.v1.app_pb2.CheckPermissionsResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: CreateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.CreateRegistryItemRequest, app.v1.app_pb2.CreateRegistryItemResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateRegistryItem(stream: grpclib.server.Stream[app.v1.app_pb2.UpdateRegistryItemRequest, app.v1.app_pb2.UpdateRegistryItemResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: ListRegistryItems(stream: grpclib.server.Stream[app.v1.app_pb2.ListRegistryItemsRequest, app.v1.app_pb2.ListRegistryItemsResponse]) -> None
       :abstractmethod:
       :async:
 

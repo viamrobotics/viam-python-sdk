@@ -1,0 +1,69 @@
+:py:mod:`viam.gen.app.agent.v1.agent_grpc`
+==========================================
+
+.. py:module:: viam.gen.app.agent.v1.agent_grpc
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.gen.app.agent.v1.agent_grpc.AgentAppServiceBase
+   viam.gen.app.agent.v1.agent_grpc.AgentAppServiceStub
+   viam.gen.app.agent.v1.agent_grpc.AgentDeviceServiceBase
+   viam.gen.app.agent.v1.agent_grpc.AgentDeviceServiceStub
+
+
+
+
+.. py:class:: AgentAppServiceBase
+
+
+   Bases: :py:obj:`abc.ABC`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.GetAgentConfigRequest, app.agent.v1.agent_pb2.GetAgentConfigResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: UpdateAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.UpdateAgentConfigRequest, app.agent.v1.agent_pb2.UpdateAgentConfigResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: AgentAppServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: AgentDeviceServiceBase
+
+
+   Bases: :py:obj:`abc.ABC`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: DeviceAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: AgentDeviceServiceStub(channel: grpclib.client.Channel)
+
+
+

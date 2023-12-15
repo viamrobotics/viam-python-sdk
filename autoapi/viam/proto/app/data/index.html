@@ -66,12 +66,15 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="../index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app</span></code></a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../agent/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.agent</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="../cloudslam/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.cloudslam</span></code></a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.app.data</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase"><code class="docutils literal notranslate"><span class="pre">DataServiceBase</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.TabularDataByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.TabularDataByFilter()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.TabularDataBySQL"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.TabularDataBySQL()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.TabularDataByMQL"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.TabularDataByMQL()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BinaryDataByFilter"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BinaryDataByFilter()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.BinaryDataByIDs"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.BinaryDataByIDs()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.DataServiceBase.DeleteTabularData"><code class="docutils literal notranslate"><span class="pre">DataServiceBase.DeleteTabularData()</span></code></a></li>
@@ -290,6 +293,8 @@
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse.hostname"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse.hostname</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse.mongodb_uri"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse.mongodb_uri</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse.has_database_user"><code class="docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse.has_database_user</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a></li>
@@ -348,6 +353,25 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse.total_size_bytes"><code class="docutils literal notranslate"><span class="pre">TabularDataByFilterResponse.total_size_bytes</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_binary"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_binary</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.organization_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_query"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_query</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse.data"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLResponse.data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLRequest.organization_id</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest.sql_query"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLRequest.sql_query</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse.data"><code class="docutils literal notranslate"><span class="pre">TabularDataBySQLResponse.data</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest.filter"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest.filter</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest.HasField"><code class="docutils literal notranslate"><span class="pre">TagsByFilterRequest.HasField()</span></code></a></li>
@@ -385,6 +409,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../stream/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.stream</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tagger/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.tagger</span></code></a></li>
 </ul>
 </li>
@@ -531,7 +556,7 @@ Do not edit manually!</p>
 <td><p>GetDatabaseConnectionRequest requests the database connection hostname.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="viam.proto.app.data.GetDatabaseConnectionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDatabaseConnectionResponse</span></code></a></p></td>
-<td><p>GetDatabaseConnectionResponse returns the database connection hostname endpoint.</p></td>
+<td><p>GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Order</span></code></a></p></td>
 <td><p>Order specifies the order in which data is returned.</p></td>
@@ -569,6 +594,18 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByFilterResponse" title="viam.proto.app.data.TabularDataByFilterResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByFilterResponse</span></code></a></p></td>
 <td><p>TabularDataByFilterResponse provides the data and metadata of tabular data.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest" title="viam.proto.app.data.TabularDataByMQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a></p></td>
+<td><p>TabularDataByMQLRequest requests tabular data using an MQL query.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse" title="viam.proto.app.data.TabularDataByMQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a></p></td>
+<td><p>TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLRequest" title="viam.proto.app.data.TabularDataBySQLRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLRequest</span></code></a></p></td>
+<td><p>TabularDataBySQLRequest requests tabular data using a SQL query.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.data.TabularDataBySQLResponse" title="viam.proto.app.data.TabularDataBySQLResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TabularDataBySQLResponse</span></code></a></p></td>
+<td><p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.data.TagsByFilterRequest" title="viam.proto.app.data.TagsByFilterRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TagsByFilterRequest</span></code></a></p></td>
 <td><p>TagsByFilterRequest requests the unique tags from data based on given filter.</p></td>
 </tr>
@@ -592,6 +629,16 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.TabularDataByFilter">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularDataByFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataByFilterRequest" title="viam.gen.app.data.v1.data_pb2.TabularDataByFilterRequest"><span class="pre">app.data.v1.data_pb2.TabularDataByFilterRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataByFilterResponse" title="viam.gen.app.data.v1.data_pb2.TabularDataByFilterResponse"><span class="pre">app.data.v1.data_pb2.TabularDataByFilterResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.TabularDataByFilter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.TabularDataByFilter" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.TabularDataBySQL">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularDataBySQL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataBySQLRequest" title="viam.gen.app.data.v1.data_pb2.TabularDataBySQLRequest"><span class="pre">app.data.v1.data_pb2.TabularDataBySQLRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataBySQLResponse" title="viam.gen.app.data.v1.data_pb2.TabularDataBySQLResponse"><span class="pre">app.data.v1.data_pb2.TabularDataBySQLResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.TabularDataBySQL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.TabularDataBySQL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.data.DataServiceBase.TabularDataByMQL">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularDataByMQL</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataByMQLRequest" title="viam.gen.app.data.v1.data_pb2.TabularDataByMQLRequest"><span class="pre">app.data.v1.data_pb2.TabularDataByMQLRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.TabularDataByMQLResponse" title="viam.gen.app.data.v1.data_pb2.TabularDataByMQLResponse"><span class="pre">app.data.v1.data_pb2.TabularDataByMQLResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/data/v1/data_grpc.html#DataServiceBase.TabularDataByMQL"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.data.DataServiceBase.TabularDataByMQL" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1673,12 +1720,24 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">GetDatabaseConnectionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">GetDatabaseConnectionResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hostname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongodb_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_database_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>GetDatabaseConnectionResponse returns the database connection hostname endpoint.</p>
+<p>GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns
+a URI that can be used to connect to the database instance through MongoDB clients, as well as
+information on whether the Viam organization has a database user configured.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse.hostname">
 <span class="sig-name descname"><span class="pre">hostname</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse.hostname" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse.mongodb_uri">
+<span class="sig-name descname"><span class="pre">mongodb_uri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse.mongodb_uri" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.GetDatabaseConnectionResponse.has_database_user">
+<span class="sig-name descname"><span class="pre">has_database_user</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.data.GetDatabaseConnectionResponse.has_database_user" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1971,6 +2030,76 @@ be raised.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByFilterResponse.total_size_bytes">
 <span class="sig-name descname"><span class="pre">total_size_bytes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByFilterResponse.total_size_bytes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularDataByMQLRequest requests tabular data using an MQL query.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.mql_binary">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mql_binary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_binary" title="Permalink to this definition"></a></dt>
+<dd><p>mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
+document is one stage in the pipeline. The pipeline is run on the “sensorData.readings”
+namespace, which holds the Viam organization’s tabular data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.mql_query">
+<span class="sig-name descname"><span class="pre">mql_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_query" title="Permalink to this definition"></a></dt>
+<dd><p>mql_query is deprecated.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLResponse.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLResponse.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataBySQLRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataBySQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularDataBySQLRequest requests tabular data using a SQL query.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataBySQLRequest.organization_id">
+<span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLRequest.organization_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataBySQLRequest.sql_query">
+<span class="sig-name descname"><span class="pre">sql_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLRequest.sql_query" title="Permalink to this definition"></a></dt>
+<dd><p>sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database
+called “sensorData” and a table called readings, so queries should select from “readings”
+or “sensorData.readings”.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataBySQLResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataBySQLResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataBySQLResponse.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataBySQLResponse.data" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -65,6 +65,10 @@ Classes
    viam.proto.app.data.TabularData
    viam.proto.app.data.TabularDataByFilterRequest
    viam.proto.app.data.TabularDataByFilterResponse
+   viam.proto.app.data.TabularDataByMQLRequest
+   viam.proto.app.data.TabularDataByMQLResponse
+   viam.proto.app.data.TabularDataBySQLRequest
+   viam.proto.app.data.TabularDataBySQLResponse
    viam.proto.app.data.TagsByFilterRequest
    viam.proto.app.data.TagsByFilterResponse
    viam.proto.app.data.TagsFilter
@@ -82,6 +86,16 @@ Classes
    inheritance.
 
    .. py:method:: TabularDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: TabularDataBySQL(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataBySQLRequest, app.data.v1.data_pb2.TabularDataBySQLResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: TabularDataByMQL(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByMQLRequest, app.data.v1.data_pb2.TabularDataByMQLResponse]) -> None
       :abstractmethod:
       :async:
 
@@ -1098,15 +1112,27 @@ Classes
       
 
 
-.. py:class:: GetDatabaseConnectionResponse(*, hostname: str = ...)
+.. py:class:: GetDatabaseConnectionResponse(*, hostname: str = ..., mongodb_uri: str = ..., has_database_user: bool = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   GetDatabaseConnectionResponse returns the database connection hostname endpoint.
+   GetDatabaseConnectionResponse returns the database connection hostname endpoint. It also returns
+   a URI that can be used to connect to the database instance through MongoDB clients, as well as
+   information on whether the Viam organization has a database user configured.
 
    .. py:attribute:: hostname
       :type: str
+
+      
+
+   .. py:attribute:: mongodb_uri
+      :type: str
+
+      
+
+   .. py:attribute:: has_database_user
+      :type: bool
 
       
 
@@ -1379,6 +1405,75 @@ Classes
       :type: int
 
       
+
+
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_query: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   TabularDataByMQLRequest requests tabular data using an MQL query.
+
+   .. py:property:: mql_binary
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[bytes]
+
+      mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
+      document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
+      namespace, which holds the Viam organization's tabular data.
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: mql_query
+      :type: str
+
+      mql_query is deprecated.
+
+
+.. py:class:: TabularDataByMQLResponse(*, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
+
+
+
+.. py:class:: TabularDataBySQLRequest(*, organization_id: str = ..., sql_query: str = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   TabularDataBySQLRequest requests tabular data using a SQL query.
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: sql_query
+      :type: str
+
+      sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database
+      called "sensorData" and a table called readings, so queries should select from "readings"
+      or "sensorData.readings".
+
+
+.. py:class:: TabularDataBySQLResponse(*, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL.
+
+   .. py:property:: data
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]
+
 
 
 .. py:class:: TagsByFilterRequest(*, filter: global___Filter | None = ...)

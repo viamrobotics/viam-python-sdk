@@ -323,7 +323,7 @@ Classes
       Name of a camera
 
 
-.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ...)
+.. py:class:: GetPropertiesResponse(*, supports_pcd: bool = ..., intrinsic_parameters: global___IntrinsicParameters | None = ..., distortion_parameters: global___DistortionParameters | None = ..., mime_types: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -347,6 +347,11 @@ Classes
       Parameters for modeling lens distortion in cameras
       If camera does not provide distortion parameters, leave the field empty
       Initializing the parameters with 0-values is considered an error
+
+   .. py:property:: mime_types
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      Supported MIME types by the camera
 
    .. py:attribute:: supports_pcd
       :type: bool

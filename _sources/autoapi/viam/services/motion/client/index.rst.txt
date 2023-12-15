@@ -65,43 +65,18 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
 
       Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
 
-      :param component_name: The component to move
-      :type component_name: ResourceName
-      :param destination: The destination point
-      :type destination: GeoPoint
-      :param movement_sensor_name: The ``MovementSensor`` which will be used to check robot location
-      :type movement_sensor_name: ResourceName
-      :param obstacles: Obstacles to be considered for motion planning. Defaults to None.
-      :type obstacles: Optional[Sequence[GeoObstacle]]
-      :param heading: Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
-      :type heading: Optional[float]
-      :param linear_meters_per_sec: Linear velocity to target when moving. Defaults to None.
-      :type linear_meters_per_sec: Optional[float]
-      :param angular_deg_per_sec: Angular velocity to target when turning. Defaults to None.
-      :type angular_deg_per_sec: Optional[float]
+      ``move_on_globe()`` is non blocking, meaning the motion service will move the component to the destination
+      GPS point after ``move_on_globe()`` returns.
 
-      :returns: Whether the request was successful
-      :rtype: bool
+      Each successful ``move_on_globe()`` call retuns a unique ExectionID which you can use to identify all plans
+      generated durring the ``move_on_globe()`` call.
 
-
-   .. py:method:: move_on_globe_new(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
-      :async:
-
-      **Experimental**: use move_on_globe instead.
-      Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
-
-      ``move_on_globe_new()`` is non blocking, meaning the motion service will move the component to the destination
-      GPS point after ``move_on_globe_new()`` returns.
-
-      Each successful ``move_on_globe_new()`` call retuns a unique ExectionID which you can use to identify all plans
-      generated durring the ``move_on_globe_new()`` call.
-
-      You can monitor the progress of the ``move_on_globe_new()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
+      You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
       :param component_name: The component to move
       :type component_name: ResourceName
@@ -118,7 +93,7 @@ Classes
       :param angular_deg_per_sec: Angular velocity to target when turning. Defaults to None.
       :type angular_deg_per_sec: Optional[float]
 
-      :returns: ExecutionID of the move_on_globe_new call, which can be used to track execution progress.
+      :returns: ExecutionID of the move_on_globe call, which can be used to track execution progress.
       :rtype: str
 
 
@@ -141,8 +116,7 @@ Classes
    .. py:method:: stop_plan(component_name: viam.proto.common.ResourceName, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None)
       :async:
 
-      **Experimental**
-      Stop a component being moved by an in progress ``move_on_globe_new()`` call.
+      Stop a component being moved by an in progress ``move_on_globe()`` call.
 
       :param component_name: The component to stop
       :type component_name: ResourceName
@@ -153,14 +127,13 @@ Classes
    .. py:method:: get_plan(component_name: viam.proto.common.ResourceName, last_plan_only: bool = False, execution_id: Optional[str] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.GetPlanResponse
       :async:
 
-      **Experimental**
-      By default: returns the plan history of the most recent ``move_on_globe_new()`` call to move a component.
+      By default: returns the plan history of the most recent ``move_on_globe()`` call to move a component.
 
       The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
 
       Returns a result if both of the following conditions are met:
 
-      - the execution (call to ``move_on_globe_new()``) is still executing **or** changed state within the last 24 hours
+      - the execution (call to ``move_on_globe()``) is still executing **or** changed state within the last 24 hours
       - the robot has not reinitialized
 
       Plans never change.
@@ -185,8 +158,7 @@ Classes
    .. py:method:: list_plan_statuses(only_active_plans: bool = False, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> viam.proto.service.motion.ListPlanStatusesResponse
       :async:
 
-      **Experimental**
-      Returns the statuses of plans created by `move_on_globe_new()` calls that meet at least one of the following
+      Returns the statuses of plans created by `move_on_globe()` calls that meet at least one of the following
       conditions since the motion service initialized:
 
       - the plan's status is in progress
