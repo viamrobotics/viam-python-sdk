@@ -139,6 +139,19 @@ class LocationSecret(google.protobuf.message.Message):
 global___LocationSecret = LocationSecret
 
 @typing_extensions.final
+class AppValidationStatus(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ERROR_FIELD_NUMBER: builtins.int
+    error: builtins.str
+
+    def __init__(self, *, error: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['error', b'error']) -> None:
+        ...
+global___AppValidationStatus = AppValidationStatus
+
+@typing_extensions.final
 class CloudConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -185,6 +198,7 @@ class ComponentConfig(google.protobuf.message.Message):
     SERVICE_CONFIGS_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
     API_FIELD_NUMBER: builtins.int
+    LOG_CONFIGURATION_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
     'deprecated; use api'
@@ -209,13 +223,17 @@ class ComponentConfig(google.protobuf.message.Message):
         ...
     api: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., model: builtins.str=..., frame: global___Frame | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., attributes: google.protobuf.struct_pb2.Struct | None=..., api: builtins.str=...) -> None:
+    @property
+    def log_configuration(self) -> global___LogConfiguration:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'frame', b'frame']) -> builtins.bool:
+    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., model: builtins.str=..., frame: global___Frame | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., attributes: google.protobuf.struct_pb2.Struct | None=..., api: builtins.str=..., log_configuration: global___LogConfiguration | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'frame', b'frame', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'frame', b'frame', 'log_configuration', b'log_configuration']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'frame', b'frame', 'log_configuration', b'log_configuration', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
         ...
 global___ComponentConfig = ComponentConfig
 
@@ -510,6 +528,19 @@ class Frame(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['geometry', b'geometry', 'orientation', b'orientation', 'parent', b'parent', 'translation', b'translation']) -> None:
         ...
 global___Frame = Frame
+
+@typing_extensions.final
+class LogConfiguration(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LEVEL_FIELD_NUMBER: builtins.int
+    level: builtins.str
+
+    def __init__(self, *, level: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['level', b'level']) -> None:
+        ...
+global___LogConfiguration = LogConfiguration
 
 @typing_extensions.final
 class Translation(google.protobuf.message.Message):
@@ -992,6 +1023,7 @@ class ModuleConfig(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     MODULE_ID_FIELD_NUMBER: builtins.int
     ENV_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
     'path to the executable'
@@ -1006,10 +1038,17 @@ class ModuleConfig(google.protobuf.message.Message):
     def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """additional environment variables passed to the module process"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
+    @property
+    def status(self) -> global___AppValidationStatus:
+        """info about the validity of the module"""
+
+    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
         ...
 global___ModuleConfig = ModuleConfig
 
@@ -1021,6 +1060,7 @@ class PackageConfig(google.protobuf.message.Message):
     PACKAGE_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     TYPE_FIELD_NUMBER: builtins.int
+    STATUS_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.'
     package: builtins.str
@@ -1030,9 +1070,16 @@ class PackageConfig(google.protobuf.message.Message):
     type: builtins.str
     'type of the package'
 
-    def __init__(self, *, name: builtins.str=..., package: builtins.str=..., version: builtins.str=..., type: builtins.str=...) -> None:
+    @property
+    def status(self) -> global___AppValidationStatus:
+        """info about the validity of the package"""
+
+    def __init__(self, *, name: builtins.str=..., package: builtins.str=..., version: builtins.str=..., type: builtins.str=..., status: global___AppValidationStatus | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'package', b'package', 'type', b'type', 'version', b'version']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'package', b'package', 'status', b'status', 'type', b'type', 'version', b'version']) -> None:
         ...
 global___PackageConfig = PackageConfig

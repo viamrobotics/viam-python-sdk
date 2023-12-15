@@ -166,36 +166,13 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_move_on_globe(self, service: MockMotion):
-        component_rn = Arm.get_resource_name("move_on_globe_arm")
-        movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
-        destination = GeoPoint(latitude=123, longitude=456)
-        obstacles = [GeoObstacle(location=GeoPoint(latitude=111, longitude=222))]
-        async with ChannelFor([service]) as channel:
-            client = MotionClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move_on_globe(
-                component_rn,
-                destination,
-                movement_rn,
-                obstacles,
-                heading=182,
-                configuration=MOTION_CONFIGURATION,
-            )
-            assert service.component_name == component_rn
-            assert service.movement_sensor == movement_rn
-            assert service.destination == destination
-            assert service.obstacles == obstacles
-            assert service.heading == 182
-            assert service.configuration == MOTION_CONFIGURATION
-            assert success
-
-    async def test_move_on_globe_new(self, service: MockMotion):
         component_rn = Base.get_resource_name("move_on_globe_base")
         movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
         destination = GeoPoint(latitude=123, longitude=456)
         obstacles = [GeoObstacle(location=GeoPoint(latitude=111, longitude=222))]
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
-            execution_id = await client.move_on_globe_new(
+            execution_id = await client.move_on_globe(
                 component_rn,
                 destination,
                 movement_rn,
@@ -214,7 +191,7 @@ class TestClient:
             assert service.timeout is None
             timeout = 50
             extra = {"max_iter": 1}
-            execution_id = await client.move_on_globe_new(
+            execution_id = await client.move_on_globe(
                 component_rn,
                 destination,
                 movement_rn,

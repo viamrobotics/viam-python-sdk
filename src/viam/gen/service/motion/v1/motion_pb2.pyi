@@ -112,6 +112,65 @@ class MoveResponse(google.protobuf.message.Message):
 global___MoveResponse = MoveResponse
 
 @typing_extensions.final
+class MoveOnMapNewRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    COMPONENT_NAME_FIELD_NUMBER: builtins.int
+    SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
+    MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the motion service'
+
+    @property
+    def destination(self) -> common.v1.common_pb2.Pose:
+        """Specify a destination to, which can be any pose with respect to the SLAM map's origin"""
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """Component on the robot to move to the specified destination"""
+
+    @property
+    def slam_service_name(self) -> common.v1.common_pb2.ResourceName:
+        """Name of the slam service from which the SLAM map is requested"""
+
+    @property
+    def motion_configuration(self) -> global___MotionConfiguration:
+        """Optional set of motion configuration options"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'slam_service_name', b'slam_service_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
+        ...
+global___MoveOnMapNewRequest = MoveOnMapNewRequest
+
+@typing_extensions.final
+class MoveOnMapNewResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    execution_id: builtins.str
+    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
+
+    def __init__(self, *, execution_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
+        ...
+global___MoveOnMapNewResponse = MoveOnMapNewResponse
+
+@typing_extensions.final
 class MoveOnMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -301,77 +360,6 @@ global___MoveOnGlobeRequest = MoveOnGlobeRequest
 @typing_extensions.final
 class MoveOnGlobeResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SUCCESS_FIELD_NUMBER: builtins.int
-    success: builtins.bool
-
-    def __init__(self, *, success: builtins.bool=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
-        ...
-global___MoveOnGlobeResponse = MoveOnGlobeResponse
-
-@typing_extensions.final
-class MoveOnGlobeNewRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    DESTINATION_FIELD_NUMBER: builtins.int
-    HEADING_FIELD_NUMBER: builtins.int
-    COMPONENT_NAME_FIELD_NUMBER: builtins.int
-    MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
-    OBSTACLES_FIELD_NUMBER: builtins.int
-    MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
-    EXTRA_FIELD_NUMBER: builtins.int
-    name: builtins.str
-    'Name of the motion service'
-
-    @property
-    def destination(self) -> common.v1.common_pb2.GeoPoint:
-        """Destination, encoded as a GeoPoint"""
-    heading: builtins.float
-    'Optional compass heading to achieve at the destination, in degrees [0-360)'
-
-    @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """Component on the robot to move to the specified destination"""
-
-    @property
-    def movement_sensor_name(self) -> common.v1.common_pb2.ResourceName:
-        """Name of the movement sensor which will be used to check robot location"""
-
-    @property
-    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
-        """Obstacles to be considered for motion planning"""
-
-    @property
-    def motion_configuration(self) -> global___MotionConfiguration:
-        """Optional set of motion configuration options"""
-
-    @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_heading', b'_heading']) -> typing_extensions.Literal['heading'] | None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
-        ...
-global___MoveOnGlobeNewRequest = MoveOnGlobeNewRequest
-
-@typing_extensions.final
-class MoveOnGlobeNewResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EXECUTION_ID_FIELD_NUMBER: builtins.int
     execution_id: builtins.str
     'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
@@ -381,7 +369,7 @@ class MoveOnGlobeNewResponse(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
         ...
-global___MoveOnGlobeNewResponse = MoveOnGlobeNewResponse
+global___MoveOnGlobeResponse = MoveOnGlobeResponse
 
 @typing_extensions.final
 class GetPoseRequest(google.protobuf.message.Message):
@@ -530,9 +518,7 @@ class GetPlanRequest(google.protobuf.message.Message):
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The name of the component which the MoveOnGlobeRequest
-        asked to be moved.
-        """
+        """The name of the component which was requested to be moved."""
     last_plan_only: builtins.bool
     'If supplied, the response will only return\n    the the last plan for the component / execution\n    '
     execution_id: builtins.str

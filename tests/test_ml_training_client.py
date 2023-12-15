@@ -45,7 +45,7 @@ FILTER = create_filter(
     tags=TAGS,
     bbox_labels=["bbox-label"],
 )
-SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(filter=FILTER, organization_id=ORG_ID)
+SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(organization_id=ORG_ID)
 TRAINING_METADATA = TrainingJobMetadata(
     request=SUBMIT_JOB_REQUEST,
     status=TRAINING_STATUS,

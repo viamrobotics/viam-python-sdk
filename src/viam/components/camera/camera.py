@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Dict, Final, List, Optional, Tuple, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Final, List, Optional, Tuple
 
 from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata

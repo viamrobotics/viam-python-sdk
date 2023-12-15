@@ -150,6 +150,14 @@ from viam.proto.app import (
     UpdateRobotResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
+    CreateRegistryItemRequest,
+    CreateRegistryItemResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
+    UpdateRegistryItemRequest,
+    UpdateRegistryItemResponse,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -191,6 +199,10 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+    TabularDataByMQLRequest,
+    TabularDataByMQLResponse,
+    TabularDataBySQLRequest,
+    TabularDataBySQLResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -212,6 +224,8 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
+    DeleteCompletedTrainingJobRequest,
+    DeleteCompletedTrainingJobResponse,
 )
 from viam.proto.app.billing import (
     BillingServiceBase,
@@ -258,10 +272,10 @@ from viam.proto.service.motion import (
     ListPlanStatusesRequest,
     ListPlanStatusesResponse,
     MotionServiceBase,
-    MoveOnGlobeNewRequest,
-    MoveOnGlobeNewResponse,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
+    MoveOnMapNewRequest,
+    MoveOnMapNewResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -444,7 +458,7 @@ class MockMotion(MotionServiceBase):
         move_responses: Dict[str, bool],
         get_pose_responses: Dict[str, PoseInFrame],
         get_plan_response: GetPlanResponse,
-        list_plan_statuses_response: ListPlanStatusesResponse
+        list_plan_statuses_response: ListPlanStatusesResponse,
     ):
         self.move_responses = move_responses
         self.get_pose_responses = get_pose_responses
@@ -475,6 +489,9 @@ class MockMotion(MotionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         await stream.send_message(MoveOnMapResponse(success=True))
 
+    async def MoveOnMapNew(self, stream: Stream[MoveOnMapNewRequest, MoveOnMapNewResponse]) -> None:
+        raise NotImplementedError()
+
     async def MoveOnGlobe(self, stream: Stream[MoveOnGlobeRequest, MoveOnGlobeResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -486,7 +503,8 @@ class MockMotion(MotionServiceBase):
         self.configuration = request.motion_configuration
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(MoveOnGlobeResponse(success=True))
+        self.execution_id = "some execution id"
+        await stream.send_message(MoveOnGlobeResponse(execution_id=self.execution_id))
 
     async def GetPose(self, stream: Stream[GetPoseRequest, GetPoseResponse]) -> None:
         request = await stream.recv_message()
@@ -497,20 +515,6 @@ class MockMotion(MotionServiceBase):
         pose = self.get_pose_responses[name.name]
         response = GetPoseResponse(pose=pose)
         await stream.send_message(response)
-
-    async def MoveOnGlobeNew(self, stream: Stream[MoveOnGlobeNewRequest, MoveOnGlobeNewResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        self.component_name = request.component_name
-        self.destination = request.destination
-        self.movement_sensor = request.movement_sensor_name
-        self.obstacles = request.obstacles
-        self.heading = request.heading
-        self.configuration = request.motion_configuration
-        self.extra = struct_to_dict(request.extra)
-        self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        self.execution_id = "some_execution_id"
-        await stream.send_message(MoveOnGlobeNewResponse(execution_id=self.execution_id))
 
     async def StopPlan(self, stream: Stream[StopPlanRequest, StopPlanResponse]) -> None:
         request = await stream.recv_message()
@@ -817,6 +821,12 @@ class MockData(DataServiceBase):
     ) -> None:
         raise NotImplementedError()
 
+    async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
+        raise NotImplementedError()
+
+    async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
+        raise NotImplementedError()
+
 
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
@@ -858,7 +868,6 @@ class MockMLTraining(MLTrainingServiceBase):
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.filter = request.filter
         self.org_id = request.organization_id
         self.model_name = request.model_name
         self.model_version = request.model_version
@@ -884,6 +893,11 @@ class MockMLTraining(MLTrainingServiceBase):
         assert request is not None
         self.cancel_job_id = request.id
         await stream.send_message(CancelTrainingJobResponse())
+
+    async def DeleteCompletedTrainingJob(
+        self, stream: Stream[DeleteCompletedTrainingJobRequest, DeleteCompletedTrainingJobResponse]
+    ) -> None:
+        raise NotImplementedError()
 
 
 class MockBilling(BillingServiceBase):
@@ -913,7 +927,7 @@ class MockBilling(BillingServiceBase):
         response = GetInvoicePdfResponse(chunk=self.pdf)
         await stream.send_message(response)
 
-    async def GetInvoicesSummary(self, stream: Stream[GetInvoicesSummaryRequest, GetInvoicePdfResponse]) -> None:
+    async def GetInvoicesSummary(self, stream: Stream[GetInvoicesSummaryRequest, GetInvoicesSummaryResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.org_id = request.org_id
@@ -1374,3 +1388,17 @@ class MockApp(AppServiceBase):
         request = await stream.recv_message()
         assert request is not None
         await stream.send_message(CreateKeyFromExistingKeyAuthorizationsResponse(key=self.api_key, id=self.id))
+
+    async def CreateRegistryItem(self, stream: Stream[CreateRegistryItemRequest, CreateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetOrganizationsWithAccessToLocation(
+        self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
+    ) -> None:
+        raise NotImplementedError()
+
+    async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
