@@ -88,7 +88,6 @@
              
   <h1>Source code for viam.components.board.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.duration_pb2</span> <span class="kn">import</span> <span class="n">Duration</span>
@@ -120,7 +119,6 @@
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">get_geometries</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Board</span>
-<span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">PostProcessor</span>
 
 
 <div class="viewcode-block" id="AnalogReaderClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient">[docs]</a><span class="k">class</span> <span class="nc">AnalogReaderClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">AnalogReader</span><span class="p">):</span>
@@ -146,16 +144,7 @@
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetDigitalInterruptValueRequest</span><span class="p">(</span><span class="n">board_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">digital_interrupt_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDigitalInterruptValueResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDigitalInterruptValue</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">value</span></div>
-
-<div class="viewcode-block" id="DigitalInterruptClient.tick"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.tick">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">nanos</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="DigitalInterruptClient.add_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_callback">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="DigitalInterruptClient.add_post_processor"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.DigitalInterruptClient.add_post_processor">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_post_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">PostProcessor</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">value</span></div></div>
 
 
 <div class="viewcode-block" id="GPIOPinClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.GPIOPinClient">[docs]</a><span class="k">class</span> <span class="nc">GPIOPinClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">GPIOPin</span><span class="p">):</span>

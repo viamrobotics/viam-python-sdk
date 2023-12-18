@@ -89,16 +89,13 @@
   <h1>Source code for viam.components.board.board</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Queue</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">BoardStatus</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.board</span> <span class="kn">import</span> <span class="n">PowerMode</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">Subtype</span>
 
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
-
-<span class="n">PostProcessor</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="Board"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board">[docs]</a><span class="k">class</span> <span class="nc">Board</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
@@ -143,41 +140,6 @@
 
 <span class="sd">            Returns:</span>
 <span class="sd">                int: The current value.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="o">...</span></div>
-
-<div class="viewcode-block" id="Board.DigitalInterrupt.tick"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.tick">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">tick</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">high</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">nanos</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            This method is to be called either manually if the interrupt</span>
-<span class="sd">            is a proxy to some real hardware interrupt or for tests.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                high (bool): If the signal of the interrupt is high.</span>
-<span class="sd">                nanos (int): Nanoseconds from an arbitrary point in time,</span>
-<span class="sd">                    but always increasing and always needs to be accurate.</span>
-<span class="sd">                    Using ``time.time_ns()`` would be acceptable.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="o">...</span></div>
-
-<div class="viewcode-block" id="Board.DigitalInterrupt.add_callback"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_callback">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">add_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queue</span><span class="p">:</span> <span class="n">Queue</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a callback to be sent the low/high value on ``tick()``.</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                queue (Queue): The receiving queue.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
-            <span class="o">...</span></div>
-
-<div class="viewcode-block" id="Board.DigitalInterrupt.add_post_processor"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.DigitalInterrupt.add_post_processor">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-        <span class="k">async</span> <span class="k">def</span> <span class="nf">add_post_processor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processor</span><span class="p">:</span> <span class="n">PostProcessor</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Add a post processor that should be used to modify what</span>
-<span class="sd">            is returned by ``self.value()``</span>
-
-<span class="sd">            Args:</span>
-<span class="sd">                processor (PostProcessor): The post processor to add.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 

@@ -63,9 +63,7 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../index.html#submodules">Submodules</a><ul class="current">
 <li class="toctree-l5 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components.board.board</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a></li>
-<li class="toctree-l7"><a class="reference internal" href="#attributes">Attributes</a><ul>
-<li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.PostProcessor"><code class="docutils literal notranslate"><span class="pre">PostProcessor</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.components.board.board.Board"><code class="docutils literal notranslate"><span class="pre">Board</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.board.board.Board.AnalogReader"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.AnalogReader.read"><code class="docutils literal notranslate"><span class="pre">Board.AnalogReader.read()</span></code></a></li>
@@ -79,9 +77,6 @@
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.value"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.value()</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.tick"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.tick()</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.add_callback"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.add_callback()</span></code></a></li>
-<li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.add_post_processor"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.add_post_processor()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.from_robot"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.from_robot()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.do_command"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.do_command()</span></code></a></li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt.get_geometries"><code class="docutils literal notranslate"><span class="pre">Board.DigitalInterrupt.get_geometries()</span></code></a></li>
@@ -201,21 +196,6 @@
 </tr>
 </tbody>
 </table>
-</section>
-<section id="attributes">
-<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.components.board.board.PostProcessor" title="viam.components.board.board.PostProcessor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PostProcessor</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<dl class="py data">
-<dt class="sig sig-object py" id="viam.components.board.board.PostProcessor">
-<span class="sig-prename descclassname"><span class="pre">viam.components.board.board.</span></span><span class="sig-name descname"><span class="pre">PostProcessor</span></span><a class="headerlink" href="#viam.components.board.board.PostProcessor" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.board.board.Board">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.components.board.board.</span></span><span class="sig-name descname"><span class="pre">Board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board" title="Permalink to this definition"></a></dt>
@@ -358,46 +338,6 @@ which is based on the type of interrupt.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.DigitalInterrupt.tick">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nanos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.tick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.DigitalInterrupt.tick" title="Permalink to this definition"></a></dt>
-<dd><p>This method is to be called either manually if the interrupt
-is a proxy to some real hardware interrupt or for tests.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>high</strong> (<em>bool</em>) – If the signal of the interrupt is high.</p></li>
-<li><p><strong>nanos</strong> (<em>int</em>) – Nanoseconds from an arbitrary point in time,
-but always increasing and always needs to be accurate.
-Using <code class="docutils literal notranslate"><span class="pre">time.time_ns()</span></code> would be acceptable.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.DigitalInterrupt.add_callback">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">multiprocessing.Queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.add_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.DigitalInterrupt.add_callback" title="Permalink to this definition"></a></dt>
-<dd><p>Add a callback to be sent the low/high value on <code class="docutils literal notranslate"><span class="pre">tick()</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>queue</strong> (<em>Queue</em>) – The receiving queue.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.components.board.board.Board.DigitalInterrupt.add_post_processor">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_post_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PostProcessor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/board/board.html#Board.DigitalInterrupt.add_post_processor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.board.Board.DigitalInterrupt.add_post_processor" title="Permalink to this definition"></a></dt>
-<dd><p>Add a post processor that should be used to modify what
-is returned by <code class="docutils literal notranslate"><span class="pre">self.value()</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>processor</strong> (<em>PostProcessor</em>) – The post processor to add.</p>
 </dd>
 </dl>
 </dd></dl>

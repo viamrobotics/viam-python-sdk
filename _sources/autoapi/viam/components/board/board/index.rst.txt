@@ -17,18 +17,6 @@ Classes
 
 
 
-Attributes
-~~~~~~~~~~
-
-.. autoapisummary::
-
-   viam.components.board.board.PostProcessor
-
-
-.. py:data:: PostProcessor
-
-   
-
 .. py:class:: Board(name: str)
 
 
@@ -149,42 +137,6 @@ Attributes
 
          :returns: The current value.
          :rtype: int
-
-
-      .. py:method:: tick(high: bool, nanos: int)
-         :abstractmethod:
-         :async:
-
-         This method is to be called either manually if the interrupt
-         is a proxy to some real hardware interrupt or for tests.
-
-         :param high: If the signal of the interrupt is high.
-         :type high: bool
-         :param nanos: Nanoseconds from an arbitrary point in time,
-                       but always increasing and always needs to be accurate.
-                       Using ``time.time_ns()`` would be acceptable.
-         :type nanos: int
-
-
-      .. py:method:: add_callback(queue: multiprocessing.Queue)
-         :abstractmethod:
-         :async:
-
-         Add a callback to be sent the low/high value on ``tick()``.
-
-         :param queue: The receiving queue.
-         :type queue: Queue
-
-
-      .. py:method:: add_post_processor(processor: PostProcessor)
-         :abstractmethod:
-         :async:
-
-         Add a post processor that should be used to modify what
-         is returned by ``self.value()``
-
-         :param processor: The post processor to add.
-         :type processor: PostProcessor
 
 
       .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
