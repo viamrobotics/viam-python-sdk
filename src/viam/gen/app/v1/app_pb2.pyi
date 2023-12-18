@@ -2505,6 +2505,28 @@ class ListRegistryItemsResponse(google.protobuf.message.Message):
 global___ListRegistryItemsResponse = ListRegistryItemsResponse
 
 @typing_extensions.final
+class DeleteRegistryItemRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: builtins.int
+    item_id: builtins.str
+    "The id of the item (formatted as prefix:name where prefix is the owner's orgid or namespace)"
+
+    def __init__(self, *, item_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['item_id', b'item_id']) -> None:
+        ...
+global___DeleteRegistryItemRequest = DeleteRegistryItemRequest
+
+@typing_extensions.final
+class DeleteRegistryItemResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___DeleteRegistryItemResponse = DeleteRegistryItemResponse
+
+@typing_extensions.final
 class CreateModuleRequest(google.protobuf.message.Message):
     """Modules"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
