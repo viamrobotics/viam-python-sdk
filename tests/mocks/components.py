@@ -7,7 +7,6 @@ else:
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
@@ -18,7 +17,6 @@ from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -262,26 +260,15 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = False
         self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
-        self.post_processors: List[PostProcessor] = []
-        self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
-        self.extra = extra
-        self.timeout = timeout
         return self.num_ticks
 
-    async def tick(self, high: bool, nanos: int):
+    async def tick(self, high: bool, nanos: int):  # Call this to get the mock interrupt to change
         self.high = high
         self.last_tick = nanos
         self.num_ticks += 1
-
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
-
-    async def add_post_processor(self, processor: PostProcessor):
-        self.post_processors.append(processor)
 
 
 class MockGPIOPin(Board.GPIOPin):

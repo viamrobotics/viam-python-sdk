@@ -10,7 +10,7 @@ else:
     from typing import AsyncIterator
 
 from datetime import timedelta
-from multiprocessing import Lock, Queue
+from multiprocessing import Lock
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
@@ -20,7 +20,6 @@ from viam.components.arm import Arm
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -241,26 +240,11 @@ class ExampleAnalogReader(Board.AnalogReader):
 
 class ExampleDigitalInterrupt(Board.DigitalInterrupt):
     def __init__(self, name: str):
-        self.high = False
-        self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
-        self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
     async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.num_ticks
-
-    async def tick(self, high: bool, nanos: int):
-        self.high = high
-        self.last_tick = nanos
-        self.num_ticks += 1
-
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
-
-    async def add_post_processor(self, processor: PostProcessor):
-        self.post_processors.append(processor)
 
 
 class ExampleGPIOPin(Board.GPIOPin):

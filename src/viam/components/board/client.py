@@ -1,5 +1,4 @@
 from datetime import timedelta
-from multiprocessing import Queue
 from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
@@ -31,7 +30,6 @@ from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from . import Board
-from .board import PostProcessor
 
 
 class AnalogReaderClient(Board.AnalogReader):
@@ -58,15 +56,6 @@ class DigitalInterruptClient(Board.DigitalInterrupt):
         request = GetDigitalInterruptValueRequest(board_name=self.board.name, digital_interrupt_name=self.name, extra=dict_to_struct(extra))
         response: GetDigitalInterruptValueResponse = await self.board.client.GetDigitalInterruptValue(request, timeout=timeout)
         return response.value
-
-    async def tick(self, high: bool, nanos: int):
-        raise NotImplementedError()
-
-    async def add_callback(self, queue: Queue):
-        raise NotImplementedError()
-
-    async def add_post_processor(self, processor: PostProcessor):
-        raise NotImplementedError()
 
 
 class GPIOPinClient(Board.GPIOPin):
