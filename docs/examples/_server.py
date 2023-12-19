@@ -31,6 +31,8 @@ from viam.proto.app import (
     CreateOrganizationInviteResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    CreateRegistryItemRequest,
+    CreateRegistryItemResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
@@ -47,6 +49,8 @@ from viam.proto.app import (
     DeleteOrganizationMemberResponse,
     DeleteOrganizationRequest,
     DeleteOrganizationResponse,
+    DeleteRegistryItemRequest,
+    DeleteRegistryItemResponse,
     DeleteRobotPartRequest,
     DeleteRobotPartResponse,
     DeleteRobotPartSecretRequest,
@@ -63,6 +67,8 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
@@ -95,19 +101,13 @@ from viam.proto.app import (
     ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
     LocationAuthRequest,
     LocationAuthResponse,
-    CreateRegistryItemRequest,
-    CreateRegistryItemResponse,
-    GetOrganizationsWithAccessToLocationRequest,
-    GetOrganizationsWithAccessToLocationResponse,
-    ListRegistryItemsRequest,
-    ListRegistryItemsResponse,
-    UpdateRegistryItemRequest,
-    UpdateRegistryItemResponse,
 )
 from viam.proto.app import LogEntry as LogEntryPB
 from viam.proto.app import (
@@ -143,6 +143,8 @@ from viam.proto.app import (
     UpdateOrganizationInviteAuthorizationsResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
+    UpdateRegistryItemRequest,
+    UpdateRegistryItemResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -188,12 +190,12 @@ from viam.proto.app.data import (
     TabularData,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
     TabularDataByMQLRequest,
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
+    TagsByFilterRequest,
+    TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -584,6 +586,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
         raise NotImplementedError()
 
 

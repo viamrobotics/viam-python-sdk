@@ -1,9 +1,10 @@
-from io import BytesIO
 import os
 from array import array
+from io import BytesIO
+
 from PIL import Image
 
-from viam.media.video import RawImage, ViamImage, NamedImage, CameraMimeType
+from viam.media.video import CameraMimeType, NamedImage, RawImage, ViamImage
 
 
 class TestRawImage:

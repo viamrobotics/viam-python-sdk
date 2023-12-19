@@ -34,6 +34,8 @@ from viam.proto.app import (
     CreateOrganizationInviteResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    CreateRegistryItemRequest,
+    CreateRegistryItemResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
@@ -50,6 +52,8 @@ from viam.proto.app import (
     DeleteOrganizationMemberResponse,
     DeleteOrganizationRequest,
     DeleteOrganizationResponse,
+    DeleteRegistryItemRequest,
+    DeleteRegistryItemResponse,
     DeleteRobotPartRequest,
     DeleteRobotPartResponse,
     DeleteRobotPartSecretRequest,
@@ -67,6 +71,8 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
@@ -99,6 +105,8 @@ from viam.proto.app import (
     ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -144,20 +152,35 @@ from viam.proto.app import (
     UpdateOrganizationInviteAuthorizationsResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
+    UpdateRegistryItemRequest,
+    UpdateRegistryItemResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
     UpdateRobotResponse,
     UploadModuleFileRequest,
     UploadModuleFileResponse,
-    CreateRegistryItemRequest,
-    CreateRegistryItemResponse,
-    GetOrganizationsWithAccessToLocationRequest,
-    GetOrganizationsWithAccessToLocationResponse,
-    ListRegistryItemsRequest,
-    ListRegistryItemsResponse,
-    UpdateRegistryItemRequest,
-    UpdateRegistryItemResponse,
+)
+from viam.proto.app.billing import (
+    BillingServiceBase,
+    GetBillingSummaryRequest,
+    GetBillingSummaryResponse,
+    GetCurrentMonthUsageRequest,
+    GetCurrentMonthUsageResponse,
+    GetCurrentMonthUsageSummaryRequest,
+    GetCurrentMonthUsageSummaryResponse,
+    GetInvoiceHistoryRequest,
+    GetInvoiceHistoryResponse,
+    GetInvoicePdfRequest,
+    GetInvoicePdfResponse,
+    GetInvoicesSummaryRequest,
+    GetInvoicesSummaryResponse,
+    GetItemizedInvoiceRequest,
+    GetItemizedInvoiceResponse,
+    GetOrgBillingInformationRequest,
+    GetOrgBillingInformationResponse,
+    GetUnpaidBalanceRequest,
+    GetUnpaidBalanceResponse,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -197,12 +220,12 @@ from viam.proto.app.data import (
     TabularData,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
-    TagsByFilterRequest,
-    TagsByFilterResponse,
     TabularDataByMQLRequest,
     TabularDataByMQLResponse,
     TabularDataBySQLRequest,
     TabularDataBySQLResponse,
+    TagsByFilterRequest,
+    TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -216,6 +239,8 @@ from viam.proto.app.datasync import (
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
     CancelTrainingJobResponse,
+    DeleteCompletedTrainingJobRequest,
+    DeleteCompletedTrainingJobResponse,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
@@ -224,29 +249,6 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
-    DeleteCompletedTrainingJobRequest,
-    DeleteCompletedTrainingJobResponse,
-)
-from viam.proto.app.billing import (
-    BillingServiceBase,
-    GetCurrentMonthUsageRequest,
-    GetCurrentMonthUsageResponse,
-    GetInvoicePdfRequest,
-    GetInvoicePdfResponse,
-    GetInvoicesSummaryRequest,
-    GetInvoicesSummaryResponse,
-    GetOrgBillingInformationRequest,
-    GetOrgBillingInformationResponse,
-    GetBillingSummaryRequest,
-    GetBillingSummaryResponse,
-    GetCurrentMonthUsageSummaryRequest,
-    GetCurrentMonthUsageSummaryResponse,
-    GetInvoiceHistoryRequest,
-    GetInvoiceHistoryResponse,
-    GetItemizedInvoiceRequest,
-    GetItemizedInvoiceResponse,
-    GetUnpaidBalanceRequest,
-    GetUnpaidBalanceResponse,
 )
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
 from viam.proto.service.mlmodel import (
@@ -283,7 +285,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.proto.service.navigation import Mode, Waypoint, Path
+from viam.proto.service.navigation import Mode, Path, Waypoint
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -1401,4 +1403,7 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
         raise NotImplementedError()

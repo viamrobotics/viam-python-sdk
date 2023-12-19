@@ -8,8 +8,8 @@ lint:
 	poetry run $(MAKE) _lint
 
 _format:
-	black --exclude ".*/gen/.*" ./src
-	isort ./src
+	black --exclude ".*/gen/.*" ./src ./tests ./docs/examples
+	isort ./src ./tests ./docs/examples
 
 format:
 	poetry run $(MAKE) _format

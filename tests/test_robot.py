@@ -13,7 +13,7 @@ from viam.components.arm.client import ArmClient
 from viam.components.motor import Motor
 from viam.components.movement_sensor import MovementSensor
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3, Geometry
+from viam.proto.common import Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResourceName, Transform, Vector3
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.arm import Status as ArmStatus
 from viam.proto.component.motor import Status as MotorStatus
@@ -165,7 +165,7 @@ def service() -> RobotService:
                 compass_heading_supported=False,
             ),
             accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
-            readings={"a": 1, "b": 2, "c": 3}
+            readings={"a": 1, "b": 2, "c": 3},
         ),
         MockMLModel("mlmodel1"),
     ]

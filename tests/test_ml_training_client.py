@@ -1,15 +1,9 @@
 import pytest
-
-from grpclib.testing import ChannelFor
 from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.testing import ChannelFor
 
-from viam.proto.app.mltraining import (
-    ModelType,
-    SubmitTrainingJobRequest,
-    TrainingJobMetadata,
-    TrainingStatus,
-)
 from viam.app.ml_training_client import MLTrainingClient
+from viam.proto.app.mltraining import ModelType, SubmitTrainingJobRequest, TrainingJobMetadata, TrainingStatus
 from viam.utils import create_filter
 
 from .mocks.services import MockMLTraining

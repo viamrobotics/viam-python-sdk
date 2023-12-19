@@ -20,8 +20,6 @@ from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     StartMappingSessionResponse,
     StopMappingSessionRequest,
     StopMappingSessionResponse,
-    UpdateMappingSessionMetadataByIDRequest,
-    UpdateMappingSessionMetadataByIDResponse,
 )
 
 __all__ = [
@@ -43,6 +41,4 @@ __all__ = [
     "StartMappingSessionResponse",
     "StopMappingSessionRequest",
     "StopMappingSessionResponse",
-    "UpdateMappingSessionMetadataByIDRequest",
-    "UpdateMappingSessionMetadataByIDResponse",
 ]

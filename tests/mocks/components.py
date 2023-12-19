@@ -52,7 +52,6 @@ from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
 from viam.utils import ValueTypes
 
-
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
@@ -395,12 +394,9 @@ class MockCamera(Camera):
         self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
-    async def get_image(self,
-                        mime_type: str = "",
-                        extra: Optional[Dict[str, Any]] = None,
-                        timeout: Optional[float] = None,
-                        **kwargs
-                        ) -> Union[Image.Image, RawImage]:
+    async def get_image(
+        self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Union[Image.Image, RawImage]:
         self.extra = extra
         self.timeout = timeout
         mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
@@ -421,12 +417,9 @@ class MockCamera(Camera):
             )
         ], self.metadata
 
-    async def get_point_cloud(self,
-                              *,
-                              extra: Optional[Dict[str, Any]] = None,
-                              timeout: Optional[float] = None,
-                              **kwargs
-                              ) -> Tuple[bytes, str]:
+    async def get_point_cloud(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[bytes, str]:
         self.extra = extra
         self.timeout = timeout
         return self.point_cloud, CameraMimeType.PCD
@@ -978,7 +971,8 @@ class MockPowerSensor(PowerSensor):
         return self.power
 
     async def get_readings(
-            self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]:
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, float]:
         self.extra = extra
         self.timeout = timeout
         return self.readings
