@@ -132,12 +132,10 @@
 <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span>
 
+
 <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span>
-        <span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-        <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;localhost:9091&#39;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">dial_options</span><span class="o">=</span><span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s2">&quot;localhost:9091&quot;</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -149,9 +147,11 @@
 <span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
 
+
 <span class="k">async</span> <span class="k">def</span> <span class="nf">connect_with_channel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s1">&#39;localhost:9091&#39;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s2">&quot;localhost:9091&quot;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">(</span><span class="n">insecure</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">disable_webrtc</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
         <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">(</span><span class="n">refresh_interval</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">log_level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">FATAL</span><span class="p">))</span>
+
 
 <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
@@ -165,7 +165,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f86f40cef90&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f86f5e7ca90&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f86f5e43310&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f86f5e574f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f86f5e57630&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f86f40860e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f86f4086090&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f86f4086130&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f86f4086180&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f86f40861d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f86f4086220&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f86f4086270&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f86f40862c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f86f4086310&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f86f4086360&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f51ae646c20&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f51ae6364f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f51ae66bdb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f51ac06e7c0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f51ac06e720&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f51ac06e860&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f51ac06e810&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f51ac06e8b0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f51ac06e900&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f51ac06e950&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f51ac06e9a0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f51ac06e9f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f51ac06ea40&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f51ac06ea90&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f51ac06eae0&gt;]
 </pre></div>
 </div>
 </div>
@@ -195,7 +195,7 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f86ec052f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f519c055fd0&gt;
 </pre></div>
 </div>
 </div>
@@ -205,6 +205,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.services.vision</span> <span class="kn">import</span> <span class="n">VisionClient</span>
+
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">vision</span><span class="p">():</span>
     <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
@@ -818,11 +819,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="kn">from</span> <span class="nn">my_cool_arm</span> <span class="kn">import</span> <span class="n">MyCoolArm</span>
 
+
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s1">&#39;my-arm&#39;</span><span class="p">)])</span>
+    <span class="n">srv</span> <span class="o">=</span> <span class="n">Server</span><span class="p">([</span><span class="n">MyCoolArm</span><span class="p">(</span><span class="s2">&quot;my-arm&quot;</span><span class="p">)])</span>
     <span class="k">await</span> <span class="n">srv</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
     <span class="k">except</span><span class="p">:</span>
@@ -980,7 +983,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;./codediff.png&#39;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">&quot;./codediff.png&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1004,8 +1007,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
 <span class="kn">from</span> <span class="nn">viam.app.viam_client</span> <span class="kn">import</span> <span class="n">ViamClient</span>
 
+
 <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
-    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;&lt;API_KEY&gt;&#39;</span><span class="p">,</span> <span class="n">api_key_id</span><span class="o">=</span><span class="s1">&#39;&lt;API_KEY_ID&gt;&#39;</span><span class="p">)</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;&lt;API_KEY&gt;&quot;</span><span class="p">,</span> <span class="n">api_key_id</span><span class="o">=</span><span class="s2">&quot;&lt;API_KEY_ID&gt;&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1027,10 +1031,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_filter</span><span class="p">(</span>
-    <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span>
-    <span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
-    <span class="n">end_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
-    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;speed_test_run&quot;</span><span class="p">]</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span> <span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">end_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;speed_test_run&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="n">left_motor_filter</span><span class="p">)</span>
@@ -1064,14 +1065,14 @@ Time received: 2023-07-08 00:00:00
 <span class="n">time_received_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
-    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span> <span class="c1"># Unique ID of the relevant robot part.</span>
-    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;rdk:component:motor&#39;</span><span class="p">,</span>
-    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
-    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;&lt;ID&gt;&quot;</span><span class="p">,</span>  <span class="c1"># Unique ID of the relevant robot part.</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s2">&quot;rdk:component:motor&quot;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s2">&quot;IsPowered&quot;</span><span class="p">,</span>
     <span class="n">method_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
     <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested_1</span><span class="p">,</span> <span class="n">time_received_1</span><span class="p">)],</span>
-    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
+    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;PowerPCT&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;IsPowered&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}],</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1101,7 +1102,7 @@ Time received: 2023-07-08 00:00:00
 <span class="k">for</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">my_locations</span><span class="p">:</span>
     <span class="n">more_robots</span> <span class="o">=</span> <span class="k">await</span> <span class="n">app_client</span><span class="o">.</span><span class="n">list_robots</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
     <span class="n">robots</span> <span class="o">+=</span> <span class="n">more_robots</span>
-    
+
 <span class="k">for</span> <span class="n">robot</span> <span class="ow">in</span> <span class="n">robots</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
@@ -1138,7 +1139,7 @@ robot-3
 <span class="k">assert</span> <span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caller</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">caller</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">*****PROTO*****</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">logs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">proto</span><span class="o">.</span><span class="n">caller</span><span class="p">)</span>
 </pre></div>

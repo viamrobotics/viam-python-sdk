@@ -141,6 +141,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateRegistryItem"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateRegistryItem()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateRegistryItem"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateRegistryItem()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.ListRegistryItems"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.ListRegistryItems()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.DeleteRegistryItem"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.DeleteRegistryItem()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.CreateModule"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.CreateModule()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UpdateModule"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UpdateModule()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.AppServiceBase.UploadModuleFile"><code class="docutils literal notranslate"><span class="pre">AppServiceBase.UploadModuleFile()</span></code></a></li>
@@ -351,6 +352,11 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteOrganizationResponse"><code class="docutils literal notranslate"><span class="pre">DeleteOrganizationResponse</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRegistryItemRequest"><code class="docutils literal notranslate"><span class="pre">DeleteRegistryItemRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteRegistryItemRequest.item_id"><code class="docutils literal notranslate"><span class="pre">DeleteRegistryItemRequest.item_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRegistryItemResponse"><code class="docutils literal notranslate"><span class="pre">DeleteRegistryItemResponse</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.DeleteRobotPartRequest"><code class="docutils literal notranslate"><span class="pre">DeleteRobotPartRequest</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.DeleteRobotPartRequest.part_id"><code class="docutils literal notranslate"><span class="pre">DeleteRobotPartRequest.part_id</span></code></a></li>
 </ul>
@@ -1219,6 +1225,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.DeleteOrganizationResponse" title="viam.proto.app.DeleteOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.DeleteRegistryItemRequest" title="viam.proto.app.DeleteRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteRegistryItemRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.DeleteRegistryItemResponse" title="viam.proto.app.DeleteRegistryItemResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteRegistryItemResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.DeleteRobotPartRequest" title="viam.proto.app.DeleteRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeleteRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -1873,6 +1885,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.ListRegistryItems">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListRegistryItems</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListRegistryItemsRequest" title="viam.gen.app.v1.app_pb2.ListRegistryItemsRequest"><span class="pre">app.v1.app_pb2.ListRegistryItemsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.ListRegistryItemsResponse" title="viam.gen.app.v1.app_pb2.ListRegistryItemsResponse"><span class="pre">app.v1.app_pb2.ListRegistryItemsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.ListRegistryItems"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.ListRegistryItems" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.AppServiceBase.DeleteRegistryItem">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeleteRegistryItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteRegistryItemRequest" title="viam.gen.app.v1.app_pb2.DeleteRegistryItemRequest"><span class="pre">app.v1.app_pb2.DeleteRegistryItemRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.DeleteRegistryItemResponse" title="viam.gen.app.v1.app_pb2.DeleteRegistryItemResponse"><span class="pre">app.v1.app_pb2.DeleteRegistryItemResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/app/v1/app_grpc.html#AppServiceBase.DeleteRegistryItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.AppServiceBase.DeleteRegistryItem" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -3035,6 +3052,37 @@ shown below.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.DeleteOrganizationResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteOrganizationResponse</span></span><a class="headerlink" href="#viam.proto.app.DeleteOrganizationResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteRegistryItemRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteRegistryItemRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.DeleteRegistryItemRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteRegistryItemRequest.item_id">
+<span class="sig-name descname"><span class="pre">item_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.DeleteRegistryItemRequest.item_id" title="Permalink to this definition"></a></dt>
+<dd><p>name where prefix is the owner’s orgid or namespace)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The id of the item (formatted as prefix</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.DeleteRegistryItemResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">DeleteRegistryItemResponse</span></span><a class="headerlink" href="#viam.proto.app.DeleteRegistryItemResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol

@@ -77,7 +77,6 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.ListMappingSessions"><code class="docutils literal notranslate"><span class="pre">CloudSLAMServiceBase.ListMappingSessions()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.StopMappingSession"><code class="docutils literal notranslate"><span class="pre">CloudSLAMServiceBase.StopMappingSession()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.GetMappingSessionMetadataByID"><code class="docutils literal notranslate"><span class="pre">CloudSLAMServiceBase.GetMappingSessionMetadataByID()</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.UpdateMappingSessionMetadataByID"><code class="docutils literal notranslate"><span class="pre">CloudSLAMServiceBase.UpdateMappingSessionMetadataByID()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">CloudSLAMServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -176,15 +175,6 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.StopMappingSessionResponse.version"><code class="docutils literal notranslate"><span class="pre">StopMappingSessionResponse.version</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.time_cloud_run_job_ended"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest.time_cloud_run_job_ended</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.session_id"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest.session_id</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.end_status"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest.end_status</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.error_msg"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest.error_msg</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.HasField"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest.HasField()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDResponse"><code class="docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDResponse</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -306,12 +296,6 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.cloudslam.StopMappingSessionResponse" title="viam.proto.app.cloudslam.StopMappingSessionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StopMappingSessionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest" title="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDRequest</span></code></a></p></td>
-<td><p>UpdateMappingSessionMetadataByID</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDResponse" title="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateMappingSessionMetadataByIDResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
 </tbody>
 </table>
 <dl class="py class">
@@ -348,11 +332,6 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.app.cloudslam.CloudSLAMServiceBase.GetMappingSessionMetadataByID">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetMappingSessionMetadataByID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/cloudslam/v1/cloud_slam_pb2/index.html#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest"><span class="pre">app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/cloudslam/v1/cloud_slam_pb2/index.html#viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse"><span class="pre">app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/cloudslam/v1/cloud_slam_grpc.html#CloudSLAMServiceBase.GetMappingSessionMetadataByID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.GetMappingSessionMetadataByID" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.CloudSLAMServiceBase.UpdateMappingSessionMetadataByID">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateMappingSessionMetadataByID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/cloudslam/v1/cloud_slam_pb2/index.html#viam.gen.app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDRequest" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDRequest"><span class="pre">app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/cloudslam/v1/cloud_slam_pb2/index.html#viam.gen.app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDResponse" title="viam.gen.app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDResponse"><span class="pre">app.cloudslam.v1.cloud_slam_pb2.UpdateMappingSessionMetadataByIDResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/cloudslam/v1/cloud_slam_grpc.html#CloudSLAMServiceBase.UpdateMappingSessionMetadataByID"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.cloudslam.CloudSLAMServiceBase.UpdateMappingSessionMetadataByID" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -854,69 +833,6 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.cloudslam.StopMappingSessionResponse.version" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.cloudslam.</span></span><span class="sig-name descname"><span class="pre">UpdateMappingSessionMetadataByIDRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___EndStatus</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_cloud_run_job_ended</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_msg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>UpdateMappingSessionMetadataByID</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.time_cloud_run_job_ended">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_cloud_run_job_ended</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.time_cloud_run_job_ended" title="Permalink to this definition"></a></dt>
-<dd><p>set at the time of job closeout and used as the package version</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.session_id">
-<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.session_id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.end_status">
-<span class="sig-name descname"><span class="pre">end_status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___EndStatus</span></em><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.end_status" title="Permalink to this definition"></a></dt>
-<dd><p>enums that represent “success”, “failed”, etc</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.error_msg">
-<span class="sig-name descname"><span class="pre">error_msg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.error_msg" title="Permalink to this definition"></a></dt>
-<dd><p>additional details on the end status if needed, such as errors</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">time_cloud_run_job_ended</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time_cloud_run_job_ended'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDRequest.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.cloudslam.</span></span><span class="sig-name descname"><span class="pre">UpdateMappingSessionMetadataByIDResponse</span></span><a class="headerlink" href="#viam.proto.app.cloudslam.UpdateMappingSessionMetadataByIDResponse" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
 </dd></dl>
 
 </section>
