@@ -1,10 +1,11 @@
 import builtins
+
 import numpy as np
 import pytest
 
-from .mocks.services import MockMLModel
-
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
+
+from .mocks.services import MockMLModel
 
 
 #  ignore warning about our out-of-bound int casting (i.e. uint32 -> int16) because we don't store uint32s for int16 & uint16 tensor data

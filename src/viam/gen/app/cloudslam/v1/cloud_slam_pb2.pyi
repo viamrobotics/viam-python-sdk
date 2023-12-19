@@ -298,42 +298,6 @@ class GetMappingSessionMetadataByIDResponse(google.protobuf.message.Message):
 global___GetMappingSessionMetadataByIDResponse = GetMappingSessionMetadataByIDResponse
 
 @typing_extensions.final
-class UpdateMappingSessionMetadataByIDRequest(google.protobuf.message.Message):
-    """UpdateMappingSessionMetadataByID"""
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SESSION_ID_FIELD_NUMBER: builtins.int
-    END_STATUS_FIELD_NUMBER: builtins.int
-    TIME_CLOUD_RUN_JOB_ENDED_FIELD_NUMBER: builtins.int
-    ERROR_MSG_FIELD_NUMBER: builtins.int
-    session_id: builtins.str
-    end_status: global___EndStatus.ValueType
-    'enums that represent “success”, “failed”, etc'
-
-    @property
-    def time_cloud_run_job_ended(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        """set at the time of job closeout and used as the package version"""
-    error_msg: builtins.str
-    'additional details on the end status if needed, such as errors'
-
-    def __init__(self, *, session_id: builtins.str=..., end_status: global___EndStatus.ValueType=..., time_cloud_run_job_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., error_msg: builtins.str=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['end_status', b'end_status', 'error_msg', b'error_msg', 'session_id', b'session_id', 'time_cloud_run_job_ended', b'time_cloud_run_job_ended']) -> None:
-        ...
-global___UpdateMappingSessionMetadataByIDRequest = UpdateMappingSessionMetadataByIDRequest
-
-@typing_extensions.final
-class UpdateMappingSessionMetadataByIDResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(self) -> None:
-        ...
-global___UpdateMappingSessionMetadataByIDResponse = UpdateMappingSessionMetadataByIDResponse
-
-@typing_extensions.final
 class MappingMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int

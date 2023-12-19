@@ -1,25 +1,25 @@
 import pytest
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.components.arm import Arm
 from viam.components.base import Base
 from viam.components.gantry import Gantry
 from viam.gen.service.motion.v1.motion_pb2 import (
-        GetPlanResponse,
-        ListPlanStatusesResponse,
-        PlanStatusWithID,
-        PlanWithStatus,
-        Plan,
-        PlanStatus,
-        PlanStep,
-        ComponentState,
-        PLAN_STATE_IN_PROGRESS,
-        PLAN_STATE_SUCCEEDED,
-        PLAN_STATE_FAILED,
-        PLAN_STATE_STOPPED
-        )
+    PLAN_STATE_FAILED,
+    PLAN_STATE_IN_PROGRESS,
+    PLAN_STATE_STOPPED,
+    PLAN_STATE_SUCCEEDED,
+    ComponentState,
+    GetPlanResponse,
+    ListPlanStatusesResponse,
+    Plan,
+    PlanStatus,
+    PlanStatusWithID,
+    PlanStep,
+    PlanWithStatus,
+)
 from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
-from google.protobuf.timestamp_pb2 import Timestamp
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration, ObstacleDetector
 from viam.services.motion import MotionClient
 
@@ -42,7 +42,7 @@ GET_PLAN_RESPONSE = GetPlanResponse(
             steps=[
                 PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21))}),
                 PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=6, y=7, z=8, o_x=9, o_y=10, o_z=11, theta=23))}),
-            ]
+            ],
         ),
         status=PlanStatus(state=PLAN_STATE_SUCCEEDED, timestamp=Timestamp(seconds=4)),
         status_history=[PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=3))],
@@ -57,50 +57,56 @@ GET_PLAN_RESPONSE = GetPlanResponse(
                     PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=1, y=1, z=1, o_x=1, o_y=1, o_z=1, theta=20))}),
                     PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=2, y=3, z=4, o_x=3, o_y=4, o_z=5, theta=21))}),
                     PlanStep(step={"get_plan_base": ComponentState(pose=Pose(x=6, y=7, z=8, o_x=9, o_y=10, o_z=11, theta=23))}),
-                ]
+                ],
             ),
             status=PlanStatus(state=PLAN_STATE_FAILED, reason="failure reason", timestamp=Timestamp(seconds=2)),
-            status_history=[PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=1))]
+            status_history=[PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=1))],
         )
+    ],
+)
+
+LIST_PLAN_STATUSES_RESPONSE = ListPlanStatusesResponse(
+    plan_statuses_with_ids=[
+        PlanStatusWithID(
+            plan_id="plan 5",
+            component_name=Base.get_resource_name("list_plan_statuses_base"),
+            execution_id="execution_id 3",
+            status=PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=10)),
+        ),
+        PlanStatusWithID(
+            plan_id="plan 4",
+            component_name=Base.get_resource_name("list_plan_statuses_base"),
+            execution_id="execution_id 2",
+            status=PlanStatus(state=PLAN_STATE_SUCCEEDED, timestamp=Timestamp(seconds=9)),
+        ),
+        PlanStatusWithID(
+            plan_id="plan 3",
+            component_name=Base.get_resource_name("list_plan_statuses_base"),
+            execution_id="execution_id 2",
+            status=PlanStatus(state=PLAN_STATE_FAILED, reason="other failure reason", timestamp=Timestamp(seconds=8)),
+        ),
+        PlanStatusWithID(
+            plan_id="plan 2",
+            component_name=Base.get_resource_name("list_plan_statuses_base"),
+            execution_id="execution_id 2",
+            status=PlanStatus(state=PLAN_STATE_FAILED, reason="failure reason", timestamp=Timestamp(seconds=7)),
+        ),
+        PlanStatusWithID(
+            plan_id="plan 1",
+            component_name=Base.get_resource_name("list_plan_statuses_base"),
+            execution_id="execution_id 1",
+            status=PlanStatus(state=PLAN_STATE_STOPPED, timestamp=Timestamp(seconds=6)),
+        ),
     ]
 )
 
-LIST_PLAN_STATUSES_RESPONSE = ListPlanStatusesResponse(plan_statuses_with_ids=[
-    PlanStatusWithID(
-        plan_id="plan 5",
-        component_name=Base.get_resource_name("list_plan_statuses_base"),
-        execution_id="execution_id 3",
-        status=PlanStatus(state=PLAN_STATE_IN_PROGRESS, timestamp=Timestamp(seconds=10)),
-    ),
-    PlanStatusWithID(
-        plan_id="plan 4",
-        component_name=Base.get_resource_name("list_plan_statuses_base"),
-        execution_id="execution_id 2",
-        status=PlanStatus(state=PLAN_STATE_SUCCEEDED, timestamp=Timestamp(seconds=9)),
-    ),
-    PlanStatusWithID(
-        plan_id="plan 3",
-        component_name=Base.get_resource_name("list_plan_statuses_base"),
-        execution_id="execution_id 2",
-        status=PlanStatus(state=PLAN_STATE_FAILED, reason="other failure reason", timestamp=Timestamp(seconds=8)),
-    ),
-    PlanStatusWithID(
-        plan_id="plan 2",
-        component_name=Base.get_resource_name("list_plan_statuses_base"),
-        execution_id="execution_id 2",
-        status=PlanStatus(state=PLAN_STATE_FAILED, reason="failure reason", timestamp=Timestamp(seconds=7)),
-    ),
-    PlanStatusWithID(
-        plan_id="plan 1",
-        component_name=Base.get_resource_name("list_plan_statuses_base"),
-        execution_id="execution_id 1",
-        status=PlanStatus(state=PLAN_STATE_STOPPED, timestamp=Timestamp(seconds=6)),
-    ),
-])
-
 MOTION_CONFIGURATION = MotionConfiguration(
-    obstacle_detectors=[ObstacleDetector(vision_service=ResourceName(namespace="rdk", type="service", subtype="vision", name="viz1"),
-                                         camera=ResourceName(namespace="rdk", type="component", subtype="camera", name="cam1"))],
+    obstacle_detectors=[
+        ObstacleDetector(
+            vision_service=ResourceName(namespace="rdk", type="service", subtype="vision", name="viz1"),
+            camera=ResourceName(namespace="rdk", type="component", subtype="camera", name="cam1"),
+        )
+    ],
     position_polling_frequency_hz=144,
     obstacle_polling_frequency_hz=182,
     plan_deviation_m=41,
@@ -235,7 +241,7 @@ class TestClient:
             response = await client.get_plan(component_rn)
             assert service.component_name == component_rn
             assert not service.last_plan_only
-            assert service.execution_id == ''
+            assert service.execution_id == ""
             assert service.extra == {}
             assert service.timeout is None
             assert response == GET_PLAN_RESPONSE
@@ -244,12 +250,12 @@ class TestClient:
             timeout = 50
             extra = {"some": "extra"}
             response = await client.get_plan(
-                    component_rn,
-                    last_plan_only=last_plan_only,
-                    execution_id=execution_id,
-                    extra=extra,
-                    timeout=timeout,
-                    )
+                component_rn,
+                last_plan_only=last_plan_only,
+                execution_id=execution_id,
+                extra=extra,
+                timeout=timeout,
+            )
             assert service.component_name == component_rn
             assert service.last_plan_only == last_plan_only
             assert service.execution_id == execution_id
@@ -270,10 +276,10 @@ class TestClient:
             timeout = 50
             extra = {"some": "extra"}
             response = await client.list_plan_statuses(
-                    only_active_plans=only_active_plans,
-                    extra=extra,
-                    timeout=timeout,
-                    )
+                only_active_plans=only_active_plans,
+                extra=extra,
+                timeout=timeout,
+            )
             assert service.only_active_plans == only_active_plans
             assert service.extra == extra
             assert service.timeout == loose_approx(timeout)

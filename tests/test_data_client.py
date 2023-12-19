@@ -1,21 +1,14 @@
-import pytest
 from typing import List
 
-from grpclib.testing import ChannelFor
+import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.data import (
-    Annotations,
-    BinaryID,
-    BinaryMetadata,
-    BoundingBox,
-    CaptureMetadata,
-    Filter,
-)
+from viam.proto.app.data import Annotations, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter
+from viam.utils import create_filter
 
 from .mocks.services import MockData
-from viam.utils import create_filter
 
 INCLUDE_BINARY = True
 COMPONENT_NAME = "component_name"
@@ -57,26 +50,22 @@ FILTER = create_filter(
     start_time=START_DATETIME,
     end_time=END_DATETIME,
     tags=TAGS,
-    bbox_labels=BBOX_LABELS
+    bbox_labels=BBOX_LABELS,
 )
 
 FILE_ID = "file_id"
-BINARY_ID = BinaryID(
-    file_id=FILE_ID,
-    organization_id=ORG_ID,
-    location_id=LOCATION_ID
-)
+BINARY_ID = BinaryID(file_id=FILE_ID, organization_id=ORG_ID, location_id=LOCATION_ID)
 BINARY_IDS = [BINARY_ID]
-BINARY_DATA = b'binary_data'
+BINARY_DATA = b"binary_data"
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
 BBOX = BoundingBox(
     id="id",
     label=BBOX_LABEL,
     x_min_normalized=0,
-    y_min_normalized=.1,
-    x_max_normalized=.2,
-    y_max_normalized=.3,
+    y_min_normalized=0.1,
+    x_max_normalized=0.2,
+    y_max_normalized=0.3,
 )
 BBOXES = [BBOX]
 TABULAR_DATA = {"key": "value"}
@@ -123,7 +112,7 @@ def service() -> MockData:
         delete_remove_response=DELETE_REMOVE_RESPONSE,
         tags_response=TAGS_RESPONSE,
         bbox_labels_response=BBOX_LABELS,
-        hostname_response=HOSTNAME_RESPONSE
+        hostname_response=HOSTNAME_RESPONSE,
     )
 
 
@@ -226,9 +215,9 @@ class TestClient:
                 binary_id=BINARY_ID,
                 label="label",
                 x_min_normalized=0,
-                y_min_normalized=.1,
-                x_max_normalized=.2,
-                y_max_normalized=.3,
+                y_min_normalized=0.1,
+                x_max_normalized=0.2,
+                y_max_normalized=0.3,
             )
             assert bbox_label == BBOX_LABEL
 

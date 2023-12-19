@@ -1,5 +1,6 @@
-import pytest
 from unittest import mock
+
+import pytest
 
 from viam.errors import DuplicateResourceError, ResourceNotFoundError
 from viam.resource.manager import ResourceManager
