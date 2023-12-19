@@ -1,32 +1,32 @@
 from datetime import datetime
-import pytest
 
+import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import AppClient, APIKeyAuthorization
-from viam.utils import datetime_to_timestamp, struct_to_dict
+from viam.app.app_client import APIKeyAuthorization, AppClient
 from viam.proto.app import (
-    Organization,
-    Location,
-    Robot,
-    RobotPart,
-    LogEntry,
-    Fragment,
-    LocationAuth,
-    RobotPartHistoryEntry,
-    RoverRentalRobot,
     APIKey,
     APIKeyWithAuthorizations,
     Authorization,
-    AuthorizedPermissions,
     AuthorizationDetails,
+    AuthorizedPermissions,
+    Fragment,
+    Location,
+    LocationAuth,
+    LogEntry,
     Model,
     Module,
-    Visibility,
-    OrganizationMember,
+    ModuleFileInfo,
+    Organization,
     OrganizationInvite,
-    ModuleFileInfo
+    OrganizationMember,
+    Robot,
+    RobotPart,
+    RobotPartHistoryEntry,
+    RoverRentalRobot,
+    Visibility,
 )
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 from .mocks.services import MockApp
 
@@ -116,18 +116,9 @@ FRAGMENT = Fragment(
 )
 NAMESPACE = "namespace"
 AVAILABLE = True
-LOCATION_AUTH = LocationAuth(
-    secret=SECRET,
-    location_id=ID,
-    secrets=None
-)
+LOCATION_AUTH = LocationAuth(secret=SECRET, location_id=ID, secrets=None)
 PART = "part"
-ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(
-    part=PART,
-    robot=ID,
-    when=TIME,
-    old=None
-)
+ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(part=PART, robot=ID, when=TIME, old=None)
 ROBOT_PART_HISTORY = [ROBOT_PART_HISTORY_ENTRY]
 TYPE = "type"
 ROLE = "role"
@@ -135,12 +126,7 @@ API_KEY = "key"
 API_KEY_AUTHORIZATION = APIKeyAuthorization(role=ROLE, resource_type=TYPE, resource_id=ID)
 API_KEY_AUTHORIZATIONS = [API_KEY_AUTHORIZATION]
 AUTHORIZATION = Authorization(
-    authorization_type=TYPE,
-    authorization_id=ID,
-    resource_type=TYPE,
-    resource_id=ID,
-    identity_id=ID,
-    organization_id=ID
+    authorization_type=TYPE, authorization_id=ID, resource_type=TYPE, resource_id=ID, identity_id=ID, organization_id=ID
 )
 AUTHORIZATION_DETAIL = AuthorizationDetails(authorization_type=TYPE, authorization_id=ID, resource_type=TYPE, resource_id=ID, org_id=ID)
 AUTHORIZATION_DETAILS = [AUTHORIZATION_DETAIL]
@@ -173,32 +159,20 @@ MODULE = Module(
     models=MODELS,
     entrypoint=ENTRYPOINT,
     total_robot_usage=NUM,
-    total_organization_usage=NUM
+    total_organization_usage=NUM,
 )
 MODULES = [MODULE]
 EMAIL = "email"
 EMAILS = [EMAIL]
-MEMBER = OrganizationMember(
-    user_id=ID,
-    emails=EMAILS,
-    date_added=TIME
-)
+MEMBER = OrganizationMember(user_id=ID, emails=EMAILS, date_added=TIME)
 MEMBERS = [MEMBER]
-INVITE = OrganizationInvite(
-    organization_id=ID,
-    email=EMAIL,
-    created_on=TIME
-)
+INVITE = OrganizationInvite(organization_id=ID, email=EMAIL, created_on=TIME)
 INVITES = [INVITE]
 VISIBILITY = Visibility.VISIBILITY_PUBLIC
 VERSION = "version"
 PLATFORM = "platform"
-MODULE_FILE_INFO = ModuleFileInfo(
-    module_id=ID,
-    version=VERSION,
-    platform=PLATFORM
-)
-FILE = b'file'
+MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFORM)
+FILE = b"file"
 
 
 @pytest.fixture(scope="function")
@@ -263,8 +237,7 @@ class TestClient:
     async def test_update_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            org = await client.update_organization(
-                    name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
+            org = await client.update_organization(name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
             assert org == ORGANIZATION
             assert service.update_region == DEFAULT_REGION
             assert service.update_cid == CID
@@ -416,9 +389,7 @@ class TestClient:
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            log_entries = await client.get_robot_part_logs(
-                robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM
-            )
+            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
             assert service.errors_only == ERRORS_ONLY
@@ -624,13 +595,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             url = await client.update_module(
-                module_id=ID,
-                url=URL,
-                description=DESCRIPTION,
-                models=MODELS,
-                entrypoint=ENTRYPOINT,
-                organization_id=ID,
-                public=PUBLIC
+                module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT, organization_id=ID, public=PUBLIC
             )
             assert url == URL
             assert service.module_id == ID

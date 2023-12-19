@@ -1,6 +1,7 @@
 # wifi-sensor/src/wifi_sensor_module.py
 import asyncio
 from typing import Any, ClassVar, Dict, Mapping, Optional
+
 from typing_extensions import Self
 
 from viam.components.sensor import Sensor

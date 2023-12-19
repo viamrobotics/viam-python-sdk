@@ -1,13 +1,13 @@
-import pytest
 from datetime import datetime
-from typing import List, Tuple, cast, Mapping, Any
-from google.protobuf.timestamp_pb2 import Timestamp
+from typing import Any, List, Mapping, Tuple, cast
 
+import pytest
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.datasync import UploadMetadata, SensorData
-from viam.utils import struct_to_dict, datetime_to_timestamp
+from viam.proto.app.datasync import SensorData, UploadMetadata
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 from .mocks.services import MockDataSync
 

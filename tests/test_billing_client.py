@@ -1,5 +1,4 @@
 import pytest
-
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
@@ -13,7 +12,7 @@ from viam.proto.app.billing import (
 
 from .mocks.services import MockBilling
 
-PDF = b'abc123'
+PDF = b"abc123"
 CLOUD_STORAGE_USAGE_COST = 100.0
 DATA_UPLOAD_USAGE_COST = 101.0
 DATA_EGRES_USAGE_COST = 102.0

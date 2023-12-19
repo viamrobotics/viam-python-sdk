@@ -34,7 +34,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
+from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockMovementSensor

@@ -8,6 +8,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from viam.proto.common import ActuatorStatus, GeoPoint, Orientation, ResourceName, Vector3
 from viam.utils import (
     PointerCounter,
+    datetime_to_timestamp,
     dict_to_struct,
     message_to_struct,
     primitive_to_value,
@@ -16,7 +17,6 @@ from viam.utils import (
     struct_to_dict,
     struct_to_message,
     value_to_primitive,
-    datetime_to_timestamp,
 )
 
 

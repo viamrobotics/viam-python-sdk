@@ -1,7 +1,6 @@
+import numpy as np
 import pytest
 from grpclib.testing import ChannelFor
-
-import numpy as np
 
 from viam.proto.service.mlmodel import InferRequest, InferResponse, MetadataRequest, MetadataResponse, MLModelServiceStub
 from viam.resource.manager import ResourceManager
