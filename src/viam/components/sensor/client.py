@@ -20,7 +20,7 @@ class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
         self.client = SensorServiceStub(channel)
         super().__init__(name)
 
-    async def get_readings(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
+    async def get_readings(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         if extra is None:
             extra = {}
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))

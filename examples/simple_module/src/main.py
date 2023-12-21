@@ -39,7 +39,7 @@ class MySensor(Sensor):
                 raise Exception("Multiplier cannot be 0.")
         return []
 
-    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"signal": 1 * self.multiplier}
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:

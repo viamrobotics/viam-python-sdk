@@ -991,7 +991,7 @@ class MockSensor(Sensor):
 
     async def get_readings(
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, Any]:
+    ) -> Mapping[str, ValueTypes]:
         self.extra = extra
         self.timeout = timeout
         return self.readings

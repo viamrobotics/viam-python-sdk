@@ -2,6 +2,7 @@ import abc
 from typing import Any, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import ValueTypes
 
 from ..component_base import ComponentBase
 
@@ -20,7 +21,7 @@ class Sensor(ComponentBase):
     @abc.abstractmethod
     async def get_readings(
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, Any]:
+    ) -> Mapping[str, ValueTypes]:
         """
         Obtain the measurements/data specific to this sensor.
 

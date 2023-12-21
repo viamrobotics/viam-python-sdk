@@ -34,7 +34,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
     async def get_readings(
         self, sensors: List[ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
-    ) -> Mapping[ResourceName, Mapping[str, Any]]:
+    ) -> Mapping[ResourceName, Mapping[str, ValueTypes]]:
         """Get the readings from the specific sensors provided
 
         Args:
