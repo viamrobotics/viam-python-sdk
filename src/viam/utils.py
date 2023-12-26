@@ -31,6 +31,9 @@ else:
 ValueTypes = Union[bool, SupportsBytes, SupportsFloat, List, Mapping, str, None]
 """Types that can be encoded into a protobuf `Value`"""
 
+SensorReading = Union[ValueTypes, Vector3, GeoPoint, Orientation]
+"""Types that can be returned from a sensor"""
+
 
 def primitive_to_value(v: ValueTypes) -> Value:
     """
@@ -172,7 +175,7 @@ async def get_geometries(
     return [geometry for geometry in response.geometries]
 
 
-def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]:
+def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Value]:
     prim_readings = dict(readings)
     for key, reading in readings.items():
         if isinstance(reading, Vector3):
@@ -190,7 +193,7 @@ def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str,
     return {key: primitive_to_value(value) for (key, value) in prim_readings.items()}
 
 
-def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, ValueTypes]:
+def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, SensorReading]:
     prim_readings: Dict[str, Any] = {key: value_to_primitive(value) for (key, value) in readings.items()}
     for key, reading in prim_readings.items():
         if isinstance(reading, Mapping):

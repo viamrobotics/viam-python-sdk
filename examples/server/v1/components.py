@@ -53,7 +53,7 @@ from viam.proto.common import (
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.encoder import PositionType
-from viam.utils import ValueTypes
+from viam.utils import SensorReading
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -646,7 +646,7 @@ class ExampleMovementSensor(MovementSensor):
         self.properties = properties
         self.accuracy = accuracy
 
-    async def get_readings(self, **kwargs) -> Mapping[str, ValueTypes]:
+    async def get_readings(self, **kwargs) -> Mapping[str, SensorReading]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
     async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
@@ -694,7 +694,7 @@ class ExampleSensor(Sensor):
         self.num_readings = random.randint(1, 10)
         super().__init__(name)
 
-    async def get_readings(self, **kwargs) -> Mapping[str, ValueTypes]:
+    async def get_readings(self, **kwargs) -> Mapping[str, SensorReading]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:

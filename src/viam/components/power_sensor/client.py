@@ -14,7 +14,7 @@ from viam.proto.component.powersensor import (
     PowerSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import SensorReading, ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 
 class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
@@ -46,7 +46,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         response: GetPowerResponse = await self.client.GetPower(request, timeout=timeout)
         return response.watts
 
-    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, SensorReading]:
         if extra is None:
             extra = {}
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))

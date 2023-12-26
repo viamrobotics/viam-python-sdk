@@ -11,7 +11,7 @@ from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
-from viam.utils import ValueTypes
+from viam.utils import SensorReading
 
 LOGGER = getLogger(__name__)
 
@@ -25,7 +25,7 @@ class MySensor(Sensor):
         sensor = cls(config.name)
         return sensor
 
-    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, ValueTypes]:
+    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, SensorReading]:
         with open("/proc/net/wireless") as wifi_stats:
             content = wifi_stats.readlines()
         wifi_signal = [x for x in content[2].split(" ") if x != ""]
