@@ -1444,7 +1444,7 @@ class AppClient:
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""
-        org_id = self._get_organization_id()
+        org_id = await self._get_organization_id()
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
         return response.api_keys
