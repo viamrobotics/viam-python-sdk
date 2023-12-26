@@ -1447,4 +1447,4 @@ class AppClient:
         org_id = await self._get_organization_id()
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
-        return response.api_keys
+        return [key for key in response.api_keys]
