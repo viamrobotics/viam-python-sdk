@@ -1533,10 +1533,10 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.&quot;&quot;&quot;</span>
-        <span class="n">org_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
+        <span class="n">org_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListKeysRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">api_keys</span></div></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">]</span></div></div>
 </pre></div>
 
            </div>
