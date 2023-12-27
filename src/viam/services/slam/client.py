@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Mapping, Optional
+from typing import List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
@@ -11,6 +11,8 @@ from viam.proto.service.slam import (
     GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
     SLAMServiceStub,
@@ -18,7 +20,7 @@ from viam.proto.service.slam import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Pose
+from . import Pose, MappingMode
 from .slam import SLAM
 
 
@@ -53,6 +55,11 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         request = GetLatestMapInfoRequest(name=self.name)
         response: GetLatestMapInfoResponse = await self.client.GetLatestMapInfo(request, timeout=timeout)
         return response.last_map_update.ToDatetime()
+
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+        request = GetPropertiesRequest(name=self.name)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        return (response.cloud_slam, response.mapping_mode)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

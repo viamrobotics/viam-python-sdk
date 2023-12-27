@@ -13,6 +13,8 @@ from viam.proto.service.slam import (
     GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     SLAMServiceStub,
 )
 from viam.resource.manager import ResourceManager
@@ -45,6 +47,12 @@ class TestSLAMService:
     async def test_get_latest_map_info(self):
         time = await self.slam.get_latest_map_info()
         assert time == MockSLAM.LAST_UPDATE
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self):
+        (cloud_slam, mapping_mode) = await self.slam.get_properties()
+        assert cloud_slam == MockSLAM.CLOUD_SLAM
+        assert mapping_mode == MockSLAM.MAPPING_MODE
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -96,6 +104,15 @@ class TestService:
             assert response.last_map_update.ToDatetime() == MockSLAM.LAST_UPDATE
 
     @pytest.mark.asyncio
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = SLAMServiceStub(channel)
+            request = GetPropertiesRequest(name=self.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
+            assert response.cloud_slam == MockSLAM.CLOUD_SLAM
+            assert response.mapping_mode == MockSLAM.MAPPING_MODE
+
+    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMServiceStub(channel)
@@ -145,6 +162,14 @@ class TestClient:
             client = SLAMClient(self.name, channel)
             response = await client.get_latest_map_info()
             assert response == MockSLAM.LAST_UPDATE
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = SLAMClient(self.name, channel)
+            (cloud_slam, mapping_mode) = await client.get_properties()
+            assert cloud_slam == MockSLAM.CLOUD_SLAM
+            assert mapping_mode == MockSLAM.MAPPING_MODE
 
     @pytest.mark.asyncio
     async def test_do(self):
