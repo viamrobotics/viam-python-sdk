@@ -66,7 +66,7 @@ class SLAM(ServiceBase):
         Get information regarding the current SLAM session.
 
         Returns:
-            Tuple[bool, MappingMode.ValueType]: A tuple of a boolean values representing if the SLAM session is being run in
+            Tuple[bool, MappingMode.ValueType]: A tuple of a boolean value representing if the SLAM session is being run in
             the cloud and the mapping mode of said session
         """
         ...
