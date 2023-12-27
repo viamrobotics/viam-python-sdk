@@ -24,7 +24,7 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
+from viam.utils import SensorReading, ValueTypes, dict_to_struct, get_geometries, sensor_readings_value_to_native, struct_to_dict
 
 from . import GeoPoint, Orientation, Vector3
 
@@ -93,12 +93,13 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         response: GetAccuracyResponse = await self.client.GetAccuracy(request, timeout=timeout)
         return response.accuracy
 
-    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, Any]:
+    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, SensorReading]:
         if extra is None:
             extra = {}
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
-        return response.readings
+
+        return sensor_readings_value_to_native(response.readings)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

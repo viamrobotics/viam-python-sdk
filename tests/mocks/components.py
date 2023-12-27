@@ -50,7 +50,7 @@ from viam.proto.common import (
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
-from viam.utils import ValueTypes
+from viam.utils import SensorReading, ValueTypes
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -991,7 +991,7 @@ class MockSensor(Sensor):
 
     async def get_readings(
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, Any]:
+    ) -> Mapping[str, SensorReading]:
         self.extra = extra
         self.timeout = timeout
         return self.readings
