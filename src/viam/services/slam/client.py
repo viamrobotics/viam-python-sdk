@@ -11,16 +11,16 @@ from viam.proto.service.slam import (
     GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
-    GetPropertiesRequest,
-    GetPropertiesResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     SLAMServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Pose, MappingMode
+from . import MappingMode, Pose
 from .slam import SLAM
 
 

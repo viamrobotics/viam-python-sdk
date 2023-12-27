@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
 from grpclib.server import Stream
@@ -285,7 +285,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.proto.service.navigation import Mode, Path, Waypoint
+from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -294,6 +294,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
+from viam.proto.service.slam import MappingMode
 from viam.proto.service.vision import Classification, Detection
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
@@ -588,6 +589,8 @@ class MockSLAM(SLAM):
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
     LAST_UPDATE = datetime(2023, 3, 12, 3, 24, 34, 29)
+    CLOUD_SLAM = False
+    MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
 
     def __init__(self, name: str):
         self.name = name
@@ -610,6 +613,10 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.LAST_UPDATE
 
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+        self.timeout = timeout
+        return (self.CLOUD_SLAM, self.MAPPING_MODE)
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -625,6 +632,7 @@ class MockNavigation(Navigation):
         self.add_waypoints: list[GeoPoint] = []
         self.remove_waypoints: list[str] = []
         self.mode = Mode.MODE_UNSPECIFIED
+        self.map_type = MapType.MAP_TYPE_UNSPECIFIED
         self.timeout: Optional[float] = None
         super().__init__(name)
 
@@ -659,6 +667,10 @@ class MockNavigation(Navigation):
     async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float] = None):
         self.timeout = timeout
         self.mode = mode
+
+    async def get_properties(self, *, timeout: Optional[float] = None) -> MapType.ValueType:
+        self.timeout = timeout
+        return self.map_type
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}

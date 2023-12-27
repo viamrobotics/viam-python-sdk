@@ -175,15 +175,11 @@ class TestService:
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
 
-            request = GetDigitalInterruptValueRequest(
-                board_name=board.name, digital_interrupt_name="dne"
-            )
+            request = GetDigitalInterruptValueRequest(board_name=board.name, digital_interrupt_name="dne")
             with pytest.raises(GRPCError, match=r".*Status.NOT_FOUND.*"):
                 await client.GetDigitalInterruptValue(request)
 
-            request = GetDigitalInterruptValueRequest(
-                board_name=board.name, digital_interrupt_name="interrupt1"
-            )
+            request = GetDigitalInterruptValueRequest(board_name=board.name, digital_interrupt_name="interrupt1")
             response: GetDigitalInterruptValueResponse = await client.GetDigitalInterruptValue(request)
             assert response.value == 0
 

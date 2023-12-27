@@ -12,6 +12,8 @@ from viam.proto.service.navigation import (
     GetObstaclesResponse,
     GetPathsRequest,
     GetPathsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetWaypointsRequest,
     GetWaypointsResponse,
     NavigationServiceBase,
@@ -114,6 +116,15 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await navigation.set_mode(mode, timeout=timeout)
         response = SetModeResponse()
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        navigation = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        map_type = await navigation.get_properties(timeout=timeout)
+        response = GetPropertiesResponse(map_type=map_type)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

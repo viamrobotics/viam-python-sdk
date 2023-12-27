@@ -13,6 +13,8 @@ from viam.proto.service.navigation import (
     GetObstaclesResponse,
     GetPathsRequest,
     GetPathsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetWaypointsRequest,
     GetWaypointsResponse,
     NavigationServiceStub,
@@ -23,7 +25,7 @@ from viam.proto.service.navigation import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import GeoObstacle, GeoPoint, Mode, Waypoint
+from . import GeoObstacle, GeoPoint, MapType, Mode, Waypoint
 from .navigation import Navigation
 
 
@@ -75,6 +77,11 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
     async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float] = None):
         request = SetModeRequest(name=self.name, mode=mode)
         await self.client.SetMode(request, timeout=timeout)
+
+    async def get_properties(self, *, timeout: Optional[float] = None) -> MapType.ValueType:
+        request = GetPropertiesRequest(name=self.name)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        return response.map_type
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

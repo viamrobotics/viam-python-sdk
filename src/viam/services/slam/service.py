@@ -74,7 +74,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         (cloud_slam, mapping_mode) = await slam.get_properties(timeout=timeout)
-        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mod=mapping_mode)
+        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mode=mapping_mode)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

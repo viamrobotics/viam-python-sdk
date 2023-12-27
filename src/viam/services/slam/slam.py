@@ -5,7 +5,7 @@ from typing import Final, List, Optional, Tuple
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import Pose, MappingMode
+from . import MappingMode, Pose
 
 
 class SLAM(ServiceBase):
@@ -61,7 +61,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float]) ->  Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, *, timeout: Optional[float]) -> Tuple[bool, MappingMode.ValueType]:
         """
         Get information regarding the current SLAM session.
 
