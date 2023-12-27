@@ -164,7 +164,7 @@ class TestService:
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
             request = GetPropertiesRequest(name=self.name)
-            response: GetPropertiesResponse = await client.GetMode(request)
+            response: GetPropertiesResponse = await client.GetProperties(request)
             result = response.map_type
             assert result == MapType.MAP_TYPE_UNSPECIFIED
 
@@ -245,7 +245,7 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
-            assert self.navigation.mode == MapType.MAP_TYPE_UNSPECIFIED
+            assert self.navigation.map_type == MapType.MAP_TYPE_UNSPECIFIED
             client = NavigationClient(self.name, channel)
             result = await client.get_properties()
             assert self.navigation.map_type == result
