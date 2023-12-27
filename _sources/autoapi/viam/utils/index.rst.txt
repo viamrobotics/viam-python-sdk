@@ -44,11 +44,16 @@ Attributes
 .. autoapisummary::
 
    viam.utils.ValueTypes
+   viam.utils.SensorReading
 
 
 .. py:data:: ValueTypes
 
    Types that can be encoded into a protobuf `Value`
+
+.. py:data:: SensorReading
+
+   Types that can be returned from a sensor
 
 .. py:function:: primitive_to_value(v: ValueTypes) -> google.protobuf.struct_pb2.Value
 
@@ -96,10 +101,10 @@ Attributes
    :async:
 
 
-.. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, Any]
+.. py:function:: sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str, google.protobuf.struct_pb2.Value]
 
 
-.. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, Any]
+.. py:function:: sensor_readings_value_to_native(readings: Mapping[str, google.protobuf.struct_pb2.Value]) -> Mapping[str, SensorReading]
 
 
 .. py:class:: PointerCounter

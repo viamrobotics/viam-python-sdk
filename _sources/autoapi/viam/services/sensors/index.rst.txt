@@ -52,7 +52,7 @@ Classes
       :rtype: List[viam.proto.common.ResourceName]
 
 
-   .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[viam.proto.common.ResourceName, Mapping[str, Any]]
+   .. py:method:: get_readings(sensors: List[viam.proto.common.ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[viam.proto.common.ResourceName, Mapping[str, viam.utils.SensorReading]]
       :async:
 
       Get the readings from the specific sensors provided
