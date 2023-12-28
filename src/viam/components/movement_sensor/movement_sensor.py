@@ -19,7 +19,9 @@ class MovementSensor(ComponentBase):
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor"
+    )
 
     @dataclass
     class Properties:
