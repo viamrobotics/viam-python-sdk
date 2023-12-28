@@ -1,3 +1,5 @@
+# TODO: Update type checking based with RSDK-4089
+# pyright: reportGeneralTypeIssues=false
 from typing import Dict
 
 from google.api.httpbody_pb2 import HttpBody
