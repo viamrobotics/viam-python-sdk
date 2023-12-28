@@ -39,6 +39,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ) -> Pose:
         if extra is None:
             extra = {}
@@ -52,6 +53,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -63,6 +65,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ) -> JointPositions:
         if extra is None:
             extra = {}
@@ -76,6 +79,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -87,6 +91,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -103,6 +108,7 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, Any],
         *,
         timeout: Optional[float] = None,
+        **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

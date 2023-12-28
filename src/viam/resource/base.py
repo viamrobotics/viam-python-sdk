@@ -1,4 +1,4 @@
-from abc import abstractclassmethod, abstractmethod
+from abc import abstractmethod
 from typing import TYPE_CHECKING, Any, ClassVar, Mapping, Optional, Protocol, runtime_checkable
 
 from typing_extensions import Self
@@ -40,7 +40,8 @@ class ResourceBase(Protocol):
             name=name,
         )
 
-    @abstractclassmethod
+    @classmethod
+    @abstractmethod
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the Resource named ``name`` from the provided robot.
 
