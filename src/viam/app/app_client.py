@@ -7,7 +7,6 @@ from typing_extensions import Self
 
 from viam import logging
 from viam.app._logs import _LogsStream, _LogsStreamWithIterator
-from viam.errors import ViamGRPCError
 from viam.proto.app import (
     AddRoleRequest,
     APIKeyWithAuthorizations,
@@ -1374,7 +1373,7 @@ class AppClient:
             if response is not None:
                 return response.url
             await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
-            raise ViamGRPCError("Received empty response from streaming file upload")  # we should never get here, but for typechecking
+            raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
 
     async def get_module(self, module_id: str) -> Module:
         """Get a module.

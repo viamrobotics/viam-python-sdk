@@ -1,6 +1,6 @@
 from typing import Mapping, Optional
 
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.billing import (
@@ -60,11 +60,12 @@ class BillingClient:
             org_id (str): the ID of the org to request data from
             dest (str): filepath to save the invoice to
         """
-        request = GetInvoicePdfRequest(id=invoice_id, org_id=org_id)
-        response: GetInvoicePdfResponse = await self._billing_client.GetInvoicePdf(request, metadata=self._metadata, timeout=timeout)
-        data: bytes = response[0].chunk
-        with open(dest, "wb") as file:
-            file.write(data)
+        stream: Stream[GetInvoicePdfRequest, GetInvoicePdfResponse]
+        async with self._billing_client.GetInvoicePdf.open(timeout=timeout, metadata=self._metadata) as stream:
+            await stream.send_message(GetInvoicePdfRequest(id=invoice_id, org_id=org_id), end=True)
+            with open(dest, "wb") as file:
+                async for response in stream:
+                    file.write(response.chunk)
 
     async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.
