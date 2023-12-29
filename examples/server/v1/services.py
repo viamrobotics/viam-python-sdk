@@ -1,6 +1,6 @@
 from datetime import datetime
 from numpy.typing import NDArray
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 from tests.mocks.services import MockMLModel, MockSLAM
 from viam.services.slam import Pose, MappingMode, SLAM
 from viam.services.mlmodel import Metadata, MLModel
@@ -42,5 +42,5 @@ class ExampleSLAM(SLAM):
     async def get_latest_map_info(self, **kwargs) -> datetime:
         return self.time
 
-    async def get_properties(self, **kwargs) -> tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, **kwargs) -> Tuple[bool, MappingMode.ValueType]:
         return (self.cloud_slam, self.mapping_mode)
