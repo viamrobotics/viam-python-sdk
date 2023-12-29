@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Mapping, Optional, Final
+from typing import Any, Final, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.utils import SensorReading

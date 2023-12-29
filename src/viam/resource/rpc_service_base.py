@@ -1,10 +1,10 @@
 import abc
-from typing import TYPE_CHECKING, Type, Generic
+from typing import TYPE_CHECKING, Generic, Type
 
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
-from viam.rpc.types import RPCServiceBase
 from viam.resource.manager import ResourceType
+from viam.rpc.types import RPCServiceBase
 from viam.services.service_base import ServiceBase
 
 from .base import ResourceBase

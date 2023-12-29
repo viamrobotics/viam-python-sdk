@@ -46,8 +46,10 @@ class Subtype:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "Subtype") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Subtype):
+            return str(self) == str(other)
+        return False
 
     @classmethod
     def from_resource_name(cls, resource_name: ResourceName) -> Self:
@@ -107,8 +109,10 @@ class ModelFamily:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "ModelFamily") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, ModelFamily):
+            return str(self) == str(other)
+        return False
 
 
 ModelFamily.DEFAULT = ModelFamily(RESOURCE_NAMESPACE_RDK, ModelFamily.DEFAULT_FAMILY_NAME)
@@ -136,8 +140,10 @@ class Model:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "Model") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Model):
+            return str(self) == str(other)
+        return False
 
     @classmethod
     def from_string(cls, model: str, *, ignore_errors=False) -> Self:
