@@ -41,16 +41,6 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_latest_map_info(self, *, timeout: Optional[float]) -> datetime:
-        """
-        Get the timestamp of the last update to the point cloud SLAM map.
-
-        Returns:
-            datetime: The timestamp of the last update.
-        """
-        ...
-
-    @abc.abstractmethod
     async def get_position(self, *, timeout: Optional[float]) -> Pose:
         """
         Get current position of the specified component in the SLAM Map.

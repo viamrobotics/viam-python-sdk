@@ -4,8 +4,6 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
-    GetLatestMapInfoRequest,
-    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -13,7 +11,7 @@ from viam.proto.service.slam import (
     SLAMServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
-from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict
 
 from .slam import SLAM
 
@@ -55,15 +53,6 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await slam.get_position(timeout=timeout)
         response = GetPositionResponse(pose=position)
-        await stream.send_message(response)
-
-    async def GetLatestMapInfo(self, stream: Stream[GetLatestMapInfoRequest, GetLatestMapInfoResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        slam = self.get_resource(request.name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        time = await slam.get_latest_map_info(timeout=timeout)
-        response = GetLatestMapInfoResponse(last_map_update=datetime_to_timestamp(time))
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

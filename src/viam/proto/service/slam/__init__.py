@@ -6,8 +6,6 @@ from ....gen.service.slam.v1.slam_grpc import SLAMServiceBase, SLAMServiceStub
 from ....gen.service.slam.v1.slam_pb2 import (
     GetInternalStateRequest,
     GetInternalStateResponse,
-    GetLatestMapInfoRequest,
-    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -19,8 +17,6 @@ __all__ = [
     "SLAMServiceStub",
     "GetInternalStateRequest",
     "GetInternalStateResponse",
-    "GetLatestMapInfoRequest",
-    "GetLatestMapInfoResponse",
     "GetPointCloudMapRequest",
     "GetPointCloudMapResponse",
     "GetPositionRequest",

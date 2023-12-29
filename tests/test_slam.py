@@ -7,8 +7,6 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
-    GetLatestMapInfoRequest,
-    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -40,11 +38,6 @@ class TestSLAMService:
     async def test_get_position(self):
         pos = await self.slam.get_position()
         assert pos == MockSLAM.POSITION
-
-    @pytest.mark.asyncio
-    async def test_get_latest_map_info(self):
-        time = await self.slam.get_latest_map_info()
-        assert time == MockSLAM.LAST_UPDATE
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -86,14 +79,6 @@ class TestService:
             request = GetPositionRequest(name=self.name)
             response: GetPositionResponse = await client.GetPosition(request)
             assert response.pose == MockSLAM.POSITION
-
-    @pytest.mark.asyncio
-    async def test_get_latest_map_info(self):
-        async with ChannelFor([self.service]) as channel:
-            client = SLAMServiceStub(channel)
-            request = GetLatestMapInfoRequest(name=self.name)
-            response: GetLatestMapInfoResponse = await client.GetLatestMapInfo(request)
-            assert response.last_map_update.ToDatetime() == MockSLAM.LAST_UPDATE
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -138,13 +123,6 @@ class TestClient:
             client = SLAMClient(self.name, channel)
             response = await client.get_position()
             assert response == MockSLAM.POSITION
-
-    @pytest.mark.asyncio
-    async def test_get_latest_map_info(self):
-        async with ChannelFor([self.service]) as channel:
-            client = SLAMClient(self.name, channel)
-            response = await client.get_latest_map_info()
-            assert response == MockSLAM.LAST_UPDATE
 
     @pytest.mark.asyncio
     async def test_do(self):
