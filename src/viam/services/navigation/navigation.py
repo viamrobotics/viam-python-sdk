@@ -51,5 +51,5 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float]) -> MapType:
+    async def get_properties(self, *, timeout: Optional[float]) -> MapType.ValueType:
         ...
