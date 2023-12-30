@@ -36,4 +36,12 @@ class ServiceBase(abc.ABC, ResourceBase):
         return cast(cls, service)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        """Send/receive arbitrary commands
+
+        Args:
+            command (Dict[str, ValueTypes]): The command to execute
+
+        Returns:
+            Dict[str, ValueTypes]: Result of the executed command
+        """
         raise NotImplementedError()

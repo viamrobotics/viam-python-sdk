@@ -9,7 +9,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, S
 from ..service_base import ServiceBase
 
 
-class MLModel(ServiceBase):
+class MLModel(ServiceBase, abc.ABC):
     """
     MLModel represents a Machine Learning Model service.
 
@@ -18,7 +18,9 @@ class MLModel(ServiceBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "mlmodel"
+    )
 
     @abc.abstractmethod
     async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]) -> Dict[str, NDArray]:

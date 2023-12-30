@@ -41,7 +41,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         self.client = VisionServiceStub(channel)
 
     async def get_detections_from_camera(
-        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self,
+        camera_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[Detection]:
         if extra is None:
             extra = {}
@@ -114,7 +118,11 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         return list(response.classifications)
 
     async def get_object_point_clouds(
-        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self,
+        camera_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[PointCloudObject]:
         if extra is None:
             extra = {}
@@ -127,7 +135,13 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

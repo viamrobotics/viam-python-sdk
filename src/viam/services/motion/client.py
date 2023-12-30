@@ -45,7 +45,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     ``world_state`` message, the motion planning service will also account for those.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion"
+    )
     client: MotionServiceStub
 
     def __init__(self, name: str, channel: Channel):
@@ -322,7 +324,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

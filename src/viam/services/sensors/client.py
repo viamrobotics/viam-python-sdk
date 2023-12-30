@@ -13,7 +13,9 @@ from viam.utils import SensorReading, ValueTypes, dict_to_struct, sensor_reading
 class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors"
+    )
     client: SensorsServiceStub
 
     def __init__(self, name: str, channel: Channel):
@@ -49,7 +51,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:
