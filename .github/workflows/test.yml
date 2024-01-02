@@ -9,7 +9,7 @@ on:
   push:
     branches: [main]
   pull_request_target:
-    branches: [main, 'rc-*']
+    branches: [main, "rc-*"]
 
 jobs:
   test:
@@ -43,6 +43,9 @@ jobs:
       - name: Install minimum package versions
         run: poetry run pip install -r requirements-test.txt
         if: ${{ matrix.requirements-version == 'min' }}
+
+      - name: Type Check
+        run: make typecheck
 
       - name: Lint
         run: make lint
