@@ -87,6 +87,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.RemoveWaypoint"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.RemoveWaypoint()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetObstacles"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetObstacles()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetPaths"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetPaths()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.GetProperties()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.NavigationServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">NavigationServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -142,6 +143,14 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetPathsResponse.paths"><code class="docutils literal notranslate"><span class="pre">GetPathsResponse.paths</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesRequest"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesRequest.name"><code class="docutils literal notranslate"><span class="pre">GetPropertiesRequest.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesResponse"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesResponse.map_type"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.map_type</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest.extra"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.extra</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest.name"><code class="docutils literal notranslate"><span class="pre">GetWaypointsRequest.name</span></code></a></li>
@@ -152,6 +161,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse.waypoints"><code class="docutils literal notranslate"><span class="pre">GetWaypointsResponse.waypoints</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.MapType"><code class="docutils literal notranslate"><span class="pre">MapType</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.navigation.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.navigation.Path.geopoints"><code class="docutils literal notranslate"><span class="pre">Path.geopoints</span></code></a></li>
@@ -274,31 +284,40 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetPathsResponse" title="viam.proto.service.navigation.GetPathsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPathsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesRequest" title="viam.proto.service.navigation.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetPropertiesResponse" title="viam.proto.service.navigation.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
+<td><p>Returns properties information for the named navigation service</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsRequest" title="viam.proto.service.navigation.GetWaypointsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWaypointsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.GetWaypointsResponse" title="viam.proto.service.navigation.GetWaypointsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetWaypointsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Mode" title="viam.proto.service.navigation.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.MapType" title="viam.proto.service.navigation.MapType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapType</span></code></a></p></td>
+<td><p>MapType represents the various types of map the navigation service can ingest.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Mode" title="viam.proto.service.navigation.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code></a></p></td>
 <td><p>A user provided destination and the set of geopoints that</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest" title="viam.proto.service.navigation.RemoveWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointRequest" title="viam.proto.service.navigation.RemoveWaypointRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointResponse" title="viam.proto.service.navigation.RemoveWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.RemoveWaypointResponse" title="viam.proto.service.navigation.RemoveWaypointResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveWaypointResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest" title="viam.proto.service.navigation.SetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeRequest" title="viam.proto.service.navigation.SetModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeResponse" title="viam.proto.service.navigation.SetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.SetModeResponse" title="viam.proto.service.navigation.SetModeResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetModeResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -347,6 +366,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceBase.GetPaths">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPathsRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetPathsRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetPathsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPathsResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetPathsResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetPathsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetPaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceBase.GetPaths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.NavigationServiceBase.GetProperties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesRequest" title="viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesRequest"><span class="pre">service.navigation.v1.navigation_pb2.GetPropertiesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/navigation/v1/navigation_pb2/index.html#viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesResponse" title="viam.gen.service.navigation.v1.navigation_pb2.GetPropertiesResponse"><span class="pre">service.navigation.v1.navigation_pb2.GetPropertiesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/navigation/v1/navigation_grpc.html#NavigationServiceBase.GetProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.navigation.NavigationServiceBase.GetProperties" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -690,6 +714,34 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.navigation.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.navigation.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of the navigation service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.GetPropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___MapType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.navigation.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Returns properties information for the named navigation service</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.GetPropertiesResponse.map_type">
+<span class="sig-name descname"><span class="pre">map_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___MapType</span></em><a class="headerlink" href="#viam.proto.service.navigation.GetPropertiesResponse.map_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.navigation.GetWaypointsRequest">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">GetWaypointsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.navigation.GetWaypointsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -746,6 +798,13 @@ shown below.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">waypoints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Waypoint</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.navigation.GetWaypointsResponse.waypoints" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.navigation.MapType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.navigation.</span></span><span class="sig-name descname"><span class="pre">MapType</span></span><a class="headerlink" href="#viam.proto.service.navigation.MapType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_MapType</span></code></p>
+<p>MapType represents the various types of map the navigation service can ingest.</p>
 </dd></dl>
 
 <dl class="py class">

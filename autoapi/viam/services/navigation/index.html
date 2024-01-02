@@ -79,6 +79,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.GeoPoint.longitude"><code class="docutils literal notranslate"><span class="pre">GeoPoint.longitude</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.services.navigation.MapType"><code class="docutils literal notranslate"><span class="pre">MapType</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.navigation.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.services.navigation.Path"><code class="docutils literal notranslate"><span class="pre">Path</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Path.geopoints"><code class="docutils literal notranslate"><span class="pre">Path.geopoints</span></code></a></li>
@@ -101,6 +102,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.remove_waypoint"><code class="docutils literal notranslate"><span class="pre">Navigation.remove_waypoint()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_mode"><code class="docutils literal notranslate"><span class="pre">Navigation.get_mode()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.set_mode"><code class="docutils literal notranslate"><span class="pre">Navigation.set_mode()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_properties"><code class="docutils literal notranslate"><span class="pre">Navigation.get_properties()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.from_robot"><code class="docutils literal notranslate"><span class="pre">Navigation.from_robot()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.do_command"><code class="docutils literal notranslate"><span class="pre">Navigation.do_command()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.services.navigation.Navigation.get_resource_name"><code class="docutils literal notranslate"><span class="pre">Navigation.get_resource_name()</span></code></a></li>
@@ -180,16 +182,19 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Mode" title="viam.services.navigation.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.MapType" title="viam.services.navigation.MapType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapType</span></code></a></p></td>
+<td><p>MapType represents the various types of map the navigation service can ingest.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Mode" title="viam.services.navigation.Mode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mode</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Path" title="viam.services.navigation.Path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Path" title="viam.services.navigation.Path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code></a></p></td>
 <td><p>A user provided destination and the set of geopoints that</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Waypoint" title="viam.services.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Waypoint" title="viam.services.navigation.Waypoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Waypoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.services.navigation.Navigation" title="viam.services.navigation.Navigation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigation</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.services.navigation.Navigation" title="viam.services.navigation.Navigation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Navigation</span></code></a></p></td>
 <td><p>Navigation represents a Navigation service.</p></td>
 </tr>
 </tbody>
@@ -255,6 +260,13 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">longitude</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.services.navigation.GeoPoint.longitude" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.services.navigation.MapType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.services.navigation.</span></span><span class="sig-name descname"><span class="pre">MapType</span></span><a class="headerlink" href="#viam.services.navigation.MapType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_MapType</span></code></p>
+<p>MapType represents the various types of map the navigation service can ingest.</p>
 </dd></dl>
 
 <dl class="py class">
@@ -378,6 +390,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.Navigation.set_mode">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.services.navigation.Mode.ValueType</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/services/navigation/navigation.html#Navigation.set_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.Navigation.set_mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.services.navigation.Navigation.get_properties">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.navigation.MapType.ValueType</span></span></span><a class="reference internal" href="../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.Navigation.get_properties" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">

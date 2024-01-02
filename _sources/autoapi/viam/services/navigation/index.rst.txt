@@ -25,6 +25,7 @@ Classes
 
    viam.services.navigation.GeoObstacle
    viam.services.navigation.GeoPoint
+   viam.services.navigation.MapType
    viam.services.navigation.Mode
    viam.services.navigation.Path
    viam.services.navigation.Waypoint
@@ -89,6 +90,14 @@ Classes
       :type: float
 
       
+
+
+.. py:class:: MapType
+
+
+   Bases: :py:obj:`_MapType`
+
+   MapType represents the various types of map the navigation service can ingest.
 
 
 .. py:class:: Mode
@@ -207,6 +216,11 @@ Classes
 
 
    .. py:method:: set_mode(mode: viam.services.navigation.Mode.ValueType, *, timeout: Optional[float])
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> viam.services.navigation.MapType.ValueType
       :abstractmethod:
       :async:
 

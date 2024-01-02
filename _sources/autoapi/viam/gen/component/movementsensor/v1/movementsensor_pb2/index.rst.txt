@@ -18,6 +18,7 @@ Classes
 
 .. autoapisummary::
 
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NmeaGGAFix
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest
@@ -44,6 +45,16 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.movementsensor.v1.movementsensor_pb2.DESCRIPTOR
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_INVALID_UNSPECIFIED
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_GNSS
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_DGPS
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_PPS
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_RTK_FIXED
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_RTK_FLOAT
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_DEAD_RECKONING
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_MANUAL
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_SIMULATION
+   viam.gen.component.movementsensor.v1.movementsensor_pb2.global___NmeaGGAFix
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearVelocityRequest
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearVelocityResponse
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAngularVelocityRequest
@@ -64,6 +75,69 @@ Attributes
 
 .. py:data:: DESCRIPTOR
    :type: google.protobuf.descriptor.FileDescriptor
+
+   
+
+.. py:class:: NmeaGGAFix
+
+
+   Bases: :py:obj:`_NmeaGGAFix`
+
+   NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
+   More information on GGA messages here
+   https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
+   Generally a fix of 1 or 2 lends to large position errors, ideally we want a
+   fix of 4-5. Other fixes are unsuitable for outdoor navigation.
+   The meaning of each fix value is documented here
+   https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
+
+
+.. py:data:: NMEA_GGA_FIX_INVALID_UNSPECIFIED
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_GNSS
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_DGPS
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_PPS
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_RTK_FIXED
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_RTK_FLOAT
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_DEAD_RECKONING
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_MANUAL
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: NMEA_GGA_FIX_SIMULATION
+   :type: NmeaGGAFix
+
+   
+
+.. py:data:: global___NmeaGGAFix
 
    
 
@@ -595,7 +669,7 @@ Attributes
 
    
 
-.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ...)
+.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ..., position_hdop: float | None = ..., position_vdop: float | None = ..., position_nmea_gga_fix: global___NmeaGGAFix | None = ..., compass_degrees_error: float | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -630,6 +704,61 @@ Attributes
 
    .. py:property:: accuracy
       :type: google.protobuf.internal.containers.ScalarMap[str, float]
+
+
+   .. py:attribute:: position_hdop
+      :type: float
+
+      
+
+   .. py:attribute:: position_vdop
+      :type: float
+
+      
+
+   .. py:attribute:: position_nmea_gga_fix
+      :type: global___NmeaGGAFix
+
+      
+
+   .. py:attribute:: compass_degrees_error
+      :type: float
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_compass_degrees_error, b'_compass_degrees_error', _position_hdop, b'_position_hdop', _position_nmea_gga_fix, b'_position_nmea_gga_fix', _position_vdop, b'_position_vdop', compass_degrees_error, b'compass_degrees_error', position_hdop, b'position_hdop', position_nmea_gga_fix, b'position_nmea_gga_fix', position_vdop, b'position_vdop']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_compass_degrees_error, b'_compass_degrees_error']) -> Literal[compass_degrees_error] | None
+                  WhichOneof(oneof_group: Literal[_position_hdop, b'_position_hdop']) -> Literal[position_hdop] | None
+                  WhichOneof(oneof_group: Literal[_position_nmea_gga_fix, b'_position_nmea_gga_fix']) -> Literal[position_nmea_gga_fix] | None
+                  WhichOneof(oneof_group: Literal[_position_vdop, b'_position_vdop']) -> Literal[position_vdop] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
 
 
 

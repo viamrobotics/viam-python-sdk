@@ -24,6 +24,7 @@ Classes
 .. autoapisummary::
 
    viam.services.slam.Pose
+   viam.services.slam.MappingMode
    viam.services.slam.SLAM
 
 
@@ -77,6 +78,16 @@ Classes
       :type: float
 
       degrees
+
+
+.. py:class:: MappingMode
+
+
+   Bases: :py:obj:`_MappingMode`
+
+   MappingMode represnts the various form of mapping and localizing SLAM can perform.
+   These include, creating a new map, localizing on an existiing map and updating an
+   exisiting map.
 
 
 .. py:class:: SLAM(name: str)
@@ -136,6 +147,17 @@ Classes
 
       :returns: The current position of the specified component
       :rtype: Pose
+
+
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> Tuple[bool, viam.services.slam.MappingMode.ValueType]
+      :abstractmethod:
+      :async:
+
+      Get information regarding the current SLAM session.
+
+      :returns: A tuple of a boolean value representing if the SLAM session is being run in
+                the cloud and the mapping mode of said session
+      :rtype: Tuple[bool, MappingMode.ValueType]
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

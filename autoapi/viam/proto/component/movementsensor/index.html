@@ -111,6 +111,12 @@
 </ul>
 </li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.accuracy</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_hdop"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.position_hdop</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_vdop"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.position_vdop</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_nmea_gga_fix"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.position_nmea_gga_fix</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.compass_degrees_error"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.compass_degrees_error</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.HasField"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAccuracyResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">GetAccuracyResponse.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.GetAngularVelocityRequest"><code class="docutils literal notranslate"><span class="pre">GetAngularVelocityRequest</span></code></a><ul>
@@ -194,6 +200,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesResponse.linear_acceleration_supported"><code class="docutils literal notranslate"><span class="pre">GetPropertiesResponse.linear_acceleration_supported</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.movementsensor.NmeaGGAFix"><code class="docutils literal notranslate"><span class="pre">NmeaGGAFix</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -310,6 +317,9 @@ Do not edit manually!</p>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.movementsensor.GetPropertiesResponse" title="viam.proto.component.movementsensor.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.movementsensor.NmeaGGAFix" title="viam.proto.component.movementsensor.NmeaGGAFix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NmeaGGAFix</span></code></a></p></td>
+<td><p>NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.</p></td>
 </tr>
 </tbody>
 </table>
@@ -433,7 +443,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.movementsensor.</span></span><span class="sig-name descname"><span class="pre">GetAccuracyResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.movementsensor.</span></span><span class="sig-name descname"><span class="pre">GetAccuracyResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accuracy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_hdop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_vdop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_nmea_gga_fix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___NmeaGGAFix</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compass_degrees_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -463,6 +473,76 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.accuracy">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">accuracy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.ScalarMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.accuracy" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.position_hdop">
+<span class="sig-name descname"><span class="pre">position_hdop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_hdop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.position_vdop">
+<span class="sig-name descname"><span class="pre">position_vdop</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_vdop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.position_nmea_gga_fix">
+<span class="sig-name descname"><span class="pre">position_nmea_gga_fix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___NmeaGGAFix</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.position_nmea_gga_fix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.compass_degrees_error">
+<span class="sig-name descname"><span class="pre">compass_degrees_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.compass_degrees_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_compass_degrees_error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_compass_degrees_error'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_position_hdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_hdop'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_position_nmea_gga_fix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_nmea_gga_fix'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_position_vdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_vdop'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">compass_degrees_error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'compass_degrees_error'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">position_hdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'position_hdop'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">position_nmea_gga_fix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'position_nmea_gga_fix'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">position_vdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'position_vdop'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.GetAccuracyResponse.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_compass_degrees_error</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_compass_degrees_error'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">compass_degrees_error</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.component.movementsensor.GetAccuracyResponse.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_position_hdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_hdop'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">position_hdop</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_position_nmea_gga_fix</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_nmea_gga_fix'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">position_nmea_gga_fix</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_position_vdop</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_position_vdop'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">position_vdop</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -1038,6 +1118,19 @@ shown below.</p>
 <span class="sig-name descname"><span class="pre">linear_acceleration_supported</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.component.movementsensor.GetPropertiesResponse.linear_acceleration_supported" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.movementsensor.NmeaGGAFix">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.movementsensor.</span></span><span class="sig-name descname"><span class="pre">NmeaGGAFix</span></span><a class="headerlink" href="#viam.proto.component.movementsensor.NmeaGGAFix" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_NmeaGGAFix</span></code></p>
+<p>NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
+More information on GGA messages here
+<a class="reference external" href="https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html">https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html</a>
+Generally a fix of 1 or 2 lends to large position errors, ideally we want a
+fix of 4-5. Other fixes are unsuitable for outdoor navigation.
+The meaning of each fix value is documented here
+<a class="reference external" href="https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators">https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators</a></p>
 </dd></dl>
 
 </section>
