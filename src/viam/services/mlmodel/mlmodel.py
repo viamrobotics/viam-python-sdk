@@ -9,7 +9,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, S
 from ..service_base import ServiceBase
 
 
-class MLModel(ServiceBase, abc.ABC):
+class MLModel(ServiceBase):
     """
     MLModel represents a Machine Learning Model service.
 
