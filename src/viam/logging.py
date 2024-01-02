@@ -32,7 +32,6 @@ class ColorFormatter(logging.Formatter):
 def getLogger(name: str) -> logging.Logger:
     logger = LOGGERS.get(name)
     if logger:
-        print(f"founder logger {name} in cache")
         return logger
 
     logger = logging.getLogger(name)
