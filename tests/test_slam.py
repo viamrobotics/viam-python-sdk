@@ -138,7 +138,7 @@ class TestClient:
             response = await client.get_internal_state()
             assert len(response) == len(MockSLAM.INTERNAL_STATE_CHUNKS)
             for i, chunk in enumerate(response):
-                assert chunk.internal_state_chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
+                assert chunk == MockSLAM.INTERNAL_STATE_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_point_cloud_map(self):
@@ -147,7 +147,7 @@ class TestClient:
             response = await client.get_point_cloud_map()
             assert len(response) == len(MockSLAM.POINT_CLOUD_PCD_CHUNKS)
             for i, chunk in enumerate(response):
-                assert chunk.point_cloud_pcd_chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
+                assert chunk == MockSLAM.POINT_CLOUD_PCD_CHUNKS[i]
 
     @pytest.mark.asyncio
     async def test_get_position(self):
