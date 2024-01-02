@@ -51,7 +51,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         response = (await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)).proto
         await stream.send_message(response)
 
-    async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
+    async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:  # pyright: ignore [reportGeneralTypeIssues]
         raise NotSupportedError("Recording audio input is not supported").grpc_error
 
         # TODO: Eventually implement recording

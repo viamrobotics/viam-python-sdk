@@ -16,7 +16,9 @@ class Navigation(ServiceBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "navigation")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "navigation"
+    )
 
     @abc.abstractmethod
     async def get_paths(self, *, timeout: Optional[float]) -> List[Path]:
