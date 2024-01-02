@@ -7,14 +7,52 @@ import collections.abc
 from .... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _NmeaGGAFix:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _NmeaGGAFixEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_NmeaGGAFix.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    NMEA_GGA_FIX_INVALID_UNSPECIFIED: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_GNSS: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_DGPS: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_PPS: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_RTK_FIXED: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_RTK_FLOAT: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_DEAD_RECKONING: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_MANUAL: _NmeaGGAFix.ValueType
+    NMEA_GGA_FIX_SIMULATION: _NmeaGGAFix.ValueType
+
+class NmeaGGAFix(_NmeaGGAFix, metaclass=_NmeaGGAFixEnumTypeWrapper):
+    """NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
+    More information on GGA messages here
+    https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
+    Generally a fix of 1 or 2 lends to large position errors, ideally we want a
+    fix of 4-5. Other fixes are unsuitable for outdoor navigation.
+    The meaning of each fix value is documented here
+    https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
+    """
+NMEA_GGA_FIX_INVALID_UNSPECIFIED: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_GNSS: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_DGPS: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_PPS: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_RTK_FIXED: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_RTK_FLOAT: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_DEAD_RECKONING: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_MANUAL: NmeaGGAFix.ValueType
+NMEA_GGA_FIX_SIMULATION: NmeaGGAFix.ValueType
+global___NmeaGGAFix = NmeaGGAFix
 
 @typing_extensions.final
 class GetLinearVelocityRequest(google.protobuf.message.Message):
@@ -307,15 +345,42 @@ class GetAccuracyResponse(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     ACCURACY_FIELD_NUMBER: builtins.int
+    POSITION_HDOP_FIELD_NUMBER: builtins.int
+    POSITION_VDOP_FIELD_NUMBER: builtins.int
+    POSITION_NMEA_GGA_FIX_FIELD_NUMBER: builtins.int
+    COMPASS_DEGREES_ERROR_FIELD_NUMBER: builtins.int
 
     @property
     def accuracy(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.float]:
         ...
+    position_hdop: builtins.float
+    position_vdop: builtins.float
+    position_nmea_gga_fix: global___NmeaGGAFix.ValueType
+    compass_degrees_error: builtins.float
 
-    def __init__(self, *, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None=...) -> None:
+    def __init__(self, *, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None=..., position_hdop: builtins.float | None=..., position_vdop: builtins.float | None=..., position_nmea_gga_fix: global___NmeaGGAFix.ValueType | None=..., compass_degrees_error: builtins.float | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['accuracy', b'accuracy']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'accuracy', b'accuracy', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error']) -> typing_extensions.Literal['compass_degrees_error'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_hdop', b'_position_hdop']) -> typing_extensions.Literal['position_hdop'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_nmea_gga_fix', b'_position_nmea_gga_fix']) -> typing_extensions.Literal['position_nmea_gga_fix'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_vdop', b'_position_vdop']) -> typing_extensions.Literal['position_vdop'] | None:
         ...
 global___GetAccuracyResponse = GetAccuracyResponse
 

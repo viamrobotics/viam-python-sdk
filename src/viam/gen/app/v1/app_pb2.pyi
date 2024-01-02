@@ -2381,6 +2381,38 @@ class RegistryItem(google.protobuf.message.Message):
 global___RegistryItem = RegistryItem
 
 @typing_extensions.final
+class GetRegistryItemRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: builtins.int
+    item_id: builtins.str
+
+    def __init__(self, *, item_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['item_id', b'item_id']) -> None:
+        ...
+global___GetRegistryItemRequest = GetRegistryItemRequest
+
+@typing_extensions.final
+class GetRegistryItemResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_FIELD_NUMBER: builtins.int
+
+    @property
+    def item(self) -> global___RegistryItem:
+        ...
+
+    def __init__(self, *, item: global___RegistryItem | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['item', b'item']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['item', b'item']) -> None:
+        ...
+global___GetRegistryItemResponse = GetRegistryItemResponse
+
+@typing_extensions.final
 class CreateRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
