@@ -2,14 +2,14 @@ clean:
 	find . -type d -name '__pycache__' | xargs rm -rf
 
 _lint:
-	flake8 --exclude=**/gen/**,*_grpc.py,*_pb2.py,*_pb2.pyi,.tox,**/venv/**
+	ruff --exclude=*_grpc.py,*_pb2.py,*_pb2.pyi,.tox .
 
 lint:
 	poetry run $(MAKE) _lint
 
 _format:
-	black --exclude ".*/gen/.*" ./src ./tests ./docs/examples
-	isort ./src ./tests ./docs/examples
+	ruff format ./src
+	ruff --select I001 --fix ./src
 
 format:
 	poetry run $(MAKE) _format
