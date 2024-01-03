@@ -13,7 +13,7 @@ from viam.proto.common import (
 )
 from viam.proto.component.sensor import SensorServiceStub
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, primitive_to_value, struct_to_dict
+from viam.utils import dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockSensor
@@ -66,7 +66,7 @@ class TestService:
             request = GetReadingsRequest(name=sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert sensor.extra is None
             result: GetReadingsResponse = await client.GetReadings(request, timeout=2.34)
-            assert result.readings == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
+            assert sensor_readings_value_to_native(result.readings) == READINGS
             assert sensor.extra == EXTRA_PARAMS
             assert sensor.timeout == loose_approx(2.34)
 

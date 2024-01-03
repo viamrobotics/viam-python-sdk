@@ -10,7 +10,7 @@ else:
     from typing import AsyncIterator
 
 from datetime import timedelta
-from multiprocessing import Lock, Queue
+from multiprocessing import Lock
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
@@ -20,7 +20,6 @@ from viam.components.arm import Arm
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -54,6 +53,7 @@ from viam.proto.common import (
 from viam.proto.component.arm import JointPositions
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.encoder import PositionType
+from viam.utils import SensorReading
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -241,26 +241,11 @@ class ExampleAnalogReader(Board.AnalogReader):
 
 class ExampleDigitalInterrupt(Board.DigitalInterrupt):
     def __init__(self, name: str):
-        self.high = False
-        self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
-        self.post_processors: List[PostProcessor] = []
         super().__init__(name)
 
     async def value(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.num_ticks
-
-    async def tick(self, high: bool, nanos: int):
-        self.high = high
-        self.last_tick = nanos
-        self.num_ticks += 1
-
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
-
-    async def add_post_processor(self, processor: PostProcessor):
-        self.post_processors.append(processor)
 
 
 class ExampleGPIOPin(Board.GPIOPin):
@@ -331,9 +316,6 @@ class ExampleBoard(Board):
             analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
-
-    async def model_attributes(self) -> Board.Attributes:
-        return Board.Attributes(remote=True)
 
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()
@@ -664,7 +646,7 @@ class ExampleMovementSensor(MovementSensor):
         self.properties = properties
         self.accuracy = accuracy
 
-    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, SensorReading]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
     async def get_position(self, **kwargs) -> Tuple[GeoPoint, float]:
@@ -712,7 +694,7 @@ class ExampleSensor(Sensor):
         self.num_readings = random.randint(1, 10)
         super().__init__(name)
 
-    async def get_readings(self, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(self, **kwargs) -> Mapping[str, SensorReading]:
         return {"abcdefghij"[idx]: random.random() for idx in range(self.num_readings)}
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:

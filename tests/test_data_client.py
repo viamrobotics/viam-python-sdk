@@ -1,21 +1,14 @@
-import pytest
 from typing import List
 
-from grpclib.testing import ChannelFor
+import pytest
 from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.data import (
-    Annotations,
-    BinaryID,
-    BinaryMetadata,
-    BoundingBox,
-    CaptureMetadata,
-    Filter,
-)
+from viam.proto.app.data import Annotations, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter
+from viam.utils import create_filter
 
 from .mocks.services import MockData
-from viam.utils import create_filter
 
 INCLUDE_BINARY = True
 COMPONENT_NAME = "component_name"
@@ -41,7 +34,8 @@ END_TS = Timestamp(seconds=SECONDS_END, nanos=NANOS_END)
 START_DATETIME = START_TS.ToDatetime()
 END_DATETIME = END_TS.ToDatetime()
 TAGS = ["tag"]
-BBOX_LABELS = ["bbox_label"]
+BBOX_LABEL = "bbox_label"
+BBOX_LABELS = [BBOX_LABEL]
 FILTER = create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
@@ -56,27 +50,22 @@ FILTER = create_filter(
     start_time=START_DATETIME,
     end_time=END_DATETIME,
     tags=TAGS,
-    bbox_labels=BBOX_LABELS
+    bbox_labels=BBOX_LABELS,
 )
 
 FILE_ID = "file_id"
-BINARY_IDS = [BinaryID(
-    file_id=FILE_ID,
-    organization_id=ORG_ID,
-    location_id=LOCATION_ID
-)]
-BINARY_DATA = b'binary_data'
+BINARY_ID = BinaryID(file_id=FILE_ID, organization_id=ORG_ID, location_id=LOCATION_ID)
+BINARY_IDS = [BINARY_ID]
+BINARY_DATA = b"binary_data"
 FILE_NAME = "file_name"
 FILE_EXT = "file_extension"
-BBOX_LABEL = "bbox_label"
-BBOX_LABELS_RESPONSE = [BBOX_LABEL]
 BBOX = BoundingBox(
     id="id",
     label=BBOX_LABEL,
     x_min_normalized=0,
-    y_min_normalized=1,
-    x_max_normalized=2,
-    y_max_normalized=3,
+    y_min_normalized=0.1,
+    x_max_normalized=0.2,
+    y_max_normalized=0.3,
 )
 BBOXES = [BBOX]
 TABULAR_DATA = {"key": "value"}
@@ -123,7 +112,7 @@ def service() -> MockData:
         delete_remove_response=DELETE_REMOVE_RESPONSE,
         tags_response=TAGS_RESPONSE,
         bbox_labels_response=BBOX_LABELS,
-        hostname_response=HOSTNAME_RESPONSE
+        hostname_response=HOSTNAME_RESPONSE,
     )
 
 
@@ -220,18 +209,32 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_add_bounding_box_to_image_by_id(self, service: MockData):
-        assert True
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            bbox_label = await client.add_bounding_box_to_image_by_id(
+                binary_id=BINARY_ID,
+                label="label",
+                x_min_normalized=0,
+                y_min_normalized=0.1,
+                x_max_normalized=0.2,
+                y_max_normalized=0.3,
+            )
+            assert bbox_label == BBOX_LABEL
 
     @pytest.mark.asyncio
     async def test_remove_bounding_box_from_image_by_id(self, service: MockData):
-        assert True
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.remove_bounding_box_from_image_by_id(BBOX_LABEL, BINARY_ID)
+            assert service.removed_label == BBOX_LABEL
+            assert service.removed_id == BINARY_ID
 
     @pytest.mark.asyncio
     async def test_bounding_box_labels_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             bbox_labels = await client.bounding_box_labels_by_filter(filter=FILTER)
-            assert bbox_labels == BBOX_LABELS_RESPONSE
+            assert bbox_labels == BBOX_LABELS
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio

@@ -31,6 +31,8 @@ from viam.proto.app import (
     CreateOrganizationInviteResponse,
     CreateOrganizationRequest,
     CreateOrganizationResponse,
+    CreateRegistryItemRequest,
+    CreateRegistryItemResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
@@ -47,6 +49,8 @@ from viam.proto.app import (
     DeleteOrganizationMemberResponse,
     DeleteOrganizationRequest,
     DeleteOrganizationResponse,
+    DeleteRegistryItemRequest,
+    DeleteRegistryItemResponse,
     DeleteRobotPartRequest,
     DeleteRobotPartResponse,
     DeleteRobotPartSecretRequest,
@@ -63,6 +67,10 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
+    GetRegistryItemRequest,
+    GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
@@ -95,6 +103,8 @@ from viam.proto.app import (
     ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -135,6 +145,8 @@ from viam.proto.app import (
     UpdateOrganizationInviteAuthorizationsResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
+    UpdateRegistryItemRequest,
+    UpdateRegistryItemResponse,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -180,6 +192,10 @@ from viam.proto.app.data import (
     TabularData,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
+    TabularDataByMQLRequest,
+    TabularDataByMQLResponse,
+    TabularDataBySQLRequest,
+    TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
@@ -301,6 +317,12 @@ class MockData(DataServiceBase):
     async def RemoveBinaryDataFromDatasetByIDs(
         self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
     ) -> None:
+        pass
+
+    async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
+        pass
+
+    async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         pass
 
 
@@ -553,6 +575,26 @@ class MockApp(AppServiceBase):
         self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
     ) -> None:
         pass
+
+    async def CreateRegistryItem(self, stream: Stream[CreateRegistryItemRequest, CreateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetOrganizationsWithAccessToLocation(
+        self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
+    ) -> None:
+        raise NotImplementedError()
+
+    async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
+        raise NotImplementedError()
+
+    async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
+        raise NotImplementedError()
 
 
 async def main(*, host: str = "127.0.0.1", port: int = 9092) -> None:

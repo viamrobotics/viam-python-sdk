@@ -36,7 +36,9 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
                     ChunksRequest(name=self.name, sample_format=SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED), end=True
                 )
                 response: Union[ChunksResponse, None] = await chunks_stream.recv_message()
-                assert response is not None and response.HasField("info")
+                if not response:
+                    await chunks_stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                assert response.HasField("info")
                 info = response.info
 
                 while True:

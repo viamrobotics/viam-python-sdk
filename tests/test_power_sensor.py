@@ -5,17 +5,16 @@ from viam.components.generic.service import GenericRPCService
 from viam.components.power_sensor import PowerSensor, PowerSensorClient, PowerSensorRPCService
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
 from viam.proto.component.powersensor import (
-    GetVoltageRequest,
-    GetVoltageResponse,
     GetCurrentRequest,
     GetCurrentResponse,
     GetPowerRequest,
     GetPowerResponse,
+    GetVoltageRequest,
+    GetVoltageResponse,
     PowerSensorServiceStub,
 )
-
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict, primitive_to_value
+from viam.utils import dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import MockPowerSensor
@@ -139,7 +138,7 @@ class TestService:
             request = GetReadingsRequest(name=power_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert power_sensor.extra is None
             response: GetReadingsResponse = await client.GetReadings(request, timeout=8.90)
-            assert response.readings == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
+            assert sensor_readings_value_to_native(response.readings) == READINGS
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(8.90)
 
@@ -193,7 +192,7 @@ class TestClient:
             client = PowerSensorClient(power_sensor.name, channel)
             assert power_sensor.extra is None
             value = await client.get_readings(extra=EXTRA_PARAMS, timeout=2.34)
-            assert value == {key: primitive_to_value(value) for (key, value) in READINGS.items()}
+            assert value == READINGS
             assert power_sensor.extra == EXTRA_PARAMS
             assert power_sensor.timeout == loose_approx(2.34)
 

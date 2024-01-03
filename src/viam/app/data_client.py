@@ -4,10 +4,12 @@ from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
 from google.protobuf.struct_pb2 import Struct
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.data import (
+    AddBoundingBoxToImageByIDRequest,
+    AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryDataByFilterRequest,
@@ -30,6 +32,7 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
     RemoveTagsFromBinaryDataByIDsRequest,
@@ -40,6 +43,7 @@ from viam.proto.app.data import (
     TagsByFilterResponse,
 )
 from viam.proto.app.datasync import (
+    DataCaptureUploadMetadata,
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
     DataSyncServiceStub,
@@ -49,6 +53,8 @@ from viam.proto.app.datasync import (
     FileUploadResponse,
     SensorData,
     SensorMetadata,
+    StreamingDataCaptureUploadRequest,
+    StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
 from viam.utils import create_filter, datetime_to_timestamp, struct_to_dict
@@ -390,13 +396,51 @@ class DataClient:
         response: TagsByFilterResponse = await self._data_client.TagsByFilter(request, metadata=self._metadata)
         return list(response.tags)
 
-    # TODO: implement
-    async def add_bounding_box_to_image_by_id(self):
-        raise NotImplementedError()
+    async def add_bounding_box_to_image_by_id(
+        self,
+        binary_id: BinaryID,
+        label: str,
+        x_min_normalized: float,
+        y_min_normalized: float,
+        x_max_normalized: float,
+        y_max_normalized: float,
+    ) -> str:
+        """Add a bounding box to an image.
 
-    # TODO: implement
-    async def remove_bounding_box_from_image_by_id(self):
-        raise NotImplementedError()
+        Args:
+            binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.
+            label (str): A label for the bounding box.
+            x_min_normalized (float): Min X value of the bounding box normalized from 0 to 1.
+            y_min_normalized (float): Min Y value of the bounding box normalized from 0 to 1.
+            x_max_normalized (float): Max X value of the bounding box normalized from 0 to 1.
+            y_max_normalized (float): Max Y value of the bounding box normalized from 0 to 1.
+
+        Raises:
+            GRPCError: If the X or Y values are outside of the [0, 1] range.
+
+        Returns:
+            str: The bounding box ID
+        """
+        request = AddBoundingBoxToImageByIDRequest(
+            label=label,
+            binary_id=binary_id,
+            x_max_normalized=x_max_normalized,
+            x_min_normalized=x_min_normalized,
+            y_max_normalized=y_max_normalized,
+            y_min_normalized=y_min_normalized,
+        )
+        response: AddBoundingBoxToImageByIDResponse = await self._data_client.AddBoundingBoxToImageByID(request, metadata=self._metadata)
+        return response.bbox_id
+
+    async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: BinaryID) -> None:
+        """Removes a bounding box from an image.
+
+        Args:
+            bbox_id (str): The ID of the bounding box to remove.
+            Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from
+        """
+        request = RemoveBoundingBoxFromImageByIDRequest(bbox_id=bbox_id, binary_id=binary_id)
+        await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
 
     async def bounding_box_labels_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
         """Get a list of bounding box labels using a `Filter`.
@@ -426,8 +470,8 @@ class DataClient:
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
         return response.hostname
 
-    # TODO: implement
-    async def configure_database_user(self) -> None:
+    # TODO(RSDK-5569): implement
+    async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
 
     async def binary_data_capture_upload(
@@ -437,10 +481,10 @@ class DataClient:
         component_type: str,
         component_name: str,
         method_name: str,
+        file_extension: str,
         method_parameters: Optional[Mapping[str, Any]] = None,
         tags: Optional[List[str]] = None,
         data_request_times: Optional[Tuple[datetime, datetime]] = None,
-        file_extension: Optional[str] = None,
     ) -> str:
         """Upload binary sensor data.
 
@@ -453,12 +497,13 @@ class DataClient:
             component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
+            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+                The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
+                or .png extension will be saved to the images tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
                 denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
-                The backend will route the binary to its corresponding mime type based on this extension.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -466,8 +511,8 @@ class DataClient:
         sensor_contents = SensorData(
             metadata=(
                 SensorMetadata(
-                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times[0] else None,
-                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times[1] else None,
+                    time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
+                    time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times else None,
                 )
                 if data_request_times
                 else None
@@ -537,8 +582,8 @@ class DataClient:
                 SensorData(
                     metadata=(
                         SensorMetadata(
-                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times[idx][0] else None,
-                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times[idx][1] else None,
+                            time_requested=datetime_to_timestamp(data_request_times[idx][0]) if data_request_times else None,
+                            time_received=datetime_to_timestamp(data_request_times[idx][1]) if data_request_times else None,
                         )
                         if data_request_times[idx]
                         else None
@@ -566,9 +611,69 @@ class DataClient:
         response: DataCaptureUploadResponse = await self._data_sync_client.DataCaptureUpload(request, metadata=self._metadata)
         return response
 
+    async def streaming_data_capture_upload(
+        self,
+        data: bytes,
+        part_id: str,
+        file_ext: str,
+        component_type: Optional[str] = None,
+        component_name: Optional[str] = None,
+        method_name: Optional[str] = None,
+        method_parameters: Optional[Mapping[str, Any]] = None,
+        data_request_times: Optional[Tuple[datetime, datetime]] = None,
+        tags: Optional[List[str]] = None,
+    ) -> str:
+        """Uploads the metadata and contents of streaming binary data.
+
+        Args:
+            data (bytes): the data to be uploaded.
+            part_id (str): Part ID of the resource associated with the file.
+            file_ext (str): file extension type for the data. required for determining MIME type.
+            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
+            component_name (Optional[str]): Optional name of the component associated with the file.
+            method_name (Optional[str]): Optional name of the method associated with the file.
+            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
+            data_request_times (Optional[Tuple[datetime.datetime, datetime.datetime]]): Optional tuple containing `datetime`s objects
+                denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+            tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
+
+        Raises:
+            GRPCError: If an invalid part ID is passed.
+
+        Returns:
+            str: the file_id of the uploaded data.
+        """
+
+        upload_metadata = UploadMetadata(
+            part_id=part_id,
+            component_type=component_type if component_type else "",
+            component_name=component_name if component_name else "",
+            method_name=method_name if method_name else "",
+            method_parameters=method_parameters,
+            type=DataType.DATA_TYPE_BINARY_SENSOR,
+            file_extension=file_ext if file_ext[0] == "." else f".{file_ext}",
+            tags=tags,
+        )
+        sensor_metadata = SensorMetadata(
+            time_requested=datetime_to_timestamp(data_request_times[0]) if data_request_times else None,
+            time_received=datetime_to_timestamp(data_request_times[1]) if data_request_times else None,
+        )
+        metadata = DataCaptureUploadMetadata(upload_metadata=upload_metadata, sensor_metadata=sensor_metadata)
+        request_metadata = StreamingDataCaptureUploadRequest(metadata=metadata)
+        stream: Stream[StreamingDataCaptureUploadRequest, StreamingDataCaptureUploadResponse]
+        async with self._data_sync_client.StreamingDataCaptureUpload.open(metadata=self._metadata) as stream:
+            await stream.send_message(request_metadata)
+            await stream.send_message(StreamingDataCaptureUploadRequest(data=data), end=True)
+            response = await stream.recv_message()
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error
+                raise TypeError("Response cannot be empty")
+            return response.file_id
+
     async def file_upload(
         self,
         part_id: str,
+        data: bytes,
         component_type: Optional[str] = None,
         component_name: Optional[str] = None,
         method_name: Optional[str] = None,
@@ -576,7 +681,6 @@ class DataClient:
         method_parameters: Optional[Mapping[str, Any]] = None,
         file_extension: Optional[str] = None,
         tags: Optional[List[str]] = None,
-        data: Optional[bytes] = None,
     ) -> str:
         """Upload arbitrary file data.
 
@@ -585,6 +689,7 @@ class DataClient:
 
         Args:
             part_id (str): Part ID of the resource associated with the file.
+            data (bytes): Bytes representing file data to upload.
             component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
@@ -592,9 +697,8 @@ class DataClient:
                 provided.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
             file_extension (Optional[str]): Optional file extension. The empty string "" will be assigned as the file extension if one isn't
-                provided.
+                provided. Files with a .jpeg, .jpg, or .png extension will be saved to the images tab.
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based filtering when retrieving data.
-            data (Optional[bytes]): Optional bytes representing file data to upload.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
@@ -613,7 +717,7 @@ class DataClient:
             file_extension=file_extension if file_extension else "",
             tags=tags,
         )
-        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data if data else bytes()))
+        response: FileUploadResponse = await self._file_upload(metadata=metadata, file_contents=FileData(data=data))
         return response.file_id
 
     async def file_upload_from_path(
@@ -672,11 +776,14 @@ class DataClient:
     async def _file_upload(self, metadata: UploadMetadata, file_contents: FileData) -> FileUploadResponse:
         request_metadata = FileUploadRequest(metadata=metadata)
         request_file_contents = FileUploadRequest(file_contents=file_contents)
+        stream: Stream[FileUploadRequest, FileUploadResponse]
         async with self._data_sync_client.FileUpload.open(metadata=self._metadata) as stream:
             await stream.send_message(request_metadata)
             await stream.send_message(request_file_contents, end=True)
             response = await stream.recv_message()
-            assert response is not None
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                raise TypeError("Response cannot be empty")
             return response
 
     @staticmethod

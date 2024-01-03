@@ -1,15 +1,9 @@
 import pytest
-
-from grpclib.testing import ChannelFor
 from google.protobuf.timestamp_pb2 import Timestamp
+from grpclib.testing import ChannelFor
 
-from viam.proto.app.mltraining import (
-    ModelType,
-    SubmitTrainingJobRequest,
-    TrainingJobMetadata,
-    TrainingStatus,
-)
 from viam.app.ml_training_client import MLTrainingClient
+from viam.proto.app.mltraining import ModelType, SubmitTrainingJobRequest, TrainingJobMetadata, TrainingStatus
 from viam.utils import create_filter
 
 from .mocks.services import MockMLTraining
@@ -45,7 +39,7 @@ FILTER = create_filter(
     tags=TAGS,
     bbox_labels=["bbox-label"],
 )
-SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(filter=FILTER, organization_id=ORG_ID)
+SUBMIT_JOB_REQUEST = SubmitTrainingJobRequest(organization_id=ORG_ID)
 TRAINING_METADATA = TrainingJobMetadata(
     request=SUBMIT_JOB_REQUEST,
     status=TRAINING_STATUS,

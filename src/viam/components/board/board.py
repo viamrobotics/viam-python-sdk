@@ -1,16 +1,12 @@
 import abc
-from dataclasses import dataclass
 from datetime import timedelta
-from multiprocessing import Queue
-from typing import Any, Callable, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Optional
 
 from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-
-PostProcessor = Callable[[int], int]
 
 
 class Board(ComponentBase):
@@ -24,13 +20,6 @@ class Board(ComponentBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board")
-
-    @dataclass
-    class Attributes:
-        remote: bool
-        """
-        Indicates whether this board is accessed over a remote connection, e.g. gRPC.
-        """
 
     class AnalogReader(ComponentBase):
         """
@@ -62,41 +51,6 @@ class Board(ComponentBase):
 
             Returns:
                 int: The current value.
-            """
-            ...
-
-        @abc.abstractmethod
-        async def tick(self, high: bool, nanos: int):
-            """
-            This method is to be called either manually if the interrupt
-            is a proxy to some real hardware interrupt or for tests.
-
-            Args:
-                high (bool): If the signal of the interrupt is high.
-                nanos (int): Nanoseconds from an arbitrary point in time,
-                    but always increasing and always needs to be accurate.
-                    Using ``time.time_ns()`` would be acceptable.
-            """
-            ...
-
-        @abc.abstractmethod
-        async def add_callback(self, queue: Queue):
-            """
-            Add a callback to be sent the low/high value on ``tick()``.
-
-            Args:
-                queue (Queue): The receiving queue.
-            """
-            ...
-
-        @abc.abstractmethod
-        async def add_post_processor(self, processor: PostProcessor):
-            """
-            Add a post processor that should be used to modify what
-            is returned by ``self.value()``
-
-            Args:
-                processor (PostProcessor): The post processor to add.
             """
             ...
 
@@ -239,16 +193,6 @@ class Board(ComponentBase):
 
         Returns:
             viam.proto.common.BoardStatus: the status.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def model_attributes(self) -> Attributes:
-        """
-        Get the attributes related to the model of this board.
-
-        Returns:
-            Attributes: The attributes.
         """
         ...
 

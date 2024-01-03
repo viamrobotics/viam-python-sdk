@@ -14,9 +14,16 @@ If you would like to develop and contribute to Viam's Python SDK, take a look at
 
 ## Installation
 
-Currently, we have pre-built binaries for macOS (both Intel and Apple Silicon), along with Linux (x86, aarch64, armv6l) that you can install via pip
+Currently, we have pre-built binaries for macOS (both Intel `x86_64` and Apple Silicon) and Linux (`x86`, `aarch64`, `armv6l`) that you can install using `pip`:
 
 `pip install viam-sdk`
+
+If you intend to use the [`MLModel` service](https://python.viam.dev/autoapi/viam/services/mlmodel/mlmodel/index.html#viam.services.mlmodel.mlmodel.MLModel), use the following command instead, which installs additional required dependencies:
+
+`pip install 'viam-sdk[mlmodel]'`
+
+You can also run this command on an existing Python SDK install to add support for the ML model service.
+See the [ML (machine learning) model service](https://docs.viam.com/ml/) documentation for more information.
 
 Windows is not supported. If you are using Windows, install `viam-sdk` in WSL. For other unsupported systems, read further on how to install from source.
 

@@ -71,4 +71,4 @@ package: clean buf better_imports format test
 
 install:
 	poetry install --all-extras
-	sh etc/postinstall.sh
+	bash etc/postinstall.sh

@@ -7,7 +7,6 @@ else:
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
@@ -18,7 +17,6 @@ from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
 from viam.components.board import Board
-from viam.components.board.board import PostProcessor
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -52,8 +50,7 @@ from viam.proto.common import (
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
-from viam.utils import ValueTypes
-
+from viam.utils import SensorReading, ValueTypes
 
 GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
@@ -262,26 +259,15 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = False
         self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
-        self.post_processors: List[PostProcessor] = []
-        self.timeout: Optional[float] = None
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
-        self.extra = extra
-        self.timeout = timeout
         return self.num_ticks
 
-    async def tick(self, high: bool, nanos: int):
+    async def tick(self, high: bool, nanos: int):  # Call this to get the mock interrupt to change
         self.high = high
         self.last_tick = nanos
         self.num_ticks += 1
-
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
-
-    async def add_post_processor(self, processor: PostProcessor):
-        self.post_processors.append(processor)
 
 
 class MockGPIOPin(Board.GPIOPin):
@@ -370,9 +356,6 @@ class MockBoard(Board):
             digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
         )
 
-    async def model_attributes(self) -> Board.Attributes:
-        return Board.Attributes(remote=True)
-
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
         self.timeout = timeout
@@ -401,9 +384,9 @@ class MockCamera(Camera):
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.extra = None
         self.props = Camera.Properties(
-            False,
-            IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
-            DistortionParameters(model="no_distortion"),
+            supports_pcd=False,
+            intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
+            distortion_parameters=DistortionParameters(model="no_distortion"),
         )
         self.timeout: Optional[float] = None
         ts = Timestamp()
@@ -411,12 +394,9 @@ class MockCamera(Camera):
         self.metadata = ResponseMetadata(captured_at=ts)
         super().__init__(name)
 
-    async def get_image(self,
-                        mime_type: str = "",
-                        extra: Optional[Dict[str, Any]] = None,
-                        timeout: Optional[float] = None,
-                        **kwargs
-                        ) -> Union[Image.Image, RawImage]:
+    async def get_image(
+        self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Union[Image.Image, RawImage]:
         self.extra = extra
         self.timeout = timeout
         mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
@@ -437,12 +417,9 @@ class MockCamera(Camera):
             )
         ], self.metadata
 
-    async def get_point_cloud(self,
-                              *,
-                              extra: Optional[Dict[str, Any]] = None,
-                              timeout: Optional[float] = None,
-                              **kwargs
-                              ) -> Tuple[bytes, str]:
+    async def get_point_cloud(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[bytes, str]:
         self.extra = extra
         self.timeout = timeout
         return self.point_cloud, CameraMimeType.PCD
@@ -994,7 +971,8 @@ class MockPowerSensor(PowerSensor):
         return self.power
 
     async def get_readings(
-            self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]:
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, float]:
         self.extra = extra
         self.timeout = timeout
         return self.readings
@@ -1013,7 +991,7 @@ class MockSensor(Sensor):
 
     async def get_readings(
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, Any]:
+    ) -> Mapping[str, SensorReading]:
         self.extra = extra
         self.timeout = timeout
         return self.readings

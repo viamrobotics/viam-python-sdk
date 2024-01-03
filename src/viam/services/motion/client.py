@@ -15,8 +15,12 @@ from viam.proto.common import (
 )
 from viam.proto.service.motion import (
     Constraints,
+    GetPlanRequest,
+    GetPlanResponse,
     GetPoseRequest,
     GetPoseResponse,
+    ListPlanStatusesRequest,
+    ListPlanStatusesResponse,
     MotionConfiguration,
     MotionServiceStub,
     MoveOnGlobeRequest,
@@ -25,6 +29,8 @@ from viam.proto.service.motion import (
     MoveOnMapResponse,
     MoveRequest,
     MoveResponse,
+    StopPlanRequest,
+    StopPlanResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -101,20 +107,28 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> bool:
+    ) -> str:
         """Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
+
+        ``move_on_globe()`` is non blocking, meaning the motion service will move the component to the destination
+        GPS point after ``move_on_globe()`` returns.
+
+        Each successful ``move_on_globe()`` call retuns a unique ExectionID which you can use to identify all plans
+        generated durring the ``move_on_globe()`` call.
+
+        You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
         Args:
             component_name (ResourceName): The component to move
             destination (GeoPoint): The destination point
             movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location
-            obstacles (Optional[Sequence[GeoObstacle]], optional): Obstacles to be considered for motion planning. Defaults to None.
-            heading (Optional[float], optional): Compass heading to achieve at the destination, in degrees [0-360). Defaults to None.
-            linear_meters_per_sec (Optional[float], optional): Linear velocity to target when moving. Defaults to None.
-            angular_deg_per_sec (Optional[float], optional): Angular velocity to target when turning. Defaults to None.
+            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to be considered for motion planning. Defaults to None.
+            heading (Optional[float]): Compass heading to achieve at the destination, in degrees [0-360]. Defaults to None.
+            linear_meters_per_sec (Optional[float]): Linear velocity to target when moving. Defaults to None.
+            angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.
 
         Returns:
-            bool: Whether the request was successful
+            str: ExecutionID of the move_on_globe call, which can be used to track execution progress.
         """
         if extra is None:
             extra = {}
@@ -129,7 +143,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             extra=dict_to_struct(extra),
         )
         response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
-        return response.success
+        return response.execution_id
 
     async def move_on_map(
         self,
@@ -140,7 +154,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> bool:
-        """Move a component to a specific pose, using a ``SlamService`` for the SLAM map
+        """
+        Move a component to a specific pose, using a ``SlamService`` for the SLAM map
 
         Args:
             component_name (ResourceName): The component to move
@@ -161,6 +176,112 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
         return response.success
+
+    async def stop_plan(
+        self,
+        component_name: ResourceName,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ):
+        """Stop a component being moved by an in progress ``move_on_globe()`` call.
+
+        Args:
+            component_name (ResourceName): The component to stop
+
+        Returns:
+            None
+        """
+        if extra is None:
+            extra = {}
+
+        request = StopPlanRequest(
+            name=self.name,
+            component_name=component_name,
+            extra=dict_to_struct(extra),
+        )
+        _: StopPlanResponse = await self.client.StopPlan(request, timeout=timeout)
+        return
+
+    async def get_plan(
+        self,
+        component_name: ResourceName,
+        last_plan_only: bool = False,
+        execution_id: Optional[str] = None,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> GetPlanResponse:
+        """By default: returns the plan history of the most recent ``move_on_globe()`` call to move a component.
+
+        The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
+
+        Returns a result if both of the following conditions are met:
+
+        - the execution (call to ``move_on_globe()``) is still executing **or** changed state within the last 24 hours
+        - the robot has not reinitialized
+
+        Plans never change.
+
+        Replans always create new plans.
+
+        Replans share the ExecutionID of the previously executing plan.
+
+        All repeated fields are in time ascending order.
+
+        Args:
+            component_name (ResourceName): The component to stop
+            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution
+            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id
+
+        Returns:
+            ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus & replan history which matches the request
+        """
+        if extra is None:
+            extra = {}
+
+        request = GetPlanRequest(
+            name=self.name,
+            component_name=component_name,
+            last_plan_only=last_plan_only,
+            execution_id=execution_id,
+            extra=dict_to_struct(extra),
+        )
+        response: GetPlanResponse = await self.client.GetPlan(request, timeout=timeout)
+        return response
+
+    async def list_plan_statuses(
+        self,
+        only_active_plans: bool = False,
+        *,
+        extra: Optional[Mapping[str, ValueTypes]] = None,
+        timeout: Optional[float] = None,
+    ) -> ListPlanStatusesResponse:
+        """Returns the statuses of plans created by `move_on_globe()` calls that meet at least one of the following
+        conditions since the motion service initialized:
+
+        - the plan's status is in progress
+        - the plan's status changed state within the last 24 hours
+
+        All repeated fields are in chronological order.
+
+        Args:
+            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing
+
+        Returns:
+            ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the
+            associated IDs of all plans within the TTL ordered by timestamp in ascending order
+        """
+        if extra is None:
+            extra = {}
+
+        request = ListPlanStatusesRequest(
+            name=self.name,
+            only_active_plans=only_active_plans,
+            extra=dict_to_struct(extra),
+        )
+        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout)
+        return response
 
     async def get_pose(
         self,

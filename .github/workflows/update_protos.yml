@@ -14,7 +14,7 @@ jobs:
       image: ghcr.io/viamrobotics/canon:amd64
     steps:
       - uses: actions/checkout@v3
-      - uses: bufbuild/buf-setup-action@v1.8.0
+      - uses: bufbuild/buf-setup-action@v1.28.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: arduino/setup-protoc@v1
@@ -39,7 +39,7 @@ jobs:
         run: make format
 
       - name: Add + Commit + Open PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v5.0.2
         with:
           commit-message: "[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}"
           branch: "workflow/update-protos"

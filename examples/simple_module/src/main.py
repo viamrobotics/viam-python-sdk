@@ -11,7 +11,7 @@ from viam.proto.common import ResourceName
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry, ResourceCreatorRegistration
 from viam.resource.types import Model, ModelFamily
-from viam.utils import ValueTypes
+from viam.utils import SensorReading, ValueTypes
 
 LOGGER = getLogger(__name__)
 
@@ -32,17 +32,18 @@ class MySensor(Sensor):
     @classmethod
     def validate_config(cls, config: ComponentConfig) -> Sequence[str]:
         if "multiplier" in config.attributes.fields:
-            if not isinstance(config.attributes.fields["multiplier"], float):
+            if not config.attributes.fields["multiplier"].HasField("number_value"):
                 raise Exception("Multiplier must be a float.")
             multiplier = config.attributes.fields["multiplier"].number_value
             if multiplier == 0:
                 raise Exception("Multiplier cannot be 0.")
         return []
 
-    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> Mapping[str, SensorReading]:
         return {"signal": 1 * self.multiplier}
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        LOGGER.info(f"received {command=}.")
         return command
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
@@ -55,7 +56,7 @@ class MySensor(Sensor):
     async def close(self):
         # This is a completely optional function to include. This will be called when the resource is removed from the config or the module
         # is shutting down.
-        LOGGER.debug(f"{self.name} is closed.")
+        LOGGER.info(f"{self.name} is closed.")
 
 
 async def main():

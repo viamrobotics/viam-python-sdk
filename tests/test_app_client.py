@@ -1,27 +1,32 @@
 from datetime import datetime
-import pytest
 
+import pytest
 from grpclib.testing import ChannelFor
 
-from viam.app.app_client import AppClient
-from viam.utils import datetime_to_timestamp, struct_to_dict
+from viam.app.app_client import APIKeyAuthorization, AppClient
 from viam.proto.app import (
-    Organization,
-    Location,
-    Robot,
-    RobotPart,
-    LogEntry,
-    Fragment,
-    LocationAuth,
-    RobotPartHistoryEntry,
+    APIKey,
+    APIKeyWithAuthorizations,
     Authorization,
+    AuthorizationDetails,
+    AuthorizedPermissions,
+    Fragment,
+    Location,
+    LocationAuth,
+    LogEntry,
     Model,
     Module,
-    Visibility,
-    OrganizationMember,
+    ModuleFileInfo,
+    Organization,
     OrganizationInvite,
-    ModuleFileInfo
+    OrganizationMember,
+    Robot,
+    RobotPart,
+    RobotPartHistoryEntry,
+    RoverRentalRobot,
+    Visibility,
 )
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 from .mocks.services import MockApp
 
@@ -30,6 +35,7 @@ METADATA = {"key": "value"}
 ID = "id"
 IDS = [ID]
 NAME = "name"
+CID = "cid"
 TIME = datetime_to_timestamp(datetime.now())
 PUBLIC_NAMESPACE = "public_namespace"
 DEFAULT_REGION = "default_region"
@@ -75,6 +81,13 @@ ROBOT_PART = RobotPart(
     secrets=None,
 )
 ROBOT_PARTS = [ROBOT_PART]
+ROVER_RENTAL_ROBOT = RoverRentalRobot(
+    robot_id=ID,
+    location_id="location",
+    robot_name=NAME,
+    robot_main_part_id=ID,
+)
+ROVER_RENTAL_ROBOTS = [ROVER_RENTAL_ROBOT]
 FILTER = "filter"
 ERRORS_ONLY = True
 HOST = "host"
@@ -103,30 +116,32 @@ FRAGMENT = Fragment(
 )
 NAMESPACE = "namespace"
 AVAILABLE = True
-LOCATION_AUTH = LocationAuth(
-    secret=SECRET,
-    location_id=ID,
-    secrets=None
-)
+LOCATION_AUTH = LocationAuth(secret=SECRET, location_id=ID, secrets=None)
 PART = "part"
-ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(
-    part=PART,
-    robot=ID,
-    when=TIME,
-    old=None
-)
+ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(part=PART, robot=ID, when=TIME, old=None)
 ROBOT_PART_HISTORY = [ROBOT_PART_HISTORY_ENTRY]
 TYPE = "type"
 ROLE = "role"
+API_KEY = "key"
+API_KEY_AUTHORIZATION = APIKeyAuthorization(role=ROLE, resource_type=TYPE, resource_id=ID)
+API_KEY_AUTHORIZATIONS = [API_KEY_AUTHORIZATION]
 AUTHORIZATION = Authorization(
-    authorization_type=TYPE,
-    authorization_id=ID,
+    authorization_type=TYPE, authorization_id=ID, resource_type=TYPE, resource_id=ID, identity_id=ID, organization_id=ID
+)
+AUTHORIZATION_DETAIL = AuthorizationDetails(authorization_type=TYPE, authorization_id=ID, resource_type=TYPE, resource_id=ID, org_id=ID)
+AUTHORIZATION_DETAILS = [AUTHORIZATION_DETAIL]
+AUTHORIZATIONS = [AUTHORIZATION]
+API_KEY_WITH_AUTHORIZATIONS = APIKeyWithAuthorizations(
+    api_key=APIKey(id=ID, key=API_KEY, name=NAME),
+    authorizations=AUTHORIZATION_DETAILS,
+)
+API_KEYS_WITH_AUTHORIZATIONS = [API_KEY_WITH_AUTHORIZATIONS]
+PERMISSION = AuthorizedPermissions(
     resource_type=TYPE,
     resource_id=ID,
-    identity_id=ID,
-    organization_id=ID
+    permissions=["control_robot"],
 )
-AUTHORIZATIONS = [AUTHORIZATION]
+PERMISSIONS = [PERMISSION]
 URL = "url"
 DESCRIPTION = "description"
 MODEL = "model"
@@ -144,32 +159,20 @@ MODULE = Module(
     models=MODELS,
     entrypoint=ENTRYPOINT,
     total_robot_usage=NUM,
-    total_organization_usage=NUM
+    total_organization_usage=NUM,
 )
 MODULES = [MODULE]
 EMAIL = "email"
 EMAILS = [EMAIL]
-MEMBER = OrganizationMember(
-    user_id=ID,
-    emails=EMAILS,
-    date_added=TIME
-)
+MEMBER = OrganizationMember(user_id=ID, emails=EMAILS, date_added=TIME)
 MEMBERS = [MEMBER]
-INVITE = OrganizationInvite(
-    organization_id=ID,
-    email=EMAIL,
-    created_on=TIME
-)
+INVITE = OrganizationInvite(organization_id=ID, email=EMAIL, created_on=TIME)
 INVITES = [INVITE]
 VISIBILITY = Visibility.VISIBILITY_PUBLIC
 VERSION = "version"
 PLATFORM = "platform"
-MODULE_FILE_INFO = ModuleFileInfo(
-    module_id=ID,
-    version=VERSION,
-    platform=PLATFORM
-)
-FILE = b'file'
+MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFORM)
+FILE = b"file"
 
 
 @pytest.fixture(scope="function")
@@ -190,10 +193,23 @@ def service() -> MockApp:
         module=MODULE,
         members=MEMBERS,
         invite=INVITE,
+        rover_rental_robots=ROVER_RENTAL_ROBOTS,
+        api_key=API_KEY,
+        api_keys_with_authorizations=API_KEYS_WITH_AUTHORIZATIONS,
     )
 
 
 class TestClient:
+    @pytest.mark.asyncio
+    async def test_get_organization(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            org = await client.get_organization()
+            assert org == ORGANIZATION
+            available = await client.get_organization_namespace_availability(public_namespace=NAMESPACE)
+            assert available == AVAILABLE
+            assert service.namespace == NAMESPACE
+
     @pytest.mark.asyncio
     async def test_get_organization_namespace_availability(self, service: MockApp):
         async with ChannelFor([service]) as channel:
@@ -218,6 +234,17 @@ class TestClient:
             assert organizations == ORGANIZATIONS
 
     @pytest.mark.asyncio
+    async def test_update_organization(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            org = await client.update_organization(name=NAME, public_namespace=PUBLIC_NAMESPACE, region=DEFAULT_REGION, cid=CID)
+            assert org == ORGANIZATION
+            assert service.update_region == DEFAULT_REGION
+            assert service.update_cid == CID
+            assert service.update_name == NAME
+            assert service.update_namespace == PUBLIC_NAMESPACE
+
+    @pytest.mark.asyncio
     async def test_update_organization_invite_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
@@ -228,6 +255,39 @@ class TestClient:
             assert service.email == EMAIL
             assert service.add_authorizations == AUTHORIZATIONS
             assert service.remove_authorizations == AUTHORIZATIONS
+
+    @pytest.mark.asyncio
+    # TODO(RSDK-5569): implement
+    async def test_delete_organization(self, service: MockApp):
+        assert True
+
+    @pytest.mark.asyncio
+    async def test_delete_organization_member(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.delete_organization_member(user_id=ID)
+            assert service.deleted_member_id == ID
+
+    @pytest.mark.asyncio
+    async def test_create_organization_invite(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            invite = await client.create_organization_invite(EMAIL, AUTHORIZATIONS)
+            assert invite == INVITE
+
+    @pytest.mark.asyncio
+    async def test_delete_organization_invite(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.delete_organization_invite(email=EMAIL)
+            assert service.deleted_invite_email == EMAIL
+
+    @pytest.mark.asyncio
+    async def test_resend_organization_invite(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.resend_organization_invite(email=EMAIL)
+            assert service.resent_invite_email == EMAIL
 
     @pytest.mark.asyncio
     async def test_create_location(self, service: MockApp):
@@ -303,6 +363,13 @@ class TestClient:
             assert robot == ROBOT
 
     @pytest.mark.asyncio
+    async def test_get_rover_rental_robots(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            robots = await client.get_rover_rental_robots()
+            assert robots == ROVER_RENTAL_ROBOTS
+
+    @pytest.mark.asyncio
     async def test_get_robot_parts(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
@@ -322,9 +389,7 @@ class TestClient:
     async def test_get_robot_part_logs(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            log_entries = await client.get_robot_part_logs(
-                robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM
-            )
+            log_entries = await client.get_robot_part_logs(robot_part_id=ID, filter=FILTER, errors_only=ERRORS_ONLY, num_log_entries=NUM)
             assert service.robot_part_id == ID
             assert service.filter == FILTER
             assert service.errors_only == ERRORS_ONLY
@@ -502,6 +567,13 @@ class TestClient:
             assert service.resource_id == ID
 
     @pytest.mark.asyncio
+    async def test_check_permissions(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            permissions = await client.check_permissions(permissions=PERMISSIONS)
+            assert permissions == PERMISSIONS
+
+    @pytest.mark.asyncio
     async def test_list_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
@@ -523,13 +595,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             url = await client.update_module(
-                module_id=ID,
-                url=URL,
-                description=DESCRIPTION,
-                models=MODELS,
-                entrypoint=ENTRYPOINT,
-                organization_id=ID,
-                public=PUBLIC
+                module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT, organization_id=ID, public=PUBLIC
             )
             assert url == URL
             assert service.module_id == ID
@@ -573,3 +639,24 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             modules = await client.list_modules()
             assert modules == MODULES
+
+    @pytest.mark.asyncio
+    async def test_create_key(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            api_key = await client.create_key(authorizations=API_KEY_AUTHORIZATIONS, name=NAME)
+            assert (API_KEY, ID) == api_key
+
+    @pytest.mark.asyncio
+    async def test_create_key_from_existing_key_authorizations(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            api_key = await client.create_key_from_existing_key_authorizations(id=ID)
+            assert (API_KEY, ID) == api_key
+
+    @pytest.mark.asyncio
+    async def list_keys(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            api_keys = await client.list_keys()
+            assert api_keys == API_KEYS_WITH_AUTHORIZATIONS

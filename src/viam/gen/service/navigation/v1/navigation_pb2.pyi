@@ -18,6 +18,23 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _MapType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _MapTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_MapType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    MAP_TYPE_UNSPECIFIED: _MapType.ValueType
+    MAP_TYPE_NONE: _MapType.ValueType
+    MAP_TYPE_GPS: _MapType.ValueType
+
+class MapType(_MapType, metaclass=_MapTypeEnumTypeWrapper):
+    """MapType represents the various types of map the navigation service can ingest."""
+MAP_TYPE_UNSPECIFIED: MapType.ValueType
+MAP_TYPE_NONE: MapType.ValueType
+MAP_TYPE_GPS: MapType.ValueType
+global___MapType = MapType
+
 class _Mode:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -372,3 +389,31 @@ class GetPathsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['paths', b'paths']) -> None:
         ...
 global___GetPathsResponse = GetPathsResponse
+
+@typing_extensions.final
+class GetPropertiesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the navigation service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+@typing_extensions.final
+class GetPropertiesResponse(google.protobuf.message.Message):
+    """Returns properties information for the named navigation service"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MAP_TYPE_FIELD_NUMBER: builtins.int
+    map_type: global___MapType.ValueType
+
+    def __init__(self, *, map_type: global___MapType.ValueType=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['map_type', b'map_type']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse

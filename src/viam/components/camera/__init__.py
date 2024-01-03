@@ -1,4 +1,4 @@
-from viam.media.video import RawImage
+from viam.media.video import RawImage, ViamImage
 from viam.proto.component.camera import DistortionParameters, IntrinsicParameters
 from viam.resource.registry import Registry, ResourceRegistration
 
@@ -11,6 +11,7 @@ __all__ = [
     "IntrinsicParameters",
     "DistortionParameters",
     "RawImage",
+    "ViamImage",
 ]
 
 Registry.register_subtype(

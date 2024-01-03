@@ -1,3 +1,4 @@
+import viam.gen.component.sensor.v1.sensor_pb2  # Need this import for Sensor service descriptors to resolve
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import SensorClient

@@ -1,10 +1,8 @@
-from io import BytesIO
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
-from PIL import Image
 
-from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -15,22 +13,18 @@ from viam.proto.component.camera import (
     GetPointCloudRequest,
     GetPointCloudResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Camera, RawImage
+from . import Camera
 
 
-def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> Union[Image.Image, RawImage]:
+def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> ViamImage:
     if not request_mime_type:
         request_mime_type = response_mime_type
-    mime_type, is_lazy = CameraMimeType.from_lazy(request_mime_type)
-    if is_lazy or mime_type._should_be_raw:
-        image = RawImage(data=data, mime_type=response_mime_type)
-        return image
-    return Image.open(BytesIO(data), formats=LIBRARY_SUPPORTED_FORMATS)
+    mime_type, _ = CameraMimeType.from_lazy(request_mime_type)
+    return ViamImage(data, mime_type)
 
 
 class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
@@ -43,9 +37,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         self.client = CameraServiceStub(channel)
         super().__init__(name)
 
-    async def get_image(
-        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
-    ) -> Union[Image.Image, RawImage]:
+    async def get_image(self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> ViamImage:
         if extra is None:
             extra = {}
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
@@ -71,8 +63,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         return (response.point_cloud, response.mime_type)
 
     async def get_properties(self, *, timeout: Optional[float] = None) -> Camera.Properties:
-        response: GetPropertiesResponse = await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
-        return Camera.Properties(response.supports_pcd, response.intrinsic_parameters, response.distortion_parameters)
+        return await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

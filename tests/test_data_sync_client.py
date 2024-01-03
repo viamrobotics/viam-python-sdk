@@ -1,13 +1,13 @@
-import pytest
 from datetime import datetime
-from typing import List, Tuple, cast, Mapping, Any
-from google.protobuf.timestamp_pb2 import Timestamp
+from typing import Any, List, Mapping, Tuple, cast
 
+import pytest
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.datasync import UploadMetadata, SensorData
-from viam.utils import struct_to_dict, datetime_to_timestamp
+from viam.proto.app.datasync import SensorData, UploadMetadata
+from viam.utils import datetime_to_timestamp, struct_to_dict
 
 from .mocks.services import MockDataSync
 
@@ -130,6 +130,26 @@ class TestClient:
             assert file_id == FILE_UPLOAD_RESPONSE
             self.assert_metadata(service.metadata)
             assert service.metadata.file_name == FILE_NAME
+            assert service.metadata.file_extension == FILE_EXT
+            assert service.binary_data == BINARY_DATA
+
+    @pytest.mark.asyncio
+    async def test_streaming_data_capture_upload(self, service: MockDataSync):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            file_id = await client.streaming_data_capture_upload(
+                data=BINARY_DATA,
+                part_id=PART_ID,
+                file_ext=FILE_EXT,
+                component_type=COMPONENT_TYPE,
+                component_name=COMPONENT_NAME,
+                method_name=METHOD_NAME,
+                method_parameters=METHOD_PARAMETERS,
+                data_request_times=DATETIMES,
+                tags=TAGS,
+            )
+            assert file_id == FILE_UPLOAD_RESPONSE
+            self.assert_metadata(service.metadata)
             assert service.metadata.file_extension == FILE_EXT
             assert service.binary_data == BINARY_DATA
 

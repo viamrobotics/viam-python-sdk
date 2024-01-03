@@ -4,7 +4,7 @@ from typing import Final, List, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import GeoObstacle, GeoPoint, Mode, Path, Waypoint
+from . import GeoObstacle, GeoPoint, MapType, Mode, Path, Waypoint
 
 
 class Navigation(ServiceBase):
@@ -48,4 +48,8 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float]):
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(self, *, timeout: Optional[float]) -> MapType.ValueType:
         ...
