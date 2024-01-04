@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the Gantry component.
 
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[float]
       :async:
 
       Get the position in millimeters.
@@ -33,7 +33,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: move_to_position(positions: List[float], speeds: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_position(positions: List[float], speeds: List[float], *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Move the gantry to a new position at the requested speeds.
@@ -43,7 +43,7 @@ Classes
       :type positions: List[float]
 
 
-   .. py:method:: home(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool
+   .. py:method:: home(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> bool
       :async:
 
       Home the gantry to find it's starting and ending positions
@@ -52,7 +52,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]
+   .. py:method:: get_lengths(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> List[float]
       :async:
 
       Get the lengths of the axes of the gantry in millimeters.
@@ -61,7 +61,7 @@ Classes
       :rtype: List[float]
 
 
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Stop all motion of the gantry. It is assumed that the gantry stops immediately.
@@ -76,7 +76,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

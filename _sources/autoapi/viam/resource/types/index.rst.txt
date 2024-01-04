@@ -90,7 +90,7 @@ Attributes
       Return hash(self).
 
 
-   .. py:method:: __eq__(other: Subtype) -> bool
+   .. py:method:: __eq__(other: object) -> bool
 
       Return self==value.
 
@@ -163,7 +163,7 @@ Attributes
       Return hash(self).
 
 
-   .. py:method:: __eq__(other: ModelFamily) -> bool
+   .. py:method:: __eq__(other: object) -> bool
 
       Return self==value.
 
@@ -199,7 +199,7 @@ Attributes
       Return hash(self).
 
 
-   .. py:method:: __eq__(other: Model) -> bool
+   .. py:method:: __eq__(other: object) -> bool
 
       Return self==value.
 
@@ -252,7 +252,7 @@ Attributes
 
    The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries.
 
-   .. py:method:: GetGeometries(stream: grpclib.server.Stream[viam.proto.common.GetGeometriesRequest, viam.proto.common.GetGeometriesResponse]) -> None
+   .. py:method:: GetGeometries(request: viam.proto.common.GetGeometriesRequest, *, timeout: Optional[float] = None) -> viam.proto.common.GetGeometriesResponse
       :async:
 
 

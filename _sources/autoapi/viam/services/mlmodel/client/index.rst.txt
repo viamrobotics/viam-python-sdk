@@ -52,15 +52,13 @@ Classes
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
-      Send/Receive arbitrary commands to the Resource
+      Send/receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
-
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+      :type command: Dict[str, ValueTypes]
 
       :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
+      :rtype: Dict[str, ValueTypes]
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

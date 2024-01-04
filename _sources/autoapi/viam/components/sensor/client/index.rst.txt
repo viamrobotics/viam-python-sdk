@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the Sensor component.
 
-   .. py:method:: get_readings(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, viam.utils.SensorReading]
+   .. py:method:: get_readings(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
       :async:
 
       Obtain the measurements/data specific to this sensor.
@@ -33,7 +33,7 @@ Classes
       :rtype: Mapping[str, Any]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

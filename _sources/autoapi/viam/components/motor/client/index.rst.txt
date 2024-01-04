@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the Motor component.
 
-   .. py:method:: set_power(power: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: set_power(power: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Sets the "percentage" of power the motor should employ between -1 and 1.
@@ -35,7 +35,7 @@ Classes
       :type power: float
 
 
-   .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: go_for(rpm: float, revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Spin the motor the specified number of ``revolutions`` at specified ``rpm``.
@@ -50,7 +50,7 @@ Classes
       :type revolutions: float
 
 
-   .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: go_to(rpm: float, position_revolutions: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Spin the motor to the specified position (provided in revolutions from home/zero),
@@ -64,7 +64,7 @@ Classes
       :type position_revolutions: float
 
 
-   .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Set the current position (modified by ``offset``) to be the new zero (home) position.
@@ -73,7 +73,7 @@ Classes
       :type offset: float
 
 
-   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float
+   .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
       :async:
 
       Report the position of the motor based on its encoder.
@@ -84,7 +84,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.motor.motor.Motor.Properties
+   .. py:method:: get_properties(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.motor.motor.Motor.Properties
       :async:
 
       Report a dictionary mapping optional properties to
@@ -94,13 +94,13 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Stop the motor immediately, without any gradual step down.
 
 
-   .. py:method:: is_powered(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[bool, float]
+   .. py:method:: is_powered(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[bool, float]
       :async:
 
       Returns whether or not the motor is currently running.
@@ -119,7 +119,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the Servo component.
 
-   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> int
+   .. py:method:: get_position(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
       :async:
 
       Get the current angle (degrees) of the servo.
@@ -33,7 +33,7 @@ Classes
       :rtype: int
 
 
-   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move(angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Move the servo to the provided angle.
@@ -42,7 +42,7 @@ Classes
       :type angle: int
 
 
-   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Stop the servo. It is assumed that the servo stops immediately.
@@ -57,7 +57,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

@@ -222,7 +222,7 @@ Classes
       :rtype: List[viam.proto.common.PointCloudObject]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/receive arbitrary commands
@@ -286,7 +286,7 @@ Classes
 .. py:class:: Vision(name: str)
 
 
-   Bases: :py:obj:`viam.services.service_base.ServiceBase`, :py:obj:`abc.ABC`
+   Bases: :py:obj:`viam.services.service_base.ServiceBase`
 
    Vision represents a Vision service.
 
@@ -387,19 +387,6 @@ Classes
       :rtype: List[viam.proto.common.PointCloudObject]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
-      :abstractmethod:
-      :async:
-
-      Send/receive arbitrary commands
-
-      :param command: The command to execute
-      :type command: Dict[str, ValueTypes]
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, ValueTypes]
-
-
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
@@ -412,6 +399,19 @@ Classes
 
       :returns: The service, if it exists on the robot
       :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/receive arbitrary commands
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
 
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName

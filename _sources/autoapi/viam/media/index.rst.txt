@@ -46,6 +46,7 @@ Attributes
    Bases: :py:obj:`Protocol`\ [\ :py:obj:`MediaType`\ ]
 
    .. py:method:: read() -> MediaType
+      :async:
 
 
 
@@ -55,6 +56,7 @@ Attributes
    Bases: :py:obj:`Protocol`\ [\ :py:obj:`MediaType`\ ]
 
    .. py:method:: stream() -> MediaStream[MediaType]
+      :async:
 
 
 
@@ -71,7 +73,7 @@ Attributes
       :async:
 
 
-   .. py:method:: __aiter__()
+   .. py:method:: __aiter__() -> collections.abc.AsyncIterator
 
 
    .. py:method:: __anext__() -> MediaType

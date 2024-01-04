@@ -178,15 +178,13 @@ Classes
       :abstractmethod:
       :async:
 
-      Send/Receive arbitrary commands to the Resource
+      Send/receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
-
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+      :type command: Dict[str, ValueTypes]
 
       :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
+      :rtype: Dict[str, ValueTypes]
 
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName

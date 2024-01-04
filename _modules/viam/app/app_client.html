@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>viam.app.app_client &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -523,8 +524,8 @@
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
             <span class="n">identity_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># setting `identity_id` when creating an API key results in an error</span>
             <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;api-key&quot;</span><span class="p">,</span>
-            <span class="n">role</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_role</span><span class="p">,</span>
-            <span class="n">resource_type</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_resource_type</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_role</span><span class="p">,</span>  <span class="c1"># type: ignore -- Ignoring because this is technically a `string`</span>
+            <span class="n">resource_type</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_resource_type</span><span class="p">,</span>  <span class="c1"># type: ignore -- Ignoring because this is technically a `string`</span>
             <span class="n">resource_id</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_resource_id</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1371,7 +1372,7 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListAuthorizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">authorizations</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.check_permissions"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.check_permissions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">check_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.check_permissions"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.check_permissions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">check_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks validity of a list of permissions.</span>
 
 <span class="sd">        Args:</span>
@@ -1458,9 +1459,10 @@
         <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UploadModuleFile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
             <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_module_file_info</span><span class="p">)</span>
             <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request_file</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+            <span class="n">response</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">UploadModuleFileRequest</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="p">:</span>
                 <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_trailing_metadata</span><span class="p">()</span>  <span class="c1"># causes us to throw appropriate gRPC error.</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Response cannot be empty&quot;</span><span class="p">)</span>  <span class="c1"># we should never get here, but for typechecking</span>
             <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
 
 <div class="viewcode-block" id="AppClient.get_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
@@ -1507,8 +1509,8 @@
 <span class="sd">            Tuple[str, str]: The api key and api key ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
-        <span class="n">authorizationspb</span> <span class="o">=</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authorizations</span><span class="p">]</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateKeyRequest</span><span class="p">(</span><span class="n">authorizations</span><span class="o">=</span><span class="n">authorizationspb</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">authorizations_pb</span> <span class="o">=</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authorizations</span><span class="p">]</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateKeyRequest</span><span class="p">(</span><span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations_pb</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateKeyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
@@ -1536,7 +1538,7 @@
         <span class="n">org_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListKeysRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">]</span></div></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the PowerSensor component.
 
-   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[float, bool]
+   .. py:method:: get_voltage(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[float, bool]
       :async:
 
       Get the voltage reading and bool IsAC
@@ -33,7 +33,7 @@ Classes
       :rtype: Tuple[float, bool]
 
 
-   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[float, bool]
+   .. py:method:: get_current(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[float, bool]
       :async:
 
       Get the current reading and bool IsAC
@@ -42,7 +42,7 @@ Classes
       :rtype: Tuple[float, bool]
 
 
-   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float
+   .. py:method:: get_power(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> float
       :async:
 
       Get the power reading in watts
@@ -51,7 +51,7 @@ Classes
       :rtype: float
 
 
-   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Mapping[str, viam.utils.SensorReading]
+   .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
       :async:
 
       Obtain the measurements/data specific to this sensor.
@@ -67,7 +67,7 @@ Classes
       :rtype: Mapping[str, Any]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

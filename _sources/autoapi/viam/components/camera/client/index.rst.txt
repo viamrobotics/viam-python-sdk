@@ -35,7 +35,7 @@ Functions
 
    gRPC client for the Camera component
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.media.video.ViamImage
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.media.video.ViamImage
       :async:
 
       Get the next image from the camera as a ViamImage.
@@ -51,7 +51,7 @@ Functions
       :rtype: ViamImage
 
 
-   .. py:method:: get_images(*, timeout: Optional[float] = None) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
+   .. py:method:: get_images(*, timeout: Optional[float] = None, **__) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]
       :async:
 
       Get simultaneous images from different imagers, along with associated metadata.
@@ -67,7 +67,7 @@ Functions
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
-   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Tuple[bytes, str]
+   .. py:method:: get_point_cloud(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Tuple[bytes, str]
       :async:
 
       Get the next point cloud from the camera. This will be
@@ -95,7 +95,7 @@ Functions
       :rtype: bytes
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.camera.Camera.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.camera.Camera.Properties
       :async:
 
       Get the camera intrinsic parameters and camera distortion parameters
@@ -104,7 +104,7 @@ Functions
       :rtype: Properties
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

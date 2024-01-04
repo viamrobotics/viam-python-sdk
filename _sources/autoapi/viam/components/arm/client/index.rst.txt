@@ -26,7 +26,7 @@ Classes
 
    Used to communicate with an existing ``Arm`` implementation over gRPC.
 
-   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.components.arm.Pose
+   .. py:method:: get_end_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.arm.Pose
       :async:
 
       Get the current position of the end of the arm expressed as a Pose.
@@ -35,7 +35,7 @@ Classes
       :rtype: Pose
 
 
-   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_position(pose: viam.components.arm.Pose, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Move the end of the arm to the Pose specified in ``pose``.
@@ -44,7 +44,7 @@ Classes
       :type pose: Pose
 
 
-   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> viam.proto.component.arm.JointPositions
+   .. py:method:: get_joint_positions(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.proto.component.arm.JointPositions
       :async:
 
       Get the JointPositions representing the current position of the arm.
@@ -53,7 +53,7 @@ Classes
       :rtype: JointPositions
 
 
-   .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: move_to_joint_positions(positions: viam.proto.component.arm.JointPositions, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Move each joint on the arm to the corresponding angle specified in ``positions``.
@@ -62,7 +62,7 @@ Classes
       :type positions: JointPositions
 
 
-   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None)
+   .. py:method:: stop(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
       Stop all motion of the arm. It is assumed that the arm stops immediately.
@@ -77,7 +77,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: do_command(command: Mapping[str, Any], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, Any], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

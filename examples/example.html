@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Example usage &mdash; Viam Python SDK  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -165,7 +166,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f0df5bee450&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f0df5c489f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f0df41c0b30&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f0df5bdcdb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f0df5c8cef0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f0df5bfbdb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f0dec5d8d10&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f0dec5d8d60&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f0dec5d84f0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f0dec5d8ea0&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f0dec5d8720&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f0dec5d8090&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f0dec5d8900&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f0dec5d8040&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f0dec583040&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f0d01436450&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f0d00334680&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f0d013d5540&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f0cf8701b30&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f0cf8701c70&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f0cf8701c20&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f0cf8701cc0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f0cf8701d10&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f0cf8701d60&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f0cf8701db0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f0cf8701e00&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f0cf8701e50&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f0cf8701ea0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f0cf8701ef0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f0cf8701f40&gt;]
 </pre></div>
 </div>
 </div>
@@ -195,7 +196,7 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f0dd35c7e80&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f0cf8111ee0&gt;
 </pre></div>
 </div>
 </div>
@@ -470,7 +471,7 @@ Copy the code below into your <code class="docutils literal notranslate"><span c
 <h3>5. Configure a modular resource<a class="headerlink" href="#configure-a-modular-resource" title="Permalink to this heading"></a></h3>
 <p><strong>NOTE:</strong> <em>If you are adding your module to the registry, follow <a class="reference external" href="https://docs.viam.com/extend/modular-resources/configure/">these instructions</a> instead. Otherwise, continue with these instructions, which will show you how to configure the module locally.</em></p>
 <p><a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-module">Configure your new module</a> on your robot by navigating to the <strong>Config</strong> tab of the robot’s page on the Viam app, then click on the <strong>Modules</strong> subtab. Add the name of your module and the executable path. For our example, the path would be <code class="docutils literal notranslate"><span class="pre">&lt;path-on-your-filesystem&gt;/linux-wifi/run.sh</span></code>.</p>
-<p>Once you have configured a module as part of your robot configuration, <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-modular-resource">configure your modular resource</a> made available by that module by adding new components or services configured with your modular resources’ new type or model. To instantiate a new resource from your module, specify the <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> of your modular resource. The aforementioned <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> should be the same as those in the <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> class attribute defined in your <span class="xref myst">component class</span>. This is a JSON example:</p>
+<p>Once you have configured a module as part of your robot configuration, <a class="reference external" href="https://docs.viam.com/extend/modular-resources/#configure-your-modular-resource">configure your modular resource</a> made available by that module by adding new components or services configured with your modular resources’ new type or model. To instantiate a new resource from your module, specify the <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> of your modular resource. The aforementioned <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">model</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> should be the same as those in the <code class="docutils literal notranslate"><span class="pre">MODEL</span></code> class attribute defined in your <a class="reference internal" href="#2-register-the-custom-component"><span class="xref myst">component class</span></a>. This is a JSON example:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;components&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>

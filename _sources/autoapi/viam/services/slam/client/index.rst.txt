@@ -38,7 +38,7 @@ Classes
       :rtype: Pose
 
 
-   .. py:method:: get_point_cloud_map(*, timeout: Optional[float] = None) -> List[viam.proto.service.slam.GetPointCloudMapResponse]
+   .. py:method:: get_point_cloud_map(*, timeout: Optional[float] = None) -> List[bytes]
       :async:
 
       Get the point cloud map.
@@ -50,7 +50,7 @@ Classes
       :rtype: List[GetPointCloudMapResponse]
 
 
-   .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[viam.proto.service.slam.GetInternalStateResponse]
+   .. py:method:: get_internal_state(*, timeout: Optional[float] = None) -> List[bytes]
       :async:
 
       Get the internal state of the SLAM algorithm required to continue mapping/localization.
@@ -78,18 +78,16 @@ Classes
       :rtype: Tuple[bool, MappingMode.ValueType]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
-      Send/Receive arbitrary commands to the Resource
+      Send/receive arbitrary commands
 
       :param command: The command to execute
-      :type command: Mapping[str, ValueTypes]
-
-      :raises NotImplementedError: Raised if the Resource does not support arbitrary commands
+      :type command: Dict[str, ValueTypes]
 
       :returns: Result of the executed command
-      :rtype: Mapping[str, ValueTypes]
+      :rtype: Dict[str, ValueTypes]
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

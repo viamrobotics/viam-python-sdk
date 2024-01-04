@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the PoseTracker component.
 
-   .. py:method:: get_poses(body_names: List[str], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> Dict[str, viam.proto.common.PoseInFrame]
+   .. py:method:: get_poses(body_names: List[str], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **__) -> Dict[str, viam.proto.common.PoseInFrame]
       :async:
 
       Returns the current pose of each body tracked by the pose tracker.
@@ -35,7 +35,7 @@ Classes
       :type body_names: List[str]
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource

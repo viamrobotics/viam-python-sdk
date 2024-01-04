@@ -24,7 +24,7 @@ Classes
 
    gRPC client for the AudioInput component.
 
-   .. py:method:: stream(*, timeout: Optional[float] = None) -> viam.media.MediaStream[viam.media.audio.Audio]
+   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.media.MediaStream[viam.media.audio.Audio]
       :async:
 
       Stream audio samples from the audio input of the underlying robot
@@ -33,7 +33,7 @@ Classes
       :rtype: MediaStream[Audio]
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float] = None) -> viam.components.audio_input.audio_input.AudioInput.Properties
+   .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.audio_input.audio_input.AudioInput.Properties
       :async:
 
       Get the properties of the audio input of the underlying robot
@@ -42,7 +42,7 @@ Classes
       :rtype: Properties
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
       Send/Receive arbitrary commands to the Resource
