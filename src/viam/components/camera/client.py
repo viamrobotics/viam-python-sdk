@@ -1,8 +1,10 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from io import BytesIO
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from grpclib.client import Channel
+from PIL import Image
 
-from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -17,14 +19,17 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Camera
+from . import Camera, RawImage
 
 
-def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> ViamImage:
+def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> Union[Image.Image, RawImage]:
     if not request_mime_type:
         request_mime_type = response_mime_type
-    mime_type, _ = CameraMimeType.from_lazy(request_mime_type)
-    return ViamImage(data, mime_type)
+    mime_type, is_lazy = CameraMimeType.from_lazy(request_mime_type)
+    if is_lazy or mime_type._should_be_raw:
+        image = RawImage(data=data, mime_type=response_mime_type)
+        return image
+    return Image.open(BytesIO(data), formats=LIBRARY_SUPPORTED_FORMATS)
 
 
 class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
@@ -44,7 +49,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **__,
-    ) -> ViamImage:
+    ) -> Union[Image.Image, RawImage]:
         if extra is None:
             extra = {}
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
