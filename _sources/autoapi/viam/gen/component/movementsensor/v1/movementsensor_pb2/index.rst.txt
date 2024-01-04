@@ -18,7 +18,6 @@ Classes
 
 .. autoapisummary::
 
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NmeaGGAFix
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse
    viam.gen.component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest
@@ -45,16 +44,6 @@ Attributes
 .. autoapisummary::
 
    viam.gen.component.movementsensor.v1.movementsensor_pb2.DESCRIPTOR
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_INVALID_UNSPECIFIED
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_GNSS
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_DGPS
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_PPS
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_RTK_FIXED
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_RTK_FLOAT
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_DEAD_RECKONING
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_MANUAL
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.NMEA_GGA_FIX_SIMULATION
-   viam.gen.component.movementsensor.v1.movementsensor_pb2.global___NmeaGGAFix
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearVelocityRequest
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetLinearVelocityResponse
    viam.gen.component.movementsensor.v1.movementsensor_pb2.global___GetAngularVelocityRequest
@@ -75,69 +64,6 @@ Attributes
 
 .. py:data:: DESCRIPTOR
    :type: google.protobuf.descriptor.FileDescriptor
-
-   
-
-.. py:class:: NmeaGGAFix
-
-
-   Bases: :py:obj:`_NmeaGGAFix`
-
-   NmeaGGAFix includes fix quality of a GPS which is obtained from the GGA message.
-   More information on GGA messages here
-   https://receiverhelp.trimble.com/alloy-gnss/en-us/NMEA-0183messages_GGA.html
-   Generally a fix of 1 or 2 lends to large position errors, ideally we want a
-   fix of 4-5. Other fixes are unsuitable for outdoor navigation.
-   The meaning of each fix value is documented here
-   https://docs.novatel.com/OEM7/Content/Logs/GPGGA.htm#GPSQualityIndicators
-
-
-.. py:data:: NMEA_GGA_FIX_INVALID_UNSPECIFIED
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_GNSS
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_DGPS
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_PPS
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_RTK_FIXED
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_RTK_FLOAT
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_DEAD_RECKONING
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_MANUAL
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: NMEA_GGA_FIX_SIMULATION
-   :type: NmeaGGAFix
-
-   
-
-.. py:data:: global___NmeaGGAFix
 
    
 
@@ -669,7 +595,7 @@ Attributes
 
    
 
-.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ..., position_hdop: float | None = ..., position_vdop: float | None = ..., position_nmea_gga_fix: global___NmeaGGAFix | None = ..., compass_degrees_error: float | None = ...)
+.. py:class:: GetAccuracyResponse(*, accuracy: collections.abc.Mapping[str, float] | None = ..., position_hdop: float | None = ..., position_vdop: float | None = ..., position_nmea_gga_fix: int | None = ..., compass_degrees_error: float | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -717,7 +643,7 @@ Attributes
       
 
    .. py:attribute:: position_nmea_gga_fix
-      :type: global___NmeaGGAFix
+      :type: int
 
       
 

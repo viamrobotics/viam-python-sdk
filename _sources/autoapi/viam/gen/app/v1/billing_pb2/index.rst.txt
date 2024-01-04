@@ -19,27 +19,16 @@ Classes
 .. autoapisummary::
 
    viam.gen.app.v1.billing_pb2.PaymentMethodType
-   viam.gen.app.v1.billing_pb2.CurrentMonthUsageSummary
    viam.gen.app.v1.billing_pb2.InvoiceSummary
    viam.gen.app.v1.billing_pb2.BillableResourceEvent
    viam.gen.app.v1.billing_pb2.Invoice
    viam.gen.app.v1.billing_pb2.PaymentMethodCard
-   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageSummaryRequest
-   viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageSummaryResponse
    viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageRequest
    viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageResponse
-   viam.gen.app.v1.billing_pb2.GetUnpaidBalanceRequest
-   viam.gen.app.v1.billing_pb2.GetUnpaidBalanceResponse
-   viam.gen.app.v1.billing_pb2.GetInvoiceHistoryRequest
-   viam.gen.app.v1.billing_pb2.GetInvoiceHistoryResponse
-   viam.gen.app.v1.billing_pb2.GetItemizedInvoiceRequest
-   viam.gen.app.v1.billing_pb2.GetItemizedInvoiceResponse
    viam.gen.app.v1.billing_pb2.GetOrgBillingInformationRequest
    viam.gen.app.v1.billing_pb2.GetOrgBillingInformationResponse
    viam.gen.app.v1.billing_pb2.GetInvoicesSummaryRequest
    viam.gen.app.v1.billing_pb2.GetInvoicesSummaryResponse
-   viam.gen.app.v1.billing_pb2.GetBillingSummaryRequest
-   viam.gen.app.v1.billing_pb2.GetBillingSummaryResponse
    viam.gen.app.v1.billing_pb2.GetInvoicePdfRequest
    viam.gen.app.v1.billing_pb2.GetInvoicePdfResponse
 
@@ -55,27 +44,16 @@ Attributes
    viam.gen.app.v1.billing_pb2.PAYMENT_METHOD_TYPE_UNSPECIFIED
    viam.gen.app.v1.billing_pb2.PAYMENT_METHOD_TYPE_CARD
    viam.gen.app.v1.billing_pb2.global___PaymentMethodType
-   viam.gen.app.v1.billing_pb2.global___CurrentMonthUsageSummary
    viam.gen.app.v1.billing_pb2.global___InvoiceSummary
    viam.gen.app.v1.billing_pb2.global___BillableResourceEvent
    viam.gen.app.v1.billing_pb2.global___Invoice
    viam.gen.app.v1.billing_pb2.global___PaymentMethodCard
-   viam.gen.app.v1.billing_pb2.global___GetCurrentMonthUsageSummaryRequest
-   viam.gen.app.v1.billing_pb2.global___GetCurrentMonthUsageSummaryResponse
    viam.gen.app.v1.billing_pb2.global___GetCurrentMonthUsageRequest
    viam.gen.app.v1.billing_pb2.global___GetCurrentMonthUsageResponse
-   viam.gen.app.v1.billing_pb2.global___GetUnpaidBalanceRequest
-   viam.gen.app.v1.billing_pb2.global___GetUnpaidBalanceResponse
-   viam.gen.app.v1.billing_pb2.global___GetInvoiceHistoryRequest
-   viam.gen.app.v1.billing_pb2.global___GetInvoiceHistoryResponse
-   viam.gen.app.v1.billing_pb2.global___GetItemizedInvoiceRequest
-   viam.gen.app.v1.billing_pb2.global___GetItemizedInvoiceResponse
    viam.gen.app.v1.billing_pb2.global___GetOrgBillingInformationRequest
    viam.gen.app.v1.billing_pb2.global___GetOrgBillingInformationResponse
    viam.gen.app.v1.billing_pb2.global___GetInvoicesSummaryRequest
    viam.gen.app.v1.billing_pb2.global___GetInvoicesSummaryResponse
-   viam.gen.app.v1.billing_pb2.global___GetBillingSummaryRequest
-   viam.gen.app.v1.billing_pb2.global___GetBillingSummaryResponse
    viam.gen.app.v1.billing_pb2.global___GetInvoicePdfRequest
    viam.gen.app.v1.billing_pb2.global___GetInvoicePdfResponse
 
@@ -102,73 +80,6 @@ Attributes
    
 
 .. py:data:: global___PaymentMethodType
-
-   
-
-.. py:class:: CurrentMonthUsageSummary(*, cloud_storage_usage: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_upload_usage_quantity: float = ..., data_egres_usage_cost: float = ..., data_egres_usage_quantity: float = ..., standard_compute_usage_cost: float = ..., standard_compute_usage_quantity: float = ..., total_usage_quantity: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-
-   .. py:attribute:: cloud_storage_usage
-      :type: float
-
-      
-
-   .. py:attribute:: cloud_storage_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_upload_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_upload_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: data_egres_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_egres_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: standard_compute_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: standard_compute_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_with_discount
-      :type: float
-
-      returns amt with any discounts applied
-
-   .. py:attribute:: total_usage_without_discount
-      :type: float
-
-      returns amt without any discounts applied
-
-
-.. py:data:: global___CurrentMonthUsageSummary
 
    
 
@@ -390,90 +301,6 @@ Attributes
 
    
 
-.. py:class:: GetCurrentMonthUsageSummaryRequest(*, org_id: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-
-.. py:data:: global___GetCurrentMonthUsageSummaryRequest
-
-   
-
-.. py:class:: GetCurrentMonthUsageSummaryResponse(*, cloud_storage_usage: float = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_upload_usage_quantity: float = ..., data_egres_usage_cost: float = ..., data_egres_usage_quantity: float = ..., standard_compute_usage_cost: float = ..., standard_compute_usage_quantity: float = ..., total_usage_quantity: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) should be deprecated/removed in favor of GetCurrentMonthUsage
-
-   .. py:attribute:: cloud_storage_usage
-      :type: float
-
-      
-
-   .. py:attribute:: cloud_storage_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_upload_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_upload_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: data_egres_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: data_egres_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: standard_compute_usage_cost
-      :type: float
-
-      
-
-   .. py:attribute:: standard_compute_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_quantity
-      :type: float
-
-      
-
-   .. py:attribute:: total_usage_with_discount
-      :type: float
-
-      returns amt with any discounts applied
-
-   .. py:attribute:: total_usage_without_discount
-      :type: float
-
-      returns amt without any discounts applied
-
-
-.. py:data:: global___GetCurrentMonthUsageSummaryResponse
-
-   
-
 .. py:class:: GetCurrentMonthUsageRequest(*, org_id: str = ...)
 
 
@@ -573,144 +400,6 @@ Attributes
 
 
 .. py:data:: global___GetCurrentMonthUsageResponse
-
-   
-
-.. py:class:: GetUnpaidBalanceRequest(*, org_id: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-
-.. py:data:: global___GetUnpaidBalanceRequest
-
-   
-
-.. py:class:: GetUnpaidBalanceResponse(*, unpaid_balance: float = ..., unpaid_balance_due_date: google.protobuf.timestamp_pb2.Timestamp | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:property:: unpaid_balance_due_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
-
-   .. py:attribute:: unpaid_balance
-      :type: float
-
-      
-
-   .. py:method:: HasField(field_name: Literal[unpaid_balance_due_date, b'unpaid_balance_due_date']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:data:: global___GetUnpaidBalanceResponse
-
-   
-
-.. py:class:: GetInvoiceHistoryRequest(*, org_id: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-
-.. py:data:: global___GetInvoiceHistoryRequest
-
-   
-
-.. py:class:: GetInvoiceHistoryResponse(*, invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:property:: invoices
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]
-
-
-
-.. py:data:: global___GetInvoiceHistoryResponse
-
-   
-
-.. py:class:: GetItemizedInvoiceRequest(*, id: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:attribute:: id
-      :type: str
-
-      
-
-
-.. py:data:: global___GetItemizedInvoiceRequest
-
-   
-
-.. py:class:: GetItemizedInvoiceResponse(*, invoice: global___Invoice | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) may want to remove
-
-   .. py:property:: invoice
-      :type: global___Invoice
-
-
-   .. py:method:: HasField(field_name: Literal[invoice, b'invoice']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:data:: global___GetItemizedInvoiceResponse
 
    
 
@@ -848,89 +537,6 @@ Attributes
 
 
 .. py:data:: global___GetInvoicesSummaryResponse
-
-   
-
-.. py:class:: GetBillingSummaryRequest(*, org_id: str = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) should be deprecated/removed
-
-   .. py:attribute:: org_id
-      :type: str
-
-      
-
-
-.. py:data:: global___GetBillingSummaryRequest
-
-   
-
-.. py:class:: GetBillingSummaryResponse(*, usage_summary: global___CurrentMonthUsageSummary | None = ..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ..., statement_balance: float = ..., current_balance: float = ..., current_month_balance: float = ..., current_month_due_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., invoice_email: str = ..., payment_method: global___PaymentMethodCard | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   TODO(APP-1865) should be deprecated/removed
-
-   .. py:property:: usage_summary
-      :type: global___CurrentMonthUsageSummary
-
-
-   .. py:property:: invoices
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]
-
-
-   .. py:property:: current_month_due_date
-      :type: google.protobuf.timestamp_pb2.Timestamp
-
-      due date for current month usage
-
-   .. py:property:: payment_method
-      :type: global___PaymentMethodCard
-
-
-   .. py:attribute:: statement_balance
-      :type: float
-
-      all unpaid balances at the end of the last billing cycle
-
-   .. py:attribute:: current_balance
-      :type: float
-
-      statement_balance + current_month_usage
-
-   .. py:attribute:: current_month_balance
-      :type: float
-
-      current_month_usage_cost
-
-   .. py:attribute:: invoice_email
-      :type: str
-
-      
-
-   .. py:method:: HasField(field_name: Literal[current_month_due_date, b'current_month_due_date', payment_method, b'payment_method', usage_summary, b'usage_summary']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
-
-
-
-.. py:data:: global___GetBillingSummaryResponse
 
    
 
