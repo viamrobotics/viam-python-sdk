@@ -41,15 +41,15 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return response.pose
 
-    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
+    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
         request = GetPointCloudMapRequest(name=self.name)
         response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
-        return response
+        return [r.point_cloud_pcd_chunk for r in response]
 
-    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
+    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
         request = GetInternalStateRequest(name=self.name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
-        return response
+        return [r.internal_state_chunk for r in response]
 
     async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
         request = GetLatestMapInfoRequest(name=self.name)
@@ -61,7 +61,7 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
         return (response.cloud_slam, response.mapping_mode)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -15,7 +15,7 @@ from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_t
 from .sensor import Sensor
 
 
-class SensorRPCService(SensorServiceBase, ResourceRPCServiceBase):
+class SensorRPCService(SensorServiceBase, ResourceRPCServiceBase[Sensor]):
     """
     gRPC Service for a generic Sensor
     """

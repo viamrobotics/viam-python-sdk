@@ -23,7 +23,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .audio_input import AudioInput
 
 
-class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase):
+class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioInput]):
     """
     gRPC Service for a generic AudioInput
     """
@@ -51,7 +51,7 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase):
         response = (await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)).proto
         await stream.send_message(response)
 
-    async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:
+    async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:  # pyright: ignore [reportGeneralTypeIssues]
         raise NotSupportedError("Recording audio input is not supported").grpc_error
 
         # TODO: Eventually implement recording

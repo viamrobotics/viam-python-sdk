@@ -41,6 +41,22 @@ sys.excepthook = _log_exceptions
 ##################
 # MONKEY PATCHES #
 ##################
-_ResourceName.__str__ = lambda self: f"{self.namespace}:{self.type}:{self.subtype}/{self.name}"
-_ResourceName.__repr__ = lambda self: f"<viam.proto.common.ResourceName {str(self)} at {hex(id(self))}>"
-_ResourceName.__hash__ = lambda self: hash(str(self))
+def _rname_str(self: _ResourceName) -> str:
+    return f"{self.namespace}:{self.type}:{self.subtype}/{self.name}"
+
+
+_ResourceName.__str__ = _rname_str
+
+
+def _rname_repr(self: _ResourceName) -> str:
+    return f"<viam.proto.common.ResourceName {str(self)} at {hex(id(self))}>"
+
+
+_ResourceName.__repr__ = _rname_repr
+
+
+def _rname_hash(self: _ResourceName) -> int:
+    return hash(str(self))
+
+
+_ResourceName.__hash__ = _rname_hash  # type: ignore

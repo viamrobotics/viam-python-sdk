@@ -26,6 +26,7 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ) -> Dict[str, PoseInFrame]:
         if extra is None:
             extra = {}
@@ -33,7 +34,13 @@ class PoseTrackerClient(PoseTracker, ReconfigurableResourceRPCClientBase):
         response: GetPosesResponse = await self.client.GetPoses(request, timeout=timeout)
         return {key: response.body_poses[key] for key in response.body_poses.keys()}
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

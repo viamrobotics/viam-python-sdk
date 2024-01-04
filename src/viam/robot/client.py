@@ -102,7 +102,7 @@ class RobotClient:
         """
 
         @classmethod
-        def with_api_key(cls, api_key: str, api_key_id: str) -> Self:
+        def with_api_key(cls, api_key: str, api_key_id: str, **kwargs) -> Self:
             """
             Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
@@ -116,8 +116,8 @@ class RobotClient:
             Returns:
                 Self: the RobotClient.Options
             """
+            self = cls(**kwargs)
             dial_opts = DialOptions.with_api_key(api_key, api_key_id)
-            self = cls()
             self.dial_options = dial_opts
             return self
 
@@ -286,7 +286,7 @@ class RobotClient:
             connection_error = None
             for _ in range(3):
                 try:
-                    _: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
+                    await self._client.ResourceNames(ResourceNamesRequest(), timeout=1)
                     connection_error = None
                     break
                 except Exception as e:
@@ -321,7 +321,7 @@ class RobotClient:
                         client = RobotServiceStub(channel)
                     else:
                         client = RobotServiceStub(channel.channel)
-                    _: ResourceNamesResponse = await client.ResourceNames(ResourceNamesRequest())
+                    await client.ResourceNames(ResourceNamesRequest())
 
                     if isinstance(channel, Channel):
                         self._channel = channel

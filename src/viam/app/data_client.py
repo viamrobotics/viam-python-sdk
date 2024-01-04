@@ -93,8 +93,10 @@ class DataClient:
         def __str__(self) -> str:
             return f"{self.data}\n{self.metadata}Time requested: {self.time_requested}\nTime received: {self.time_received}\n"
 
-        def __eq__(self, other: "DataClient.TabularData") -> bool:
-            return str(self) == str(other)
+        def __eq__(self, other: object) -> bool:
+            if isinstance(other, DataClient.TabularData):
+                return str(self) == str(other)
+            return False
 
     class BinaryData:
         """Class representing a piece of binary data and associated metadata.
@@ -114,8 +116,10 @@ class DataClient:
         def __str__(self) -> str:
             return f"{self.data}\n{self.metadata}"
 
-        def __eq__(self, other: "DataClient.BinaryData") -> bool:
-            return str(self) == str(other)
+        def __eq__(self, other: object) -> bool:
+            if isinstance(other, DataClient.BinaryData):
+                return str(self) == str(other)
+            return False
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
         """Create a `DataClient` that maintains a connection to app.

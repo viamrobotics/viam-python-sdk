@@ -434,8 +434,8 @@ class AppClient:
         return await self._create_authorization(
             identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
-            role=auth._role,
-            resource_type=auth._resource_type,
+            role=auth._role,  # type: ignore -- Ignoring because this is technically a `string`
+            resource_type=auth._resource_type,  # type: ignore -- Ignoring because this is technically a `string`
             resource_id=auth._resource_id,
         )
 
@@ -1282,7 +1282,7 @@ class AppClient:
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
-    async def check_permissions(self, permissions: [List[AuthorizedPermissions]]) -> List[AuthorizedPermissions]:
+    async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
         """Checks validity of a list of permissions.
 
         Args:
@@ -1369,9 +1369,10 @@ class AppClient:
         async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
-            response = await stream.recv_message()
+            response: Union[UploadModuleFileRequest, None] = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
             return response.url
 
     async def get_module(self, module_id: str) -> Module:
@@ -1418,8 +1419,8 @@ class AppClient:
             Tuple[str, str]: The api key and api key ID.
         """
         name = name if name is not None else str(datetime.now())
-        authorizationspb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
-        request = CreateKeyRequest(authorizations=authorizationspb, name=name)
+        authorizations_pb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
+        request = CreateKeyRequest(authorizations=authorizations_pb, name=name)
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
         return (response.key, response.id)
 
@@ -1447,4 +1448,4 @@ class AppClient:
         org_id = await self._get_organization_id()
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
-        return [key for key in response.api_keys]
+        return list(response.api_keys)

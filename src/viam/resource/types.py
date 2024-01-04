@@ -1,13 +1,12 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Protocol, Sequence, runtime_checkable
+from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
     from typing_extensions import TypeAlias
 
-from grpclib.server import Stream
 from typing_extensions import Self
 
 from viam.proto.app.robot import ComponentConfig
@@ -47,8 +46,10 @@ class Subtype:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "Subtype") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Subtype):
+            return str(self) == str(other)
+        return False
 
     @classmethod
     def from_resource_name(cls, resource_name: ResourceName) -> Self:
@@ -108,8 +109,10 @@ class ModelFamily:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "ModelFamily") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, ModelFamily):
+            return str(self) == str(other)
+        return False
 
 
 ModelFamily.DEFAULT = ModelFamily(RESOURCE_NAMESPACE_RDK, ModelFamily.DEFAULT_FAMILY_NAME)
@@ -137,8 +140,10 @@ class Model:
     def __hash__(self) -> int:
         return hash(str(self))
 
-    def __eq__(self, other: "Model") -> bool:
-        return str(self) == str(other)
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, Model):
+            return str(self) == str(other)
+        return False
 
     @classmethod
     def from_string(cls, model: str, *, ignore_errors=False) -> Self:
@@ -205,5 +210,5 @@ Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
 class SupportsGetGeometries(Protocol):
     """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(self, request: GetGeometriesRequest, *, timeout: Optional[float] = None) -> GetGeometriesResponse:
         ...

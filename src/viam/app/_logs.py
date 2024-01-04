@@ -17,11 +17,11 @@ class _LogsStream(Protocol[LogsType]):
     async def close(self):
         ...
 
-    def __aiter__(self):
-        return self
+    def __aiter__(self) -> AsyncIterator:
+        ...
 
     async def __anext__(self) -> LogsType:
-        return await self.next()
+        ...
 
 
 class _LogsStreamWithIterator(_LogsStream[LogsType]):

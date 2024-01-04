@@ -17,7 +17,7 @@ class MediaStream(Protocol[MediaType]):
     async def close(self):
         ...
 
-    def __aiter__(self):
+    def __aiter__(self) -> AsyncIterator:
         return self
 
     async def __anext__(self) -> MediaType:
@@ -25,12 +25,12 @@ class MediaStream(Protocol[MediaType]):
 
 
 class MediaReader(Protocol[MediaType]):
-    def read(self) -> MediaType:
+    async def read(self) -> MediaType:
         ...
 
 
 class MediaSource(Protocol[MediaType]):
-    def stream(self) -> MediaStream[MediaType]:
+    async def stream(self) -> MediaStream[MediaType]:
         ...
 
 

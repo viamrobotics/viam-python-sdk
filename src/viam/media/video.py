@@ -119,7 +119,7 @@ class CameraMimeType(str, Enum):
         return mime_type in set(item.value for item in cls)
 
     @classmethod
-    def from_proto(cls, format: Format.ValueType) -> Self:
+    def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":
         """Returns the mimetype from a proto enum.
 
         Args:

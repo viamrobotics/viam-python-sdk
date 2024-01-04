@@ -32,7 +32,13 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         self.client = GantryServiceStub(channel)
         super().__init__(name)
 
-    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:
+    async def get_position(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> List[float]:
         if extra is None:
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
@@ -46,27 +52,46 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
         request = MoveToPositionRequest(name=self.name, positions_mm=positions, speeds_mm_per_sec=speeds, extra=dict_to_struct(extra))
         await self.client.MoveToPosition(request, timeout=timeout)
 
-    async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
+    async def home(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> bool:
         if extra is None:
             extra = {}
         request = HomeRequest(name=self.name, extra=dict_to_struct(extra))
         response: HomeResponse = await self.client.Home(request, timeout=timeout)
         return response.homed
 
-    async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[float]:
+    async def get_lengths(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> List[float]:
         if extra is None:
             extra = {}
         request = GetLengthsRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetLengthsResponse = await self.client.GetLengths(request, timeout=timeout)
         return list(response.lengths_mm)
 
-    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
         if extra is None:
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
@@ -77,7 +102,13 @@ class GantryClient(Gantry, ReconfigurableResourceRPCClientBase):
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
