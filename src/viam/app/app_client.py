@@ -1370,10 +1370,10 @@ class AppClient:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
             response: Union[UploadModuleFileRequest, None] = await stream.recv_message()
-            if response is not None:
-                return response.url
-            await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
-            raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
+            if not response:
+                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
+            return response.url
 
     async def get_module(self, module_id: str) -> Module:
         """Get a module.
