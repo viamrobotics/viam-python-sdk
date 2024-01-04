@@ -19,9 +19,7 @@ class MovementSensor(ComponentBase):
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
-        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor"
-    )
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
 
     @dataclass
     class Properties:
@@ -53,6 +51,14 @@ class MovementSensor(ComponentBase):
                 compass_heading_supported=proto.compass_heading_supported,
                 linear_velocity_supported=proto.linear_velocity_supported,
             )
+
+    @dataclass
+    class Accuracy:
+        accuracy: Mapping[str, float]
+        position_hdop: float
+        position_vdop: float
+        position_nmea_gga_fix: int
+        compass_degrees_error: float
 
     @abc.abstractmethod
     async def get_position(
@@ -124,11 +130,11 @@ class MovementSensor(ComponentBase):
     @abc.abstractmethod
     async def get_accuracy(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, float]:
+    ) -> Accuracy:
         """Get the accuracy of the various sensors
 
         Returns:
-            Dict[str, float]: The accuracy
+            MovementSensor.Accuracy: The accuracies of the movement sensor
         """
         ...
 

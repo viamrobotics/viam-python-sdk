@@ -54,7 +54,14 @@ PROPERTIES = MovementSensor.Properties(
     position_supported=True,
     compass_heading_supported=False,
 )
-ACCURACY = {"foo": 0.1, "bar": 2, "baz": 3.14}
+ACCURACY = MovementSensor.Accuracy(
+    accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
+    position_hdop=1.03,
+    position_vdop=2.09,
+    position_nmea_gga_fix=0,
+    compass_degrees_error=0.0,
+
+)
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 READINGS = {"a": 1, "b": 2, "c": 3}
 

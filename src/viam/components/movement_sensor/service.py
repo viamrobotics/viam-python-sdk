@@ -32,7 +32,7 @@ from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, sensor_readings_native_to_value, struct_to_dict
 
 
-class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase[MovementSensor]):
+class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase):
     """
     gRPC Service for a MovementSensor
     """
@@ -114,8 +114,14 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
         name = request.name
         sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetAccuracyResponse(accuracy=accuracy)
+        accuracy = await sensor.get_accuracy(timeout=timeout, metadata=stream.metadata)
+        response = GetAccuracyResponse(
+            accuracy=accuracy.accuracy,
+            position_hdop=accuracy.position_hdop,
+            position_vdop=accuracy.position_vdop,
+            position_nmea_gga_fix=accuracy.position_nmea_gga_fix,
+            compass_degrees_error=accuracy.compass_degree_error,
+        )
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

@@ -525,6 +525,7 @@ class MockGantry(Gantry):
         self.homed = True
         self.extra = extra
         self.timeout = timeout
+        print("called home")
         return self.homed
 
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
@@ -810,7 +811,7 @@ class MockMovementSensor(MovementSensor):
         heading: float,
         orientation: Orientation,
         properties: MovementSensor.Properties,
-        accuracy: Mapping[str, float],
+        accuracy: MovementSensor.Accuracy,
         readings: Mapping[str, float],
     ):
         super().__init__(name)
@@ -871,7 +872,7 @@ class MockMovementSensor(MovementSensor):
 
     async def get_accuracy(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, float]:
+    ) -> MovementSensor.Accuracy:
         self.extra = extra
         self.timeout = timeout
         return self.accuracy
