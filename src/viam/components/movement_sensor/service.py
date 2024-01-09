@@ -120,7 +120,7 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
             position_hdop=accuracy.position_hdop,
             position_vdop=accuracy.position_vdop,
             position_nmea_gga_fix=accuracy.position_nmea_gga_fix,
-            compass_degrees_error=accuracy.compass_degree_error,
+            compass_degrees_error=accuracy.compass_degrees_error,
         )
         await stream.send_message(response)
 
