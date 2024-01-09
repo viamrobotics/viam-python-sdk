@@ -10,7 +10,7 @@ from PIL import Image
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, RawImage, ViamImage
+from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, RawImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -253,29 +253,30 @@ class TestClient:
 
             # Test known mime type
             png_img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
-            assert isinstance(png_img.image, Image.Image)
-            assert png_img.image.tobytes() == image.tobytes()
+            assert isinstance(png_img, Image.Image)
+            assert png_img.tobytes() == image.tobytes()
+            assert isinstance(png_img, Image.Image)
+            assert png_img.tobytes() == image.tobytes()
             assert camera.timeout == loose_approx(1.82)
 
             # Test raw mime type
             rgba_img = await client.get_image(CameraMimeType.VIAM_RGBA)
-            assert isinstance(rgba_img.image, Image.Image)
-            rgba_bytes = rgba_img.image.tobytes()
+            assert isinstance(rgba_img, Image.Image)
+            rgba_bytes = rgba_img.tobytes()
+            assert isinstance(rgba_img, Image.Image)
+            rgba_bytes = rgba_img.tobytes()
             assert rgba_bytes == image.copy().convert("RGBA").tobytes()
 
             # Test lazy mime type
             raw_img = await client.get_image(CameraMimeType.PNG.with_lazy_suffix)
-            assert isinstance(raw_img, ViamImage)
-            assert raw_img.image is None
+            assert isinstance(raw_img, RawImage)
             assert raw_img.data == image.tobytes()
             assert raw_img.mime_type == CameraMimeType.PNG
 
             # Test unknown mime type
             raw_img = await client.get_image("unknown")
-            assert isinstance(raw_img, ViamImage)
-            assert raw_img.image is None
-            assert raw_img.data == image.tobytes()
-            assert raw_img.mime_type == CameraMimeType.UNSUPPORTED
+            assert isinstance(raw_img, RawImage)
+            assert raw_img.mime_type == "unknown"
 
     @pytest.mark.asyncio
     async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: Image.Image, metadata: ResponseMetadata):
@@ -286,6 +287,7 @@ class TestClient:
             imgs, md = await client.get_images(timeout=1.82)
             assert isinstance(imgs[0], NamedImage)
             assert imgs[0].name == camera.name
+            assert imgs[0].image is not None
             assert imgs[0].image.tobytes() == image.tobytes()
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)
