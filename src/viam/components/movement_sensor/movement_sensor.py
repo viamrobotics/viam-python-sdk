@@ -5,7 +5,7 @@ from typing import Any, Dict, Final, Mapping, Optional, Tuple
 from typing_extensions import Self
 
 from viam.components.component_base import ComponentBase
-from viam.proto.component.movementsensor import GetPropertiesResponse
+from viam.proto.component.movementsensor import GetPropertiesResponse, GetAccuracyResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.utils import SensorReading
 
@@ -61,6 +61,16 @@ class MovementSensor(ComponentBase):
         position_vdop: float
         position_nmea_gga_fix: int
         compass_degrees_error: float
+
+        @classmethod
+        def accuracy_from_proto(cls, proto: GetAccuracyResponse) -> Self:
+            return cls(
+                accuracy=proto.accuracy,
+                position_hdop=proto.position_hdop,
+                position_vdop=proto.position_vdop,
+                position_nmea_gga_fix=proto.position_nmea_gga_fix,
+                compass_degrees_error=proto.compass_degrees_error,
+            )
 
     @abc.abstractmethod
     async def get_position(
