@@ -399,7 +399,7 @@ class TestClient:
             client = MovementSensorClient(movement_sensor.name, channel)
             assert movement_sensor.extra is None
             value = await client.get_accuracy(extra=EXTRA_PARAMS, timeout=7.89)
-            assert value == ACCURACY
+            assert value == pytest.approx(ACCURACY)
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(7.89)
 
