@@ -287,7 +287,7 @@ class TestService:
             request = GetAccuracyRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert movement_sensor.extra is None
             response: GetAccuracyResponse = await client.GetAccuracy(request, timeout=7.89)
-            assert response.accuracy == pytest.approx(ACCURACY)
+            assert response == pytest.approx(ACCURACY)
             assert movement_sensor.extra == EXTRA_PARAMS
             assert movement_sensor.timeout == loose_approx(7.89)
 
