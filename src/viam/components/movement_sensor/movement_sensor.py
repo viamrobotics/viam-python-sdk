@@ -62,6 +62,16 @@ class MovementSensor(ComponentBase):
         position_nmea_gga_fix: int
         compass_degrees_error: float
 
+        @property
+        def proto(self) -> GetAccuracyResponse:
+            return GetAccuracyResponse(
+                accuracy=self.accuracy,
+                position_hdop=self.position_hdop,
+                position_vdop=self.position_vdop,
+                position_nmea_gga_fix=self.position_nmea_gga_fix,
+                compass_degrees_error=self.compass_degrees_error,
+            )
+
         @classmethod
         def accuracy_from_proto(cls, proto: GetAccuracyResponse) -> Self:
             return cls(

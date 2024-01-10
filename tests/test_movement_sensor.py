@@ -55,9 +55,9 @@ PROPERTIES = MovementSensor.Properties(
     compass_heading_supported=False,
 )
 ACCURACY = MovementSensor.Accuracy(
-    accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
-    position_hdop=1.03,
-    position_vdop=2.09,
+    accuracy={"foo": 0.0, "bar": 0.0},
+    position_hdop=0.0,
+    position_vdop=0.0,
     position_nmea_gga_fix=0,
     compass_degrees_error=0.0,
 

@@ -139,13 +139,7 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetAccuracyRequest(name=self.name, extra=dict_to_struct(extra))
         response: GetAccuracyResponse = await self.client.GetAccuracy(request, timeout=timeout)
-        return MovementSensor.Accuracy(
-            accuracy=response.accuracy,
-            position_hdop=response.position_hdop,
-            position_vdop=response.position_vdop,
-            position_nmea_gga_fix=response.position_nmea_gga_fix,
-            compass_degrees_error=response.compass_degrees_error,
-        )
+        return MovementSensor.Accuracy.accuracy_from_proto(response)
 
     async def get_readings(
         self,
