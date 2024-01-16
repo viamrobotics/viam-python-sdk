@@ -43,6 +43,6 @@ jobs:
           git -c author.name=viambot -c author.email=viambot@users.noreply.github.com -c committer.name=GitHub -c committer.email=noreply@github.com commit -m "[WORKFLOW] Updating protos from ${{ github.event.client_payload.repo_name }}, commit: ${{ github.event.client_payload.sha }}"
           git -c pull.ff=only pull origin workflow/update-protos || true  # do not fail if the branch doesn't exist
           git push -f origin workflow/update-protos
-          gh pr view workflow/update-protos && gh pr reopen workflow/update-protos || gh pr create -B main -H workflow/update-protos -t "Automated Protos Update" -b "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" -a njooma -r njooma || true
+          gh pr view workflow/update-protos && gh pr reopen workflow/update-protos || gh pr create -B main -H workflow/update-protos -t "Automated Protos Update" -b "This is an auto-generated PR to update proto definitions. Check the commits to see which repos and commits are responsible for the changes" -a viamrobotics/sdk-netcode -r viamrobotics/sdk-netcode || true
         env:
           GH_TOKEN: ${{ github.token }}
