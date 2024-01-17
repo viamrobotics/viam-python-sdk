@@ -4375,7 +4375,7 @@ Attributes
 
    
 
-.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_organization_usage: int = ..., module_metadata: global___ModuleMetadata | None = ..., ml_model_metadata: global___MLModelMetadata | None = ...)
+.. py:class:: RegistryItem(*, item_id: str = ..., organization_id: str = ..., public_namespace: str = ..., name: str = ..., type: viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType = ..., visibility: global___Visibility = ..., url: str = ..., description: str = ..., total_robot_usage: int = ..., total_external_robot_usage: int = ..., total_organization_usage: int = ..., total_external_organization_usage: int = ..., module_metadata: global___ModuleMetadata | None = ..., ml_model_metadata: global___MLModelMetadata | None = ..., created_at: google.protobuf.timestamp_pb2.Timestamp | None = ..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -4393,6 +4393,16 @@ Attributes
    .. py:property:: ml_model_metadata
       :type: global___MLModelMetadata
 
+
+   .. py:property:: created_at
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      When the item was created
+
+   .. py:property:: updated_at
+      :type: google.protobuf.timestamp_pb2.Timestamp
+
+      When the item was last updated, either through an update or upload.
 
    .. py:attribute:: item_id
       :type: str
@@ -4442,12 +4452,22 @@ Attributes
 
       The total number of robots using this item
 
+   .. py:attribute:: total_external_robot_usage
+      :type: int
+
+      The total number of robots using this item outside of the owning org
+
    .. py:attribute:: total_organization_usage
       :type: int
 
       The total number of organizations using this item
 
-   .. py:method:: HasField(field_name: Literal[metadata, b'metadata', ml_model_metadata, b'ml_model_metadata', module_metadata, b'module_metadata']) -> bool
+   .. py:attribute:: total_external_organization_usage
+      :type: int
+
+      The total number of organizations using this item outside of the owning org
+
+   .. py:method:: HasField(field_name: Literal[created_at, b'created_at', metadata, b'metadata', ml_model_metadata, b'ml_model_metadata', module_metadata, b'module_metadata', updated_at, b'updated_at']) -> bool
 
       Checks if a certain field is set for the message.
 
