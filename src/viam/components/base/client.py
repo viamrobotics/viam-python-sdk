@@ -38,6 +38,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -56,6 +57,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -74,6 +76,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -92,6 +95,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -103,18 +107,30 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
         request = StopRequest(name=self.name, extra=dict_to_struct(extra))
         await self.client.Stop(request, timeout=timeout)
 
-    async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
+    async def is_moving(
+        self,
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> bool:
         request = IsMovingRequest(name=self.name)
         response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
         return response.is_moving
 
-    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Base.Properties:
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Base.Properties:
         if extra is None:
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
@@ -130,6 +146,7 @@ class BaseClient(Base, ReconfigurableResourceRPCClientBase):
         command: Mapping[str, ValueTypes],
         *,
         timeout: Optional[float] = None,
+        **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

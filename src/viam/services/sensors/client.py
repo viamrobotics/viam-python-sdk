@@ -7,13 +7,15 @@ from viam.proto.service.sensors import GetReadingsRequest, GetReadingsResponse, 
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
-from viam.utils import ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import SensorReading, ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
 
 
 class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     """Connect to the SensorService, which centralizes all Sensors in a single place"""
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "sensors"
+    )
     client: SensorsServiceStub
 
     def __init__(self, name: str, channel: Channel):
@@ -34,7 +36,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
     async def get_readings(
         self, sensors: List[ResourceName], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
-    ) -> Mapping[ResourceName, Mapping[str, Any]]:
+    ) -> Mapping[ResourceName, Mapping[str, SensorReading]]:
         """Get the readings from the specific sensors provided
 
         Args:
@@ -49,7 +51,7 @@ class SensorsClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return {reading.name: sensor_readings_value_to_native(reading.readings) for reading in response.readings}
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

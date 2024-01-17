@@ -1,4 +1,5 @@
 from viam.proto.common import Pose
+from viam.proto.service.slam import MappingMode
 from viam.resource.registry import Registry, ResourceRegistration
 
 from .client import SLAMClient
@@ -7,6 +8,7 @@ from .slam import SLAM
 
 __all__ = [
     "Pose",
+    "MappingMode",
     "SLAMClient",
     "SLAM",
 ]

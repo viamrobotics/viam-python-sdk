@@ -7,6 +7,7 @@ from typing_extensions import Self
 from viam.components.component_base import ComponentBase
 from viam.proto.component.movementsensor import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import SensorReading
 
 from . import GeoPoint, Orientation, Vector3
 
@@ -18,7 +19,9 @@ class MovementSensor(ComponentBase):
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor"
+    )
 
     @dataclass
     class Properties:
@@ -129,7 +132,9 @@ class MovementSensor(ComponentBase):
         """
         ...
 
-    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, SensorReading]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
 

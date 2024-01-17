@@ -69,6 +69,8 @@ from viam.proto.app import (
     GetOrganizationResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
+    GetRegistryItemRequest,
+    GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
@@ -589,6 +591,9 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         raise NotImplementedError()
 
 

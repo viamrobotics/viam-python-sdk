@@ -8,6 +8,8 @@ from viam.proto.service.slam import (
     GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     SLAMServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -53,6 +55,15 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         position = await slam.get_position(timeout=timeout)
         response = GetPositionResponse(pose=position)
+        await stream.send_message(response)
+
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        slam = self.get_resource(request.name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        (cloud_slam, mapping_mode) = await slam.get_properties(timeout=timeout)
+        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mode=mapping_mode)
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

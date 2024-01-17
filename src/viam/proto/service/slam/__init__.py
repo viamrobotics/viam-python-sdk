@@ -10,6 +10,9 @@ from ....gen.service.slam.v1.slam_pb2 import (
     GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
+    MappingMode,
 )
 
 __all__ = [
@@ -21,4 +24,7 @@ __all__ = [
     "GetPointCloudMapResponse",
     "GetPositionRequest",
     "GetPositionResponse",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
+    "MappingMode",
 ]

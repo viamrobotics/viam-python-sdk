@@ -1,11 +1,11 @@
 import abc
 from datetime import datetime
-from typing import Final, List, Optional
+from typing import Final, List, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import Pose
+from . import MappingMode, Pose
 
 
 class SLAM(ServiceBase):
@@ -17,7 +17,7 @@ class SLAM(ServiceBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
@@ -47,5 +47,16 @@ class SLAM(ServiceBase):
 
         Returns:
             Pose: The current position of the specified component
+        """
+        ...
+
+    @abc.abstractmethod
+    async def get_properties(self, *, timeout: Optional[float]) -> Tuple[bool, MappingMode.ValueType]:
+        """
+        Get information regarding the current SLAM session.
+
+        Returns:
+            Tuple[bool, MappingMode.ValueType]: A tuple of a boolean value representing if the SLAM session is being run in
+            the cloud and the mapping mode of said session
         """
         ...

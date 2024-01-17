@@ -1,7 +1,8 @@
 import abc
-from typing import Any, Mapping, Optional
+from typing import Any, Final, Mapping, Optional
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import SensorReading
 
 from ..component_base import ComponentBase
 
@@ -15,12 +16,14 @@ class Sensor(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "sensor"
+    )
 
     @abc.abstractmethod
     async def get_readings(
         self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, Any]:
+    ) -> Mapping[str, SensorReading]:
         """
         Obtain the measurements/data specific to this sensor.
 

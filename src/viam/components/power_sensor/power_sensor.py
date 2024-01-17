@@ -3,6 +3,7 @@ from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from viam.components.component_base import ComponentBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.utils import SensorReading
 
 
 class PowerSensor(ComponentBase):
@@ -12,7 +13,9 @@ class PowerSensor(ComponentBase):
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "power_sensor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "power_sensor"
+    )
 
     @abc.abstractmethod
     async def get_voltage(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
@@ -41,7 +44,9 @@ class PowerSensor(ComponentBase):
         """
         ...
 
-    async def get_readings(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, Any]:
+    async def get_readings(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+    ) -> Mapping[str, SensorReading]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
 

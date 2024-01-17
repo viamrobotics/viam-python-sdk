@@ -42,5 +42,5 @@ class ServiceClientBase(abc.ABC, ResourceBase):
             raise ResourceNotFoundError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)
 
-    def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()

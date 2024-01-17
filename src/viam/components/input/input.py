@@ -137,7 +137,9 @@ class Controller(ComponentBase):
     and analogReaders, a keyboard, etc.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "input_controller")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "input_controller"
+    )
 
     @abc.abstractmethod
     async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:
@@ -185,7 +187,14 @@ class Controller(ComponentBase):
         """
         ...
 
-    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    async def trigger_event(
+        self,
+        event: Event,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> None:  # Explicitly return None for typechecking, as this is technically a NoReturn default implementation
         """Directly send an Event (such as a button press) from external code
 
         Args:

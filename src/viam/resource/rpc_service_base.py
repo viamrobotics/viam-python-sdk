@@ -1,8 +1,9 @@
 import abc
-from typing import TYPE_CHECKING, Type
+from typing import TYPE_CHECKING, Generic, Type
 
 from viam.components.component_base import ComponentBase
 from viam.errors import ResourceNotFoundError
+from viam.resource.manager import ResourceType
 from viam.rpc.types import RPCServiceBase
 from viam.services.service_base import ServiceBase
 
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
     from viam.resource.manager import ResourceManager
 
 
-class ResourceRPCServiceBase(abc.ABC, RPCServiceBase):
+class ResourceRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
     """
     Base RPC service for a resource.
     All resource RPC services must inherit from this class.
@@ -24,7 +25,7 @@ class ResourceRPCServiceBase(abc.ABC, RPCServiceBase):
     def __init__(self, manager: "ResourceManager"):
         self.manager = manager
 
-    def get_resource(self, name: str) -> RESOURCE_TYPE:
+    def get_resource(self, name: str) -> ResourceType:
         """
         Return the resource with the given name if it exists in the registry.
         If the resource does not exist in the registry,

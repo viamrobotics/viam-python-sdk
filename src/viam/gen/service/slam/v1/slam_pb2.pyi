@@ -5,15 +5,39 @@ isort:skip_file
 import builtins
 from .... import common
 import google.protobuf.descriptor
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
 import sys
-if sys.version_info >= (3, 8):
+import typing
+if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _MappingMode:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _MappingModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_MappingMode.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    MAPPING_MODE_UNSPECIFIED: _MappingMode.ValueType
+    MAPPING_MODE_CREATE_NEW_MAP: _MappingMode.ValueType
+    MAPPING_MODE_LOCALIZE_ONLY: _MappingMode.ValueType
+    MAPPING_MODE_UPDATE_EXISTING_MAP: _MappingMode.ValueType
+
+class MappingMode(_MappingMode, metaclass=_MappingModeEnumTypeWrapper):
+    """MappingMode represnts the various form of mapping and localizing SLAM can perform.
+    These include, creating a new map, localizing on an existiing map and updating an
+    exisiting map.
+    """
+MAPPING_MODE_UNSPECIFIED: MappingMode.ValueType
+MAPPING_MODE_CREATE_NEW_MAP: MappingMode.ValueType
+MAPPING_MODE_LOCALIZE_ONLY: MappingMode.ValueType
+MAPPING_MODE_UPDATE_EXISTING_MAP: MappingMode.ValueType
+global___MappingMode = MappingMode
 
 @typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
@@ -144,3 +168,33 @@ class GetLatestMapInfoResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['last_map_update', b'last_map_update']) -> None:
         ...
 global___GetLatestMapInfoResponse = GetLatestMapInfoResponse
+
+@typing_extensions.final
+class GetPropertiesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Name of the slam service'
+
+    def __init__(self, *, name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+@typing_extensions.final
+class GetPropertiesResponse(google.protobuf.message.Message):
+    """Returns properties information for the named slam service"""
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLOUD_SLAM_FIELD_NUMBER: builtins.int
+    MAPPING_MODE_FIELD_NUMBER: builtins.int
+    cloud_slam: builtins.bool
+    mapping_mode: global___MappingMode.ValueType
+
+    def __init__(self, *, cloud_slam: builtins.bool=..., mapping_mode: global___MappingMode.ValueType=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['cloud_slam', b'cloud_slam', 'mapping_mode', b'mapping_mode']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse

@@ -10,6 +10,7 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import sys
+import typing
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -307,15 +308,42 @@ class GetAccuracyResponse(google.protobuf.message.Message):
         def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     ACCURACY_FIELD_NUMBER: builtins.int
+    POSITION_HDOP_FIELD_NUMBER: builtins.int
+    POSITION_VDOP_FIELD_NUMBER: builtins.int
+    POSITION_NMEA_GGA_FIX_FIELD_NUMBER: builtins.int
+    COMPASS_DEGREES_ERROR_FIELD_NUMBER: builtins.int
 
     @property
     def accuracy(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.float]:
         ...
+    position_hdop: builtins.float
+    position_vdop: builtins.float
+    position_nmea_gga_fix: builtins.int
+    compass_degrees_error: builtins.float
 
-    def __init__(self, *, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None=...) -> None:
+    def __init__(self, *, accuracy: collections.abc.Mapping[builtins.str, builtins.float] | None=..., position_hdop: builtins.float | None=..., position_vdop: builtins.float | None=..., position_nmea_gga_fix: builtins.int | None=..., compass_degrees_error: builtins.float | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['accuracy', b'accuracy']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error', '_position_hdop', b'_position_hdop', '_position_nmea_gga_fix', b'_position_nmea_gga_fix', '_position_vdop', b'_position_vdop', 'accuracy', b'accuracy', 'compass_degrees_error', b'compass_degrees_error', 'position_hdop', b'position_hdop', 'position_nmea_gga_fix', b'position_nmea_gga_fix', 'position_vdop', b'position_vdop']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_compass_degrees_error', b'_compass_degrees_error']) -> typing_extensions.Literal['compass_degrees_error'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_hdop', b'_position_hdop']) -> typing_extensions.Literal['position_hdop'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_nmea_gga_fix', b'_position_nmea_gga_fix']) -> typing_extensions.Literal['position_nmea_gga_fix'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_vdop', b'_position_vdop']) -> typing_extensions.Literal['position_vdop'] | None:
         ...
 global___GetAccuracyResponse = GetAccuracyResponse
 

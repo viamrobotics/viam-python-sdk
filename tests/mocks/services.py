@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
 from grpclib.server import Stream
@@ -73,6 +73,8 @@ from viam.proto.app import (
     GetOrganizationResponse,
     GetOrganizationsWithAccessToLocationRequest,
     GetOrganizationsWithAccessToLocationResponse,
+    GetRegistryItemRequest,
+    GetRegistryItemResponse,
     GetRobotAPIKeysRequest,
     GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
@@ -163,24 +165,14 @@ from viam.proto.app import (
 )
 from viam.proto.app.billing import (
     BillingServiceBase,
-    GetBillingSummaryRequest,
-    GetBillingSummaryResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
-    GetCurrentMonthUsageSummaryRequest,
-    GetCurrentMonthUsageSummaryResponse,
-    GetInvoiceHistoryRequest,
-    GetInvoiceHistoryResponse,
     GetInvoicePdfRequest,
     GetInvoicePdfResponse,
     GetInvoicesSummaryRequest,
     GetInvoicesSummaryResponse,
-    GetItemizedInvoiceRequest,
-    GetItemizedInvoiceResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
-    GetUnpaidBalanceRequest,
-    GetUnpaidBalanceResponse,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -285,7 +277,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-from viam.proto.service.navigation import Mode, Path, Waypoint
+from viam.proto.service.navigation import MapType, Mode, Path, Waypoint
 from viam.proto.service.sensors import (
     GetReadingsRequest,
     GetReadingsResponse,
@@ -294,6 +286,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
+from viam.proto.service.slam import MappingMode
 from viam.proto.service.vision import Classification, Detection
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
@@ -587,6 +580,8 @@ class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
+    CLOUD_SLAM = False
+    MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
 
     def __init__(self, name: str):
         self.name = name
@@ -605,6 +600,10 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.POSITION
 
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+        self.timeout = timeout
+        return (self.CLOUD_SLAM, self.MAPPING_MODE)
+
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
 
@@ -620,6 +619,7 @@ class MockNavigation(Navigation):
         self.add_waypoints: list[GeoPoint] = []
         self.remove_waypoints: list[str] = []
         self.mode = Mode.MODE_UNSPECIFIED
+        self.map_type = MapType.MAP_TYPE_UNSPECIFIED
         self.timeout: Optional[float] = None
         super().__init__(name)
 
@@ -654,6 +654,10 @@ class MockNavigation(Navigation):
     async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float] = None):
         self.timeout = timeout
         self.mode = mode
+
+    async def get_properties(self, *, timeout: Optional[float] = None) -> MapType.ValueType:
+        self.timeout = timeout
+        return self.map_type
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -935,24 +939,6 @@ class MockBilling(BillingServiceBase):
         assert request is not None
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
-
-    async def GetBillingSummary(self, stream: Stream[GetBillingSummaryRequest, GetBillingSummaryResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetCurrentMonthUsageSummary(
-        self,
-        stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonthUsageSummaryResponse],
-    ) -> None:
-        raise NotImplementedError()
-
-    async def GetInvoiceHistory(self, stream: Stream[GetInvoiceHistoryRequest, GetInvoiceHistoryResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetItemizedInvoice(self, stream: Stream[GetItemizedInvoiceRequest, GetItemizedInvoiceResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetUnpaidBalance(self, stream: Stream[GetUnpaidBalanceRequest, GetUnpaidBalanceResponse]) -> None:
-        raise NotImplementedError()
 
 
 class MockApp(AppServiceBase):
@@ -1401,4 +1387,7 @@ class MockApp(AppServiceBase):
         raise NotImplementedError()
 
     async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
+        raise NotImplementedError()
+
+    async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         raise NotImplementedError()

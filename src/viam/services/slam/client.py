@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Mapping, Optional
+from typing import List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
@@ -11,12 +11,14 @@ from viam.proto.service.slam import (
     GetPointCloudMapResponse,
     GetPositionRequest,
     GetPositionResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     SLAMServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import Pose
+from . import MappingMode, Pose
 from .slam import SLAM
 
 
@@ -37,15 +39,20 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return response.pose
 
-    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[GetPointCloudMapResponse]:
+    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
         request = GetPointCloudMapRequest(name=self.name)
         response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
-        return response
+        return [r.point_cloud_pcd_chunk for r in response]
 
-    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[GetInternalStateResponse]:
+    async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
         request = GetInternalStateRequest(name=self.name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
-        return response
+        return [r.internal_state_chunk for r in response]
+
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+        request = GetPropertiesRequest(name=self.name)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        return (response.cloud_slam, response.mapping_mode)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))

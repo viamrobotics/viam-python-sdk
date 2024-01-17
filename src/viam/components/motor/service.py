@@ -28,7 +28,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .motor import Motor
 
 
-class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase):
+class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
     """
     gRPC Service for a Motor
     """

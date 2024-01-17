@@ -1,8 +1,8 @@
 from datetime import datetime
 from numpy.typing import NDArray
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 from tests.mocks.services import MockMLModel, MockSLAM
-from viam.services.slam import Pose, SLAM
+from viam.services.slam import Pose, MappingMode, SLAM
 from viam.services.mlmodel import Metadata, MLModel
 
 
@@ -25,6 +25,8 @@ class ExampleSLAM(SLAM):
         self.position = MockSLAM.POSITION
         self.internal_chunks = MockSLAM.INTERNAL_STATE_CHUNKS
         self.point_cloud_chunks = MockSLAM.POINT_CLOUD_PCD_CHUNKS
+        self.cloud_slam = MockSLAM.CLOUD_SLAM
+        self.mapping_mode = MockSLAM.MAPPING_MODE
         super().__init__(name)
 
     async def get_internal_state(self, **kwargs) -> List[bytes]:
@@ -36,3 +38,5 @@ class ExampleSLAM(SLAM):
     async def get_position(self, **kwargs) -> Pose:
         return self.position
 
+    async def get_properties(self, **kwargs) -> Tuple[bool, MappingMode.ValueType]:
+        return (self.cloud_slam, self.mapping_mode)

@@ -10,8 +10,11 @@ from viam.proto.service.navigation import (
     GetModeResponse,
     GetObstaclesRequest,
     GetObstaclesResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     GetWaypointsRequest,
     GetWaypointsResponse,
+    MapType,
     Mode,
     NavigationServiceStub,
     RemoveWaypointRequest,
@@ -68,6 +71,12 @@ class TestNavigationService:
         mode = Mode.MODE_MANUAL
         await self.navigation.set_mode(mode)
         assert self.navigation.mode == mode
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self):
+        assert self.navigation.map_type == MapType.MAP_TYPE_UNSPECIFIED
+        result = await self.navigation.get_properties()
+        assert self.navigation.map_type == result
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -151,6 +160,15 @@ class TestService:
             assert self.navigation.mode == Mode.MODE_MANUAL
 
     @pytest.mark.asyncio
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            client = NavigationServiceStub(channel)
+            request = GetPropertiesRequest(name=self.name)
+            response: GetPropertiesResponse = await client.GetProperties(request)
+            result = response.map_type
+            assert result == MapType.MAP_TYPE_UNSPECIFIED
+
+    @pytest.mark.asyncio
     async def test_do(self):
         async with ChannelFor([self.service]) as channel:
             client = NavigationServiceStub(channel)
@@ -223,6 +241,14 @@ class TestClient:
             mode = Mode.MODE_MANUAL
             await client.set_mode(mode)
             assert self.navigation.mode == Mode.MODE_MANUAL
+
+    @pytest.mark.asyncio
+    async def test_get_properties(self):
+        async with ChannelFor([self.service]) as channel:
+            assert self.navigation.map_type == MapType.MAP_TYPE_UNSPECIFIED
+            client = NavigationClient(self.name, channel)
+            result = await client.get_properties()
+            assert self.navigation.map_type == result
 
     @pytest.mark.asyncio
     async def test_do(self):
