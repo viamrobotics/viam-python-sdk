@@ -47,12 +47,12 @@ class TestSLAMService:
         resp = await self.slam.do_command(command)
         assert resp == {"command": command}
 
+    @pytest.mark.asyncio
     async def test_get_properties(self):
         (cloud_slam, mapping_mode) = await self.slam.get_properties()
         assert cloud_slam == MockSLAM.CLOUD_SLAM
         assert mapping_mode == MockSLAM.MAPPING_MODE
 
-    @pytest.mark.asyncio
 
 class TestService:
     @classmethod
@@ -87,7 +87,6 @@ class TestService:
             request = GetPositionRequest(name=self.name)
             response: GetPositionResponse = await client.GetPosition(request)
             assert response.pose == MockSLAM.POSITION
-
 
     @pytest.mark.asyncio
     async def test_get_properties(self):
