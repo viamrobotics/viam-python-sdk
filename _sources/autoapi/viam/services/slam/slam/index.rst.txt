@@ -56,16 +56,6 @@ Classes
       :rtype: List[GetPointCloudMapResponse]
 
 
-   .. py:method:: get_latest_map_info(*, timeout: Optional[float]) -> datetime.datetime
-      :abstractmethod:
-      :async:
-
-      Get the timestamp of the last update to the point cloud SLAM map.
-
-      :returns: The timestamp of the last update.
-      :rtype: datetime
-
-
    .. py:method:: get_position(*, timeout: Optional[float]) -> viam.services.slam.Pose
       :abstractmethod:
       :async:
