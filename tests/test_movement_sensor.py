@@ -149,7 +149,11 @@ class TestMovementSensor:
     async def test_get_accuracy(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_accuracy(extra=EXTRA_PARAMS)
-        assert value == pytest.approx(ACCURACY)
+        assert value.accuracy == pytest.approx(ACCURACY.accuracy)
+        assert value.position_hdop == pytest.approx(ACCURACY.position_hdop)
+        assert value.position_vdop == pytest.approx(ACCURACY.position_vdop)
+        assert value.position_nmea_gga_fix == pytest.approx(ACCURACY.position_nmea_gga_fix)
+        assert value.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
         assert movement_sensor.extra == EXTRA_PARAMS
 
     @pytest.mark.asyncio
