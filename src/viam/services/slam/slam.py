@@ -1,5 +1,4 @@
 import abc
-from datetime import datetime
 from typing import Final, List, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
