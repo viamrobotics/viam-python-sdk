@@ -1,5 +1,6 @@
 import abc
 from dataclasses import dataclass
+import sys
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from typing_extensions import Self
@@ -10,6 +11,11 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 from viam.utils import SensorReading
 
 from . import GeoPoint, Orientation, Vector3
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 
 class MovementSensor(ComponentBase):
@@ -22,6 +28,8 @@ class MovementSensor(ComponentBase):
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor"
     )
+
+    Accuracy: "TypeAlias" = GetAccuracyResponse
 
     @dataclass
     class Properties:
@@ -52,34 +60,6 @@ class MovementSensor(ComponentBase):
                 position_supported=proto.position_supported,
                 compass_heading_supported=proto.compass_heading_supported,
                 linear_velocity_supported=proto.linear_velocity_supported,
-            )
-
-    @dataclass
-    class Accuracy:
-        accuracy: Mapping[str, float]
-        position_hdop: float
-        position_vdop: float
-        position_nmea_gga_fix: int
-        compass_degrees_error: float
-
-        @property
-        def proto(self) -> GetAccuracyResponse:
-            return GetAccuracyResponse(
-                accuracy=self.accuracy,
-                position_hdop=self.position_hdop,
-                position_vdop=self.position_vdop,
-                position_nmea_gga_fix=self.position_nmea_gga_fix,
-                compass_degrees_error=self.compass_degrees_error,
-            )
-
-        @classmethod
-        def accuracy_from_proto(cls, proto: GetAccuracyResponse) -> Self:
-            return cls(
-                accuracy=proto.accuracy,
-                position_hdop=proto.position_hdop,
-                position_vdop=proto.position_vdop,
-                position_nmea_gga_fix=proto.position_nmea_gga_fix,
-                compass_degrees_error=proto.compass_degrees_error,
             )
 
     @abc.abstractmethod
