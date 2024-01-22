@@ -525,7 +525,6 @@ class MockGantry(Gantry):
         self.homed = True
         self.extra = extra
         self.timeout = timeout
-        print("called home")
         return self.homed
 
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
