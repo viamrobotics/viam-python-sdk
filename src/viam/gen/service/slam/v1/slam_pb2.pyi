@@ -8,7 +8,6 @@ import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import google.protobuf.timestamp_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -135,39 +134,6 @@ class GetInternalStateResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['internal_state_chunk', b'internal_state_chunk']) -> None:
         ...
 global___GetInternalStateResponse = GetInternalStateResponse
-
-@typing_extensions.final
-class GetLatestMapInfoRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    name: builtins.str
-    'Name of the SLAM algo'
-
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
-global___GetLatestMapInfoRequest = GetLatestMapInfoRequest
-
-@typing_extensions.final
-class GetLatestMapInfoResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    LAST_MAP_UPDATE_FIELD_NUMBER: builtins.int
-
-    @property
-    def last_map_update(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
-    def __init__(self, *, last_map_update: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['last_map_update', b'last_map_update']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['last_map_update', b'last_map_update']) -> None:
-        ...
-global___GetLatestMapInfoResponse = GetLatestMapInfoResponse
 
 @typing_extensions.final
 class GetPropertiesRequest(google.protobuf.message.Message):
