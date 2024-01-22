@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
@@ -580,7 +579,6 @@ class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
-    LAST_UPDATE = datetime(2023, 3, 12, 3, 24, 34, 29)
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
 
@@ -600,10 +598,6 @@ class MockSLAM(SLAM):
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
         return self.POSITION
-
-    async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
-        self.timeout = timeout
-        return self.LAST_UPDATE
 
     async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
         self.timeout = timeout

@@ -29,7 +29,7 @@ class _MapTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTy
     MAP_TYPE_GPS: _MapType.ValueType
 
 class MapType(_MapType, metaclass=_MapTypeEnumTypeWrapper):
-    """MapType represents the various types of map the navigation service can ingest."""
+    """MapType represents the various types of maps the navigation service can ingest."""
 MAP_TYPE_UNSPECIFIED: MapType.ValueType
 MAP_TYPE_NONE: MapType.ValueType
 MAP_TYPE_GPS: MapType.ValueType
