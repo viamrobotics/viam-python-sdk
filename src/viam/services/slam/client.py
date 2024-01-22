@@ -1,4 +1,3 @@
-from datetime import datetime
 from typing import List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
@@ -7,8 +6,6 @@ from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.slam import (
     GetInternalStateRequest,
     GetInternalStateResponse,
-    GetLatestMapInfoRequest,
-    GetLatestMapInfoResponse,
     GetPointCloudMapRequest,
     GetPointCloudMapResponse,
     GetPositionRequest,
@@ -50,11 +47,6 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         request = GetInternalStateRequest(name=self.name)
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return [r.internal_state_chunk for r in response]
-
-    async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
-        request = GetLatestMapInfoRequest(name=self.name)
-        response: GetLatestMapInfoResponse = await self.client.GetLatestMapInfo(request, timeout=timeout)
-        return response.last_map_update.ToDatetime()
 
     async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
         request = GetPropertiesRequest(name=self.name)
