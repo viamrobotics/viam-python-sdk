@@ -74,6 +74,11 @@ Classes
 
       
 
+   .. py:attribute:: Accuracy
+      :type: TypeAlias
+
+      
+
    .. py:method:: get_position(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[viam.components.movement_sensor.GeoPoint, float]
       :abstractmethod:
       :async:
@@ -144,14 +149,14 @@ Classes
       :rtype: MovementSensor.Properties
 
 
-   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, float]
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Accuracy
       :abstractmethod:
       :async:
 
       Get the accuracy of the various sensors
 
-      :returns: The accuracy
-      :rtype: Dict[str, float]
+      :returns: The accuracies of the movement sensor
+      :rtype: MovementSensor.Accuracy
 
 
    .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.SensorReading]

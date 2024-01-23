@@ -87,13 +87,13 @@ Classes
       :rtype: MovementSensor.Properties
 
 
-   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, float]
+   .. py:method:: get_accuracy(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.movement_sensor.movement_sensor.MovementSensor.Accuracy
       :async:
 
       Get the accuracy of the various sensors
 
-      :returns: The accuracy
-      :rtype: Dict[str, float]
+      :returns: The accuracies of the movement sensor
+      :rtype: MovementSensor.Accuracy
 
 
    .. py:method:: get_readings(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.SensorReading]
