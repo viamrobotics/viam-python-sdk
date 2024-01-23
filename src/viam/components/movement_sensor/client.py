@@ -134,7 +134,10 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **__,
     ) -> MovementSensor.Accuracy:
-        return await self.client.GetAccuracy(GetAccuracyRequest(name=self.name), timeout=timeout)
+        if extra is None:
+            extra = {}
+        request = GetAccuracyRequest(name=self.name, extra=dict_to_struct(extra))
+        return await self.client.GetAccuracy(request, timeout=timeout)
 
     async def get_readings(
         self,
