@@ -115,8 +115,7 @@ class MovementSensorRPCService(MovementSensorServiceBase, ResourceRPCServiceBase
         sensor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         accuracy = await sensor.get_accuracy(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = GetAccuracyResponse(accuracy=accuracy)
-        await stream.send_message(response)
+        await stream.send_message(accuracy)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

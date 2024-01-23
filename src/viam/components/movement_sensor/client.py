@@ -6,7 +6,6 @@ from viam.components.movement_sensor.movement_sensor import MovementSensor
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
-    GetAccuracyResponse,
     GetAngularVelocityRequest,
     GetAngularVelocityResponse,
     GetCompassHeadingRequest,
@@ -134,12 +133,11 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **__,
-    ) -> Mapping[str, float]:
+    ) -> MovementSensor.Accuracy:
         if extra is None:
             extra = {}
         request = GetAccuracyRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetAccuracyResponse = await self.client.GetAccuracy(request, timeout=timeout)
-        return response.accuracy
+        return await self.client.GetAccuracy(request, timeout=timeout)
 
     async def get_readings(
         self,
