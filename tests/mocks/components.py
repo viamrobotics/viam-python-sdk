@@ -549,7 +549,7 @@ class MockGantry(Gantry):
         return {"command": command}
 
 
-class MockGeneric(GenericComponent):
+class MockGenericComponent(GenericComponent):
     timeout: Optional[float] = None
     geometries = GEOMETRIES
 

@@ -287,6 +287,7 @@ from viam.proto.service.sensors import (
 )
 from viam.proto.service.slam import MappingMode
 from viam.proto.service.vision import Classification, Detection
+from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
@@ -1390,3 +1391,11 @@ class MockApp(AppServiceBase):
 
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockGenericService(GenericService):
+    timeout: Optional[float] = None
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {key: True for key in command.keys()}
