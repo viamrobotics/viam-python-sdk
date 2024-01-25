@@ -1,0 +1,35 @@
+:py:mod:`viam.services.generic.service`
+=======================================
+
+.. py:module:: viam.services.generic.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.services.generic.service.GenericRPCService
+
+
+
+
+.. py:class:: GenericRPCService(manager: viam.resource.manager.ResourceManager)
+
+
+   Bases: :py:obj:`viam.proto.service.generic.GenericServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+
+   gRPC Service for a Generic service
+
+   .. py:attribute:: RESOURCE_TYPE
+
+      
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[viam.proto.common.DoCommandRequest, viam.proto.common.DoCommandResponse]) -> None
+      :async:
+
+
+
