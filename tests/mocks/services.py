@@ -480,9 +480,11 @@ class MockMotion(MotionServiceBase):
         self.component_name = request.component_name
         self.destination = request.destination
         self.slam_service = request.slam_service_name
+        self.configuration = request.motion_configuration
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(MoveOnMapResponse(success=True))
+        self.execution_id = "some execution id"
+        await stream.send_message(MoveOnMapResponse(execution_id=self.execution_id))
 
     async def MoveOnMapNew(self, stream: Stream[MoveOnMapNewRequest, MoveOnMapNewResponse]) -> None:
         raise NotImplementedError()

@@ -161,14 +161,36 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_move_on_map(self, service: MockMotion):
-        component_rn = Arm.get_resource_name("move_on_map_arm")
+        component_rn = Base.get_resource_name("move_on_globe_base")
         slam_rn = ResourceName(namespace="rdk", type="service", subtype="slam", name="move_on_map_slam")
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
-            execution_id = await client.move_on_map(component_rn, Pose(), slam_service_name=slam_rn)
+            execution_id = await client.move_on_map(
+                component_rn,
+                Pose(),
+                slam_service_name=slam_rn,
+                configuration=MOTION_CONFIGURATION,
+            )
             assert service.component_name == component_rn
             assert service.slam_service == slam_rn
-            assert execution_id
+            assert service.execution_id == execution_id
+            assert service.extra == {}
+            assert service.timeout is None
+            timeout = 50
+            extra = {"max_iter": 1}
+            execution_id = await client.move_on_map(
+                component_rn,
+                Pose(),
+                slam_service_name=slam_rn,
+                configuration=MOTION_CONFIGURATION,
+                extra=extra,
+                timeout=timeout,
+            )
+            assert service.component_name == component_rn
+            assert service.slam_service == slam_rn
+            assert service.execution_id == execution_id
+            assert service.extra == extra
+            assert service.timeout == loose_approx(timeout)
 
     @pytest.mark.asyncio
     async def test_move_on_globe(self, service: MockMotion):
