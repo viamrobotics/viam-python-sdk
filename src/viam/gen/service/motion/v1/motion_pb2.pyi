@@ -177,6 +177,7 @@ class MoveOnMapRequest(google.protobuf.message.Message):
     DESTINATION_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     SLAM_SERVICE_NAME_FIELD_NUMBER: builtins.int
+    MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
@@ -194,29 +195,37 @@ class MoveOnMapRequest(google.protobuf.message.Message):
         """Name of the slam service from which the SLAM map is requested"""
 
     @property
+    def motion_configuration(self) -> global___MotionConfiguration:
+        """Optional set of motion configuration options"""
+
+    @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'slam_service_name', b'slam_service_name']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'slam_service_name', b'slam_service_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
         ...
 global___MoveOnMapRequest = MoveOnMapRequest
 
 @typing_extensions.final
 class MoveOnMapResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    SUCCESS_FIELD_NUMBER: builtins.int
-    success: builtins.bool
+    EXECUTION_ID_FIELD_NUMBER: builtins.int
+    execution_id: builtins.str
+    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
 
-    def __init__(self, *, success: builtins.bool=...) -> None:
+    def __init__(self, *, execution_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
         ...
 global___MoveOnMapResponse = MoveOnMapResponse
 
