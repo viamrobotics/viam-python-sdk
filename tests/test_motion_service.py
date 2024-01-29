@@ -165,10 +165,10 @@ class TestClient:
         slam_rn = ResourceName(namespace="rdk", type="service", subtype="slam", name="move_on_map_slam")
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
-            success = await client.move_on_map(component_rn, Pose(), slam_service_name=slam_rn)
+            execution_id = await client.move_on_map(component_rn, Pose(), slam_service_name=slam_rn)
             assert service.component_name == component_rn
             assert service.slam_service == slam_rn
-            assert success
+            assert execution_id
 
     @pytest.mark.asyncio
     async def test_move_on_globe(self, service: MockMotion):
