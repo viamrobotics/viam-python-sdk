@@ -167,7 +167,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> bool:
+    ) -> str:
         """
         Move a component to a specific pose, using a ``SlamService`` for the SLAM map, using a ``SLAM Service`` to check the location.
 
@@ -208,13 +208,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
         return response.execution_id
-
-
-    async def stop_plan(
-            extra=dict_to_struct(extra),
-        )
-        response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
-        return response.success
 
     async def stop_plan(
         self,
