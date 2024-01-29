@@ -19,8 +19,6 @@ from viam.proto.robot import (
     GetSessionsResponse,
     GetStatusRequest,
     GetStatusResponse,
-    ModuleLogRequest,
-    ModuleLogResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     ResourceRPCSubtypesRequest,
@@ -102,6 +100,3 @@ class MockRobot(RobotServiceBase):
 
     async def TransformPCD(self, stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
         raise MethodNotImplementedError("TransformPCD").grpc_error
-
-    async def ModuleLog(self, stream: Stream[ModuleLogRequest, ModuleLogResponse]) -> None:
-        raise MethodNotImplementedError("ModuleLog").grpc_error
