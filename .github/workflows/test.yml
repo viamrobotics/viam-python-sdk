@@ -16,7 +16,7 @@ jobs:
     if: github.repository_owner == 'viamrobotics'
     runs-on: buildjet-2vcpu-ubuntu-2204
     container:
-      image: python:${{ matrix.python-version }}
+      image: public.ecr.aws/docker/library/python:${{ matrix.python-version }}
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
