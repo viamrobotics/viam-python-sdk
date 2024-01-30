@@ -1,10 +1,10 @@
 from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
-from viam.services.service_base import ServiceBase
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.generic import GenericServiceBase
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
+from viam.services.service_base import ServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
 

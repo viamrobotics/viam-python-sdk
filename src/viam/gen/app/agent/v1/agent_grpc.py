@@ -5,6 +5,7 @@ import grpclib.client
 if typing.TYPE_CHECKING:
     import grpclib.server
 import google.protobuf.duration_pb2
+import google.protobuf.struct_pb2
 from .... import tagger
 from .... import app
 
