@@ -788,7 +788,7 @@ Classes
       generated due to replanning.
 
 
-.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnMapRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.Pose | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., slam_service_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., motion_configuration: global___MotionConfiguration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -814,6 +814,11 @@ Classes
 
       Name of the slam service from which the SLAM map is requested
 
+   .. py:property:: motion_configuration
+      :type: global___MotionConfiguration
+
+      Optional set of motion configuration options
+
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct
 
@@ -824,7 +829,7 @@ Classes
 
       Name of the motion service
 
-   .. py:method:: HasField(field_name: Literal[component_name, b'component_name', destination, b'destination', extra, b'extra', slam_service_name, b'slam_service_name']) -> bool
+   .. py:method:: HasField(field_name: Literal[_motion_configuration, b'_motion_configuration', component_name, b'component_name', destination, b'destination', extra, b'extra', motion_configuration, b'motion_configuration', slam_service_name, b'slam_service_name']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -841,8 +846,23 @@ Classes
       :raises ValueError: if the `field_name` is not a member of this message.
 
 
+   .. py:method:: WhichOneof(oneof_group: Literal[_motion_configuration, b'_motion_configuration']) -> Literal[motion_configuration] | None
 
-.. py:class:: MoveOnMapResponse(*, success: bool = ...)
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+.. py:class:: MoveOnMapResponse(*, execution_id: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -853,10 +873,12 @@ Classes
    compiler.  These generated types subclass Message and implement the methods
    shown below.
 
-   .. py:attribute:: success
-      :type: bool
+   .. py:attribute:: execution_id
+      :type: str
 
-      
+      The unique ID which identifies the execution.
+      Multiple plans will share the same execution_id if they were
+      generated due to replanning.
 
 
 .. py:class:: MoveRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.PoseInFrame | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., world_state: viam.gen.common.v1.common_pb2.WorldState | None = ..., constraints: global___Constraints | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
