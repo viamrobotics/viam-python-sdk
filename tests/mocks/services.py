@@ -267,8 +267,6 @@ from viam.proto.service.motion import (
     MotionServiceBase,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
-    MoveOnMapNewRequest,
-    MoveOnMapNewResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -485,9 +483,6 @@ class MockMotion(MotionServiceBase):
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         self.execution_id = "some execution id"
         await stream.send_message(MoveOnMapResponse(execution_id=self.execution_id))
-
-    async def MoveOnMapNew(self, stream: Stream[MoveOnMapNewRequest, MoveOnMapNewResponse]) -> None:
-        raise NotImplementedError()
 
     async def MoveOnGlobe(self, stream: Stream[MoveOnGlobeRequest, MoveOnGlobeResponse]) -> None:
         request = await stream.recv_message()
