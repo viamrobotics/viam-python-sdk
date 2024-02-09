@@ -388,11 +388,8 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
     """TabularDataByMQLRequest requests tabular data using an MQL query."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
-    MQL_QUERY_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
-    mql_query: builtins.str
-    'mql_query is deprecated.'
 
     @property
     def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
@@ -401,10 +398,10 @@ class TabularDataByMQLRequest(google.protobuf.message.Message):
         namespace, which holds the Viam organization's tabular data.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_query: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['mql_binary', b'mql_binary', 'mql_query', b'mql_query', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['mql_binary', b'mql_binary', 'organization_id', b'organization_id']) -> None:
         ...
 global___TabularDataByMQLRequest = TabularDataByMQLRequest
 
