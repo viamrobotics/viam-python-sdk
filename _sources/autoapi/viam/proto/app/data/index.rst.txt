@@ -1407,7 +1407,7 @@ Classes
       
 
 
-.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_query: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
+.. py:class:: TabularDataByMQLRequest(*, organization_id: str = ..., mql_binary: collections.abc.Iterable[bytes] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1425,11 +1425,6 @@ Classes
       :type: str
 
       
-
-   .. py:attribute:: mql_query
-      :type: str
-
-      mql_query is deprecated.
 
 
 .. py:class:: TabularDataByMQLResponse(*, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...)

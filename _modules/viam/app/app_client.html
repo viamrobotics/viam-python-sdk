@@ -174,9 +174,6 @@
     <span class="n">LocationAuth</span><span class="p">,</span>
     <span class="n">LocationAuthRequest</span><span class="p">,</span>
     <span class="n">LocationAuthResponse</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">LogEntry</span> <span class="k">as</span> <span class="n">LogEntryPB</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">MarkPartAsMainRequest</span><span class="p">,</span>
     <span class="n">MarkPartForRestartRequest</span><span class="p">,</span>
     <span class="n">Model</span><span class="p">,</span>
@@ -219,6 +216,7 @@
     <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
     <span class="n">Visibility</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">LogEntry</span> <span class="k">as</span> <span class="n">LogEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -409,7 +407,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robo_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.</span>
+<span class="sd">            robot_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            RobotPartHistoryEntry: The `RobotPartHistoryEntry`.</span>
@@ -705,7 +703,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resends a pending organization invite email.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Re-sends a pending organization invite email.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): The email address associated with the invite.</span>
@@ -996,16 +994,16 @@
 <div class="viewcode-block" id="AppClient.tail_robot_part_logs"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.tail_robot_part_logs">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tail_robot_part_logs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">errors_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_LogsStream</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that recieves live robot part logs.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that receives live robot part logs.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            robot_part_id (str): ID of the robot part to retrieve lgos from.</span>
+<span class="sd">            robot_part_id (str): ID of the robot part to retrieve logs from.</span>
 <span class="sd">            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.</span>
 <span class="sd">            filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string &quot;&quot; (i.e., no</span>
 <span class="sd">                filter).</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.</span>
+<span class="sd">            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
@@ -1214,7 +1212,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the currently authed-to organization.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will</span>
+<span class="sd">            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will</span>
 <span class="sd">                return. If False, only private fragments will return. Defaults to True.</span>
 
 <span class="sd">        Returns:</span>

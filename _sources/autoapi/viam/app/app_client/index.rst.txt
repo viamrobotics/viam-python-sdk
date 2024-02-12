@@ -136,7 +136,7 @@ Attributes
    Use this class to make the attributes of a `viam.proto.app.LogEntry` more accessible and easier to read/interpret.
 
    .. py:property:: proto
-      :type: viam.proto.app.LogEntry
+      :type: viam.proto.common.LogEntry
 
 
    .. py:attribute:: host
@@ -179,7 +179,7 @@ Attributes
 
       
 
-   .. py:method:: from_proto(log_entry: viam.proto.app.LogEntry) -> typing_extensions.Self
+   .. py:method:: from_proto(log_entry: viam.proto.common.LogEntry) -> typing_extensions.Self
       :classmethod:
 
       Create a `LogEntry` from the .proto defined `LogEntry`.
@@ -302,8 +302,8 @@ Attributes
 
       Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.
 
-      :param robo_part_history_entry: The object to copy from.
-      :type robo_part_history_entry: viam.proto.app.RobotPartHistoryEntry
+      :param robot_part_history_entry: The object to copy from.
+      :type robot_part_history_entry: viam.proto.app.RobotPartHistoryEntry
 
       :returns: The `RobotPartHistoryEntry`.
       :rtype: RobotPartHistoryEntry
@@ -472,7 +472,7 @@ Attributes
    .. py:method:: resend_organization_invite(email: str) -> viam.proto.app.OrganizationInvite
       :async:
 
-      Resends a pending organization invite email.
+      Re-sends a pending organization invite email.
 
       :param email: The email address associated with the invite.
       :type email: str
@@ -690,9 +690,9 @@ Attributes
    .. py:method:: tail_robot_part_logs(robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None) -> viam.app._logs._LogsStream[List[LogEntry]]
       :async:
 
-      Get an asynchronous iterator that recieves live robot part logs.
+      Get an asynchronous iterator that receives live robot part logs.
 
-      :param robot_part_id: ID of the robot part to retrieve lgos from.
+      :param robot_part_id: ID of the robot part to retrieve logs from.
       :type robot_part_id: str
       :param errors_only: Boolean specifying whether or not to only include error logs. Defaults to True.
       :type errors_only: bool
@@ -700,7 +700,7 @@ Attributes
                      filter).
       :type filter: Optional[str]
 
-      :returns: The asynchronous iterator recieving live robot part logs.
+      :returns: The asynchronous iterator receiving live robot part logs.
       :rtype: _LogsStream[List[LogEntry]]
 
 
@@ -882,7 +882,7 @@ Attributes
 
       Get a list of fragments under the currently authed-to organization.
 
-      :param show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+      :param show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                           return. If False, only private fragments will return. Defaults to True.
 
       :returns: The list of fragments.

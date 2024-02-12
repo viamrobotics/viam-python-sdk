@@ -467,6 +467,7 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.levels"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.levels</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.id"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.errors_only"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.errors_only</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.GetRobotPartLogsRequest.filter"><code class="docutils literal notranslate"><span class="pre">GetRobotPartLogsRequest.filter</span></code></a></li>
@@ -644,18 +645,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LocationOrganization"><code class="docutils literal notranslate"><span class="pre">LocationOrganization</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationOrganization.organization_id"><code class="docutils literal notranslate"><span class="pre">LocationOrganization.organization_id</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LocationOrganization.primary"><code class="docutils literal notranslate"><span class="pre">LocationOrganization.primary</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.LogEntry"><code class="docutils literal notranslate"><span class="pre">LogEntry</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.time"><code class="docutils literal notranslate"><span class="pre">LogEntry.time</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.caller"><code class="docutils literal notranslate"><span class="pre">LogEntry.caller</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.fields"><code class="docutils literal notranslate"><span class="pre">LogEntry.fields</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.host"><code class="docutils literal notranslate"><span class="pre">LogEntry.host</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.level"><code class="docutils literal notranslate"><span class="pre">LogEntry.level</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.logger_name"><code class="docutils literal notranslate"><span class="pre">LogEntry.logger_name</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.message"><code class="docutils literal notranslate"><span class="pre">LogEntry.message</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.stack"><code class="docutils literal notranslate"><span class="pre">LogEntry.stack</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.app.LogEntry.HasField"><code class="docutils literal notranslate"><span class="pre">LogEntry.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.app.MarkPartAsMainRequest"><code class="docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a><ul>
@@ -1029,6 +1018,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../common/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../component/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.module</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../provisioning/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.provisioning</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
@@ -1432,187 +1422,184 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.LocationOrganization" title="viam.proto.app.LocationOrganization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocationOrganization</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.LogEntry" title="viam.proto.app.LogEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogEntry</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartAsMainRequest" title="viam.proto.app.MarkPartAsMainRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartAsMainRequest" title="viam.proto.app.MarkPartAsMainRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartAsMainResponse" title="viam.proto.app.MarkPartAsMainResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartAsMainResponse" title="viam.proto.app.MarkPartAsMainResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartAsMainResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartForRestartRequest" title="viam.proto.app.MarkPartForRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartForRestartRequest" title="viam.proto.app.MarkPartForRestartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartForRestartResponse" title="viam.proto.app.MarkPartForRestartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.MarkPartForRestartResponse" title="viam.proto.app.MarkPartForRestartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MarkPartForRestartResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.MLModelMetadata" title="viam.proto.app.MLModelMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLModelMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.MLModelMetadata" title="viam.proto.app.MLModelMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLModelMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Model" title="viam.proto.app.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Model" title="viam.proto.app.Model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Model</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Module" title="viam.proto.app.Module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Module</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Module" title="viam.proto.app.Module"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Module</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ModuleFileInfo" title="viam.proto.app.ModuleFileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleFileInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ModuleFileInfo" title="viam.proto.app.ModuleFileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleFileInfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ModuleMetadata" title="viam.proto.app.ModuleMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ModuleMetadata" title="viam.proto.app.ModuleMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ModuleVersion" title="viam.proto.app.ModuleVersion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleVersion</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ModuleVersion" title="viam.proto.app.ModuleVersion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModuleVersion</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotPartRequest" title="viam.proto.app.NewRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotPartRequest" title="viam.proto.app.NewRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotPartResponse" title="viam.proto.app.NewRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotPartResponse" title="viam.proto.app.NewRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotPartResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotRequest" title="viam.proto.app.NewRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotRequest" title="viam.proto.app.NewRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotResponse" title="viam.proto.app.NewRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.NewRobotResponse" title="viam.proto.app.NewRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NewRobotResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Organization" title="viam.proto.app.Organization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Organization</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Organization" title="viam.proto.app.Organization"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Organization</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationIdentity" title="viam.proto.app.OrganizationIdentity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationIdentity</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationIdentity" title="viam.proto.app.OrganizationIdentity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationIdentity</span></code></a></p></td>
 <td><p>Location</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationInvite</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationInvite</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationMember" title="viam.proto.app.OrganizationMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationMember</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.OrganizationMember" title="viam.proto.app.OrganizationMember"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrganizationMember</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.OrgDetails" title="viam.proto.app.OrgDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrgDetails</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.OrgDetails" title="viam.proto.app.OrgDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OrgDetails</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RegistryItem" title="viam.proto.app.RegistryItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItem</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RegistryItem" title="viam.proto.app.RegistryItem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItem</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RegistryItemStatus" title="viam.proto.app.RegistryItemStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItemStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RegistryItemStatus" title="viam.proto.app.RegistryItemStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegistryItemStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RemoveRoleRequest" title="viam.proto.app.RemoveRoleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RemoveRoleRequest" title="viam.proto.app.RemoveRoleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RemoveRoleResponse" title="viam.proto.app.RemoveRoleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RemoveRoleResponse" title="viam.proto.app.RemoveRoleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveRoleResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ResendOrganizationInviteRequest" title="viam.proto.app.ResendOrganizationInviteRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ResendOrganizationInviteRequest" title="viam.proto.app.ResendOrganizationInviteRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ResendOrganizationInviteResponse" title="viam.proto.app.ResendOrganizationInviteResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ResendOrganizationInviteResponse" title="viam.proto.app.ResendOrganizationInviteResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ResendOrganizationInviteResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Robot" title="viam.proto.app.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Robot" title="viam.proto.app.Robot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Robot</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RobotPart" title="viam.proto.app.RobotPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPart</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RobotPart" title="viam.proto.app.RobotPart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPart</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry" title="viam.proto.app.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RobotPartHistoryEntry" title="viam.proto.app.RobotPartHistoryEntry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RobotPartHistoryEntry</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyRequest" title="viam.proto.app.RotateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyRequest" title="viam.proto.app.RotateKeyRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyResponse" title="viam.proto.app.RotateKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RotateKeyResponse" title="viam.proto.app.RotateKeyResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RotateKeyResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.RoverRentalRobot" title="viam.proto.app.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.RoverRentalRobot" title="viam.proto.app.RoverRentalRobot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoverRentalRobot</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.SharedSecret" title="viam.proto.app.SharedSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SharedSecret</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.SharedSecret" title="viam.proto.app.SharedSecret"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SharedSecret</span></code></a></p></td>
 <td><p>SharedSecret is a secret used for LocationAuth and RobotParts.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ShareLocationRequest" title="viam.proto.app.ShareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ShareLocationRequest" title="viam.proto.app.ShareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.ShareLocationResponse" title="viam.proto.app.ShareLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.ShareLocationResponse" title="viam.proto.app.ShareLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShareLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.StorageConfig" title="viam.proto.app.StorageConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StorageConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.StorageConfig" title="viam.proto.app.StorageConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StorageConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsRequest" title="viam.proto.app.TailRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsRequest" title="viam.proto.app.TailRobotPartLogsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsResponse" title="viam.proto.app.TailRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.TailRobotPartLogsResponse" title="viam.proto.app.TailRobotPartLogsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TailRobotPartLogsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UnshareLocationRequest" title="viam.proto.app.UnshareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UnshareLocationRequest" title="viam.proto.app.UnshareLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UnshareLocationResponse" title="viam.proto.app.UnshareLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UnshareLocationResponse" title="viam.proto.app.UnshareLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnshareLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateFragmentRequest" title="viam.proto.app.UpdateFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateFragmentRequest" title="viam.proto.app.UpdateFragmentRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateFragmentResponse" title="viam.proto.app.UpdateFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateFragmentResponse" title="viam.proto.app.UpdateFragmentResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateFragmentResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateLocationRequest" title="viam.proto.app.UpdateLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateLocationRequest" title="viam.proto.app.UpdateLocationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateLocationResponse" title="viam.proto.app.UpdateLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateLocationResponse" title="viam.proto.app.UpdateLocationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateLocationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateModuleRequest" title="viam.proto.app.UpdateModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateModuleRequest" title="viam.proto.app.UpdateModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateModuleResponse" title="viam.proto.app.UpdateModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateModuleResponse" title="viam.proto.app.UpdateModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateModuleResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest" title="viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest" title="viam.proto.app.UpdateOrganizationInviteAuthorizationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse" title="viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse" title="viam.proto.app.UpdateOrganizationInviteAuthorizationsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationInviteAuthorizationsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationRequest" title="viam.proto.app.UpdateOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationRequest" title="viam.proto.app.UpdateOrganizationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationResponse" title="viam.proto.app.UpdateOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateOrganizationResponse" title="viam.proto.app.UpdateOrganizationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateOrganizationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRegistryItemRequest" title="viam.proto.app.UpdateRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRegistryItemRequest" title="viam.proto.app.UpdateRegistryItemRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRegistryItemResponse" title="viam.proto.app.UpdateRegistryItemResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRegistryItemResponse" title="viam.proto.app.UpdateRegistryItemResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRegistryItemResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest" title="viam.proto.app.UpdateRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotPartRequest" title="viam.proto.app.UpdateRobotPartRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotPartResponse" title="viam.proto.app.UpdateRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotPartResponse" title="viam.proto.app.UpdateRobotPartResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotPartResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest" title="viam.proto.app.UpdateRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotRequest" title="viam.proto.app.UpdateRobotRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotResponse" title="viam.proto.app.UpdateRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UpdateRobotResponse" title="viam.proto.app.UpdateRobotResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UpdateRobotResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UploadModuleFileRequest" title="viam.proto.app.UploadModuleFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UploadModuleFileRequest" title="viam.proto.app.UploadModuleFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.UploadModuleFileResponse" title="viam.proto.app.UploadModuleFileResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.UploadModuleFileResponse" title="viam.proto.app.UploadModuleFileResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadModuleFileResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Uploads" title="viam.proto.app.Uploads"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Uploads</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Uploads" title="viam.proto.app.Uploads"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Uploads</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.VersionHistory" title="viam.proto.app.VersionHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionHistory</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.VersionHistory" title="viam.proto.app.VersionHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VersionHistory</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.Visibility" title="viam.proto.app.Visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Visibility</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.Visibility" title="viam.proto.app.Visibility"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Visibility</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -3633,7 +3620,7 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotAPIKeysResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotAPIKeysResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKey</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotAPIKeysResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotAPIKeysResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKeyWithAuthorizations</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotAPIKeysResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -3641,7 +3628,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotAPIKeysResponse.api_keys">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKey</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.GetRobotAPIKeysResponse.api_keys" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">api_keys</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___APIKeyWithAuthorizations</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.GetRobotAPIKeysResponse.api_keys" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3678,12 +3665,18 @@ shown below.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotPartLogsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotPartLogsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsRequest.levels">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">levels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsRequest.levels" title="Permalink to this definition"></a></dt>
+<dd><p>logs of all levels are returned when the levels field is empty</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsRequest.id">
 <span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsRequest.id" title="Permalink to this definition"></a></dt>
@@ -3692,7 +3685,16 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsRequest.errors_only">
 <span class="sig-name descname"><span class="pre">errors_only</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsRequest.errors_only" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Remove this field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TODO(https</p>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>//viam.atlassian.net/browse/APP-3877)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsRequest.filter">
@@ -3754,7 +3756,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotPartLogsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LogEntry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">GetRobotPartLogsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.LogEntry" title="viam.gen.common.v1.common_pb2.LogEntry"><span class="pre">viam.gen.common.v1.common_pb2.LogEntry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_page_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -3762,7 +3764,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.GetRobotPartLogsResponse.logs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LogEntry</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsResponse.logs" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.LogEntry" title="viam.gen.common.v1.common_pb2.LogEntry"><span class="pre">viam.gen.common.v1.common_pb2.LogEntry</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.GetRobotPartLogsResponse.logs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -4599,79 +4601,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.app.LocationOrganization.primary">
 <span class="sig-name descname"><span class="pre">primary</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.app.LocationOrganization.primary" title="Permalink to this definition"></a></dt>
 <dd><p>Whether the organization is the primary owner or not.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">LogEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caller</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.LogEntry" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.time">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.time" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.caller">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">caller</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.caller" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.fields">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.LogEntry.fields" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.host">
-<span class="sig-name descname"><span class="pre">host</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.host" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.level">
-<span class="sig-name descname"><span class="pre">level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.level" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.logger_name">
-<span class="sig-name descname"><span class="pre">logger_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.logger_name" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.message">
-<span class="sig-name descname"><span class="pre">message</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.message" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.stack">
-<span class="sig-name descname"><span class="pre">stack</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.LogEntry.stack" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.app.LogEntry.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">caller</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'caller'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'time'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.app.LogEntry.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
-</dd>
-</dl>
 </dd></dl>
 
 </dd></dl>
@@ -6015,7 +5944,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.TailRobotPartLogsResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">TailRobotPartLogsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LogEntry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.TailRobotPartLogsResponse" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.</span></span><span class="sig-name descname"><span class="pre">TailRobotPartLogsResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.LogEntry" title="viam.gen.common.v1.common_pb2.LogEntry"><span class="pre">viam.gen.common.v1.common_pb2.LogEntry</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.TailRobotPartLogsResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
@@ -6023,7 +5952,7 @@ compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.app.TailRobotPartLogsResponse.logs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___LogEntry</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.TailRobotPartLogsResponse.logs" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">logs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.LogEntry" title="viam.gen.common.v1.common_pb2.LogEntry"><span class="pre">viam.gen.common.v1.common_pb2.LogEntry</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.TailRobotPartLogsResponse.logs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

@@ -357,7 +357,6 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_binary"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_binary</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.organization_id</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_query"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLRequest.mql_query</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.data.TabularDataByMQLResponse"><code class="docutils literal notranslate"><span class="pre">TabularDataByMQLResponse</span></code></a><ul>
@@ -407,6 +406,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../common/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.common</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../component/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.component</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.module</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../provisioning/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.provisioning</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.rpc</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../service/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto.service</span></code></a></li>
@@ -2037,7 +2037,7 @@ be raised.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.data.</span></span><span class="sig-name descname"><span class="pre">TabularDataByMQLRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>TabularDataByMQLRequest requests tabular data using an MQL query.</p>
 <dl class="py property">
@@ -2052,12 +2052,6 @@ namespace, which holds the Viam organization’s tabular data.</p>
 <dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.organization_id">
 <span class="sig-name descname"><span class="pre">organization_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.organization_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.app.data.TabularDataByMQLRequest.mql_query">
-<span class="sig-name descname"><span class="pre">mql_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.app.data.TabularDataByMQLRequest.mql_query" title="Permalink to this definition"></a></dt>
-<dd><p>mql_query is deprecated.</p>
-</dd></dl>
 
 </dd></dl>
 

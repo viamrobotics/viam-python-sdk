@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.gen.provisioning.v1.provisioning_pb2 &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../../../" id="documentation_options" src="../../../../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../../_sources/autoapi/viam/gen/provisioning/v1/provisioning_pb2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-viam.gen.provisioning.v1.provisioning_pb2">
+<span id="viam-gen-provisioning-v1-provisioning-pb2"></span><h1><a class="reference internal" href="#module-viam.gen.provisioning.v1.provisioning_pb2" title="viam.gen.provisioning.v1.provisioning_pb2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2</span></code></a><a class="headerlink" href="#module-viam.gen.provisioning.v1.provisioning_pb2" title="Permalink to this heading"></a></h1>
+<p>&#64;generated by mypy-protobuf.  Do not edit manually!
+isort:skip_file</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest" title="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse" title="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetSmartMachineStatusResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest" title="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse" title="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetNetworkCredentialsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest" title="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse" title="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetSmartMachineCredentialsResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest" title="viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse" title="viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetNetworkListResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo" title="viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProvisioningInfo</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo" title="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NetworkInfo</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.CloudConfig" title="viam.gen.provisioning.v1.provisioning_pb2.CloudConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CloudConfig</span></code></a></p></td>
+<td><p>minimal CloudConfig to create /etc/viam.json</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this heading"></a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.DESCRIPTOR" title="viam.gen.provisioning.v1.provisioning_pb2.DESCRIPTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTOR</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusRequest" title="viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetSmartMachineStatusRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusResponse" title="viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetSmartMachineStatusResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsRequest" title="viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetNetworkCredentialsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsResponse" title="viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetNetworkCredentialsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsRequest" title="viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetSmartMachineCredentialsRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsResponse" title="viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetSmartMachineCredentialsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListRequest" title="viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetNetworkListRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListResponse" title="viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetNetworkListResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___ProvisioningInfo" title="viam.gen.provisioning.v1.provisioning_pb2.global___ProvisioningInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ProvisioningInfo</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___NetworkInfo" title="viam.gen.provisioning.v1.provisioning_pb2.global___NetworkInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___NetworkInfo</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig" title="viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CloudConfig</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.DESCRIPTOR">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.descriptor.FileDescriptor</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.DESCRIPTOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">GetSmartMachineStatusRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetSmartMachineStatusRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">GetSmartMachineStatusResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provisioning_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___ProvisioningInfo</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_smart_machine_credentials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_online</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latest_connection_attempt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___NetworkInfo</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.provisioning_info">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provisioning_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___ProvisioningInfo</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.provisioning_info" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.latest_connection_attempt">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">latest_connection_attempt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___NetworkInfo</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.latest_connection_attempt" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.errors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">errors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.errors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.has_smart_machine_credentials">
+<span class="sig-name descname"><span class="pre">has_smart_machine_credentials</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.has_smart_machine_credentials" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.is_online">
+<span class="sig-name descname"><span class="pre">is_online</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.is_online" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">latest_connection_attempt</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'latest_connection_attempt'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">provisioning_info</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'provisioning_info'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetSmartMachineStatusResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetSmartMachineStatusResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">SetNetworkCredentialsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.ssid">
+<span class="sig-name descname"><span class="pre">ssid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.ssid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.psk">
+<span class="sig-name descname"><span class="pre">psk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest.psk" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetNetworkCredentialsRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">SetNetworkCredentialsResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetNetworkCredentialsResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetNetworkCredentialsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">SetSmartMachineCredentialsRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CloudConfig</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest.cloud">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cloud</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CloudConfig</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest.cloud" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">cloud</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'cloud'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetSmartMachineCredentialsRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">SetSmartMachineCredentialsResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___SetSmartMachineCredentialsResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___SetSmartMachineCredentialsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">GetNetworkListRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetNetworkListRequest</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">GetNetworkListResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">networks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___NetworkInfo</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse.networks">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">networks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___NetworkInfo</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.GetNetworkListResponse.networks" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetNetworkListResponse</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___GetNetworkListResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">ProvisioningInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manufacturer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.fragment_id">
+<span class="sig-name descname"><span class="pre">fragment_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.fragment_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.model">
+<span class="sig-name descname"><span class="pre">model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.manufacturer">
+<span class="sig-name descname"><span class="pre">manufacturer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.ProvisioningInfo.manufacturer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___ProvisioningInfo">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ProvisioningInfo</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___ProvisioningInfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">NetworkInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ssid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">security</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connected</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.ssid">
+<span class="sig-name descname"><span class="pre">ssid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.ssid" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.security">
+<span class="sig-name descname"><span class="pre">security</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.security" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.signal">
+<span class="sig-name descname"><span class="pre">signal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.signal" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.connected">
+<span class="sig-name descname"><span class="pre">connected</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.connected" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.last_error">
+<span class="sig-name descname"><span class="pre">last_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.NetworkInfo.last_error" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___NetworkInfo">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___NetworkInfo</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___NetworkInfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.CloudConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">CloudConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.CloudConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>minimal CloudConfig to create /etc/viam.json</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.id" title="Permalink to this definition"></a></dt>
+<dd><p>SmartMachine part id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.secret">
+<span class="sig-name descname"><span class="pre">secret</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.secret" title="Permalink to this definition"></a></dt>
+<dd><p>SmartMachine part secret</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.app_address">
+<span class="sig-name descname"><span class="pre">app_address</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.CloudConfig.app_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.provisioning.v1.provisioning_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CloudConfig</span></span><a class="headerlink" href="#viam.gen.provisioning.v1.provisioning_pb2.global___CloudConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

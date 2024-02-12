@@ -104,9 +104,6 @@
 <div class="viewcode-block" id="MediaStream.next"><a class="viewcode-back" href="../../../autoapi/viam/media/media/index.html#viam.media.MediaStream.next">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MediaType</span><span class="p">:</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="MediaStream.close"><a class="viewcode-back" href="../../../autoapi/viam/media/media/index.html#viam.media.MediaStream.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span></div>
-
 <div class="viewcode-block" id="MediaStream.__aiter__"><a class="viewcode-back" href="../../../autoapi/viam/media/media/index.html#viam.media.MediaStream.__aiter__">[docs]</a>    <span class="k">def</span> <span class="fm">__aiter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
@@ -137,10 +134,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span></div>
 
 <div class="viewcode-block" id="MediaStreamWithIterator.__anext__"><a class="viewcode-back" href="../../../autoapi/viam/media/media/index.html#viam.media.MediaStreamWithIterator.__anext__">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="fm">__anext__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MediaType</span><span class="p">:</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="MediaStreamWithIterator.close"><a class="viewcode-back" href="../../../autoapi/viam/media/media/index.html#viam.media.MediaStreamWithIterator.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div></div>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stream</span><span class="o">.</span><span class="fm">__anext__</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

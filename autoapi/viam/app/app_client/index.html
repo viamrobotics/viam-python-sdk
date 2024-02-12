@@ -378,7 +378,7 @@
 <p>Use this class to make the attributes of a <cite>viam.proto.app.LogEntry</cite> more accessible and easier to read/interpret.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.app.app_client.LogEntry.proto">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.LogEntry" title="viam.proto.app.LogEntry"><span class="pre">viam.proto.app.LogEntry</span></a></em><a class="headerlink" href="#viam.app.app_client.LogEntry.proto" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">proto</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.LogEntry" title="viam.proto.common.LogEntry"><span class="pre">viam.proto.common.LogEntry</span></a></em><a class="headerlink" href="#viam.app.app_client.LogEntry.proto" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -423,11 +423,11 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.LogEntry.from_proto">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_entry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.LogEntry" title="viam.proto.app.LogEntry"><span class="pre">viam.proto.app.LogEntry</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#LogEntry.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.LogEntry.from_proto" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_proto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_entry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.LogEntry" title="viam.proto.common.LogEntry"><span class="pre">viam.proto.common.LogEntry</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#LogEntry.from_proto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.LogEntry.from_proto" title="Permalink to this definition"></a></dt>
 <dd><p>Create a <cite>LogEntry</cite> from the .proto defined <cite>LogEntry</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>log_entry</strong> (<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.LogEntry" title="viam.proto.app.LogEntry"><em>viam.proto.app.LogEntry</em></a>) – The object to copy from.</p>
+<dd class="field-odd"><p><strong>log_entry</strong> (<em>viam.proto.app.LogEntry</em>) – The object to copy from.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The <cite>LogEntry</cite>.</p>
@@ -555,7 +555,7 @@
 <dd><p>Create a <cite>RobotPartHistoryEntry</cite> from the .proto defined <cite>RobotPartHistoryEntry</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>robo_part_history_entry</strong> (<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.RobotPartHistoryEntry" title="viam.proto.app.RobotPartHistoryEntry"><em>viam.proto.app.RobotPartHistoryEntry</em></a>) – The object to copy from.</p>
+<dd class="field-odd"><p><strong>robot_part_history_entry</strong> (<a class="reference internal" href="../../proto/app/index.html#viam.proto.app.RobotPartHistoryEntry" title="viam.proto.app.RobotPartHistoryEntry"><em>viam.proto.app.RobotPartHistoryEntry</em></a>) – The object to copy from.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The <cite>RobotPartHistoryEntry</cite>.</p>
@@ -769,7 +769,7 @@ remove when the invite only contains one authorization).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.resend_organization_invite">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resend_organization_invite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><span class="pre">viam.proto.app.OrganizationInvite</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.resend_organization_invite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.resend_organization_invite" title="Permalink to this definition"></a></dt>
-<dd><p>Resends a pending organization invite email.</p>
+<dd><p>Re-sends a pending organization invite email.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – The email address associated with the invite.</p>
@@ -1060,18 +1060,18 @@ filter).</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.tail_robot_part_logs">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tail_robot_part_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.app._logs._LogsStream</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry"><span class="pre">LogEntry</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.tail_robot_part_logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.tail_robot_part_logs" title="Permalink to this definition"></a></dt>
-<dd><p>Get an asynchronous iterator that recieves live robot part logs.</p>
+<dd><p>Get an asynchronous iterator that receives live robot part logs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to retrieve lgos from.</p></li>
+<li><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to retrieve logs from.</p></li>
 <li><p><strong>errors_only</strong> (<em>bool</em>) – Boolean specifying whether or not to only include error logs. Defaults to True.</p></li>
 <li><p><strong>filter</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Only include logs with messages that contain the string <cite>filter</cite>. Defaults to empty string “” (i.e., no
 filter).</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The asynchronous iterator recieving live robot part logs.</p>
+<dd class="field-even"><p>The asynchronous iterator receiving live robot part logs.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>_LogsStream[List[<a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry">LogEntry</a>]]</p>
@@ -1318,7 +1318,7 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dd><p>Get a list of fragments under the currently authed-to organization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>show_public</strong> – Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+<dd class="field-odd"><p><strong>show_public</strong> – Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
 return. If False, only private fragments will return. Defaults to True.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
