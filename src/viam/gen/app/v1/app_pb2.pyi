@@ -5,6 +5,7 @@ isort:skip_file
 from ... import app
 import builtins
 import collections.abc
+from ... import common
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
@@ -1336,18 +1337,24 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     ERRORS_ONLY_FIELD_NUMBER: builtins.int
     FILTER_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    LEVELS_FIELD_NUMBER: builtins.int
     id: builtins.str
     errors_only: builtins.bool
+    'TODO(https://viam.atlassian.net/browse/APP-3877): Remove this field'
     filter: builtins.str
     page_token: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=...) -> None:
+    @property
+    def levels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """logs of all levels are returned when the levels field is empty"""
+
+    def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'page_token', b'page_token']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'page_token', b'page_token']) -> None:
         ...
 
     @typing.overload
@@ -1360,56 +1367,17 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
 global___GetRobotPartLogsRequest = GetRobotPartLogsRequest
 
 @typing_extensions.final
-class LogEntry(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    HOST_FIELD_NUMBER: builtins.int
-    LEVEL_FIELD_NUMBER: builtins.int
-    TIME_FIELD_NUMBER: builtins.int
-    LOGGER_NAME_FIELD_NUMBER: builtins.int
-    MESSAGE_FIELD_NUMBER: builtins.int
-    CALLER_FIELD_NUMBER: builtins.int
-    STACK_FIELD_NUMBER: builtins.int
-    FIELDS_FIELD_NUMBER: builtins.int
-    host: builtins.str
-    level: builtins.str
-
-    @property
-    def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-    logger_name: builtins.str
-    message: builtins.str
-
-    @property
-    def caller(self) -> google.protobuf.struct_pb2.Struct:
-        ...
-    stack: builtins.str
-
-    @property
-    def fields(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
-        ...
-
-    def __init__(self, *, host: builtins.str=..., level: builtins.str=..., time: google.protobuf.timestamp_pb2.Timestamp | None=..., logger_name: builtins.str=..., message: builtins.str=..., caller: google.protobuf.struct_pb2.Struct | None=..., stack: builtins.str=..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['caller', b'caller', 'time', b'time']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['caller', b'caller', 'fields', b'fields', 'host', b'host', 'level', b'level', 'logger_name', b'logger_name', 'message', b'message', 'stack', b'stack', 'time', b'time']) -> None:
-        ...
-global___LogEntry = LogEntry
-
-@typing_extensions.final
 class GetRobotPartLogsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOGS_FIELD_NUMBER: builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
 
     @property
-    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogEntry]:
+    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]:
         ...
     next_page_token: builtins.str
 
-    def __init__(self, *, logs: collections.abc.Iterable[global___LogEntry] | None=..., next_page_token: builtins.str=...) -> None:
+    def __init__(self, *, logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=..., next_page_token: builtins.str=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['logs', b'logs', 'next_page_token', b'next_page_token']) -> None:
@@ -1445,10 +1413,10 @@ class TailRobotPartLogsResponse(google.protobuf.message.Message):
     LOGS_FIELD_NUMBER: builtins.int
 
     @property
-    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LogEntry]:
+    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]:
         ...
 
-    def __init__(self, *, logs: collections.abc.Iterable[global___LogEntry] | None=...) -> None:
+    def __init__(self, *, logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['logs', b'logs']) -> None:
@@ -1611,10 +1579,10 @@ class GetRobotAPIKeysResponse(google.protobuf.message.Message):
     API_KEYS_FIELD_NUMBER: builtins.int
 
     @property
-    def api_keys(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKey]:
+    def api_keys(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___APIKeyWithAuthorizations]:
         ...
 
-    def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKey] | None=...) -> None:
+    def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing_extensions.Literal['api_keys', b'api_keys']) -> None:

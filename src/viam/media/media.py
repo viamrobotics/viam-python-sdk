@@ -14,9 +14,6 @@ class MediaStream(Protocol[MediaType]):
     async def next(self) -> MediaType:
         ...
 
-    async def close(self):
-        ...
-
     def __aiter__(self) -> AsyncIterator:
         return self
 
@@ -48,6 +45,3 @@ class MediaStreamWithIterator(MediaStream[MediaType]):
 
     async def __anext__(self) -> MediaType:
         return await self._stream.__anext__()
-
-    async def close(self):
-        return await super().close()

@@ -13,7 +13,6 @@ from viam.proto.app import (
     Fragment,
     Location,
     LocationAuth,
-    LogEntry,
     Model,
     Module,
     ModuleFileInfo,
@@ -26,6 +25,7 @@ from viam.proto.app import (
     RoverRentalRobot,
     Visibility,
 )
+from viam.proto.common import LogEntry
 from viam.utils import datetime_to_timestamp, struct_to_dict
 
 from .mocks.services import MockApp
@@ -120,8 +120,8 @@ LOCATION_AUTH = LocationAuth(secret=SECRET, location_id=ID, secrets=None)
 PART = "part"
 ROBOT_PART_HISTORY_ENTRY = RobotPartHistoryEntry(part=PART, robot=ID, when=TIME, old=None)
 ROBOT_PART_HISTORY = [ROBOT_PART_HISTORY_ENTRY]
-TYPE = "type"
-ROLE = "role"
+TYPE = "robot"
+ROLE = "operator"
 API_KEY = "key"
 API_KEY_AUTHORIZATION = APIKeyAuthorization(role=ROLE, resource_type=TYPE, resource_id=ID)
 API_KEY_AUTHORIZATIONS = [API_KEY_AUTHORIZATION]

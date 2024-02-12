@@ -703,6 +703,45 @@ class GetReadingsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:
         ...
 global___GetReadingsResponse = GetReadingsResponse
+
+@typing_extensions.final
+class LogEntry(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    HOST_FIELD_NUMBER: builtins.int
+    LEVEL_FIELD_NUMBER: builtins.int
+    TIME_FIELD_NUMBER: builtins.int
+    LOGGER_NAME_FIELD_NUMBER: builtins.int
+    MESSAGE_FIELD_NUMBER: builtins.int
+    CALLER_FIELD_NUMBER: builtins.int
+    STACK_FIELD_NUMBER: builtins.int
+    FIELDS_FIELD_NUMBER: builtins.int
+    host: builtins.str
+    level: builtins.str
+
+    @property
+    def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+    logger_name: builtins.str
+    message: builtins.str
+
+    @property
+    def caller(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+    stack: builtins.str
+
+    @property
+    def fields(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
+        ...
+
+    def __init__(self, *, host: builtins.str=..., level: builtins.str=..., time: google.protobuf.timestamp_pb2.Timestamp | None=..., logger_name: builtins.str=..., message: builtins.str=..., caller: google.protobuf.struct_pb2.Struct | None=..., stack: builtins.str=..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['caller', b'caller', 'time', b'time']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['caller', b'caller', 'fields', b'fields', 'host', b'host', 'level', b'level', 'logger_name', b'logger_name', 'message', b'message', 'stack', b'stack', 'time', b'time']) -> None:
+        ...
+global___LogEntry = LogEntry
 SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int
 safety_heartbeat_monitored: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.MethodOptions, builtins.bool]
 'safety_heartbeat_monitored is used on methods to signify that if a session is in use\nand the session was the last to call this method, the resource associated with the\nmethod will be stopped.\n'
