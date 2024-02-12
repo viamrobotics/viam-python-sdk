@@ -1,37 +1,36 @@
 {
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.formatOnSave": true,
-    },
-    "python.linting.flake8Enabled": true,
-    "editor.formatOnSave": true,
-    "python.analysis.typeCheckingMode": "basic",
-    "python.linting.ignorePatterns": [
-        "**/site-packages/**/*.py",
-        ".vscode/*.py",
-        "gen/**/*",
-        "viam/proto/**/*"
-    ],
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "editor.rulers": [
-        {
-            "column": 140,
-            "color": "#777777"
-        }
-    ],
-    "python.formatting.provider": "black",
-    "cSpell.words": [
-        "frombytes",
-        "grpclib",
-        "klass",
-        "pointcloud",
-        "segmenters",
-        "TFLITE",
-        "tobytes",
-        "viam"
-    ],
-    "isort.args": [
-        "-l 140 --profile black"
-    ],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
+  "python.linting.flake8Enabled": true,
+  "editor.formatOnSave": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "python.linting.ignorePatterns": [
+    "**/site-packages/**/*.py",
+    ".vscode/*.py",
+    "gen/**/*",
+    "viam/proto/**/*"
+  ],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.rulers": [
+    {
+      "column": 140,
+      "color": "#777777"
+    }
+  ],
+  "python.formatting.provider": "black",
+  "cSpell.words": [
+    "frombytes",
+    "grpclib",
+    "klass",
+    "pointcloud",
+    "RSDK",
+    "segmenters",
+    "TFLITE",
+    "tobytes",
+    "viam"
+  ],
+  "isort.args": ["-l 140 --profile black"]
 }

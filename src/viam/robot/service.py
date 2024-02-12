@@ -23,6 +23,8 @@ from viam.proto.robot import (
     GetSessionsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    LogRequest,
+    LogResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     ResourceRPCSubtypesRequest,
@@ -170,3 +172,6 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
 
     async def TransformPCD(self, stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
         raise MethodNotImplementedError("TransformPCD").grpc_error
+
+    async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
+        raise MethodNotImplementedError("Log").grpc_error

@@ -80,7 +80,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
-    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:
+    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:  # pyright: ignore [reportInvalidTypeForm]
         request = await stream.recv_message()
         assert request is not None
         name = request.name

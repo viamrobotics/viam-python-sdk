@@ -84,9 +84,6 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
-)
-from viam.proto.app import LogEntry as LogEntryPB
-from viam.proto.app import (
     MarkPartAsMainRequest,
     MarkPartForRestartRequest,
     Model,
@@ -129,6 +126,7 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
@@ -319,7 +317,7 @@ class RobotPartHistoryEntry:
         """Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.
 
         Args:
-            robo_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.
+            robot_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.
 
         Returns:
             RobotPartHistoryEntry: The `RobotPartHistoryEntry`.
@@ -615,7 +613,7 @@ class AppClient:
         await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
 
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
-        """Resends a pending organization invite email.
+        """Re-sends a pending organization invite email.
 
         Args:
             email (str): The email address associated with the invite.
@@ -906,16 +904,16 @@ class AppClient:
     async def tail_robot_part_logs(
         self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
     ) -> _LogsStream[List[LogEntry]]:
-        """Get an asynchronous iterator that recieves live robot part logs.
+        """Get an asynchronous iterator that receives live robot part logs.
 
         Args:
-            robot_part_id (str): ID of the robot part to retrieve lgos from.
+            robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
                 filter).
 
         Returns:
-            _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.
+            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
@@ -1124,7 +1122,7 @@ class AppClient:
         """Get a list of fragments under the currently authed-to organization.
 
         Args:
-            show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                 return. If False, only private fragments will return. Defaults to True.
 
         Returns:

@@ -14,9 +14,6 @@ class _LogsStream(Protocol[LogsType]):
     async def next(self) -> LogsType:
         ...
 
-    async def close(self):
-        ...
-
     def __aiter__(self) -> AsyncIterator:
         ...
 
@@ -38,6 +35,3 @@ class _LogsStreamWithIterator(_LogsStream[LogsType]):
 
     async def __anext__(self) -> LogsType:
         return await self._stream.__anext__()
-
-    async def close(self):
-        return await super().close()
