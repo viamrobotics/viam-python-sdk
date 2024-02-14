@@ -10,6 +10,7 @@ from viam import logging
 from viam.proto.app.data import (
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
+    AddBinaryDataToDatasetByIDsRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryDataByFilterRequest,
@@ -32,6 +33,7 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
@@ -477,6 +479,26 @@ class DataClient:
     # TODO(RSDK-5569): implement
     async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
+
+    async def add_binary_data_to_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
+        """Add VIAM_DATASET_{id} tag to a list of image data IDs.
+
+        Args:
+            binary_ids (List[BinaryID]): List of images to add to dataset.
+            dataset_id (str): The ID of the dataset to be added to.
+        """
+        request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
+        await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
+
+    async def remove_binary_data_from_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
+        """Removes VIAM_DATASET_{id} tag from image data IDs
+
+        Args:
+            binary_ids (List[BinaryID]): List of images to add to dataset.
+            dataset_id (str): The ID of the dataset to be removed from.
+        """
+        request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
+        await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
 
     async def binary_data_capture_upload(
         self,
