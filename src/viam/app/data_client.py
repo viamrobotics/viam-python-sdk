@@ -44,6 +44,17 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    DatasetServiceStub,
+    DeleteDatasetRequest,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
+)
 from viam.proto.app.datasync import (
     DataCaptureUploadMetadata,
     DataCaptureUploadRequest,
@@ -133,10 +144,12 @@ class DataClient:
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
         self._data_sync_client = DataSyncServiceStub(channel)
+        self._dataset_client = DatasetServiceStub(channel)
         self._channel = channel
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
+    _dataset_client: DatasetServiceStub
     _metadata: Mapping[str, str]
     _channel: Channel
 
@@ -479,6 +492,90 @@ class DataClient:
     # TODO(RSDK-5569): implement
     async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
+
+    class Dataset:
+        """Class representing a dataset.
+
+        Args:
+            id (str): the id of the dataset.
+            name (str): the name of the dataset.
+            organization_id (str): the organization id of the dataset.
+            time_created (datetime): the time the dataset was created.
+        """
+        def __init__(self, id: str, name: str, organization_id: str, time_created: datetime) -> None:
+            self.id = id
+            self.name = name
+            self.organization_id = organization_id
+            self.time_created = time_created
+
+    async def create_dataset(self, name: str, organization_id: str) -> str:
+        """Create a new dataset.
+
+        Args:
+            name (str): The name of the dataset being created.
+            organization_id (str): The organization ID of the dataset being created.
+
+        Returns:
+            str: The dataset ID of the created dataset.
+        """
+        request = CreateDatasetRequest(name=name, organization_id=organization_id)
+        response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
+        return response.id
+
+
+    async def list_dataset_by_ids(self, ids: List[str]) -> List[Dataset]:
+        """Get a list of datasets using their IDs.
+
+        Args:
+            ids (List[str]): The IDs of the datasets being called for.
+
+        Returns:
+            List[Dataset]: The list of datasets.
+        """
+        request = ListDatasetsByIDsRequest(ids=ids)
+        response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
+
+        datasets = []
+        for dataset in response.datasets:
+            datasets.append(DataClient.Dataset(dataset.id, dataset.name, dataset.organization_id, dataset.time_created.ToDatetime()))
+        return datasets
+
+
+    async def list_datasets_by_organization_id(self, organization_id: str) -> List[Dataset]:
+        """Get the datasets in an organization.
+
+        Args:
+            organization_id (str): The ID of the organization.
+
+        Returns:
+            List[Dataset]: The list of datasets in the organization.
+        """
+        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
+        response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(request, metadata=self._metadata)
+
+        datasets = []
+        for dataset in response.datasets:
+            datasets.append(DataClient.Dataset(dataset.id, dataset.name, dataset.organization_id, dataset.time_created.ToDatetime()))
+        return datasets
+
+    async def rename_dataset(self, id: str, name: str) -> None:
+        """Rename a dataset specified by the dataset ID.
+
+        Args:
+            id (str): The ID of the dataset.
+            name (str): The new name of the dataset.
+        """
+        request = RenameDatasetRequest(id=id, name=name)
+        await self._dataset_client.RenameDataset(request, metadata=self._metadata)
+
+    async def delete_dataset(self, id: str):
+        """Delete a dataset.
+
+        Args:
+            id (str): The ID of the dataset.
+        """
+        request = DeleteDatasetRequest(id=id)
+        await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
 
     async def add_binary_data_to_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
         """Add VIAM_DATASET_{id} tag to a list of image data IDs.
