@@ -806,6 +806,7 @@ class DataClient:
         end_time: Optional[datetime] = None,
         tags: Optional[List[str]] = None,
         bbox_labels: Optional[List[str]] = None,
+        dataset_id: Optional[str] = None,
     ) -> Filter:
         warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stacklevel=2)
         return create_filter(
@@ -823,4 +824,5 @@ class DataClient:
             end_time,
             tags,
             bbox_labels,
+            dataset_id,
         )

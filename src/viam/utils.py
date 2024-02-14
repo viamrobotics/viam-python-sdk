@@ -284,6 +284,7 @@ def create_filter(
     end_time: Optional[datetime] = None,
     tags: Optional[List[str]] = None,
     bbox_labels: Optional[List[str]] = None,
+    dataset_id: Optional[str] = None,
 ) -> Filter:
     """Create a `Filter`.
 
@@ -303,6 +304,7 @@ def create_filter(
         tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., ["test"]).
         bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
             "circle"]).
+        dataset_id (Optional[str]): Optional ID of dataset associated with data being filtered
 
     Returns:
         viam.proto.app.data.Filter: The `Filter` object.
@@ -328,4 +330,5 @@ def create_filter(
         else None,
         tags_filter=TagsFilter(tags=tags),
         bbox_labels=bbox_labels,
+        dataset_id=dataset_id if dataset_id else "",
     )
