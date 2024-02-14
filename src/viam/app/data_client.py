@@ -8,9 +8,9 @@ from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.data import (
+    AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
-    AddBinaryDataToDatasetByIDsRequest,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
     BinaryDataByFilterRequest,
@@ -502,6 +502,7 @@ class DataClient:
             organization_id (str): the organization id of the dataset.
             time_created (datetime): the time the dataset was created.
         """
+
         def __init__(self, id: str, name: str, organization_id: str, time_created: datetime) -> None:
             self.id = id
             self.name = name
@@ -522,7 +523,6 @@ class DataClient:
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
 
-
     async def list_dataset_by_ids(self, ids: List[str]) -> List[Dataset]:
         """Get a list of datasets using their IDs.
 
@@ -540,7 +540,6 @@ class DataClient:
             datasets.append(DataClient.Dataset(dataset.id, dataset.name, dataset.organization_id, dataset.time_created.ToDatetime()))
         return datasets
 
-
     async def list_datasets_by_organization_id(self, organization_id: str) -> List[Dataset]:
         """Get the datasets in an organization.
 
@@ -551,7 +550,9 @@ class DataClient:
             List[Dataset]: The list of datasets in the organization.
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
-        response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(request, metadata=self._metadata)
+        response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
+            request, metadata=self._metadata
+        )
 
         datasets = []
         for dataset in response.datasets:
