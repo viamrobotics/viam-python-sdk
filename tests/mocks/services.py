@@ -875,6 +875,53 @@ class MockDataset(DatasetServiceBase):
         assert request is not None
         self.deleted_id = request.id
         await stream.send_message(DeleteDatasetResponse())
+
+    async def ListDatasetsByIDs(self, stream: Stream[ListDatasetsByIDsRequest, ListDatasetsByIDsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.ids = request.ids
+        await stream.send_message(
+            ListDatasetsByIDsResponse(
+                datasets=[
+                    Dataset(
+                        id=dataset.id,
+                        name=dataset.name,
+                        organization_id=dataset.organization_id,
+                        time_created=datetime_to_timestamp(dataset.time_created),
+                    )
+                    for dataset in self.datasets_response
+                ]
+            )
+        )
+
+    async def ListDatasetsByOrganizationID(
+        self, stream: Stream[ListDatasetsByOrganizationIDRequest, ListDatasetsByOrganizationIDResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(
+            ListDatasetsByOrganizationIDResponse(
+                datasets=[
+                    Dataset(
+                        id=dataset.id,
+                        name=dataset.name,
+                        organization_id=dataset.organization_id,
+                        time_created=datetime_to_timestamp(dataset.time_created),
+                    )
+                    for dataset in self.datasets_response
+                ]
+            )
+        )
+
+    async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message((RenameDatasetResponse()))
+
+
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
         self.file_upload_response = file_upload_response

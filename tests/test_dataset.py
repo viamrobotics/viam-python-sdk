@@ -39,3 +39,25 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             await client.delete_dataset(ID)
             assert service.deleted_id == ID
+
+    @pytest.mark.asyncio
+    async def test_list_datasets_by_ids(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            datasets = await client.list_dataset_by_ids([ID])
+            assert service.ids == [ID]
+            assert datasets[0].id == DATASETS[0].id
+            assert datasets[0].name == DATASETS[0].name
+            assert datasets[0].organization_id == DATASETS[0].organization_id
+            assert datasets[0].time_created == DATASETS[0].time_created
+
+    @pytest.mark.asyncio
+    async def test_list_datasets_by_organization_id(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            datasets = await client.list_datasets_by_organization_id(ORG_ID)
+            assert service.org_id == ORG_ID
+            assert datasets[0].id == DATASETS[0].id
+            assert datasets[0].name == DATASETS[0].name
+            assert datasets[0].organization_id == DATASETS[0].organization_id
+            assert datasets[0].time_created == DATASETS[0].time_created
