@@ -821,12 +821,20 @@ class MockData(DataServiceBase):
     async def AddBinaryDataToDatasetByIDs(
         self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.added_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(AddBinaryDataToDatasetByIDsResponse())
 
     async def RemoveBinaryDataFromDatasetByIDs(
         self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.removed_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         raise NotImplementedError()
