@@ -6,6 +6,7 @@ from numpy.typing import NDArray
 from PIL import Image
 
 from viam.app.data_client import DataClient
+from viam.gen import app
 from viam.media.video import RawImage
 from viam.proto.app import (
     AddRoleRequest,
@@ -216,6 +217,20 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+)
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    Dataset,
+    DatasetServiceBase,
+    DeleteDatasetRequest,
+    DeleteDatasetResponse,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
+    RenameDatasetResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -843,6 +858,17 @@ class MockData(DataServiceBase):
         raise NotImplementedError()
 
 
+class MockDataset(DatasetServiceBase):
+    def __init__(self, create_response: str, datasets_response: List[DataClient.Dataset]):
+        self.create_response = create_response
+        self.datasets_response = datasets_response
+
+    async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.org_id = request.organization_id
+        await stream.send_message(CreateDatasetResponse(id=self.create_response))
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
         self.file_upload_response = file_upload_response
