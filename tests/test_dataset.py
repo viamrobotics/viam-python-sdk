@@ -32,3 +32,10 @@ class TestClient:
             assert service.name == NAME
             assert service.org_id == ORG_ID
             assert id == CREATED_ID
+
+    @pytest.mark.asyncio
+    async def test_delete_dataset(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.delete_dataset(ID)
+            assert service.deleted_id == ID

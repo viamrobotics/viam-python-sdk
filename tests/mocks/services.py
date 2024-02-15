@@ -869,6 +869,12 @@ class MockDataset(DatasetServiceBase):
         self.name = request.name
         self.org_id = request.organization_id
         await stream.send_message(CreateDatasetResponse(id=self.create_response))
+
+    async def DeleteDataset(self, stream: Stream[DeleteDatasetRequest, DeleteDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_id = request.id
+        await stream.send_message(DeleteDatasetResponse())
 class MockDataSync(DataSyncServiceBase):
     def __init__(self, file_upload_response: str):
         self.file_upload_response = file_upload_response
