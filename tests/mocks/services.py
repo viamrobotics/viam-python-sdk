@@ -6,7 +6,6 @@ from numpy.typing import NDArray
 from PIL import Image
 
 from viam.app.data_client import DataClient
-from viam.gen import app
 from viam.media.video import RawImage
 from viam.proto.app import (
     AddRoleRequest,
