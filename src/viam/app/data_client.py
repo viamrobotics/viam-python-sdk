@@ -514,7 +514,7 @@ class DataClient:
 
         Args:
             name (str): The name of the dataset being created.
-            organization_id (str): The organization ID of the dataset being created.
+            organization_id (str): The ID of the organization where the dataset is being created.
 
         Returns:
             str: The dataset ID of the created dataset.
@@ -579,20 +579,20 @@ class DataClient:
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
 
     async def add_binary_data_to_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
-        """Add VIAM_DATASET_{id} tag to a list of image data IDs.
+        """Add VIAM_DATASET_{id} tag to binary data.
 
         Args:
-            binary_ids (List[BinaryID]): List of images to add to dataset.
+            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
             dataset_id (str): The ID of the dataset to be added to.
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
 
     async def remove_binary_data_from_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
-        """Removes VIAM_DATASET_{id} tag from image data IDs
+        """Removes VIAM_DATASET_{id} tag from binary data.
 
         Args:
-            binary_ids (List[BinaryID]): List of images to add to dataset.
+            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
             dataset_id (str): The ID of the dataset to be removed from.
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
