@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
+from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 
@@ -47,6 +48,7 @@ from viam.proto.app.data import (
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
     CreateDatasetResponse,
+    Dataset,
     DatasetServiceStub,
     DeleteDatasetRequest,
     ListDatasetsByIDsRequest,
@@ -111,6 +113,7 @@ class DataClient:
                 return str(self) == str(other)
             return False
 
+    # TODO (RSDK-6684): Revisit if this shadow type is necessary
     class BinaryData:
         """Class representing a piece of binary data and associated metadata.
 
@@ -493,22 +496,6 @@ class DataClient:
     async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
 
-    class Dataset:
-        """Class representing a dataset.
-
-        Args:
-            id (str): the id of the dataset.
-            name (str): the name of the dataset.
-            organization_id (str): the organization id of the dataset.
-            time_created (datetime): the time the dataset was created.
-        """
-
-        def __init__(self, id: str, name: str, organization_id: str, time_created: datetime) -> None:
-            self.id = id
-            self.name = name
-            self.organization_id = organization_id
-            self.time_created = time_created
-
     async def create_dataset(self, name: str, organization_id: str) -> str:
         """Create a new dataset.
 
@@ -523,7 +510,7 @@ class DataClient:
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
 
-    async def list_dataset_by_ids(self, ids: List[str]) -> List[Dataset]:
+    async def list_dataset_by_ids(self, ids: List[str]) -> RepeatedCompositeFieldContainer[Dataset]:
         """Get a list of datasets using their IDs.
 
         Args:
@@ -535,12 +522,9 @@ class DataClient:
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
 
-        datasets = []
-        for dataset in response.datasets:
-            datasets.append(DataClient.Dataset(dataset.id, dataset.name, dataset.organization_id, dataset.time_created.ToDatetime()))
-        return datasets
+        return response.datasets
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> List[Dataset]:
+    async def list_datasets_by_organization_id(self, organization_id: str) -> RepeatedCompositeFieldContainer[Dataset]:
         """Get the datasets in an organization.
 
         Args:
@@ -554,10 +538,7 @@ class DataClient:
             request, metadata=self._metadata
         )
 
-        datasets = []
-        for dataset in response.datasets:
-            datasets.append(DataClient.Dataset(dataset.id, dataset.name, dataset.organization_id, dataset.time_created.ToDatetime()))
-        return datasets
+        return response.datasets
 
     async def rename_dataset(self, id: str, name: str) -> None:
         """Rename a dataset specified by the dataset ID.
@@ -569,7 +550,7 @@ class DataClient:
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
 
-    async def delete_dataset(self, id: str):
+    async def delete_dataset(self, id: str) -> None:
         """Delete a dataset.
 
         Args:
@@ -928,7 +909,7 @@ class DataClient:
         bbox_labels: Optional[List[str]] = None,
         dataset_id: Optional[str] = None,
     ) -> Filter:
-        warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stacklevel=2)
+        warnings.warn("DataClient.create_filter is deprecated. Use utils.create_filter instead.", DeprecationWarning, stacklevel=2)
         return create_filter(
             component_name,
             component_type,

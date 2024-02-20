@@ -1,9 +1,9 @@
-from datetime import datetime
-
 import pytest
+from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
+from viam.proto.app.dataset import Dataset
 
 from .mocks.services import MockDataset
 
@@ -11,8 +11,10 @@ CREATED_ID = "VIAM_DATASET_0"
 ID = "VIAM_DATASET_1"
 NAME = "dataset"
 ORG_ID = "org_id"
-DATETIME = datetime.now()
-DATASET = DataClient.Dataset(id=ID, name=NAME, organization_id=ORG_ID, time_created=DATETIME)
+SECONDS = 978310861
+NANOS = 0
+TIME = Timestamp(seconds=SECONDS, nanos=NANOS)
+DATASET = Dataset(id=ID, name=NAME, organization_id=ORG_ID, time_created=TIME)
 DATASETS = [DATASET]
 AUTH_TOKEN = "auth_token"
 DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
@@ -46,10 +48,7 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             datasets = await client.list_dataset_by_ids([ID])
             assert service.ids == [ID]
-            assert datasets[0].id == DATASETS[0].id
-            assert datasets[0].name == DATASETS[0].name
-            assert datasets[0].organization_id == DATASETS[0].organization_id
-            assert datasets[0].time_created == DATASETS[0].time_created
+            assert datasets == DATASETS
 
     @pytest.mark.asyncio
     async def test_list_datasets_by_organization_id(self, service: MockDataset):
@@ -57,7 +56,4 @@ class TestClient:
             client = DataClient(channel, DATA_SERVICE_METADATA)
             datasets = await client.list_datasets_by_organization_id(ORG_ID)
             assert service.org_id == ORG_ID
-            assert datasets[0].id == DATASETS[0].id
-            assert datasets[0].name == DATASETS[0].name
-            assert datasets[0].organization_id == DATASETS[0].organization_id
-            assert datasets[0].time_created == DATASETS[0].time_created
+            assert datasets == DATASETS

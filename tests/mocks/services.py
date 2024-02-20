@@ -1,6 +1,7 @@
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
+from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 from grpclib.server import Stream
 from numpy.typing import NDArray
 from PIL import Image
@@ -858,7 +859,7 @@ class MockData(DataServiceBase):
 
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: List[DataClient.Dataset]):
+    def __init__(self, create_response: str, datasets_response: RepeatedCompositeFieldContainer[Dataset]):
         self.create_response = create_response
         self.datasets_response = datasets_response
 
@@ -879,19 +880,7 @@ class MockDataset(DatasetServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.ids = request.ids
-        await stream.send_message(
-            ListDatasetsByIDsResponse(
-                datasets=[
-                    Dataset(
-                        id=dataset.id,
-                        name=dataset.name,
-                        organization_id=dataset.organization_id,
-                        time_created=datetime_to_timestamp(dataset.time_created),
-                    )
-                    for dataset in self.datasets_response
-                ]
-            )
-        )
+        await stream.send_message(ListDatasetsByIDsResponse(datasets=self.datasets_response))
 
     async def ListDatasetsByOrganizationID(
         self, stream: Stream[ListDatasetsByOrganizationIDRequest, ListDatasetsByOrganizationIDResponse]
@@ -899,19 +888,7 @@ class MockDataset(DatasetServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.org_id = request.organization_id
-        await stream.send_message(
-            ListDatasetsByOrganizationIDResponse(
-                datasets=[
-                    Dataset(
-                        id=dataset.id,
-                        name=dataset.name,
-                        organization_id=dataset.organization_id,
-                        time_created=datetime_to_timestamp(dataset.time_created),
-                    )
-                    for dataset in self.datasets_response
-                ]
-            )
-        )
+        await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
 
     async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
         request = await stream.recv_message()
