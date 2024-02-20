@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 import numpy as np
-from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 from grpclib.server import Stream
 from numpy.typing import NDArray
 from PIL import Image
@@ -859,7 +858,7 @@ class MockData(DataServiceBase):
 
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: RepeatedCompositeFieldContainer[Dataset]):
+    def __init__(self, create_response: str, datasets_response: List[Dataset]):
         self.create_response = create_response
         self.datasets_response = datasets_response
 

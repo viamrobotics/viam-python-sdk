@@ -3,7 +3,6 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, List, Mapping, Optional, Tuple
 
-from google.protobuf.internal.containers import RepeatedCompositeFieldContainer
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 
@@ -510,7 +509,7 @@ class DataClient:
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
 
-    async def list_dataset_by_ids(self, ids: List[str]) -> RepeatedCompositeFieldContainer[Dataset]:
+    async def list_dataset_by_ids(self, ids: List[str]) -> List[Dataset]:
         """Get a list of datasets using their IDs.
 
         Args:
@@ -522,9 +521,9 @@ class DataClient:
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
 
-        return response.datasets
+        return list(response.datasets)
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> RepeatedCompositeFieldContainer[Dataset]:
+    async def list_datasets_by_organization_id(self, organization_id: str) -> List[Dataset]:
         """Get the datasets in an organization.
 
         Args:
@@ -538,7 +537,7 @@ class DataClient:
             request, metadata=self._metadata
         )
 
-        return response.datasets
+        return list(response.datasets)
 
     async def rename_dataset(self, id: str, name: str) -> None:
         """Rename a dataset specified by the dataset ID.
