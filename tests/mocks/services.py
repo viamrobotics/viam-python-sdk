@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import numpy as np
 from grpclib.server import Stream
@@ -858,7 +858,7 @@ class MockData(DataServiceBase):
 
 
 class MockDataset(DatasetServiceBase):
-    def __init__(self, create_response: str, datasets_response: List[Dataset]):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
         self.create_response = create_response
         self.datasets_response = datasets_response
 

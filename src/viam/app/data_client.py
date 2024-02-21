@@ -1,7 +1,7 @@
 import warnings
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Tuple
+from typing import Any, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
@@ -509,35 +509,35 @@ class DataClient:
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
         return response.id
 
-    async def list_dataset_by_ids(self, ids: List[str]) -> List[Dataset]:
+    async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
         """Get a list of datasets using their IDs.
 
         Args:
             ids (List[str]): The IDs of the datasets being called for.
 
         Returns:
-            List[Dataset]: The list of datasets.
+            Sequence[Dataset]: The list of datasets.
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
 
-        return list(response.datasets)
+        return response.datasets
 
-    async def list_datasets_by_organization_id(self, organization_id: str) -> List[Dataset]:
+    async def list_datasets_by_organization_id(self, organization_id: str) -> Sequence[Dataset]:
         """Get the datasets in an organization.
 
         Args:
             organization_id (str): The ID of the organization.
 
         Returns:
-            List[Dataset]: The list of datasets in the organization.
+            Sequence[Dataset]: The list of datasets in the organization.
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
             request, metadata=self._metadata
         )
 
-        return list(response.datasets)
+        return response.datasets
 
     async def rename_dataset(self, id: str, name: str) -> None:
         """Rename a dataset specified by the dataset ID.
@@ -559,7 +559,9 @@ class DataClient:
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
 
     async def add_binary_data_to_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
-        """Add VIAM_DATASET_{id} tag to binary data.
+        """Add the BinaryData to the provided dataset.
+
+        This BinaryData will be tagged with the VIAM_DATASET_{id} label.
 
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
@@ -569,7 +571,9 @@ class DataClient:
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
 
     async def remove_binary_data_from_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
-        """Removes VIAM_DATASET_{id} tag from binary data.
+        """Remove the BinaryData from the provided dataset.
+
+        This BinaryData will lose the VIAM_DATASET_{id} tag.
 
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
