@@ -114,7 +114,7 @@ Classes
       :rtype: str
 
 
-   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_map(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.Pose, slam_service_name: viam.proto.common.ResourceName, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, obstacles: Optional[Iterable[viam.proto.common.Geometry]] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
 
       Move a component to a specific pose, using a ``SlamService`` for the SLAM map, using a ``SLAM Service`` to check the location.
@@ -142,6 +142,8 @@ Classes
                                                                   plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                                                                   linear_m_per_sec (float): Linear velocity this machine should target when moving.
                                                                   angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+      :param obstacles: Obstacles to be considered for motion planning.
+      :type obstacles: Optional[Iterable[Geometry]]
       :param extra: Extra options to pass to the underlying RPC call.
       :type extra: Optional[Dict[str, Any]]
       :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
