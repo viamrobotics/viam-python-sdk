@@ -162,6 +162,8 @@ class CloudConfig(google.protobuf.message.Message):
     LOCATION_SECRET_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
     LOCATION_SECRETS_FIELD_NUMBER: builtins.int
+    PRIMARY_ORG_ID_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     'Robot part id.'
     fqdn: builtins.str
@@ -177,11 +179,13 @@ class CloudConfig(google.protobuf.message.Message):
     @property
     def location_secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]:
         """All valid location secrets."""
+    primary_org_id: builtins.str
+    location_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=..., primary_org_id: builtins.str=..., location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'primary_org_id', b'primary_org_id', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
         ...
 global___CloudConfig = CloudConfig
 
