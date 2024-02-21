@@ -1,9 +1,6 @@
-from io import BytesIO
-
 from grpclib.server import Stream
-from PIL import Image
 
-from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.vision import (
     GetClassificationsFromCameraRequest,
@@ -48,11 +45,8 @@ class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        mime_type, is_lazy = CameraMimeType.from_lazy(request.mime_type)
-        if is_lazy or not (CameraMimeType.is_supported(mime_type)):
-            image = RawImage(request.image, request.mime_type)
-        else:
-            image = Image.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
+        mime_type, _ = CameraMimeType.from_lazy(request.mime_type)
+        image = ViamImage(request.image, mime_type)
 
         result = await vision.get_detections(image, extra=extra, timeout=timeout)
         response = GetDetectionsResponse(detections=result)
@@ -77,11 +71,8 @@ class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        mime_type, is_lazy = CameraMimeType.from_lazy(request.mime_type)
-        if is_lazy or not (CameraMimeType.is_supported(mime_type)):
-            image = RawImage(request.image, request.mime_type)
-        else:
-            image = Image.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
+        mime_type, _ = CameraMimeType.from_lazy(request.mime_type)
+        image = ViamImage(request.image, mime_type)
 
         result = await vision.get_classifications(image, request.n, extra=extra, timeout=timeout)
         response = GetClassificationsResponse(classifications=result)

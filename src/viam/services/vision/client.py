@@ -1,10 +1,9 @@
-from io import BytesIO
-from typing import Any, List, Mapping, Optional, Union
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
+from PIL import UnidentifiedImageError
 
-from viam.media.viam_rgba_plugin import Image
-from viam.media.video import CameraMimeType, RawImage
+from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject
 from viam.proto.service.vision import (
     Classification,
@@ -55,25 +54,26 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
 
     async def get_detections(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> List[Detection]:
         if extra is None:
             extra = {}
-        mime_type = CameraMimeType.JPEG
-        if isinstance(image, RawImage):
-            image = Image.open(BytesIO(image.data), formats=[mime_type.name])
+        image.mime_type = CameraMimeType.JPEG
 
-        request = GetDetectionsRequest(
-            name=self.name,
-            image=mime_type.encode_image(image),
-            width=image.width,
-            height=image.height,
-            mime_type=mime_type,
-            extra=dict_to_struct(extra),
-        )
+        if image.image is None:
+            raise UnidentifiedImageError
+        else:
+            request = GetDetectionsRequest(
+                name=self.name,
+                image=image.data,
+                width=image.image.width,
+                height=image.image.height,
+                mime_type=image.mime_type,
+                extra=dict_to_struct(extra),
+            )
         response: GetDetectionsResponse = await self.client.GetDetections(request, timeout=timeout)
         return list(response.detections)
 
@@ -93,7 +93,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
 
     async def get_classifications(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         count: int,
         *,
         extra: Optional[Mapping[str, Any]] = None,
@@ -101,19 +101,20 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Classification]:
         if extra is None:
             extra = {}
-        mime_type = CameraMimeType.JPEG
-        if isinstance(image, RawImage):
-            image = Image.open(BytesIO(image.data), formats=[mime_type.name])
+        image.mime_type = CameraMimeType.JPEG
 
-        request = GetClassificationsRequest(
-            name=self.name,
-            image=mime_type.encode_image(image),
-            width=image.width,
-            height=image.height,
-            mime_type=mime_type,
-            n=count,
-            extra=dict_to_struct(extra),
-        )
+        if image.image is None:
+            raise UnidentifiedImageError
+        else:
+            request = GetClassificationsRequest(
+                name=self.name,
+                image=image.data,
+                width=image.image.width,
+                height=image.image.height,
+                mime_type=image.mime_type,
+                n=count,
+                extra=dict_to_struct(extra),
+            )
         response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)
         return list(response.classifications)
 

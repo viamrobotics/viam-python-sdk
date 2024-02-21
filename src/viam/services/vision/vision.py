@@ -1,9 +1,7 @@
 import abc
-from typing import Any, Final, List, Mapping, Optional, Union
+from typing import Any, Final, List, Mapping, Optional
 
-from PIL import Image
-
-from viam.media.video import RawImage
+from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -47,7 +45,7 @@ class Vision(ServiceBase):
     @abc.abstractmethod
     async def get_detections(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -87,7 +85,7 @@ class Vision(ServiceBase):
     @abc.abstractmethod
     async def get_classifications(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         count: int,
         *,
         extra: Optional[Mapping[str, Any]] = None,
