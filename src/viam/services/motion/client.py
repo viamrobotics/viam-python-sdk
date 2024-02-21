@@ -1,10 +1,11 @@
-from typing import Any, Final, List, Mapping, Optional, Sequence
+from typing import Any, Final, List, Mapping, Optional, Sequence, Iterable
 
 from grpclib.client import Channel
 
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Geometry,
     GeoObstacle,
     GeoPoint,
     Pose,
@@ -171,6 +172,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         destination: Pose,
         slam_service_name: ResourceName,
         configuration: Optional[MotionConfiguration] = None,
+        obstacles: Iterable[Geometry] = [],
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -199,6 +201,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+            obstacles (Iterable[Geometry]): Obstacles to be considered for motion planning.
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
             RPC call.
@@ -214,6 +217,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             component_name=component_name,
             slam_service_name=slam_service_name,
             motion_configuration=configuration,
+            obstacles=obstacles,
             extra=dict_to_struct(extra),
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)

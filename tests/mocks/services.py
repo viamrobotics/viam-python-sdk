@@ -488,6 +488,7 @@ class MockMotion(MotionServiceBase):
         self.destination = request.destination
         self.slam_service = request.slam_service_name
         self.configuration = request.motion_configuration
+        self.obstacles = request.obstacles
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         self.execution_id = "some execution id"
