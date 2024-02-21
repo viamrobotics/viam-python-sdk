@@ -321,7 +321,7 @@ Classes
       
 
 
-.. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None = ...)
+.. py:class:: CloudConfig(*, id: str = ..., fqdn: str = ..., local_fqdn: str = ..., managed_by: str = ..., signaling_address: str = ..., signaling_insecure: bool = ..., location_secret: str = ..., secret: str = ..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None = ..., primary_org_id: str = ..., location_id: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -376,6 +376,16 @@ Classes
       :type: str
 
       Robot part secret
+
+   .. py:attribute:: primary_org_id
+      :type: str
+
+      
+
+   .. py:attribute:: location_id
+      :type: str
+
+      
 
 
 .. py:class:: ComponentConfig(*, name: str = ..., namespace: str = ..., type: str = ..., model: str = ..., frame: global___Frame | None = ..., depends_on: collections.abc.Iterable[str] | None = ..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None = ..., attributes: google.protobuf.struct_pb2.Struct | None = ..., api: str = ..., log_configuration: global___LogConfiguration | None = ...)

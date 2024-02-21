@@ -90,6 +90,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.StartSession"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.StartSession()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.SendSessionHeartbeat"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.SendSessionHeartbeat()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.Log"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.Log()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.GetCloudMetadata"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.GetCloudMetadata()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.RobotServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">RobotServiceBase.__mapping__()</span></code></a></li>
 </ul>
 </li>
@@ -135,6 +136,13 @@
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfigResponse"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.FrameSystemConfigResponse.frame_system_configs"><code class="docutils literal notranslate"><span class="pre">FrameSystemConfigResponse.frame_system_configs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataRequest"><code class="docutils literal notranslate"><span class="pre">GetCloudMetadataRequest</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataResponse"><code class="docutils literal notranslate"><span class="pre">GetCloudMetadataResponse</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataResponse.robot_part_id"><code class="docutils literal notranslate"><span class="pre">GetCloudMetadataResponse.robot_part_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataResponse.primary_org_id"><code class="docutils literal notranslate"><span class="pre">GetCloudMetadataResponse.primary_org_id</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataResponse.location_id"><code class="docutils literal notranslate"><span class="pre">GetCloudMetadataResponse.location_id</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.robot.GetOperationsRequest"><code class="docutils literal notranslate"><span class="pre">GetOperationsRequest</span></code></a></li>
@@ -357,6 +365,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.FrameSystemConfigResponse" title="viam.proto.robot.FrameSystemConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameSystemConfigResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataRequest" title="viam.proto.robot.GetCloudMetadataRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCloudMetadataRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.robot.GetCloudMetadataResponse" title="viam.proto.robot.GetCloudMetadataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCloudMetadataResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.robot.GetOperationsRequest" title="viam.proto.robot.GetOperationsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOperationsRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -536,6 +550,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.Log">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.LogRequest" title="viam.gen.robot.v1.robot_pb2.LogRequest"><span class="pre">robot.v1.robot_pb2.LogRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.LogResponse" title="viam.gen.robot.v1.robot_pb2.LogResponse"><span class="pre">robot.v1.robot_pb2.LogResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.Log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.Log" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.robot.RobotServiceBase.GetCloudMetadata">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCloudMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetCloudMetadataRequest" title="viam.gen.robot.v1.robot_pb2.GetCloudMetadataRequest"><span class="pre">robot.v1.robot_pb2.GetCloudMetadataRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse" title="viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse"><span class="pre">robot.v1.robot_pb2.GetCloudMetadataResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/robot/v1/robot_grpc.html#RobotServiceBase.GetCloudMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.robot.RobotServiceBase.GetCloudMetadata" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -758,6 +777,41 @@ shown below.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.robot.FrameSystemConfigResponse.frame_system_configs">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frame_system_configs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___FrameSystemConfig</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.robot.FrameSystemConfigResponse.frame_system_configs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetCloudMetadataRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetCloudMetadataRequest</span></span><a class="headerlink" href="#viam.proto.robot.GetCloudMetadataRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.robot.GetCloudMetadataResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.robot.</span></span><span class="sig-name descname"><span class="pre">GetCloudMetadataResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_org_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.robot.GetCloudMetadataResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetCloudMetadataResponse.robot_part_id">
+<span class="sig-name descname"><span class="pre">robot_part_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetCloudMetadataResponse.robot_part_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetCloudMetadataResponse.primary_org_id">
+<span class="sig-name descname"><span class="pre">primary_org_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetCloudMetadataResponse.primary_org_id" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.robot.GetCloudMetadataResponse.location_id">
+<span class="sig-name descname"><span class="pre">location_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.robot.GetCloudMetadataResponse.location_id" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
