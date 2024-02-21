@@ -1,16 +1,13 @@
 import abc
 import sys
-from typing import Any, Dict, Final, List, Optional, Tuple, Union
+from typing import Any, Dict, Final, List, Optional, Tuple
 
-from PIL.Image import Image
-
-from viam.media.video import NamedImage
+from viam.media.video import NamedImage, ViamImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
-from . import RawImage
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -36,8 +33,8 @@ class Camera(ComponentBase):
     @abc.abstractmethod
     async def get_image(
         self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Union[Image, RawImage]:
-        """Get the next image from the camera as an Image or RawImage.
+    ) -> ViamImage:
+        """Get the next image from the camera as a ViamImage.
         Be sure to close the image when finished.
 
         NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
@@ -47,7 +44,7 @@ class Camera(ComponentBase):
             mime_type (str): The desired mime type of the image. This does not guarantee output type
 
         Returns:
-            Image | RawImage: The frame
+            ViamImage: The frame
         """
         ...
 
