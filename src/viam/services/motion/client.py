@@ -172,7 +172,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         destination: Pose,
         slam_service_name: ResourceName,
         configuration: Optional[MotionConfiguration] = None,
-        obstacles: Optional[Iterable[Geometry]] = [],
+        obstacles: Optional[Iterable[Geometry]] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
