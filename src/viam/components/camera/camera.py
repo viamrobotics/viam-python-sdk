@@ -48,7 +48,7 @@ class Camera(ComponentBase):
             my_camera = Camera.from_robot(robot=robot, name="my_camera")
 
             # Assume "frame" has a mime_type of "image/vnd.viam.dep"
-            frame = await my_camera.get_image()
+            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
 
             # Convert "frame" to a standard 2D image representation.
             # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
