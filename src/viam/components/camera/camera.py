@@ -43,6 +43,17 @@ class Camera(ComponentBase):
         NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
         to convert the data to a standard representation.
 
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            # Assume "frame" has a mime_type of "image/vnd.viam.dep"
+            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
+
+            # Convert "frame" to a standard 2D image representation.
+            # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
+            standard_frame = frame.bytes_to_depth_array()
+
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
 
@@ -55,6 +66,14 @@ class Camera(ComponentBase):
     async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
+
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            images, metadata = await my_camera.get_images()
+            img0 = images[0].image
+            timestamp = metadata.captured_at
 
         Returns:
             Tuple[List[NamedImage], ResponseMetadata]:
@@ -101,6 +120,12 @@ class Camera(ComponentBase):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
         """
         Get the camera intrinsic parameters and camera distortion parameters
+
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            properties = await my_camera.get_properties()
 
         Returns:
             Properties: The properties of the camera
