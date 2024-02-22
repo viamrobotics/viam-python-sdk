@@ -36,6 +36,7 @@ END_DATETIME = END_TS.ToDatetime()
 TAGS = ["tag"]
 BBOX_LABEL = "bbox_label"
 BBOX_LABELS = [BBOX_LABEL]
+DATASET_ID = "VIAM_DATASET_1"
 FILTER = create_filter(
     component_name=COMPONENT_NAME,
     component_type=COMPONENT_TYPE,
@@ -51,6 +52,7 @@ FILTER = create_filter(
     end_time=END_DATETIME,
     tags=TAGS,
     bbox_labels=BBOX_LABELS,
+    dataset_id=DATASET_ID,
 )
 
 FILE_ID = "file_id"
@@ -247,6 +249,22 @@ class TestClient:
     @pytest.mark.asyncio
     async def test_configure_database_user(self, service: MockData):
         assert True
+
+    @pytest.mark.asyncio
+    async def test_add_binary_data_to_dataset_by_ids(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.add_binary_data_to_dataset_by_ids(binary_ids=BINARY_IDS, dataset_id=DATASET_ID)
+            assert service.added_data_ids == BINARY_IDS
+            assert service.dataset_id == DATASET_ID
+
+    @pytest.mark.asyncio
+    async def test_remove_binary_data_to_dataset_by_ids(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.remove_binary_data_from_dataset_by_ids(binary_ids=BINARY_IDS, dataset_id=DATASET_ID)
+            assert service.removed_data_ids == BINARY_IDS
+            assert service.dataset_id == DATASET_ID
 
     def assert_filter(self, filter: Filter) -> None:
         assert filter.component_name == COMPONENT_NAME

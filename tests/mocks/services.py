@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import numpy as np
 from grpclib.server import Stream
@@ -216,6 +216,20 @@ from viam.proto.app.data import (
     TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+)
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    Dataset,
+    DatasetServiceBase,
+    DeleteDatasetRequest,
+    DeleteDatasetResponse,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
+    RenameDatasetResponse,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
@@ -822,18 +836,66 @@ class MockData(DataServiceBase):
     async def AddBinaryDataToDatasetByIDs(
         self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.added_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(AddBinaryDataToDatasetByIDsResponse())
 
     async def RemoveBinaryDataFromDatasetByIDs(
         self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.removed_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         raise NotImplementedError()
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockDataset(DatasetServiceBase):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+        self.create_response = create_response
+        self.datasets_response = datasets_response
+
+    async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.org_id = request.organization_id
+        await stream.send_message(CreateDatasetResponse(id=self.create_response))
+
+    async def DeleteDataset(self, stream: Stream[DeleteDatasetRequest, DeleteDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_id = request.id
+        await stream.send_message(DeleteDatasetResponse())
+
+    async def ListDatasetsByIDs(self, stream: Stream[ListDatasetsByIDsRequest, ListDatasetsByIDsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.ids = request.ids
+        await stream.send_message(ListDatasetsByIDsResponse(datasets=self.datasets_response))
+
+    async def ListDatasetsByOrganizationID(
+        self, stream: Stream[ListDatasetsByOrganizationIDRequest, ListDatasetsByOrganizationIDResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
+
+    async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message((RenameDatasetResponse()))
 
 
 class MockDataSync(DataSyncServiceBase):

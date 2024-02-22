@@ -1,13 +1,14 @@
 import warnings
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Tuple
+from typing import Any, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
 
 from viam import logging
 from viam.proto.app.data import (
+    AddBinaryDataToDatasetByIDsRequest,
     AddBoundingBoxToImageByIDRequest,
     AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
@@ -32,6 +33,7 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
     RemoveTagsFromBinaryDataByFilterResponse,
@@ -41,6 +43,18 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
+)
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    Dataset,
+    DatasetServiceStub,
+    DeleteDatasetRequest,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
 )
 from viam.proto.app.datasync import (
     DataCaptureUploadMetadata,
@@ -98,6 +112,7 @@ class DataClient:
                 return str(self) == str(other)
             return False
 
+    # TODO (RSDK-6684): Revisit if this shadow type is necessary
     class BinaryData:
         """Class representing a piece of binary data and associated metadata.
 
@@ -131,10 +146,12 @@ class DataClient:
         self._metadata = metadata
         self._data_client = DataServiceStub(channel)
         self._data_sync_client = DataSyncServiceStub(channel)
+        self._dataset_client = DatasetServiceStub(channel)
         self._channel = channel
 
     _data_client: DataServiceStub
     _data_sync_client: DataSyncServiceStub
+    _dataset_client: DatasetServiceStub
     _metadata: Mapping[str, str]
     _channel: Channel
 
@@ -478,6 +495,93 @@ class DataClient:
     async def configure_database_user(self, organization_id: str, password: str) -> None:
         raise NotImplementedError()
 
+    async def create_dataset(self, name: str, organization_id: str) -> str:
+        """Create a new dataset.
+
+        Args:
+            name (str): The name of the dataset being created.
+            organization_id (str): The ID of the organization where the dataset is being created.
+
+        Returns:
+            str: The dataset ID of the created dataset.
+        """
+        request = CreateDatasetRequest(name=name, organization_id=organization_id)
+        response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
+        return response.id
+
+    async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
+        """Get a list of datasets using their IDs.
+
+        Args:
+            ids (List[str]): The IDs of the datasets being called for.
+
+        Returns:
+            Sequence[Dataset]: The list of datasets.
+        """
+        request = ListDatasetsByIDsRequest(ids=ids)
+        response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
+
+        return response.datasets
+
+    async def list_datasets_by_organization_id(self, organization_id: str) -> Sequence[Dataset]:
+        """Get the datasets in an organization.
+
+        Args:
+            organization_id (str): The ID of the organization.
+
+        Returns:
+            Sequence[Dataset]: The list of datasets in the organization.
+        """
+        request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
+        response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
+            request, metadata=self._metadata
+        )
+
+        return response.datasets
+
+    async def rename_dataset(self, id: str, name: str) -> None:
+        """Rename a dataset specified by the dataset ID.
+
+        Args:
+            id (str): The ID of the dataset.
+            name (str): The new name of the dataset.
+        """
+        request = RenameDatasetRequest(id=id, name=name)
+        await self._dataset_client.RenameDataset(request, metadata=self._metadata)
+
+    async def delete_dataset(self, id: str) -> None:
+        """Delete a dataset.
+
+        Args:
+            id (str): The ID of the dataset.
+        """
+        request = DeleteDatasetRequest(id=id)
+        await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
+
+    async def add_binary_data_to_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
+        """Add the BinaryData to the provided dataset.
+
+        This BinaryData will be tagged with the VIAM_DATASET_{id} label.
+
+        Args:
+            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
+            dataset_id (str): The ID of the dataset to be added to.
+        """
+        request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
+        await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
+
+    async def remove_binary_data_from_dataset_by_ids(self, binary_ids: List[BinaryID], dataset_id: str) -> None:
+        """Remove the BinaryData from the provided dataset.
+
+        This BinaryData will lose the VIAM_DATASET_{id} tag.
+
+        Args:
+            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
+            dataset_id (str): The ID of the dataset to be removed from.
+        """
+        request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
+        await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
+
     async def binary_data_capture_upload(
         self,
         binary_data: bytes,
@@ -806,8 +910,9 @@ class DataClient:
         end_time: Optional[datetime] = None,
         tags: Optional[List[str]] = None,
         bbox_labels: Optional[List[str]] = None,
+        dataset_id: Optional[str] = None,
     ) -> Filter:
-        warnings.warn("DataClient.create_filter is deprecated. Use AppClient.create_filter instead.", DeprecationWarning, stacklevel=2)
+        warnings.warn("DataClient.create_filter is deprecated. Use utils.create_filter instead.", DeprecationWarning, stacklevel=2)
         return create_filter(
             component_name,
             component_type,
@@ -823,4 +928,5 @@ class DataClient:
             end_time,
             tags,
             bbox_labels,
+            dataset_id,
         )
