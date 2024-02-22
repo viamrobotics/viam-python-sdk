@@ -349,6 +349,90 @@ Attributes
       :async:
 
 
+   .. py:method:: create_dataset(name: str, organization_id: str) -> str
+      :async:
+
+      Create a new dataset.
+
+      :param name: The name of the dataset being created.
+      :type name: str
+      :param organization_id: The ID of the organization where the dataset is being created.
+      :type organization_id: str
+
+      :returns: The dataset ID of the created dataset.
+      :rtype: str
+
+
+   .. py:method:: list_dataset_by_ids(ids: List[str]) -> Sequence[viam.proto.app.dataset.Dataset]
+      :async:
+
+      Get a list of datasets using their IDs.
+
+      :param ids: The IDs of the datasets being called for.
+      :type ids: List[str]
+
+      :returns: The list of datasets.
+      :rtype: Sequence[Dataset]
+
+
+   .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
+      :async:
+
+      Get the datasets in an organization.
+
+      :param organization_id: The ID of the organization.
+      :type organization_id: str
+
+      :returns: The list of datasets in the organization.
+      :rtype: Sequence[Dataset]
+
+
+   .. py:method:: rename_dataset(id: str, name: str) -> None
+      :async:
+
+      Rename a dataset specified by the dataset ID.
+
+      :param id: The ID of the dataset.
+      :type id: str
+      :param name: The new name of the dataset.
+      :type name: str
+
+
+   .. py:method:: delete_dataset(id: str) -> None
+      :async:
+
+      Delete a dataset.
+
+      :param id: The ID of the dataset.
+      :type id: str
+
+
+   .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
+      :async:
+
+      Add the BinaryData to the provided dataset.
+
+      This BinaryData will be tagged with the VIAM_DATASET_{id} label.
+
+      :param binary_ids: The IDs of binary data to add to dataset.
+      :type binary_ids: List[BinaryID]
+      :param dataset_id: The ID of the dataset to be added to.
+      :type dataset_id: str
+
+
+   .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
+      :async:
+
+      Remove the BinaryData from the provided dataset.
+
+      This BinaryData will lose the VIAM_DATASET_{id} tag.
+
+      :param binary_ids: The IDs of binary data to remove from dataset.
+      :type binary_ids: List[BinaryID]
+      :param dataset_id: The ID of the dataset to be removed from.
+      :type dataset_id: str
+
+
    .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
       :async:
 
@@ -512,7 +596,7 @@ Attributes
       :rtype: str
 
 
-   .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None) -> viam.proto.app.data.Filter
+   .. py:method:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None, dataset_id: Optional[str] = None) -> viam.proto.app.data.Filter
       :staticmethod:
 
 

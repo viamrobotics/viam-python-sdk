@@ -141,7 +141,7 @@ Attributes
    Used in modular filter components to get the 'fromDataManagement' value from an extra map.
 
 
-.. py:function:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None) -> viam.proto.app.data.Filter
+.. py:function:: create_filter(component_name: Optional[str] = None, component_type: Optional[str] = None, method: Optional[str] = None, robot_name: Optional[str] = None, robot_id: Optional[str] = None, part_name: Optional[str] = None, part_id: Optional[str] = None, location_ids: Optional[List[str]] = None, organization_ids: Optional[List[str]] = None, mime_type: Optional[List[str]] = None, start_time: Optional[datetime.datetime] = None, end_time: Optional[datetime.datetime] = None, tags: Optional[List[str]] = None, bbox_labels: Optional[List[str]] = None, dataset_id: Optional[str] = None) -> viam.proto.app.data.Filter
 
    Create a `Filter`.
 
@@ -174,6 +174,8 @@ Attributes
    :param bbox_labels: Optional list of bounding box labels attached to the data being filtered (e.g., ["square",
                        "circle"]).
    :type bbox_labels: Optional[List[str]]
+   :param dataset_id: Optional ID of dataset associated with data being filtered
+   :type dataset_id: Optional[str]
 
    :returns: The `Filter` object.
    :rtype: viam.proto.app.data.Filter

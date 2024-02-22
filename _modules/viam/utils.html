@@ -374,6 +374,7 @@
     <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">bbox_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Filter</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a `Filter`.</span>
 
@@ -393,6 +394,7 @@
 <span class="sd">        tags (Optional[List[str]]): Optional list of tags attached to the data being filtered (e.g., [&quot;test&quot;]).</span>
 <span class="sd">        bbox_labels (Optional[List[str]]): Optional list of bounding box labels attached to the data being filtered (e.g., [&quot;square&quot;,</span>
 <span class="sd">            &quot;circle&quot;]).</span>
+<span class="sd">        dataset_id (Optional[str]): Optional ID of dataset associated with data being filtered</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        viam.proto.app.data.Filter: The `Filter` object.</span>
@@ -418,6 +420,7 @@
         <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags_filter</span><span class="o">=</span><span class="n">TagsFilter</span><span class="p">(</span><span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">),</span>
         <span class="n">bbox_labels</span><span class="o">=</span><span class="n">bbox_labels</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span> <span class="k">if</span> <span class="n">dataset_id</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="p">)</span></div>
 </pre></div>
 

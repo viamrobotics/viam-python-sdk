@@ -91,13 +91,14 @@
 <span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">,</span>
     <span class="n">AddBoundingBoxToImageByIDResponse</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -122,6 +123,7 @@
     <span class="n">Filter</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionRequest</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
+    <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterResponse</span><span class="p">,</span>
@@ -131,6 +133,18 @@
     <span class="n">TabularDataByFilterResponse</span><span class="p">,</span>
     <span class="n">TagsByFilterRequest</span><span class="p">,</span>
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.dataset</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CreateDatasetRequest</span><span class="p">,</span>
+    <span class="n">CreateDatasetResponse</span><span class="p">,</span>
+    <span class="n">Dataset</span><span class="p">,</span>
+    <span class="n">DatasetServiceStub</span><span class="p">,</span>
+    <span class="n">DeleteDatasetRequest</span><span class="p">,</span>
+    <span class="n">ListDatasetsByIDsRequest</span><span class="p">,</span>
+    <span class="n">ListDatasetsByIDsResponse</span><span class="p">,</span>
+    <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">,</span>
+    <span class="n">ListDatasetsByOrganizationIDResponse</span><span class="p">,</span>
+    <span class="n">RenameDatasetRequest</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.datasync</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DataCaptureUploadMetadata</span><span class="p">,</span>
@@ -188,6 +202,7 @@
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div></div>
 
+    <span class="c1"># TODO (RSDK-6684): Revisit if this shadow type is necessary</span>
 <div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.</span>
 
@@ -221,10 +236,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span> <span class="o">=</span> <span class="n">DataServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data_sync_client</span> <span class="o">=</span> <span class="n">DataSyncServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span> <span class="o">=</span> <span class="n">DatasetServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
 
     <span class="n">_data_client</span><span class="p">:</span> <span class="n">DataServiceStub</span>
     <span class="n">_data_sync_client</span><span class="p">:</span> <span class="n">DataSyncServiceStub</span>
+    <span class="n">_dataset_client</span><span class="p">:</span> <span class="n">DatasetServiceStub</span>
     <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
 
@@ -568,6 +585,93 @@
 <div class="viewcode-block" id="DataClient.configure_database_user"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.configure_database_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">configure_database_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="DataClient.create_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The name of the dataset being created.</span>
+<span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The dataset ID of the created dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="DataClient.list_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of datasets using their IDs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ids (List[str]): The IDs of the datasets being called for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Sequence[Dataset]: The list of datasets.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByIDsRequest</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">datasets</span></div>
+
+<div class="viewcode-block" id="DataClient.list_datasets_by_organization_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_datasets_by_organization_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_datasets_by_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the datasets in an organization.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByOrganizationIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByOrganizationID</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">datasets</span></div>
+
+<div class="viewcode-block" id="DataClient.rename_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">rename_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rename a dataset specified by the dataset ID.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the dataset.</span>
+<span class="sd">            name (str): The new name of the dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">RenameDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.delete_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a dataset.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.add_binary_data_to_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_binary_data_to_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_binary_data_to_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the BinaryData to the provided dataset.</span>
+
+<span class="sd">        This BinaryData will be tagged with the VIAM_DATASET_{id} label.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBinaryDataToDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DataClient.remove_binary_data_from_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_binary_data_from_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_binary_data_from_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">],</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the BinaryData from the provided dataset.</span>
+
+<span class="sd">        This BinaryData will lose the VIAM_DATASET_{id} tag.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBinaryDataFromDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="DataClient.binary_data_capture_upload"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_capture_upload">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_capture_upload</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">binary_data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
@@ -896,8 +1000,9 @@
         <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">bbox_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Filter</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;DataClient.create_filter is deprecated. Use AppClient.create_filter instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;DataClient.create_filter is deprecated. Use utils.create_filter instead.&quot;</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">create_filter</span><span class="p">(</span>
             <span class="n">component_name</span><span class="p">,</span>
             <span class="n">component_type</span><span class="p">,</span>
@@ -913,6 +1018,7 @@
             <span class="n">end_time</span><span class="p">,</span>
             <span class="n">tags</span><span class="p">,</span>
             <span class="n">bbox_labels</span><span class="p">,</span>
+            <span class="n">dataset_id</span><span class="p">,</span>
         <span class="p">)</span></div></div>
 </pre></div>
 
