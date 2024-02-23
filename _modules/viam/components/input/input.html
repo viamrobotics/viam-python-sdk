@@ -236,6 +236,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns a list of Controls provided by the Controller</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get the controller from the machine.</span>
+<span class="sd">            my_controller = Controller.from_robot(</span>
+<span class="sd">                robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+
+<span class="sd">            # Get the list of Controls provided by the controller.</span>
+<span class="sd">            controls = await my_controller.get_controls()</span>
+
+<span class="sd">            # Print the list of Controls provided by the controller.</span>
+<span class="sd">            print(f&quot;Controls: {controls}&quot;)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Control]: List of controls provided by the Controller</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -248,6 +260,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the most recent Event for each input</span>
 <span class="sd">        (which should be the current state)</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get the controller from the machine.</span>
+<span class="sd">            my_controller = Controller.from_robot(</span>
+<span class="sd">                robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+
+<span class="sd">            # Get the most recent Event for each Control.</span>
+<span class="sd">            recent_events = await my_controller.get_events()</span>
+
+<span class="sd">            # Print out the most recent Event for each Control.</span>
+<span class="sd">            print(f&quot;Recent Events: {recent_events}&quot;)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Dict[Control, Event]: The most recent event for each input</span>
@@ -268,6 +292,46 @@
 <span class="sd">        Register a function that will fire on given EventTypes for a given</span>
 <span class="sd">        Control</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Define a function to handle pressing the Start Menu Button &quot;BUTTON_START&quot; on</span>
+<span class="sd">            # your controller, printing out the start time.</span>
+<span class="sd">            def print_start_time(event):</span>
+<span class="sd">                print(f&quot;Start Menu Button was pressed at this time: {event.time}&quot;)</span>
+
+
+<span class="sd">            # Define a function that handles the controller.</span>
+<span class="sd">            async def handle_controller(controller):</span>
+<span class="sd">                # Get the list of Controls on the controller.</span>
+<span class="sd">                controls = await controller.get_controls()</span>
+
+<span class="sd">                # If the &quot;BUTTON_START&quot; Control is found, register the function</span>
+<span class="sd">                # print_start_time to fire when &quot;BUTTON_START&quot; has the event &quot;ButtonPress&quot;</span>
+<span class="sd">                # occur.</span>
+<span class="sd">                if Control.BUTTON_START in controls:</span>
+<span class="sd">                    controller.register_control_callback(</span>
+<span class="sd">                        Control.BUTTON_START, [EventType.BUTTON_PRESS], print_start_time)</span>
+<span class="sd">                else:</span>
+<span class="sd">                    print(&quot;Oops! Couldn&#39;t find the start button control! Is your &quot;</span>
+<span class="sd">                        &quot;controller connected?&quot;)</span>
+<span class="sd">                    exit()</span>
+
+<span class="sd">                while True:</span>
+<span class="sd">                    await asyncio.sleep(1.0)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                # ... &lt; INSERT CONNECTION CODE FROM MACHINE&#39;S CODE SAMPLE TAB &gt;</span>
+
+<span class="sd">                # Get your controller from the machine.</span>
+<span class="sd">                my_controller = Controller.from_robot(</span>
+<span class="sd">                    robot=myRobotWithController, name=&quot;my_controller&quot;)</span>
+
+<span class="sd">                # Run the handleController function.</span>
+<span class="sd">                await handleController(my_controller)</span>
+
+<span class="sd">                # ... &lt; INSERT ANY OTHER CODE FOR MAIN FUNCTION &gt;</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            control (Control): The control to register the function for</span>
 <span class="sd">            triggers (List[EventType]): The events that will</span>
@@ -286,6 +350,16 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Explicitly return None for typechecking, as this is technically a NoReturn default implementation</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Directly send an Event (such as a button press) from external code</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Define a &quot;Button is Pressed&quot; event for the control BUTTON_START.</span>
+<span class="sd">            button_is_pressed_event = Event(</span>
+<span class="sd">                time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)</span>
+
+<span class="sd">            # Trigger the event on your controller. Set this trigger to timeout if it has</span>
+<span class="sd">            # not completed in 7 seconds.</span>
+<span class="sd">            await myController.trigger_event(event=my_event, timeout=7.0)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            event (Event): The event to trigger</span>

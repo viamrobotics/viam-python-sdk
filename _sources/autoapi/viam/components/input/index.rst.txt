@@ -201,6 +201,18 @@ Attributes
 
       Returns a list of Controls provided by the Controller
 
+      ::
+
+          # Get the controller from the machine.
+          my_controller = Controller.from_robot(
+              robot=myRobotWithController, name="my_controller")
+
+          # Get the list of Controls provided by the controller.
+          controls = await my_controller.get_controls()
+
+          # Print the list of Controls provided by the controller.
+          print(f"Controls: {controls}")
+
       :returns: List of controls provided by the Controller
       :rtype: List[Control]
 
@@ -212,6 +224,18 @@ Attributes
       Returns the most recent Event for each input
       (which should be the current state)
 
+      ::
+
+          # Get the controller from the machine.
+          my_controller = Controller.from_robot(
+              robot=myRobotWithController, name="my_controller")
+
+          # Get the most recent Event for each Control.
+          recent_events = await my_controller.get_events()
+
+          # Print out the most recent Event for each Control.
+          print(f"Recent Events: {recent_events}")
+
       :returns: The most recent event for each input
       :rtype: Dict[Control, Event]
 
@@ -221,6 +245,46 @@ Attributes
 
       Register a function that will fire on given EventTypes for a given
       Control
+
+      ::
+
+          # Define a function to handle pressing the Start Menu Button "BUTTON_START" on
+          # your controller, printing out the start time.
+          def print_start_time(event):
+              print(f"Start Menu Button was pressed at this time: {event.time}")
+
+
+          # Define a function that handles the controller.
+          async def handle_controller(controller):
+              # Get the list of Controls on the controller.
+              controls = await controller.get_controls()
+
+              # If the "BUTTON_START" Control is found, register the function
+              # print_start_time to fire when "BUTTON_START" has the event "ButtonPress"
+              # occur.
+              if Control.BUTTON_START in controls:
+                  controller.register_control_callback(
+                      Control.BUTTON_START, [EventType.BUTTON_PRESS], print_start_time)
+              else:
+                  print("Oops! Couldn't find the start button control! Is your "
+                      "controller connected?")
+                  exit()
+
+              while True:
+                  await asyncio.sleep(1.0)
+
+
+          async def main():
+              # ... < INSERT CONNECTION CODE FROM MACHINE'S CODE SAMPLE TAB >
+
+              # Get your controller from the machine.
+              my_controller = Controller.from_robot(
+                  robot=myRobotWithController, name="my_controller")
+
+              # Run the handleController function.
+              await handleController(my_controller)
+
+              # ... < INSERT ANY OTHER CODE FOR MAIN FUNCTION >
 
       :param control: The control to register the function for
       :type control: Control
@@ -236,6 +300,16 @@ Attributes
       :async:
 
       Directly send an Event (such as a button press) from external code
+
+      ::
+
+          # Define a "Button is Pressed" event for the control BUTTON_START.
+          button_is_pressed_event = Event(
+              time(), EventType.BUTTON_PRESS, Control.BUTTON_START, 1.0)
+
+          # Trigger the event on your controller. Set this trigger to timeout if it has
+          # not completed in 7 seconds.
+          await myController.trigger_event(event=my_event, timeout=7.0)
 
       :param event: The event to trigger
       :type event: Event

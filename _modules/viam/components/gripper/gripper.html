@@ -118,6 +118,13 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Open the gripper.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+
+<span class="sd">            # Open the gripper.</span>
+<span class="sd">            await my_gripper.open()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -131,6 +138,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Instruct the gripper to grab.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+
+<span class="sd">            # Grab with the gripper.</span>
+<span class="sd">            grabbed = await my_gripper.grab()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Indicates if the gripper grabbed something.</span>
@@ -147,6 +161,13 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop the gripper. It is assumed the gripper stops immediately.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+
+<span class="sd">            # Stop the gripper.</span>
+<span class="sd">            await my_gripper.stop()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -154,6 +175,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get if the gripper is currently moving.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gripper = Gripper.from_robot(robot=robot, name=&quot;my_gripper&quot;)</span>
+
+<span class="sd">            # Check whether the gripper is currently moving.</span>
+<span class="sd">            moving = await my_gripper.is_moving()</span>
+<span class="sd">            print(&#39;Moving:&#39;, moving)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the gripper is moving.</span>

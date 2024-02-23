@@ -50,12 +50,26 @@ Classes
 
       Open the gripper.
 
+      ::
+
+          my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+          # Open the gripper.
+          await my_gripper.open()
+
 
    .. py:method:: grab(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool
       :abstractmethod:
       :async:
 
       Instruct the gripper to grab.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+          # Grab with the gripper.
+          grabbed = await my_gripper.grab()
 
       :returns: Indicates if the gripper grabbed something.
       :rtype: bool
@@ -67,12 +81,27 @@ Classes
 
       Stop the gripper. It is assumed the gripper stops immediately.
 
+      ::
+
+          my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+          # Stop the gripper.
+          await my_gripper.stop()
+
 
    .. py:method:: is_moving() -> bool
       :abstractmethod:
       :async:
 
       Get if the gripper is currently moving.
+
+      ::
+
+          my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+          # Check whether the gripper is currently moving.
+          moving = await my_gripper.is_moving()
+          print('Moving:', moving)
 
       :returns: Whether the gripper is moving.
       :rtype: bool
