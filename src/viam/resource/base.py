@@ -60,6 +60,11 @@ class ResourceBase(Protocol):
     ) -> Mapping[str, "ValueTypes"]:
         """Send/Receive arbitrary commands to the Resource
 
+        ::
+
+            command = {"cmd": "test", "data1": 500}
+            result = component.do(command)
+
         Args:
             command (Mapping[str, ValueTypes]): The command to execute
 
@@ -92,5 +97,10 @@ class ResourceBase(Protocol):
         Close must be idempotent. Later configuration may allow a resource to be "open" again.
         If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
         non-Close methods are called.
+
+        ::
+
+            await component.close()
+
         """
         return
