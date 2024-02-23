@@ -12,6 +12,10 @@ class Gripper(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     gripper implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.gripper import Gripper
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]

@@ -15,6 +15,10 @@ class Base(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     base implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.base import Base
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]

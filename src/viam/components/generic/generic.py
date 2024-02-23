@@ -15,6 +15,10 @@ class Generic(ComponentBase):
     To create a Generic component (an arbitrary component that can process commands), this ``Generic`` component should be subclassed
     and the ``do_command`` function implemented.
 
+    ::
+
+        from viam.components.generic import Generic
+
     Example::
 
         class ComplexComponent(Generic):
