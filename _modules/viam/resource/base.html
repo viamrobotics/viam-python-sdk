@@ -135,6 +135,11 @@
     <span class="k">def</span> <span class="nf">from_robot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="s2">&quot;RobotClient&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the Resource named ``name`` from the provided robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Can be used with any resource, using an arm as an example</span>
+<span class="sd">            my_arm = Arm.from_robot(robot, &quot;my_arm&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot (RobotClient): The robot</span>
 <span class="sd">            name (str): The name of the Resource</span>
@@ -149,6 +154,11 @@
         <span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ValueTypes&quot;</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;ValueTypes&quot;</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/Receive arbitrary commands to the Resource</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            command = {&quot;cmd&quot;: &quot;test&quot;, &quot;data1&quot;: 500}</span>
+<span class="sd">            result = component.do(command)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            command (Mapping[str, ValueTypes]): The command to execute</span>
@@ -182,6 +192,11 @@
 <span class="sd">        Close must be idempotent. Later configuration may allow a resource to be &quot;open&quot; again.</span>
 <span class="sd">        If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future</span>
 <span class="sd">        non-Close methods are called.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await component.close()</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span></div></div>
 </pre></div>

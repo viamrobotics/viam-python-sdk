@@ -91,6 +91,11 @@ Functions
       If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
       non-Close methods are called.
 
+      ::
+
+          await component.close()
+
+
 
 
 .. py:function:: do_command(channel: grpclib.client.Channel, name: str, command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, viam.utils.ValueTypes]

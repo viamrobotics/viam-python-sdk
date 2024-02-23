@@ -61,6 +61,14 @@ Classes
 
       Set the current position to be the new zero (home) position.
 
+      ::
+
+          my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+
+          # Reset the zero position of the encoder.
+          await my_encoder.reset_position()
+
+
 
    .. py:method:: get_position(position_type: Optional[viam.proto.component.encoder.PositionType.ValueType] = None, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, viam.proto.component.encoder.PositionType.ValueType]
       :abstractmethod:
@@ -70,6 +78,14 @@ Classes
       The value returned is the current position in terms of it's ``position_type``.
       The position will be either in relative units (ticks away from a zero position) for
       ``PositionType.TICKS`` or absolute units (degrees along a circle) for ``PositionType.DEGREES``.
+
+      ::
+
+          my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+
+          # Get the position of the encoder in ticks
+          position = await my_encoder.get_position(encoder.PositionTypeTicks)
+          print("The encoder position is currently ", position[0], position[1])
 
       :param position_type: The desired output type of the position
       :type position_type: PositionType.ValueType
@@ -87,6 +103,13 @@ Classes
       :async:
 
       Return a dictionary of the types of position reporting this encoder supports
+
+      ::
+
+          my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
+
+          # Get whether the encoder returns position in ticks or degrees.
+          properties = await my_encoder.get_properties()
 
       :returns: Map of position types to supported status.
       :rtype: Encoder.Properties
@@ -112,6 +135,11 @@ Classes
 
       Send/Receive arbitrary commands to the Resource
 
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
+
       :param command: The command to execute
       :type command: Mapping[str, ValueTypes]
 
@@ -125,6 +153,14 @@ Classes
       :async:
 
       Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
+
+      ::
+
+          geometries = await component.get_geometries()
+
+          if geometries:
+              # Get the center of the first geometry
+              print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
 
       :returns: The geometries associated with the Component.
       :rtype: List[Geometry]
@@ -162,6 +198,11 @@ Classes
       Close must be idempotent. Later configuration may allow a resource to be "open" again.
       If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
       non-Close methods are called.
+
+      ::
+
+          await component.close()
+
 
 
 

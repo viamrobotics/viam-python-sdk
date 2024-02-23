@@ -49,6 +49,11 @@ Classes
 
       Get the Resource named ``name`` from the provided robot.
 
+      ::
+
+          # Can be used with any resource, using an arm as an example
+          my_arm = Arm.from_robot(robot, "my_arm")
+
       :param robot: The robot
       :type robot: RobotClient
       :param name: The name of the Resource
@@ -63,6 +68,11 @@ Classes
       :async:
 
       Send/Receive arbitrary commands to the Resource
+
+      ::
+
+          command = {"cmd": "test", "data1": 500}
+          result = component.do(command)
 
       :param command: The command to execute
       :type command: Mapping[str, ValueTypes]
@@ -96,6 +106,11 @@ Classes
       Close must be idempotent. Later configuration may allow a resource to be "open" again.
       If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
       non-Close methods are called.
+
+      ::
+
+          await component.close()
+
 
 
 

@@ -137,6 +137,14 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all geometries associated with the Component, in their current configuration, in the frame of the Component.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            geometries = await component.get_geometries()</span>
+
+<span class="sd">            if geometries:</span>
+<span class="sd">                # Get the center of the first geometry</span>
+<span class="sd">                print(f&quot;Pose of the first geometry&#39;s centerpoint: {geometries[0].center}&quot;)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Geometry]: The geometries associated with the Component.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

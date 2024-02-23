@@ -126,6 +126,14 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the current position to be the new zero (home) position.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+
+<span class="sd">            # Reset the zero position of the encoder.</span>
+<span class="sd">            await my_encoder.reset_position()</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -143,6 +151,14 @@
 <span class="sd">        The value returned is the current position in terms of it&#39;s ``position_type``.</span>
 <span class="sd">        The position will be either in relative units (ticks away from a zero position) for</span>
 <span class="sd">        ``PositionType.TICKS`` or absolute units (degrees along a circle) for ``PositionType.DEGREES``.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+
+<span class="sd">            # Get the position of the encoder in ticks</span>
+<span class="sd">            position = await my_encoder.get_position(encoder.PositionTypeTicks)</span>
+<span class="sd">            print(&quot;The encoder position is currently &quot;, position[0], position[1])</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            position_type (PositionType.ValueType): The desired output type of the position</span>
@@ -164,6 +180,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a dictionary of the types of position reporting this encoder supports</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_encoder = Encoder.from_robot(robot=robot, name=&#39;my_encoder&#39;)</span>
+
+<span class="sd">            # Get whether the encoder returns position in ticks or degrees.</span>
+<span class="sd">            properties = await my_encoder.get_properties()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Encoder.Properties: Map of position types to supported status.</span>

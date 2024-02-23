@@ -254,6 +254,11 @@ Classes
       If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
       non-Close methods are called.
 
+      ::
+
+          await component.close()
+
+
 
 
 .. py:class:: MLModel(name: str)
@@ -354,6 +359,11 @@ Classes
       Close must be idempotent. Later configuration may allow a resource to be "open" again.
       If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
       non-Close methods are called.
+
+      ::
+
+          await component.close()
+
 
 
 

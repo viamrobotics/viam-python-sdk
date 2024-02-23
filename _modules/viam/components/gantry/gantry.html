@@ -114,6 +114,13 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the position in millimeters.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Get the current positions of the axes of the gantry in millimeters.</span>
+<span class="sd">            positions = await my_gantry.get_position()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[float]: The position of the axes.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -132,6 +139,20 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Move the gantry to a new position at the requested speeds.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Create a list of positions for the axes of the gantry to move to. Assume in</span>
+<span class="sd">            # this example that the gantry is multi-axis, with 3 axes.</span>
+<span class="sd">            examplePositions = [1, 2, 3]</span>
+
+<span class="sd">            exampleSpeeds = [3, 9, 12]</span>
+
+<span class="sd">            # Move the axes of the gantry to the positions specified.</span>
+<span class="sd">            await my_gantry.move_to_position(</span>
+<span class="sd">                positions=examplePositions, speeds=exampleSpeeds)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            positions (List[float]): List of positions for the axes to move to,</span>
 <span class="sd">                in millimeters.</span>
@@ -143,6 +164,12 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Home the gantry to find it&#39;s starting and ending positions</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            await my_gantry.home()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            bool : whether the gantry has run the homing sequence successfully</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
@@ -151,6 +178,13 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the lengths of the axes of the gantry in millimeters.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Get the lengths of the axes of the gantry in millimeters.</span>
+<span class="sd">            lengths_mm = await my_gantry.get_lengths()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[float]: The lengths of the axes.</span>
@@ -161,6 +195,15 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop all motion of the gantry. It is assumed that the gantry stops immediately.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Stop all motion of the gantry. It is assumed that the gantry stops</span>
+<span class="sd">            # immediately.</span>
+<span class="sd">            await my_gantry.stop()</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -168,6 +211,17 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get if the gantry is currently moving.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_gantry = Gantry.from_robot(robot=robot, name=&quot;my_gantry&quot;)</span>
+
+<span class="sd">            # Stop all motion of the gantry. It is assumed that the</span>
+<span class="sd">            # gantry stops immediately.</span>
+<span class="sd">            await my_gantry.stop()</span>
+
+<span class="sd">            # Print if the gantry is currently moving.</span>
+<span class="sd">            print(my_gantry.is_moving())</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the gantry is moving.</span>
