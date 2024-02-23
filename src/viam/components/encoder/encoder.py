@@ -92,6 +92,7 @@ class Encoder(ComponentBase):
         Return a dictionary of the types of position reporting this encoder supports
 
         ::
+
             my_encoder = Encoder.from_robot(robot=robot, name='my_encoder')
 
             # Get whether the encoder returns position in ticks or degrees.

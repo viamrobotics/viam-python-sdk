@@ -50,7 +50,7 @@ class ComponentBase(abc.ABC, ResourceBase):
         ::
 
             geometries = await component.get_geometries()
-            
+
             if geometries:
                 # Get the center of the first geometry
                 print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")

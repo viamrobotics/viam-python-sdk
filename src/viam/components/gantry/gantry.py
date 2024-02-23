@@ -50,6 +50,7 @@ class Gantry(ComponentBase):
         Move the gantry to a new position at the requested speeds.
 
         ::
+
             my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
 
             # Create a list of positions for the axes of the gantry to move to. Assume in

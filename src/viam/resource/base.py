@@ -45,6 +45,11 @@ class ResourceBase(Protocol):
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the Resource named ``name`` from the provided robot.
 
+        ::
+
+            # Can be used with any resource, using an arm as an example
+            my_arm = Arm.from_robot(robot, "my_arm")
+
         Args:
             robot (RobotClient): The robot
             name (str): The name of the Resource
