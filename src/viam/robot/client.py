@@ -66,6 +66,36 @@ class RobotClient:
 
     Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are
     not automatically closed.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.robot.client import RobotClient
+
+
+        async def connect():
+            opts = RobotClient.Options.with_api_key(
+                # Replace "<API-KEY>" (including brackets) with your machine's
+                # API key
+                api_key='<API-KEY>',
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's
+                # API key ID
+                api_key_id='<API-KEY-ID>'
+            )
+            return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+        async def main():
+            # Make a RobotClient
+            robot = await connect()
+            print('Resources:')
+            print(robot.resource_names)
+            await robot.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
     """
 
     @dataclass
@@ -106,6 +136,18 @@ class RobotClient:
             """
             Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
+            ::
+
+                # Replace "<API-KEY>" (including brackets) with your machine's API key
+                api_key = '<API-KEY>'
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key
+                # ID
+                api_key_id = '<API-KEY-ID>'
+
+                opts = RobotClient.Options.with_api_key(api_key, api_key_id)
+
+                robot = await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
             Args:
                 api_key (str): your API key
                 api_key_id (str): your API key ID. Must be a valid UUID
@@ -125,6 +167,23 @@ class RobotClient:
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
 
+        ::
+
+            async def connect():
+                opts = RobotClient.Options.with_api_key(
+                    # Replace "<API-KEY>" (including brackets) with your machine's API key
+                    api_key='<API-KEY>',
+                    # Replace "<API-KEY-ID>" (including brackets) with your machine's
+                    # API key ID
+                    api_key_id='<API-KEY-ID>'
+                )
+                return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+            async def main():
+                # Make a RobotClient
+                robot = await connect()
+
         Args:
             address (str): Address of the robot (IP address, URL, etc.)
             options (Options): Options for connecting and refreshing
@@ -143,6 +202,18 @@ class RobotClient:
         """Create a robot that is connected to a robot over the given channel.
 
         Any robots created using this method will *NOT* automatically close the channel upon exit.
+
+        ::
+
+            from viam.robot.client import RobotClient
+            from viam.rpc.dial import DialOptions, dial
+
+
+            async def connect_with_channel() -> RobotClient:
+                async with await dial('ADDRESS', DialOptions()) as channel:
+                    return await RobotClient.with_channel(channel, RobotClient.Options())
+
+            robot = await connect_with_channel()
 
         Args:
             channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``
@@ -217,6 +288,10 @@ class RobotClient:
     async def refresh(self):
         """
         Manually refresh the underlying parts of this robot
+
+        ::
+
+            await robot.refresh()
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
@@ -447,6 +522,10 @@ class RobotClient:
         """
         Get a list of all resource names
 
+        ::
+
+            resource_names = robot.resource_names
+
         Returns:
             List[viam.proto.common.ResourceName]: The list of resource names
         """
@@ -464,7 +543,12 @@ class RobotClient:
 
     async def close(self):
         """
-        Cleanly close the underlying connections and stop any periodic tasks
+        Cleanly close the underlying connections and stop any periodic tasks.
+
+        ::
+
+            # Cleanly close the underlying connections and stop any periodic tasks.
+            await robot.close()
         """
         LOGGER.debug("Closing RobotClient")
         if self._closed:
@@ -506,6 +590,11 @@ class RobotClient:
         Get the status of the robot's components. You can optionally
         provide a list of ``ResourceName`` for which you want statuses.
 
+        ::
+
+            # Get the status of the resources on the machine.
+            statuses = await robot.get_status()
+
         Args:
             components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
                 ``ResourceName`` for components you want statuses.
@@ -523,6 +612,10 @@ class RobotClient:
         """
         Get the list of operations currently running on the robot.
 
+        ::
+
+            operations = await robot.get_operations()
+
         Returns:
             List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.
         """
@@ -534,6 +627,10 @@ class RobotClient:
         """
         Cancels the specified operation on the robot.
 
+        ::
+
+            await robot.cancel_operation("INSERT OPERATION ID")
+
         Args:
             id (str): ID of operation to kill.
         """
@@ -544,6 +641,10 @@ class RobotClient:
         """
         Blocks on the specified operation on the robot. This function will only return when the specific operation
         has finished or has been cancelled.
+
+        ::
+
+            await robot.block_for_operation("INSERT OPERATION ID")
 
         Args:
             id (str): ID of operation to block on.
@@ -559,6 +660,12 @@ class RobotClient:
         """
         Get the configuration of the frame system of a given robot.
 
+        ::
+
+            # Get a list of each of the reference frames configured on the machine.
+            frame_system = await robot.get_frame_system_config()
+            print(f"frame system configuration: {frame_system}")
+
         Returns:
             List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot's frame system.
         """
@@ -571,6 +678,10 @@ class RobotClient:
     ) -> PoseInFrame:
         """
         Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
+
+        ::
+
+            pose = await robot.transform_pose(PoseInFrame(), "origin")
 
         Args:
 
@@ -596,6 +707,17 @@ class RobotClient:
         """
         Get the list of discovered component configurations.
 
+        ::
+
+            # Define a new discovery query.
+            q = robot.DiscoveryQuery(subtype=acme.API, model="some model")
+
+            # Define a list of discovery queries.
+            qs = [q]
+
+            # Get component configurations with these queries.
+            component_configs = await robot.discover_components(qs)
+
         Args:
 
             queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.
@@ -611,7 +733,13 @@ class RobotClient:
 
     async def stop_all(self, extra: Dict[ResourceName, Dict[str, Any]] = {}):
         """
-        Cancel all current and outstanding operations for the robot and stop all actuators and movement
+        Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+
+        ::
+
+            # Cancel all current and outstanding operations for the robot and stop all
+            # actuators and movement.
+            await robot.stop_all()
 
         Args:
             extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources' ``stop`` methods,

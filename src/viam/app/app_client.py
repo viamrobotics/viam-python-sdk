@@ -375,6 +375,41 @@ class AppClient:
 
     Constructor is used by `ViamClient` to instantiate relevant service stub. Calls to `AppClient`  methods should be made through
     `ViamClient`.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.app.viam_client import ViamClient
+
+
+        async def connect() -> ViamClient:
+            dial_options = DialOptions(
+            credentials=Credentials(
+                type="api-key",
+                # Replace "<API-KEY>" (including brackets) with your API key
+                payload='<API-KEY>',
+            ),
+            # Replace "<API-KEY-ID>" (including brackets) with your API key
+            # ID
+            auth_entity='<API-KEY-ID>'
+            )
+            return await ViamClient.create_from_dial_options(dial_options)
+
+
+        async def main():
+
+            # Make a ViamClient
+            viam_client = await connect()
+            # Instantiate an AppClient called "cloud" to run cloud app API methods on
+            cloud = viam_client.app_client
+
+            viam_client.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
+
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
@@ -444,6 +479,10 @@ class AppClient:
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
 
+        ::
+
+            org_list = await cloud.list_organizations()
+
         Returns:
             List[viam.proto.app.Organization]: The list of organizations.
         """
@@ -475,6 +514,11 @@ class AppClient:
 
     async def get_organization_namespace_availability(self, public_namespace: str) -> bool:
         """Check the availability of an organization namespace.
+
+        ::
+
+            available = await cloud.get_organization_namespace_availability(
+                public_namespace="my-cool-organization")
 
         Args:
             public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash
@@ -531,6 +575,10 @@ class AppClient:
     async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
 
+        ::
+
+            member_list, invite_list = await cloud.list_organization_members()
+
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
                 [0] of organization members, and the second [1] of organization invites.
@@ -542,6 +590,10 @@ class AppClient:
 
     async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]] = None) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
+
+        ::
+
+            await cloud.create_organization_invite("youremail@email.com")
 
         Args:
             email (str): The email address to send the invite to.
@@ -568,6 +620,24 @@ class AppClient:
         Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
         at least one authorization overall.
 
+        ::
+
+            from viam.proto.app import Authorization
+
+            authorization_to_add = Authorization(
+                authorization_type="some type of auth",
+                authorization_id="identifier",
+                resource_type="abc",
+                resource_id="resource-identifier123",
+                identity_id="id12345",
+                organization_id="org_id_123"
+            )
+
+            update_invite = await cloud.update_organization_invite_authorizations(
+                email="notarealemail@viam.com",
+                remove_authorizations=[authorization_to_add]
+            )
+
         Args:
             email (str): Email of the user the invite was sent to.
             add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
@@ -592,6 +662,13 @@ class AppClient:
     async def delete_organization_member(self, user_id: str) -> None:
         """Remove a member from the organization.
 
+        ::
+
+            member_list, invite_list = await cloud.list_organization_members()
+            first_user_id = member_list[0].user_id
+
+            await cloud.delete_organization_member(first_user_id)
+
         Args:
             user_id (str): The ID of the user to remove.
         """
@@ -601,6 +678,10 @@ class AppClient:
 
     async def delete_organization_invite(self, email: str) -> None:
         """Deletes a pending organization invite.
+
+        ::
+
+            await cloud.delete_organization_invite("youremail@email.com")
 
         Args:
             email (str): The email address the pending invite was sent to.
@@ -615,6 +696,10 @@ class AppClient:
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
         """Re-sends a pending organization invite email.
 
+        ::
+
+            await cloud.resend_organization_invite("youremail@email.com")
+
         Args:
             email (str): The email address associated with the invite.
 
@@ -628,6 +713,11 @@ class AppClient:
 
     async def create_location(self, name: str, parent_location_id: Optional[str] = None) -> Location:
         """Create and name a location under the currently authed-to organization and the specified parent location.
+
+        ::
+
+            my_new_location = await cloud.create_location(name="Robotville",
+                                                          parent_location_id="111ab12345")
 
         Args:
             name (str): Name of the location.
@@ -648,6 +738,10 @@ class AppClient:
     async def get_location(self, location_id: Optional[str] = None) -> Location:
         """Get a location.
 
+        ::
+
+            location = await cloud.get_location(location_id="123ab12345")
+
         Args:
             location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.
 
@@ -664,6 +758,31 @@ class AppClient:
 
     async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
         """Change the name of a location and/or assign it a new parent location.
+
+        ::
+
+            # The following line takes the location with ID "abc12abcde" and moves it
+            # to be a sub-location of the location with ID "xyz34xxxxx"
+            my_updated_location = await cloud.update_location(
+                location_id="abc12abcde",
+                name="",
+                parent_location_id="xyz34xxxxx",
+            )
+
+            # The following line changes the name of the location without changing its
+            # parent location
+            my_updated_location = await cloud.update_location(
+                location_id="abc12abcde",
+                name="Land Before Robots"
+            )
+
+            # The following line moves the location back up to be a top level location
+            # without changing its name
+            my_updated_location = await cloud.update_location(
+                location_id="abc12abcde",
+                name="",
+                parent_location_id=""
+            )
 
         Args:
             location_id (str): ID of the location to update. Must be specified.
@@ -685,6 +804,10 @@ class AppClient:
     async def delete_location(self, location_id: str) -> None:
         """Delete a location.
 
+        ::
+
+            await cloud.delete_location(location_id="abc12abcde")
+
         Args:
             location_id (str): ID of the location to delete. Must be specified.
 
@@ -696,6 +819,10 @@ class AppClient:
 
     async def list_locations(self) -> List[Location]:
         """Get a list of all locations under the currently authed-to organization.
+
+        ::
+
+            locations = await cloud.list_locations()
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
@@ -716,6 +843,10 @@ class AppClient:
     async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
         """Get a location's `LocationAuth` (location secret(s)).
 
+        ::
+
+            loc_auth = await cloud.location_auth(location_id="123xy12345")
+
         Args:
             location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`
                 instantiation.
@@ -733,6 +864,10 @@ class AppClient:
 
     async def create_location_secret(self, location_id: Optional[str] = None) -> LocationAuth:
         """Create a new location secret.
+
+        ::
+
+            new_loc_auth = await cloud.create_location_secret()
 
         Args:
             location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at
@@ -752,6 +887,11 @@ class AppClient:
     async def delete_location_secret(self, secret_id: str, location_id: Optional[str] = None) -> None:
         """Delete a location secret.
 
+        ::
+
+            await cloud.delete_location_secret(
+                secret_id="abcd123-456-7890ab-cxyz98-989898xyzxyz")
+
         Args:
             location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.
             secret_id (str): ID of the secret to delete.
@@ -767,6 +907,10 @@ class AppClient:
 
     async def get_robot(self, robot_id: str) -> Robot:
         """Get a robot.
+
+        ::
+
+            robot = await cloud.get_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
         Args:
             robot_id (str): ID of the robot to get.
@@ -784,6 +928,10 @@ class AppClient:
     async def get_rover_rental_robots(self) -> List[RoverRentalRobot]:
         """Returns a list of rover rental robots within an org.
 
+        ::
+
+            rental_robots = await cloud.get_rover_rental_robots()
+
         Returns:
             List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
         """
@@ -794,6 +942,11 @@ class AppClient:
 
     async def get_robot_parts(self, robot_id: str) -> List[RobotPart]:
         """Get a list of all the parts under a specific robot.
+
+        ::
+
+            list_of_parts = await cloud.get_robot_parts(
+                robot_id="1a123456-x1yz-0ab0-a12xyzabc")
 
         Args:
             robot_id (str): ID of the robot to get parts from.
@@ -810,6 +963,11 @@ class AppClient:
 
     async def get_robot_part(self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart:
         """Get a robot part.
+
+        ::
+
+            my_robot_part = await cloud.get_robot_part(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
             robot_part_id (str): ID of the robot part to get.
@@ -844,6 +1002,11 @@ class AppClient:
         num_log_entries: int = 100,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
+
+        ::
+
+            part_logs = await cloud.get_robot_part_logs(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22", num_log_entries=20)
 
         Args:
             robot_part_id (str): ID of the robot part to get logs from.
@@ -906,6 +1069,11 @@ class AppClient:
     ) -> _LogsStream[List[LogEntry]]:
         """Get an asynchronous iterator that receives live robot part logs.
 
+        ::
+
+            logs_stream = await cloud.tail_robot_part_logs(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+
         Args:
             robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
@@ -934,6 +1102,11 @@ class AppClient:
     async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
         """Get a list containing the history of a robot part.
 
+        ::
+
+            part_history = await cloud.get_robot_part_history(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+
         Args:
             robot_part_id (str): ID of the robot part to retrieve history from.
 
@@ -949,6 +1122,11 @@ class AppClient:
 
     async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
         """Change the name and assign an optional new configuration to a robot part.
+
+        ::
+
+            my_robot_part = await cloud.update_robot_part(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
             robot_part_id (str): ID of the robot part to update.
@@ -969,6 +1147,11 @@ class AppClient:
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
         """Create a new robot part.
 
+        ::
+
+            new_part_id = await cloud.new_robot_part(
+                robot_id="1a123456-x1yz-0ab0-a12xyzabc", part_name="myNewSubPart")
+
         Args:
             robot_id (str): ID of the the robot to create a new part for.
             part_name (str): Name of the new part.
@@ -986,6 +1169,11 @@ class AppClient:
     async def delete_robot_part(self, robot_part_id: str) -> None:
         """Delete the specified robot part.
 
+        ::
+
+            await cloud.delete_robot_part(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+
         Args:
             robot_part_id (str): ID of the robot part to delete. Must be specified.
 
@@ -997,6 +1185,11 @@ class AppClient:
 
     async def mark_part_as_main(self, robot_part_id: str) -> None:
         """Mark a robot part as the main part of a robot.
+
+        ::
+
+            await cloud.mark_part_as_main(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
             robot_part_id (str): ID of the robot part to mark as main.
@@ -1010,6 +1203,11 @@ class AppClient:
     async def mark_part_for_restart(self, robot_part_id: str) -> None:
         """Mark the specified robot part for restart.
 
+        ::
+
+            await cloud.mark_part_for_restart(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
+
         Args:
             robot_part_id (str): ID of the robot part to mark for restart.
 
@@ -1021,6 +1219,11 @@ class AppClient:
 
     async def create_robot_part_secret(self, robot_part_id: str) -> RobotPart:
         """Create a robot part secret.
+
+        ::
+
+            part_with_new_secret = await cloud.create_robot_part_secret(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22")
 
         Args:
             robot_part_id (str): ID of the robot part to create a secret for.
@@ -1038,6 +1241,12 @@ class AppClient:
     async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
         """Delete a robot part secret.
 
+        ::
+
+            await cloud.delete_robot_part_secret(
+                robot_part_id="abc12345-1a23-1234-ab12-a22a22a2aa22",
+                secret_id="123xyz12-abcd-4321-12ab-12xy1xyz12xy")
+
         Args:
             robot_part_id (str): ID of the robot part to delete the secret from.
             secret_id (str): ID of the secret to delete.
@@ -1050,6 +1259,10 @@ class AppClient:
 
     async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
         """Get a list of all robots under the specified location.
+
+        ::
+
+            list_of_machines = await cloud.list_robots(location_id="123ab12345")
 
         Args:
             location_id (Optional[str]): ID of the location to retrieve the robots from. Defaults to the location ID provided at
@@ -1069,6 +1282,10 @@ class AppClient:
     async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
         """Create a new robot.
 
+        ::
+
+            new_machine_id = await cloud.new_robot(name="beepboop")
+
         Args:
             name (str): Name of the new robot.
             location_id (Optional[str]): ID of the location under which to create the robot. Defaults to the current authorized location.
@@ -1086,6 +1303,12 @@ class AppClient:
 
     async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
         """Change the name of an existing robot.
+
+        ::
+
+            updated_robot = await cloud.update_robot(
+                robot_id="1a123456-x1yz-0ab0-a12xyzabc",
+                name="Orange-Robot")
 
         Args:
             robot_id (str): ID of the robot to update.
@@ -1109,6 +1332,10 @@ class AppClient:
     async def delete_robot(self, robot_id: str) -> None:
         """Delete the specified robot.
 
+        ::
+
+            await cloud.delete_robot(robot_id="1a123456-x1yz-0ab0-a12xyzabc")
+
         Args:
             robot_id (str): ID of the robot to delete.
 
@@ -1120,6 +1347,10 @@ class AppClient:
 
     async def list_fragments(self, show_public: bool = True) -> List[Fragment]:
         """Get a list of fragments under the currently authed-to organization.
+
+        ::
+
+            fragments_list = await cloud.list_fragments(show_public=False)
 
         Args:
             show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
@@ -1136,6 +1367,13 @@ class AppClient:
     async def get_fragment(self, fragment_id: str) -> Fragment:
         """Get a fragment.
 
+        ::
+
+            # Get a fragment and print its name and when it was created.
+            the_fragment = await cloud.get_fragment(
+                fragment_id="12a12ab1-1234-5678-abcd-abcd01234567")
+            print("Name: ", the_fragment.name, "\nCreated on: ", the_fragment.created_on)
+
         Args:
             fragment_id (str): ID of the fragment to get.
 
@@ -1151,6 +1389,11 @@ class AppClient:
 
     async def create_fragment(self, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
         """Create a new private fragment.
+
+        ::
+
+            new_fragment = await cloud.create_fragment(
+                name="cool_smart_machine_to_configure_several_of")
 
         Args:
             name (str): Name of the fragment.
@@ -1173,6 +1416,12 @@ class AppClient:
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
+        ::
+
+            updated_fragment = await cloud.update_fragment(
+                fragment_id="12a12ab1-1234-5678-abcd-abcd01234567",
+                name="better_name")
+
         Args:
             fragment_id (str): ID of the fragment to update.
             name (str): New name to associate with the fragment.
@@ -1194,6 +1443,11 @@ class AppClient:
     async def delete_fragment(self, fragment_id) -> None:
         """Delete a fragment.
 
+        ::
+
+            await cloud.delete_fragment(
+                fragment_id="12a12ab1-1234-5678-abcd-abcd01234567")
+
         Args:
             fragment_id (str): ID of the fragment to delete.
 
@@ -1211,6 +1465,14 @@ class AppClient:
         resource_id: str,
     ) -> None:
         """Add a role under the currently authed-to organization.
+
+        ::
+
+            await cloud.add_role(
+                identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                role="owner",
+                resource_type="location",
+                resource_id="111ab12345")
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
@@ -1241,6 +1503,14 @@ class AppClient:
     ) -> None:
         """Remove a role under the currently authed-to organization.
 
+        ::
+
+            await cloud.remove_role(
+                identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                role="owner",
+                resource_type="location",
+                resource_id="111ab12345")
+
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
@@ -1265,6 +1535,11 @@ class AppClient:
         """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
         are provided, all resource authorizations within the organizations are returned.
 
+        ::
+
+            list_of_auths = await cloud.list_authorizations(
+                resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
+
         Args:
             resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.
                 If None, defaults to all resources.
@@ -1283,6 +1558,21 @@ class AppClient:
     async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
         """Checks validity of a list of permissions.
 
+        ::
+
+            from viam.proto.app import AuthorizedPermissions
+
+            # Check whether the entity you're currently
+            # authenticated to has permission to control
+            # and/or read logs from robots
+            # in the "organization-identifier123" org
+            permissions = [AuthorizedPermissions(resource_type="organization",
+                                                 resource_id="organization-identifier123",
+                                                 permissions=["control_robot",
+                                                              "read_robot_logs"])]
+
+            filtered_permissions = await cloud.check_permissions(permissions)
+
         Args:
             permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate
                 (e.g., "read_organization", "control_robot")
@@ -1299,6 +1589,11 @@ class AppClient:
 
     async def create_module(self, name: str) -> Tuple[str, str]:
         """Create a module under the currently authed-to organization.
+
+        ::
+
+            new_module = await cloud.create_module(name="cool_new_hoverboard_module")
+            print("Module ID:", new_module[0])
 
         Args:
             name (str): The name of the module. Must be unique within your organization.
@@ -1325,6 +1620,14 @@ class AppClient:
         public: bool = False,
     ) -> str:
         """Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
+
+        ::
+
+            url_of_my_module = await cloud.update_module(
+                module_id="my-group:cool_new_hoverboard_module",
+                url="https://docsformymodule.viam.com",
+                description="A base to support hoverboards.",
+                entrypoint="exec")
 
         Args:
             module_id (str): ID of the module being updated, containing module name (e.g., "my-module") or namespace and module name (e.g.,
@@ -1355,6 +1658,10 @@ class AppClient:
     async def upload_module_file(self, module_file_info: Optional[ModuleFileInfo], file: bytes) -> str:
         """Upload a module file
 
+        ::
+
+            file_id = await cloud.upload_module_file(file=b"<file>")
+
         Args:
             module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.
             file (bytes): Bytes of file to upload.
@@ -1376,6 +1683,10 @@ class AppClient:
     async def get_module(self, module_id: str) -> Module:
         """Get a module.
 
+        ::
+
+            the_module = await cloud.get_module(module_id="my-cool-modular-base")
+
         Args:
             module_id (str): ID of the module being retrieved, containing module name or namespace and module name.
 
@@ -1392,6 +1703,10 @@ class AppClient:
     async def list_modules(self) -> List[Module]:
         """List the modules under the currently authed-to organization.
 
+        ::
+
+            modules_list = await cloud.list_modules()
+
         Returns:
             List[viam.proto.app.Module]: The list of modules.
         """
@@ -1404,6 +1719,18 @@ class AppClient:
     # app deal with setting a default.
     async def create_key(self, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
         """Creates a new API key.
+
+        ::
+
+            from viam.app.app_client import APIKeyAuthorization
+
+            auth = APIKeyAuthorization(
+            role="owner",
+            resource_type="robot",
+            resource_id="your-robot-id123"
+            )
+
+            api_key, api_key_id = cloud.create_key([auth], "my_key")
 
         Args:
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
@@ -1425,6 +1752,11 @@ class AppClient:
     async def create_key_from_existing_key_authorizations(self, id: str) -> Tuple[str, str]:
         """Creates a new API key with an existing key's authorizations
 
+        ::
+
+            api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(
+                id="INSERT YOUR API KEY ID")
+
         Args:
             id (str): the ID of the API key to duplication authorizations from
 
@@ -1440,6 +1772,10 @@ class AppClient:
 
     async def list_keys(self) -> List[APIKeyWithAuthorizations]:
         """Lists all keys for the currently-authed-to org.
+
+        ::
+
+            keys = cloud.list_keys()
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""
