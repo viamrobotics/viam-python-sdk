@@ -24,6 +24,13 @@ class Gantry(ComponentBase):
         """
         Get the position in millimeters.
 
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            # Get the current positions of the axes of the gantry in millimeters.
+            positions = await my_gantry.get_position()
+
         Returns:
             List[float]: The position of the axes.
         """
@@ -42,6 +49,20 @@ class Gantry(ComponentBase):
         """
         Move the gantry to a new position at the requested speeds.
 
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            # Create a list of positions for the axes of the gantry to move to. Assume in
+            # this example that the gantry is multi-axis, with 3 axes.
+            examplePositions = [1, 2, 3]
+
+            exampleSpeeds = [3, 9, 12]
+
+            # Move the axes of the gantry to the positions specified.
+            await my_gantry.move_to_position(
+                positions=examplePositions, speeds=exampleSpeeds)
+
         Args:
             positions (List[float]): List of positions for the axes to move to,
                 in millimeters.
@@ -53,6 +74,12 @@ class Gantry(ComponentBase):
         """
         Home the gantry to find it's starting and ending positions
 
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            await my_gantry.home()
+
         Returns:
             bool : whether the gantry has run the homing sequence successfully
         """
@@ -61,6 +88,13 @@ class Gantry(ComponentBase):
     async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         """
         Get the lengths of the axes of the gantry in millimeters.
+
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            # Get the lengths of the axes of the gantry in millimeters.
+            lengths_mm = await my_gantry.get_lengths()
 
         Returns:
             List[float]: The lengths of the axes.
@@ -71,6 +105,15 @@ class Gantry(ComponentBase):
     async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
         """
         Stop all motion of the gantry. It is assumed that the gantry stops immediately.
+
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            # Stop all motion of the gantry. It is assumed that the gantry stops
+            # immediately.
+            await my_gantry.stop()
+
         """
         ...
 
@@ -78,6 +121,17 @@ class Gantry(ComponentBase):
     async def is_moving(self) -> bool:
         """
         Get if the gantry is currently moving.
+
+        ::
+
+            my_gantry = Gantry.from_robot(robot=robot, name="my_gantry")
+
+            # Stop all motion of the gantry. It is assumed that the
+            # gantry stops immediately.
+            await my_gantry.stop()
+
+            # Print if the gantry is currently moving.
+            print(my_gantry.is_moving())
 
         Returns:
             bool: Whether the gantry is moving.
