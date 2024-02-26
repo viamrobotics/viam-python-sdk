@@ -176,7 +176,7 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
         raise MethodNotImplementedError("TransformPCD").grpc_error
 
     async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
-        raise MethodNotImplementedError("TransformPCD").grpc_error
+        raise MethodNotImplementedError("Log").grpc_error
 
     async def GetCloudMetadata(self, stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
         raise MethodNotImplementedError("GetCloudMetadata").grpc_error
