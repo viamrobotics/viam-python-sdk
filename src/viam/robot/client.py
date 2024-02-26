@@ -27,6 +27,8 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    LogEntry,
+    LogRequest,
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
@@ -623,3 +625,16 @@ class RobotClient:
             ep.append(StopExtraParameters(name=name, params=dict_to_struct(params)))
         request = StopAllRequest(extra=ep)
         await self._client.StopAll(request)
+
+    #######
+    # LOG #
+    #######
+
+    async def log(self, logs: List[LogEntry]):
+        """Send log entries to be used by Python modules wanting to log over gRPC and not by normal Python SDK clients.
+
+        Args:
+            logs (List[LogEntry]): The list of log entries to be sent.
+        """
+        request = LogRequest(logs=logs)
+        await self._client.Log(request)
