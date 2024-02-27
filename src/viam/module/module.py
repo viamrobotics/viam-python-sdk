@@ -1,4 +1,6 @@
 import sys
+import traceback
+from datetime import datetime
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
@@ -67,6 +69,7 @@ class Module:
         self._address = address
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
+        self._logger = logging.ModuleLogger(__name__, LOGGER)
         self._ready = True
         self._lock = Lock()
 
@@ -81,6 +84,7 @@ class Module:
                     log_level=self._log_level,
                 ),
             )
+            self._logger.start_logging_to_grpc(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()
@@ -98,6 +102,11 @@ class Module:
             rn = resource_name_from_string(dep)
             deps[rn] = await self._get_resource(rn)
         return deps
+
+    async def log(self, level: str, log: str):
+        stack = traceback.extract_stack()
+        caller = {stack[0][0]: stack[0][1]}
+        await self._logger.log(level, datetime.now(), log, caller, stack.format())
 
     async def start(self):
         """Start the module service and gRPC server"""
@@ -165,6 +174,8 @@ class Module:
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
+        await self._connect_to_parent()
+        self._logger.start_logging_to_grpc(self.parent)
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
         for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
