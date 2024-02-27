@@ -117,6 +117,14 @@ Classes
    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
    overridden, it must call the ``super().__init__()`` function.
 
+   ::
+
+       from viam.components.arm import Arm
+       # To use move_to_position:
+       from viam.proto.common import Pose
+       # To use move_to_joint_positions:
+       from viam.proto.component.arm import JointPositions
+
    .. py:attribute:: SUBTYPE
       :type: Final
 

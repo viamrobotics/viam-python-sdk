@@ -29,6 +29,13 @@ Classes
 
       Obtain the measurements/data specific to this sensor.
 
+      ::
+
+          my_sensor = Sensor.from_robot(robot=robot, name='my_sensor')
+
+          # Get the readings provided by the sensor.
+          readings = await my_sensor.get_readings()
+
       :returns: The measurements. Can be of any type.
       :rtype: Mapping[str, Any]
 

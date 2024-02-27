@@ -29,6 +29,15 @@ Classes
 
       Get the current GeoPoint (latitude, longitude) and altitude (m)
 
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot,
+              name="my_movement_sensor")
+
+          # Get the current position of the movement sensor.
+          position = await my_movement_sensor.get_position()
+
       :returns: The current lat/long, along with the altitude in m
       :rtype: Tuple[GeoPoint, float]
 
@@ -37,6 +46,14 @@ Classes
       :async:
 
       Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
+
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the current linear velocity of the movement sensor.
+          lin_vel = await my_movement_sensor.get_linear_velocity()
 
       :returns: The linear velocity in m/sec
       :rtype: Vector3
@@ -47,6 +64,17 @@ Classes
 
       Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
 
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the current angular velocity of the movement sensor.
+          ang_vel = await my_movement_sensor.get_angular_velocity()
+
+          # Get the y component of angular velocity.
+          y_ang_vel = ang_vel.y
+
       :returns: The angular velocity in degrees/sec
       :rtype: Vector3
 
@@ -55,6 +83,17 @@ Classes
       :async:
 
       Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
+
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the current linear acceleration of the movement sensor.
+          lin_accel = await my_movement_sensor.get_linear_acceleration()
+
+          # Get the x component of linear acceleration.
+          x_lin_accel = lin_accel.x
 
       :returns: The linear acceleration in m/sec^2
       :rtype: Vector3
@@ -65,6 +104,14 @@ Classes
 
       Get the current compass heading in degrees
 
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the current compass heading of the movement sensor.
+          heading = await my_movement_sensor.get_compass_heading()
+
       :returns: The compass heading in degrees
       :rtype: float
 
@@ -73,6 +120,14 @@ Classes
       :async:
 
       Get the current orientation
+
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the current orientation vector of the movement sensor.
+          orientation = await my_movement_sensor.get_orientation()
 
       :returns: The orientation
       :rtype: Orientation
@@ -83,6 +138,14 @@ Classes
 
       Get the supported properties of this sensor
 
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the supported properties of the movement sensor.
+          properties = await my_movement_sensor.get_properties()
+
       :returns: The properties
       :rtype: MovementSensor.Properties
 
@@ -91,6 +154,14 @@ Classes
       :async:
 
       Get the accuracy of the various sensors
+
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the accuracy of the movement sensor.
+          accuracy = await my_movement_sensor.get_accuracy()
 
       :returns: The accuracies of the movement sensor
       :rtype: MovementSensor.Accuracy
@@ -101,6 +172,14 @@ Classes
 
       Obtain the measurements/data specific to this sensor.
       If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+      ::
+
+          my_movement_sensor = MovementSensor.from_robot(
+              robot=robot, name="my_movement_sensor")
+
+          # Get the latest readings from the movement sensor.
+          readings = await my_movement_sensor.get_readings()
 
       :returns: The readings for the MovementSensor. Can be of any type.
       :rtype: Mapping[str, Any]

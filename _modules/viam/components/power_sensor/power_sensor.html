@@ -101,6 +101,10 @@
 
 <span class="sd">    This acts as an abstract base class for any sensors that can provide data regarding voltage, current and/or power.</span>
 <span class="sd">    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.</span>
+
+<span class="sd">    ::</span>
+
+<span class="sd">        from viam.components.power_sensor import PowerSensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -111,6 +115,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the voltage reading and bool IsAC</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_power_sensor = PowerSensor.from_robot(robot=robot, name=&#39;my_power_sensor&#39;)</span>
+
+<span class="sd">            # Get the voltage reading from the power sensor</span>
+<span class="sd">            voltage, is_ac = await my_power_sensor.get_voltage()</span>
+<span class="sd">            print(&quot;The voltage is&quot;, voltage, &quot;V, Is AC:&quot;, is_ac)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, bool]: voltage (volts) and bool IsAC</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -120,6 +132,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current reading and bool IsAC</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_power_sensor = PowerSensor.from_robot(robot=robot, name=&#39;my_power_sensor&#39;)</span>
+
+<span class="sd">            # Get the current reading from the power sensor</span>
+<span class="sd">            current, is_ac = await my_power_sensor.get_current()</span>
+<span class="sd">            print(&quot;The current is &quot;, current, &quot; A, Is AC: &quot;, is_ac)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[float, bool]: current (amperes) and bool IsAC</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -128,6 +148,14 @@
 <div class="viewcode-block" id="PowerSensor.get_power"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_power">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the power reading in watts</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_power_sensor = PowerSensor.from_robot(robot=robot, name=&#39;my_power_sensor&#39;)</span>
+
+<span class="sd">            # Get the power reading from the power sensor</span>
+<span class="sd">            power = await my_power_sensor.get_power()</span>
+<span class="sd">            print(&quot;The power is&quot;, power, &quot;Watts&quot;)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: power in watts</span>
@@ -139,6 +167,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
 <span class="sd">        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_power_sensor = PowerSensor.from_robot(robot=robot, name=&#39;my_power_sensor&#39;)</span>
+
+<span class="sd">            # Get the readings provided by the sensor.</span>
+<span class="sd">            readings = await my_power_sensor.get_readings()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The readings for the PowerSensor:</span>

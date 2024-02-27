@@ -104,6 +104,14 @@
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    arm implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
+
+<span class="sd">    ::</span>
+
+<span class="sd">        from viam.components.arm import Arm</span>
+<span class="sd">        # To use move_to_position:</span>
+<span class="sd">        from viam.proto.common import Pose</span>
+<span class="sd">        # To use move_to_joint_positions:</span>
+<span class="sd">        from viam.proto.component.arm import JointPositions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span><span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;arm&quot;</span><span class="p">)</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>

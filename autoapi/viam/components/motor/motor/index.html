@@ -175,6 +175,9 @@
 <p>This acts as an abstract base class for any drivers representing specific
 motor implementations. This cannot be used on its own. If the <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> function is
 overridden, it must call the <code class="docutils literal notranslate"><span class="pre">super().__init__()</span></code> function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.motor</span> <span class="kn">import</span> <span class="n">Motor</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.motor.motor.Motor.Properties">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Properties</span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.Properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.Properties" title="Permalink to this definition"></a></dt>
@@ -195,6 +198,12 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.set_power"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.set_power" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the “percentage” of power the motor should employ between -1 and 1.
 When <code class="docutils literal notranslate"><span class="pre">power</span></code> is negative, the rotation will be in the backward direction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the power to 40% forwards.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">set_power</span><span class="p">(</span><span class="n">power</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>power</strong> (<em>float</em>) – Power between -1 and 1
@@ -209,6 +218,12 @@ When <code class="docutils literal notranslate"><span class="pre">power</span></
 <dd><p>Spin the motor the specified number of <code class="docutils literal notranslate"><span class="pre">revolutions</span></code> at specified <code class="docutils literal notranslate"><span class="pre">rpm</span></code>.
 When <code class="docutils literal notranslate"><span class="pre">rpm</span></code> or <code class="docutils literal notranslate"><span class="pre">revolutions</span></code> is a negative value, the rotation will be in the backward direction.
 Note: if both <code class="docutils literal notranslate"><span class="pre">rpm</span></code> and <code class="docutils literal notranslate"><span class="pre">revolutions</span></code> are negative, the motor will spin in the forward direction.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Turn the motor 7.2 revolutions at 60 RPM.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">go_for</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mf">7.2</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -228,6 +243,12 @@ Note: if both <code class="docutils literal notranslate"><span class="pre">rpm</
 at the specified speed, in revolutions per minute.
 Regardless of the directionality of the <code class="docutils literal notranslate"><span class="pre">rpm</span></code> this function will move
 the motor towards the specified position.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Turn the motor to 8.3 revolutions from home at 75 RPM.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">go_to</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span> <span class="n">revolutions</span><span class="o">=</span><span class="mf">8.3</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -242,6 +263,12 @@ the motor towards the specified position.</p>
 <dt class="sig sig-object py" id="viam.components.motor.motor.Motor.reset_zero_position">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reset_zero_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.reset_zero_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.reset_zero_position" title="Permalink to this definition"></a></dt>
 <dd><p>Set the current position (modified by <code class="docutils literal notranslate"><span class="pre">offset</span></code>) to be the new zero (home) position.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the current position as the new home position with no offset.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">reset_zero_position</span><span class="p">(</span><span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>offset</strong> (<em>float</em>) – The offset from the current position to new home/zero position.</p>
@@ -255,6 +282,12 @@ the motor towards the specified position.</p>
 <dd><p>Report the position of the motor based on its encoder.
 The value returned is the number of revolutions relative to its zero position.
 This method will raise an exception if position reporting is not supported by the motor.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current position of the motor.</span>
+<span class="n">position</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Number of revolutions the motor is away from zero/home.</p>
@@ -270,6 +303,16 @@ This method will raise an exception if position reporting is not supported by th
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.components.motor.motor.Motor.Properties" title="viam.components.motor.motor.Motor.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.get_properties" title="Permalink to this definition"></a></dt>
 <dd><p>Report a dictionary mapping optional properties to
 whether it is supported by this motor.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Report a dictionary mapping optional properties to whether it is supported by</span>
+<span class="c1"># this motor.</span>
+<span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+
+<span class="c1"># Print out the properties.</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Properties: </span><span class="si">{</span><span class="n">properties</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Map of feature names to supported status.</p>
@@ -284,12 +327,26 @@ whether it is supported by this motor.</p>
 <dt class="sig sig-object py" id="viam.components.motor.motor.Motor.stop">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.stop" title="Permalink to this definition"></a></dt>
 <dd><p>Stop the motor immediately, without any gradual step down.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Stop the motor.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.motor.motor.Motor.is_powered">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_powered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.is_powered"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.is_powered" title="Permalink to this definition"></a></dt>
 <dd><p>Returns whether or not the motor is currently running.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check whether the motor is currently running.</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">is_powered</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Powered: &#39;</span><span class="p">,</span> <span class="n">powered</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Indicates whether the motor is currently powered.
@@ -305,6 +362,13 @@ float: The current power percentage of the motor</p>
 <dt class="sig sig-object py" id="viam.components.motor.motor.Motor.is_moving">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_moving</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/viam/components/motor/motor.html#Motor.is_moving"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.motor.Motor.is_moving" title="Permalink to this definition"></a></dt>
 <dd><p>Get if the motor is currently moving.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check whether the motor is currently moving.</span>
+<span class="n">moving</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">is_moving</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Moving: &#39;</span><span class="p">,</span> <span class="n">moving</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Whether the motor is moving.</p>

@@ -29,6 +29,14 @@ Classes
 
       Get the voltage reading and bool IsAC
 
+      ::
+
+          my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+
+          # Get the voltage reading from the power sensor
+          voltage, is_ac = await my_power_sensor.get_voltage()
+          print("The voltage is", voltage, "V, Is AC:", is_ac)
+
       :returns: voltage (volts) and bool IsAC
       :rtype: Tuple[float, bool]
 
@@ -37,6 +45,14 @@ Classes
       :async:
 
       Get the current reading and bool IsAC
+
+      ::
+
+          my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+
+          # Get the current reading from the power sensor
+          current, is_ac = await my_power_sensor.get_current()
+          print("The current is ", current, " A, Is AC: ", is_ac)
 
       :returns: current (amperes) and bool IsAC
       :rtype: Tuple[float, bool]
@@ -47,6 +63,14 @@ Classes
 
       Get the power reading in watts
 
+      ::
+
+          my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+
+          # Get the power reading from the power sensor
+          power = await my_power_sensor.get_power()
+          print("The power is", power, "Watts")
+
       :returns: power in watts
       :rtype: float
 
@@ -56,6 +80,13 @@ Classes
 
       Obtain the measurements/data specific to this sensor.
       If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+      ::
+
+          my_power_sensor = PowerSensor.from_robot(robot=robot, name='my_power_sensor')
+
+          # Get the readings provided by the sensor.
+          readings = await my_power_sensor.get_readings()
 
       :returns: The readings for the PowerSensor:
                 {

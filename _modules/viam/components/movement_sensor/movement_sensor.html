@@ -113,6 +113,10 @@
 
 <span class="sd">    This acts as an abstract base class for any sensors that can provide data regarding the robot&#39;s direction, position, and speed.</span>
 <span class="sd">    This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.</span>
+
+<span class="sd">    ::</span>
+
+<span class="sd">        from viam.components.movement_sensor import MovementSensor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
@@ -158,6 +162,15 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">GeoPoint</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current GeoPoint (latitude, longitude) and altitude (m)</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot,</span>
+<span class="sd">                name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current position of the movement sensor.</span>
+<span class="sd">            position = await my_movement_sensor.get_position()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[GeoPoint, float]: The current lat/long, along with the altitude in m</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -167,6 +180,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_linear_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current linear velocity of the movement sensor.</span>
+<span class="sd">            lin_vel = await my_movement_sensor.get_linear_velocity()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The linear velocity in m/sec</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -175,6 +196,17 @@
 <div class="viewcode-block" id="MovementSensor.get_angular_velocity"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_angular_velocity">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_angular_velocity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current angular velocity of the movement sensor.</span>
+<span class="sd">            ang_vel = await my_movement_sensor.get_angular_velocity()</span>
+
+<span class="sd">            # Get the y component of angular velocity.</span>
+<span class="sd">            y_ang_vel = ang_vel.y</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The angular velocity in degrees/sec</span>
@@ -187,6 +219,17 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current linear acceleration of the movement sensor.</span>
+<span class="sd">            lin_accel = await my_movement_sensor.get_linear_acceleration()</span>
+
+<span class="sd">            # Get the x component of linear acceleration.</span>
+<span class="sd">            x_lin_accel = lin_accel.x</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Vector3: The linear acceleration in m/sec^2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -195,6 +238,14 @@
 <div class="viewcode-block" id="MovementSensor.get_compass_heading"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_compass_heading">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_compass_heading</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current compass heading in degrees</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current compass heading of the movement sensor.</span>
+<span class="sd">            heading = await my_movement_sensor.get_compass_heading()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            float: The compass heading in degrees</span>
@@ -205,6 +256,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_orientation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Orientation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current orientation</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the current orientation vector of the movement sensor.</span>
+<span class="sd">            orientation = await my_movement_sensor.get_orientation()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Orientation: The orientation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -214,6 +273,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the supported properties of this sensor</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the supported properties of the movement sensor.</span>
+<span class="sd">            properties = await my_movement_sensor.get_properties()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            MovementSensor.Properties: The properties</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -222,6 +289,14 @@
 <div class="viewcode-block" id="MovementSensor.get_accuracy"><a class="viewcode-back" href="../../../../autoapi/viam/components/movement_sensor/movement_sensor/index.html#viam.components.movement_sensor.movement_sensor.MovementSensor.get_accuracy">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Accuracy</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the accuracy of the various sensors</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the accuracy of the movement sensor.</span>
+<span class="sd">            accuracy = await my_movement_sensor.get_accuracy()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            MovementSensor.Accuracy: The accuracies of the movement sensor</span>
@@ -233,6 +308,14 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
 <span class="sd">        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_movement_sensor = MovementSensor.from_robot(</span>
+<span class="sd">                robot=robot, name=&quot;my_movement_sensor&quot;)</span>
+
+<span class="sd">            # Get the latest readings from the movement sensor.</span>
+<span class="sd">            readings = await my_movement_sensor.get_readings()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.</span>

@@ -29,6 +29,22 @@ Classes
 
       Get the current angle (degrees) of the servo.
 
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Get the current set angle of the servo.
+          pos1 = await my_servo.get_position()
+
+          # Move the servo from its origin to the desired angle of 20 degrees.
+          await my_servo.move(20)
+
+          # Get the current set angle of the servo.
+          pos2 = await my_servo.get_position()
+
       :returns: The current angle of the servo in degrees.
       :rtype: int
 
@@ -37,6 +53,16 @@ Classes
       :async:
 
       Move the servo to the provided angle.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Move the servo from its origin to the desired angle of 90 degrees.
+          await my_servo.move(90)
 
       :param angle: The desired angle of the servo in degrees.
       :type angle: int
@@ -47,11 +73,28 @@ Classes
 
       Stop the servo. It is assumed that the servo stops immediately.
 
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          # Move the servo from its origin to the desired angle of 10 degrees.
+          await my_servo.move(10)
+
+          # Stop the servo. It is assumed that the servo stops moving immediately.
+          await my_servo.stop()
+
 
    .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
       :async:
 
       Get if the servo is currently moving.
+
+      ::
+
+          my_servo = Servo.from_robot(robot=robot, name="my_servo")
+
+          print(my_servo.is_moving())
+
 
       :returns: Whether the servo is moving.
       :rtype: bool
