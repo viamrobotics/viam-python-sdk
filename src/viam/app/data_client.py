@@ -720,6 +720,14 @@ class DataClient:
 
         Returns:
             str: The dataset ID of the created dataset.
+
+        ::
+
+            name = await data_client.create_dataset(
+                name="<dataset-name>",
+                organization_id="<your-org-id>"
+            )
+            print(name)
         """
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
@@ -733,6 +741,13 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets.
+
+        ::
+
+            datasets = await data_client.list_dataset_by_ids(
+                ids=["<dataset-id>"]
+            )
+            print(datasets)
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
@@ -747,6 +762,13 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
+
+        ::
+
+            datasets = await data_client.list_dataset_by_ids(
+                ids=["<dataset-id>"]
+            )
+            print(datasets)
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
@@ -761,6 +783,13 @@ class DataClient:
         Args:
             id (str): The ID of the dataset.
             name (str): The new name of the dataset.
+
+        ::
+
+            await data_client.rename_dataset(
+                id="<dataset-id>",
+                name="<dataset-name>"
+            )
         """
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
@@ -770,6 +799,12 @@ class DataClient:
 
         Args:
             id (str): The ID of the dataset.
+
+        ::
+
+            await data_client.delete_dataset(
+                id="<dataset-id>"
+            )
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -782,6 +817,30 @@ class DataClient:
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
             dataset_id (str): The ID of the dataset to be added to.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_binary_ids = []
+
+            for obj in binary_metadata:
+                my_binary_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                        )
+                    )
+
+            await data_client.add_binary_data_to_dataset_by_ids(
+                binary_ids=my_binary_ids,
+                dataset_id="<dataset-id>"
+            )
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
@@ -794,6 +853,30 @@ class DataClient:
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
             dataset_id (str): The ID of the dataset to be removed from.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_binary_ids = []
+
+            for obj in binary_metadata:
+                my_binary_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            await data_client.remove_binary_data_from_dataset_by_ids(
+                binary_ids=my_binary_ids,
+                dataset_id="<dataset-id>"
+            )
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
