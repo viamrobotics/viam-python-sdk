@@ -23,6 +23,8 @@ from viam.proto.robot import (
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetCloudMetadataRequest,
+    GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetStatusRequest,
@@ -623,3 +625,15 @@ class RobotClient:
             ep.append(StopExtraParameters(name=name, params=dict_to_struct(params)))
         request = StopAllRequest(extra=ep)
         await self._client.StopAll(request)
+
+    ######################
+    # Get Cloud Metadata #
+    ######################
+
+    async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
+        """
+        Returns app-related information about the robot.
+        """
+
+        request = GetCloudMetadataRequest()
+        return self._client.GetCloudMetadata(request)
