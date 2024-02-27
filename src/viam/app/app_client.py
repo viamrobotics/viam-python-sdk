@@ -84,9 +84,6 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
-)
-from viam.proto.app import LogEntry as LogEntryPB
-from viam.proto.app import (
     MarkPartAsMainRequest,
     MarkPartForRestartRequest,
     Model,
@@ -129,6 +126,7 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
@@ -319,7 +317,7 @@ class RobotPartHistoryEntry:
         """Create a `RobotPartHistoryEntry` from the .proto defined `RobotPartHistoryEntry`.
 
         Args:
-            robo_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.
+            robot_part_history_entry (viam.proto.app.RobotPartHistoryEntry): The object to copy from.
 
         Returns:
             RobotPartHistoryEntry: The `RobotPartHistoryEntry`.
@@ -434,8 +432,8 @@ class AppClient:
         return await self._create_authorization(
             identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
-            role=auth._role,
-            resource_type=auth._resource_type,
+            role=auth._role,  # type: ignore -- Ignoring because this is technically a `string`
+            resource_type=auth._resource_type,  # type: ignore -- Ignoring because this is technically a `string`
             resource_id=auth._resource_id,
         )
 
@@ -615,7 +613,7 @@ class AppClient:
         await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
 
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
-        """Resends a pending organization invite email.
+        """Re-sends a pending organization invite email.
 
         Args:
             email (str): The email address associated with the invite.
@@ -906,16 +904,16 @@ class AppClient:
     async def tail_robot_part_logs(
         self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
     ) -> _LogsStream[List[LogEntry]]:
-        """Get an asynchronous iterator that recieves live robot part logs.
+        """Get an asynchronous iterator that receives live robot part logs.
 
         Args:
-            robot_part_id (str): ID of the robot part to retrieve lgos from.
+            robot_part_id (str): ID of the robot part to retrieve logs from.
             errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
                 filter).
 
         Returns:
-            _LogsStream[List[LogEntry]]: The asynchronous iterator recieving live robot part logs.
+            _LogsStream[List[LogEntry]]: The asynchronous iterator receiving live robot part logs.
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
@@ -1124,7 +1122,7 @@ class AppClient:
         """Get a list of fragments under the currently authed-to organization.
 
         Args:
-            show_public: Optional boolean specifiying whether or not to only show public fragments. If True, only public fragments will
+            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                 return. If False, only private fragments will return. Defaults to True.
 
         Returns:
@@ -1282,7 +1280,7 @@ class AppClient:
         response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
         return list(response.authorizations)
 
-    async def check_permissions(self, permissions: [List[AuthorizedPermissions]]) -> List[AuthorizedPermissions]:
+    async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
         """Checks validity of a list of permissions.
 
         Args:
@@ -1369,9 +1367,10 @@ class AppClient:
         async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
-            response = await stream.recv_message()
+            response: Union[UploadModuleFileRequest, None] = await stream.recv_message()
             if not response:
                 await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
+                raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
             return response.url
 
     async def get_module(self, module_id: str) -> Module:
@@ -1418,8 +1417,8 @@ class AppClient:
             Tuple[str, str]: The api key and api key ID.
         """
         name = name if name is not None else str(datetime.now())
-        authorizationspb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
-        request = CreateKeyRequest(authorizations=authorizationspb, name=name)
+        authorizations_pb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
+        request = CreateKeyRequest(authorizations=authorizations_pb, name=name)
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
         return (response.key, response.id)
 
@@ -1447,4 +1446,4 @@ class AppClient:
         org_id = await self._get_organization_id()
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
-        return [key for key in response.api_keys]
+        return list(response.api_keys)

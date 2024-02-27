@@ -21,7 +21,11 @@ class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
         super().__init__(name)
 
     async def get_readings(
-        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
     ) -> Mapping[str, SensorReading]:
         if extra is None:
             extra = {}
@@ -29,7 +33,13 @@ class SensorClient(Sensor, ReconfigurableResourceRPCClientBase):
         response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
         return sensor_readings_value_to_native(response.readings)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -110,9 +110,6 @@ from viam.proto.app import (
     Location,
     LocationAuthRequest,
     LocationAuthResponse,
-)
-from viam.proto.app import LogEntry as LogEntryPB
-from viam.proto.app import (
     MarkPartAsMainRequest,
     MarkPartAsMainResponse,
     MarkPartForRestartRequest,
@@ -208,6 +205,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadRequest,
     StreamingDataCaptureUploadResponse,
 )
+from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, value_to_primitive
 
 

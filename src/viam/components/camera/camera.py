@@ -1,15 +1,21 @@
 import abc
-from typing import TYPE_CHECKING, Any, Dict, Final, List, Optional, Tuple
+import sys
+from typing import Any, Dict, Final, List, Optional, Tuple, Union
 
-from viam.media.video import NamedImage, ViamImage
+from PIL.Image import Image
+
+from viam.media.video import NamedImage
 from viam.proto.common import ResponseMetadata
 from viam.proto.component.camera import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
 from ..component_base import ComponentBase
+from . import RawImage
 
-if TYPE_CHECKING:
+if sys.version_info >= (3, 10):
     from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 
 class Camera(ComponentBase):
@@ -21,25 +27,38 @@ class Camera(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "camera"
+    )
 
     Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
     async def get_image(
         self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> ViamImage:
-        """Get the next image from the camera as a ViamImage.
+    ) -> Union[Image, RawImage]:
+        """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
 
         NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
         to convert the data to a standard representation.
 
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            # Assume "frame" has a mime_type of "image/vnd.viam.dep"
+            frame = await my_camera.get_image(mime_type = CameraMimeType.VIAM_RAW_DEPTH)
+
+            # Convert "frame" to a standard 2D image representation.
+            # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
+            standard_frame = frame.bytes_to_depth_array()
+
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
 
         Returns:
-            ViamImage: The frame
+            Image | RawImage: The frame
         """
         ...
 
@@ -47,6 +66,14 @@ class Camera(ComponentBase):
     async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
+
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            images, metadata = await my_camera.get_images()
+            img0 = images[0].image
+            timestamp = metadata.captured_at
 
         Returns:
             Tuple[List[NamedImage], ResponseMetadata]:
@@ -93,6 +120,12 @@ class Camera(ComponentBase):
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
         """
         Get the camera intrinsic parameters and camera distortion parameters
+
+        ::
+
+            my_camera = Camera.from_robot(robot=robot, name="my_camera")
+
+            properties = await my_camera.get_properties()
 
         Returns:
             Properties: The properties of the camera

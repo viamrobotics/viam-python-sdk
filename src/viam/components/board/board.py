@@ -19,12 +19,20 @@ class Board(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board"
+    )
 
-    class AnalogReader(ComponentBase):
+    class AnalogReader:
         """
         AnalogReader represents an analog pin reader that resides on a Board.
         """
+
+        name: str
+        """The name of the analog reader"""
+
+        def __init__(self, name: str):
+            self.name = name
 
         @abc.abstractmethod
         async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
@@ -36,12 +44,18 @@ class Board(ComponentBase):
             """
             ...
 
-    class DigitalInterrupt(ComponentBase):
+    class DigitalInterrupt:
         """
         DigitalInterrupt represents a configured interrupt on the Board that
         when interrupted, calls the added callbacks. Post processors can
         be added to modify what Value it ultimately returns.
         """
+
+        name: str
+        """The name of the digital interrupt"""
+
+        def __init__(self, name: str):
+            self.name = name
 
         @abc.abstractmethod
         async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
@@ -54,10 +68,16 @@ class Board(ComponentBase):
             """
             ...
 
-    class GPIOPin(ComponentBase):
+    class GPIOPin:
         """
         Abstract representation of an individual GPIO pin on a board
         """
+
+        name: str
+        """The name of the GPIO pin"""
+
+        def __init__(self, name: str):
+            self.name = name
 
         @abc.abstractmethod
         async def set(self, high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):

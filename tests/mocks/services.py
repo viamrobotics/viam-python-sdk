@@ -1,5 +1,4 @@
-from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple, Union
 
 import numpy as np
 from grpclib.server import Stream
@@ -115,7 +114,6 @@ from viam.proto.app import (
     LocationAuth,
     LocationAuthRequest,
     LocationAuthResponse,
-    LogEntry,
     MarkPartAsMainRequest,
     MarkPartAsMainResponse,
     MarkPartForRestartRequest,
@@ -165,24 +163,14 @@ from viam.proto.app import (
 )
 from viam.proto.app.billing import (
     BillingServiceBase,
-    GetBillingSummaryRequest,
-    GetBillingSummaryResponse,
     GetCurrentMonthUsageRequest,
     GetCurrentMonthUsageResponse,
-    GetCurrentMonthUsageSummaryRequest,
-    GetCurrentMonthUsageSummaryResponse,
-    GetInvoiceHistoryRequest,
-    GetInvoiceHistoryResponse,
     GetInvoicePdfRequest,
     GetInvoicePdfResponse,
     GetInvoicesSummaryRequest,
     GetInvoicesSummaryResponse,
-    GetItemizedInvoiceRequest,
-    GetItemizedInvoiceResponse,
     GetOrgBillingInformationRequest,
     GetOrgBillingInformationResponse,
-    GetUnpaidBalanceRequest,
-    GetUnpaidBalanceResponse,
 )
 from viam.proto.app.data import (
     AddBinaryDataToDatasetByIDsRequest,
@@ -229,6 +217,20 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    Dataset,
+    DatasetServiceBase,
+    DeleteDatasetRequest,
+    DeleteDatasetResponse,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
+    RenameDatasetResponse,
+)
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
@@ -252,7 +254,17 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
 )
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GeoObstacle, GeoPoint, PointCloudObject, Pose, PoseInFrame, ResourceName
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GeoObstacle,
+    GeoPoint,
+    LogEntry,
+    PointCloudObject,
+    Pose,
+    PoseInFrame,
+    ResourceName,
+)
 from viam.proto.service.mlmodel import (
     FlatTensor,
     FlatTensorDataDouble,
@@ -278,8 +290,6 @@ from viam.proto.service.motion import (
     MotionServiceBase,
     MoveOnGlobeRequest,
     MoveOnGlobeResponse,
-    MoveOnMapNewRequest,
-    MoveOnMapNewResponse,
     MoveOnMapRequest,
     MoveOnMapResponse,
     MoveRequest,
@@ -298,6 +308,7 @@ from viam.proto.service.sensors import (
 )
 from viam.proto.service.slam import MappingMode
 from viam.proto.service.vision import Classification, Detection
+from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
@@ -490,12 +501,12 @@ class MockMotion(MotionServiceBase):
         self.component_name = request.component_name
         self.destination = request.destination
         self.slam_service = request.slam_service_name
+        self.configuration = request.motion_configuration
+        self.obstacles = request.obstacles
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await stream.send_message(MoveOnMapResponse(success=True))
-
-    async def MoveOnMapNew(self, stream: Stream[MoveOnMapNewRequest, MoveOnMapNewResponse]) -> None:
-        raise NotImplementedError()
+        self.execution_id = "some execution id"
+        await stream.send_message(MoveOnMapResponse(execution_id=self.execution_id))
 
     async def MoveOnGlobe(self, stream: Stream[MoveOnGlobeRequest, MoveOnGlobeResponse]) -> None:
         request = await stream.recv_message()
@@ -590,7 +601,6 @@ class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
-    LAST_UPDATE = datetime(2023, 3, 12, 3, 24, 34, 29)
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
 
@@ -610,10 +620,6 @@ class MockSLAM(SLAM):
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
         return self.POSITION
-
-    async def get_latest_map_info(self, *, timeout: Optional[float] = None) -> datetime:
-        self.timeout = timeout
-        return self.LAST_UPDATE
 
     async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
         self.timeout = timeout
@@ -830,18 +836,66 @@ class MockData(DataServiceBase):
     async def AddBinaryDataToDatasetByIDs(
         self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.added_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(AddBinaryDataToDatasetByIDsResponse())
 
     async def RemoveBinaryDataFromDatasetByIDs(
         self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.removed_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         raise NotImplementedError()
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockDataset(DatasetServiceBase):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+        self.create_response = create_response
+        self.datasets_response = datasets_response
+
+    async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.org_id = request.organization_id
+        await stream.send_message(CreateDatasetResponse(id=self.create_response))
+
+    async def DeleteDataset(self, stream: Stream[DeleteDatasetRequest, DeleteDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_id = request.id
+        await stream.send_message(DeleteDatasetResponse())
+
+    async def ListDatasetsByIDs(self, stream: Stream[ListDatasetsByIDsRequest, ListDatasetsByIDsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.ids = request.ids
+        await stream.send_message(ListDatasetsByIDsResponse(datasets=self.datasets_response))
+
+    async def ListDatasetsByOrganizationID(
+        self, stream: Stream[ListDatasetsByOrganizationIDRequest, ListDatasetsByOrganizationIDResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
+
+    async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message((RenameDatasetResponse()))
 
 
 class MockDataSync(DataSyncServiceBase):
@@ -954,24 +1008,6 @@ class MockBilling(BillingServiceBase):
         assert request is not None
         self.org_id = request.org_id
         await stream.send_message(self.billing_info)
-
-    async def GetBillingSummary(self, stream: Stream[GetBillingSummaryRequest, GetBillingSummaryResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetCurrentMonthUsageSummary(
-        self,
-        stream: Stream[GetCurrentMonthUsageSummaryRequest, GetCurrentMonthUsageSummaryResponse],
-    ) -> None:
-        raise NotImplementedError()
-
-    async def GetInvoiceHistory(self, stream: Stream[GetInvoiceHistoryRequest, GetInvoiceHistoryResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetItemizedInvoice(self, stream: Stream[GetItemizedInvoiceRequest, GetItemizedInvoiceResponse]) -> None:
-        raise NotImplementedError()
-
-    async def GetUnpaidBalance(self, stream: Stream[GetUnpaidBalanceRequest, GetUnpaidBalanceResponse]) -> None:
-        raise NotImplementedError()
 
 
 class MockApp(AppServiceBase):
@@ -1424,3 +1460,11 @@ class MockApp(AppServiceBase):
 
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockGenericService(GenericService):
+    timeout: Optional[float] = None
+
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+        self.timeout = timeout
+        return {key: True for key in command.keys()}

@@ -37,7 +37,13 @@ class AnalogReaderClient(Board.AnalogReader):
         self.board = board
         super().__init__(name)
 
-    async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> int:
+    async def read(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> int:
         if extra is None:
             extra = {}
         request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
@@ -50,7 +56,13 @@ class DigitalInterruptClient(Board.DigitalInterrupt):
         self.board = board
         super().__init__(name)
 
-    async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> int:
+    async def value(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> int:
         if extra is None:
             extra = {}
         request = GetDigitalInterruptValueRequest(board_name=self.board.name, digital_interrupt_name=self.name, extra=dict_to_struct(extra))
@@ -63,40 +75,79 @@ class GPIOPinClient(Board.GPIOPin):
         self.board = board
         super().__init__(name)
 
-    async def get(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> bool:
+    async def get(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> bool:
         if extra is None:
             extra = {}
         request = GetGPIORequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: GetGPIOResponse = await self.board.client.GetGPIO(request, timeout=timeout)
         return response.high
 
-    async def set(self, high: bool, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+    async def set(
+        self,
+        high: bool,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
         if extra is None:
             extra = {}
         request = SetGPIORequest(name=self.board.name, pin=self.name, high=high, extra=dict_to_struct(extra))
         await self.board.client.SetGPIO(request, timeout=timeout)
 
-    async def get_pwm(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> float:
+    async def get_pwm(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> float:
         if extra is None:
             extra = {}
         request = PWMRequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: PWMResponse = await self.board.client.PWM(request, timeout=timeout)
         return response.duty_cycle_pct
 
-    async def set_pwm(self, duty_cycle: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+    async def set_pwm(
+        self,
+        duty_cycle: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
         if extra is None:
             extra = {}
         request = SetPWMRequest(name=self.board.name, pin=self.name, duty_cycle_pct=duty_cycle, extra=dict_to_struct(extra))
         await self.board.client.SetPWM(request, timeout=timeout)
 
-    async def get_pwm_frequency(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> int:
+    async def get_pwm_frequency(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> int:
         if extra is None:
             extra = {}
         request = PWMFrequencyRequest(name=self.board.name, pin=self.name, extra=dict_to_struct(extra))
         response: PWMFrequencyResponse = await self.board.client.PWMFrequency(request, timeout=timeout)
         return response.frequency_hz
 
-    async def set_pwm_frequency(self, frequency: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+    async def set_pwm_frequency(
+        self,
+        frequency: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
         if extra is None:
             extra = {}
         request = SetPWMFrequencyRequest(name=self.board.name, pin=self.name, frequency_hz=frequency, extra=dict_to_struct(extra))
@@ -138,14 +189,26 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             self._digital_interrupt_names = names
         return self._digital_interrupt_names
 
-    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> BoardStatus:
+    async def status(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> BoardStatus:
         if extra is None:
             extra = {}
         request = StatusRequest(name=self.name, extra=dict_to_struct(extra))
         response: StatusResponse = await self.client.Status(request, timeout=timeout)
         return response.status
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)
@@ -156,6 +219,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         duration: Optional[timedelta] = None,
         *,
         timeout: Optional[float] = None,
+        **__,
     ):
         duration_pb: Optional[Duration] = None
         if duration is not None:
@@ -166,6 +230,16 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)
 
-    async def write_analog(self, pin: str, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
-        request = WriteAnalogRequest(name=self.name, pin=pin, value=value)
+    async def write_analog(
+        self,
+        pin: str,
+        value: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
+        if extra is None:
+            extra = {}
+        request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
         await self.client.WriteAnalog(request, timeout=timeout)

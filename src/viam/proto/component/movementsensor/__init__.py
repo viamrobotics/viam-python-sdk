@@ -20,7 +20,6 @@ from ....gen.component.movementsensor.v1.movementsensor_pb2 import (
     GetPositionResponse,
     GetPropertiesRequest,
     GetPropertiesResponse,
-    NmeaGGAFix,
 )
 
 __all__ = [
@@ -42,5 +41,4 @@ __all__ = [
     "GetPositionResponse",
     "GetPropertiesRequest",
     "GetPropertiesResponse",
-    "NmeaGGAFix",
 ]

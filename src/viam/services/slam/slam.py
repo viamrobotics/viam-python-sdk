@@ -1,5 +1,4 @@
 import abc
-from datetime import datetime
 from typing import Final, List, Optional, Tuple
 
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -17,7 +16,7 @@ class SLAM(ServiceBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")
+    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
@@ -37,16 +36,6 @@ class SLAM(ServiceBase):
         Returns:
             List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
                 GetPointCloudMapResponse.point_cloud_pcd_chunk values
-        """
-        ...
-
-    @abc.abstractmethod
-    async def get_latest_map_info(self, *, timeout: Optional[float]) -> datetime:
-        """
-        Get the timestamp of the last update to the point cloud SLAM map.
-
-        Returns:
-            datetime: The timestamp of the last update.
         """
         ...
 

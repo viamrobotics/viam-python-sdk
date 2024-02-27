@@ -47,6 +47,14 @@ class ComponentBase(abc.ABC, ResourceBase):
         """
         Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
 
+        ::
+
+            geometries = await component.get_geometries()
+
+            if geometries:
+                # Get the center of the first geometry
+                print(f"Pose of the first geometry's centerpoint: {geometries[0].center}")
+
         Returns:
             List[Geometry]: The geometries associated with the Component.
         """

@@ -19,7 +19,9 @@ class Motor(ComponentBase):
     class Properties:
         position_reporting: bool
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "motor"
+    )
 
     @abc.abstractmethod
     async def set_power(

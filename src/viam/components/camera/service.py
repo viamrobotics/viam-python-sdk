@@ -1,3 +1,5 @@
+# TODO: Update type checking based with RSDK-4089
+# pyright: reportGeneralTypeIssues=false
 from typing import Dict
 
 from google.api.httpbody_pb2 import HttpBody
@@ -24,7 +26,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from . import Camera, RawImage
 
 
-class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
+class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     """
     gRPC Service for a generic Camera
     """
@@ -78,7 +80,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
-    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:
+    async def RenderFrame(self, stream: Stream[RenderFrameRequest, HttpBody]) -> None:  # pyright: ignore [reportInvalidTypeForm]
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -93,7 +95,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase):
             img = mimetype.encode_image(image)
         finally:
             image.close()
-        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, RawImage) else mimetype)
+        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, RawImage) else mimetype)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:

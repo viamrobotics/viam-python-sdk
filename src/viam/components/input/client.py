@@ -43,14 +43,26 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         self._callback_extra: Struct = dict_to_struct({})
         super().__init__(name)
 
-    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Control]:
+    async def get_controls(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> List[Control]:
         if extra is None:
             extra = {}
         request = GetControlsRequest(controller=self.name, extra=dict_to_struct(extra))
         response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout)
         return [Control(control) for control in response.controls]
 
-    async def get_events(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> Dict[Control, Event]:
+    async def get_events(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Dict[Control, Event]:
         if extra is None:
             extra = {}
         request = GetEventsRequest(controller=self.name, extra=dict_to_struct(extra))
@@ -58,7 +70,12 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         return {Control(event.control): Event.from_proto(event) for (event) in response.events}
 
     def register_control_callback(
-        self, control: Control, triggers: List[EventType], function: Optional[ControlFunction], extra: Optional[Dict[str, Any]] = None
+        self,
+        control: Control,
+        triggers: List[EventType],
+        function: Optional[ControlFunction],
+        extra: Optional[Dict[str, Any]] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -92,7 +109,14 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
                 for event_type, func in callback.items():
                     self.register_control_callback(control, [event_type], func)
 
-    async def trigger_event(self, event: Event, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None):
+    async def trigger_event(
+        self,
+        event: Event,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
         if extra is None:
             extra = {}
         request = TriggerEventRequest(controller=self.name, event=event.proto, extra=dict_to_struct(extra))
@@ -156,7 +180,13 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         if all_callback is not None:
             all_callback(event)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

@@ -20,7 +20,13 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
         self.client = GenericServiceStub(channel)
         super().__init__(name)
 
-    async def do_command(self, command: Mapping[str, Any], *, timeout: Optional[float] = None) -> Mapping[str, Any]:
+    async def do_command(
+        self,
+        command: Mapping[str, Any],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, Any]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         try:
             response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)

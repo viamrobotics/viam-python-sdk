@@ -9,6 +9,7 @@ import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
+import google.protobuf.struct_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -164,15 +165,23 @@ class AppSubsystemConfig(google.protobuf.message.Message):
     PIN_VERSION_FIELD_NUMBER: builtins.int
     PIN_URL_FIELD_NUMBER: builtins.int
     DISABLE_SUBSYSTEM_FIELD_NUMBER: builtins.int
+    ATTRIBUTES_FIELD_NUMBER: builtins.int
     release_channel: builtins.str
     pin_version: builtins.str
     pin_url: builtins.str
     disable_subsystem: builtins.bool
 
-    def __init__(self, *, release_channel: builtins.str=..., pin_version: builtins.str=..., pin_url: builtins.str=..., disable_subsystem: builtins.bool=...) -> None:
+    @property
+    def attributes(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['disable_subsystem', b'disable_subsystem', 'pin_url', b'pin_url', 'pin_version', b'pin_version', 'release_channel', b'release_channel']) -> None:
+    def __init__(self, *, release_channel: builtins.str=..., pin_version: builtins.str=..., pin_url: builtins.str=..., disable_subsystem: builtins.bool=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'disable_subsystem', b'disable_subsystem', 'pin_url', b'pin_url', 'pin_version', b'pin_version', 'release_channel', b'release_channel']) -> None:
         ...
 global___AppSubsystemConfig = AppSubsystemConfig
 
@@ -270,6 +279,7 @@ class DeviceSubsystemConfig(google.protobuf.message.Message):
     UPDATE_INFO_FIELD_NUMBER: builtins.int
     DISABLE_FIELD_NUMBER: builtins.int
     FORCE_RESTART_FIELD_NUMBER: builtins.int
+    ATTRIBUTES_FIELD_NUMBER: builtins.int
 
     @property
     def update_info(self) -> global___SubsystemUpdateInfo:
@@ -279,13 +289,17 @@ class DeviceSubsystemConfig(google.protobuf.message.Message):
     force_restart: builtins.bool
     'force_restart will restart the subsystem, even if no updates are available'
 
-    def __init__(self, *, update_info: global___SubsystemUpdateInfo | None=..., disable: builtins.bool=..., force_restart: builtins.bool=...) -> None:
+    @property
+    def attributes(self) -> google.protobuf.struct_pb2.Struct:
+        """arbitrary config sections"""
+
+    def __init__(self, *, update_info: global___SubsystemUpdateInfo | None=..., disable: builtins.bool=..., force_restart: builtins.bool=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['update_info', b'update_info']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'update_info', b'update_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['disable', b'disable', 'force_restart', b'force_restart', 'update_info', b'update_info']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'disable', b'disable', 'force_restart', b'force_restart', 'update_info', b'update_info']) -> None:
         ...
 global___DeviceSubsystemConfig = DeviceSubsystemConfig
 

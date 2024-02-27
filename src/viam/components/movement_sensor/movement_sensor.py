@@ -1,15 +1,21 @@
 import abc
+import sys
 from dataclasses import dataclass
 from typing import Any, Dict, Final, Mapping, Optional, Tuple
 
 from typing_extensions import Self
 
 from viam.components.component_base import ComponentBase
-from viam.proto.component.movementsensor import GetPropertiesResponse
+from viam.proto.component.movementsensor import GetAccuracyResponse, GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.utils import SensorReading
 
 from . import GeoPoint, Orientation, Vector3
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 
 class MovementSensor(ComponentBase):
@@ -19,7 +25,11 @@ class MovementSensor(ComponentBase):
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "movement_sensor"
+    )
+
+    Accuracy: "TypeAlias" = GetAccuracyResponse
 
     @dataclass
     class Properties:
@@ -120,13 +130,11 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_accuracy(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Mapping[str, float]:
+    async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Accuracy:
         """Get the accuracy of the various sensors
 
         Returns:
-            Dict[str, float]: The accuracy
+            MovementSensor.Accuracy: The accuracies of the movement sensor
         """
         ...
 

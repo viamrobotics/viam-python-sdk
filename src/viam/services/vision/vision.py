@@ -7,12 +7,11 @@ from viam.media.video import RawImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
-from viam.utils import ValueTypes
 
 from ..service_base import ServiceBase
 
 
-class Vision(ServiceBase, abc.ABC):
+class Vision(ServiceBase):
     """
     Vision represents a Vision service.
 
@@ -21,11 +20,17 @@ class Vision(ServiceBase, abc.ABC):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
+    )
 
     @abc.abstractmethod
     async def get_detections_from_camera(
-        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self,
+        camera_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[Detection]:
         """Get a list of detections in the next image given a camera and a detector
 
@@ -101,7 +106,11 @@ class Vision(ServiceBase, abc.ABC):
 
     @abc.abstractmethod
     async def get_object_point_clouds(
-        self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self,
+        camera_name: str,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> List[PointCloudObject]:
         """
         Returns a list of the 3D point cloud objects and associated metadata in the latest
@@ -126,17 +135,5 @@ class Vision(ServiceBase, abc.ABC):
 
         Returns:
             List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
-        """
-        ...
-
-    @abc.abstractmethod
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
-        """Send/receive arbitrary commands
-
-        Args:
-            command (Dict[str, ValueTypes]): The command to execute
-
-        Returns:
-            Dict[str, ValueTypes]: Result of the executed command
         """
         ...

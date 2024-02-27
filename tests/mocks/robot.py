@@ -13,12 +13,16 @@ from viam.proto.robot import (
     DiscoverComponentsResponse,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetCloudMetadataRequest,
+    GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetSessionsRequest,
     GetSessionsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    LogRequest,
+    LogResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
     ResourceRPCSubtypesRequest,
@@ -100,3 +104,9 @@ class MockRobot(RobotServiceBase):
 
     async def TransformPCD(self, stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
         raise MethodNotImplementedError("TransformPCD").grpc_error
+
+    async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
+        raise MethodNotImplementedError("Log").grpc_error
+
+    async def GetCloudMetadata(self, stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
+        raise MethodNotImplementedError("GetCloudMetadata").grpc_error

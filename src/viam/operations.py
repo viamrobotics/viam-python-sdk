@@ -1,14 +1,15 @@
 import asyncio
 import functools
+import sys
 import time
 from typing import Any, Callable, Coroutine, Mapping, Optional, TypeVar, cast
 from uuid import UUID, uuid4
 
 from typing_extensions import Self
 
-try:
+if sys.version_info >= (3, 10):
     from typing import ParamSpec
-except ImportError:
+else:
     from typing_extensions import ParamSpec
 
 

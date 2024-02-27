@@ -9,14 +9,14 @@ on:
   push:
     branches: [main]
   pull_request_target:
-    branches: [main, 'rc-*']
+    branches: [main, "rc-*"]
 
 jobs:
   test:
     if: github.repository_owner == 'viamrobotics'
     runs-on: buildjet-2vcpu-ubuntu-2204
     container:
-      image: python:${{ matrix.python-version }}
+      image: public.ecr.aws/docker/library/python:${{ matrix.python-version }}
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
@@ -43,6 +43,9 @@ jobs:
       - name: Install minimum package versions
         run: poetry run pip install -r requirements-test.txt
         if: ${{ matrix.requirements-version == 'min' }}
+
+      - name: Type Check
+        run: make typecheck
 
       - name: Lint
         run: make lint

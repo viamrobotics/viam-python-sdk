@@ -699,3 +699,52 @@ class SendSessionHeartbeatResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___SendSessionHeartbeatResponse = SendSessionHeartbeatResponse
+
+@typing_extensions.final
+class LogRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    LOGS_FIELD_NUMBER: builtins.int
+
+    @property
+    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]:
+        ...
+
+    def __init__(self, *, logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['logs', b'logs']) -> None:
+        ...
+global___LogRequest = LogRequest
+
+@typing_extensions.final
+class LogResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___LogResponse = LogResponse
+
+@typing_extensions.final
+class GetCloudMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___GetCloudMetadataRequest = GetCloudMetadataRequest
+
+@typing_extensions.final
+class GetCloudMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ROBOT_PART_ID_FIELD_NUMBER: builtins.int
+    PRIMARY_ORG_ID_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
+    robot_part_id: builtins.str
+    primary_org_id: builtins.str
+    location_id: builtins.str
+
+    def __init__(self, *, robot_part_id: builtins.str=..., primary_org_id: builtins.str=..., location_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'primary_org_id', b'primary_org_id', 'robot_part_id', b'robot_part_id']) -> None:
+        ...
+global___GetCloudMetadataResponse = GetCloudMetadataResponse

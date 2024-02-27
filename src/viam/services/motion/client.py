@@ -1,10 +1,11 @@
-from typing import Any, Final, List, Mapping, Optional, Sequence
+from typing import Any, Final, List, Mapping, Optional, Sequence, Iterable
 
 from grpclib.client import Channel
 
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Geometry,
     GeoObstacle,
     GeoPoint,
     Pose,
@@ -45,7 +46,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
     ``world_state`` message, the motion planning service will also account for those.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "motion"
+    )
     client: MotionServiceStub
 
     def __init__(self, name: str, channel: Channel):
@@ -119,16 +122,34 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
         Args:
-            component_name (ResourceName): The component to move
-            destination (GeoPoint): The destination point
-            movement_sensor_name (ResourceName): The ``MovementSensor`` which will be used to check robot location
-            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to be considered for motion planning. Defaults to None.
-            heading (Optional[float]): Compass heading to achieve at the destination, in degrees [0-360]. Defaults to None.
-            linear_meters_per_sec (Optional[float]): Linear velocity to target when moving. Defaults to None.
-            angular_deg_per_sec (Optional[float]): Angular velocity to target when turning. Defaults to None.
+            component_name (ResourceName): The ResourceName of the base to move.
+            destination (GeoPoint): The location of the component’s destination, represented in geographic notation as a
+            GeoPoint (lat, lng).
+            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
+            the machine’s location.
+            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to consider when planning the motion of the component,
+            with each represented as a GeoObstacle.
+                - Default: None
+            heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report
+            at the destination point.
+                Range: [0-360) 0: North, 90: East, 180: South, 270: West
+                Default: None
+            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
+            motion service. This parameter and each of its fields are optional.
+                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
+                you want to use for transient obstacle avoidance.
+                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
+                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
+                linear_m_per_sec (float): Linear velocity this machine should target when moving.
+                angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
+            the underlying RPC call.
+
 
         Returns:
-            str: ExecutionID of the move_on_globe call, which can be used to track execution progress.
+            str: ExecutionID of the ``move_on_globe()`` call, which can be used to track execution progress.
         """
         if extra is None:
             extra = {}
@@ -150,20 +171,43 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         component_name: ResourceName,
         destination: Pose,
         slam_service_name: ResourceName,
+        configuration: Optional[MotionConfiguration] = None,
+        obstacles: Optional[Iterable[Geometry]] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
-    ) -> bool:
+    ) -> str:
         """
-        Move a component to a specific pose, using a ``SlamService`` for the SLAM map
+        Move a component to a specific pose, using a ``SlamService`` for the SLAM map, using a ``SLAM Service`` to check the location.
+
+        ``move_on_map()`` is non blocking, meaning the motion service will move the component to the destination
+        Pose point after ``move_on_map()`` returns.
+
+        Each successful ``move_on_map()`` call retuns a unique ExectionID which you can use to identify all plans
+        generated durring the ``move_on_map()`` call.
+
+        You can monitor the progress of the ``move_on_map()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
         Args:
-            component_name (ResourceName): The component to move
-            destination (Pose): The destination, which can be any pose with respect to the SLAM map's origin
-            slam_service_name (ResourceName): The slam service from which the SLAM map is requested
+            component_name (ResourceName): The ResourceName of the base to move.
+            destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.
+            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
+            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
+            This parameter and each of its fields are optional.
+                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
+                for transient obstacle avoidance.
+                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
+                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
+                linear_m_per_sec (float): Linear velocity this machine should target when moving.
+                angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+            obstacles (Optional[Iterable[Geometry]]): Obstacles to be considered for motion planning.
+            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
+            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+            RPC call.
 
         Returns:
-            bool: Whether the request was successful
+            str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.
         """
         if extra is None:
             extra = {}
@@ -172,10 +216,12 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             destination=destination,
             component_name=component_name,
             slam_service_name=slam_service_name,
+            motion_configuration=configuration,
+            obstacles=obstacles,
             extra=dict_to_struct(extra),
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
-        return response.success
+        return response.execution_id
 
     async def stop_plan(
         self,
@@ -184,7 +230,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ):
-        """Stop a component being moved by an in progress ``move_on_globe()`` call.
+        """Stop a component being moved by an in progress ``move_on_globe()`` or ``move_on_map()`` call.
 
         Args:
             component_name (ResourceName): The component to stop
@@ -212,13 +258,13 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """By default: returns the plan history of the most recent ``move_on_globe()`` call to move a component.
+        """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()``call to move a component.
 
         The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
 
         Returns a result if both of the following conditions are met:
 
-        - the execution (call to ``move_on_globe()``) is still executing **or** changed state within the last 24 hours
+        - the execution (call to ``move_on_globe()`` or ``move_on_map()``) is still executing **or** changed state within the last 24 hours
         - the robot has not reinitialized
 
         Plans never change.
@@ -257,7 +303,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> ListPlanStatusesResponse:
-        """Returns the statuses of plans created by `move_on_globe()` calls that meet at least one of the following
+        """Returns the statuses of plans created by `move_on_globe()` or ``move_on_map()`` calls that meet at least one of the following
         conditions since the motion service initialized:
 
         - the plan's status is in progress
@@ -322,7 +368,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

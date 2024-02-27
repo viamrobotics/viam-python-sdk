@@ -14,6 +14,12 @@ _format:
 format:
 	poetry run $(MAKE) _format
 
+_typecheck:
+	pyright
+
+typecheck:
+	poetry run $(MAKE) _typecheck
+
 _buf: clean
 	rm -rf src/viam/gen
 	buf generate buf.build/viamrobotics/api

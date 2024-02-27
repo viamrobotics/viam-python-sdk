@@ -54,7 +54,13 @@ PROPERTIES = MovementSensor.Properties(
     position_supported=True,
     compass_heading_supported=False,
 )
-ACCURACY = {"foo": 0.1, "bar": 2, "baz": 3.14}
+ACCURACY = MovementSensor.Accuracy(
+    accuracy={"foo": 0.1, "bar": 2, "baz": 3.14},
+    position_hdop=0.0,
+    position_vdop=0.0,
+    position_nmea_gga_fix=0,
+    compass_degrees_error=0.0,
+)
 EXTRA_PARAMS = {"foo": "bar", "baz": [1, 2, 3]}
 READINGS = {"a": 1, "b": 2, "c": 3}
 
@@ -143,7 +149,11 @@ class TestMovementSensor:
     async def test_get_accuracy(self, movement_sensor: MockMovementSensor):
         assert movement_sensor.extra is None
         value = await movement_sensor.get_accuracy(extra=EXTRA_PARAMS)
-        assert value == ACCURACY
+        assert value.accuracy == pytest.approx(ACCURACY.accuracy)
+        assert value.position_hdop == pytest.approx(ACCURACY.position_hdop)
+        assert value.position_vdop == pytest.approx(ACCURACY.position_vdop)
+        assert value.position_nmea_gga_fix == pytest.approx(ACCURACY.position_nmea_gga_fix)
+        assert value.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
         assert movement_sensor.extra == EXTRA_PARAMS
 
     @pytest.mark.asyncio
@@ -280,8 +290,11 @@ class TestService:
             request = GetAccuracyRequest(name=movement_sensor.name, extra=dict_to_struct(EXTRA_PARAMS))
             assert movement_sensor.extra is None
             response: GetAccuracyResponse = await client.GetAccuracy(request, timeout=7.89)
-            assert response.accuracy == pytest.approx(ACCURACY)
-            assert movement_sensor.extra == EXTRA_PARAMS
+            assert response.accuracy == pytest.approx(ACCURACY.accuracy)
+            assert response.position_hdop == pytest.approx(ACCURACY.position_hdop)
+            assert response.position_vdop == pytest.approx(ACCURACY.position_vdop)
+            assert response.position_nmea_gga_fix == pytest.approx(ACCURACY.position_nmea_gga_fix)
+            assert response.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
             assert movement_sensor.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio
@@ -392,8 +405,11 @@ class TestClient:
             client = MovementSensorClient(movement_sensor.name, channel)
             assert movement_sensor.extra is None
             value = await client.get_accuracy(extra=EXTRA_PARAMS, timeout=7.89)
-            assert value == pytest.approx(ACCURACY)
-            assert movement_sensor.extra == EXTRA_PARAMS
+            assert value.accuracy == pytest.approx(ACCURACY.accuracy)
+            assert value.position_hdop == pytest.approx(ACCURACY.position_hdop)
+            assert value.position_vdop == pytest.approx(ACCURACY.position_vdop)
+            assert value.position_nmea_gga_fix == pytest.approx(ACCURACY.position_nmea_gga_fix)
+            assert value.compass_degrees_error == pytest.approx(ACCURACY.compass_degrees_error)
             assert movement_sensor.timeout == loose_approx(7.89)
 
     @pytest.mark.asyncio

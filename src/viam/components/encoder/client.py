@@ -33,6 +33,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
@@ -45,6 +46,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ) -> Tuple[float, PositionType.ValueType]:
         if extra is None:
             extra = {}
@@ -57,6 +59,7 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
+        **__,
     ) -> Encoder.Properties:
         if extra is None:
             extra = {}
@@ -66,7 +69,13 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
             ticks_count_supported=response.ticks_count_supported, angle_degrees_supported=response.angle_degrees_supported
         )
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
         return struct_to_dict(response.result)

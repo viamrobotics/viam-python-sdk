@@ -14,7 +14,9 @@ class Gripper(ComponentBase):
     overridden, it must call the ``super().__init__()`` function.
     """
 
-    SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper")
+    SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
+        RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "gripper"
+    )
 
     @abc.abstractmethod
     async def open(
@@ -26,6 +28,13 @@ class Gripper(ComponentBase):
     ):
         """
         Open the gripper.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+            # Open the gripper.
+            await my_gripper.open()
         """
         ...
 
@@ -39,6 +48,13 @@ class Gripper(ComponentBase):
     ) -> bool:
         """
         Instruct the gripper to grab.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+            # Grab with the gripper.
+            grabbed = await my_gripper.grab()
 
         Returns:
             bool: Indicates if the gripper grabbed something.
@@ -55,6 +71,13 @@ class Gripper(ComponentBase):
     ):
         """
         Stop the gripper. It is assumed the gripper stops immediately.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+            # Stop the gripper.
+            await my_gripper.stop()
         """
         ...
 
@@ -62,6 +85,14 @@ class Gripper(ComponentBase):
     async def is_moving(self) -> bool:
         """
         Get if the gripper is currently moving.
+
+        ::
+
+            my_gripper = Gripper.from_robot(robot=robot, name="my_gripper")
+
+            # Check whether the gripper is currently moving.
+            moving = await my_gripper.is_moving()
+            print('Moving:', moving)
 
         Returns:
             bool: Whether the gripper is moving.
