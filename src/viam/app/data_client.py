@@ -369,7 +369,7 @@ class DataClient:
             my_filter = Filter(component_name="left_motor")
             days_of_data_to_delete = 10
             tabular_data = await data_client.delete_tabular_data(
-                "a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
+                org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
 
         Args:
             organization_id (str): ID of organization to delete data from.
