@@ -34,7 +34,16 @@ async def create_status(component: Arm) -> Status:
         joint_positions=joint_positions,
         is_moving=is_moving,
     )
-    return Status(name=Arm.get_resource_name(component.name), status=message_to_struct(s))
+    return Status(
+        name=Arm.get_resource_name(component.name), status=message_to_struct(s)
+    )
 
 
-Registry.register_subtype(ResourceRegistration(Arm, ArmRPCService, lambda name, channel: ArmClient(name, channel), create_status))
+Registry.register_subtype(
+    ResourceRegistration(
+        Arm,
+        ArmRPCService,
+        lambda name, channel: ArmClient(name, channel),
+        create_status,
+    )
+)

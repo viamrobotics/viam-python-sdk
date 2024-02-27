@@ -4,15 +4,18 @@ isort:skip_file
 """
 import builtins
 import collections.abc
-from ... import common
+import sys
+import typing
+
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-import typing
+
+from ... import common
+
 if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
@@ -20,10 +23,15 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _CredentialsType:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _CredentialsTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_CredentialsType.ValueType], builtins.type):
+class _CredentialsTypeEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[
+        _CredentialsType.ValueType
+    ],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     CREDENTIALS_TYPE_UNSPECIFIED: _CredentialsType.ValueType
     CREDENTIALS_TYPE_INTERNAL: _CredentialsType.ValueType
@@ -31,8 +39,8 @@ class _CredentialsTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper
     CREDENTIALS_TYPE_ROBOT_SECRET: _CredentialsType.ValueType
     CREDENTIALS_TYPE_ROBOT_LOCATION_SECRET: _CredentialsType.ValueType
 
-class CredentialsType(_CredentialsType, metaclass=_CredentialsTypeEnumTypeWrapper):
-    ...
+class CredentialsType(_CredentialsType, metaclass=_CredentialsTypeEnumTypeWrapper): ...
+
 CREDENTIALS_TYPE_UNSPECIFIED: CredentialsType.ValueType
 CREDENTIALS_TYPE_INTERNAL: CredentialsType.ValueType
 CREDENTIALS_TYPE_API_KEY: CredentialsType.ValueType
@@ -56,85 +64,165 @@ class RobotConfig(google.protobuf.message.Message):
     PACKAGES_FIELD_NUMBER: builtins.int
 
     @property
-    def cloud(self) -> global___CloudConfig:
-        ...
-
+    def cloud(self) -> global___CloudConfig: ...
     @property
-    def remotes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RemoteConfig]:
-        ...
-
+    def remotes(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___RemoteConfig
+    ]: ...
     @property
-    def components(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ComponentConfig]:
-        ...
-
+    def components(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ComponentConfig
+    ]: ...
     @property
-    def processes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ProcessConfig]:
-        ...
-
+    def processes(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ProcessConfig
+    ]: ...
     @property
-    def services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ServiceConfig]:
-        ...
-
+    def services(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ServiceConfig
+    ]: ...
     @property
-    def network(self) -> global___NetworkConfig:
-        ...
-
+    def network(self) -> global___NetworkConfig: ...
     @property
-    def auth(self) -> global___AuthConfig:
-        ...
+    def auth(self) -> global___AuthConfig: ...
     debug: builtins.bool
-    'Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart'
+    "Turns on debug mode for robot, adding an echo server and more logging and tracing. Only works after restart"
 
     @property
-    def modules(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ModuleConfig]:
-        ...
+    def modules(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ModuleConfig
+    ]: ...
     disable_partial_start: builtins.bool
 
     @property
-    def packages(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PackageConfig]:
-        ...
-
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'modules', b'modules', 'network', b'network', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'services', b'services']) -> None:
-        ...
-
+    def packages(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___PackageConfig
+    ]: ...
+    def __init__(
+        self,
+        *,
+        cloud: global___CloudConfig | None = ...,
+        remotes: collections.abc.Iterable[global___RemoteConfig] | None = ...,
+        components: collections.abc.Iterable[global___ComponentConfig] | None = ...,
+        processes: collections.abc.Iterable[global___ProcessConfig] | None = ...,
+        services: collections.abc.Iterable[global___ServiceConfig] | None = ...,
+        network: global___NetworkConfig | None = ...,
+        auth: global___AuthConfig | None = ...,
+        debug: builtins.bool | None = ...,
+        modules: collections.abc.Iterable[global___ModuleConfig] | None = ...,
+        disable_partial_start: builtins.bool | None = ...,
+        packages: collections.abc.Iterable[global___PackageConfig] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_auth",
+            b"_auth",
+            "_debug",
+            b"_debug",
+            "_disable_partial_start",
+            b"_disable_partial_start",
+            "_network",
+            b"_network",
+            "auth",
+            b"auth",
+            "cloud",
+            b"cloud",
+            "debug",
+            b"debug",
+            "disable_partial_start",
+            b"disable_partial_start",
+            "network",
+            b"network",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_auth",
+            b"_auth",
+            "_debug",
+            b"_debug",
+            "_disable_partial_start",
+            b"_disable_partial_start",
+            "_network",
+            b"_network",
+            "auth",
+            b"auth",
+            "cloud",
+            b"cloud",
+            "components",
+            b"components",
+            "debug",
+            b"debug",
+            "disable_partial_start",
+            b"disable_partial_start",
+            "modules",
+            b"modules",
+            "network",
+            b"network",
+            "packages",
+            b"packages",
+            "processes",
+            b"processes",
+            "remotes",
+            b"remotes",
+            "services",
+            b"services",
+        ],
+    ) -> None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_auth', b'_auth']) -> typing_extensions.Literal['auth'] | None:
-        ...
-
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_auth", b"_auth"]
+    ) -> typing_extensions.Literal["auth"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_debug', b'_debug']) -> typing_extensions.Literal['debug'] | None:
-        ...
-
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_debug", b"_debug"]
+    ) -> typing_extensions.Literal["debug"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_disable_partial_start', b'_disable_partial_start']) -> typing_extensions.Literal['disable_partial_start'] | None:
-        ...
-
+    def WhichOneof(
+        self,
+        oneof_group: typing_extensions.Literal[
+            "_disable_partial_start", b"_disable_partial_start"
+        ],
+    ) -> typing_extensions.Literal["disable_partial_start"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_network', b'_network']) -> typing_extensions.Literal['network'] | None:
-        ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_network", b"_network"]
+    ) -> typing_extensions.Literal["network"] | None: ...
+
 global___RobotConfig = RobotConfig
 
 @typing_extensions.final
 class LocationSecret(google.protobuf.message.Message):
     """Valid location secret that can be used for authentication to the robot."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
     id: builtins.str
     secret: builtins.str
-    'secret payload'
+    "secret payload"
 
-    def __init__(self, *, id: builtins.str=..., secret: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, id: builtins.str = ..., secret: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["id", b"id", "secret", b"secret"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'secret', b'secret']) -> None:
-        ...
 global___LocationSecret = LocationSecret
 
 @typing_extensions.final
@@ -143,11 +231,11 @@ class AppValidationStatus(google.protobuf.message.Message):
     ERROR_FIELD_NUMBER: builtins.int
     error: builtins.str
 
-    def __init__(self, *, error: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, error: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["error", b"error"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['error', b'error']) -> None:
-        ...
 global___AppValidationStatus = AppValidationStatus
 
 @typing_extensions.final
@@ -165,28 +253,71 @@ class CloudConfig(google.protobuf.message.Message):
     PRIMARY_ORG_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
     fqdn: builtins.str
     local_fqdn: builtins.str
     managed_by: builtins.str
     signaling_address: builtins.str
     signaling_insecure: builtins.bool
     location_secret: builtins.str
-    'Deprecated use location_secrets'
+    "Deprecated use location_secrets"
     secret: builtins.str
-    'Robot part secret'
+    "Robot part secret"
 
     @property
-    def location_secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]:
+    def location_secrets(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___LocationSecret
+    ]:
         """All valid location secrets."""
     primary_org_id: builtins.str
     location_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=..., primary_org_id: builtins.str=..., location_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        fqdn: builtins.str = ...,
+        local_fqdn: builtins.str = ...,
+        managed_by: builtins.str = ...,
+        signaling_address: builtins.str = ...,
+        signaling_insecure: builtins.bool = ...,
+        location_secret: builtins.str = ...,
+        secret: builtins.str = ...,
+        location_secrets: collections.abc.Iterable[global___LocationSecret]
+        | None = ...,
+        primary_org_id: builtins.str = ...,
+        location_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "fqdn",
+            b"fqdn",
+            "id",
+            b"id",
+            "local_fqdn",
+            b"local_fqdn",
+            "location_id",
+            b"location_id",
+            "location_secret",
+            b"location_secret",
+            "location_secrets",
+            b"location_secrets",
+            "managed_by",
+            b"managed_by",
+            "primary_org_id",
+            b"primary_org_id",
+            "secret",
+            b"secret",
+            "signaling_address",
+            b"signaling_address",
+            "signaling_insecure",
+            b"signaling_insecure",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'primary_org_id', b'primary_org_id', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
-        ...
 global___CloudConfig = CloudConfig
 
 @typing_extensions.final
@@ -204,45 +335,89 @@ class ComponentConfig(google.protobuf.message.Message):
     LOG_CONFIGURATION_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
-    'deprecated; use api'
+    "deprecated; use api"
     type: builtins.str
-    'deprecated; use api'
+    "deprecated; use api"
     model: builtins.str
 
     @property
-    def frame(self) -> global___Frame:
-        ...
-
+    def frame(self) -> global___Frame: ...
     @property
-    def depends_on(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
+    def depends_on(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     @property
-    def service_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]:
-        ...
-
+    def service_configs(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ResourceLevelServiceConfig
+    ]: ...
     @property
-    def attributes(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def attributes(self) -> google.protobuf.struct_pb2.Struct: ...
     api: builtins.str
 
     @property
-    def log_configuration(self) -> global___LogConfiguration:
-        ...
+    def log_configuration(self) -> global___LogConfiguration: ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        namespace: builtins.str = ...,
+        type: builtins.str = ...,
+        model: builtins.str = ...,
+        frame: global___Frame | None = ...,
+        depends_on: collections.abc.Iterable[builtins.str] | None = ...,
+        service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig]
+        | None = ...,
+        attributes: google.protobuf.struct_pb2.Struct | None = ...,
+        api: builtins.str = ...,
+        log_configuration: global___LogConfiguration | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "attributes",
+            b"attributes",
+            "frame",
+            b"frame",
+            "log_configuration",
+            b"log_configuration",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "api",
+            b"api",
+            "attributes",
+            b"attributes",
+            "depends_on",
+            b"depends_on",
+            "frame",
+            b"frame",
+            "log_configuration",
+            b"log_configuration",
+            "model",
+            b"model",
+            "name",
+            b"name",
+            "namespace",
+            b"namespace",
+            "service_configs",
+            b"service_configs",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., model: builtins.str=..., frame: global___Frame | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., attributes: google.protobuf.struct_pb2.Struct | None=..., api: builtins.str=..., log_configuration: global___LogConfiguration | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'frame', b'frame', 'log_configuration', b'log_configuration']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'frame', b'frame', 'log_configuration', b'log_configuration', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
-        ...
 global___ComponentConfig = ComponentConfig
 
 @typing_extensions.final
 class ResourceLevelServiceConfig(google.protobuf.message.Message):
     """A ResourceLevelServiceConfig describes component or remote configuration for a service."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
@@ -252,19 +427,28 @@ class ResourceLevelServiceConfig(google.protobuf.message.Message):
     def attributes(self) -> google.protobuf.struct_pb2.Struct:
         """TODO(adam): Should this be move to a structured type as defined in the typescript frontend."""
 
-    def __init__(self, *, type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        type: builtins.str = ...,
+        attributes: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["attributes", b"attributes"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "attributes", b"attributes", "type", b"type"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['attributes', b'attributes', 'type', b'type']) -> None:
-        ...
 global___ResourceLevelServiceConfig = ResourceLevelServiceConfig
 
 @typing_extensions.final
 class ProcessConfig(google.protobuf.message.Message):
     """A ProcessConfig describes how to manage a system process."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -275,11 +459,13 @@ class ProcessConfig(google.protobuf.message.Message):
         key: builtins.str
         value: builtins.str
 
-        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def __init__(
+            self, *, key: builtins.str = ..., value: builtins.str = ...
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     ARGS_FIELD_NUMBER: builtins.int
@@ -293,29 +479,64 @@ class ProcessConfig(google.protobuf.message.Message):
     name: builtins.str
 
     @property
-    def args(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def args(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     cwd: builtins.str
     one_shot: builtins.bool
     log: builtins.bool
     stop_signal: builtins.int
 
     @property
-    def stop_timeout(self) -> google.protobuf.duration_pb2.Duration:
-        ...
-
+    def stop_timeout(self) -> google.protobuf.duration_pb2.Duration: ...
     @property
-    def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+    def env(
+        self,
+    ) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """additional environment variables passed to the process"""
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., args: collections.abc.Iterable[builtins.str] | None=..., cwd: builtins.str=..., one_shot: builtins.bool=..., log: builtins.bool=..., stop_signal: builtins.int=..., stop_timeout: google.protobuf.duration_pb2.Duration | None=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        name: builtins.str = ...,
+        args: collections.abc.Iterable[builtins.str] | None = ...,
+        cwd: builtins.str = ...,
+        one_shot: builtins.bool = ...,
+        log: builtins.bool = ...,
+        stop_signal: builtins.int = ...,
+        stop_timeout: google.protobuf.duration_pb2.Duration | None = ...,
+        env: collections.abc.Mapping[builtins.str, builtins.str] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["stop_timeout", b"stop_timeout"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "args",
+            b"args",
+            "cwd",
+            b"cwd",
+            "env",
+            b"env",
+            "id",
+            b"id",
+            "log",
+            b"log",
+            "name",
+            b"name",
+            "one_shot",
+            b"one_shot",
+            "stop_signal",
+            b"stop_signal",
+            "stop_timeout",
+            b"stop_timeout",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['stop_timeout', b'stop_timeout']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['args', b'args', 'cwd', b'cwd', 'env', b'env', 'id', b'id', 'log', b'log', 'name', b'name', 'one_shot', b'one_shot', 'stop_signal', b'stop_signal', 'stop_timeout', b'stop_timeout']) -> None:
-        ...
 global___ProcessConfig = ProcessConfig
 
 @typing_extensions.final
@@ -331,32 +552,65 @@ class ServiceConfig(google.protobuf.message.Message):
     SERVICE_CONFIGS_FIELD_NUMBER: builtins.int
     name: builtins.str
     namespace: builtins.str
-    'deprecated; use api'
+    "deprecated; use api"
     type: builtins.str
-    'deprecated; use api'
+    "deprecated; use api"
 
     @property
-    def attributes(self) -> google.protobuf.struct_pb2.Struct:
-        ...
-
+    def attributes(self) -> google.protobuf.struct_pb2.Struct: ...
     @property
-    def depends_on(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def depends_on(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     model: builtins.str
     api: builtins.str
 
     @property
-    def service_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]:
-        ...
+    def service_configs(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ResourceLevelServiceConfig
+    ]: ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        namespace: builtins.str = ...,
+        type: builtins.str = ...,
+        attributes: google.protobuf.struct_pb2.Struct | None = ...,
+        depends_on: collections.abc.Iterable[builtins.str] | None = ...,
+        model: builtins.str = ...,
+        api: builtins.str = ...,
+        service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig]
+        | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["attributes", b"attributes"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "api",
+            b"api",
+            "attributes",
+            b"attributes",
+            "depends_on",
+            b"depends_on",
+            "model",
+            b"model",
+            "name",
+            b"name",
+            "namespace",
+            b"namespace",
+            "service_configs",
+            b"service_configs",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, name: builtins.str=..., namespace: builtins.str=..., type: builtins.str=..., attributes: google.protobuf.struct_pb2.Struct | None=..., depends_on: collections.abc.Iterable[builtins.str] | None=..., model: builtins.str=..., api: builtins.str=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['attributes', b'attributes']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'attributes', b'attributes', 'depends_on', b'depends_on', 'model', b'model', 'name', b'name', 'namespace', b'namespace', 'service_configs', b'service_configs', 'type', b'type']) -> None:
-        ...
 global___ServiceConfig = ServiceConfig
 
 @typing_extensions.final
@@ -373,17 +627,35 @@ class NetworkConfig(google.protobuf.message.Message):
     tls_key_file: builtins.str
 
     @property
-    def sessions(self) -> global___SessionsConfig:
-        ...
+    def sessions(self) -> global___SessionsConfig: ...
+    def __init__(
+        self,
+        *,
+        fqdn: builtins.str = ...,
+        bind_address: builtins.str = ...,
+        tls_cert_file: builtins.str = ...,
+        tls_key_file: builtins.str = ...,
+        sessions: global___SessionsConfig | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["sessions", b"sessions"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "bind_address",
+            b"bind_address",
+            "fqdn",
+            b"fqdn",
+            "sessions",
+            b"sessions",
+            "tls_cert_file",
+            b"tls_cert_file",
+            "tls_key_file",
+            b"tls_key_file",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, fqdn: builtins.str=..., bind_address: builtins.str=..., tls_cert_file: builtins.str=..., tls_key_file: builtins.str=..., sessions: global___SessionsConfig | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['sessions', b'sessions']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['bind_address', b'bind_address', 'fqdn', b'fqdn', 'sessions', b'sessions', 'tls_cert_file', b'tls_cert_file', 'tls_key_file', b'tls_key_file']) -> None:
-        ...
 global___NetworkConfig = NetworkConfig
 
 @typing_extensions.final
@@ -392,17 +664,19 @@ class SessionsConfig(google.protobuf.message.Message):
     HEARTBEAT_WINDOW_FIELD_NUMBER: builtins.int
 
     @property
-    def heartbeat_window(self) -> google.protobuf.duration_pb2.Duration:
-        ...
+    def heartbeat_window(self) -> google.protobuf.duration_pb2.Duration: ...
+    def __init__(
+        self, *, heartbeat_window: google.protobuf.duration_pb2.Duration | None = ...
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal["heartbeat_window", b"heartbeat_window"],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["heartbeat_window", b"heartbeat_window"],
+    ) -> None: ...
 
-    def __init__(self, *, heartbeat_window: google.protobuf.duration_pb2.Duration | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['heartbeat_window', b'heartbeat_window']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['heartbeat_window', b'heartbeat_window']) -> None:
-        ...
 global___SessionsConfig = SessionsConfig
 
 @typing_extensions.final
@@ -413,28 +687,55 @@ class AuthConfig(google.protobuf.message.Message):
     EXTERNAL_AUTH_CONFIG_FIELD_NUMBER: builtins.int
 
     @property
-    def handlers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AuthHandlerConfig]:
-        ...
-
+    def handlers(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___AuthHandlerConfig
+    ]: ...
     @property
-    def tls_auth_entities(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
+    def tls_auth_entities(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     @property
-    def external_auth_config(self) -> global___ExternalAuthConfig:
-        ...
+    def external_auth_config(self) -> global___ExternalAuthConfig: ...
+    def __init__(
+        self,
+        *,
+        handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None = ...,
+        tls_auth_entities: collections.abc.Iterable[builtins.str] | None = ...,
+        external_auth_config: global___ExternalAuthConfig | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_external_auth_config",
+            b"_external_auth_config",
+            "external_auth_config",
+            b"external_auth_config",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_external_auth_config",
+            b"_external_auth_config",
+            "external_auth_config",
+            b"external_auth_config",
+            "handlers",
+            b"handlers",
+            "tls_auth_entities",
+            b"tls_auth_entities",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self,
+        oneof_group: typing_extensions.Literal[
+            "_external_auth_config", b"_external_auth_config"
+        ],
+    ) -> typing_extensions.Literal["external_auth_config"] | None: ...
 
-    def __init__(self, *, handlers: collections.abc.Iterable[global___AuthHandlerConfig] | None=..., tls_auth_entities: collections.abc.Iterable[builtins.str] | None=..., external_auth_config: global___ExternalAuthConfig | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_external_auth_config', b'_external_auth_config', 'external_auth_config', b'external_auth_config', 'handlers', b'handlers', 'tls_auth_entities', b'tls_auth_entities']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_external_auth_config', b'_external_auth_config']) -> typing_extensions.Literal['external_auth_config'] | None:
-        ...
 global___AuthConfig = AuthConfig
 
 @typing_extensions.final
@@ -448,14 +749,16 @@ class JWKSFile(google.protobuf.message.Message):
         See https://www.rfc-editor.org/rfc/rfc7517
         """
 
-    def __init__(self, *, json: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self, *, json: google.protobuf.struct_pb2.Struct | None = ...
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["json", b"json"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["json", b"json"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['json', b'json']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['json', b'json']) -> None:
-        ...
 global___JWKSFile = JWKSFile
 
 @typing_extensions.final
@@ -463,21 +766,20 @@ class ExternalAuthConfig(google.protobuf.message.Message):
     """ExternalAuthConfig describes how a viam managed robot can accept
     credentials signed by the cloud app.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     JWKS_FIELD_NUMBER: builtins.int
 
     @property
-    def jwks(self) -> global___JWKSFile:
-        ...
+    def jwks(self) -> global___JWKSFile: ...
+    def __init__(self, *, jwks: global___JWKSFile | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["jwks", b"jwks"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["jwks", b"jwks"]
+    ) -> None: ...
 
-    def __init__(self, *, jwks: global___JWKSFile | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['jwks', b'jwks']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['jwks', b'jwks']) -> None:
-        ...
 global___ExternalAuthConfig = ExternalAuthConfig
 
 @typing_extensions.final
@@ -488,17 +790,21 @@ class AuthHandlerConfig(google.protobuf.message.Message):
     type: global___CredentialsType.ValueType
 
     @property
-    def config(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def config(self) -> google.protobuf.struct_pb2.Struct: ...
+    def __init__(
+        self,
+        *,
+        type: global___CredentialsType.ValueType = ...,
+        config: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["config", b"config"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["config", b"config", "type", b"type"],
+    ) -> None: ...
 
-    def __init__(self, *, type: global___CredentialsType.ValueType=..., config: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'type', b'type']) -> None:
-        ...
 global___AuthHandlerConfig = AuthHandlerConfig
 
 @typing_extensions.final
@@ -511,25 +817,44 @@ class Frame(google.protobuf.message.Message):
     parent: builtins.str
 
     @property
-    def translation(self) -> global___Translation:
-        ...
-
+    def translation(self) -> global___Translation: ...
     @property
-    def orientation(self) -> global___Orientation:
-        ...
-
+    def orientation(self) -> global___Orientation: ...
     @property
-    def geometry(self) -> common.v1.common_pb2.Geometry:
-        ...
+    def geometry(self) -> common.v1.common_pb2.Geometry: ...
+    def __init__(
+        self,
+        *,
+        parent: builtins.str = ...,
+        translation: global___Translation | None = ...,
+        orientation: global___Orientation | None = ...,
+        geometry: common.v1.common_pb2.Geometry | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "geometry",
+            b"geometry",
+            "orientation",
+            b"orientation",
+            "translation",
+            b"translation",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "geometry",
+            b"geometry",
+            "orientation",
+            b"orientation",
+            "parent",
+            b"parent",
+            "translation",
+            b"translation",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, parent: builtins.str=..., translation: global___Translation | None=..., orientation: global___Orientation | None=..., geometry: common.v1.common_pb2.Geometry | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['geometry', b'geometry', 'orientation', b'orientation', 'translation', b'translation']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['geometry', b'geometry', 'orientation', b'orientation', 'parent', b'parent', 'translation', b'translation']) -> None:
-        ...
 global___Frame = Frame
 
 @typing_extensions.final
@@ -538,11 +863,11 @@ class LogConfiguration(google.protobuf.message.Message):
     LEVEL_FIELD_NUMBER: builtins.int
     level: builtins.str
 
-    def __init__(self, *, level: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, level: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["level", b"level"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['level', b'level']) -> None:
-        ...
 global___LogConfiguration = LogConfiguration
 
 @typing_extensions.final
@@ -555,11 +880,17 @@ class Translation(google.protobuf.message.Message):
     y: builtins.float
     z: builtins.float
 
-    def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        x: builtins.float = ...,
+        y: builtins.float = ...,
+        z: builtins.float = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["x", b"x", "y", b"y", "z", b"z"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['x', b'x', 'y', b'y', 'z', b'z']) -> None:
-        ...
 global___Translation = Translation
 
 @typing_extensions.final
@@ -570,8 +901,7 @@ class Orientation(google.protobuf.message.Message):
     class NoOrientation(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-        def __init__(self) -> None:
-            ...
+        def __init__(self) -> None: ...
 
     @typing_extensions.final
     class OrientationVectorRadians(google.protobuf.message.Message):
@@ -585,6 +915,7 @@ class Orientation(google.protobuf.message.Message):
         point, and the plane defined by the origin, the rx,ry,rz point, and the new local Z axis. So if theta is kept at
         zero as the north/south pole is circled, the Roll will correct itself to remain in-line.
         """
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         THETA_FIELD_NUMBER: builtins.int
         X_FIELD_NUMBER: builtins.int
@@ -595,17 +926,27 @@ class Orientation(google.protobuf.message.Message):
         y: builtins.float
         z: builtins.float
 
-        def __init__(self, *, theta: builtins.float=..., x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            theta: builtins.float = ...,
+            x: builtins.float = ...,
+            y: builtins.float = ...,
+            z: builtins.float = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "theta", b"theta", "x", b"x", "y", b"y", "z", b"z"
+            ],
+        ) -> None: ...
 
     @typing_extensions.final
     class OrientationVectorDegrees(google.protobuf.message.Message):
         """OrientationVectorDegrees is the orientation vector between two objects, but expressed in degrees rather than radians.
         Because protobuf Pose is in degrees, this is necessary.
         """
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         THETA_FIELD_NUMBER: builtins.int
         X_FIELD_NUMBER: builtins.int
@@ -616,17 +957,27 @@ class Orientation(google.protobuf.message.Message):
         y: builtins.float
         z: builtins.float
 
-        def __init__(self, *, theta: builtins.float=..., x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            theta: builtins.float = ...,
+            x: builtins.float = ...,
+            y: builtins.float = ...,
+            z: builtins.float = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "theta", b"theta", "x", b"x", "y", b"y", "z", b"z"
+            ],
+        ) -> None: ...
 
     @typing_extensions.final
     class EulerAngles(google.protobuf.message.Message):
         """EulerAngles are three angles (in radians) used to represent the rotation of an object in 3D Euclidean space
         The Tait–Bryan angle formalism is used, with rotations around three distinct axes in the z-y′-x″ sequence.
         """
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         ROLL_FIELD_NUMBER: builtins.int
         PITCH_FIELD_NUMBER: builtins.int
@@ -635,11 +986,19 @@ class Orientation(google.protobuf.message.Message):
         pitch: builtins.float
         yaw: builtins.float
 
-        def __init__(self, *, roll: builtins.float=..., pitch: builtins.float=..., yaw: builtins.float=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['pitch', b'pitch', 'roll', b'roll', 'yaw', b'yaw']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            roll: builtins.float = ...,
+            pitch: builtins.float = ...,
+            yaw: builtins.float = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "pitch", b"pitch", "roll", b"roll", "yaw", b"yaw"
+            ],
+        ) -> None: ...
 
     @typing_extensions.final
     class AxisAngles(google.protobuf.message.Message):
@@ -651,6 +1010,7 @@ class Orientation(google.protobuf.message.Message):
         the unit sphere components to give a vector whose length is theta and whose direction is the original axis.
         AxisAngles represents an R4 axis angle.
         """
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         THETA_FIELD_NUMBER: builtins.int
         X_FIELD_NUMBER: builtins.int
@@ -661,15 +1021,25 @@ class Orientation(google.protobuf.message.Message):
         y: builtins.float
         z: builtins.float
 
-        def __init__(self, *, theta: builtins.float=..., x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            theta: builtins.float = ...,
+            x: builtins.float = ...,
+            y: builtins.float = ...,
+            z: builtins.float = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "theta", b"theta", "x", b"x", "y", b"y", "z", b"z"
+            ],
+        ) -> None: ...
 
     @typing_extensions.final
     class Quaternion(google.protobuf.message.Message):
         """Quaternion is a float64 precision quaternion."""
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         W_FIELD_NUMBER: builtins.int
         X_FIELD_NUMBER: builtins.int
@@ -680,11 +1050,20 @@ class Orientation(google.protobuf.message.Message):
         y: builtins.float
         z: builtins.float
 
-        def __init__(self, *, w: builtins.float=..., x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['w', b'w', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            w: builtins.float = ...,
+            x: builtins.float = ...,
+            y: builtins.float = ...,
+            z: builtins.float = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "w", b"w", "x", b"x", "y", b"y", "z", b"z"
+            ],
+        ) -> None: ...
     NO_ORIENTATION_FIELD_NUMBER: builtins.int
     VECTOR_RADIANS_FIELD_NUMBER: builtins.int
     VECTOR_DEGREES_FIELD_NUMBER: builtins.int
@@ -693,40 +1072,79 @@ class Orientation(google.protobuf.message.Message):
     QUATERNION_FIELD_NUMBER: builtins.int
 
     @property
-    def no_orientation(self) -> global___Orientation.NoOrientation:
-        ...
-
+    def no_orientation(self) -> global___Orientation.NoOrientation: ...
     @property
-    def vector_radians(self) -> global___Orientation.OrientationVectorRadians:
-        ...
-
+    def vector_radians(self) -> global___Orientation.OrientationVectorRadians: ...
     @property
-    def vector_degrees(self) -> global___Orientation.OrientationVectorDegrees:
-        ...
-
+    def vector_degrees(self) -> global___Orientation.OrientationVectorDegrees: ...
     @property
-    def euler_angles(self) -> global___Orientation.EulerAngles:
-        ...
-
+    def euler_angles(self) -> global___Orientation.EulerAngles: ...
     @property
-    def axis_angles(self) -> global___Orientation.AxisAngles:
-        ...
-
+    def axis_angles(self) -> global___Orientation.AxisAngles: ...
     @property
-    def quaternion(self) -> global___Orientation.Quaternion:
-        ...
+    def quaternion(self) -> global___Orientation.Quaternion: ...
+    def __init__(
+        self,
+        *,
+        no_orientation: global___Orientation.NoOrientation | None = ...,
+        vector_radians: global___Orientation.OrientationVectorRadians | None = ...,
+        vector_degrees: global___Orientation.OrientationVectorDegrees | None = ...,
+        euler_angles: global___Orientation.EulerAngles | None = ...,
+        axis_angles: global___Orientation.AxisAngles | None = ...,
+        quaternion: global___Orientation.Quaternion | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "axis_angles",
+            b"axis_angles",
+            "euler_angles",
+            b"euler_angles",
+            "no_orientation",
+            b"no_orientation",
+            "quaternion",
+            b"quaternion",
+            "type",
+            b"type",
+            "vector_degrees",
+            b"vector_degrees",
+            "vector_radians",
+            b"vector_radians",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "axis_angles",
+            b"axis_angles",
+            "euler_angles",
+            b"euler_angles",
+            "no_orientation",
+            b"no_orientation",
+            "quaternion",
+            b"quaternion",
+            "type",
+            b"type",
+            "vector_degrees",
+            b"vector_degrees",
+            "vector_radians",
+            b"vector_radians",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["type", b"type"]
+    ) -> (
+        typing_extensions.Literal[
+            "no_orientation",
+            "vector_radians",
+            "vector_degrees",
+            "euler_angles",
+            "axis_angles",
+            "quaternion",
+        ]
+        | None
+    ): ...
 
-    def __init__(self, *, no_orientation: global___Orientation.NoOrientation | None=..., vector_radians: global___Orientation.OrientationVectorRadians | None=..., vector_degrees: global___Orientation.OrientationVectorDegrees | None=..., euler_angles: global___Orientation.EulerAngles | None=..., axis_angles: global___Orientation.AxisAngles | None=..., quaternion: global___Orientation.Quaternion | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'no_orientation', b'no_orientation', 'quaternion', b'quaternion', 'type', b'type', 'vector_degrees', b'vector_degrees', 'vector_radians', b'vector_radians']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['axis_angles', b'axis_angles', 'euler_angles', b'euler_angles', 'no_orientation', b'no_orientation', 'quaternion', b'quaternion', 'type', b'type', 'vector_degrees', b'vector_degrees', 'vector_radians', b'vector_radians']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['no_orientation', 'vector_radians', 'vector_degrees', 'euler_angles', 'axis_angles', 'quaternion'] | None:
-        ...
 global___Orientation = Orientation
 
 @typing_extensions.final
@@ -736,6 +1154,7 @@ class RemoteConfig(google.protobuf.message.Message):
     the current robot. All components of the remote robot who have Parent as "world" will be attached to the parent defined
     in Frame, and with the given offset as well.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     ADDRESS_FIELD_NUMBER: builtins.int
@@ -751,37 +1170,79 @@ class RemoteConfig(google.protobuf.message.Message):
     address: builtins.str
 
     @property
-    def frame(self) -> global___Frame:
-        ...
-
+    def frame(self) -> global___Frame: ...
     @property
-    def auth(self) -> global___RemoteAuth:
-        ...
+    def auth(self) -> global___RemoteAuth: ...
     managed_by: builtins.str
     insecure: builtins.bool
 
     @property
-    def connection_check_interval(self) -> google.protobuf.duration_pb2.Duration:
-        ...
-
+    def connection_check_interval(self) -> google.protobuf.duration_pb2.Duration: ...
     @property
-    def reconnect_interval(self) -> google.protobuf.duration_pb2.Duration:
-        ...
-
+    def reconnect_interval(self) -> google.protobuf.duration_pb2.Duration: ...
     @property
-    def service_configs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ResourceLevelServiceConfig]:
-        ...
+    def service_configs(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ResourceLevelServiceConfig
+    ]: ...
     secret: builtins.str
-    'Secret is a helper for a robot location secret.'
+    "Secret is a helper for a robot location secret."
 
-    def __init__(self, *, name: builtins.str=..., address: builtins.str=..., frame: global___Frame | None=..., auth: global___RemoteAuth | None=..., managed_by: builtins.str=..., insecure: builtins.bool=..., connection_check_interval: google.protobuf.duration_pb2.Duration | None=..., reconnect_interval: google.protobuf.duration_pb2.Duration | None=..., service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig] | None=..., secret: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        address: builtins.str = ...,
+        frame: global___Frame | None = ...,
+        auth: global___RemoteAuth | None = ...,
+        managed_by: builtins.str = ...,
+        insecure: builtins.bool = ...,
+        connection_check_interval: google.protobuf.duration_pb2.Duration | None = ...,
+        reconnect_interval: google.protobuf.duration_pb2.Duration | None = ...,
+        service_configs: collections.abc.Iterable[global___ResourceLevelServiceConfig]
+        | None = ...,
+        secret: builtins.str = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "auth",
+            b"auth",
+            "connection_check_interval",
+            b"connection_check_interval",
+            "frame",
+            b"frame",
+            "reconnect_interval",
+            b"reconnect_interval",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "address",
+            b"address",
+            "auth",
+            b"auth",
+            "connection_check_interval",
+            b"connection_check_interval",
+            "frame",
+            b"frame",
+            "insecure",
+            b"insecure",
+            "managed_by",
+            b"managed_by",
+            "name",
+            b"name",
+            "reconnect_interval",
+            b"reconnect_interval",
+            "secret",
+            b"secret",
+            "service_configs",
+            b"service_configs",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'reconnect_interval', b'reconnect_interval']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['address', b'address', 'auth', b'auth', 'connection_check_interval', b'connection_check_interval', 'frame', b'frame', 'insecure', b'insecure', 'managed_by', b'managed_by', 'name', b'name', 'reconnect_interval', b'reconnect_interval', 'secret', b'secret', 'service_configs', b'service_configs']) -> None:
-        ...
 global___RemoteConfig = RemoteConfig
 
 @typing_extensions.final
@@ -790,6 +1251,7 @@ class RemoteAuth(google.protobuf.message.Message):
     specified, authentication does not happen. If an entity is specified, the
     authentication request will specify it.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -797,33 +1259,48 @@ class RemoteAuth(google.protobuf.message.Message):
         """Credentials packages up both a type of credential along with its payload which
         is formatted specific to the type.
         """
+
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         TYPE_FIELD_NUMBER: builtins.int
         PAYLOAD_FIELD_NUMBER: builtins.int
         type: global___CredentialsType.ValueType
         payload: builtins.str
 
-        def __init__(self, *, type: global___CredentialsType.ValueType=..., payload: builtins.str=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['payload', b'payload', 'type', b'type']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            type: global___CredentialsType.ValueType = ...,
+            payload: builtins.str = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "payload", b"payload", "type", b"type"
+            ],
+        ) -> None: ...
     CREDENTIALS_FIELD_NUMBER: builtins.int
     ENTITY_FIELD_NUMBER: builtins.int
 
     @property
-    def credentials(self) -> global___RemoteAuth.Credentials:
-        ...
+    def credentials(self) -> global___RemoteAuth.Credentials: ...
     entity: builtins.str
 
-    def __init__(self, *, credentials: global___RemoteAuth.Credentials | None=..., entity: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        credentials: global___RemoteAuth.Credentials | None = ...,
+        entity: builtins.str = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["credentials", b"credentials"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "credentials", b"credentials", "entity", b"entity"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['credentials', b'credentials']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['credentials', b'credentials', 'entity', b'entity']) -> None:
-        ...
 global___RemoteAuth = RemoteAuth
 
 @typing_extensions.final
@@ -837,28 +1314,58 @@ class AgentInfo(google.protobuf.message.Message):
     PLATFORM_FIELD_NUMBER: builtins.int
     host: builtins.str
     os: builtins.str
-    'Will soon be deprecated, use platform instead'
+    "Will soon be deprecated, use platform instead"
 
     @property
-    def ips(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def ips(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """list of all ipv4 ips."""
     version: builtins.str
-    'RDK version'
+    "RDK version"
     git_revision: builtins.str
     platform: builtins.str
-    'The platform the RDK is running on. For example linux/amd64'
+    "The platform the RDK is running on. For example linux/amd64"
 
-    def __init__(self, *, host: builtins.str=..., os: builtins.str=..., ips: collections.abc.Iterable[builtins.str] | None=..., version: builtins.str=..., git_revision: builtins.str=..., platform: builtins.str | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        host: builtins.str = ...,
+        os: builtins.str = ...,
+        ips: collections.abc.Iterable[builtins.str] | None = ...,
+        version: builtins.str = ...,
+        git_revision: builtins.str = ...,
+        platform: builtins.str | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_platform", b"_platform", "platform", b"platform"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_platform",
+            b"_platform",
+            "git_revision",
+            b"git_revision",
+            "host",
+            b"host",
+            "ips",
+            b"ips",
+            "os",
+            b"os",
+            "platform",
+            b"platform",
+            "version",
+            b"version",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_platform", b"_platform"]
+    ) -> typing_extensions.Literal["platform"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'platform', b'platform']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_platform', b'_platform', 'git_revision', b'git_revision', 'host', b'host', 'ips', b'ips', 'os', b'os', 'platform', b'platform', 'version', b'version']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_platform', b'_platform']) -> typing_extensions.Literal['platform'] | None:
-        ...
 global___AgentInfo = AgentInfo
 
 @typing_extensions.final
@@ -867,23 +1374,31 @@ class ConfigRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     AGENT_INFO_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
 
     @property
     def agent_info(self) -> global___AgentInfo:
         """Details about the RDK (os, version) are updated during this request."""
 
-    def __init__(self, *, id: builtins.str=..., agent_info: global___AgentInfo | None=...) -> None:
-        ...
+    def __init__(
+        self, *, id: builtins.str = ..., agent_info: global___AgentInfo | None = ...
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_agent_info", b"_agent_info", "agent_info", b"agent_info"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_agent_info", b"_agent_info", "agent_info", b"agent_info", "id", b"id"
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_agent_info", b"_agent_info"]
+    ) -> typing_extensions.Literal["agent_info"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_agent_info', b'_agent_info', 'agent_info', b'agent_info']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_agent_info', b'_agent_info', 'agent_info', b'agent_info', 'id', b'id']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_agent_info', b'_agent_info']) -> typing_extensions.Literal['agent_info'] | None:
-        ...
 global___ConfigRequest = ConfigRequest
 
 @typing_extensions.final
@@ -892,17 +1407,15 @@ class ConfigResponse(google.protobuf.message.Message):
     CONFIG_FIELD_NUMBER: builtins.int
 
     @property
-    def config(self) -> global___RobotConfig:
-        ...
+    def config(self) -> global___RobotConfig: ...
+    def __init__(self, *, config: global___RobotConfig | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["config", b"config"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["config", b"config"]
+    ) -> None: ...
 
-    def __init__(self, *, config: global___RobotConfig | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config']) -> None:
-        ...
 global___ConfigResponse = ConfigResponse
 
 @typing_extensions.final
@@ -910,13 +1423,13 @@ class CertificateRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
 
-    def __init__(self, *, id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["id", b"id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
-        ...
 global___CertificateRequest = CertificateRequest
 
 @typing_extensions.final
@@ -926,15 +1439,29 @@ class CertificateResponse(google.protobuf.message.Message):
     TLS_CERTIFICATE_FIELD_NUMBER: builtins.int
     TLS_PRIVATE_KEY_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
     tls_certificate: builtins.str
     tls_private_key: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., tls_certificate: builtins.str=..., tls_private_key: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        tls_certificate: builtins.str = ...,
+        tls_private_key: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "id",
+            b"id",
+            "tls_certificate",
+            b"tls_certificate",
+            "tls_private_key",
+            b"tls_private_key",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'tls_certificate', b'tls_certificate', 'tls_private_key', b'tls_private_key']) -> None:
-        ...
 global___CertificateResponse = CertificateResponse
 
 @typing_extensions.final
@@ -943,25 +1470,32 @@ class LogRequest(google.protobuf.message.Message):
     ID_FIELD_NUMBER: builtins.int
     LOGS_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
 
     @property
-    def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]:
-        ...
+    def logs(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        common.v1.common_pb2.LogEntry
+    ]: ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["id", b"id", "logs", b"logs"]
+    ) -> None: ...
 
-    def __init__(self, *, id: builtins.str=..., logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'logs', b'logs']) -> None:
-        ...
 global___LogRequest = LogRequest
 
 @typing_extensions.final
 class LogResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___LogResponse = LogResponse
 
 @typing_extensions.final
@@ -969,13 +1503,13 @@ class NeedsRestartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
 
-    def __init__(self, *, id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["id", b"id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
-        ...
 global___NeedsRestartRequest = NeedsRestartRequest
 
 @typing_extensions.final
@@ -985,26 +1519,42 @@ class NeedsRestartResponse(google.protobuf.message.Message):
     MUST_RESTART_FIELD_NUMBER: builtins.int
     RESTART_CHECK_INTERVAL_FIELD_NUMBER: builtins.int
     id: builtins.str
-    'Robot part id.'
+    "Robot part id."
     must_restart: builtins.bool
 
     @property
-    def restart_check_interval(self) -> google.protobuf.duration_pb2.Duration:
-        ...
+    def restart_check_interval(self) -> google.protobuf.duration_pb2.Duration: ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        must_restart: builtins.bool = ...,
+        restart_check_interval: google.protobuf.duration_pb2.Duration | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "restart_check_interval", b"restart_check_interval"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "id",
+            b"id",
+            "must_restart",
+            b"must_restart",
+            "restart_check_interval",
+            b"restart_check_interval",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, id: builtins.str=..., must_restart: builtins.bool=..., restart_check_interval: google.protobuf.duration_pb2.Duration | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['restart_check_interval', b'restart_check_interval']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'must_restart', b'must_restart', 'restart_check_interval', b'restart_check_interval']) -> None:
-        ...
 global___NeedsRestartResponse = NeedsRestartResponse
 
 @typing_extensions.final
 class ModuleConfig(google.protobuf.message.Message):
     """ModuleConfig is the configuration for a module."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -1015,11 +1565,13 @@ class ModuleConfig(google.protobuf.message.Message):
         key: builtins.str
         value: builtins.str
 
-        def __init__(self, *, key: builtins.str=..., value: builtins.str=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def __init__(
+            self, *, key: builtins.str = ..., value: builtins.str = ...
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     NAME_FIELD_NUMBER: builtins.int
     PATH_FIELD_NUMBER: builtins.int
     LOG_LEVEL_FIELD_NUMBER: builtins.int
@@ -1029,35 +1581,64 @@ class ModuleConfig(google.protobuf.message.Message):
     STATUS_FIELD_NUMBER: builtins.int
     name: builtins.str
     path: builtins.str
-    'path to the executable'
+    "path to the executable"
     log_level: builtins.str
-    'log level for module'
+    "log level for module"
     type: builtins.str
     'type of the module ("local" or "registry")'
     module_id: builtins.str
-    'the id of the module if it is a registry module'
+    "the id of the module if it is a registry module"
 
     @property
-    def env(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
+    def env(
+        self,
+    ) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """additional environment variables passed to the module process"""
 
     @property
     def status(self) -> global___AppValidationStatus:
         """info about the validity of the module"""
 
-    def __init__(self, *, name: builtins.str=..., path: builtins.str=..., log_level: builtins.str=..., type: builtins.str=..., module_id: builtins.str=..., env: collections.abc.Mapping[builtins.str, builtins.str] | None=..., status: global___AppValidationStatus | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        path: builtins.str = ...,
+        log_level: builtins.str = ...,
+        type: builtins.str = ...,
+        module_id: builtins.str = ...,
+        env: collections.abc.Mapping[builtins.str, builtins.str] | None = ...,
+        status: global___AppValidationStatus | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "env",
+            b"env",
+            "log_level",
+            b"log_level",
+            "module_id",
+            b"module_id",
+            "name",
+            b"name",
+            "path",
+            b"path",
+            "status",
+            b"status",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['env', b'env', 'log_level', b'log_level', 'module_id', b'module_id', 'name', b'name', 'path', b'path', 'status', b'status', 'type', b'type']) -> None:
-        ...
 global___ModuleConfig = ModuleConfig
 
 @typing_extensions.final
 class PackageConfig(google.protobuf.message.Message):
     """PackageConfig is the configration for deployed Packages."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     PACKAGE_FIELD_NUMBER: builtins.int
@@ -1065,24 +1646,44 @@ class PackageConfig(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty.'
+    "Name is the local name of the package on the RDK. Must be unique across Packages. Must not be empty."
     package: builtins.str
-    'Package is the unique package name hosted by Viam. Must not be empty.'
+    "Package is the unique package name hosted by Viam. Must not be empty."
     version: builtins.str
     'version of the package ID hosted by Viam. If not specified "latest" is assumed.'
     type: builtins.str
-    'type of the package'
+    "type of the package"
 
     @property
     def status(self) -> global___AppValidationStatus:
         """info about the validity of the package"""
 
-    def __init__(self, *, name: builtins.str=..., package: builtins.str=..., version: builtins.str=..., type: builtins.str=..., status: global___AppValidationStatus | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        package: builtins.str = ...,
+        version: builtins.str = ...,
+        type: builtins.str = ...,
+        status: global___AppValidationStatus | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "name",
+            b"name",
+            "package",
+            b"package",
+            "status",
+            b"status",
+            "type",
+            b"type",
+            "version",
+            b"version",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'package', b'package', 'status', b'status', 'type', b'type', 'version', b'version']) -> None:
-        ...
 global___PackageConfig = PackageConfig

@@ -3,10 +3,12 @@
 isort:skip_file
 """
 import builtins
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -19,20 +21,25 @@ class GetVoltageRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of a power sensor'
+    "Name of a power sensor"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___GetVoltageRequest = GetVoltageRequest
 
 @typing_extensions.final
@@ -41,15 +48,18 @@ class GetVoltageResponse(google.protobuf.message.Message):
     VOLTS_FIELD_NUMBER: builtins.int
     IS_AC_FIELD_NUMBER: builtins.int
     volts: builtins.float
-    'Voltage in volts'
+    "Voltage in volts"
     is_ac: builtins.bool
-    'Bool describing whether the voltage is DC or AC'
+    "Bool describing whether the voltage is DC or AC"
 
-    def __init__(self, *, volts: builtins.float=..., is_ac: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self, *, volts: builtins.float = ..., is_ac: builtins.bool = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["is_ac", b"is_ac", "volts", b"volts"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_ac', b'is_ac', 'volts', b'volts']) -> None:
-        ...
 global___GetVoltageResponse = GetVoltageResponse
 
 @typing_extensions.final
@@ -58,20 +68,25 @@ class GetCurrentRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of a power sensor'
+    "Name of a power sensor"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___GetCurrentRequest = GetCurrentRequest
 
 @typing_extensions.final
@@ -80,15 +95,18 @@ class GetCurrentResponse(google.protobuf.message.Message):
     AMPERES_FIELD_NUMBER: builtins.int
     IS_AC_FIELD_NUMBER: builtins.int
     amperes: builtins.float
-    'Current in amperes'
+    "Current in amperes"
     is_ac: builtins.bool
-    'Bool descibing whether the current is DC or AC'
+    "Bool descibing whether the current is DC or AC"
 
-    def __init__(self, *, amperes: builtins.float=..., is_ac: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self, *, amperes: builtins.float = ..., is_ac: builtins.bool = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["amperes", b"amperes", "is_ac", b"is_ac"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['amperes', b'amperes', 'is_ac', b'is_ac']) -> None:
-        ...
 global___GetCurrentResponse = GetCurrentResponse
 
 @typing_extensions.final
@@ -97,20 +115,25 @@ class GetPowerRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of a power sensor'
+    "Name of a power sensor"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___GetPowerRequest = GetPowerRequest
 
 @typing_extensions.final
@@ -118,11 +141,11 @@ class GetPowerResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WATTS_FIELD_NUMBER: builtins.int
     watts: builtins.float
-    'Power in watts'
+    "Power in watts"
 
-    def __init__(self, *, watts: builtins.float=...) -> None:
-        ...
+    def __init__(self, *, watts: builtins.float = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["watts", b"watts"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['watts', b'watts']) -> None:
-        ...
 global___GetPowerResponse = GetPowerResponse

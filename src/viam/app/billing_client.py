@@ -40,7 +40,9 @@ class BillingClient:
     _channel: Channel
     _metadata: Mapping[str, str]
 
-    async def get_current_month_usage(self, org_id: str, timeout: Optional[float] = None) -> GetCurrentMonthUsageResponse:
+    async def get_current_month_usage(
+        self, org_id: str, timeout: Optional[float] = None
+    ) -> GetCurrentMonthUsageResponse:
         """Access data usage information for the current month for a given organization.
 
         Args:
@@ -50,9 +52,13 @@ class BillingClient:
             viam.proto.app.billing.GetCurrentMonthUsageResponse: Current month usage information
         """
         request = GetCurrentMonthUsageRequest(org_id=org_id)
-        return await self._billing_client.GetCurrentMonthUsage(request, metadata=self._metadata, timeout=timeout)
+        return await self._billing_client.GetCurrentMonthUsage(
+            request, metadata=self._metadata, timeout=timeout
+        )
 
-    async def get_invoice_pdf(self, invoice_id: str, org_id: str, dest: str, timeout: Optional[float] = None) -> None:
+    async def get_invoice_pdf(
+        self, invoice_id: str, org_id: str, dest: str, timeout: Optional[float] = None
+    ) -> None:
         """Access invoice PDF data and optionally save it to a provided file path.
 
         Args:
@@ -61,13 +67,19 @@ class BillingClient:
             dest (str): filepath to save the invoice to
         """
         stream: Stream[GetInvoicePdfRequest, GetInvoicePdfResponse]
-        async with self._billing_client.GetInvoicePdf.open(timeout=timeout, metadata=self._metadata) as stream:
-            await stream.send_message(GetInvoicePdfRequest(id=invoice_id, org_id=org_id), end=True)
+        async with self._billing_client.GetInvoicePdf.open(
+            timeout=timeout, metadata=self._metadata
+        ) as stream:
+            await stream.send_message(
+                GetInvoicePdfRequest(id=invoice_id, org_id=org_id), end=True
+            )
             with open(dest, "wb") as file:
                 async for response in stream:
                     file.write(response.chunk)
 
-    async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
+    async def get_invoices_summary(
+        self, org_id: str, timeout: Optional[float] = None
+    ) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.
 
         Args:
@@ -77,9 +89,13 @@ class BillingClient:
             viam.proto.app.billing.GetInvoicesSummaryResponse: Summary of org invoices
         """
         request = GetInvoicesSummaryRequest(org_id=org_id)
-        return await self._billing_client.GetInvoicesSummary(request, metadata=self._metadata, timeout=timeout)
+        return await self._billing_client.GetInvoicesSummary(
+            request, metadata=self._metadata, timeout=timeout
+        )
 
-    async def get_org_billing_information(self, org_id: str, timeout: Optional[float] = None) -> GetOrgBillingInformationResponse:
+    async def get_org_billing_information(
+        self, org_id: str, timeout: Optional[float] = None
+    ) -> GetOrgBillingInformationResponse:
         """Access billing information (payment method, billing tier, etc.) for a given org.
 
         Args:
@@ -88,4 +104,6 @@ class BillingClient:
         Returns:
             viam.proto.app.billing.GetOrgBillingInformationResponse: The org billing information"""
         request = GetOrgBillingInformationRequest(org_id=org_id)
-        return await self._billing_client.GetOrgBillingInformation(request, metadata=self._metadata, timeout=timeout)
+        return await self._billing_client.GetOrgBillingInformation(
+            request, metadata=self._metadata, timeout=timeout
+        )

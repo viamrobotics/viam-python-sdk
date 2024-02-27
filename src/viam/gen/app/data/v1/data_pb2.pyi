@@ -4,6 +4,9 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+import sys
+import typing
+
 import google.protobuf.any_pb2
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
@@ -11,8 +14,7 @@ import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
-import sys
-import typing
+
 if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
@@ -20,10 +22,13 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _Order:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _OrderEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Order.ValueType], builtins.type):
+class _OrderEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Order.ValueType],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     ORDER_UNSPECIFIED: _Order.ValueType
     ORDER_DESCENDING: _Order.ValueType
@@ -31,34 +36,41 @@ class _OrderEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumType
 
 class Order(_Order, metaclass=_OrderEnumTypeWrapper):
     """Order specifies the order in which data is returned."""
+
 ORDER_UNSPECIFIED: Order.ValueType
 ORDER_DESCENDING: Order.ValueType
 ORDER_ASCENDING: Order.ValueType
 global___Order = Order
 
 class _TagsFilterType:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _TagsFilterTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_TagsFilterType.ValueType], builtins.type):
+class _TagsFilterTypeEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[
+        _TagsFilterType.ValueType
+    ],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     TAGS_FILTER_TYPE_UNSPECIFIED: _TagsFilterType.ValueType
     TAGS_FILTER_TYPE_MATCH_BY_OR: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.'
+    "TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter."
     TAGS_FILTER_TYPE_TAGGED: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.'
+    "TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned."
     TAGS_FILTER_TYPE_UNTAGGED: _TagsFilterType.ValueType
-    'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.'
+    "TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned."
 
 class TagsFilterType(_TagsFilterType, metaclass=_TagsFilterTypeEnumTypeWrapper):
     """TagsFilterType specifies how data can be filtered based on tags."""
+
 TAGS_FILTER_TYPE_UNSPECIFIED: TagsFilterType.ValueType
 TAGS_FILTER_TYPE_MATCH_BY_OR: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter.'
+"TAGS_FILTER_TYPE_MATCH_BY_OR specifies documents matched (using logical OR) on the tags field in the TagsFilter."
 TAGS_FILTER_TYPE_TAGGED: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned.'
+"TAGS_FILTER_TYPE_TAGGED specifies that all tagged documents should be returned."
 TAGS_FILTER_TYPE_UNTAGGED: TagsFilterType.ValueType
-'TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned.'
+"TAGS_FILTER_TYPE_UNTAGGED specifes that all untagged documents should be returned."
 global___TagsFilterType = TagsFilterType
 
 @typing_extensions.final
@@ -70,6 +82,7 @@ class DataRequest(google.protobuf.message.Message):
     We can then use the last string from the previous API calls in the subsequent request
     to get the next set of ordered documents.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     LIMIT_FIELD_NUMBER: builtins.int
@@ -77,20 +90,36 @@ class DataRequest(google.protobuf.message.Message):
     SORT_ORDER_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
+    def filter(self) -> global___Filter: ...
     limit: builtins.int
     last: builtins.str
     sort_order: global___Order.ValueType
 
-    def __init__(self, *, filter: global___Filter | None=..., limit: builtins.int=..., last: builtins.str=..., sort_order: global___Order.ValueType=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        filter: global___Filter | None = ...,
+        limit: builtins.int = ...,
+        last: builtins.str = ...,
+        sort_order: global___Order.ValueType = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "filter",
+            b"filter",
+            "last",
+            b"last",
+            "limit",
+            b"limit",
+            "sort_order",
+            b"sort_order",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'last', b'last', 'limit', b'limit', 'sort_order', b'sort_order']) -> None:
-        ...
 global___DataRequest = DataRequest
 
 @typing_extensions.final
@@ -101,6 +130,7 @@ class Filter(google.protobuf.message.Message):
     box labels, such that if component_type, robot_id, tagA, tagB are specified,
     we return data from that `robot_id` of type `component_type` with `tagA` or `tagB`.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     COMPONENT_TYPE_FIELD_NUMBER: builtins.int
@@ -125,62 +155,125 @@ class Filter(google.protobuf.message.Message):
     part_id: builtins.str
 
     @property
-    def location_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
+    def location_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     @property
-    def organization_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
+    def organization_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     @property
-    def mime_type(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
-
+    def mime_type(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     @property
-    def interval(self) -> global___CaptureInterval:
-        ...
-
+    def interval(self) -> global___CaptureInterval: ...
     @property
-    def tags_filter(self) -> global___TagsFilter:
-        ...
-
+    def tags_filter(self) -> global___TagsFilter: ...
     @property
-    def bbox_labels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def bbox_labels(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """bbox_labels are used to match documents with the specified bounding box labels (using logical OR)."""
     dataset_id: builtins.str
 
-    def __init__(self, *, component_name: builtins.str=..., component_type: builtins.str=..., method: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., location_ids: collections.abc.Iterable[builtins.str] | None=..., organization_ids: collections.abc.Iterable[builtins.str] | None=..., mime_type: collections.abc.Iterable[builtins.str] | None=..., interval: global___CaptureInterval | None=..., tags_filter: global___TagsFilter | None=..., bbox_labels: collections.abc.Iterable[builtins.str] | None=..., dataset_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        component_name: builtins.str = ...,
+        component_type: builtins.str = ...,
+        method: builtins.str = ...,
+        robot_name: builtins.str = ...,
+        robot_id: builtins.str = ...,
+        part_name: builtins.str = ...,
+        part_id: builtins.str = ...,
+        location_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        organization_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        mime_type: collections.abc.Iterable[builtins.str] | None = ...,
+        interval: global___CaptureInterval | None = ...,
+        tags_filter: global___TagsFilter | None = ...,
+        bbox_labels: collections.abc.Iterable[builtins.str] | None = ...,
+        dataset_id: builtins.str = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "interval", b"interval", "tags_filter", b"tags_filter"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "bbox_labels",
+            b"bbox_labels",
+            "component_name",
+            b"component_name",
+            "component_type",
+            b"component_type",
+            "dataset_id",
+            b"dataset_id",
+            "interval",
+            b"interval",
+            "location_ids",
+            b"location_ids",
+            "method",
+            b"method",
+            "mime_type",
+            b"mime_type",
+            "organization_ids",
+            b"organization_ids",
+            "part_id",
+            b"part_id",
+            "part_name",
+            b"part_name",
+            "robot_id",
+            b"robot_id",
+            "robot_name",
+            b"robot_name",
+            "tags_filter",
+            b"tags_filter",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['interval', b'interval', 'tags_filter', b'tags_filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['bbox_labels', b'bbox_labels', 'component_name', b'component_name', 'component_type', b'component_type', 'dataset_id', b'dataset_id', 'interval', b'interval', 'location_ids', b'location_ids', 'method', b'method', 'mime_type', b'mime_type', 'organization_ids', b'organization_ids', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags_filter', b'tags_filter']) -> None:
-        ...
 global___Filter = Filter
 
 @typing_extensions.final
 class TagsFilter(google.protobuf.message.Message):
     """TagsFilter defines the type of filtering and, if applicable, over which tags to perform a logical OR."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
     type: global___TagsFilterType.ValueType
 
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Tags are used to match documents if `type` is UNSPECIFIED or MATCH_BY_OR."""
 
-    def __init__(self, *, type: global___TagsFilterType.ValueType=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        type: global___TagsFilterType.ValueType = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["tags", b"tags", "type", b"type"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['tags', b'tags', 'type', b'type']) -> None:
-        ...
 global___TagsFilter = TagsFilter
 
 @typing_extensions.final
 class CaptureMetadata(google.protobuf.message.Message):
     """CaptureMetadata contains information on the settings used for the data capture."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -191,17 +284,20 @@ class CaptureMetadata(google.protobuf.message.Message):
         key: builtins.str
 
         @property
-        def value(self) -> google.protobuf.any_pb2.Any:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def value(self) -> google.protobuf.any_pb2.Any: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: google.protobuf.any_pb2.Any | None = ...,
+        ) -> None: ...
+        def HasField(
+            self, field_name: typing_extensions.Literal["value", b"value"]
+        ) -> builtins.bool: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
     ROBOT_NAME_FIELD_NUMBER: builtins.int
@@ -225,73 +321,139 @@ class CaptureMetadata(google.protobuf.message.Message):
     method_name: builtins.str
 
     @property
-    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
-        ...
-
+    def method_parameters(
+        self,
+    ) -> google.protobuf.internal.containers.MessageMap[
+        builtins.str, google.protobuf.any_pb2.Any
+    ]: ...
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     mime_type: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_id: builtins.str=..., part_name: builtins.str=..., part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., tags: collections.abc.Iterable[builtins.str] | None=..., mime_type: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        organization_id: builtins.str = ...,
+        location_id: builtins.str = ...,
+        robot_name: builtins.str = ...,
+        robot_id: builtins.str = ...,
+        part_name: builtins.str = ...,
+        part_id: builtins.str = ...,
+        component_type: builtins.str = ...,
+        component_name: builtins.str = ...,
+        method_name: builtins.str = ...,
+        method_parameters: collections.abc.Mapping[
+            builtins.str, google.protobuf.any_pb2.Any
+        ]
+        | None = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+        mime_type: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "component_name",
+            b"component_name",
+            "component_type",
+            b"component_type",
+            "location_id",
+            b"location_id",
+            "method_name",
+            b"method_name",
+            "method_parameters",
+            b"method_parameters",
+            "mime_type",
+            b"mime_type",
+            "organization_id",
+            b"organization_id",
+            "part_id",
+            b"part_id",
+            "part_name",
+            b"part_name",
+            "robot_id",
+            b"robot_id",
+            "robot_name",
+            b"robot_name",
+            "tags",
+            b"tags",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'location_id', b'location_id', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'mime_type', b'mime_type', 'organization_id', b'organization_id', 'part_id', b'part_id', 'part_name', b'part_name', 'robot_id', b'robot_id', 'robot_name', b'robot_name', 'tags', b'tags']) -> None:
-        ...
 global___CaptureMetadata = CaptureMetadata
 
 @typing_extensions.final
 class CaptureInterval(google.protobuf.message.Message):
     """CaptureInterval describes the start and end time of the capture in this file."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     START_FIELD_NUMBER: builtins.int
     END_FIELD_NUMBER: builtins.int
 
     @property
-    def start(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def start(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def end(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def end(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        start: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        end: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["end", b"end", "start", b"start"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["end", b"end", "start", b"start"]
+    ) -> None: ...
 
-    def __init__(self, *, start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['end', b'end', 'start', b'start']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['end', b'end', 'start', b'start']) -> None:
-        ...
 global___CaptureInterval = CaptureInterval
 
 @typing_extensions.final
 class TabularDataByFilterRequest(google.protobuf.message.Message):
     """TabularDataByFilterRequest requests tabular data based on filter values."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     COUNT_ONLY_FIELD_NUMBER: builtins.int
     INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def data_request(self) -> global___DataRequest:
-        ...
+    def data_request(self) -> global___DataRequest: ...
     count_only: builtins.bool
     include_internal_data: builtins.bool
 
-    def __init__(self, *, data_request: global___DataRequest | None=..., count_only: builtins.bool=..., include_internal_data: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        data_request: global___DataRequest | None = ...,
+        count_only: builtins.bool = ...,
+        include_internal_data: builtins.bool = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["data_request", b"data_request"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "count_only",
+            b"count_only",
+            "data_request",
+            b"data_request",
+            "include_internal_data",
+            b"include_internal_data",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['data_request', b'data_request']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request', 'include_internal_data', b'include_internal_data']) -> None:
-        ...
 global___TabularDataByFilterRequest = TabularDataByFilterRequest
 
 @typing_extensions.final
 class TabularDataByFilterResponse(google.protobuf.message.Message):
     """TabularDataByFilterResponse provides the data and metadata of tabular data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
@@ -300,26 +462,52 @@ class TabularDataByFilterResponse(google.protobuf.message.Message):
     TOTAL_SIZE_BYTES_FIELD_NUMBER: builtins.int
 
     @property
-    def metadata(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CaptureMetadata]:
-        ...
-
+    def metadata(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___CaptureMetadata
+    ]: ...
     @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___TabularData]:
-        ...
+    def data(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___TabularData
+    ]: ...
     count: builtins.int
     last: builtins.str
     total_size_bytes: builtins.int
 
-    def __init__(self, *, metadata: collections.abc.Iterable[global___CaptureMetadata] | None=..., data: collections.abc.Iterable[global___TabularData] | None=..., count: builtins.int=..., last: builtins.str=..., total_size_bytes: builtins.int=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        metadata: collections.abc.Iterable[global___CaptureMetadata] | None = ...,
+        data: collections.abc.Iterable[global___TabularData] | None = ...,
+        count: builtins.int = ...,
+        last: builtins.str = ...,
+        total_size_bytes: builtins.int = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "count",
+            b"count",
+            "data",
+            b"data",
+            "last",
+            b"last",
+            "metadata",
+            b"metadata",
+            "total_size_bytes",
+            b"total_size_bytes",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'last', b'last', 'metadata', b'metadata', 'total_size_bytes', b'total_size_bytes']) -> None:
-        ...
 global___TabularDataByFilterResponse = TabularDataByFilterResponse
 
 @typing_extensions.final
 class TabularData(google.protobuf.message.Message):
     """TabularData contains data and metadata associated with tabular data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     METADATA_INDEX_FIELD_NUMBER: builtins.int
@@ -327,31 +515,52 @@ class TabularData(google.protobuf.message.Message):
     TIME_RECEIVED_FIELD_NUMBER: builtins.int
 
     @property
-    def data(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def data(self) -> google.protobuf.struct_pb2.Struct: ...
     metadata_index: builtins.int
 
     @property
-    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        data: google.protobuf.struct_pb2.Struct | None = ...,
+        metadata_index: builtins.int = ...,
+        time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "data",
+            b"data",
+            "time_received",
+            b"time_received",
+            "time_requested",
+            b"time_requested",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "data",
+            b"data",
+            "metadata_index",
+            b"metadata_index",
+            "time_received",
+            b"time_received",
+            "time_requested",
+            b"time_requested",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, data: google.protobuf.struct_pb2.Struct | None=..., metadata_index: builtins.int=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['data', b'data', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data', 'metadata_index', b'metadata_index', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> None:
-        ...
 global___TabularData = TabularData
 
 @typing_extensions.final
 class TabularDataBySQLRequest(google.protobuf.message.Message):
     """TabularDataBySQLRequest requests tabular data using a SQL query."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     SQL_QUERY_FIELD_NUMBER: builtins.int
@@ -359,94 +568,134 @@ class TabularDataBySQLRequest(google.protobuf.message.Message):
     sql_query: builtins.str
     'sql_query accepts any valid SQL SELECT statement. Tabular data is held in a database\n    called "sensorData" and a table called readings, so queries should select from "readings"\n    or "sensorData.readings".\n    '
 
-    def __init__(self, *, organization_id: builtins.str=..., sql_query: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, organization_id: builtins.str = ..., sql_query: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "organization_id", b"organization_id", "sql_query", b"sql_query"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'sql_query', b'sql_query']) -> None:
-        ...
 global___TabularDataBySQLRequest = TabularDataBySQLRequest
 
 @typing_extensions.final
 class TabularDataBySQLResponse(google.protobuf.message.Message):
     """TabularDataBySQLResponse provides unified tabular data and metadata, queried with SQL."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
-        ...
+    def data(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        google.protobuf.struct_pb2.Struct
+    ]: ...
+    def __init__(
+        self,
+        *,
+        data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["data", b"data"]
+    ) -> None: ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
-        ...
 global___TabularDataBySQLResponse = TabularDataBySQLResponse
 
 @typing_extensions.final
 class TabularDataByMQLRequest(google.protobuf.message.Message):
     """TabularDataByMQLRequest requests tabular data using an MQL query."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     MQL_BINARY_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
 
     @property
-    def mql_binary(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.bytes]:
+    def mql_binary(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.bytes
+    ]:
         """mql_binary accepts a MongoDB aggregation pipeline as a list of BSON documents, where each
         document is one stage in the pipeline. The pipeline is run on the "sensorData.readings"
         namespace, which holds the Viam organization's tabular data.
         """
 
-    def __init__(self, *, organization_id: builtins.str=..., mql_binary: collections.abc.Iterable[builtins.bytes] | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        organization_id: builtins.str = ...,
+        mql_binary: collections.abc.Iterable[builtins.bytes] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "mql_binary", b"mql_binary", "organization_id", b"organization_id"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['mql_binary', b'mql_binary', 'organization_id', b'organization_id']) -> None:
-        ...
 global___TabularDataByMQLRequest = TabularDataByMQLRequest
 
 @typing_extensions.final
 class TabularDataByMQLResponse(google.protobuf.message.Message):
     """TabularDataByMQLResponse provides unified tabular data and metadata, queried with MQL."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
-        ...
+    def data(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        google.protobuf.struct_pb2.Struct
+    ]: ...
+    def __init__(
+        self,
+        *,
+        data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["data", b"data"]
+    ) -> None: ...
 
-    def __init__(self, *, data: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
-        ...
 global___TabularDataByMQLResponse = TabularDataByMQLResponse
 
 @typing_extensions.final
 class BinaryData(google.protobuf.message.Message):
     """BinaryData contains data and metadata associated with binary data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_FIELD_NUMBER: builtins.int
     METADATA_FIELD_NUMBER: builtins.int
     binary: builtins.bytes
 
     @property
-    def metadata(self) -> global___BinaryMetadata:
-        ...
+    def metadata(self) -> global___BinaryMetadata: ...
+    def __init__(
+        self,
+        *,
+        binary: builtins.bytes = ...,
+        metadata: global___BinaryMetadata | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["metadata", b"metadata"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary", b"binary", "metadata", b"metadata"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, binary: builtins.bytes=..., metadata: global___BinaryMetadata | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary', b'binary', 'metadata', b'metadata']) -> None:
-        ...
 global___BinaryData = BinaryData
 
 @typing_extensions.final
 class BinaryDataByFilterRequest(google.protobuf.message.Message):
     """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_REQUEST_FIELD_NUMBER: builtins.int
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
@@ -454,25 +703,42 @@ class BinaryDataByFilterRequest(google.protobuf.message.Message):
     INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def data_request(self) -> global___DataRequest:
-        ...
+    def data_request(self) -> global___DataRequest: ...
     include_binary: builtins.bool
     count_only: builtins.bool
     include_internal_data: builtins.bool
 
-    def __init__(self, *, data_request: global___DataRequest | None=..., include_binary: builtins.bool=..., count_only: builtins.bool=..., include_internal_data: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        data_request: global___DataRequest | None = ...,
+        include_binary: builtins.bool = ...,
+        count_only: builtins.bool = ...,
+        include_internal_data: builtins.bool = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["data_request", b"data_request"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "count_only",
+            b"count_only",
+            "data_request",
+            b"data_request",
+            "include_binary",
+            b"include_binary",
+            "include_internal_data",
+            b"include_internal_data",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['data_request', b'data_request']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['count_only', b'count_only', 'data_request', b'data_request', 'include_binary', b'include_binary', 'include_internal_data', b'include_internal_data']) -> None:
-        ...
 global___BinaryDataByFilterRequest = BinaryDataByFilterRequest
 
 @typing_extensions.final
 class BinaryDataByFilterResponse(google.protobuf.message.Message):
     """BinaryDataByFilterResponse provides the data and metadata of binary (image + file) data when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
@@ -480,22 +746,43 @@ class BinaryDataByFilterResponse(google.protobuf.message.Message):
     TOTAL_SIZE_BYTES_FIELD_NUMBER: builtins.int
 
     @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]:
-        ...
+    def data(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryData
+    ]: ...
     count: builtins.int
     last: builtins.str
     total_size_bytes: builtins.int
 
-    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=..., last: builtins.str=..., total_size_bytes: builtins.int=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        data: collections.abc.Iterable[global___BinaryData] | None = ...,
+        count: builtins.int = ...,
+        last: builtins.str = ...,
+        total_size_bytes: builtins.int = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "count",
+            b"count",
+            "data",
+            b"data",
+            "last",
+            b"last",
+            "total_size_bytes",
+            b"total_size_bytes",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data', 'last', b'last', 'total_size_bytes', b'total_size_bytes']) -> None:
-        ...
 global___BinaryDataByFilterResponse = BinaryDataByFilterResponse
 
 @typing_extensions.final
 class BinaryID(google.protobuf.message.Message):
     """BinaryID is the unique identifier for a file that one can request to be retrieved or modified."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -504,49 +791,83 @@ class BinaryID(google.protobuf.message.Message):
     organization_id: builtins.str
     location_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=..., organization_id: builtins.str=..., location_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        file_id: builtins.str = ...,
+        organization_id: builtins.str = ...,
+        location_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "file_id",
+            b"file_id",
+            "location_id",
+            b"location_id",
+            "organization_id",
+            b"organization_id",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id', 'location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
-        ...
 global___BinaryID = BinaryID
 
 @typing_extensions.final
 class BinaryDataByIDsRequest(google.protobuf.message.Message):
     """BinaryDataByFilterRequest requests the data and metadata of binary (image + file) data by binary ids."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INCLUDE_BINARY_FIELD_NUMBER: builtins.int
     BINARY_IDS_FIELD_NUMBER: builtins.int
     include_binary: builtins.bool
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
+    def __init__(
+        self,
+        *,
+        include_binary: builtins.bool = ...,
+        binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_ids", b"binary_ids", "include_binary", b"include_binary"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, include_binary: builtins.bool=..., binary_ids: collections.abc.Iterable[global___BinaryID] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'include_binary', b'include_binary']) -> None:
-        ...
 global___BinaryDataByIDsRequest = BinaryDataByIDsRequest
 
 @typing_extensions.final
 class BinaryDataByIDsResponse(google.protobuf.message.Message):
     """BinaryDataByIDsResponse provides the data and metadata of binary (image + file) data when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     COUNT_FIELD_NUMBER: builtins.int
 
     @property
-    def data(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryData]:
-        ...
+    def data(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryData
+    ]: ...
     count: builtins.int
 
-    def __init__(self, *, data: collections.abc.Iterable[global___BinaryData] | None=..., count: builtins.int=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        data: collections.abc.Iterable[global___BinaryData] | None = ...,
+        count: builtins.int = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["count", b"count", "data", b"data"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['count', b'count', 'data', b'data']) -> None:
-        ...
 global___BinaryDataByIDsResponse = BinaryDataByIDsResponse
 
 @typing_extensions.final
@@ -554,6 +875,7 @@ class BoundingBox(google.protobuf.message.Message):
     """BoundingBox represents a labeled bounding box on an image.
     x and y values are normalized ratios between 0 and 1.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
@@ -568,33 +890,62 @@ class BoundingBox(google.protobuf.message.Message):
     x_max_normalized: builtins.float
     y_max_normalized: builtins.float
 
-    def __init__(self, *, id: builtins.str=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        label: builtins.str = ...,
+        x_min_normalized: builtins.float = ...,
+        y_min_normalized: builtins.float = ...,
+        x_max_normalized: builtins.float = ...,
+        y_max_normalized: builtins.float = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "id",
+            b"id",
+            "label",
+            b"label",
+            "x_max_normalized",
+            b"x_max_normalized",
+            "x_min_normalized",
+            b"x_min_normalized",
+            "y_max_normalized",
+            b"y_max_normalized",
+            "y_min_normalized",
+            b"y_min_normalized",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
-        ...
 global___BoundingBox = BoundingBox
 
 @typing_extensions.final
 class Annotations(google.protobuf.message.Message):
     """Annotations are data annotations used for machine learning."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BBOXES_FIELD_NUMBER: builtins.int
 
     @property
-    def bboxes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BoundingBox]:
-        ...
+    def bboxes(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BoundingBox
+    ]: ...
+    def __init__(
+        self, *, bboxes: collections.abc.Iterable[global___BoundingBox] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["bboxes", b"bboxes"]
+    ) -> None: ...
 
-    def __init__(self, *, bboxes: collections.abc.Iterable[global___BoundingBox] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['bboxes', b'bboxes']) -> None:
-        ...
 global___Annotations = Annotations
 
 @typing_extensions.final
 class BinaryMetadata(google.protobuf.message.Message):
     """BinaryMetadata is the metadata associated with binary data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
     CAPTURE_METADATA_FIELD_NUMBER: builtins.int
@@ -608,36 +959,73 @@ class BinaryMetadata(google.protobuf.message.Message):
     id: builtins.str
 
     @property
-    def capture_metadata(self) -> global___CaptureMetadata:
-        ...
-
+    def capture_metadata(self) -> global___CaptureMetadata: ...
     @property
-    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     file_name: builtins.str
     file_ext: builtins.str
     uri: builtins.str
 
     @property
-    def annotations(self) -> global___Annotations:
-        ...
-
+    def annotations(self) -> global___Annotations: ...
     @property
-    def dataset_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def dataset_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        capture_metadata: global___CaptureMetadata | None = ...,
+        time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        file_name: builtins.str = ...,
+        file_ext: builtins.str = ...,
+        uri: builtins.str = ...,
+        annotations: global___Annotations | None = ...,
+        dataset_ids: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "annotations",
+            b"annotations",
+            "capture_metadata",
+            b"capture_metadata",
+            "time_received",
+            b"time_received",
+            "time_requested",
+            b"time_requested",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "annotations",
+            b"annotations",
+            "capture_metadata",
+            b"capture_metadata",
+            "dataset_ids",
+            b"dataset_ids",
+            "file_ext",
+            b"file_ext",
+            "file_name",
+            b"file_name",
+            "id",
+            b"id",
+            "time_received",
+            b"time_received",
+            "time_requested",
+            b"time_requested",
+            "uri",
+            b"uri",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, id: builtins.str=..., capture_metadata: global___CaptureMetadata | None=..., time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=..., file_name: builtins.str=..., file_ext: builtins.str=..., uri: builtins.str=..., annotations: global___Annotations | None=..., dataset_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['annotations', b'annotations', 'capture_metadata', b'capture_metadata', 'dataset_ids', b'dataset_ids', 'file_ext', b'file_ext', 'file_name', b'file_name', 'id', b'id', 'time_received', b'time_received', 'time_requested', b'time_requested', 'uri', b'uri']) -> None:
-        ...
 global___BinaryMetadata = BinaryMetadata
 
 @typing_extensions.final
@@ -646,273 +1034,351 @@ class DeleteTabularDataRequest(google.protobuf.message.Message):
     For example if `delete_older_than_days` is 10, this deletes any data that was captured up to 10 days ago.
     If it is 0, all existing data is deleted.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     DELETE_OLDER_THAN_DAYS_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     delete_older_than_days: builtins.int
 
-    def __init__(self, *, organization_id: builtins.str=..., delete_older_than_days: builtins.int=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        organization_id: builtins.str = ...,
+        delete_older_than_days: builtins.int = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "delete_older_than_days",
+            b"delete_older_than_days",
+            "organization_id",
+            b"organization_id",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['delete_older_than_days', b'delete_older_than_days', 'organization_id', b'organization_id']) -> None:
-        ...
 global___DeleteTabularDataRequest = DeleteTabularDataRequest
 
 @typing_extensions.final
 class DeleteTabularDataResponse(google.protobuf.message.Message):
     """DeleteBinaryDataResponse returns the number of tabular datapoints deleted."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
 
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
+    def __init__(self, *, deleted_count: builtins.int = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["deleted_count", b"deleted_count"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
 global___DeleteTabularDataResponse = DeleteTabularDataResponse
 
 @typing_extensions.final
 class DeleteBinaryDataByFilterRequest(google.protobuf.message.Message):
     """DeleteBinaryDataByFilterRequest deletes the data and metadata of binary data when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     INCLUDE_INTERNAL_DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
+    def filter(self) -> global___Filter: ...
     include_internal_data: builtins.bool
 
-    def __init__(self, *, filter: global___Filter | None=..., include_internal_data: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        filter: global___Filter | None = ...,
+        include_internal_data: builtins.bool = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "filter", b"filter", "include_internal_data", b"include_internal_data"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'include_internal_data', b'include_internal_data']) -> None:
-        ...
 global___DeleteBinaryDataByFilterRequest = DeleteBinaryDataByFilterRequest
 
 @typing_extensions.final
 class DeleteBinaryDataByFilterResponse(google.protobuf.message.Message):
     """DeleteBinaryDataByFilterResponse returns the number of binary files deleted when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
 
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
+    def __init__(self, *, deleted_count: builtins.int = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["deleted_count", b"deleted_count"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
 global___DeleteBinaryDataByFilterResponse = DeleteBinaryDataByFilterResponse
 
 @typing_extensions.final
 class DeleteBinaryDataByIDsRequest(google.protobuf.message.Message):
     """DeleteBinaryDataByIDsRequest deletes the data and metadata of binary data when binary ids are provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
+    def __init__(
+        self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["binary_ids", b"binary_ids"]
+    ) -> None: ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids']) -> None:
-        ...
 global___DeleteBinaryDataByIDsRequest = DeleteBinaryDataByIDsRequest
 
 @typing_extensions.final
 class DeleteBinaryDataByIDsResponse(google.protobuf.message.Message):
     """DeleteBinaryDataByIDsResponse returns the number of binary files deleted when binary ids are provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
 
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
+    def __init__(self, *, deleted_count: builtins.int = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["deleted_count", b"deleted_count"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
 global___DeleteBinaryDataByIDsResponse = DeleteBinaryDataByIDsResponse
 
 @typing_extensions.final
 class AddTagsToBinaryDataByIDsRequest(google.protobuf.message.Message):
     """AddTagsToBinaryDataByIDsRequest requests adding all specified tags to each of the files when binary ids are provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
-
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_ids", b"binary_ids", "tags", b"tags"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
-        ...
 global___AddTagsToBinaryDataByIDsRequest = AddTagsToBinaryDataByIDsRequest
 
 @typing_extensions.final
 class AddTagsToBinaryDataByIDsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AddTagsToBinaryDataByIDsResponse = AddTagsToBinaryDataByIDsResponse
 
 @typing_extensions.final
 class AddTagsToBinaryDataByFilterRequest(google.protobuf.message.Message):
     """AddTagsToBinaryDataByFilterRequest requests adding all specified tags to each of the files when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
-
+    def filter(self) -> global___Filter: ...
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        filter: global___Filter | None = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["filter", b"filter", "tags", b"tags"],
+    ) -> None: ...
 
-    def __init__(self, *, filter: global___Filter | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'tags', b'tags']) -> None:
-        ...
 global___AddTagsToBinaryDataByFilterRequest = AddTagsToBinaryDataByFilterRequest
 
 @typing_extensions.final
 class AddTagsToBinaryDataByFilterResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AddTagsToBinaryDataByFilterResponse = AddTagsToBinaryDataByFilterResponse
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByIDsRequest(google.protobuf.message.Message):
     """RemoveTagsFromBinaryDataByIDsRequest requests removing the given tags value from each file when binary ids are provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
-
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_ids", b"binary_ids", "tags", b"tags"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'tags', b'tags']) -> None:
-        ...
 global___RemoveTagsFromBinaryDataByIDsRequest = RemoveTagsFromBinaryDataByIDsRequest
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByIDsResponse(google.protobuf.message.Message):
     """RemoveTagsFromBinaryDataByIDsResponse returns the number of binary files which had tags removed"""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
 
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
+    def __init__(self, *, deleted_count: builtins.int = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["deleted_count", b"deleted_count"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
 global___RemoveTagsFromBinaryDataByIDsResponse = RemoveTagsFromBinaryDataByIDsResponse
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByFilterRequest(google.protobuf.message.Message):
     """RemoveTagsFromBinaryDataByFilterRequest requests removing the given tags value from each file when a filter is provided."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
-
+    def filter(self) -> global___Filter: ...
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        filter: global___Filter | None = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["filter", b"filter", "tags", b"tags"],
+    ) -> None: ...
 
-    def __init__(self, *, filter: global___Filter | None=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter', 'tags', b'tags']) -> None:
-        ...
-global___RemoveTagsFromBinaryDataByFilterRequest = RemoveTagsFromBinaryDataByFilterRequest
+global___RemoveTagsFromBinaryDataByFilterRequest = (
+    RemoveTagsFromBinaryDataByFilterRequest
+)
 
 @typing_extensions.final
 class RemoveTagsFromBinaryDataByFilterResponse(google.protobuf.message.Message):
     """RemoveTagsFromBinaryDataByFilterResponse returns the number of binary files which had tags removed."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DELETED_COUNT_FIELD_NUMBER: builtins.int
     deleted_count: builtins.int
 
-    def __init__(self, *, deleted_count: builtins.int=...) -> None:
-        ...
+    def __init__(self, *, deleted_count: builtins.int = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["deleted_count", b"deleted_count"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['deleted_count', b'deleted_count']) -> None:
-        ...
-global___RemoveTagsFromBinaryDataByFilterResponse = RemoveTagsFromBinaryDataByFilterResponse
+global___RemoveTagsFromBinaryDataByFilterResponse = (
+    RemoveTagsFromBinaryDataByFilterResponse
+)
 
 @typing_extensions.final
 class TagsByFilterRequest(google.protobuf.message.Message):
     """TagsByFilterRequest requests the unique tags from data based on given filter."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
+    def filter(self) -> global___Filter: ...
+    def __init__(self, *, filter: global___Filter | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> None: ...
 
-    def __init__(self, *, filter: global___Filter | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
-        ...
 global___TagsByFilterRequest = TagsByFilterRequest
 
 @typing_extensions.final
 class TagsByFilterResponse(google.protobuf.message.Message):
     """TagsByFilterResponse returns the unique tags from data based on given filter."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TAGS_FIELD_NUMBER: builtins.int
 
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self, *, tags: collections.abc.Iterable[builtins.str] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["tags", b"tags"]
+    ) -> None: ...
 
-    def __init__(self, *, tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['tags', b'tags']) -> None:
-        ...
 global___TagsByFilterResponse = TagsByFilterResponse
 
 @typing_extensions.final
@@ -920,6 +1386,7 @@ class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
     """AddBoundingBoxToImageByIDRequest specifies the binary ID to which a bounding box
     with the associated label and position in normalized coordinates will be added.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
@@ -929,103 +1396,135 @@ class AddBoundingBoxToImageByIDRequest(google.protobuf.message.Message):
     Y_MAX_NORMALIZED_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_id(self) -> global___BinaryID:
-        ...
+    def binary_id(self) -> global___BinaryID: ...
     label: builtins.str
     x_min_normalized: builtins.float
     y_min_normalized: builtins.float
     x_max_normalized: builtins.float
     y_max_normalized: builtins.float
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., label: builtins.str=..., x_min_normalized: builtins.float=..., y_min_normalized: builtins.float=..., x_max_normalized: builtins.float=..., y_max_normalized: builtins.float=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        binary_id: global___BinaryID | None = ...,
+        label: builtins.str = ...,
+        x_min_normalized: builtins.float = ...,
+        y_min_normalized: builtins.float = ...,
+        x_max_normalized: builtins.float = ...,
+        y_max_normalized: builtins.float = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["binary_id", b"binary_id"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_id",
+            b"binary_id",
+            "label",
+            b"label",
+            "x_max_normalized",
+            b"x_max_normalized",
+            "x_min_normalized",
+            b"x_min_normalized",
+            "y_max_normalized",
+            b"y_max_normalized",
+            "y_min_normalized",
+            b"y_min_normalized",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['binary_id', b'binary_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary_id', b'binary_id', 'label', b'label', 'x_max_normalized', b'x_max_normalized', 'x_min_normalized', b'x_min_normalized', 'y_max_normalized', b'y_max_normalized', 'y_min_normalized', b'y_min_normalized']) -> None:
-        ...
 global___AddBoundingBoxToImageByIDRequest = AddBoundingBoxToImageByIDRequest
 
 @typing_extensions.final
 class AddBoundingBoxToImageByIDResponse(google.protobuf.message.Message):
     """AddBoundingBoxToImageByIDResponse returns the bounding box ID of the successfully added bounding box."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BBOX_ID_FIELD_NUMBER: builtins.int
     bbox_id: builtins.str
 
-    def __init__(self, *, bbox_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, bbox_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["bbox_id", b"bbox_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['bbox_id', b'bbox_id']) -> None:
-        ...
 global___AddBoundingBoxToImageByIDResponse = AddBoundingBoxToImageByIDResponse
 
 @typing_extensions.final
 class RemoveBoundingBoxFromImageByIDRequest(google.protobuf.message.Message):
     """RemoveBoundingBoxFromImageByIDRequest removes the bounding box with specified bbox ID for the file represented by the binary id."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_ID_FIELD_NUMBER: builtins.int
     BBOX_ID_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_id(self) -> global___BinaryID:
-        ...
+    def binary_id(self) -> global___BinaryID: ...
     bbox_id: builtins.str
 
-    def __init__(self, *, binary_id: global___BinaryID | None=..., bbox_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, binary_id: global___BinaryID | None = ..., bbox_id: builtins.str = ...
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["binary_id", b"binary_id"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "bbox_id", b"bbox_id", "binary_id", b"binary_id"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['binary_id', b'binary_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['bbox_id', b'bbox_id', 'binary_id', b'binary_id']) -> None:
-        ...
 global___RemoveBoundingBoxFromImageByIDRequest = RemoveBoundingBoxFromImageByIDRequest
 
 @typing_extensions.final
 class RemoveBoundingBoxFromImageByIDResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___RemoveBoundingBoxFromImageByIDResponse = RemoveBoundingBoxFromImageByIDResponse
 
 @typing_extensions.final
 class BoundingBoxLabelsByFilterRequest(google.protobuf.message.Message):
     """BoundingBoxLabelsByFilterRequest requests all the labels of the bounding boxes from files from a given filter."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILTER_FIELD_NUMBER: builtins.int
 
     @property
-    def filter(self) -> global___Filter:
-        ...
+    def filter(self) -> global___Filter: ...
+    def __init__(self, *, filter: global___Filter | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["filter", b"filter"]
+    ) -> None: ...
 
-    def __init__(self, *, filter: global___Filter | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['filter', b'filter']) -> None:
-        ...
 global___BoundingBoxLabelsByFilterRequest = BoundingBoxLabelsByFilterRequest
 
 @typing_extensions.final
 class BoundingBoxLabelsByFilterResponse(google.protobuf.message.Message):
     """BoundingBoxLabelsByFilterRequest returns all the labels of the bounding boxes from files from a given filter."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LABELS_FIELD_NUMBER: builtins.int
 
     @property
-    def labels(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def labels(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self, *, labels: collections.abc.Iterable[builtins.str] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["labels", b"labels"]
+    ) -> None: ...
 
-    def __init__(self, *, labels: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['labels', b'labels']) -> None:
-        ...
 global___BoundingBoxLabelsByFilterResponse = BoundingBoxLabelsByFilterResponse
 
 @typing_extensions.final
@@ -1034,39 +1533,47 @@ class ConfigureDatabaseUserRequest(google.protobuf.message.Message):
     being configured. Viam uses gRPC over TLS, so the entire request will be encrypted while in
     flight, including the password.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     PASSWORD_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     password: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=..., password: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, organization_id: builtins.str = ..., password: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "organization_id", b"organization_id", "password", b"password"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'password', b'password']) -> None:
-        ...
 global___ConfigureDatabaseUserRequest = ConfigureDatabaseUserRequest
 
 @typing_extensions.final
 class ConfigureDatabaseUserResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___ConfigureDatabaseUserResponse = ConfigureDatabaseUserResponse
 
 @typing_extensions.final
 class GetDatabaseConnectionRequest(google.protobuf.message.Message):
     """GetDatabaseConnectionRequest requests the database connection hostname."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
 
-    def __init__(self, *, organization_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, organization_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["organization_id", b"organization_id"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
-        ...
 global___GetDatabaseConnectionRequest = GetDatabaseConnectionRequest
 
 @typing_extensions.final
@@ -1075,6 +1582,7 @@ class GetDatabaseConnectionResponse(google.protobuf.message.Message):
     a URI that can be used to connect to the database instance through MongoDB clients, as well as
     information on whether the Viam organization has a database user configured.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HOSTNAME_FIELD_NUMBER: builtins.int
     MONGODB_URI_FIELD_NUMBER: builtins.int
@@ -1083,63 +1591,105 @@ class GetDatabaseConnectionResponse(google.protobuf.message.Message):
     mongodb_uri: builtins.str
     has_database_user: builtins.bool
 
-    def __init__(self, *, hostname: builtins.str=..., mongodb_uri: builtins.str=..., has_database_user: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        hostname: builtins.str = ...,
+        mongodb_uri: builtins.str = ...,
+        has_database_user: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "has_database_user",
+            b"has_database_user",
+            "hostname",
+            b"hostname",
+            "mongodb_uri",
+            b"mongodb_uri",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['has_database_user', b'has_database_user', 'hostname', b'hostname', 'mongodb_uri', b'mongodb_uri']) -> None:
-        ...
 global___GetDatabaseConnectionResponse = GetDatabaseConnectionResponse
 
 @typing_extensions.final
 class AddBinaryDataToDatasetByIDsRequest(google.protobuf.message.Message):
     """AddBinaryDataToDatasetByIDsRequest adds the binary data with the given binary IDs to a dataset with dataset_id."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     DATASET_ID_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
     dataset_id: builtins.str
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...,
+        dataset_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_ids", b"binary_ids", "dataset_id", b"dataset_id"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
-        ...
 global___AddBinaryDataToDatasetByIDsRequest = AddBinaryDataToDatasetByIDsRequest
 
 @typing_extensions.final
 class AddBinaryDataToDatasetByIDsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AddBinaryDataToDatasetByIDsResponse = AddBinaryDataToDatasetByIDsResponse
 
 @typing_extensions.final
 class RemoveBinaryDataFromDatasetByIDsRequest(google.protobuf.message.Message):
     """RemoveBinaryDataFromDatasetByIDsRequest removes the specified binary IDs from a dataset with dataset_id."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     BINARY_IDS_FIELD_NUMBER: builtins.int
     DATASET_ID_FIELD_NUMBER: builtins.int
 
     @property
-    def binary_ids(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BinaryID]:
-        ...
+    def binary_ids(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BinaryID
+    ]: ...
     dataset_id: builtins.str
 
-    def __init__(self, *, binary_ids: collections.abc.Iterable[global___BinaryID] | None=..., dataset_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        binary_ids: collections.abc.Iterable[global___BinaryID] | None = ...,
+        dataset_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary_ids", b"binary_ids", "dataset_id", b"dataset_id"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['binary_ids', b'binary_ids', 'dataset_id', b'dataset_id']) -> None:
-        ...
-global___RemoveBinaryDataFromDatasetByIDsRequest = RemoveBinaryDataFromDatasetByIDsRequest
+global___RemoveBinaryDataFromDatasetByIDsRequest = (
+    RemoveBinaryDataFromDatasetByIDsRequest
+)
 
 @typing_extensions.final
 class RemoveBinaryDataFromDatasetByIDsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
-global___RemoveBinaryDataFromDatasetByIDsResponse = RemoveBinaryDataFromDatasetByIDsResponse
+    def __init__(self) -> None: ...
+
+global___RemoveBinaryDataFromDatasetByIDsResponse = (
+    RemoveBinaryDataFromDatasetByIDsResponse
+)

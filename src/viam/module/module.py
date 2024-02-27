@@ -23,7 +23,14 @@ from viam.proto.module import (
 from viam.proto.robot import ResourceRPCSubtype
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
-from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Model, ResourceName, Subtype, resource_name_from_string
+from viam.resource.types import (
+    RESOURCE_TYPE_COMPONENT,
+    RESOURCE_TYPE_SERVICE,
+    Model,
+    ResourceName,
+    Subtype,
+    resource_name_from_string,
+)
 from viam.robot.client import RobotClient
 from viam.rpc.dial import DialOptions
 from viam.rpc.server import Server
@@ -60,7 +67,11 @@ class Module:
         if len(args) < 2:
             raise Exception("Need socket path as command line argument")
         address = args[1]
-        log_level = logging.DEBUG if (len(args) == 3 and "=debug" in args[2].lower()) else logging.INFO
+        log_level = (
+            logging.DEBUG
+            if (len(args) == 3 and "=debug" in args[2].lower())
+            else logging.INFO
+        )
         return cls(address, log_level=log_level)
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
@@ -92,7 +103,9 @@ class Module:
             return self.parent.get_service(name)
         raise ValueError("Dependency does not describe a component nor a service")
 
-    async def _get_dependencies(self, dependencies: Sequence[str]) -> Mapping[ResourceName, ResourceBase]:
+    async def _get_dependencies(
+        self, dependencies: Sequence[str]
+    ) -> Mapping[ResourceName, ResourceBase]:
         deps: Mapping[ResourceName, ResourceBase] = {}
         for dep in dependencies:
             rn = resource_name_from_string(dep)
@@ -139,7 +152,12 @@ class Module:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
         name = config.name
-        rn = ResourceName(namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=name)
+        rn = ResourceName(
+            namespace=subtype.namespace,
+            type=subtype.resource_type,
+            subtype=subtype.resource_subtype,
+            name=name,
+        )
         resource = self.server.get_resource(ResourceBase, rn)
         if isinstance(resource, Reconfigurable):
             resource.reconfigure(config, dependencies)
@@ -149,7 +167,9 @@ class Module:
                     await resource.stop()
                 else:
                     resource.stop()
-            add_request = AddResourceRequest(config=request.config, dependencies=request.dependencies)
+            add_request = AddResourceRequest(
+                config=request.config, dependencies=request.dependencies
+            )
             await self.server.remove_resource(rn)
             await self.add_resource(add_request)
 
@@ -192,10 +212,14 @@ class Module:
                 ),
                 proto_service=svc_name,
             )
-            handler_def = HandlerDefinition(subtype=rpc_subtype, models=[str(model) for model in value])
+            handler_def = HandlerDefinition(
+                subtype=rpc_subtype, models=[str(model) for model in value]
+            )
             handlers.append(handler_def)
 
-        return ReadyResponse(ready=self._ready, handlermap=HandlerMap(handlers=handlers))
+        return ReadyResponse(
+            ready=self._ready, handlermap=HandlerMap(handlers=handlers)
+        )
 
     def add_model_from_registry(self, subtype: Subtype, model: Model):
         """Add a pre-registered model to this Module"""
@@ -204,9 +228,13 @@ class Module:
         try:
             Registry.lookup_resource_creator(subtype, model)
         except ResourceNotFoundError:
-            raise ValueError(f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}")
+            raise ValueError(
+                f"Cannot add model because it has not been registered. Subtype: {subtype}. Model: {model}"
+            )
 
-    async def validate_config(self, request: ValidateConfigRequest) -> ValidateConfigResponse:
+    async def validate_config(
+        self, request: ValidateConfigRequest
+    ) -> ValidateConfigResponse:
         config: ComponentConfig = request.config
         subtype = Subtype.from_string(config.api)
         model = Model.from_string(config.model)

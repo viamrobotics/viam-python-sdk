@@ -1,6 +1,11 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.base import (
     BaseServiceBase,
     GetPropertiesRequest,
@@ -31,7 +36,9 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
 
     RESOURCE_TYPE = Base
 
-    async def MoveStraight(self, stream: Stream[MoveStraightRequest, MoveStraightResponse]) -> None:
+    async def MoveStraight(
+        self, stream: Stream[MoveStraightRequest, MoveStraightResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -70,19 +77,29 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_power(
-            request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+            request.linear,
+            request.angular,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
         )
         response = SetPowerResponse()
         await stream.send_message(response)
 
-    async def SetVelocity(self, stream: Stream[SetVelocityRequest, SetVelocityResponse]) -> None:
+    async def SetVelocity(
+        self, stream: Stream[SetVelocityRequest, SetVelocityResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await base.set_velocity(
-            request.linear, request.angular, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+            request.linear,
+            request.angular,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
         )
         await stream.send_message(SetVelocityResponse())
 
@@ -92,7 +109,11 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         name = request.name
         base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await base.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await base.stop(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = StopResponse()
         await stream.send_message(response)
 
@@ -105,13 +126,17 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
 
-    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+    async def GetProperties(
+        self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         base = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        properties = await base.get_properties(timeout=timeout, metadata=stream.metadata)
+        properties = await base.get_properties(
+            timeout=timeout, metadata=stream.metadata
+        )
         response = GetPropertiesResponse(
             width_meters=properties.width_meters,
             turning_radius_meters=properties.turning_radius_meters,
@@ -119,20 +144,30 @@ class BaseRPCService(BaseServiceBase, ResourceRPCServiceBase[Base]):
         )
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         base = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await base.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await base.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         base = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await base.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await base.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

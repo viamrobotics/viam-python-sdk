@@ -1,5 +1,17 @@
 import abc
-from typing import TYPE_CHECKING, Any, ClassVar, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Union, cast
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    ClassVar,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    SupportsBytes,
+    SupportsFloat,
+    Union,
+    cast,
+)
 
 from typing_extensions import Self
 
@@ -40,10 +52,18 @@ class ComponentBase(abc.ABC, ResourceBase):
         component = robot.get_component(cls.get_resource_name(name))
         return cast(cls, component)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         """
         Get all geometries associated with the Component, in their current configuration, in the frame of the Component.
 

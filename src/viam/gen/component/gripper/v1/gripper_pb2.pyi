@@ -3,10 +3,12 @@
 isort:skip_file
 """
 import builtins
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -21,25 +23,28 @@ class OpenRequest(google.protobuf.message.Message):
     name: builtins.str
 
     @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def extra(self) -> google.protobuf.struct_pb2.Struct: ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___OpenRequest = OpenRequest
 
 @typing_extensions.final
 class OpenResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___OpenResponse = OpenResponse
 
 @typing_extensions.final
@@ -50,17 +55,20 @@ class GrabRequest(google.protobuf.message.Message):
     name: builtins.str
 
     @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def extra(self) -> google.protobuf.struct_pb2.Struct: ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___GrabRequest = GrabRequest
 
 @typing_extensions.final
@@ -71,17 +79,21 @@ class GrabResponse(google.protobuf.message.Message):
     success: builtins.bool
 
     @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def extra(self) -> google.protobuf.struct_pb2.Struct: ...
+    def __init__(
+        self,
+        *,
+        success: builtins.bool = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["extra", b"extra", "success", b"success"],
+    ) -> None: ...
 
-    def __init__(self, *, success: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'success', b'success']) -> None:
-        ...
 global___GrabResponse = GrabResponse
 
 @typing_extensions.final
@@ -90,28 +102,31 @@ class StopRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of a gripper'
+    "Name of a gripper"
 
     @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def extra(self) -> google.protobuf.struct_pb2.Struct: ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___StopRequest = StopRequest
 
 @typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___StopResponse = StopResponse
 
 @typing_extensions.final
@@ -120,11 +135,11 @@ class IsMovingRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___IsMovingRequest = IsMovingRequest
 
 @typing_extensions.final
@@ -133,9 +148,9 @@ class IsMovingResponse(google.protobuf.message.Message):
     IS_MOVING_FIELD_NUMBER: builtins.int
     is_moving: builtins.bool
 
-    def __init__(self, *, is_moving: builtins.bool=...) -> None:
-        ...
+    def __init__(self, *, is_moving: builtins.bool = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["is_moving", b"is_moving"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
-        ...
 global___IsMovingResponse = IsMovingResponse

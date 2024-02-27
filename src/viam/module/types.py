@@ -9,7 +9,9 @@ from viam.resource.base import ResourceBase
 class Reconfigurable(Protocol):
     """The Reconfigurable protocol defines the requirements for making a resource Reconfigurable"""
 
-    def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
+    def reconfigure(
+        self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]
+    ):
         ...
 
 
@@ -21,5 +23,11 @@ class Stoppable(Protocol):
     All resources that physically move should be Stoppable.
     """
 
-    def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    def stop(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         ...

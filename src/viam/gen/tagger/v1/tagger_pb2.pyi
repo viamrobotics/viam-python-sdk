@@ -3,13 +3,19 @@
 isort:skip_file
 """
 import builtins
+
 import google.protobuf.descriptor
 import google.protobuf.descriptor_pb2
 import google.protobuf.internal.extension_dict
+
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 TAGS_FIELD_NUMBER: builtins.int
 ONEOF_TAGS_FIELD_NUMBER: builtins.int
-tags: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.FieldOptions, builtins.str]
-'Multiple Tags can be spcified.'
-oneof_tags: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[google.protobuf.descriptor_pb2.OneofOptions, builtins.str]
-'Multiple Tags can be spcified.'
+tags: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[
+    google.protobuf.descriptor_pb2.FieldOptions, builtins.str
+]
+"Multiple Tags can be spcified."
+oneof_tags: google.protobuf.internal.extension_dict._ExtensionFieldDescriptor[
+    google.protobuf.descriptor_pb2.OneofOptions, builtins.str
+]
+"Multiple Tags can be spcified."

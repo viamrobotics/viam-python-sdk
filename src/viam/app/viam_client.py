@@ -22,7 +22,9 @@ class ViamClient:
     """
 
     @classmethod
-    async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
+    async def create_from_dial_options(
+        cls, dial_options: DialOptions, app_url: Optional[str] = None
+    ) -> Self:
         """Create `ViamClient` that establishes a connection to the Viam app.
 
         Args:
@@ -51,7 +53,9 @@ class ViamClient:
         if app_url is None:
             app_url = "app.viam.com"
         self._channel = await _dial_app(app_url)
-        access_token = await _get_access_token(self._channel, dial_options.auth_entity, dial_options)
+        access_token = await _get_access_token(
+            self._channel, dial_options.auth_entity, dial_options
+        )
         self._metadata = {"authorization": f"Bearer {access_token}"}
         return self
 

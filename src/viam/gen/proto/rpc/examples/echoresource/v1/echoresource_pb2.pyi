@@ -3,9 +3,11 @@
 isort:skip_file
 """
 import builtins
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.message
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -20,11 +22,14 @@ class EchoResourceRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoResourceRequest = EchoResourceRequest
 
 @typing_extensions.final
@@ -33,11 +38,11 @@ class EchoResourceResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoResourceResponse = EchoResourceResponse
 
 @typing_extensions.final
@@ -48,11 +53,14 @@ class EchoResourceMultipleRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoResourceMultipleRequest = EchoResourceMultipleRequest
 
 @typing_extensions.final
@@ -61,11 +69,11 @@ class EchoResourceMultipleResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoResourceMultipleResponse = EchoResourceMultipleResponse
 
 @typing_extensions.final
@@ -76,11 +84,14 @@ class EchoResourceBiDiRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoResourceBiDiRequest = EchoResourceBiDiRequest
 
 @typing_extensions.final
@@ -89,9 +100,9 @@ class EchoResourceBiDiResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoResourceBiDiResponse = EchoResourceBiDiResponse

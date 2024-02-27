@@ -3,9 +3,11 @@
 isort:skip_file
 """
 import builtins
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.message
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -20,11 +22,14 @@ class EchoRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoRequest = EchoRequest
 
 @typing_extensions.final
@@ -33,11 +38,11 @@ class EchoResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoResponse = EchoResponse
 
 @typing_extensions.final
@@ -48,11 +53,14 @@ class EchoMultipleRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoMultipleRequest = EchoMultipleRequest
 
 @typing_extensions.final
@@ -61,11 +69,11 @@ class EchoMultipleResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoMultipleResponse = EchoMultipleResponse
 
 @typing_extensions.final
@@ -76,11 +84,14 @@ class EchoBiDiRequest(google.protobuf.message.Message):
     name: builtins.str
     message: builtins.str
 
-    def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, name: builtins.str = ..., message: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["message", b"message", "name", b"name"],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
-        ...
 global___EchoBiDiRequest = EchoBiDiRequest
 
 @typing_extensions.final
@@ -89,11 +100,11 @@ class EchoBiDiResponse(google.protobuf.message.Message):
     MESSAGE_FIELD_NUMBER: builtins.int
     message: builtins.str
 
-    def __init__(self, *, message: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, message: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["message", b"message"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
-        ...
 global___EchoBiDiResponse = EchoBiDiResponse
 
 @typing_extensions.final
@@ -102,17 +113,17 @@ class StopRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___StopRequest = StopRequest
 
 @typing_extensions.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___StopResponse = StopResponse

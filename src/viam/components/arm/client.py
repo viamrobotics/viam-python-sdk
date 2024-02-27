@@ -2,7 +2,13 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from grpclib.client import Channel
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetKinematicsRequest, GetKinematicsResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetKinematicsRequest,
+    GetKinematicsResponse,
+)
 from viam.proto.component.arm import (
     ArmServiceStub,
     GetEndPositionRequest,
@@ -44,7 +50,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetEndPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetEndPositionResponse = await self.client.GetEndPosition(request, timeout=timeout)
+        response: GetEndPositionResponse = await self.client.GetEndPosition(
+            request, timeout=timeout
+        )
         return response.pose
 
     async def move_to_position(
@@ -57,7 +65,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = MoveToPositionRequest(name=self.name, to=pose, extra=dict_to_struct(extra))
+        request = MoveToPositionRequest(
+            name=self.name, to=pose, extra=dict_to_struct(extra)
+        )
         await self.client.MoveToPosition(request, timeout=timeout)
 
     async def get_joint_positions(
@@ -70,7 +80,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetJointPositionsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetJointPositionsResponse = await self.client.GetJointPositions(request, timeout=timeout)
+        response: GetJointPositionsResponse = await self.client.GetJointPositions(
+            request, timeout=timeout
+        )
         return response.positions
 
     async def move_to_joint_positions(
@@ -83,7 +95,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = MoveToJointPositionsRequest(name=self.name, positions=positions, extra=dict_to_struct(extra))
+        request = MoveToJointPositionsRequest(
+            name=self.name, positions=positions, extra=dict_to_struct(extra)
+        )
         await self.client.MoveToJointPositions(request, timeout=timeout)
 
     async def stop(
@@ -100,7 +114,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
 
     async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
-        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        response: IsMovingResponse = await self.client.IsMoving(
+            request, timeout=timeout
+        )
         return response.is_moving
 
     async def do_command(
@@ -111,7 +127,9 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
     async def get_kinematics(
@@ -120,8 +138,12 @@ class ArmClient(Arm, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetKinematicsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetKinematicsResponse = await self.client.GetKinematics(request, timeout=timeout)
+        response: GetKinematicsResponse = await self.client.GetKinematics(
+            request, timeout=timeout
+        )
         return (response.format, response.kinematics_data)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

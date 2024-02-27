@@ -39,9 +39,6 @@ from viam.proto.app import (
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
-)
-from viam.proto.app import Fragment as FragmentPB
-from viam.proto.app import (
     GetFragmentRequest,
     GetFragmentResponse,
     GetLocationRequest,
@@ -101,10 +98,6 @@ from viam.proto.app import (
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
     Robot,
-)
-from viam.proto.app import RobotPart as RobotPartPB
-from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
-from viam.proto.app import (
     RoverRentalRobot,
     SharedSecret,
     TailRobotPartLogsRequest,
@@ -126,6 +119,9 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.app import Fragment as FragmentPB
+from viam.proto.app import RobotPart as RobotPartPB
+from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
@@ -155,13 +151,29 @@ class RobotPart:
         self.secret = robot_part.secret
         self.robot = robot_part.robot
         self.location_id = robot_part.location_id
-        self.robot_config = struct_to_dict(robot_part.robot_config) if robot_part.HasField("robot_config") else None
-        self.last_access = robot_part.last_access.ToDatetime() if robot_part.HasField("last_access") else None
-        self.user_supplied_info = struct_to_dict(robot_part.user_supplied_info) if robot_part.HasField("user_supplied_info") else None
+        self.robot_config = (
+            struct_to_dict(robot_part.robot_config)
+            if robot_part.HasField("robot_config")
+            else None
+        )
+        self.last_access = (
+            robot_part.last_access.ToDatetime()
+            if robot_part.HasField("last_access")
+            else None
+        )
+        self.user_supplied_info = (
+            struct_to_dict(robot_part.user_supplied_info)
+            if robot_part.HasField("user_supplied_info")
+            else None
+        )
         self.main_part = robot_part.main_part
         self.fqdn = robot_part.fqdn
         self.local_fqdn = robot_part.local_fqdn
-        self.created_on = robot_part.created_on.ToDatetime() if robot_part.HasField("created_on") else None
+        self.created_on = (
+            robot_part.created_on.ToDatetime()
+            if robot_part.HasField("created_on")
+            else None
+        )
         self.secrets = list(robot_part.secrets)
         return self
 
@@ -189,13 +201,21 @@ class RobotPart:
             secret=self.secret,
             robot=self.robot,
             location_id=self.location_id,
-            robot_config=dict_to_struct(self.robot_config) if self.robot_config else None,
-            last_access=datetime_to_timestamp(self.last_access) if self.last_access else None,
-            user_supplied_info=dict_to_struct(self.user_supplied_info) if self.user_supplied_info else None,
+            robot_config=dict_to_struct(self.robot_config)
+            if self.robot_config
+            else None,
+            last_access=datetime_to_timestamp(self.last_access)
+            if self.last_access
+            else None,
+            user_supplied_info=dict_to_struct(self.user_supplied_info)
+            if self.user_supplied_info
+            else None,
             main_part=self.main_part,
             fqdn=self.fqdn,
             local_fqdn=self.local_fqdn,
-            created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
+            created_on=datetime_to_timestamp(self.created_on)
+            if self.created_on
+            else None,
             secrets=self.secrets,
         )
 
@@ -222,7 +242,9 @@ class LogEntry:
         self.time = log_entry.time.ToDatetime() if log_entry.HasField("time") else None
         self.logger_name = log_entry.logger_name
         self.message = log_entry.message
-        self.caller = struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None
+        self.caller = (
+            struct_to_dict(log_entry.caller) if log_entry.HasField("caller") else None
+        )
         self.stack = log_entry.stack
         self.fields = [struct_to_dict(field) for field in log_entry.fields]
         return self
@@ -246,7 +268,9 @@ class LogEntry:
             message=self.message,
             caller=dict_to_struct(self.caller) if self.caller else None,
             stack=self.stack,
-            fields=[dict_to_struct(field) for field in self.fields] if self.fields else None,
+            fields=[dict_to_struct(field) for field in self.fields]
+            if self.fields
+            else None,
         )
 
 
@@ -269,10 +293,16 @@ class Fragment:
         self = cls()
         self.id = fragment.id
         self.name = fragment.name
-        self.fragment = struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None
+        self.fragment = (
+            struct_to_dict(fragment.fragment) if fragment.HasField("fragment") else None
+        )
         self.organization_owner = fragment.organization_owner
         self.public = fragment.public
-        self.created_on = fragment.created_on.ToDatetime() if fragment.HasField("created_on") else None
+        self.created_on = (
+            fragment.created_on.ToDatetime()
+            if fragment.HasField("created_on")
+            else None
+        )
         self.organization_name = fragment.organization_name
         self.robot_part_count = fragment.robot_part_count
         self.organization_count = fragment.organization_count
@@ -298,7 +328,9 @@ class Fragment:
             fragment=dict_to_struct(self.fragment) if self.fragment else None,
             organization_owner=self.organization_owner,
             public=self.public,
-            created_on=datetime_to_timestamp(self.created_on) if self.created_on else None,
+            created_on=datetime_to_timestamp(self.created_on)
+            if self.created_on
+            else None,
             organization_name=self.organization_name,
             robot_part_count=self.robot_part_count,
             organization_count=self.organization_count,
@@ -325,8 +357,16 @@ class RobotPartHistoryEntry:
         self = cls()
         self.part = robot_part_history_entry.part
         self.robot = robot_part_history_entry.robot
-        self.when = robot_part_history_entry.when.ToDatetime() if robot_part_history_entry.HasField("when") else None
-        self.old = RobotPart.from_proto(robot_part_history_entry.old) if robot_part_history_entry.HasField("old") else None
+        self.when = (
+            robot_part_history_entry.when.ToDatetime()
+            if robot_part_history_entry.HasField("when")
+            else None
+        )
+        self.old = (
+            RobotPart.from_proto(robot_part_history_entry.old)
+            if robot_part_history_entry.HasField("old")
+            else None
+        )
         return self
 
     part: str
@@ -353,7 +393,9 @@ class APIKeyAuthorization:
     def __init__(
         self,
         role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_type: Union[
+            Literal["organization"], Literal["location"], Literal["robot"]
+        ],
         resource_id: str,
     ):
         """role (Union[Literal["owner"], Literal["operator"]]): The role to add.
@@ -377,7 +419,12 @@ class AppClient:
     `ViamClient`.
     """
 
-    def __init__(self, channel: Channel, metadata: Mapping[str, str], location_id: Optional[str] = None):
+    def __init__(
+        self,
+        channel: Channel,
+        metadata: Mapping[str, str],
+        location_id: Optional[str] = None,
+    ):
         """Create an `AppClient` that maintains a connection to app.
 
         Args:
@@ -401,7 +448,11 @@ class AppClient:
     # then we can probably still rely on it for org id?), and also update other APIs to ask for
     # an org id (optionally?) instead of just assuming we'll get it from this method.
     async def _get_organization_id(self) -> str:
-        return self._organization_id if self._organization_id is not None else await self._request_organization_id()
+        return (
+            self._organization_id
+            if self._organization_id is not None
+            else await self._request_organization_id()
+        )
 
     async def _request_organization_id(self) -> str:
         organizations = await self.list_organizations()
@@ -413,7 +464,9 @@ class AppClient:
         identity_id: str,
         identity_type: str,
         role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_type: Union[
+            Literal["organization"], Literal["location"], Literal["robot"]
+        ],
         resource_id: str,
     ) -> Authorization:
         organization_id = await self._get_organization_id()
@@ -427,7 +480,9 @@ class AppClient:
             organization_id=organization_id,
         )
 
-    async def _create_authorization_for_new_api_key(self, auth: APIKeyAuthorization) -> Authorization:
+    async def _create_authorization_for_new_api_key(
+        self, auth: APIKeyAuthorization
+    ) -> Authorization:
         """Creates a new Authorization specifically for creating an API key."""
         return await self._create_authorization(
             identity_id="",  # setting `identity_id` when creating an API key results in an error
@@ -448,7 +503,9 @@ class AppClient:
             List[viam.proto.app.Organization]: The list of organizations.
         """
         request = ListOrganizationsRequest()
-        response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
+        response: ListOrganizationsResponse = await self._app_client.ListOrganizations(
+            request, metadata=self._metadata
+        )
         return list(response.organizations)
 
     # TODO(RSDK-5569): implement
@@ -470,10 +527,14 @@ class AppClient:
         """
         org_id = org_id if org_id is not None else await self._get_organization_id()
         request = GetOrganizationRequest(organization_id=org_id)
-        response: GetOrganizationResponse = await self._app_client.GetOrganization(request, metadata=self._metadata)
+        response: GetOrganizationResponse = await self._app_client.GetOrganization(
+            request, metadata=self._metadata
+        )
         return response.organization
 
-    async def get_organization_namespace_availability(self, public_namespace: str) -> bool:
+    async def get_organization_namespace_availability(
+        self, public_namespace: str
+    ) -> bool:
         """Check the availability of an organization namespace.
 
         Args:
@@ -486,9 +547,13 @@ class AppClient:
         Returns:
             bool: True if the provided namespace is available.
         """
-        request = GetOrganizationNamespaceAvailabilityRequest(public_namespace=public_namespace)
-        response: GetOrganizationNamespaceAvailabilityResponse = await self._app_client.GetOrganizationNamespaceAvailability(
-            request, metadata=self._metadata
+        request = GetOrganizationNamespaceAvailabilityRequest(
+            public_namespace=public_namespace
+        )
+        response: GetOrganizationNamespaceAvailabilityResponse = (
+            await self._app_client.GetOrganizationNamespaceAvailability(
+                request, metadata=self._metadata
+            )
         )
         return response.available
 
@@ -521,14 +586,18 @@ class AppClient:
             cid=cid,
             name=name,
         )
-        response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
+        response: UpdateOrganizationResponse = (
+            await self._app_client.UpdateOrganization(request, metadata=self._metadata)
+        )
         return response.organization
 
     # TODO(RSDK-5569): implement
     async def delete_organization(self, org_id: Optional[str] = None) -> None:
         raise NotImplementedError()
 
-    async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
+    async def list_organization_members(
+        self,
+    ) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
 
         Returns:
@@ -537,10 +606,16 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = ListOrganizationMembersRequest(organization_id=organization_id)
-        response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
+        response: ListOrganizationMembersResponse = (
+            await self._app_client.ListOrganizationMembers(
+                request, metadata=self._metadata
+            )
+        )
         return list(response.members), list(response.invites)
 
-    async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]] = None) -> OrganizationInvite:
+    async def create_organization_invite(
+        self, email: str, authorizations: Optional[List[Authorization]] = None
+    ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
         Args:
@@ -553,8 +628,14 @@ class AppClient:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
         """
         organization_id = await self._get_organization_id()
-        request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations)
-        response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
+        request = CreateOrganizationInviteRequest(
+            organization_id=organization_id, email=email, authorizations=authorizations
+        )
+        response: CreateOrganizationInviteResponse = (
+            await self._app_client.CreateOrganizationInvite(
+                request, metadata=self._metadata
+            )
+        )
         return response.invite
 
     async def update_organization_invite_authorizations(
@@ -582,10 +663,15 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = UpdateOrganizationInviteAuthorizationsRequest(
-            organization_id=organization_id, email=email, add_authorizations=add_authorizations, remove_authorizations=remove_authorizations
+            organization_id=organization_id,
+            email=email,
+            add_authorizations=add_authorizations,
+            remove_authorizations=remove_authorizations,
         )
-        response: UpdateOrganizationInviteAuthorizationsResponse = await self._app_client.UpdateOrganizationInviteAuthorizations(
-            request, metadata=self._metadata
+        response: UpdateOrganizationInviteAuthorizationsResponse = (
+            await self._app_client.UpdateOrganizationInviteAuthorizations(
+                request, metadata=self._metadata
+            )
         )
         return response.invite
 
@@ -596,8 +682,12 @@ class AppClient:
             user_id (str): The ID of the user to remove.
         """
         organization_id = await self._get_organization_id()
-        request = DeleteOrganizationMemberRequest(organization_id=organization_id, user_id=user_id)
-        await self._app_client.DeleteOrganizationMember(request, metadata=self._metadata)
+        request = DeleteOrganizationMemberRequest(
+            organization_id=organization_id, user_id=user_id
+        )
+        await self._app_client.DeleteOrganizationMember(
+            request, metadata=self._metadata
+        )
 
     async def delete_organization_invite(self, email: str) -> None:
         """Deletes a pending organization invite.
@@ -609,8 +699,12 @@ class AppClient:
             GRPCError: If no pending invite is associated with the provided email address.
         """
         organization_id = await self._get_organization_id()
-        request = DeleteOrganizationInviteRequest(organization_id=organization_id, email=email)
-        await self._app_client.DeleteOrganizationInvite(request, metadata=self._metadata)
+        request = DeleteOrganizationInviteRequest(
+            organization_id=organization_id, email=email
+        )
+        await self._app_client.DeleteOrganizationInvite(
+            request, metadata=self._metadata
+        )
 
     async def resend_organization_invite(self, email: str) -> OrganizationInvite:
         """Re-sends a pending organization invite email.
@@ -622,11 +716,19 @@ class AppClient:
             GRPCError: If no pending invite is associated with the provided email address.
         """
         organization_id = await self._get_organization_id()
-        request = ResendOrganizationInviteRequest(organization_id=organization_id, email=email)
-        response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
+        request = ResendOrganizationInviteRequest(
+            organization_id=organization_id, email=email
+        )
+        response: ResendOrganizationInviteResponse = (
+            await self._app_client.ResendOrganizationInvite(
+                request, metadata=self._metadata
+            )
+        )
         return response.invite
 
-    async def create_location(self, name: str, parent_location_id: Optional[str] = None) -> Location:
+    async def create_location(
+        self, name: str, parent_location_id: Optional[str] = None
+    ) -> Location:
         """Create and name a location under the currently authed-to organization and the specified parent location.
 
         Args:
@@ -641,8 +743,14 @@ class AppClient:
             viam.proto.app.Location: The newly created location.
         """
         organization_id = await self._get_organization_id()
-        request = CreateLocationRequest(organization_id=organization_id, name=name, parent_location_id=parent_location_id)
-        response: CreateLocationResponse = await self._app_client.CreateLocation(request, metadata=self._metadata)
+        request = CreateLocationRequest(
+            organization_id=organization_id,
+            name=name,
+            parent_location_id=parent_location_id,
+        )
+        response: CreateLocationResponse = await self._app_client.CreateLocation(
+            request, metadata=self._metadata
+        )
         return response.location
 
     async def get_location(self, location_id: Optional[str] = None) -> Location:
@@ -658,11 +766,24 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The location.
         """
-        request = GetLocationRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
-        response: GetLocationResponse = await self._app_client.GetLocation(request, metadata=self._metadata)
+        request = GetLocationRequest(
+            location_id=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else ""
+        )
+        response: GetLocationResponse = await self._app_client.GetLocation(
+            request, metadata=self._metadata
+        )
         return response.location
 
-    async def update_location(self, location_id: str, name: Optional[str] = None, parent_location_id: Optional[str] = None) -> Location:
+    async def update_location(
+        self,
+        location_id: str,
+        name: Optional[str] = None,
+        parent_location_id: Optional[str] = None,
+    ) -> Location:
         """Change the name of a location and/or assign it a new parent location.
 
         Args:
@@ -678,8 +799,12 @@ class AppClient:
         Returns:
             viam.proto.app.Location: The newly updated location.
         """
-        request = UpdateLocationRequest(location_id=location_id, name=name, parent_location_id=parent_location_id)
-        response: UpdateLocationResponse = await self._app_client.UpdateLocation(request, metadata=self._metadata)
+        request = UpdateLocationRequest(
+            location_id=location_id, name=name, parent_location_id=parent_location_id
+        )
+        response: UpdateLocationResponse = await self._app_client.UpdateLocation(
+            request, metadata=self._metadata
+        )
         return response.location
 
     async def delete_location(self, location_id: str) -> None:
@@ -702,7 +827,9 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = ListLocationsRequest(organization_id=organization_id)
-        response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
+        response: ListLocationsResponse = await self._app_client.ListLocations(
+            request, metadata=self._metadata
+        )
         return list(response.locations)
 
     # TODO(RSDK-5569): implement
@@ -727,11 +854,21 @@ class AppClient:
         Returns:
             viam.proto.app.LocationAuth: The `LocationAuth` containing location secrets.
         """
-        request = LocationAuthRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
-        response: LocationAuthResponse = await self._app_client.LocationAuth(request, metadata=self._metadata)
+        request = LocationAuthRequest(
+            location_id=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else ""
+        )
+        response: LocationAuthResponse = await self._app_client.LocationAuth(
+            request, metadata=self._metadata
+        )
         return response.auth
 
-    async def create_location_secret(self, location_id: Optional[str] = None) -> LocationAuth:
+    async def create_location_secret(
+        self, location_id: Optional[str] = None
+    ) -> LocationAuth:
         """Create a new location secret.
 
         Args:
@@ -745,11 +882,23 @@ class AppClient:
         Returns:
             viam.proto.app.LocationAuth: The specified location's `LocationAuth` containing the newly created secret.
         """
-        request = CreateLocationSecretRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
-        response: CreateLocationSecretResponse = await self._app_client.CreateLocationSecret(request, metadata=self._metadata)
+        request = CreateLocationSecretRequest(
+            location_id=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else ""
+        )
+        response: CreateLocationSecretResponse = (
+            await self._app_client.CreateLocationSecret(
+                request, metadata=self._metadata
+            )
+        )
         return response.auth
 
-    async def delete_location_secret(self, secret_id: str, location_id: Optional[str] = None) -> None:
+    async def delete_location_secret(
+        self, secret_id: str, location_id: Optional[str] = None
+    ) -> None:
         """Delete a location secret.
 
         Args:
@@ -761,7 +910,12 @@ class AppClient:
                 ID provided at `AppClient` instantiation.
         """
         request = DeleteLocationSecretRequest(
-            location_id=location_id if location_id else self._location_id if self._location_id else "", secret_id=secret_id
+            location_id=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else "",
+            secret_id=secret_id,
         )
         await self._app_client.DeleteLocationSecret(request, metadata=self._metadata)
 
@@ -778,7 +932,9 @@ class AppClient:
             viam.proto.app.Robot: The robot.
         """
         request = GetRobotRequest(id=robot_id)
-        response: GetRobotResponse = await self._app_client.GetRobot(request, metadata=self._metadata)
+        response: GetRobotResponse = await self._app_client.GetRobot(
+            request, metadata=self._metadata
+        )
         return response.robot
 
     async def get_rover_rental_robots(self) -> List[RoverRentalRobot]:
@@ -789,7 +945,11 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = GetRoverRentalRobotsRequest(org_id=organization_id)
-        response: GetRoverRentalRobotsResponse = await self._app_client.GetRoverRentalRobots(request, metadata=self._metadata)
+        response: GetRoverRentalRobotsResponse = (
+            await self._app_client.GetRoverRentalRobots(
+                request, metadata=self._metadata
+            )
+        )
         return list(response.robots)
 
     async def get_robot_parts(self, robot_id: str) -> List[RobotPart]:
@@ -805,10 +965,14 @@ class AppClient:
             List[viam.app.app_client.RobotPart]: The list of robot parts.
         """
         request = GetRobotPartsRequest(robot_id=robot_id)
-        response: GetRobotPartsResponse = await self._app_client.GetRobotParts(request, metadata=self._metadata)
+        response: GetRobotPartsResponse = await self._app_client.GetRobotParts(
+            request, metadata=self._metadata
+        )
         return [RobotPart.from_proto(robot_part=part) for part in response.parts]
 
-    async def get_robot_part(self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4) -> RobotPart:
+    async def get_robot_part(
+        self, robot_part_id: str, dest: Optional[str] = None, indent: int = 4
+    ) -> RobotPart:
         """Get a robot part.
 
         Args:
@@ -823,12 +987,16 @@ class AppClient:
             viam.app.app_client.RobotPart: The robot part.
         """
         request = GetRobotPartRequest(id=robot_part_id)
-        response: GetRobotPartResponse = await self._app_client.GetRobotPart(request, metadata=self._metadata)
+        response: GetRobotPartResponse = await self._app_client.GetRobotPart(
+            request, metadata=self._metadata
+        )
 
         if dest:
             try:
                 file = open(dest, "w")
-                file.write(f"{json.dumps(json.loads(response.config_json), indent=indent)}")
+                file.write(
+                    f"{json.dumps(json.loads(response.config_json), indent=indent)}"
+                )
                 file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write config JSON to file {dest}", exc_info=e)
@@ -869,7 +1037,10 @@ class AppClient:
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", errors_only=errors_only, page_token=page_token
+                robot_part_id=robot_part_id,
+                filter=filter if filter else "",
+                errors_only=errors_only,
+                page_token=page_token,
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -889,17 +1060,33 @@ class AppClient:
                     logger_name = log.logger_name.split(".")[0]
                     file_name = log.caller["File"] + ":" + str(int(log.caller["Line"]))
                     message = log.message
-                    file.write(f"{time}\t{level}\t{logger_name}\t{file_name:<64}{message}\n")
+                    file.write(
+                        f"{time}\t{level}\t{logger_name}\t{file_name:<64}{message}\n"
+                    )
                     file.flush()
             except Exception as e:
-                LOGGER.error(f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}", exc_info=e)
+                LOGGER.error(
+                    f"Failed to write robot part from robot part with ID [{robot_part_id}]logs to file {dest}",
+                    exc_info=e,
+                )
 
         return logs
 
-    async def _get_robot_part_logs(self, robot_part_id: str, filter: str, errors_only: bool, page_token: str) -> Tuple[List[LogEntry], str]:
-        request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
-        response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
-        return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
+    async def _get_robot_part_logs(
+        self, robot_part_id: str, filter: str, errors_only: bool, page_token: str
+    ) -> Tuple[List[LogEntry], str]:
+        request = GetRobotPartLogsRequest(
+            id=robot_part_id,
+            errors_only=errors_only,
+            filter=filter,
+            page_token=page_token,
+        )
+        response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(
+            request, metadata=self._metadata
+        )
+        return [
+            LogEntry.from_proto(log) for log in response.logs
+        ], response.next_page_token
 
     async def tail_robot_part_logs(
         self, robot_part_id: str, errors_only: bool = True, filter: Optional[str] = None
@@ -917,13 +1104,21 @@ class AppClient:
         """
 
         async def read() -> AsyncIterator[List[LogEntry]]:
-            async with self._app_client.TailRobotPartLogs.open(metadata=self._metadata) as stream:
+            async with self._app_client.TailRobotPartLogs.open(
+                metadata=self._metadata
+            ) as stream:
                 await stream.send_message(
-                    TailRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter if filter else "")
+                    TailRobotPartLogsRequest(
+                        id=robot_part_id,
+                        errors_only=errors_only,
+                        filter=filter if filter else "",
+                    )
                 )
 
                 while True:
-                    response: Optional[TailRobotPartLogsResponse] = await stream.recv_message()
+                    response: Optional[
+                        TailRobotPartLogsResponse
+                    ] = await stream.recv_message()
                     if response is None or len(response.logs) == 0:
                         break
                     logs = [LogEntry.from_proto(log) for log in response.logs]
@@ -931,7 +1126,9 @@ class AppClient:
 
         return _LogsStreamWithIterator(read())
 
-    async def get_robot_part_history(self, robot_part_id: str) -> List[RobotPartHistoryEntry]:
+    async def get_robot_part_history(
+        self, robot_part_id: str
+    ) -> List[RobotPartHistoryEntry]:
         """Get a list containing the history of a robot part.
 
         Args:
@@ -944,10 +1141,20 @@ class AppClient:
             List[viam.app.app_client.RobotPartHistoryEntry]: The list of the robot part's history.
         """
         request = GetRobotPartHistoryRequest(id=robot_part_id)
-        response: GetRobotPartHistoryResponse = await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
-        return [RobotPartHistoryEntry.from_proto(part_history) for part_history in response.history]
+        response: GetRobotPartHistoryResponse = (
+            await self._app_client.GetRobotPartHistory(request, metadata=self._metadata)
+        )
+        return [
+            RobotPartHistoryEntry.from_proto(part_history)
+            for part_history in response.history
+        ]
 
-    async def update_robot_part(self, robot_part_id: str, name: str, robot_config: Optional[Mapping[str, Any]] = None) -> RobotPart:
+    async def update_robot_part(
+        self,
+        robot_part_id: str,
+        name: str,
+        robot_config: Optional[Mapping[str, Any]] = None,
+    ) -> RobotPart:
         """Change the name and assign an optional new configuration to a robot part.
 
         Args:
@@ -962,8 +1169,14 @@ class AppClient:
         Returns:
             viam.app.app_client.RobotPart: The newly updated robot part.
         """
-        request = UpdateRobotPartRequest(id=robot_part_id, name=name, robot_config=dict_to_struct(robot_config) if robot_config else None)
-        response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(request, metadata=self._metadata)
+        request = UpdateRobotPartRequest(
+            id=robot_part_id,
+            name=name,
+            robot_config=dict_to_struct(robot_config) if robot_config else None,
+        )
+        response: UpdateRobotPartResponse = await self._app_client.UpdateRobotPart(
+            request, metadata=self._metadata
+        )
         return RobotPart.from_proto(robot_part=response.part)
 
     async def new_robot_part(self, robot_id: str, part_name: str) -> str:
@@ -980,7 +1193,9 @@ class AppClient:
             str: The new robot part's ID.
         """
         request = NewRobotPartRequest(robot_id=robot_id, part_name=part_name)
-        response: NewRobotPartResponse = await self._app_client.NewRobotPart(request, metadata=self._metadata)
+        response: NewRobotPartResponse = await self._app_client.NewRobotPart(
+            request, metadata=self._metadata
+        )
         return response.part_id
 
     async def delete_robot_part(self, robot_part_id: str) -> None:
@@ -1032,10 +1247,16 @@ class AppClient:
             viam.app.app_client.RobotPart: The robot part the new secret was generated for.
         """
         request = CreateRobotPartSecretRequest(part_id=robot_part_id)
-        response: CreateRobotPartSecretResponse = await self._app_client.CreateRobotPartSecret(request, metadata=self._metadata)
+        response: CreateRobotPartSecretResponse = (
+            await self._app_client.CreateRobotPartSecret(
+                request, metadata=self._metadata
+            )
+        )
         return RobotPart.from_proto(response.part)
 
-    async def delete_robot_part_secret(self, robot_part_id: str, secret_id: str) -> None:
+    async def delete_robot_part_secret(
+        self, robot_part_id: str, secret_id: str
+    ) -> None:
         """Delete a robot part secret.
 
         Args:
@@ -1045,7 +1266,9 @@ class AppClient:
         Raises:
             GRPCError: If an invalid robot part ID or secret ID is passed.
         """
-        request = DeleteRobotPartSecretRequest(part_id=robot_part_id, secret_id=secret_id)
+        request = DeleteRobotPartSecretRequest(
+            part_id=robot_part_id, secret_id=secret_id
+        )
         await self._app_client.DeleteRobotPartSecret(request, metadata=self._metadata)
 
     async def list_robots(self, location_id: Optional[str] = None) -> List[Robot]:
@@ -1062,8 +1285,16 @@ class AppClient:
         Returns:
             List[viam.proto.app.Robot]: The list of robots.
         """
-        request = ListRobotsRequest(location_id=location_id if location_id else self._location_id if self._location_id else "")
-        response: ListRobotsResponse = await self._app_client.ListRobots(request, metadata=self._metadata)
+        request = ListRobotsRequest(
+            location_id=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else ""
+        )
+        response: ListRobotsResponse = await self._app_client.ListRobots(
+            request, metadata=self._metadata
+        )
         return list(response.robots)
 
     async def new_robot(self, name: str, location_id: Optional[str] = None) -> str:
@@ -1080,11 +1311,22 @@ class AppClient:
         Returns:
             str: The new robot's ID.
         """
-        request = NewRobotRequest(location=location_id if location_id else self._location_id if self._location_id else "", name=name)
-        response: NewRobotResponse = await self._app_client.NewRobot(request, metadata=self._metadata)
+        request = NewRobotRequest(
+            location=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else "",
+            name=name,
+        )
+        response: NewRobotResponse = await self._app_client.NewRobot(
+            request, metadata=self._metadata
+        )
         return response.id
 
-    async def update_robot(self, robot_id: str, name: str, location_id: Optional[str] = None) -> Robot:
+    async def update_robot(
+        self, robot_id: str, name: str, location_id: Optional[str] = None
+    ) -> Robot:
         """Change the name of an existing robot.
 
         Args:
@@ -1101,9 +1343,17 @@ class AppClient:
             viam.proto.app.Robot: The newly updated robot.
         """
         request = UpdateRobotRequest(
-            id=robot_id, name=name, location=location_id if location_id else self._location_id if self._location_id else ""
+            id=robot_id,
+            name=name,
+            location=location_id
+            if location_id
+            else self._location_id
+            if self._location_id
+            else "",
         )
-        response: UpdateRobotResponse = await self._app_client.UpdateRobot(request, metadata=self._metadata)
+        response: UpdateRobotResponse = await self._app_client.UpdateRobot(
+            request, metadata=self._metadata
+        )
         return response.robot
 
     async def delete_robot(self, robot_id: str) -> None:
@@ -1129,9 +1379,15 @@ class AppClient:
             List[viam.app.app_client.Fragment]: The list of fragments.
         """
         organization_id = await self._get_organization_id()
-        request = ListFragmentsRequest(organization_id=organization_id, show_public=show_public)
-        response: ListFragmentsResponse = await self._app_client.ListFragments(request, metadata=self._metadata)
-        return [Fragment.from_proto(fragment=fragment) for fragment in response.fragments]
+        request = ListFragmentsRequest(
+            organization_id=organization_id, show_public=show_public
+        )
+        response: ListFragmentsResponse = await self._app_client.ListFragments(
+            request, metadata=self._metadata
+        )
+        return [
+            Fragment.from_proto(fragment=fragment) for fragment in response.fragments
+        ]
 
     async def get_fragment(self, fragment_id: str) -> Fragment:
         """Get a fragment.
@@ -1146,10 +1402,14 @@ class AppClient:
             viam.app.app_client.Fragment: The fragment.
         """
         request = GetFragmentRequest(id=fragment_id)
-        response: GetFragmentResponse = await self._app_client.GetFragment(request, metadata=self._metadata)
+        response: GetFragmentResponse = await self._app_client.GetFragment(
+            request, metadata=self._metadata
+        )
         return Fragment.from_proto(fragment=response.fragment)
 
-    async def create_fragment(self, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment:
+    async def create_fragment(
+        self, name: str, config: Optional[Mapping[str, Any]] = None
+    ) -> Fragment:
         """Create a new private fragment.
 
         Args:
@@ -1164,12 +1424,22 @@ class AppClient:
             viam.app.app_client.Fragment: The newly created fragment.
         """
         organization_id = await self._get_organization_id()
-        request = CreateFragmentRequest(name=name, config=dict_to_struct(config) if config else None, organization_id=organization_id)
-        response: CreateFragmentResponse = await self._app_client.CreateFragment(request, metadata=self._metadata)
+        request = CreateFragmentRequest(
+            name=name,
+            config=dict_to_struct(config) if config else None,
+            organization_id=organization_id,
+        )
+        response: CreateFragmentResponse = await self._app_client.CreateFragment(
+            request, metadata=self._metadata
+        )
         return Fragment.from_proto(response.fragment)
 
     async def update_fragment(
-        self, fragment_id: str, name: str, config: Optional[Mapping[str, Any]] = None, public: Optional[bool] = None
+        self,
+        fragment_id: str,
+        name: str,
+        config: Optional[Mapping[str, Any]] = None,
+        public: Optional[bool] = None,
     ) -> Fragment:
         """Update a fragment name AND its config and/or visibility.
 
@@ -1187,8 +1457,15 @@ class AppClient:
         Returns:
             viam.app.app_client.Fragment: The newly updated fragment.
         """
-        request = UpdateFragmentRequest(id=fragment_id, name=name, config=dict_to_struct(config) if config else None, public=public)
-        response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
+        request = UpdateFragmentRequest(
+            id=fragment_id,
+            name=name,
+            config=dict_to_struct(config) if config else None,
+            public=public,
+        )
+        response: UpdateFragmentResponse = await self._app_client.UpdateFragment(
+            request, metadata=self._metadata
+        )
         return Fragment.from_proto(response.fragment)
 
     async def delete_fragment(self, fragment_id) -> None:
@@ -1207,7 +1484,9 @@ class AppClient:
         self,
         identity_id: str,
         role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_type: Union[
+            Literal["organization"], Literal["location"], Literal["robot"]
+        ],
         resource_id: str,
     ) -> None:
         """Add a role under the currently authed-to organization.
@@ -1236,7 +1515,9 @@ class AppClient:
         self,
         identity_id: str,
         role: Union[Literal["owner"], Literal["operator"]],
-        resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        resource_type: Union[
+            Literal["organization"], Literal["location"], Literal["robot"]
+        ],
         resource_id: str,
     ) -> None:
         """Remove a role under the currently authed-to organization.
@@ -1261,7 +1542,9 @@ class AppClient:
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
-    async def list_authorizations(self, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
+    async def list_authorizations(
+        self, resource_ids: Optional[List[str]] = None
+    ) -> List[Authorization]:
         """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
         are provided, all resource authorizations within the organizations are returned.
 
@@ -1276,11 +1559,17 @@ class AppClient:
             List[viam.proto.app.Authorization]: The list of authorizations.
         """
         organization_id = await self._get_organization_id()
-        request = ListAuthorizationsRequest(organization_id=organization_id, resource_ids=resource_ids)
-        response: ListAuthorizationsResponse = await self._app_client.ListAuthorizations(request, metadata=self._metadata)
+        request = ListAuthorizationsRequest(
+            organization_id=organization_id, resource_ids=resource_ids
+        )
+        response: ListAuthorizationsResponse = (
+            await self._app_client.ListAuthorizations(request, metadata=self._metadata)
+        )
         return list(response.authorizations)
 
-    async def check_permissions(self, permissions: List[AuthorizedPermissions]) -> List[AuthorizedPermissions]:
+    async def check_permissions(
+        self, permissions: List[AuthorizedPermissions]
+    ) -> List[AuthorizedPermissions]:
         """Checks validity of a list of permissions.
 
         Args:
@@ -1294,7 +1583,9 @@ class AppClient:
             List[viam.proto.app.AuthorizedPermissions]: The permissions argument, with invalid permissions filtered out.
         """
         request = CheckPermissionsRequest(permissions=permissions)
-        response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
+        response: CheckPermissionsResponse = await self._app_client.CheckPermissions(
+            request, metadata=self._metadata
+        )
         return list(response.authorized_permissions)
 
     async def create_module(self, name: str) -> Tuple[str, str]:
@@ -1311,7 +1602,9 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = CreateModuleRequest(organization_id=organization_id, name=name)
-        response: CreateModuleResponse = await self._app_client.CreateModule(request, metadata=self._metadata)
+        response: CreateModuleResponse = await self._app_client.CreateModule(
+            request, metadata=self._metadata
+        )
         return response.module_id, response.url
 
     async def update_module(
@@ -1343,16 +1636,22 @@ class AppClient:
         """
         request = UpdateModuleRequest(
             module_id=module_id,
-            visibility=Visibility.VISIBILITY_PUBLIC if public else Visibility.VISIBILITY_PRIVATE,
+            visibility=Visibility.VISIBILITY_PUBLIC
+            if public
+            else Visibility.VISIBILITY_PRIVATE,
             url=url,
             description=description,
             models=models,
             entrypoint=entrypoint,
         )
-        response: UpdateModuleResponse = await self._app_client.UpdateModule(request, metadata=self._metadata)
+        response: UpdateModuleResponse = await self._app_client.UpdateModule(
+            request, metadata=self._metadata
+        )
         return response.url
 
-    async def upload_module_file(self, module_file_info: Optional[ModuleFileInfo], file: bytes) -> str:
+    async def upload_module_file(
+        self, module_file_info: Optional[ModuleFileInfo], file: bytes
+    ) -> str:
         """Upload a module file
 
         Args:
@@ -1362,15 +1661,23 @@ class AppClient:
         Returns:
             str: ID of uploaded file.
         """
-        request_module_file_info = UploadModuleFileRequest(module_file_info=module_file_info)
+        request_module_file_info = UploadModuleFileRequest(
+            module_file_info=module_file_info
+        )
         request_file = UploadModuleFileRequest(file=file)
-        async with self._app_client.UploadModuleFile.open(metadata=self._metadata) as stream:
+        async with self._app_client.UploadModuleFile.open(
+            metadata=self._metadata
+        ) as stream:
             await stream.send_message(request_module_file_info)
             await stream.send_message(request_file, end=True)
             response: Union[UploadModuleFileRequest, None] = await stream.recv_message()
             if not response:
-                await stream.recv_trailing_metadata()  # causes us to throw appropriate gRPC error.
-                raise TypeError("Response cannot be empty")  # we should never get here, but for typechecking
+                await (
+                    stream.recv_trailing_metadata()
+                )  # causes us to throw appropriate gRPC error.
+                raise TypeError(
+                    "Response cannot be empty"
+                )  # we should never get here, but for typechecking
             return response.url
 
     async def get_module(self, module_id: str) -> Module:
@@ -1386,7 +1693,9 @@ class AppClient:
             viam.proto.app.Module: The module.
         """
         request = GetModuleRequest(module_id=module_id)
-        response: GetModuleResponse = await self._app_client.GetModule(request, metadata=self._metadata)
+        response: GetModuleResponse = await self._app_client.GetModule(
+            request, metadata=self._metadata
+        )
         return response.module
 
     async def list_modules(self) -> List[Module]:
@@ -1397,12 +1706,16 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = ListModulesRequest(organization_id=organization_id)
-        response: ListModulesResponse = await self._app_client.ListModules(request, metadata=self._metadata)
+        response: ListModulesResponse = await self._app_client.ListModules(
+            request, metadata=self._metadata
+        )
         return list(response.modules)
 
     # TODO(RSDK-5569): when user-based auth exists, make `name` default to `None` and let
     # app deal with setting a default.
-    async def create_key(self, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
+    async def create_key(
+        self, authorizations: List[APIKeyAuthorization], name: Optional[str] = None
+    ) -> Tuple[str, str]:
         """Creates a new API key.
 
         Args:
@@ -1417,12 +1730,19 @@ class AppClient:
             Tuple[str, str]: The api key and api key ID.
         """
         name = name if name is not None else str(datetime.now())
-        authorizations_pb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
+        authorizations_pb = [
+            await self._create_authorization_for_new_api_key(auth)
+            for auth in authorizations
+        ]
         request = CreateKeyRequest(authorizations=authorizations_pb, name=name)
-        response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
+        response: CreateKeyResponse = await self._app_client.CreateKey(
+            request, metadata=self._metadata
+        )
         return (response.key, response.id)
 
-    async def create_key_from_existing_key_authorizations(self, id: str) -> Tuple[str, str]:
+    async def create_key_from_existing_key_authorizations(
+        self, id: str
+    ) -> Tuple[str, str]:
         """Creates a new API key with an existing key's authorizations
 
         Args:
@@ -1432,9 +1752,11 @@ class AppClient:
             Tuple[str, str] The API key and API key id
         """
         request = CreateKeyFromExistingKeyAuthorizationsRequest(id=id)
-        response: CreateKeyFromExistingKeyAuthorizationsResponse = await self._app_client.CreateKeyFromExistingKeyAuthorizations(
-            request,
-            metadata=self._metadata,
+        response: CreateKeyFromExistingKeyAuthorizationsResponse = (
+            await self._app_client.CreateKeyFromExistingKeyAuthorizations(
+                request,
+                metadata=self._metadata,
+            )
         )
         return (response.key, response.id)
 
@@ -1445,5 +1767,7 @@ class AppClient:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""
         org_id = await self._get_organization_id()
         request = ListKeysRequest(org_id=org_id)
-        response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
+        response: ListKeysResponse = await self._app_client.ListKeys(
+            request, metadata=self._metadata
+        )
         return list(response.api_keys)

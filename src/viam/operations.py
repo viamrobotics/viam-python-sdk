@@ -28,7 +28,9 @@ class Operation:
     _cancel_event: asyncio.Event
     _cancelled: bool
 
-    def __init__(self, method: str, cancel_event: asyncio.Event, opid: Optional[UUID] = None) -> None:
+    def __init__(
+        self, method: str, cancel_event: asyncio.Event, opid: Optional[UUID] = None
+    ) -> None:
         self.id = uuid4() if opid is None else opid
         self.method = method
         self.time_started = time.time()
@@ -76,7 +78,9 @@ def opid_from_metadata(metadata: Optional[Mapping[str, str]]) -> Optional[UUID]:
     return UUID(opid)
 
 
-def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P, Coroutine[Any, Any, T]]:
+def run_with_operation(
+    func: Callable[P, Coroutine[Any, Any, T]],
+) -> Callable[P, Coroutine[Any, Any, T]]:
     """Run a component function with an ``Operation``.
     Running a function with an Operation will allow the function
     to know if/when the calling task was cancelled and take appropriate action
@@ -103,7 +107,9 @@ def run_with_operation(func: Callable[P, Coroutine[Any, Any, T]]) -> Callable[P,
         func_name = func.__qualname__
         arg_names = ", ".join([str(a) for a in args])
         kwarg_names = ", ".join([f"{key}={value}" for (key, value) in kwargs.items()])
-        method = f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})"
+        method = (
+            f"{func_name}({arg_names}{', ' if len(arg_names) else ''}{kwarg_names})"
+        )
         opid = opid_from_metadata(kwargs.get("metadata"))  # type: ignore
         operation = Operation(method, event, opid=opid)
         kwargs[Operation.ARG_NAME] = operation

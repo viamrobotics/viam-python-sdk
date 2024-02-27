@@ -51,14 +51,19 @@ class RawImage(NamedTuple):
             List[List[int]]: The standard representation of the image.
         """
         if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
-            raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
+            raise NotSupportedError(
+                "Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()"
+            )
 
         width = int.from_bytes(self.data[8:16], "big")
         height = int.from_bytes(self.data[16:24], "big")
         depth_arr = array("H", self.data[24:])
         depth_arr.byteswap()
 
-        depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
+        depth_arr_2d = [
+            [depth_arr[row * width + col] for col in range(width)]
+            for row in range(height)
+        ]
         return depth_arr_2d
 
 
@@ -100,9 +105,11 @@ class CameraMimeType(str, Enum):
 
     @property
     def _should_be_raw(self) -> bool:
-        return self in [CameraMimeType.UNSUPPORTED, CameraMimeType.PCD, CameraMimeType.VIAM_RAW_DEPTH] or not CameraMimeType.is_supported(
-            self
-        )
+        return self in [
+            CameraMimeType.UNSUPPORTED,
+            CameraMimeType.PCD,
+            CameraMimeType.VIAM_RAW_DEPTH,
+        ] or not CameraMimeType.is_supported(self)
 
     @classmethod
     def is_supported(cls, mime_type: str) -> bool:
@@ -196,7 +203,9 @@ class ViamImage:
             return self._image
 
         try:
-            self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+            self._image = Image.open(
+                BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS
+            )
         except UnidentifiedImageError:
             self._image = None
         self._image_decoded = True
@@ -218,14 +227,19 @@ class ViamImage:
             List[List[int]]: The standard representation of the image.
         """
         if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
-            raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
+            raise NotSupportedError(
+                "Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()"
+            )
 
         width = int.from_bytes(self.data[8:16], "big")
         height = int.from_bytes(self.data[16:24], "big")
         depth_arr = array("H", self.data[24:])
         depth_arr.byteswap()
 
-        depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
+        depth_arr_2d = [
+            [depth_arr[row * width + col] for col in range(width)]
+            for row in range(height)
+        ]
         return depth_arr_2d
 
 

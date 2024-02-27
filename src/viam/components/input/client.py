@@ -53,7 +53,9 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetControlsRequest(controller=self.name, extra=dict_to_struct(extra))
-        response: GetControlsResponse = await self.client.GetControls(request, timeout=timeout)
+        response: GetControlsResponse = await self.client.GetControls(
+            request, timeout=timeout
+        )
         return [Control(control) for control in response.controls]
 
     async def get_events(
@@ -66,8 +68,13 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetEventsRequest(controller=self.name, extra=dict_to_struct(extra))
-        response: GetEventsResponse = await self.client.GetEvents(request, timeout=timeout)
-        return {Control(event.control): Event.from_proto(event) for (event) in response.events}
+        response: GetEventsResponse = await self.client.GetEvents(
+            request, timeout=timeout
+        )
+        return {
+            Control(event.control): Event.from_proto(event)
+            for (event) in response.events
+        }
 
     def register_control_callback(
         self,
@@ -99,7 +106,9 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
             except Exception:
                 LOGGER.exception("Exception raised by task = %r", task)
 
-        task = asyncio.create_task(self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events")
+        task = asyncio.create_task(
+            self._stream_events(), name=f"{viam._TASK_PREFIX}-input_stream_events"
+        )
         task.add_done_callback(handle_task_result)
 
     def reset_channel(self, channel: Channel):
@@ -119,12 +128,20 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = TriggerEventRequest(controller=self.name, event=event.proto, extra=dict_to_struct(extra))
+        request = TriggerEventRequest(
+            controller=self.name, event=event.proto, extra=dict_to_struct(extra)
+        )
         try:
             await self.client.TriggerEvent(request, timeout=timeout)
         except GRPCError as e:
-            if e.status == Status.UNIMPLEMENTED and ("does not support triggering events" in e.message if e.message else False):
-                raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
+            if e.status == Status.UNIMPLEMENTED and (
+                "does not support triggering events" in e.message
+                if e.message
+                else False
+            ):
+                raise NotSupportedError(
+                    f"Input controller named {self.name} does not support triggering events"
+                )
             raise e
 
     async def _stream_events(self):
@@ -136,13 +153,17 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         if not self.callbacks:
             return
 
-        request = StreamEventsRequest(controller=self.name, events=[], extra=self._callback_extra)
+        request = StreamEventsRequest(
+            controller=self.name, events=[], extra=self._callback_extra
+        )
         with self._lock:
             for control, callbacks in self.callbacks.items():
                 event = StreamEventsRequest.Events(
                     control=control,
                     events=[et for (et, func) in callbacks.items() if func is not None],
-                    cancelled_events=[et for (et, func) in callbacks.items() if func is None],
+                    cancelled_events=[
+                        et for (et, func) in callbacks.items() if func is None
+                    ],
                 )
                 request.events.append(event)
 
@@ -164,7 +185,12 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
 
     def _send_connection_status(self, connected: bool):
         for control in self.callbacks.keys():
-            event = Event(time=time(), event=EventType.CONNECT if connected else EventType.DISCONNECT, control=control, value=0)
+            event = Event(
+                time=time(),
+                event=EventType.CONNECT if connected else EventType.DISCONNECT,
+                control=control,
+                value=0,
+            )
             self._execute_callback(event)
 
     def _execute_callback(self, event: Event):
@@ -188,8 +214,12 @@ class ControllerClient(Controller, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

@@ -45,7 +45,9 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = SetPowerRequest(name=self.name, power_pct=power, extra=dict_to_struct(extra))
+        request = SetPowerRequest(
+            name=self.name, power_pct=power, extra=dict_to_struct(extra)
+        )
         await self.client.SetPower(request, timeout=timeout)
 
     async def go_for(
@@ -59,7 +61,12 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = GoForRequest(name=self.name, rpm=rpm, revolutions=revolutions, extra=dict_to_struct(extra))
+        request = GoForRequest(
+            name=self.name,
+            rpm=rpm,
+            revolutions=revolutions,
+            extra=dict_to_struct(extra),
+        )
         await self.client.GoFor(request, timeout=timeout)
 
     async def go_to(
@@ -73,7 +80,12 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = GoToRequest(name=self.name, rpm=rpm, position_revolutions=position_revolutions, extra=dict_to_struct(extra))
+        request = GoToRequest(
+            name=self.name,
+            rpm=rpm,
+            position_revolutions=position_revolutions,
+            extra=dict_to_struct(extra),
+        )
         await self.client.GoTo(request, timeout=timeout)
 
     async def reset_zero_position(
@@ -86,7 +98,9 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = ResetZeroPositionRequest(name=self.name, offset=offset, extra=dict_to_struct(extra))
+        request = ResetZeroPositionRequest(
+            name=self.name, offset=offset, extra=dict_to_struct(extra)
+        )
         await self.client.ResetZeroPosition(request, timeout=timeout)
 
     async def get_position(
@@ -99,7 +113,9 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(
+            request, timeout=timeout
+        )
         return response.position
 
     async def get_properties(
@@ -112,7 +128,9 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(
+            request, timeout=timeout
+        )
         return Motor.Properties(position_reporting=response.position_reporting)
 
     async def stop(
@@ -137,12 +155,16 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = IsPoweredRequest(name=self.name, extra=dict_to_struct(extra))
-        response: IsPoweredResponse = await self.client.IsPowered(request, timeout=timeout)
+        response: IsPoweredResponse = await self.client.IsPowered(
+            request, timeout=timeout
+        )
         return response.is_on, response.power_pct
 
     async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
-        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        response: IsMovingResponse = await self.client.IsMoving(
+            request, timeout=timeout
+        )
         return response.is_moving
 
     async def do_command(
@@ -153,8 +175,12 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

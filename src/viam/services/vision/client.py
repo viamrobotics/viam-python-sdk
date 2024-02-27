@@ -49,8 +49,12 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Detection]:
         if extra is None:
             extra = {}
-        request = GetDetectionsFromCameraRequest(name=self.name, camera_name=camera_name, extra=dict_to_struct(extra))
-        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout)
+        request = GetDetectionsFromCameraRequest(
+            name=self.name, camera_name=camera_name, extra=dict_to_struct(extra)
+        )
+        response: GetDetectionsFromCameraResponse = (
+            await self.client.GetDetectionsFromCamera(request, timeout=timeout)
+        )
         return list(response.detections)
 
     async def get_detections(
@@ -74,7 +78,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             mime_type=mime_type,
             extra=dict_to_struct(extra),
         )
-        response: GetDetectionsResponse = await self.client.GetDetections(request, timeout=timeout)
+        response: GetDetectionsResponse = await self.client.GetDetections(
+            request, timeout=timeout
+        )
         return list(response.detections)
 
     async def get_classifications_from_camera(
@@ -87,8 +93,15 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     ) -> List[Classification]:
         if extra is None:
             extra = {}
-        request = GetClassificationsFromCameraRequest(name=self.name, camera_name=camera_name, n=count, extra=dict_to_struct(extra))
-        response: GetClassificationsFromCameraResponse = await self.client.GetClassificationsFromCamera(request, timeout=timeout)
+        request = GetClassificationsFromCameraRequest(
+            name=self.name,
+            camera_name=camera_name,
+            n=count,
+            extra=dict_to_struct(extra),
+        )
+        response: GetClassificationsFromCameraResponse = (
+            await self.client.GetClassificationsFromCamera(request, timeout=timeout)
+        )
         return list(response.classifications)
 
     async def get_classifications(
@@ -114,7 +127,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             n=count,
             extra=dict_to_struct(extra),
         )
-        response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)
+        response: GetClassificationsResponse = await self.client.GetClassifications(
+            request, timeout=timeout
+        )
         return list(response.classifications)
 
     async def get_object_point_clouds(
@@ -132,7 +147,9 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             mime_type=CameraMimeType.PCD,
             extra=dict_to_struct(extra),
         )
-        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
+        response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(
+            request, timeout=timeout
+        )
         return list(response.objects)
 
     async def do_command(
@@ -143,5 +160,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)

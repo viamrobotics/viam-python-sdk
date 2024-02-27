@@ -22,7 +22,11 @@ class Sensor(ComponentBase):
 
     @abc.abstractmethod
     async def get_readings(
-        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Mapping[str, SensorReading]:
         """
         Obtain the measurements/data specific to this sensor.

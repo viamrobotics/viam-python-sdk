@@ -4,12 +4,15 @@ isort:skip_file
 """
 import builtins
 import collections.abc
-from .... import common
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
+
+from .... import common
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -19,6 +22,7 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 @typing_extensions.final
 class GetSensorsRequest(google.protobuf.message.Message):
     """The sensors service messages are deprecated"""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
@@ -28,14 +32,19 @@ class GetSensorsRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "name", b"name"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
 global___GetSensorsRequest = GetSensorsRequest
 
 @typing_extensions.final
@@ -44,14 +53,21 @@ class GetSensorsResponse(google.protobuf.message.Message):
     SENSOR_NAMES_FIELD_NUMBER: builtins.int
 
     @property
-    def sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.ResourceName]:
-        ...
+    def sensor_names(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        common.v1.common_pb2.ResourceName
+    ]: ...
+    def __init__(
+        self,
+        *,
+        sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName]
+        | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["sensor_names", b"sensor_names"]
+    ) -> None: ...
 
-    def __init__(self, *, sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['sensor_names', b'sensor_names']) -> None:
-        ...
 global___GetSensorsResponse = GetSensorsResponse
 
 @typing_extensions.final
@@ -63,21 +79,33 @@ class GetReadingsRequest(google.protobuf.message.Message):
     name: builtins.str
 
     @property
-    def sensor_names(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.ResourceName]:
-        ...
-
+    def sensor_names(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        common.v1.common_pb2.ResourceName
+    ]: ...
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName]
+        | None = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "extra", b"extra", "name", b"name", "sensor_names", b"sensor_names"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'sensor_names', b'sensor_names']) -> None:
-        ...
 global___GetReadingsRequest = GetReadingsRequest
 
 @typing_extensions.final
@@ -92,36 +120,48 @@ class Readings(google.protobuf.message.Message):
         key: builtins.str
 
         @property
-        def value(self) -> google.protobuf.struct_pb2.Value:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.struct_pb2.Value | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def value(self) -> google.protobuf.struct_pb2.Value: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: google.protobuf.struct_pb2.Value | None = ...,
+        ) -> None: ...
+        def HasField(
+            self, field_name: typing_extensions.Literal["value", b"value"]
+        ) -> builtins.bool: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     NAME_FIELD_NUMBER: builtins.int
     READINGS_FIELD_NUMBER: builtins.int
 
     @property
-    def name(self) -> common.v1.common_pb2.ResourceName:
-        ...
-
+    def name(self) -> common.v1.common_pb2.ResourceName: ...
     @property
-    def readings(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.struct_pb2.Value]:
-        ...
+    def readings(
+        self,
+    ) -> google.protobuf.internal.containers.MessageMap[
+        builtins.str, google.protobuf.struct_pb2.Value
+    ]: ...
+    def __init__(
+        self,
+        *,
+        name: common.v1.common_pb2.ResourceName | None = ...,
+        readings: collections.abc.Mapping[
+            builtins.str, google.protobuf.struct_pb2.Value
+        ]
+        | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal["name", b"name", "readings", b"readings"],
+    ) -> None: ...
 
-    def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['name', b'name']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'readings', b'readings']) -> None:
-        ...
 global___Readings = Readings
 
 @typing_extensions.final
@@ -130,12 +170,16 @@ class GetReadingsResponse(google.protobuf.message.Message):
     READINGS_FIELD_NUMBER: builtins.int
 
     @property
-    def readings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Readings]:
-        ...
+    def readings(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___Readings
+    ]: ...
+    def __init__(
+        self, *, readings: collections.abc.Iterable[global___Readings] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["readings", b"readings"]
+    ) -> None: ...
 
-    def __init__(self, *, readings: collections.abc.Iterable[global___Readings] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:
-        ...
 global___GetReadingsResponse = GetReadingsResponse

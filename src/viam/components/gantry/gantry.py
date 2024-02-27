@@ -20,7 +20,13 @@ class Gantry(ComponentBase):
     )
 
     @abc.abstractmethod
-    async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
+    async def get_position(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[float]:
         """
         Get the position in millimeters.
 
@@ -70,7 +76,13 @@ class Gantry(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
+    async def home(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> bool:
         """
         Home the gantry to find it's starting and ending positions
 
@@ -85,7 +97,13 @@ class Gantry(ComponentBase):
         """
 
     @abc.abstractmethod
-    async def get_lengths(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
+    async def get_lengths(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[float]:
         """
         Get the lengths of the axes of the gantry in millimeters.
 
@@ -102,7 +120,13 @@ class Gantry(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         """
         Stop all motion of the gantry. It is assumed that the gantry stops immediately.
 

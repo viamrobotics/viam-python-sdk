@@ -1,8 +1,15 @@
 from typing import ClassVar, Tuple
 
 from PIL import Image
-from PIL.ImageFile import ImageFile, PyDecoder, PyEncoder, _safe_read  # type: ignore -- (njooma) this exists, manually checked
-from PIL.ImageFile import _save as image_save  # type: ignore -- (njooma) this exists, manually checked
+from PIL.ImageFile import (  # type: ignore -- (njooma) this exists, manually checked
+    ImageFile,
+    PyDecoder,
+    PyEncoder,
+    _safe_read,
+)
+from PIL.ImageFile import (
+    _save as image_save,  # type: ignore -- (njooma) this exists, manually checked
+)
 
 # Viam uses a special header prepended to raw RGBA data. The header is composed of a
 # 4-byte magic number followed by a 4-byte line of the width as a uint32 number
@@ -42,7 +49,9 @@ def _save_rgba(img, fp, filename):
     fp.write(width.to_bytes(4, byteorder="big"))
     fp.write(height.to_bytes(4, byteorder="big"))
 
-    image_save(img, fp, [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), 0, ("RGBA", 0, 1))])
+    image_save(
+        img, fp, [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), 0, ("RGBA", 0, 1))]
+    )
 
 
 class RGBAImage(ImageFile):
@@ -61,7 +70,14 @@ class RGBAImage(ImageFile):
             self.mode = "RGBA"  # type: ignore -- (njooma) newer versions of PIL hide this behind _mode, which is why we check
 
         # data descriptor
-        self.tile = [(RGBAEncoder.ENCODER_NAME, (0, 0, width, height), RGBA_HEADER_LENGTH, (self.mode, 0, 1))]
+        self.tile = [
+            (
+                RGBAEncoder.ENCODER_NAME,
+                (0, 0, width, height),
+                RGBA_HEADER_LENGTH,
+                (self.mode, 0, 1),
+            )
+        ]
 
 
 class RGBADecoder(PyDecoder):

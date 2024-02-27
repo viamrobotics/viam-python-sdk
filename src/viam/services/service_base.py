@@ -35,7 +35,13 @@ class ServiceBase(abc.ABC, ResourceBase):
         service = robot.get_service(cls.get_resource_name(name))
         return cast(cls, service)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:

@@ -43,22 +43,32 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
 
     async def get_paths(self, *, timeout: Optional[float] = None) -> List[Path]:
         request = GetPathsRequest(name=self.name)
-        response: GetPathsResponse = await self.client.GetPaths(request, timeout=timeout)
+        response: GetPathsResponse = await self.client.GetPaths(
+            request, timeout=timeout
+        )
         return list(response.paths)
 
     async def get_location(self, *, timeout: Optional[float] = None) -> GeoPoint:
         request = GetLocationRequest(name=self.name)
-        response: GetLocationResponse = await self.client.GetLocation(request, timeout=timeout)
+        response: GetLocationResponse = await self.client.GetLocation(
+            request, timeout=timeout
+        )
         return response.location
 
-    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoObstacle]:
+    async def get_obstacles(
+        self, *, timeout: Optional[float] = None
+    ) -> List[GeoObstacle]:
         request = GetObstaclesRequest(name=self.name)
-        response: GetObstaclesResponse = await self.client.GetObstacles(request, timeout=timeout)
+        response: GetObstaclesResponse = await self.client.GetObstacles(
+            request, timeout=timeout
+        )
         return list(response.obstacles)
 
     async def get_waypoints(self, *, timeout: Optional[float] = None) -> List[Waypoint]:
         request = GetWaypointsRequest(name=self.name)
-        response: GetWaypointsResponse = await self.client.GetWaypoints(request, timeout=timeout)
+        response: GetWaypointsResponse = await self.client.GetWaypoints(
+            request, timeout=timeout
+        )
         return list(response.waypoints)
 
     async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float] = None):
@@ -78,12 +88,24 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
         request = SetModeRequest(name=self.name, mode=mode)
         await self.client.SetMode(request, timeout=timeout)
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> MapType.ValueType:
+    async def get_properties(
+        self, *, timeout: Optional[float] = None
+    ) -> MapType.ValueType:
         request = GetPropertiesRequest(name=self.name)
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(
+            request, timeout=timeout
+        )
         return response.map_type
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)

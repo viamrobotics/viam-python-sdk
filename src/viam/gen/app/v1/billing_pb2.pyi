@@ -4,13 +4,15 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+import sys
+import typing
+
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
-import sys
-import typing
+
 if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
@@ -18,16 +20,23 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _PaymentMethodType:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _PaymentMethodTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PaymentMethodType.ValueType], builtins.type):
+class _PaymentMethodTypeEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[
+        _PaymentMethodType.ValueType
+    ],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     PAYMENT_METHOD_TYPE_UNSPECIFIED: _PaymentMethodType.ValueType
     PAYMENT_METHOD_TYPE_CARD: _PaymentMethodType.ValueType
 
-class PaymentMethodType(_PaymentMethodType, metaclass=_PaymentMethodTypeEnumTypeWrapper):
-    ...
+class PaymentMethodType(
+    _PaymentMethodType, metaclass=_PaymentMethodTypeEnumTypeWrapper
+): ...
+
 PAYMENT_METHOD_TYPE_UNSPECIFIED: PaymentMethodType.ValueType
 PAYMENT_METHOD_TYPE_CARD: PaymentMethodType.ValueType
 global___PaymentMethodType = PaymentMethodType
@@ -44,27 +53,53 @@ class InvoiceSummary(google.protobuf.message.Message):
     id: builtins.str
 
     @property
-    def invoice_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def invoice_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     invoice_amount: builtins.float
     status: builtins.str
 
     @property
-    def due_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def due_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def paid_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def paid_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        invoice_amount: builtins.float = ...,
+        status: builtins.str = ...,
+        due_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        paid_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "due_date",
+            b"due_date",
+            "invoice_date",
+            b"invoice_date",
+            "paid_date",
+            b"paid_date",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "due_date",
+            b"due_date",
+            "id",
+            b"id",
+            "invoice_amount",
+            b"invoice_amount",
+            "invoice_date",
+            b"invoice_date",
+            "paid_date",
+            b"paid_date",
+            "status",
+            b"status",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, id: builtins.str=..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None=..., invoice_amount: builtins.float=..., status: builtins.str=..., due_date: google.protobuf.timestamp_pb2.Timestamp | None=..., paid_date: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['due_date', b'due_date', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['due_date', b'due_date', 'id', b'id', 'invoice_amount', b'invoice_amount', 'invoice_date', b'invoice_date', 'paid_date', b'paid_date', 'status', b'status']) -> None:
-        ...
 global___InvoiceSummary = InvoiceSummary
 
 @typing_extensions.final
@@ -84,18 +119,43 @@ class BillableResourceEvent(google.protobuf.message.Message):
     usage_cost: builtins.str
 
     @property
-    def occurred_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def occurred_at(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     user_name: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., type: builtins.str=..., usage_quantity: builtins.float=..., usage_quantity_unit: builtins.str=..., usage_cost: builtins.str=..., occurred_at: google.protobuf.timestamp_pb2.Timestamp | None=..., user_name: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        type: builtins.str = ...,
+        usage_quantity: builtins.float = ...,
+        usage_quantity_unit: builtins.str = ...,
+        usage_cost: builtins.str = ...,
+        occurred_at: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        user_name: builtins.str = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["occurred_at", b"occurred_at"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "id",
+            b"id",
+            "occurred_at",
+            b"occurred_at",
+            "type",
+            b"type",
+            "usage_cost",
+            b"usage_cost",
+            "usage_quantity",
+            b"usage_quantity",
+            "usage_quantity_unit",
+            b"usage_quantity_unit",
+            "user_name",
+            b"user_name",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['occurred_at', b'occurred_at']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'occurred_at', b'occurred_at', 'type', b'type', 'usage_cost', b'usage_cost', 'usage_quantity', b'usage_quantity', 'usage_quantity_unit', b'usage_quantity_unit', 'user_name', b'user_name']) -> None:
-        ...
 global___BillableResourceEvent = BillableResourceEvent
 
 @typing_extensions.final
@@ -111,28 +171,57 @@ class Invoice(google.protobuf.message.Message):
     id: builtins.str
 
     @property
-    def invoice_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def invoice_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     invoice_amount: builtins.float
     status: builtins.str
 
     @property
-    def due_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def due_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___BillableResourceEvent]:
-        ...
+    def items(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___BillableResourceEvent
+    ]: ...
     emailed_to: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., invoice_date: google.protobuf.timestamp_pb2.Timestamp | None=..., invoice_amount: builtins.float=..., status: builtins.str=..., due_date: google.protobuf.timestamp_pb2.Timestamp | None=..., items: collections.abc.Iterable[global___BillableResourceEvent] | None=..., emailed_to: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        id: builtins.str = ...,
+        invoice_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        invoice_amount: builtins.float = ...,
+        status: builtins.str = ...,
+        due_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        items: collections.abc.Iterable[global___BillableResourceEvent] | None = ...,
+        emailed_to: builtins.str = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "due_date", b"due_date", "invoice_date", b"invoice_date"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "due_date",
+            b"due_date",
+            "emailed_to",
+            b"emailed_to",
+            "id",
+            b"id",
+            "invoice_amount",
+            b"invoice_amount",
+            "invoice_date",
+            b"invoice_date",
+            "items",
+            b"items",
+            "status",
+            b"status",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['due_date', b'due_date', 'invoice_date', b'invoice_date']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['due_date', b'due_date', 'emailed_to', b'emailed_to', 'id', b'id', 'invoice_amount', b'invoice_amount', 'invoice_date', b'invoice_date', 'items', b'items', 'status', b'status']) -> None:
-        ...
 global___Invoice = Invoice
 
 @typing_extensions.final
@@ -143,11 +232,16 @@ class PaymentMethodCard(google.protobuf.message.Message):
     brand: builtins.str
     last_four_digits: builtins.str
 
-    def __init__(self, *, brand: builtins.str=..., last_four_digits: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, brand: builtins.str = ..., last_four_digits: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "brand", b"brand", "last_four_digits", b"last_four_digits"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['brand', b'brand', 'last_four_digits', b'last_four_digits']) -> None:
-        ...
 global___PaymentMethodCard = PaymentMethodCard
 
 @typing_extensions.final
@@ -156,11 +250,11 @@ class GetCurrentMonthUsageRequest(google.protobuf.message.Message):
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, org_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["org_id", b"org_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
-        ...
 global___GetCurrentMonthUsageRequest = GetCurrentMonthUsageRequest
 
 @typing_extensions.final
@@ -178,12 +272,9 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     TOTAL_USAGE_WITHOUT_DISCOUNT_FIELD_NUMBER: builtins.int
 
     @property
-    def start_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def start_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def end_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def end_date(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     cloud_storage_usage_cost: builtins.float
     data_upload_usage_cost: builtins.float
     data_egres_usage_cost: builtins.float
@@ -193,14 +284,52 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     total_usage_with_discount: builtins.float
     total_usage_without_discount: builtins.float
 
-    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        start_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        end_date: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        cloud_storage_usage_cost: builtins.float = ...,
+        data_upload_usage_cost: builtins.float = ...,
+        data_egres_usage_cost: builtins.float = ...,
+        remote_control_usage_cost: builtins.float = ...,
+        standard_compute_usage_cost: builtins.float = ...,
+        discount_amount: builtins.float = ...,
+        total_usage_with_discount: builtins.float = ...,
+        total_usage_without_discount: builtins.float = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "end_date", b"end_date", "start_date", b"start_date"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "cloud_storage_usage_cost",
+            b"cloud_storage_usage_cost",
+            "data_egres_usage_cost",
+            b"data_egres_usage_cost",
+            "data_upload_usage_cost",
+            b"data_upload_usage_cost",
+            "discount_amount",
+            b"discount_amount",
+            "end_date",
+            b"end_date",
+            "remote_control_usage_cost",
+            b"remote_control_usage_cost",
+            "standard_compute_usage_cost",
+            b"standard_compute_usage_cost",
+            "start_date",
+            b"start_date",
+            "total_usage_with_discount",
+            b"total_usage_with_discount",
+            "total_usage_without_discount",
+            b"total_usage_without_discount",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['end_date', b'end_date', 'start_date', b'start_date']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'remote_control_usage_cost', b'remote_control_usage_cost', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
-        ...
 global___GetCurrentMonthUsageResponse = GetCurrentMonthUsageResponse
 
 @typing_extensions.final
@@ -209,11 +338,11 @@ class GetOrgBillingInformationRequest(google.protobuf.message.Message):
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, org_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["org_id", b"org_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
-        ...
 global___GetOrgBillingInformationRequest = GetOrgBillingInformationRequest
 
 @typing_extensions.final
@@ -230,24 +359,55 @@ class GetOrgBillingInformationResponse(google.protobuf.message.Message):
     def method(self) -> global___PaymentMethodCard:
         """defined if type is PAYMENT_METHOD_TYPE_CARD"""
     billing_tier: builtins.str
-    'Only return billing_tier for billing dashboard admin users'
+    "Only return billing_tier for billing dashboard admin users"
 
-    def __init__(self, *, type: global___PaymentMethodType.ValueType=..., billing_email: builtins.str=..., method: global___PaymentMethodCard | None=..., billing_tier: builtins.str | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_tier', b'billing_tier', 'method', b'method']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_billing_tier', b'_billing_tier', '_method', b'_method', 'billing_email', b'billing_email', 'billing_tier', b'billing_tier', 'method', b'method', 'type', b'type']) -> None:
-        ...
-
+    def __init__(
+        self,
+        *,
+        type: global___PaymentMethodType.ValueType = ...,
+        billing_email: builtins.str = ...,
+        method: global___PaymentMethodCard | None = ...,
+        billing_tier: builtins.str | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_billing_tier",
+            b"_billing_tier",
+            "_method",
+            b"_method",
+            "billing_tier",
+            b"billing_tier",
+            "method",
+            b"method",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_billing_tier",
+            b"_billing_tier",
+            "_method",
+            b"_method",
+            "billing_email",
+            b"billing_email",
+            "billing_tier",
+            b"billing_tier",
+            "method",
+            b"method",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_billing_tier', b'_billing_tier']) -> typing_extensions.Literal['billing_tier'] | None:
-        ...
-
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_billing_tier", b"_billing_tier"]
+    ) -> typing_extensions.Literal["billing_tier"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_method', b'_method']) -> typing_extensions.Literal['method'] | None:
-        ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_method", b"_method"]
+    ) -> typing_extensions.Literal["method"] | None: ...
+
 global___GetOrgBillingInformationResponse = GetOrgBillingInformationResponse
 
 @typing_extensions.final
@@ -256,11 +416,11 @@ class GetInvoicesSummaryRequest(google.protobuf.message.Message):
     ORG_ID_FIELD_NUMBER: builtins.int
     org_id: builtins.str
 
-    def __init__(self, *, org_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, org_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["org_id", b"org_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
-        ...
 global___GetInvoicesSummaryRequest = GetInvoicesSummaryRequest
 
 @typing_extensions.final
@@ -269,17 +429,29 @@ class GetInvoicesSummaryResponse(google.protobuf.message.Message):
     OUTSTANDING_BALANCE_FIELD_NUMBER: builtins.int
     INVOICES_FIELD_NUMBER: builtins.int
     outstanding_balance: builtins.float
-    'all unpaid balances at the end of the last billing cycle'
+    "all unpaid balances at the end of the last billing cycle"
 
     @property
-    def invoices(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___InvoiceSummary]:
+    def invoices(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___InvoiceSummary
+    ]:
         """all previous invoices"""
 
-    def __init__(self, *, outstanding_balance: builtins.float=..., invoices: collections.abc.Iterable[global___InvoiceSummary] | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        outstanding_balance: builtins.float = ...,
+        invoices: collections.abc.Iterable[global___InvoiceSummary] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "invoices", b"invoices", "outstanding_balance", b"outstanding_balance"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['invoices', b'invoices', 'outstanding_balance', b'outstanding_balance']) -> None:
-        ...
 global___GetInvoicesSummaryResponse = GetInvoicesSummaryResponse
 
 @typing_extensions.final
@@ -290,11 +462,13 @@ class GetInvoicePdfRequest(google.protobuf.message.Message):
     id: builtins.str
     org_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., org_id: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self, *, id: builtins.str = ..., org_id: builtins.str = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["id", b"id", "org_id", b"org_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'org_id', b'org_id']) -> None:
-        ...
 global___GetInvoicePdfRequest = GetInvoicePdfRequest
 
 @typing_extensions.final
@@ -303,9 +477,9 @@ class GetInvoicePdfResponse(google.protobuf.message.Message):
     CHUNK_FIELD_NUMBER: builtins.int
     chunk: builtins.bytes
 
-    def __init__(self, *, chunk: builtins.bytes=...) -> None:
-        ...
+    def __init__(self, *, chunk: builtins.bytes = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["chunk", b"chunk"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['chunk', b'chunk']) -> None:
-        ...
 global___GetInvoicePdfResponse = GetInvoicePdfResponse

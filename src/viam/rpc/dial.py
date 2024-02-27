@@ -29,7 +29,9 @@ LOGGER = logging.getLogger(__name__)
 class Credentials:
     """Credentials to connect to the robot and the Viam app."""
 
-    type: Union[Literal["robot-location-secret"], Literal["robot-secret"], Literal["api-key"]]
+    type: Union[
+        Literal["robot-location-secret"], Literal["robot-secret"], Literal["api-key"]
+    ]
     """The type of credential
     """
 
@@ -131,9 +133,12 @@ def _host_port_from_url(url) -> Tuple[Optional[str], Optional[int]]:
 
 
 async def _get_access_token(channel: Channel, address: str, opts: DialOptions) -> str:
-    entity = opts.auth_entity if opts.auth_entity else re.sub(r"^(.*:\/\/)/", "", address)
+    entity = (
+        opts.auth_entity if opts.auth_entity else re.sub(r"^(.*:\/\/)/", "", address)
+    )
     creds = PBCredentials(
-        type=opts.credentials.type if opts.credentials else "", payload=opts.credentials.payload if opts.credentials else ""
+        type=opts.credentials.type if opts.credentials else "",
+        payload=opts.credentials.payload if opts.credentials else "",
     )
     request = AuthenticateRequest(entity=entity, credentials=creds)
 
@@ -179,7 +184,15 @@ class AuthenticatedChannel(Channel):
     ) -> Stream[_SendType, _RecvType]:
         if not metadata and hasattr(self, "_metadata"):
             metadata = self._metadata
-        return super().request(name, cardinality, request_type, reply_type, timeout=timeout, deadline=deadline, metadata=metadata)
+        return super().request(
+            name,
+            cardinality,
+            request_type,
+            reply_type,
+            timeout=timeout,
+            deadline=deadline,
+            metadata=metadata,
+        )
 
 
 @dataclass
@@ -195,7 +208,9 @@ class ViamChannel:
             except RuntimeError as e:
                 # ignore event loop is closed errors - robot is getting shutdown
                 if len(e.args) > 0 and e.args[0] == "Event loop is closed":
-                    LOGGER.debug("ViamChannel might not have shut down cleanly - Event loop was closed")
+                    LOGGER.debug(
+                        "ViamChannel might not have shut down cleanly - Event loop was closed"
+                    )
                     return
                 raise
             finally:
@@ -218,7 +233,10 @@ class _Runtime:
 
     def __init__(self) -> None:
         LOGGER.debug("Creating new viam-rust-utils runtime")
-        libname = pathlib.Path(__file__).parent.absolute() / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        libname = (
+            pathlib.Path(__file__).parent.absolute()
+            / f"libviam_rust_utils.{'dylib' if sys.platform == 'darwin' else 'so'}"
+        )
         self._lib = ctypes.CDLL(libname.__str__())
         self._lib.init_rust_runtime.argtypes = ()
         self._lib.init_rust_runtime.restype = ctypes.c_void_p
@@ -242,7 +260,9 @@ class _Runtime:
 
         self._ptr = self._lib.init_rust_runtime()
 
-    async def dial(self, address: str, options: DialOptions) -> Tuple[Optional[str], ctypes.c_void_p]:
+    async def dial(
+        self, address: str, options: DialOptions
+    ) -> Tuple[Optional[str], ctypes.c_void_p]:
         type = options.credentials.type if options.credentials else ""
         payload = options.credentials.payload if options.credentials else ""
         insecure = (
@@ -340,7 +360,9 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
             ctx = None
 
     if opts.credentials:
-        channel = AuthenticatedChannel(host, port, ssl=ctx, server_hostname=server_hostname)
+        channel = AuthenticatedChannel(
+            host, port, ssl=ctx, server_hostname=server_hostname
+        )
         access_token = await _get_access_token(channel, address, opts)
         metadata = {"authorization": f"Bearer {access_token}"}
         channel._metadata = metadata
@@ -351,7 +373,11 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
 
 
 async def dial_direct(address: str, options: Optional[DialOptions] = None) -> Channel:
-    warnings.warn("dial_direct is deprecated. Use rpc.dial.dial instead.", DeprecationWarning, stacklevel=2)
+    warnings.warn(
+        "dial_direct is deprecated. Use rpc.dial.dial instead.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return await _dial_direct(address, options)
 
 

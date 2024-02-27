@@ -39,7 +39,10 @@ from viam.proto.robot import (
 from viam.resource.base import ResourceBase
 from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
-from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase, ResourceRPCClientBase
+from viam.resource.rpc_client_base import (
+    ReconfigurableResourceRPCClientBase,
+    ResourceRPCClientBase,
+)
 from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, Subtype
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
@@ -139,7 +142,9 @@ class RobotClient:
         return robot
 
     @classmethod
-    async def with_channel(cls, channel: Union[Channel, ViamChannel], options: Options) -> Self:
+    async def with_channel(
+        cls, channel: Union[Channel, ViamChannel], options: Options
+    ) -> Self:
         """Create a robot that is connected to a robot over the given channel.
 
         Any robots created using this method will *NOT* automatically close the channel upon exit.
@@ -155,7 +160,9 @@ class RobotClient:
         return await cls._with_channel(channel, options, False)
 
     @classmethod
-    async def _with_channel(cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool):
+    async def _with_channel(
+        cls, channel: Union[Channel, ViamChannel], options: Options, close_channel: bool
+    ):
         """INTERNAL USE ONLY"""
 
         self = cls()
@@ -174,26 +181,42 @@ class RobotClient:
         self._resource_names = []
         self._should_close_channel = close_channel
         self._options = options
-        self._address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
+        self._address = (
+            self._channel._path
+            if self._channel._path
+            else f"{self._channel._host}:{self._channel._port}"
+        )
         self._sessions_client = SessionsClient(
-            self._channel, self._address, self._options.dial_options, disabled=self._options.disable_sessions
+            self._channel,
+            self._address,
+            self._options.dial_options,
+            disabled=self._options.disable_sessions,
         )
 
         try:
             await self.refresh()
         except Exception:
-            LOGGER.error("Unable to establish a connection to the robot. Ensure the robot is online and reachable and try again.")
+            LOGGER.error(
+                "Unable to establish a connection to the robot. Ensure the robot is online and reachable and try again."
+            )
             await self.close()
             raise ConnectionError("Unable to establish a connection to the robot.")
 
         if options.refresh_interval > 0:
             self._refresh_task = asyncio.create_task(
-                self._refresh_every(options.refresh_interval), name=f"{viam._TASK_PREFIX}-robot_refresh_metadata"
+                self._refresh_every(options.refresh_interval),
+                name=f"{viam._TASK_PREFIX}-robot_refresh_metadata",
             )
 
-        if options.check_connection_interval > 0 or options.attempt_reconnect_interval > 0:
+        if (
+            options.check_connection_interval > 0
+            or options.attempt_reconnect_interval > 0
+        ):
             self._check_connection_task = asyncio.create_task(
-                self._check_connection(options.check_connection_interval, options.attempt_reconnect_interval),
+                self._check_connection(
+                    options.check_connection_interval,
+                    options.attempt_reconnect_interval,
+                ),
                 name=f"{viam._TASK_PREFIX}-robot_check_connection",
             )
 
@@ -218,7 +241,9 @@ class RobotClient:
         """
         Manually refresh the underlying parts of this robot
         """
-        response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
+        response: ResourceNamesResponse = await self._client.ResourceNames(
+            ResourceNamesRequest()
+        )
         resource_names: List[ResourceName] = list(response.resources)
         with self._lock:
             if resource_names == self._resource_names:
@@ -230,7 +255,10 @@ class RobotClient:
                     continue
 
                 # If the resource is a MovementSensor, DO NOT include Sensor as well (it will get added via MovementSensor)
-                if rname.subtype == Sensor.SUBTYPE.resource_subtype and MovementSensor.get_resource_name(rname.name) in resource_names:
+                if (
+                    rname.subtype == Sensor.SUBTYPE.resource_subtype
+                    and MovementSensor.get_resource_name(rname.name) in resource_names
+                ):
                     continue
 
                 await self._create_or_reset_client(rname)
@@ -246,7 +274,9 @@ class RobotClient:
             res = self._manager.get_resource(ResourceBase, resourceName)
 
             # If the channel hasn't changed, we don't need to do anything for existing clients
-            if isinstance(res, ResourceRPCClientBase) or (hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)):
+            if isinstance(res, ResourceRPCClientBase) or (
+                hasattr(res, "channel") and isinstance(getattr(res, "channel"), Channel)
+            ):
                 if self._channel is res.channel:  # type: ignore
                     return
 
@@ -255,12 +285,16 @@ class RobotClient:
             else:
                 await self._manager.remove_resource(resourceName)
                 self._manager.register(
-                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_subtype(
+                        Subtype.from_resource_name(resourceName)
+                    ).create_rpc_client(resourceName.name, self._channel)
                 )
         else:
             try:
                 self._manager.register(
-                    Registry.lookup_subtype(Subtype.from_resource_name(resourceName)).create_rpc_client(resourceName.name, self._channel)
+                    Registry.lookup_subtype(
+                        Subtype.from_resource_name(resourceName)
+                    ).create_rpc_client(resourceName.name, self._channel)
                 )
             except ResourceNotFoundError:
                 pass
@@ -295,9 +329,7 @@ class RobotClient:
             if connection_error:
                 msg = "Lost connection to robot."
                 if reconnect_every > 0:
-                    msg += (
-                        f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
-                    )
+                    msg += f" Attempting to reconnect to {self._address} every {reconnect_every} second{'s' if reconnect_every != 1 else ''}"
                 LOGGER.error(msg, exc_info=connection_error)
                 self._close_channel()
                 self._connected = False
@@ -308,7 +340,11 @@ class RobotClient:
             if self._connected:
                 continue
 
-            reconnect_attempts = self._options.dial_options.max_reconnect_attempts if self._options.dial_options else 3
+            reconnect_attempts = (
+                self._options.dial_options.max_reconnect_attempts
+                if self._options.dial_options
+                else 3
+            )
 
             for _ in range(reconnect_attempts):
                 try:
@@ -330,7 +366,11 @@ class RobotClient:
                         self._channel = channel.channel
                         self._viam_channel = channel
                     self._client = RobotServiceStub(self._channel)
-                    direct_dial_address = self._channel._path if self._channel._path else f"{self._channel._host}:{self._channel._port}"
+                    direct_dial_address = (
+                        self._channel._path
+                        if self._channel._path
+                        else f"{self._channel._host}:{self._channel._port}"
+                    )
                     self._sessions_client = SessionsClient(
                         channel=self._channel,
                         direct_dial_address=direct_dial_address,
@@ -343,7 +383,10 @@ class RobotClient:
                     LOGGER.debug("Successfully reconnected robot")
                     break
                 except Exception as e:
-                    LOGGER.error(f"Failed to reconnect, trying again in {reconnect_every}sec", exc_info=e)
+                    LOGGER.error(
+                        f"Failed to reconnect, trying again in {reconnect_every}sec",
+                        exc_info=e,
+                    )
                     self._sessions_client.reset()
                     self._close_channel()
                     await asyncio.sleep(reconnect_every)
@@ -480,7 +523,11 @@ class RobotClient:
 
         # Cancel all tasks created by VIAM
         LOGGER.debug("Closing tasks spawned by Viam")
-        tasks = [task for task in asyncio.all_tasks() if task.get_name().startswith(viam._TASK_PREFIX)]
+        tasks = [
+            task
+            for task in asyncio.all_tasks()
+            if task.get_name().startswith(viam._TASK_PREFIX)
+        ]
         for task in tasks:
             LOGGER.debug(f"\tClosing task {task.get_name()}")
             task.cancel()
@@ -555,19 +602,28 @@ class RobotClient:
     # FRAME SYSTEM #
     ################
 
-    async def get_frame_system_config(self, additional_transforms: Optional[List[Transform]] = None) -> List[FrameSystemConfig]:
+    async def get_frame_system_config(
+        self, additional_transforms: Optional[List[Transform]] = None
+    ) -> List[FrameSystemConfig]:
         """
         Get the configuration of the frame system of a given robot.
 
         Returns:
             List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot's frame system.
         """
-        request = FrameSystemConfigRequest(supplemental_transforms=additional_transforms)
-        response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(request)
+        request = FrameSystemConfigRequest(
+            supplemental_transforms=additional_transforms
+        )
+        response: FrameSystemConfigResponse = await self._client.FrameSystemConfig(
+            request
+        )
         return list(response.frame_system_configs)
 
     async def transform_pose(
-        self, query: PoseInFrame, destination: str, additional_transforms: Optional[List[Transform]] = None
+        self,
+        query: PoseInFrame,
+        destination: str,
+        additional_transforms: Optional[List[Transform]] = None,
     ) -> PoseInFrame:
         """
         Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
@@ -578,7 +634,11 @@ class RobotClient:
             destination (str) : The name of the reference frame to transform the given pose to.
 
         """
-        request = TransformPoseRequest(source=query, destination=destination, supplemental_transforms=additional_transforms)
+        request = TransformPoseRequest(
+            source=query,
+            destination=destination,
+            supplemental_transforms=additional_transforms,
+        )
         response: TransformPoseResponse = await self._client.TransformPose(request)
         return response.pose
 
@@ -602,7 +662,9 @@ class RobotClient:
 
         """
         request = DiscoverComponentsRequest(queries=queries)
-        response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
+        response: DiscoverComponentsResponse = await self._client.DiscoverComponents(
+            request
+        )
         return list(response.discovery)
 
     ############

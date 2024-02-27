@@ -119,12 +119,19 @@ class Event:
         dt = datetime.fromtimestamp(self.time)
         timestamp = Timestamp()
         timestamp.FromDatetime(dt)
-        return PBEvent(time=timestamp, event=self.event.value, control=self.control.value, value=self.value)
+        return PBEvent(
+            time=timestamp,
+            event=self.event.value,
+            control=self.control.value,
+            value=self.value,
+        )
 
     @classmethod
     def from_proto(cls, proto: PBEvent) -> Self:
         dt = proto.time.ToDatetime()
-        return cls(dt.timestamp(), EventType(proto.event), Control(proto.control), proto.value)
+        return cls(
+            dt.timestamp(), EventType(proto.event), Control(proto.control), proto.value
+        )
 
 
 ControlFunction = Callable[[Event], None]
@@ -142,7 +149,13 @@ class Controller(ComponentBase):
     )
 
     @abc.abstractmethod
-    async def get_controls(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[Control]:
+    async def get_controls(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> List[Control]:
         """
         Returns a list of Controls provided by the Controller
 
@@ -165,7 +178,11 @@ class Controller(ComponentBase):
 
     @abc.abstractmethod
     async def get_events(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Dict[Control, Event]:
         """
         Returns the most recent Event for each input
@@ -274,4 +291,6 @@ class Controller(ComponentBase):
         Args:
             event (Event): The event to trigger
         """
-        raise NotSupportedError(f"Input controller named {self.name} does not support triggering events")
+        raise NotSupportedError(
+            f"Input controller named {self.name} does not support triggering events"
+        )

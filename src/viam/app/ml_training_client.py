@@ -59,7 +59,11 @@ class MLTrainingClient:
         """
 
         request = GetTrainingJobRequest(id=id)
-        response: GetTrainingJobResponse = await self._ml_training_client.GetTrainingJob(request, metadata=self._metadata)
+        response: GetTrainingJobResponse = (
+            await self._ml_training_client.GetTrainingJob(
+                request, metadata=self._metadata
+            )
+        )
 
         return response.metadata
 
@@ -79,9 +83,19 @@ class MLTrainingClient:
             List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.
         """
 
-        training_status = training_status if training_status else TrainingStatus.TRAINING_STATUS_UNSPECIFIED
-        request = ListTrainingJobsRequest(organization_id=org_id, status=training_status)
-        response: ListTrainingJobsResponse = await self._ml_training_client.ListTrainingJobs(request, metadata=self._metadata)
+        training_status = (
+            training_status
+            if training_status
+            else TrainingStatus.TRAINING_STATUS_UNSPECIFIED
+        )
+        request = ListTrainingJobsRequest(
+            organization_id=org_id, status=training_status
+        )
+        response: ListTrainingJobsResponse = (
+            await self._ml_training_client.ListTrainingJobs(
+                request, metadata=self._metadata
+            )
+        )
 
         return list(response.jobs)
 
@@ -96,4 +110,6 @@ class MLTrainingClient:
         """
 
         request = CancelTrainingJobRequest(id=id)
-        await self._ml_training_client.CancelTrainingJob(request, metadata=self._metadata)
+        await self._ml_training_client.CancelTrainingJob(
+            request, metadata=self._metadata
+        )

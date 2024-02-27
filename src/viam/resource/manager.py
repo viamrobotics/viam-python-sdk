@@ -44,7 +44,9 @@ class ResourceManager:
         Args:
             resource (ResourceBase): The resource to register
         """
-        Registry.lookup_subtype(resource.SUBTYPE)  # confirm the subtype is registered in Registry
+        Registry.lookup_subtype(
+            resource.SUBTYPE
+        )  # confirm the subtype is registered in Registry
 
         _BaseClasses = (ResourceBase, ComponentBase, ServiceBase)
         rnames: Dict[ResourceName, ResourceBase] = {}
@@ -57,7 +59,10 @@ class ResourceManager:
         for rn in rnames:
             if ":" in rn.name:
                 short_name = rn.name.split(":")[-1]
-                if short_name in self._short_to_long_name and rn not in self._short_to_long_name[short_name]:
+                if (
+                    short_name in self._short_to_long_name
+                    and rn not in self._short_to_long_name[short_name]
+                ):
                     self._short_to_long_name[short_name].append(rn)
                 elif short_name not in self._short_to_long_name:
                     self._short_to_long_name[short_name] = [rn]
@@ -68,7 +73,9 @@ class ResourceManager:
         with self._lock:
             self.resources.update(rnames)
 
-    def get_resource(self, of_type: Type[ResourceType], name: ResourceName) -> ResourceType:
+    def get_resource(
+        self, of_type: Type[ResourceType], name: ResourceName
+    ) -> ResourceType:
         """
         Return a resource from the registry.
         If a unique short name version is given, return a remote resource with the name.
@@ -89,8 +96,13 @@ class ResourceManager:
             if resource and isinstance(resource, of_type):
                 return resource
 
-            if name.name in self._short_to_long_name and len(self._short_to_long_name[name.name]) == 1:
-                return self.get_resource(of_type, self._short_to_long_name[name.name][0])
+            if (
+                name.name in self._short_to_long_name
+                and len(self._short_to_long_name[name.name]) == 1
+            ):
+                return self.get_resource(
+                    of_type, self._short_to_long_name[name.name][0]
+                )
             raise ResourceNotFoundError(name.subtype, name.name)
 
     async def remove_resource(self, name: ResourceName):

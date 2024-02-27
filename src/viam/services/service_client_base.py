@@ -37,10 +37,21 @@ class ServiceClientBase(abc.ABC, ResourceBase):
         Returns:
             Self: The service client, if it exists on the robot
         """
-        resource_name = ResourceName(namespace="rdk", type="service", subtype=cls.SUBTYPE.resource_subtype, name=name)
+        resource_name = ResourceName(
+            namespace="rdk",
+            type="service",
+            subtype=cls.SUBTYPE.resource_subtype,
+            name=name,
+        )
         if resource_name not in robot.resource_names:
             raise ResourceNotFoundError(resource_name.subtype, resource_name.name)
         return cls(name, robot._channel)
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Mapping[str, ValueTypes]:
         raise NotImplementedError()

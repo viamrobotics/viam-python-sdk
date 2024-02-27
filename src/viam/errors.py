@@ -22,7 +22,10 @@ class InsecureConnectionError(ViamError):
     def __init__(self, address: str, authenticated: bool = False) -> None:
         self.address = address
         self.authenticated = authenticated
-        self.message = f"Requested address {self.address} is insecure" + f'{" and will not send credentials" if self.authenticated else ""}'
+        self.message = (
+            f"Requested address {self.address} is insecure"
+            + f'{" and will not send credentials" if self.authenticated else ""}'
+        )
         super().__init__(self.message)
 
 
@@ -35,7 +38,9 @@ class DuplicateResourceError(ViamError):
 
     def __init__(self, name: str) -> None:
         self.name = name
-        self.message = f'Cannot add resource with duplicate name "{name}" to the registry'
+        self.message = (
+            f'Cannot add resource with duplicate name "{name}" to the registry'
+        )
         super().__init__(self.message)
 
 
@@ -101,5 +106,7 @@ class NoCaptureToStoreError(ViamGRPCError):
     """
 
     def __init__(self):
-        self.message = "no capture from filter module"  # Do not change the contents of this string
+        self.message = (
+            "no capture from filter module"  # Do not change the contents of this string
+        )
         self.grpc_code = Status.FAILED_PRECONDITION

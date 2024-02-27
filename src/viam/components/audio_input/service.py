@@ -7,7 +7,12 @@ from grpclib import GRPCError, Status
 from grpclib.server import Stream
 
 from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.audioinput import (
     AudioInputServiceBase,
     ChunksRequest,
@@ -35,7 +40,9 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         assert request is not None
         audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        audio_stream = await audio_input.stream(timeout=timeout, metadata=stream.metadata)
+        audio_stream = await audio_input.stream(
+            timeout=timeout, metadata=stream.metadata
+        )
         first_chunk = await audio_stream.__anext__()
         await stream.send_message(ChunksResponse(info=first_chunk.info))
         await stream.send_message(ChunksResponse(chunk=first_chunk.chunk))
@@ -43,12 +50,16 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         async for audio in audio_stream:
             await stream.send_message(ChunksResponse(chunk=audio.chunk))
 
-    async def Properties(self, stream: Stream[PropertiesRequest, PropertiesResponse]) -> None:
+    async def Properties(
+        self, stream: Stream[PropertiesRequest, PropertiesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        response = (await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)).proto
+        response = (
+            await audio_input.get_properties(timeout=timeout, metadata=stream.metadata)
+        ).proto
         await stream.send_message(response)
 
     async def Record(self, stream: Stream[RecordRequest, HttpBody]) -> None:  # pyright: ignore [reportInvalidTypeForm]
@@ -66,12 +77,21 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
         audio_input = self.get_resource(request.name)
         audio_stream = await audio_input.stream()
         first_chunk = await audio_stream.__anext__()
-        num_chunks = int(duration.total_seconds() * float(first_chunk.info.sampling_rate / first_chunk.chunk.length))
+        num_chunks = int(
+            duration.total_seconds()
+            * float(first_chunk.info.sampling_rate / first_chunk.chunk.length)
+        )
 
         sample_width: int
-        if first_chunk.info.sample_format == SampleFormat.SAMPLE_FORMAT_INT16_INTERLEAVED:
+        if (
+            first_chunk.info.sample_format
+            == SampleFormat.SAMPLE_FORMAT_INT16_INTERLEAVED
+        ):
             sample_width = 2
-        elif first_chunk.info.sample_format == SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED:
+        elif (
+            first_chunk.info.sample_format
+            == SampleFormat.SAMPLE_FORMAT_FLOAT32_INTERLEAVED
+        ):
             sample_width = 4
         else:
             raise GRPCError(Status.INVALID_ARGUMENT, "Unspecified type of audio buffer")
@@ -95,20 +115,30 @@ class AudioInputRPCService(AudioInputServiceBase, ResourceRPCServiceBase[AudioIn
 
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await audio_input.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await audio_input.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         audio_input = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await audio_input.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await audio_input.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

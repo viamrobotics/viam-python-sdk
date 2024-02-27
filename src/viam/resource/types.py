@@ -1,6 +1,15 @@
 import re
 import sys
-from typing import TYPE_CHECKING, Callable, ClassVar, Mapping, Optional, Protocol, Sequence, runtime_checkable
+from typing import (
+    TYPE_CHECKING,
+    Callable,
+    ClassVar,
+    Mapping,
+    Optional,
+    Protocol,
+    Sequence,
+    runtime_checkable,
+)
 
 if sys.version_info >= (3, 10):
     from typing import TypeAlias
@@ -115,7 +124,9 @@ class ModelFamily:
         return False
 
 
-ModelFamily.DEFAULT = ModelFamily(RESOURCE_NAMESPACE_RDK, ModelFamily.DEFAULT_FAMILY_NAME)
+ModelFamily.DEFAULT = ModelFamily(
+    RESOURCE_NAMESPACE_RDK, ModelFamily.DEFAULT_FAMILY_NAME
+)
 
 
 class Model:
@@ -202,7 +213,9 @@ def resource_name_from_string(string: str) -> ResourceName:
     return ResourceName(namespace=parts[0], type=parts[1], subtype=parts[2], name=name)
 
 
-ResourceCreator: TypeAlias = Callable[[ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"]
+ResourceCreator: TypeAlias = Callable[
+    [ComponentConfig, Mapping[ResourceName, "ResourceBase"]], "ResourceBase"
+]
 Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
 
 
@@ -210,5 +223,7 @@ Validator: TypeAlias = Callable[[ComponentConfig], Sequence[str]]
 class SupportsGetGeometries(Protocol):
     """The SupportsGetGeometries protocol defines the requirements for a resource to call get_geometries."""
 
-    async def GetGeometries(self, request: GetGeometriesRequest, *, timeout: Optional[float] = None) -> GetGeometriesResponse:
+    async def GetGeometries(
+        self, request: GetGeometriesRequest, *, timeout: Optional[float] = None
+    ) -> GetGeometriesResponse:
         ...

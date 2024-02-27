@@ -3,7 +3,13 @@ from typing import Any, Dict, List, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.movement_sensor.movement_sensor import MovementSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, GetReadingsRequest, GetReadingsResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    GetReadingsRequest,
+    GetReadingsResponse,
+)
 from viam.proto.component.movementsensor import (
     GetAccuracyRequest,
     GetAngularVelocityRequest,
@@ -23,7 +29,14 @@ from viam.proto.component.movementsensor import (
     MovementSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import SensorReading, ValueTypes, dict_to_struct, get_geometries, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import (
+    SensorReading,
+    ValueTypes,
+    dict_to_struct,
+    get_geometries,
+    sensor_readings_value_to_native,
+    struct_to_dict,
+)
 
 from . import GeoPoint, Orientation, Vector3
 
@@ -46,7 +59,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(
+            request, timeout=timeout
+        )
         return response.coordinate, response.altitude_m
 
     async def get_linear_velocity(
@@ -59,7 +74,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetLinearVelocityRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetLinearVelocityResponse = await self.client.GetLinearVelocity(request, timeout=timeout)
+        response: GetLinearVelocityResponse = await self.client.GetLinearVelocity(
+            request, timeout=timeout
+        )
         return response.linear_velocity
 
     async def get_angular_velocity(
@@ -72,7 +89,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetAngularVelocityRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetAngularVelocityResponse = await self.client.GetAngularVelocity(request, timeout=timeout)
+        response: GetAngularVelocityResponse = await self.client.GetAngularVelocity(
+            request, timeout=timeout
+        )
         return response.angular_velocity
 
     async def get_linear_acceleration(
@@ -84,8 +103,12 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
     ) -> Vector3:
         if extra is None:
             extra = {}
-        request = GetLinearAccelerationRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetLinearAccelerationResponse = await self.client.GetLinearAcceleration(request, timeout=timeout)
+        request = GetLinearAccelerationRequest(
+            name=self.name, extra=dict_to_struct(extra)
+        )
+        response: GetLinearAccelerationResponse = (
+            await self.client.GetLinearAcceleration(request, timeout=timeout)
+        )
         return response.linear_acceleration
 
     async def get_compass_heading(
@@ -98,7 +121,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetCompassHeadingRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetCompassHeadingResponse = await self.client.GetCompassHeading(request, timeout=timeout)
+        response: GetCompassHeadingResponse = await self.client.GetCompassHeading(
+            request, timeout=timeout
+        )
         return response.value
 
     async def get_orientation(
@@ -111,7 +136,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetOrientationRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetOrientationResponse = await self.client.GetOrientation(request, timeout=timeout)
+        response: GetOrientationResponse = await self.client.GetOrientation(
+            request, timeout=timeout
+        )
         return response.orientation
 
     async def get_properties(
@@ -124,7 +151,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(
+            request, timeout=timeout
+        )
         return MovementSensor.Properties.from_proto(response)
 
     async def get_accuracy(
@@ -149,7 +178,9 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
+        response: GetReadingsResponse = await self.client.GetReadings(
+            request, timeout=timeout
+        )
 
         return sensor_readings_value_to_native(response.readings)
 
@@ -161,8 +192,12 @@ class MovementSensorClient(MovementSensor, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

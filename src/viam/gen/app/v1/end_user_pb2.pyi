@@ -3,9 +3,11 @@
 isort:skip_file
 """
 import builtins
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.message
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -16,8 +18,8 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 class IsLegalAcceptedRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___IsLegalAcceptedRequest = IsLegalAcceptedRequest
 
 @typing_extensions.final
@@ -25,27 +27,27 @@ class IsLegalAcceptedResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ACCEPTED_LEGAL_FIELD_NUMBER: builtins.int
     accepted_legal: builtins.bool
-    'If false, the user should not be able to use the application.'
+    "If false, the user should not be able to use the application."
 
-    def __init__(self, *, accepted_legal: builtins.bool=...) -> None:
-        ...
+    def __init__(self, *, accepted_legal: builtins.bool = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["accepted_legal", b"accepted_legal"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['accepted_legal', b'accepted_legal']) -> None:
-        ...
 global___IsLegalAcceptedResponse = IsLegalAcceptedResponse
 
 @typing_extensions.final
 class AcceptLegalRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AcceptLegalRequest = AcceptLegalRequest
 
 @typing_extensions.final
 class AcceptLegalResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AcceptLegalResponse = AcceptLegalResponse

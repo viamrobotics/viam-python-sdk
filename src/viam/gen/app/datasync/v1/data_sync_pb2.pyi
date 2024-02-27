@@ -4,6 +4,9 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+import sys
+import typing
+
 import google.protobuf.any_pb2
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
@@ -11,8 +14,7 @@ import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
-import sys
-import typing
+
 if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
@@ -20,10 +22,13 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _DataType:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _DataTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_DataType.ValueType], builtins.type):
+class _DataTypeEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_DataType.ValueType],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     DATA_TYPE_UNSPECIFIED: _DataType.ValueType
     DATA_TYPE_BINARY_SENSOR: _DataType.ValueType
@@ -32,6 +37,7 @@ class _DataTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumT
 
 class DataType(_DataType, metaclass=_DataTypeEnumTypeWrapper):
     """DataType specifies the type of data uploaded."""
+
 DATA_TYPE_UNSPECIFIED: DataType.ValueType
 DATA_TYPE_BINARY_SENSOR: DataType.ValueType
 DATA_TYPE_TABULAR_SENSOR: DataType.ValueType
@@ -41,40 +47,50 @@ global___DataType = DataType
 @typing_extensions.final
 class DataCaptureUploadRequest(google.protobuf.message.Message):
     """DataCaptureUploadRequest requests to upload the contents and metadata for tabular data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     SENSOR_CONTENTS_FIELD_NUMBER: builtins.int
 
     @property
-    def metadata(self) -> global___UploadMetadata:
-        ...
-
+    def metadata(self) -> global___UploadMetadata: ...
     @property
-    def sensor_contents(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorData]:
-        ...
+    def sensor_contents(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___SensorData
+    ]: ...
+    def __init__(
+        self,
+        *,
+        metadata: global___UploadMetadata | None = ...,
+        sensor_contents: collections.abc.Iterable[global___SensorData] | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["metadata", b"metadata"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "metadata", b"metadata", "sensor_contents", b"sensor_contents"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, metadata: global___UploadMetadata | None=..., sensor_contents: collections.abc.Iterable[global___SensorData] | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'sensor_contents', b'sensor_contents']) -> None:
-        ...
 global___DataCaptureUploadRequest = DataCaptureUploadRequest
 
 @typing_extensions.final
 class DataCaptureUploadResponse(google.protobuf.message.Message):
     """DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, file_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["file_id", b"file_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id']) -> None:
-        ...
 global___DataCaptureUploadResponse = DataCaptureUploadResponse
 
 @typing_extensions.final
@@ -82,43 +98,62 @@ class FileUploadRequest(google.protobuf.message.Message):
     """FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.
     The first packet must be the UploadMetadata associated with the binary data.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     FILE_CONTENTS_FIELD_NUMBER: builtins.int
 
     @property
-    def metadata(self) -> global___UploadMetadata:
-        ...
-
+    def metadata(self) -> global___UploadMetadata: ...
     @property
-    def file_contents(self) -> global___FileData:
-        ...
+    def file_contents(self) -> global___FileData: ...
+    def __init__(
+        self,
+        *,
+        metadata: global___UploadMetadata | None = ...,
+        file_contents: global___FileData | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "file_contents",
+            b"file_contents",
+            "metadata",
+            b"metadata",
+            "upload_packet",
+            b"upload_packet",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "file_contents",
+            b"file_contents",
+            "metadata",
+            b"metadata",
+            "upload_packet",
+            b"upload_packet",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["upload_packet", b"upload_packet"]
+    ) -> typing_extensions.Literal["metadata", "file_contents"] | None: ...
 
-    def __init__(self, *, metadata: global___UploadMetadata | None=..., file_contents: global___FileData | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['file_contents', b'file_contents', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['file_contents', b'file_contents', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['upload_packet', b'upload_packet']) -> typing_extensions.Literal['metadata', 'file_contents'] | None:
-        ...
 global___FileUploadRequest = FileUploadRequest
 
 @typing_extensions.final
 class FileUploadResponse(google.protobuf.message.Message):
     """FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, file_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["file_id", b"file_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id']) -> None:
-        ...
 global___FileUploadResponse = FileUploadResponse
 
 @typing_extensions.final
@@ -126,114 +161,160 @@ class StreamingDataCaptureUploadRequest(google.protobuf.message.Message):
     """StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.
     The first packet must be the DataCaptureUploadMetadata associated with the data.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
 
     @property
-    def metadata(self) -> global___DataCaptureUploadMetadata:
-        ...
+    def metadata(self) -> global___DataCaptureUploadMetadata: ...
     data: builtins.bytes
 
-    def __init__(self, *, metadata: global___DataCaptureUploadMetadata | None=..., data: builtins.bytes=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        metadata: global___DataCaptureUploadMetadata | None = ...,
+        data: builtins.bytes = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "data", b"data", "metadata", b"metadata", "upload_packet", b"upload_packet"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "data", b"data", "metadata", b"metadata", "upload_packet", b"upload_packet"
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["upload_packet", b"upload_packet"]
+    ) -> typing_extensions.Literal["metadata", "data"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['data', b'data', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data', 'metadata', b'metadata', 'upload_packet', b'upload_packet']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['upload_packet', b'upload_packet']) -> typing_extensions.Literal['metadata', 'data'] | None:
-        ...
 global___StreamingDataCaptureUploadRequest = StreamingDataCaptureUploadRequest
 
 @typing_extensions.final
 class StreamingDataCaptureUploadResponse(google.protobuf.message.Message):
     """StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FILE_ID_FIELD_NUMBER: builtins.int
     file_id: builtins.str
 
-    def __init__(self, *, file_id: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, file_id: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["file_id", b"file_id"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['file_id', b'file_id']) -> None:
-        ...
 global___StreamingDataCaptureUploadResponse = StreamingDataCaptureUploadResponse
 
 @typing_extensions.final
 class SensorMetadata(google.protobuf.message.Message):
     """SensorMetadata contains the time the sensor data was requested and was received."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TIME_REQUESTED_FIELD_NUMBER: builtins.int
     TIME_RECEIVED_FIELD_NUMBER: builtins.int
 
     @property
-    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def time_requested(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def time_received(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        time_requested: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        time_received: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "time_received", b"time_received", "time_requested", b"time_requested"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "time_received", b"time_received", "time_requested", b"time_requested"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, time_requested: google.protobuf.timestamp_pb2.Timestamp | None=..., time_received: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['time_received', b'time_received', 'time_requested', b'time_requested']) -> None:
-        ...
 global___SensorMetadata = SensorMetadata
 
 @typing_extensions.final
 class SensorData(google.protobuf.message.Message):
     """SensorData contains the contents and metadata for tabular data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     METADATA_FIELD_NUMBER: builtins.int
     STRUCT_FIELD_NUMBER: builtins.int
     BINARY_FIELD_NUMBER: builtins.int
 
     @property
-    def metadata(self) -> global___SensorMetadata:
-        ...
-
+    def metadata(self) -> global___SensorMetadata: ...
     @property
-    def struct(self) -> google.protobuf.struct_pb2.Struct:
-        ...
+    def struct(self) -> google.protobuf.struct_pb2.Struct: ...
     binary: builtins.bytes
 
-    def __init__(self, *, metadata: global___SensorMetadata | None=..., struct: google.protobuf.struct_pb2.Struct | None=..., binary: builtins.bytes=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        metadata: global___SensorMetadata | None = ...,
+        struct: google.protobuf.struct_pb2.Struct | None = ...,
+        binary: builtins.bytes = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary",
+            b"binary",
+            "data",
+            b"data",
+            "metadata",
+            b"metadata",
+            "struct",
+            b"struct",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "binary",
+            b"binary",
+            "data",
+            b"data",
+            "metadata",
+            b"metadata",
+            "struct",
+            b"struct",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["data", b"data"]
+    ) -> typing_extensions.Literal["struct", "binary"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['binary', b'binary', 'data', b'data', 'metadata', b'metadata', 'struct', b'struct']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['binary', b'binary', 'data', b'data', 'metadata', b'metadata', 'struct', b'struct']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['data', b'data']) -> typing_extensions.Literal['struct', 'binary'] | None:
-        ...
 global___SensorData = SensorData
 
 @typing_extensions.final
 class FileData(google.protobuf.message.Message):
     """FileData contains the contents of binary (image + file) data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
     data: builtins.bytes
 
-    def __init__(self, *, data: builtins.bytes=...) -> None:
-        ...
+    def __init__(self, *, data: builtins.bytes = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["data", b"data"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data']) -> None:
-        ...
 global___FileData = FileData
 
 @typing_extensions.final
 class UploadMetadata(google.protobuf.message.Message):
     """UploadMetadata contains the metadata for binary (image + file) data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -244,17 +325,20 @@ class UploadMetadata(google.protobuf.message.Message):
         key: builtins.str
 
         @property
-        def value(self) -> google.protobuf.any_pb2.Any:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def value(self) -> google.protobuf.any_pb2.Any: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: google.protobuf.any_pb2.Any | None = ...,
+        ) -> None: ...
+        def HasField(
+            self, field_name: typing_extensions.Literal["value", b"value"]
+        ) -> builtins.bool: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     PART_ID_FIELD_NUMBER: builtins.int
     COMPONENT_TYPE_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
@@ -272,49 +356,92 @@ class UploadMetadata(google.protobuf.message.Message):
     file_name: builtins.str
 
     @property
-    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
-        ...
+    def method_parameters(
+        self,
+    ) -> google.protobuf.internal.containers.MessageMap[
+        builtins.str, google.protobuf.any_pb2.Any
+    ]: ...
     file_extension: builtins.str
 
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        part_id: builtins.str = ...,
+        component_type: builtins.str = ...,
+        component_name: builtins.str = ...,
+        method_name: builtins.str = ...,
+        type: global___DataType.ValueType = ...,
+        file_name: builtins.str = ...,
+        method_parameters: collections.abc.Mapping[
+            builtins.str, google.protobuf.any_pb2.Any
+        ]
+        | None = ...,
+        file_extension: builtins.str = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "component_name",
+            b"component_name",
+            "component_type",
+            b"component_type",
+            "file_extension",
+            b"file_extension",
+            "file_name",
+            b"file_name",
+            "method_name",
+            b"method_name",
+            "method_parameters",
+            b"method_parameters",
+            "part_id",
+            b"part_id",
+            "tags",
+            b"tags",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, part_id: builtins.str=..., component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., file_name: builtins.str=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'file_name', b'file_name', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'part_id', b'part_id', 'tags', b'tags', 'type', b'type']) -> None:
-        ...
 global___UploadMetadata = UploadMetadata
 
 @typing_extensions.final
 class CaptureInterval(google.protobuf.message.Message):
     """CaptureInterval specifies the start and end times of the data capture."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     START_FIELD_NUMBER: builtins.int
     END_FIELD_NUMBER: builtins.int
 
     @property
-    def start(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
-
+    def start(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
     @property
-    def end(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def end(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        start: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        end: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["end", b"end", "start", b"start"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["end", b"end", "start", b"start"]
+    ) -> None: ...
 
-    def __init__(self, *, start: google.protobuf.timestamp_pb2.Timestamp | None=..., end: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['end', b'end', 'start', b'start']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['end', b'end', 'start', b'start']) -> None:
-        ...
 global___CaptureInterval = CaptureInterval
 
 @typing_extensions.final
 class DataCaptureMetadata(google.protobuf.message.Message):
     """DataCaptureMetadata contains the metadata for data captured by collectors."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing_extensions.final
@@ -325,17 +452,20 @@ class DataCaptureMetadata(google.protobuf.message.Message):
         key: builtins.str
 
         @property
-        def value(self) -> google.protobuf.any_pb2.Any:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: google.protobuf.any_pb2.Any | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
+        def value(self) -> google.protobuf.any_pb2.Any: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: google.protobuf.any_pb2.Any | None = ...,
+        ) -> None: ...
+        def HasField(
+            self, field_name: typing_extensions.Literal["value", b"value"]
+        ) -> builtins.bool: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal["key", b"key", "value", b"value"],
+        ) -> None: ...
     COMPONENT_TYPE_FIELD_NUMBER: builtins.int
     COMPONENT_NAME_FIELD_NUMBER: builtins.int
     METHOD_NAME_FIELD_NUMBER: builtins.int
@@ -349,42 +479,84 @@ class DataCaptureMetadata(google.protobuf.message.Message):
     type: global___DataType.ValueType
 
     @property
-    def method_parameters(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, google.protobuf.any_pb2.Any]:
-        ...
+    def method_parameters(
+        self,
+    ) -> google.protobuf.internal.containers.MessageMap[
+        builtins.str, google.protobuf.any_pb2.Any
+    ]: ...
     file_extension: builtins.str
 
     @property
-    def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def tags(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
+    def __init__(
+        self,
+        *,
+        component_type: builtins.str = ...,
+        component_name: builtins.str = ...,
+        method_name: builtins.str = ...,
+        type: global___DataType.ValueType = ...,
+        method_parameters: collections.abc.Mapping[
+            builtins.str, google.protobuf.any_pb2.Any
+        ]
+        | None = ...,
+        file_extension: builtins.str = ...,
+        tags: collections.abc.Iterable[builtins.str] | None = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "component_name",
+            b"component_name",
+            "component_type",
+            b"component_type",
+            "file_extension",
+            b"file_extension",
+            "method_name",
+            b"method_name",
+            "method_parameters",
+            b"method_parameters",
+            "tags",
+            b"tags",
+            "type",
+            b"type",
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, component_type: builtins.str=..., component_name: builtins.str=..., method_name: builtins.str=..., type: global___DataType.ValueType=..., method_parameters: collections.abc.Mapping[builtins.str, google.protobuf.any_pb2.Any] | None=..., file_extension: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'component_type', b'component_type', 'file_extension', b'file_extension', 'method_name', b'method_name', 'method_parameters', b'method_parameters', 'tags', b'tags', 'type', b'type']) -> None:
-        ...
 global___DataCaptureMetadata = DataCaptureMetadata
 
 @typing_extensions.final
 class DataCaptureUploadMetadata(google.protobuf.message.Message):
     """DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UPLOAD_METADATA_FIELD_NUMBER: builtins.int
     SENSOR_METADATA_FIELD_NUMBER: builtins.int
 
     @property
-    def upload_metadata(self) -> global___UploadMetadata:
-        ...
-
+    def upload_metadata(self) -> global___UploadMetadata: ...
     @property
-    def sensor_metadata(self) -> global___SensorMetadata:
-        ...
+    def sensor_metadata(self) -> global___SensorMetadata: ...
+    def __init__(
+        self,
+        *,
+        upload_metadata: global___UploadMetadata | None = ...,
+        sensor_metadata: global___SensorMetadata | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "sensor_metadata", b"sensor_metadata", "upload_metadata", b"upload_metadata"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "sensor_metadata", b"sensor_metadata", "upload_metadata", b"upload_metadata"
+        ],
+    ) -> None: ...
 
-    def __init__(self, *, upload_metadata: global___UploadMetadata | None=..., sensor_metadata: global___SensorMetadata | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['sensor_metadata', b'sensor_metadata', 'upload_metadata', b'upload_metadata']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['sensor_metadata', b'sensor_metadata', 'upload_metadata', b'upload_metadata']) -> None:
-        ...
 global___DataCaptureUploadMetadata = DataCaptureUploadMetadata

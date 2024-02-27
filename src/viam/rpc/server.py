@@ -30,7 +30,12 @@ class Server(ResourceManager):
     gRPC Server
     """
 
-    def __init__(self, resources: List[ResourceBase], *, module_service: Optional["ModuleRPCService"] = None):
+    def __init__(
+        self,
+        resources: List[ResourceBase],
+        *,
+        module_service: Optional["ModuleRPCService"] = None,
+    ):
         """
         Initialize the Server with a list of resources
         to be managed.
@@ -78,7 +83,9 @@ class Server(ResourceManager):
             try:
                 return await method_func(stream)
             finally:
-                LOGGER.debug(f"[gRPC] Finished call from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}")
+                LOGGER.debug(
+                    f"[gRPC] Finished call from {host or 'xxxx'}:{port or 'xxxx'} - {event.method_name}"
+                )
 
         event.method_func = log_resource_name
 
@@ -172,7 +179,10 @@ def _grpc_error_wrapper(func: Callable):
                 func_name = tb.tb_frame.f_code.co_name
                 line_num = tb.tb_lineno
                 tb = tb.tb_next
-            raise GRPCError(Status.UNKNOWN, f"{e.__class__.__name__} - {e} - {file_name=} {func_name=} {line_num=}")
+            raise GRPCError(
+                Status.UNKNOWN,
+                f"{e.__class__.__name__} - {e} - {file_name=} {func_name=} {line_num=}",
+            )
 
     return interceptor
 

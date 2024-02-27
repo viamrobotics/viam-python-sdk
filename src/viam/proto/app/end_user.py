@@ -3,7 +3,12 @@
 Do not edit manually!
 """
 from ...gen.app.v1.end_user_grpc import EndUserServiceBase, EndUserServiceStub
-from ...gen.app.v1.end_user_pb2 import AcceptLegalRequest, AcceptLegalResponse, IsLegalAcceptedRequest, IsLegalAcceptedResponse
+from ...gen.app.v1.end_user_pb2 import (
+    AcceptLegalRequest,
+    AcceptLegalResponse,
+    IsLegalAcceptedRequest,
+    IsLegalAcceptedResponse,
+)
 
 __all__ = [
     "EndUserServiceBase",

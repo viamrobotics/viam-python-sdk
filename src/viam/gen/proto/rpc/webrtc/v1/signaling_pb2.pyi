@@ -4,13 +4,15 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+import sys
+import typing
+
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
 import google.rpc.status_pb2
-import sys
-import typing
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -22,6 +24,7 @@ class ICECandidate(google.protobuf.message.Message):
     """ICECandidate represents an ICE candidate.
     From https://github.com/pion/webrtc/blob/5f6baf73255598a7b4a7c9400bb0381acc9aa3dc/icecandidateinit.go
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
     SDP_MID_FIELD_NUMBER: builtins.int
@@ -32,43 +35,90 @@ class ICECandidate(google.protobuf.message.Message):
     sdpm_line_index: builtins.int
     username_fragment: builtins.str
 
-    def __init__(self, *, candidate: builtins.str=..., sdp_mid: builtins.str | None=..., sdpm_line_index: builtins.int | None=..., username_fragment: builtins.str | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_sdp_mid', b'_sdp_mid', '_sdpm_line_index', b'_sdpm_line_index', '_username_fragment', b'_username_fragment', 'sdp_mid', b'sdp_mid', 'sdpm_line_index', b'sdpm_line_index', 'username_fragment', b'username_fragment']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_sdp_mid', b'_sdp_mid', '_sdpm_line_index', b'_sdpm_line_index', '_username_fragment', b'_username_fragment', 'candidate', b'candidate', 'sdp_mid', b'sdp_mid', 'sdpm_line_index', b'sdpm_line_index', 'username_fragment', b'username_fragment']) -> None:
-        ...
-
+    def __init__(
+        self,
+        *,
+        candidate: builtins.str = ...,
+        sdp_mid: builtins.str | None = ...,
+        sdpm_line_index: builtins.int | None = ...,
+        username_fragment: builtins.str | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_sdp_mid",
+            b"_sdp_mid",
+            "_sdpm_line_index",
+            b"_sdpm_line_index",
+            "_username_fragment",
+            b"_username_fragment",
+            "sdp_mid",
+            b"sdp_mid",
+            "sdpm_line_index",
+            b"sdpm_line_index",
+            "username_fragment",
+            b"username_fragment",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_sdp_mid",
+            b"_sdp_mid",
+            "_sdpm_line_index",
+            b"_sdpm_line_index",
+            "_username_fragment",
+            b"_username_fragment",
+            "candidate",
+            b"candidate",
+            "sdp_mid",
+            b"sdp_mid",
+            "sdpm_line_index",
+            b"sdpm_line_index",
+            "username_fragment",
+            b"username_fragment",
+        ],
+    ) -> None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_sdp_mid', b'_sdp_mid']) -> typing_extensions.Literal['sdp_mid'] | None:
-        ...
-
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_sdp_mid", b"_sdp_mid"]
+    ) -> typing_extensions.Literal["sdp_mid"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_sdpm_line_index', b'_sdpm_line_index']) -> typing_extensions.Literal['sdpm_line_index'] | None:
-        ...
-
+    def WhichOneof(
+        self,
+        oneof_group: typing_extensions.Literal["_sdpm_line_index", b"_sdpm_line_index"],
+    ) -> typing_extensions.Literal["sdpm_line_index"] | None: ...
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_username_fragment', b'_username_fragment']) -> typing_extensions.Literal['username_fragment'] | None:
-        ...
+    def WhichOneof(
+        self,
+        oneof_group: typing_extensions.Literal[
+            "_username_fragment", b"_username_fragment"
+        ],
+    ) -> typing_extensions.Literal["username_fragment"] | None: ...
+
 global___ICECandidate = ICECandidate
 
 @typing_extensions.final
 class CallRequest(google.protobuf.message.Message):
     """CallRequest is the SDP offer that the controlling side is making."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     DISABLE_TRICKLE_FIELD_NUMBER: builtins.int
     sdp: builtins.str
     disable_trickle: builtins.bool
-    'when disable_trickle is true, the init stage will be the only stage\n    to be received in the response and the caller can expect the SDP\n    to contain all ICE candidates.\n    '
+    "when disable_trickle is true, the init stage will be the only stage\n    to be received in the response and the caller can expect the SDP\n    to contain all ICE candidates.\n    "
 
-    def __init__(self, *, sdp: builtins.str=..., disable_trickle: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self, *, sdp: builtins.str = ..., disable_trickle: builtins.bool = ...
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "disable_trickle", b"disable_trickle", "sdp", b"sdp"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['disable_trickle', b'disable_trickle', 'sdp', b'sdp']) -> None:
-        ...
 global___CallRequest = CallRequest
 
 @typing_extensions.final
@@ -76,15 +126,16 @@ class CallResponseInitStage(google.protobuf.message.Message):
     """CallResponseInitStage is the first and a one time stage that represents
     the initial response to starting a call.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     sdp: builtins.str
 
-    def __init__(self, *, sdp: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, sdp: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["sdp", b"sdp"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['sdp', b'sdp']) -> None:
-        ...
 global___CallResponseInitStage = CallResponseInitStage
 
 @typing_extensions.final
@@ -92,26 +143,26 @@ class CallResponseUpdateStage(google.protobuf.message.Message):
     """CallResponseUpdateStage is multiply used to trickle in ICE candidates from
     the controlled (answering) side.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
-    def candidate(self) -> global___ICECandidate:
-        ...
+    def candidate(self) -> global___ICECandidate: ...
+    def __init__(self, *, candidate: global___ICECandidate | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> None: ...
 
-    def __init__(self, *, candidate: global___ICECandidate | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> None:
-        ...
 global___CallResponseUpdateStage = CallResponseUpdateStage
 
 @typing_extensions.final
 class CallResponse(google.protobuf.message.Message):
     """CallResponse is the SDP answer that the controlled side responds with."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
@@ -119,29 +170,38 @@ class CallResponse(google.protobuf.message.Message):
     uuid: builtins.str
 
     @property
-    def init(self) -> global___CallResponseInitStage:
-        ...
-
+    def init(self) -> global___CallResponseInitStage: ...
     @property
-    def update(self) -> global___CallResponseUpdateStage:
-        ...
+    def update(self) -> global___CallResponseUpdateStage: ...
+    def __init__(
+        self,
+        *,
+        uuid: builtins.str = ...,
+        init: global___CallResponseInitStage | None = ...,
+        update: global___CallResponseUpdateStage | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "init", b"init", "stage", b"stage", "update", b"update"
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "init", b"init", "stage", b"stage", "update", b"update", "uuid", b"uuid"
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["stage", b"stage"]
+    ) -> typing_extensions.Literal["init", "update"] | None: ...
 
-    def __init__(self, *, uuid: builtins.str=..., init: global___CallResponseInitStage | None=..., update: global___CallResponseUpdateStage | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['init', b'init', 'stage', b'stage', 'update', b'update']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['init', b'init', 'stage', b'stage', 'update', b'update', 'uuid', b'uuid']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['stage', b'stage']) -> typing_extensions.Literal['init', 'update'] | None:
-        ...
 global___CallResponse = CallResponse
 
 @typing_extensions.final
 class CallUpdateRequest(google.protobuf.message.Message):
     """CallUpdateRequest updates the call with additional info to the controlled side."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     CANDIDATE_FIELD_NUMBER: builtins.int
@@ -150,75 +210,131 @@ class CallUpdateRequest(google.protobuf.message.Message):
     uuid: builtins.str
 
     @property
-    def candidate(self) -> global___ICECandidate:
-        ...
+    def candidate(self) -> global___ICECandidate: ...
     done: builtins.bool
 
     @property
-    def error(self) -> google.rpc.status_pb2.Status:
-        ...
+    def error(self) -> google.rpc.status_pb2.Status: ...
+    def __init__(
+        self,
+        *,
+        uuid: builtins.str = ...,
+        candidate: global___ICECandidate | None = ...,
+        done: builtins.bool = ...,
+        error: google.rpc.status_pb2.Status | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "candidate",
+            b"candidate",
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "update",
+            b"update",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "candidate",
+            b"candidate",
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "update",
+            b"update",
+            "uuid",
+            b"uuid",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["update", b"update"]
+    ) -> typing_extensions.Literal["candidate", "done", "error"] | None: ...
 
-    def __init__(self, *, uuid: builtins.str=..., candidate: global___ICECandidate | None=..., done: builtins.bool=..., error: google.rpc.status_pb2.Status | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['candidate', b'candidate', 'done', b'done', 'error', b'error', 'update', b'update']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['candidate', b'candidate', 'done', b'done', 'error', b'error', 'update', b'update', 'uuid', b'uuid']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['update', b'update']) -> typing_extensions.Literal['candidate', 'done', 'error'] | None:
-        ...
 global___CallUpdateRequest = CallUpdateRequest
 
 @typing_extensions.final
 class CallUpdateResponse(google.protobuf.message.Message):
     """CallUpdateResponse contains nothing in response to a call update."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___CallUpdateResponse = CallUpdateResponse
 
 @typing_extensions.final
 class ICEServer(google.protobuf.message.Message):
     """ICEServer describes an ICE server."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     URLS_FIELD_NUMBER: builtins.int
     USERNAME_FIELD_NUMBER: builtins.int
     CREDENTIAL_FIELD_NUMBER: builtins.int
 
     @property
-    def urls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        ...
+    def urls(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+        builtins.str
+    ]: ...
     username: builtins.str
     credential: builtins.str
 
-    def __init__(self, *, urls: collections.abc.Iterable[builtins.str] | None=..., username: builtins.str=..., credential: builtins.str=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        urls: collections.abc.Iterable[builtins.str] | None = ...,
+        username: builtins.str = ...,
+        credential: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "credential", b"credential", "urls", b"urls", "username", b"username"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['credential', b'credential', 'urls', b'urls', 'username', b'username']) -> None:
-        ...
 global___ICEServer = ICEServer
 
 @typing_extensions.final
 class WebRTCConfig(google.protobuf.message.Message):
     """WebRTCConfig represents parts of a WebRTC config."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ADDITIONAL_ICE_SERVERS_FIELD_NUMBER: builtins.int
     DISABLE_TRICKLE_FIELD_NUMBER: builtins.int
 
     @property
-    def additional_ice_servers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ICEServer]:
-        ...
+    def additional_ice_servers(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___ICEServer
+    ]: ...
     disable_trickle: builtins.bool
-    'disable_trickle indicates if Trickle ICE should be used. Currently, both\n    sides must both respect this setting.\n    '
+    "disable_trickle indicates if Trickle ICE should be used. Currently, both\n    sides must both respect this setting.\n    "
 
-    def __init__(self, *, additional_ice_servers: collections.abc.Iterable[global___ICEServer] | None=..., disable_trickle: builtins.bool=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        additional_ice_servers: collections.abc.Iterable[global___ICEServer]
+        | None = ...,
+        disable_trickle: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "additional_ice_servers",
+            b"additional_ice_servers",
+            "disable_trickle",
+            b"disable_trickle",
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['additional_ice_servers', b'additional_ice_servers', 'disable_trickle', b'disable_trickle']) -> None:
-        ...
 global___WebRTCConfig = WebRTCConfig
 
 @typing_extensions.final
@@ -226,6 +342,7 @@ class AnswerRequestInitStage(google.protobuf.message.Message):
     """AnswerRequestInitStage is the first and a one time stage that represents the
     callers initial SDP request to the controlled (answerer) side.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     OPTIONAL_CONFIG_FIELD_NUMBER: builtins.int
@@ -233,24 +350,44 @@ class AnswerRequestInitStage(google.protobuf.message.Message):
     sdp: builtins.str
 
     @property
-    def optional_config(self) -> global___WebRTCConfig:
-        ...
-
+    def optional_config(self) -> global___WebRTCConfig: ...
     @property
-    def deadline(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
+    def deadline(self) -> google.protobuf.timestamp_pb2.Timestamp: ...
+    def __init__(
+        self,
+        *,
+        sdp: builtins.str = ...,
+        optional_config: global___WebRTCConfig | None = ...,
+        deadline: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_deadline",
+            b"_deadline",
+            "deadline",
+            b"deadline",
+            "optional_config",
+            b"optional_config",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "_deadline",
+            b"_deadline",
+            "deadline",
+            b"deadline",
+            "optional_config",
+            b"optional_config",
+            "sdp",
+            b"sdp",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["_deadline", b"_deadline"]
+    ) -> typing_extensions.Literal["deadline"] | None: ...
 
-    def __init__(self, *, sdp: builtins.str=..., optional_config: global___WebRTCConfig | None=..., deadline: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_deadline', b'_deadline', 'deadline', b'deadline', 'optional_config', b'optional_config', 'sdp', b'sdp']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_deadline', b'_deadline']) -> typing_extensions.Literal['deadline'] | None:
-        ...
 global___AnswerRequestInitStage = AnswerRequestInitStage
 
 @typing_extensions.final
@@ -258,50 +395,51 @@ class AnswerRequestUpdateStage(google.protobuf.message.Message):
     """AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to
     the controlled (answerer) side.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
-    def candidate(self) -> global___ICECandidate:
-        ...
+    def candidate(self) -> global___ICECandidate: ...
+    def __init__(self, *, candidate: global___ICECandidate | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> None: ...
 
-    def __init__(self, *, candidate: global___ICECandidate | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> None:
-        ...
 global___AnswerRequestUpdateStage = AnswerRequestUpdateStage
 
 @typing_extensions.final
 class AnswerRequestDoneStage(google.protobuf.message.Message):
     """AnswerRequestDoneStage indicates the controller is done responding with candidates."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AnswerRequestDoneStage = AnswerRequestDoneStage
 
 @typing_extensions.final
 class AnswerRequestErrorStage(google.protobuf.message.Message):
     """AnswerRequestErrorStage indicates the exchange has failed with an error."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
 
     @property
-    def status(self) -> google.rpc.status_pb2.Status:
-        ...
+    def status(self) -> google.rpc.status_pb2.Status: ...
+    def __init__(
+        self, *, status: google.rpc.status_pb2.Status | None = ...
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> None: ...
 
-    def __init__(self, *, status: google.rpc.status_pb2.Status | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
-        ...
 global___AnswerRequestErrorStage = AnswerRequestErrorStage
 
 @typing_extensions.final
@@ -309,6 +447,7 @@ class AnswerRequest(google.protobuf.message.Message):
     """AnswerRequest is the SDP offer that the controlling side is making via the answering
     stream.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
@@ -318,13 +457,9 @@ class AnswerRequest(google.protobuf.message.Message):
     uuid: builtins.str
 
     @property
-    def init(self) -> global___AnswerRequestInitStage:
-        ...
-
+    def init(self) -> global___AnswerRequestInitStage: ...
     @property
-    def update(self) -> global___AnswerRequestUpdateStage:
-        ...
-
+    def update(self) -> global___AnswerRequestUpdateStage: ...
     @property
     def done(self) -> global___AnswerRequestDoneStage:
         """done is sent when the requester is done sending information"""
@@ -333,17 +468,51 @@ class AnswerRequest(google.protobuf.message.Message):
     def error(self) -> global___AnswerRequestErrorStage:
         """error is sent any time before done"""
 
-    def __init__(self, *, uuid: builtins.str=..., init: global___AnswerRequestInitStage | None=..., update: global___AnswerRequestUpdateStage | None=..., done: global___AnswerRequestDoneStage | None=..., error: global___AnswerRequestErrorStage | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        uuid: builtins.str = ...,
+        init: global___AnswerRequestInitStage | None = ...,
+        update: global___AnswerRequestUpdateStage | None = ...,
+        done: global___AnswerRequestDoneStage | None = ...,
+        error: global___AnswerRequestErrorStage | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "init",
+            b"init",
+            "stage",
+            b"stage",
+            "update",
+            b"update",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "init",
+            b"init",
+            "stage",
+            b"stage",
+            "update",
+            b"update",
+            "uuid",
+            b"uuid",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["stage", b"stage"]
+    ) -> typing_extensions.Literal["init", "update", "done", "error"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update', 'uuid', b'uuid']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['stage', b'stage']) -> typing_extensions.Literal['init', 'update', 'done', 'error'] | None:
-        ...
 global___AnswerRequest = AnswerRequest
 
 @typing_extensions.final
@@ -351,15 +520,16 @@ class AnswerResponseInitStage(google.protobuf.message.Message):
     """AnswerResponseInitStage is the first and a one time stage that represents the
     answerers initial SDP response to the controlling side.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SDP_FIELD_NUMBER: builtins.int
     sdp: builtins.str
 
-    def __init__(self, *, sdp: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, sdp: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["sdp", b"sdp"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['sdp', b'sdp']) -> None:
-        ...
 global___AnswerResponseInitStage = AnswerResponseInitStage
 
 @typing_extensions.final
@@ -367,55 +537,57 @@ class AnswerResponseUpdateStage(google.protobuf.message.Message):
     """AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to
     the controlling side.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CANDIDATE_FIELD_NUMBER: builtins.int
 
     @property
-    def candidate(self) -> global___ICECandidate:
-        ...
+    def candidate(self) -> global___ICECandidate: ...
+    def __init__(self, *, candidate: global___ICECandidate | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["candidate", b"candidate"]
+    ) -> None: ...
 
-    def __init__(self, *, candidate: global___ICECandidate | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['candidate', b'candidate']) -> None:
-        ...
 global___AnswerResponseUpdateStage = AnswerResponseUpdateStage
 
 @typing_extensions.final
 class AnswerResponseDoneStage(google.protobuf.message.Message):
     """AnswerResponseDoneStage indicates the answerer is done responding with candidates."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___AnswerResponseDoneStage = AnswerResponseDoneStage
 
 @typing_extensions.final
 class AnswerResponseErrorStage(google.protobuf.message.Message):
     """AnswerResponseErrorStage indicates the exchange has failed with an error."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     STATUS_FIELD_NUMBER: builtins.int
 
     @property
-    def status(self) -> google.rpc.status_pb2.Status:
-        ...
+    def status(self) -> google.rpc.status_pb2.Status: ...
+    def __init__(
+        self, *, status: google.rpc.status_pb2.Status | None = ...
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["status", b"status"]
+    ) -> None: ...
 
-    def __init__(self, *, status: google.rpc.status_pb2.Status | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
-        ...
 global___AnswerResponseErrorStage = AnswerResponseErrorStage
 
 @typing_extensions.final
 class AnswerResponse(google.protobuf.message.Message):
     """AnswerResponse is the SDP answer that an answerer responds with."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     UUID_FIELD_NUMBER: builtins.int
     INIT_FIELD_NUMBER: builtins.int
@@ -425,13 +597,9 @@ class AnswerResponse(google.protobuf.message.Message):
     uuid: builtins.str
 
     @property
-    def init(self) -> global___AnswerResponseInitStage:
-        ...
-
+    def init(self) -> global___AnswerResponseInitStage: ...
     @property
-    def update(self) -> global___AnswerResponseUpdateStage:
-        ...
-
+    def update(self) -> global___AnswerResponseUpdateStage: ...
     @property
     def done(self) -> global___AnswerResponseDoneStage:
         """done is sent when the answerer is done sending information"""
@@ -440,17 +608,51 @@ class AnswerResponse(google.protobuf.message.Message):
     def error(self) -> global___AnswerResponseErrorStage:
         """error is sent any time before done"""
 
-    def __init__(self, *, uuid: builtins.str=..., init: global___AnswerResponseInitStage | None=..., update: global___AnswerResponseUpdateStage | None=..., done: global___AnswerResponseDoneStage | None=..., error: global___AnswerResponseErrorStage | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        uuid: builtins.str = ...,
+        init: global___AnswerResponseInitStage | None = ...,
+        update: global___AnswerResponseUpdateStage | None = ...,
+        done: global___AnswerResponseDoneStage | None = ...,
+        error: global___AnswerResponseErrorStage | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal[
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "init",
+            b"init",
+            "stage",
+            b"stage",
+            "update",
+            b"update",
+        ],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "done",
+            b"done",
+            "error",
+            b"error",
+            "init",
+            b"init",
+            "stage",
+            b"stage",
+            "update",
+            b"update",
+            "uuid",
+            b"uuid",
+        ],
+    ) -> None: ...
+    def WhichOneof(
+        self, oneof_group: typing_extensions.Literal["stage", b"stage"]
+    ) -> typing_extensions.Literal["init", "update", "done", "error"] | None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['done', b'done', 'error', b'error', 'init', b'init', 'stage', b'stage', 'update', b'update', 'uuid', b'uuid']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['stage', b'stage']) -> typing_extensions.Literal['init', 'update', 'done', 'error'] | None:
-        ...
 global___AnswerResponse = AnswerResponse
 
 @typing_extensions.final
@@ -458,10 +660,11 @@ class OptionalWebRTCConfigRequest(google.protobuf.message.Message):
     """OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config
     to use for the peer connection.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___OptionalWebRTCConfigRequest = OptionalWebRTCConfigRequest
 
 @typing_extensions.final
@@ -469,19 +672,18 @@ class OptionalWebRTCConfigResponse(google.protobuf.message.Message):
     """OptionalWebRTCConfigResponse contains the optional WebRTC config
     to use for the peer connection.
     """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CONFIG_FIELD_NUMBER: builtins.int
 
     @property
-    def config(self) -> global___WebRTCConfig:
-        ...
+    def config(self) -> global___WebRTCConfig: ...
+    def __init__(self, *, config: global___WebRTCConfig | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["config", b"config"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["config", b"config"]
+    ) -> None: ...
 
-    def __init__(self, *, config: global___WebRTCConfig | None=...) -> None:
-        ...
-
-    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config']) -> None:
-        ...
 global___OptionalWebRTCConfigResponse = OptionalWebRTCConfigResponse

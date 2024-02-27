@@ -29,7 +29,9 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
     ) -> Mapping[str, Any]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         try:
-            response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+            response: DoCommandResponse = await self.client.DoCommand(
+                request, timeout=timeout
+            )
         except GRPCError as e:
             if e.status == Status.UNIMPLEMENTED:
                 raise NotImplementedError()
@@ -37,12 +39,18 @@ class GenericClient(Generic, ReconfigurableResourceRPCClientBase):
 
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)
 
 
 async def do_command(
-    channel: Channel, name: str, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None
+    channel: Channel,
+    name: str,
+    command: Mapping[str, ValueTypes],
+    *,
+    timeout: Optional[float] = None,
 ) -> Mapping[str, ValueTypes]:
     """Convenience method to allow component clients to execute ``do_command`` functions
 

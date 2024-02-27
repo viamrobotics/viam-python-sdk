@@ -35,7 +35,12 @@ class Camera(ComponentBase):
 
     @abc.abstractmethod
     async def get_image(
-        self, mime_type: str = "", *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        mime_type: str = "",
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Union[Image, RawImage]:
         """Get the next image from the camera as an Image or RawImage.
         Be sure to close the image when finished.
@@ -63,7 +68,9 @@ class Camera(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_images(self, *, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
+    async def get_images(
+        self, *, timeout: Optional[float] = None, **kwargs
+    ) -> Tuple[List[NamedImage], ResponseMetadata]:
         """Get simultaneous images from different imagers, along with associated metadata.
         This should not be used for getting a time series of images from the same imager.
 
@@ -87,7 +94,11 @@ class Camera(ComponentBase):
 
     @abc.abstractmethod
     async def get_point_cloud(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Tuple[bytes, str]:
         """
         Get the next point cloud from the camera. This will be
@@ -117,7 +128,9 @@ class Camera(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
+    async def get_properties(
+        self, *, timeout: Optional[float] = None, **kwargs
+    ) -> Properties:
         """
         Get the camera intrinsic parameters and camera distortion parameters
 

@@ -3,13 +3,16 @@
 isort:skip_file
 """
 import builtins
-from .... import common
+import sys
+import typing
+
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-import typing
+
+from .... import common
+
 if sys.version_info >= (3, 10):
     import typing as typing_extensions
 else:
@@ -17,10 +20,13 @@ else:
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _MappingMode:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
 
-class _MappingModeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_MappingMode.ValueType], builtins.type):
+class _MappingModeEnumTypeWrapper(
+    google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_MappingMode.ValueType],
+    builtins.type,
+):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     MAPPING_MODE_UNSPECIFIED: _MappingMode.ValueType
     MAPPING_MODE_CREATE_NEW_MAP: _MappingMode.ValueType
@@ -32,6 +38,7 @@ class MappingMode(_MappingMode, metaclass=_MappingModeEnumTypeWrapper):
     These include, creating a new map, localizing on an existiing map and updating an
     exisiting map.
     """
+
 MAPPING_MODE_UNSPECIFIED: MappingMode.ValueType
 MAPPING_MODE_CREATE_NEW_MAP: MappingMode.ValueType
 MAPPING_MODE_LOCALIZE_ONLY: MappingMode.ValueType
@@ -43,13 +50,13 @@ class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of slam service'
+    "Name of slam service"
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___GetPositionRequest = GetPositionRequest
 
 @typing_extensions.final
@@ -63,20 +70,34 @@ class GetPositionResponse(google.protobuf.message.Message):
     def pose(self) -> common.v1.common_pb2.Pose:
         """Current position of the specified component in the SLAM Map"""
     component_reference: builtins.str
-    'This is usually the name of the camera that is in the SLAM config'
+    "This is usually the name of the camera that is in the SLAM config"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional information in the response"""
 
-    def __init__(self, *, pose: common.v1.common_pb2.Pose | None=..., component_reference: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        pose: common.v1.common_pb2.Pose | None = ...,
+        component_reference: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra", "pose", b"pose"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "component_reference",
+            b"component_reference",
+            "extra",
+            b"extra",
+            "pose",
+            b"pose",
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra', 'pose', b'pose']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['component_reference', b'component_reference', 'extra', b'extra', 'pose', b'pose']) -> None:
-        ...
 global___GetPositionResponse = GetPositionResponse
 
 @typing_extensions.final
@@ -84,13 +105,13 @@ class GetPointCloudMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of slam service'
+    "Name of slam service"
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___GetPointCloudMapRequest = GetPointCloudMapRequest
 
 @typing_extensions.final
@@ -100,11 +121,14 @@ class GetPointCloudMapResponse(google.protobuf.message.Message):
     point_cloud_pcd_chunk: builtins.bytes
     'One chunk of the PointCloud.\n    For a given GetPointCloudMap request, concatenating all\n    GetPointCloudMapResponse.point_cloud_pcd_chunk values in the\n    order received result in the complete pointcloud in standard PCD\n    format where XY is the ground plane and positive Z is up, following\n    the Right Hand Rule.\n\n    Read more about the pointcloud format here:\n    https://pointclouds.org/documentation/tutorials/pcd_file_format.html\n\n    Viam expects pointcloud data with fields "x y z" or "x y z rgb", and for\n    this to be specified in the pointcloud header in the FIELDS entry. If color\n    data is included in the pointcloud, Viam\'s services assume that the color\n    value encodes a confidence score for that data point. Viam expects the\n    confidence score to be encoded in the blue parameter of the RGB value, on a\n    scale from 1-100.\n\n    Pointclouds are little endian encoded.\n    '
 
-    def __init__(self, *, point_cloud_pcd_chunk: builtins.bytes=...) -> None:
-        ...
+    def __init__(self, *, point_cloud_pcd_chunk: builtins.bytes = ...) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "point_cloud_pcd_chunk", b"point_cloud_pcd_chunk"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['point_cloud_pcd_chunk', b'point_cloud_pcd_chunk']) -> None:
-        ...
 global___GetPointCloudMapResponse = GetPointCloudMapResponse
 
 @typing_extensions.final
@@ -112,13 +136,13 @@ class GetInternalStateRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of slam service'
+    "Name of slam service"
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___GetInternalStateRequest = GetInternalStateRequest
 
 @typing_extensions.final
@@ -126,13 +150,16 @@ class GetInternalStateResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INTERNAL_STATE_CHUNK_FIELD_NUMBER: builtins.int
     internal_state_chunk: builtins.bytes
-    'Chunk of the internal state of the SLAM algorithm required to continue\n    mapping/localization\n    '
+    "Chunk of the internal state of the SLAM algorithm required to continue\n    mapping/localization\n    "
 
-    def __init__(self, *, internal_state_chunk: builtins.bytes=...) -> None:
-        ...
+    def __init__(self, *, internal_state_chunk: builtins.bytes = ...) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "internal_state_chunk", b"internal_state_chunk"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['internal_state_chunk', b'internal_state_chunk']) -> None:
-        ...
 global___GetInternalStateResponse = GetInternalStateResponse
 
 @typing_extensions.final
@@ -140,27 +167,36 @@ class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     name: builtins.str
-    'Name of the slam service'
+    "Name of the slam service"
 
-    def __init__(self, *, name: builtins.str=...) -> None:
-        ...
+    def __init__(self, *, name: builtins.str = ...) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["name", b"name"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
-        ...
 global___GetPropertiesRequest = GetPropertiesRequest
 
 @typing_extensions.final
 class GetPropertiesResponse(google.protobuf.message.Message):
     """Returns properties information for the named slam service"""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLOUD_SLAM_FIELD_NUMBER: builtins.int
     MAPPING_MODE_FIELD_NUMBER: builtins.int
     cloud_slam: builtins.bool
     mapping_mode: global___MappingMode.ValueType
 
-    def __init__(self, *, cloud_slam: builtins.bool=..., mapping_mode: global___MappingMode.ValueType=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        cloud_slam: builtins.bool = ...,
+        mapping_mode: global___MappingMode.ValueType = ...,
+    ) -> None: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "cloud_slam", b"cloud_slam", "mapping_mode", b"mapping_mode"
+        ],
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['cloud_slam', b'cloud_slam', 'mapping_mode', b'mapping_mode']) -> None:
-        ...
 global___GetPropertiesResponse = GetPropertiesResponse

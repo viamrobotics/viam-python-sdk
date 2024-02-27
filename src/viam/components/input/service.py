@@ -7,7 +7,12 @@ from h2.exceptions import StreamClosedError
 
 import viam
 from viam.errors import NotSupportedError
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.inputcontroller import (
     GetControlsRequest,
     GetControlsResponse,
@@ -27,35 +32,51 @@ from .input import Control, Controller, Event, EventType
 LOGGER = viam.logging.getLogger(__name__)
 
 
-class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBase[Controller]):
+class InputControllerRPCService(
+    InputControllerServiceBase, ResourceRPCServiceBase[Controller]
+):
     """
     gRPC Service for an input controller
     """
 
     RESOURCE_TYPE = Controller
 
-    async def GetControls(self, stream: Stream[GetControlsRequest, GetControlsResponse]) -> None:
+    async def GetControls(
+        self, stream: Stream[GetControlsRequest, GetControlsResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
         controller = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        controls = await controller.get_controls(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        controls = await controller.get_controls(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = GetControlsResponse(controls=[c.value for c in controls])
         await stream.send_message(response)
 
-    async def GetEvents(self, stream: Stream[GetEventsRequest, GetEventsResponse]) -> None:
+    async def GetEvents(
+        self, stream: Stream[GetEventsRequest, GetEventsResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
         controller = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        events = await controller.get_events(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        events = await controller.get_events(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         pb_events = [e.proto for e in events.values()]
         response = GetEventsResponse(events=pb_events)
         await stream.send_message(response)
 
-    async def StreamEvents(self, stream: Stream[StreamEventsRequest, StreamEventsResponse]) -> None:
+    async def StreamEvents(
+        self, stream: Stream[StreamEventsRequest, StreamEventsResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
@@ -109,7 +130,9 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
                 except Exception as e:
                     cleanup(e)
 
-            loop.create_task(send_message(), name=f"{viam._TASK_PREFIX}-input_send_event")
+            loop.create_task(
+                send_message(), name=f"{viam._TASK_PREFIX}-input_send_event"
+            )
 
         loop.add_reader(pipe_r, read)
 
@@ -140,7 +163,9 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
                         extra=struct_to_dict(request.extra),
                     )
 
-    async def TriggerEvent(self, stream: Stream[TriggerEventRequest, TriggerEventResponse]) -> None:
+    async def TriggerEvent(
+        self, stream: Stream[TriggerEventRequest, TriggerEventResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.controller
@@ -149,27 +174,42 @@ class InputControllerRPCService(InputControllerServiceBase, ResourceRPCServiceBa
         try:
             pb_event = request.event
             event = Event.from_proto(pb_event)
-            await controller.trigger_event(event, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+            await controller.trigger_event(
+                event,
+                extra=struct_to_dict(request.extra),
+                timeout=timeout,
+                metadata=stream.metadata,
+            )
         except NotSupportedError as e:
             raise e.grpc_error
 
         response = TriggerEventResponse()
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         controller = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await controller.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await controller.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await arm.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

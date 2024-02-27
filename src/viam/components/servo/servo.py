@@ -20,7 +20,14 @@ class Servo(ComponentBase):
     )
 
     @abc.abstractmethod
-    async def move(self, angle: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    async def move(
+        self,
+        angle: int,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         """
         Move the servo to the provided angle.
 
@@ -30,7 +37,13 @@ class Servo(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_position(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+    async def get_position(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> int:
         """
         Get the current angle (degrees) of the servo.
 
@@ -40,7 +53,13 @@ class Servo(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stop(self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+    async def stop(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
         """
         Stop the servo. It is assumed that the servo stops immediately.
         """

@@ -1,6 +1,17 @@
 from dataclasses import dataclass
 from threading import Lock
-from typing import TYPE_CHECKING, Any, Callable, ClassVar, Coroutine, Dict, Generic, Mapping, Type, TypeVar
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    Callable,
+    ClassVar,
+    Coroutine,
+    Dict,
+    Generic,
+    Mapping,
+    Type,
+    TypeVar,
+)
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel
@@ -63,7 +74,9 @@ class ResourceRegistration(Generic[Resource]):
     """A function that will create the RPC client for this resource
     """
 
-    create_status: Callable[[Resource], Coroutine[Any, Any, Status]] = default_create_status
+    create_status: Callable[
+        [Resource], Coroutine[Any, Any, Status]
+    ] = default_create_status
     """A function to create a Status object for this resource.
 
     If the resource does not provide a custom status type, the default implementation can be used.
@@ -101,13 +114,24 @@ class Registry:
             if registration.resource_type.SUBTYPE in cls._SUBTYPES:
                 raise DuplicateResourceError(str(registration.resource_type.SUBTYPE))
 
-            if registration.resource_type and registration.rpc_service and registration.create_rpc_client:
+            if (
+                registration.resource_type
+                and registration.rpc_service
+                and registration.create_rpc_client
+            ):
                 cls._SUBTYPES[registration.resource_type.SUBTYPE] = registration
             else:
-                raise ValidationError("Passed resource registration does not have correct parameters")
+                raise ValidationError(
+                    "Passed resource registration does not have correct parameters"
+                )
 
     @classmethod
-    def register_resource_creator(cls, subtype: "Subtype", model: "Model", registration: ResourceCreatorRegistration):
+    def register_resource_creator(
+        cls,
+        subtype: "Subtype",
+        model: "Model",
+        registration: ResourceCreatorRegistration,
+    ):
         """Register a specific ``Model`` and validator function for the specific resource ``Subtype`` with the Registry
 
         Args:
@@ -146,10 +170,14 @@ class Registry:
             try:
                 return cls._SUBTYPES[subtype]
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(
+                    subtype.resource_type, subtype.resource_subtype
+                )
 
     @classmethod
-    def lookup_resource_creator(cls, subtype: "Subtype", model: "Model") -> "ResourceCreator":
+    def lookup_resource_creator(
+        cls, subtype: "Subtype", model: "Model"
+    ) -> "ResourceCreator":
         """Lookup and retrieve a registered resource creator by its subtype and model
 
         Args:
@@ -166,7 +194,9 @@ class Registry:
             try:
                 return cls._RESOURCES[f"{subtype}/{model}"].creator
             except KeyError:
-                raise ResourceNotFoundError(subtype.resource_type, subtype.resource_subtype)
+                raise ResourceNotFoundError(
+                    subtype.resource_type, subtype.resource_subtype
+                )
 
     @classmethod
     def lookup_validator(cls, subtype: "Subtype", model: "Model") -> "Validator":
@@ -199,7 +229,9 @@ class Registry:
             return cls._SUBTYPES.copy()
 
     @classmethod
-    def REGISTERED_RESOURCE_CREATORS(cls) -> Mapping[str, "ResourceCreatorRegistration"]:
+    def REGISTERED_RESOURCE_CREATORS(
+        cls,
+    ) -> Mapping[str, "ResourceCreatorRegistration"]:
         """The dictionary of all registered resources
         - Key: subtype/model
         - Value: The ResourceCreatorRegistration for the resource

@@ -12,7 +12,17 @@ __all__ = [
 
 
 async def create_status(component: Board) -> Status:
-    return Status(name=Board.get_resource_name(component.name), status=message_to_struct(await component.status()))
+    return Status(
+        name=Board.get_resource_name(component.name),
+        status=message_to_struct(await component.status()),
+    )
 
 
-Registry.register_subtype(ResourceRegistration(Board, BoardRPCService, lambda name, channel: BoardClient(name, channel), create_status))
+Registry.register_subtype(
+    ResourceRegistration(
+        Board,
+        BoardRPCService,
+        lambda name, channel: BoardClient(name, channel),
+        create_status,
+    )
+)

@@ -15,7 +15,16 @@ __all__ = [
 
 async def create_status(component: Base) -> Status:
     s = ActuatorStatus(is_moving=await component.is_moving())
-    return Status(name=Base.get_resource_name(component.name), status=message_to_struct(s))
+    return Status(
+        name=Base.get_resource_name(component.name), status=message_to_struct(s)
+    )
 
 
-Registry.register_subtype(ResourceRegistration(Base, BaseRPCService, lambda name, channel: BaseClient(name, channel), create_status))
+Registry.register_subtype(
+    ResourceRegistration(
+        Base,
+        BaseRPCService,
+        lambda name, channel: BaseClient(name, channel),
+        create_status,
+    )
+)

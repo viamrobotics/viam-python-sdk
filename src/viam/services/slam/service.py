@@ -25,7 +25,9 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
 
     RESOURCE_TYPE = SLAM
 
-    async def GetInternalState(self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]) -> None:
+    async def GetInternalState(
+        self, stream: Stream[GetInternalStateRequest, GetInternalStateResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -36,7 +38,9 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
             response = GetInternalStateResponse(internal_state_chunk=chunk)
             await stream.send_message(response)
 
-    async def GetPointCloudMap(self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]) -> None:
+    async def GetPointCloudMap(
+        self, stream: Stream[GetPointCloudMapRequest, GetPointCloudMapResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -47,7 +51,9 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
             response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
             await stream.send_message(response)
 
-    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
+    async def GetPosition(
+        self, stream: Stream[GetPositionRequest, GetPositionResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -57,20 +63,30 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         response = GetPositionResponse(pose=position)
         await stream.send_message(response)
 
-    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+    async def GetProperties(
+        self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         (cloud_slam, mapping_mode) = await slam.get_properties(timeout=timeout)
-        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mode=mapping_mode)
+        response = GetPropertiesResponse(
+            cloud_slam=cloud_slam, mapping_mode=mapping_mode
+        )
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await slam.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await slam.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

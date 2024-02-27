@@ -45,7 +45,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = GetPathsResponse(paths=paths)
         await stream.send_message(response)
 
-    async def GetLocation(self, stream: Stream[GetLocationRequest, GetLocationResponse]) -> None:
+    async def GetLocation(
+        self, stream: Stream[GetLocationRequest, GetLocationResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -55,7 +57,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = GetLocationResponse(location=location)
         await stream.send_message(response)
 
-    async def GetObstacles(self, stream: Stream[GetObstaclesRequest, GetObstaclesResponse]) -> None:
+    async def GetObstacles(
+        self, stream: Stream[GetObstaclesRequest, GetObstaclesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -65,7 +69,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = GetObstaclesResponse(obstacles=obstacles)
         await stream.send_message(response)
 
-    async def GetWaypoints(self, stream: Stream[GetWaypointsRequest, GetWaypointsResponse]) -> None:
+    async def GetWaypoints(
+        self, stream: Stream[GetWaypointsRequest, GetWaypointsResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -75,7 +81,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = GetWaypointsResponse(waypoints=waypoints)
         await stream.send_message(response)
 
-    async def AddWaypoint(self, stream: Stream[AddWaypointRequest, AddWaypointResponse]) -> None:
+    async def AddWaypoint(
+        self, stream: Stream[AddWaypointRequest, AddWaypointResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -86,7 +94,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = AddWaypointResponse()
         await stream.send_message(response)
 
-    async def RemoveWaypoint(self, stream: Stream[RemoveWaypointRequest, RemoveWaypointResponse]) -> None:
+    async def RemoveWaypoint(
+        self, stream: Stream[RemoveWaypointRequest, RemoveWaypointResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -118,7 +128,9 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = SetModeResponse()
         await stream.send_message(response)
 
-    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+    async def GetProperties(
+        self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         navigation = self.get_resource(request.name)
@@ -127,11 +139,17 @@ class NavigationRPCService(NavigationServiceBase, ResourceRPCServiceBase):
         response = GetPropertiesResponse(map_type=map_type)
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         navigation = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await navigation.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await navigation.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)

@@ -18,7 +18,13 @@ class PowerSensor(ComponentBase):
     )
 
     @abc.abstractmethod
-    async def get_voltage(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
+    async def get_voltage(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[float, bool]:
         """Get the voltage reading and bool IsAC
 
         Returns:
@@ -27,7 +33,13 @@ class PowerSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_current(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Tuple[float, bool]:
+    async def get_current(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Tuple[float, bool]:
         """Get the current reading and bool IsAC
 
         Returns:
@@ -36,7 +48,13 @@ class PowerSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_power(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+    async def get_power(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
         """Get the power reading in watts
 
         Returns:
@@ -45,7 +63,11 @@ class PowerSensor(ComponentBase):
         ...
 
     async def get_readings(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Mapping[str, SensorReading]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.

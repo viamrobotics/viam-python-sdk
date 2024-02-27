@@ -1,6 +1,11 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.motor import (
     GetPositionRequest,
     GetPositionResponse,
@@ -41,7 +46,12 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await motor.set_power(request.power_pct, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await motor.set_power(
+            request.power_pct,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(SetPowerResponse())
 
     async def GoFor(self, stream: Stream[GoForRequest, GoForResponse]) -> None:
@@ -50,7 +60,13 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await motor.go_for(request.rpm, request.revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await motor.go_for(
+            request.rpm,
+            request.revolutions,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(GoForResponse())
 
     async def GoTo(self, stream: Stream[GoToRequest, GoToResponse]) -> None:
@@ -60,35 +76,58 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         await motor.go_to(
-            request.rpm, request.position_revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
+            request.rpm,
+            request.position_revolutions,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
         )
         await stream.send_message(GoToResponse())
 
-    async def ResetZeroPosition(self, stream: Stream[ResetZeroPositionRequest, ResetZeroPositionResponse]) -> None:
+    async def ResetZeroPosition(
+        self, stream: Stream[ResetZeroPositionRequest, ResetZeroPositionResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await motor.reset_zero_position(request.offset, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await motor.reset_zero_position(
+            request.offset,
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(ResetZeroPositionResponse())
 
-    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
+    async def GetPosition(
+        self, stream: Stream[GetPositionRequest, GetPositionResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await motor.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        position = await motor.get_position(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(GetPositionResponse(position=position))
 
-    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+    async def GetProperties(
+        self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        properties = await motor.get_properties(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        properties = await motor.get_properties(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = GetPropertiesResponse(**properties.__dict__)
         await stream.send_message(response)
 
@@ -98,18 +137,30 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await motor.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await motor.stop(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = StopResponse()
         await stream.send_message(response)
 
-    async def IsPowered(self, stream: Stream[IsPoweredRequest, IsPoweredResponse]) -> None:
+    async def IsPowered(
+        self, stream: Stream[IsPoweredRequest, IsPoweredResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         motor = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        is_powered, power_pct = await motor.is_powered(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        await stream.send_message(IsPoweredResponse(is_on=is_powered, power_pct=power_pct))
+        is_powered, power_pct = await motor.is_powered(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
+        await stream.send_message(
+            IsPoweredResponse(is_on=is_powered, power_pct=power_pct)
+        )
 
     async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
         request = await stream.recv_message()
@@ -120,20 +171,30 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         motor = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await motor.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await motor.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         motor = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await motor.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await motor.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

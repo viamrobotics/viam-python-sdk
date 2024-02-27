@@ -5,7 +5,12 @@ from grpclib.client import Channel
 from PIL import Image
 
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage
-from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry, ResponseMetadata
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    Geometry,
+    ResponseMetadata,
+)
 from viam.proto.component.camera import (
     CameraServiceStub,
     GetImageRequest,
@@ -22,7 +27,9 @@ from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dic
 from . import Camera, RawImage
 
 
-def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> Union[Image.Image, RawImage]:
+def get_image_from_response(
+    data: bytes, response_mime_type: str, request_mime_type: str
+) -> Union[Image.Image, RawImage]:
     if not request_mime_type:
         request_mime_type = response_mime_type
     mime_type, is_lazy = CameraMimeType.from_lazy(request_mime_type)
@@ -52,9 +59,17 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     ) -> Union[Image.Image, RawImage]:
         if extra is None:
             extra = {}
-        request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
-        response: GetImageResponse = await self.client.GetImage(request, timeout=timeout)
-        return get_image_from_response(response.image, response_mime_type=response.mime_type, request_mime_type=request.mime_type)
+        request = GetImageRequest(
+            name=self.name, mime_type=mime_type, extra=dict_to_struct(extra)
+        )
+        response: GetImageResponse = await self.client.GetImage(
+            request, timeout=timeout
+        )
+        return get_image_from_response(
+            response.image,
+            response_mime_type=response.mime_type,
+            request_mime_type=request.mime_type,
+        )
 
     async def get_images(
         self,
@@ -63,7 +78,9 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Tuple[List[NamedImage], ResponseMetadata]:
         request = GetImagesRequest(name=self.name)
-        response: GetImagesResponse = await self.client.GetImages(request, timeout=timeout)
+        response: GetImagesResponse = await self.client.GetImages(
+            request, timeout=timeout
+        )
         imgs = []
         for img_data in response.images:
             mime_type = CameraMimeType.from_proto(img_data.format)
@@ -81,8 +98,12 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     ) -> Tuple[bytes, str]:
         if extra is None:
             extra = {}
-        request = GetPointCloudRequest(name=self.name, mime_type=CameraMimeType.PCD, extra=dict_to_struct(extra))
-        response: GetPointCloudResponse = await self.client.GetPointCloud(request, timeout=timeout)
+        request = GetPointCloudRequest(
+            name=self.name, mime_type=CameraMimeType.PCD, extra=dict_to_struct(extra)
+        )
+        response: GetPointCloudResponse = await self.client.GetPointCloud(
+            request, timeout=timeout
+        )
         return (response.point_cloud, response.mime_type)
 
     async def get_properties(
@@ -91,7 +112,9 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
         **__,
     ) -> Camera.Properties:
-        return await self.client.GetProperties(GetPropertiesRequest(name=self.name), timeout=timeout)
+        return await self.client.GetProperties(
+            GetPropertiesRequest(name=self.name), timeout=timeout
+        )
 
     async def do_command(
         self,
@@ -101,8 +124,12 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

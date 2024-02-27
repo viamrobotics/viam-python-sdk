@@ -23,7 +23,9 @@ class MLModel(ServiceBase):
     )
 
     @abc.abstractmethod
-    async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]) -> Dict[str, NDArray]:
+    async def infer(
+        self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]
+    ) -> Dict[str, NDArray]:
         """Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
         Args:

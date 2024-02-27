@@ -11,4 +11,8 @@ __all__ = [
     "Vision",
 ]
 
-Registry.register_subtype(ResourceRegistration(Vision, VisionRPCService, lambda name, channel: VisionClient(name, channel)))
+Registry.register_subtype(
+    ResourceRegistration(
+        Vision, VisionRPCService, lambda name, channel: VisionClient(name, channel)
+    )
+)

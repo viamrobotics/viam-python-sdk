@@ -6,7 +6,10 @@ from typing import Any, Dict, Final, Mapping, Optional, Tuple
 from typing_extensions import Self
 
 from viam.components.component_base import ComponentBase
-from viam.proto.component.movementsensor import GetAccuracyResponse, GetPropertiesResponse
+from viam.proto.component.movementsensor import (
+    GetAccuracyResponse,
+    GetPropertiesResponse,
+)
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.utils import SensorReading
 
@@ -64,7 +67,11 @@ class MovementSensor(ComponentBase):
 
     @abc.abstractmethod
     async def get_position(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Tuple[GeoPoint, float]:
         """Get the current GeoPoint (latitude, longitude) and altitude (m)
 
@@ -74,7 +81,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
+    async def get_linear_velocity(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Vector3:
         """Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
 
         Returns:
@@ -83,7 +96,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_angular_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
+    async def get_angular_velocity(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Vector3:
         """Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
 
         Returns:
@@ -93,7 +112,11 @@ class MovementSensor(ComponentBase):
 
     @abc.abstractmethod
     async def get_linear_acceleration(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Vector3:
         """Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
 
@@ -103,7 +126,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
+    async def get_compass_heading(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> float:
         """Get the current compass heading in degrees
 
         Returns:
@@ -112,7 +141,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_orientation(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Orientation:
+    async def get_orientation(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Orientation:
         """Get the current orientation
 
         Returns:
@@ -121,7 +156,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties:
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Properties:
         """Get the supported properties of this sensor
 
         Returns:
@@ -130,7 +171,13 @@ class MovementSensor(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Accuracy:
+    async def get_accuracy(
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ) -> Accuracy:
         """Get the accuracy of the various sensors
 
         Returns:
@@ -139,7 +186,11 @@ class MovementSensor(ComponentBase):
         ...
 
     async def get_readings(
-        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
+        self,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
     ) -> Mapping[str, SensorReading]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.

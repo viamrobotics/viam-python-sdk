@@ -14,9 +14,16 @@ __all__ = [
 
 async def create_status(component: Gripper) -> Status:
     s = ActuatorStatus(is_moving=await component.is_moving())
-    return Status(name=Gripper.get_resource_name(component.name), status=message_to_struct(s))
+    return Status(
+        name=Gripper.get_resource_name(component.name), status=message_to_struct(s)
+    )
 
 
 Registry.register_subtype(
-    ResourceRegistration(Gripper, GripperRPCService, lambda name, channel: GripperClient(name, channel), create_status)
+    ResourceRegistration(
+        Gripper,
+        GripperRPCService,
+        lambda name, channel: GripperClient(name, channel),
+        create_status,
+    )
 )

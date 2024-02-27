@@ -4,7 +4,18 @@ import functools
 import sys
 import threading
 from datetime import datetime
-from typing import Any, Dict, List, Mapping, Optional, SupportsBytes, SupportsFloat, Type, TypeVar, Union
+from typing import (
+    Any,
+    Dict,
+    List,
+    Mapping,
+    Optional,
+    SupportsBytes,
+    SupportsFloat,
+    Type,
+    TypeVar,
+    Union,
+)
 
 from google.protobuf.json_format import MessageToDict, ParseDict
 from google.protobuf.message import Message
@@ -12,7 +23,15 @@ from google.protobuf.struct_pb2 import ListValue, Struct, Value
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from viam.proto.app.data import CaptureInterval, Filter, TagsFilter
-from viam.proto.common import Geometry, GeoPoint, GetGeometriesRequest, GetGeometriesResponse, Orientation, ResourceName, Vector3
+from viam.proto.common import (
+    Geometry,
+    GeoPoint,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+    Orientation,
+    ResourceName,
+    Vector3,
+)
 from viam.resource.base import ResourceBase
 from viam.resource.registry import Registry
 from viam.resource.types import Subtype, SupportsGetGeometries
@@ -87,7 +106,9 @@ def value_to_primitive(value: Value) -> ValueTypes:
     if value.HasField("list_value"):
         return [value_to_primitive(v) for v in value.list_value.values]
     if value.HasField("struct_value"):
-        return {k: value_to_primitive(v) for (k, v) in value.struct_value.fields.items()}
+        return {
+            k: value_to_primitive(v) for (k, v) in value.struct_value.fields.items()
+        }
     if value.HasField("string_value"):
         return value.string_value
     if value.HasField("number_value"):
@@ -108,7 +129,10 @@ def resource_names_for_resource(resource: ResourceBase) -> List[ResourceName]:
                 subtype: Subtype = registration.resource_type.SUBTYPE
                 rns.append(
                     ResourceName(
-                        namespace=subtype.namespace, type=subtype.resource_type, subtype=subtype.resource_subtype, name=resource.name
+                        namespace=subtype.namespace,
+                        type=subtype.resource_type,
+                        subtype=subtype.resource_subtype,
+                        name=resource.name,
                     )
                 )
     return rns
@@ -166,12 +190,17 @@ def datetime_to_timestamp(dt: Optional[datetime]) -> Optional[Timestamp]:
 
 
 async def get_geometries(
-    client: SupportsGetGeometries, name: str, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    client: SupportsGetGeometries,
+    name: str,
+    extra: Optional[Dict[str, Any]] = None,
+    timeout: Optional[float] = None,
 ) -> List[Geometry]:
     if extra is None:
         extra = {}
     request = GetGeometriesRequest(name=name, extra=dict_to_struct(extra))
-    response: GetGeometriesResponse = await client.GetGeometries(request, timeout=timeout)
+    response: GetGeometriesResponse = await client.GetGeometries(
+        request, timeout=timeout
+    )
     return [geometry for geometry in response.geometries]
 
 
@@ -179,9 +208,18 @@ def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str,
     prim_readings = dict(readings)
     for key, reading in readings.items():
         if isinstance(reading, Vector3):
-            prim_readings[key] = {"x": reading.x, "y": reading.y, "z": reading.z, "_type": "vector3"}
+            prim_readings[key] = {
+                "x": reading.x,
+                "y": reading.y,
+                "z": reading.z,
+                "_type": "vector3",
+            }
         elif isinstance(reading, GeoPoint):
-            prim_readings[key] = {"lat": reading.latitude, "lng": reading.longitude, "_type": "geopoint"}
+            prim_readings[key] = {
+                "lat": reading.latitude,
+                "lng": reading.longitude,
+                "_type": "geopoint",
+            }
         elif isinstance(reading, Orientation):
             prim_readings[key] = {
                 "ox": reading.o_x,
@@ -193,19 +231,34 @@ def sensor_readings_native_to_value(readings: Mapping[str, Any]) -> Mapping[str,
     return {key: primitive_to_value(value) for (key, value) in prim_readings.items()}
 
 
-def sensor_readings_value_to_native(readings: Mapping[str, Value]) -> Mapping[str, SensorReading]:
-    prim_readings: Dict[str, Any] = {key: value_to_primitive(value) for (key, value) in readings.items()}
+def sensor_readings_value_to_native(
+    readings: Mapping[str, Value],
+) -> Mapping[str, SensorReading]:
+    prim_readings: Dict[str, Any] = {
+        key: value_to_primitive(value) for (key, value) in readings.items()
+    }
     for key, reading in prim_readings.items():
         if isinstance(reading, Mapping):
             kind = reading.get("_type", "")
             if kind == "angular_velocity":
-                prim_readings[key] = Vector3(x=reading["x"], y=reading["y"], z=reading["z"])
+                prim_readings[key] = Vector3(
+                    x=reading["x"], y=reading["y"], z=reading["z"]
+                )
             elif kind == "vector3":
-                prim_readings[key] = Vector3(x=reading["x"], y=reading["y"], z=reading["z"])
+                prim_readings[key] = Vector3(
+                    x=reading["x"], y=reading["y"], z=reading["z"]
+                )
             elif kind == "geopoint":
-                prim_readings[key] = GeoPoint(latitude=reading["lat"], longitude=reading["lng"])
+                prim_readings[key] = GeoPoint(
+                    latitude=reading["lat"], longitude=reading["lng"]
+                )
             elif kind == "orientation_vector_degrees":
-                prim_readings[key] = Orientation(o_x=reading["ox"], o_y=reading["oy"], o_z=reading["oz"], theta=reading["theta"])
+                prim_readings[key] = Orientation(
+                    o_x=reading["ox"],
+                    o_y=reading["oy"],
+                    o_z=reading["oz"],
+                    theta=reading["theta"],
+                )
     return prim_readings
 
 

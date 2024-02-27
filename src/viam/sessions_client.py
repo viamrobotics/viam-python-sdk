@@ -12,7 +12,11 @@ from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
 from viam import logging
-from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest
+from viam.proto.robot import (
+    RobotServiceStub,
+    SendSessionHeartbeatRequest,
+    StartSessionRequest,
+)
 from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
@@ -45,13 +49,22 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
-    def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
+    def __init__(
+        self,
+        channel: Channel,
+        direct_dial_address: str,
+        dial_options: Optional[DialOptions],
+        *,
+        disabled: bool = False,
+    ):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._address = direct_dial_address
         self._dial_options = dial_options
         self._disabled = disabled
-        self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
+        self._dial_options = (
+            deepcopy(dial_options) if dial_options is not None else DialOptions()
+        )
         self._dial_options.disable_webrtc = True
         self._lock: Lock = Lock()
         self._current_id: str = ""
@@ -88,7 +101,10 @@ class SessionsClient:
         event.metadata.update(await self.metadata)
 
     async def _recv_trailers(self, event: RecvTrailingMetadata):
-        if event.status == Status.INVALID_ARGUMENT and event.status_message == "SESSION_EXPIRED":
+        if (
+            event.status == Status.INVALID_ARGUMENT
+            and event.status_message == "SESSION_EXPIRED"
+        ):
             LOGGER.debug("Session expired")
             self.reset()
 
@@ -111,10 +127,15 @@ class SessionsClient:
                 raise
 
         if response is None:
-            raise GRPCError(status=Status.INTERNAL, message="Expected response to start session")
+            raise GRPCError(
+                status=Status.INTERNAL, message="Expected response to start session"
+            )
 
         if response.heartbeat_window is None:
-            raise GRPCError(status=Status.INTERNAL, message="Expected heartbeat window in response to start session")
+            raise GRPCError(
+                status=Status.INTERNAL,
+                message="Expected heartbeat window in response to start session",
+            )
 
         with self._lock:
             self._supported = _SupportedState.TRUE

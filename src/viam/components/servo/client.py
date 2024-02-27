@@ -38,7 +38,9 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPositionRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        response: GetPositionResponse = await self.client.GetPosition(
+            request, timeout=timeout
+        )
         return response.position_deg
 
     async def move(
@@ -51,7 +53,9 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
     ):
         if extra is None:
             extra = {}
-        request = MoveRequest(name=self.name, angle_deg=angle, extra=dict_to_struct(extra))
+        request = MoveRequest(
+            name=self.name, angle_deg=angle, extra=dict_to_struct(extra)
+        )
         await self.client.Move(request, timeout=timeout)
 
     async def stop(
@@ -68,7 +72,9 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
 
     async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
-        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        response: IsMovingResponse = await self.client.IsMoving(
+            request, timeout=timeout
+        )
         return response.is_moving
 
     async def do_command(
@@ -79,8 +85,12 @@ class ServoClient(Servo, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

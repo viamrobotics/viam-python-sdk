@@ -3,7 +3,12 @@ from typing import Any, Dict, Mapping, Optional, Tuple
 from grpclib.client import Channel
 
 from viam.components.power_sensor.power_sensor import PowerSensor
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetReadingsRequest, GetReadingsResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetReadingsRequest,
+    GetReadingsResponse,
+)
 from viam.proto.component.powersensor import (
     GetCurrentRequest,
     GetCurrentResponse,
@@ -14,7 +19,13 @@ from viam.proto.component.powersensor import (
     PowerSensorServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
-from viam.utils import SensorReading, ValueTypes, dict_to_struct, sensor_readings_value_to_native, struct_to_dict
+from viam.utils import (
+    SensorReading,
+    ValueTypes,
+    dict_to_struct,
+    sensor_readings_value_to_native,
+    struct_to_dict,
+)
 
 
 class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
@@ -35,7 +46,9 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetVoltageRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetVoltageResponse = await self.client.GetVoltage(request, timeout=timeout)
+        response: GetVoltageResponse = await self.client.GetVoltage(
+            request, timeout=timeout
+        )
         return response.volts, response.is_ac
 
     async def get_current(
@@ -48,7 +61,9 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetCurrentRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetCurrentResponse = await self.client.GetCurrent(request, timeout=timeout)
+        response: GetCurrentResponse = await self.client.GetCurrent(
+            request, timeout=timeout
+        )
         return response.amperes, response.is_ac
 
     async def get_power(
@@ -61,7 +76,9 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPowerRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPowerResponse = await self.client.GetPower(request, timeout=timeout)
+        response: GetPowerResponse = await self.client.GetPower(
+            request, timeout=timeout
+        )
         return response.watts
 
     async def get_readings(
@@ -74,7 +91,9 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetReadingsRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetReadingsResponse = await self.client.GetReadings(request, timeout=timeout)
+        response: GetReadingsResponse = await self.client.GetReadings(
+            request, timeout=timeout
+        )
         return sensor_readings_value_to_native(response.readings)
 
     async def do_command(
@@ -85,5 +104,7 @@ class PowerSensorClient(PowerSensor, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)

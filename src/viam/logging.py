@@ -46,7 +46,12 @@ def getLogger(name: str) -> logging.Logger:
 def addHandlers(logger: logging.Logger):
     logger.handlers.clear()
 
-    format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
+    format = ColorFormatter(
+        "%(asctime)s\t\t"
+        + "%(levelname)s\t"
+        + "%(name)s (%(filename)s:%(lineno)d)\t"
+        + "%(message)s\t"
+    )
 
     handler = logging.StreamHandler(stream=sys.stdout)
     handler.setFormatter(format)

@@ -25,7 +25,16 @@ async def create_status(component: Motor) -> Status:
         position=position,
         is_moving=is_moving,
     )
-    return Status(name=Motor.get_resource_name(component.name), status=message_to_struct(s))
+    return Status(
+        name=Motor.get_resource_name(component.name), status=message_to_struct(s)
+    )
 
 
-Registry.register_subtype(ResourceRegistration(Motor, MotorRPCService, lambda name, channel: MotorClient(name, channel), create_status))
+Registry.register_subtype(
+    ResourceRegistration(
+        Motor,
+        MotorRPCService,
+        lambda name, channel: MotorClient(name, channel),
+        create_status,
+    )
+)

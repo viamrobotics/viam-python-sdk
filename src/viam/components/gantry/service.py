@@ -1,6 +1,11 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.gantry import (
     GantryServiceBase,
     GetLengthsRequest,
@@ -29,17 +34,25 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
 
     RESOURCE_TYPE = Gantry
 
-    async def GetPosition(self, stream: Stream[GetPositionRequest, GetPositionResponse]) -> None:
+    async def GetPosition(
+        self, stream: Stream[GetPositionRequest, GetPositionResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        position = await gantry.get_position(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        position = await gantry.get_position(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = GetPositionResponse(positions_mm=position)
         await stream.send_message(response)
 
-    async def MoveToPosition(self, stream: Stream[MoveToPositionRequest, MoveToPositionResponse]) -> None:
+    async def MoveToPosition(
+        self, stream: Stream[MoveToPositionRequest, MoveToPositionResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
@@ -61,17 +74,27 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         name = request.name
         gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        homed = await gantry.home(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        homed = await gantry.home(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = HomeResponse(homed=homed)
         await stream.send_message(response)
 
-    async def GetLengths(self, stream: Stream[GetLengthsRequest, GetLengthsResponse]) -> None:
+    async def GetLengths(
+        self, stream: Stream[GetLengthsRequest, GetLengthsResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        lengths = await gantry.get_lengths(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        lengths = await gantry.get_lengths(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = GetLengthsResponse(lengths_mm=lengths)
         await stream.send_message(response)
 
@@ -81,7 +104,11 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         name = request.name
         gantry = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gantry.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await gantry.stop(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = StopResponse()
         await stream.send_message(response)
 
@@ -94,20 +121,30 @@ class GantryRPCService(GantryServiceBase, ResourceRPCServiceBase[Gantry]):
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         gantry = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await gantry.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await gantry.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await arm.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

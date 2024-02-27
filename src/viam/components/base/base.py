@@ -143,7 +143,9 @@ class Base(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> Properties:
+    async def get_properties(
+        self, *, timeout: Optional[float] = None, **kwargs
+    ) -> Properties:
         """
         Get the base width and turning radius
 

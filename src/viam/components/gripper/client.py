@@ -67,7 +67,9 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
 
     async def is_moving(self, *, timeout: Optional[float] = None) -> bool:
         request = IsMovingRequest(name=self.name)
-        response: IsMovingResponse = await self.client.IsMoving(request, timeout=timeout)
+        response: IsMovingResponse = await self.client.IsMoving(
+            request, timeout=timeout
+        )
         return response.is_moving
 
     async def do_command(
@@ -78,8 +80,12 @@ class GripperClient(Gripper, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

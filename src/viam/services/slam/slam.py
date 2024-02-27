@@ -50,7 +50,9 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float]) -> Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(
+        self, *, timeout: Optional[float]
+    ) -> Tuple[bool, MappingMode.ValueType]:
         """
         Get information regarding the current SLAM session.
 

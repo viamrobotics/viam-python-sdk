@@ -1,6 +1,11 @@
 from grpclib.server import Stream
 
-from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
+from viam.proto.common import (
+    DoCommandRequest,
+    DoCommandResponse,
+    GetGeometriesRequest,
+    GetGeometriesResponse,
+)
 from viam.proto.component.gripper import (
     GrabRequest,
     GrabResponse,
@@ -31,7 +36,11 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         name = request.name
         gripper = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.open(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await gripper.open(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = OpenResponse()
         await stream.send_message(response)
 
@@ -41,7 +50,11 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         name = request.name
         gripper = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        grabbed = await gripper.grab(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        grabbed = await gripper.grab(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = GrabResponse(success=grabbed)
         await stream.send_message(response)
 
@@ -50,7 +63,11 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         assert request is not None
         gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await gripper.stop(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await gripper.stop(
+            extra=struct_to_dict(request.extra),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         await stream.send_message(StopResponse())
 
     async def IsMoving(self, stream: Stream[IsMovingRequest, IsMovingResponse]) -> None:
@@ -62,20 +79,30 @@ class GripperRPCService(GripperServiceBase, ResourceRPCServiceBase[Gripper]):
         response = IsMovingResponse(is_moving=is_moving)
         await stream.send_message(response)
 
-    async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
+    async def DoCommand(
+        self, stream: Stream[DoCommandRequest, DoCommandResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         gripper = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await gripper.do_command(command=struct_to_dict(request.command), timeout=timeout, metadata=stream.metadata)
+        result = await gripper.do_command(
+            command=struct_to_dict(request.command),
+            timeout=timeout,
+            metadata=stream.metadata,
+        )
         response = DoCommandResponse(result=dict_to_struct(result))
         await stream.send_message(response)
 
-    async def GetGeometries(self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]) -> None:
+    async def GetGeometries(
+        self, stream: Stream[GetGeometriesRequest, GetGeometriesResponse]
+    ) -> None:
         request = await stream.recv_message()
         assert request is not None
         arm = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        geometries = await arm.get_geometries(extra=struct_to_dict(request.extra), timeout=timeout)
+        geometries = await arm.get_geometries(
+            extra=struct_to_dict(request.extra), timeout=timeout
+        )
         response = GetGeometriesResponse(geometries=geometries)
         await stream.send_message(response)

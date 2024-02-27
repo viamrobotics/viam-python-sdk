@@ -1,4 +1,4 @@
-from typing import Any, Final, List, Mapping, Optional, Sequence, Iterable
+from typing import Any, Final, Iterable, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
@@ -163,7 +163,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             motion_configuration=configuration,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
+        response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(
+            request, timeout=timeout
+        )
         return response.execution_id
 
     async def move_on_map(
@@ -220,7 +222,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             obstacles=obstacles,
             extra=dict_to_struct(extra),
         )
-        response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
+        response: MoveOnMapResponse = await self.client.MoveOnMap(
+            request, timeout=timeout
+        )
         return response.execution_id
 
     async def stop_plan(
@@ -326,7 +330,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             only_active_plans=only_active_plans,
             extra=dict_to_struct(extra),
         )
-        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(request, timeout=timeout)
+        response: ListPlanStatusesResponse = await self.client.ListPlanStatuses(
+            request, timeout=timeout
+        )
         return response
 
     async def get_pose(
@@ -368,7 +374,13 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         response: GetPoseResponse = await self.client.GetPose(request, timeout=timeout)
         return response.pose
 
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
+    async def do_command(
+        self,
+        command: Mapping[str, ValueTypes],
+        *,
+        timeout: Optional[float] = None,
+        **__,
+    ) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
 
         Args:
@@ -378,5 +390,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             Dict[str, ValueTypes]: Result of the executed command
         """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)

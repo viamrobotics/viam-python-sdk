@@ -50,8 +50,12 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
     ) -> Tuple[float, PositionType.ValueType]:
         if extra is None:
             extra = {}
-        request = GetPositionRequest(name=self.name, position_type=position_type, extra=dict_to_struct(extra))
-        response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
+        request = GetPositionRequest(
+            name=self.name, position_type=position_type, extra=dict_to_struct(extra)
+        )
+        response: GetPositionResponse = await self.client.GetPosition(
+            request, timeout=timeout
+        )
         return response.value, response.position_type
 
     async def get_properties(
@@ -64,9 +68,12 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = GetPropertiesRequest(name=self.name, extra=dict_to_struct(extra))
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(
+            request, timeout=timeout
+        )
         return Encoder.Properties(
-            ticks_count_supported=response.ticks_count_supported, angle_degrees_supported=response.angle_degrees_supported
+            ticks_count_supported=response.ticks_count_supported,
+            angle_degrees_supported=response.angle_degrees_supported,
         )
 
     async def do_command(
@@ -77,8 +84,12 @@ class EncoderClient(Encoder, ReconfigurableResourceRPCClientBase):
         **__,
     ) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
+        response: DoCommandResponse = await self.client.DoCommand(
+            request, timeout=timeout
+        )
         return struct_to_dict(response.result)
 
-    async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
+    async def get_geometries(
+        self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None
+    ) -> List[Geometry]:
         return await get_geometries(self.client, self.name, extra, timeout)

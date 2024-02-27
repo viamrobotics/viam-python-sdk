@@ -41,8 +41,14 @@ class ResourceRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
             ResourceType: The resource
         """
         try:
-            if self.RESOURCE_TYPE == ComponentBase or self.RESOURCE_TYPE == ResourceBase or self.RESOURCE_TYPE == ServiceBase:
+            if (
+                self.RESOURCE_TYPE == ComponentBase
+                or self.RESOURCE_TYPE == ResourceBase
+                or self.RESOURCE_TYPE == ServiceBase
+            ):
                 return self.manager._resource_by_name_only(name)  # type: ignore
-            return self.manager.get_resource(self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name))  # type: ignore
+            return self.manager.get_resource(
+                self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name)
+            )  # type: ignore
         except ResourceNotFoundError as e:
             raise e.grpc_error

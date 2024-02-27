@@ -4,12 +4,14 @@ isort:skip_file
 """
 import builtins
 import collections.abc
+import sys
+
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
 import google.protobuf.timestamp_pb2
-import sys
+
 if sys.version_info >= (3, 8):
     import typing as typing_extensions
 else:
@@ -22,20 +24,28 @@ class GetControlsRequest(google.protobuf.message.Message):
     CONTROLLER_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     controller: builtins.str
-    'Name of an input controller'
+    "Name of an input controller"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, controller: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        controller: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "controller", b"controller", "extra", b"extra"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller', 'extra', b'extra']) -> None:
-        ...
 global___GetControlsRequest = GetControlsRequest
 
 @typing_extensions.final
@@ -44,16 +54,20 @@ class GetControlsResponse(google.protobuf.message.Message):
     CONTROLS_FIELD_NUMBER: builtins.int
 
     @property
-    def controls(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def controls(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """Returns a list of all the controls (buttons and axes) that are
         available to a given Input Controller
         """
 
-    def __init__(self, *, controls: collections.abc.Iterable[builtins.str] | None=...) -> None:
-        ...
+    def __init__(
+        self, *, controls: collections.abc.Iterable[builtins.str] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["controls", b"controls"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['controls', b'controls']) -> None:
-        ...
 global___GetControlsResponse = GetControlsResponse
 
 @typing_extensions.final
@@ -62,20 +76,28 @@ class GetEventsRequest(google.protobuf.message.Message):
     CONTROLLER_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     controller: builtins.str
-    'Name of an input controller'
+    "Name of an input controller"
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, controller: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        controller: builtins.str = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "controller", b"controller", "extra", b"extra"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller', 'extra', b'extra']) -> None:
-        ...
 global___GetEventsRequest = GetEventsRequest
 
 @typing_extensions.final
@@ -84,16 +106,22 @@ class GetEventsResponse(google.protobuf.message.Message):
     EVENTS_FIELD_NUMBER: builtins.int
 
     @property
-    def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]:
+    def events(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___Event
+    ]:
         """Returns a list of the most recent event for each control on a given InputController. Effectively provides the current "state" of all
         buttons/axes on a given input controller
         """
 
-    def __init__(self, *, events: collections.abc.Iterable[global___Event] | None=...) -> None:
-        ...
+    def __init__(
+        self, *, events: collections.abc.Iterable[global___Event] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["events", b"events"]
+    ) -> None: ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['events', b'events']) -> None:
-        ...
 global___GetEventsResponse = GetEventsResponse
 
 @typing_extensions.final
@@ -103,7 +131,7 @@ class TriggerEventRequest(google.protobuf.message.Message):
     EVENT_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     controller: builtins.str
-    'Name of an input controller'
+    "Name of an input controller"
 
     @property
     def event(self) -> global___Event:
@@ -113,22 +141,32 @@ class TriggerEventRequest(google.protobuf.message.Message):
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, controller: builtins.str=..., event: global___Event | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        controller: builtins.str = ...,
+        event: global___Event | None = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self,
+        field_name: typing_extensions.Literal["event", b"event", "extra", b"extra"],
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "controller", b"controller", "event", b"event", "extra", b"extra"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['event', b'event', 'extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller', 'event', b'event', 'extra', b'extra']) -> None:
-        ...
 global___TriggerEventRequest = TriggerEventRequest
 
 @typing_extensions.final
 class TriggerEventResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    def __init__(self) -> None:
-        ...
+    def __init__(self) -> None: ...
+
 global___TriggerEventResponse = TriggerEventResponse
 
 @typing_extensions.final
@@ -143,20 +181,30 @@ class Event(google.protobuf.message.Message):
     def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Timestamp of event"""
     event: builtins.str
-    'An event type (eg: ButtonPress, ButtonRelease)'
+    "An event type (eg: ButtonPress, ButtonRelease)"
     control: builtins.str
-    'A control, can be a button (eg: ButtonSouth) or an axis (eg: AbsoluteX)'
+    "A control, can be a button (eg: ButtonSouth) or an axis (eg: AbsoluteX)"
     value: builtins.float
-    '0 or 1 for buttons, -1.0 to +1.0 for axes'
+    "0 or 1 for buttons, -1.0 to +1.0 for axes"
 
-    def __init__(self, *, time: google.protobuf.timestamp_pb2.Timestamp | None=..., event: builtins.str=..., control: builtins.str=..., value: builtins.float=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        time: google.protobuf.timestamp_pb2.Timestamp | None = ...,
+        event: builtins.str = ...,
+        control: builtins.str = ...,
+        value: builtins.float = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["time", b"time"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "control", b"control", "event", b"event", "time", b"time", "value", b"value"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['time', b'time']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['control', b'control', 'event', b'event', 'time', b'time', 'value', b'value']) -> None:
-        ...
 global___Event = Event
 
 @typing_extensions.final
@@ -170,45 +218,80 @@ class StreamEventsRequest(google.protobuf.message.Message):
         EVENTS_FIELD_NUMBER: builtins.int
         CANCELLED_EVENTS_FIELD_NUMBER: builtins.int
         control: builtins.str
-        'Name of a control (button or axis)'
+        "Name of a control (button or axis)"
 
         @property
-        def events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        def events(
+            self,
+        ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+            builtins.str
+        ]:
             """Specify which event types to recieve events for"""
 
         @property
-        def cancelled_events(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        def cancelled_events(
+            self,
+        ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[
+            builtins.str
+        ]:
             """Specify which event types to stop recieving events for
             This can be an empty list
             """
 
-        def __init__(self, *, control: builtins.str=..., events: collections.abc.Iterable[builtins.str] | None=..., cancelled_events: collections.abc.Iterable[builtins.str] | None=...) -> None:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['cancelled_events', b'cancelled_events', 'control', b'control', 'events', b'events']) -> None:
-            ...
+        def __init__(
+            self,
+            *,
+            control: builtins.str = ...,
+            events: collections.abc.Iterable[builtins.str] | None = ...,
+            cancelled_events: collections.abc.Iterable[builtins.str] | None = ...,
+        ) -> None: ...
+        def ClearField(
+            self,
+            field_name: typing_extensions.Literal[
+                "cancelled_events",
+                b"cancelled_events",
+                "control",
+                b"control",
+                "events",
+                b"events",
+            ],
+        ) -> None: ...
     CONTROLLER_FIELD_NUMBER: builtins.int
     EVENTS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     controller: builtins.str
-    'Name of an input controller'
+    "Name of an input controller"
 
     @property
-    def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___StreamEventsRequest.Events]:
+    def events(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___StreamEventsRequest.Events
+    ]:
         """A list of Events"""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, controller: builtins.str=..., events: collections.abc.Iterable[global___StreamEventsRequest.Events] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
-        ...
+    def __init__(
+        self,
+        *,
+        controller: builtins.str = ...,
+        events: collections.abc.Iterable[global___StreamEventsRequest.Events]
+        | None = ...,
+        extra: google.protobuf.struct_pb2.Struct | None = ...,
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["extra", b"extra"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "controller", b"controller", "events", b"events", "extra", b"extra"
+        ],
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['controller', b'controller', 'events', b'events', 'extra', b'extra']) -> None:
-        ...
 global___StreamEventsRequest = StreamEventsRequest
 
 @typing_extensions.final
@@ -220,14 +303,14 @@ class StreamEventsResponse(google.protobuf.message.Message):
     def event(self) -> global___Event:
         """Event for a controller"""
 
-    def __init__(self, *, event: global___Event | None=...) -> None:
-        ...
+    def __init__(self, *, event: global___Event | None = ...) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["event", b"event"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["event", b"event"]
+    ) -> None: ...
 
-    def HasField(self, field_name: typing_extensions.Literal['event', b'event']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['event', b'event']) -> None:
-        ...
 global___StreamEventsResponse = StreamEventsResponse
 
 @typing_extensions.final
@@ -236,12 +319,16 @@ class Status(google.protobuf.message.Message):
     EVENTS_FIELD_NUMBER: builtins.int
 
     @property
-    def events(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Event]:
-        ...
+    def events(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[
+        global___Event
+    ]: ...
+    def __init__(
+        self, *, events: collections.abc.Iterable[global___Event] | None = ...
+    ) -> None: ...
+    def ClearField(
+        self, field_name: typing_extensions.Literal["events", b"events"]
+    ) -> None: ...
 
-    def __init__(self, *, events: collections.abc.Iterable[global___Event] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['events', b'events']) -> None:
-        ...
 global___Status = Status
