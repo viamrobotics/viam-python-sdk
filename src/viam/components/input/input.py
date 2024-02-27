@@ -135,6 +135,10 @@ class Controller(ComponentBase):
     Controller is a logical "container" more than an actual device
     Could be a single gamepad, or a collection of digitalInterrupts
     and analogReaders, a keyboard, etc.
+
+    ::
+
+        from viam.components.input import Control, Controller, EventType
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]

@@ -20,6 +20,10 @@ class Encoder(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     encoder implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.encoder import Encoder
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]

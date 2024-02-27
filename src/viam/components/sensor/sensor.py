@@ -14,6 +14,10 @@ class Sensor(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     sensor implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.sensor import Sensor
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -26,6 +30,13 @@ class Sensor(ComponentBase):
     ) -> Mapping[str, SensorReading]:
         """
         Obtain the measurements/data specific to this sensor.
+
+        ::
+
+            my_sensor = Sensor.from_robot(robot=robot, name='my_sensor')
+
+            # Get the readings provided by the sensor.
+            readings = await my_sensor.get_readings()
 
         Returns:
             Mapping[str, Any]: The measurements. Can be of any type.

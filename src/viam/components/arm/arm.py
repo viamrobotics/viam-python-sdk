@@ -14,6 +14,14 @@ class Arm(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     arm implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.arm import Arm
+        # To use move_to_position:
+        from viam.proto.common import Pose
+        # To use move_to_joint_positions:
+        from viam.proto.component.arm import JointPositions
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "arm")  # pyright: ignore [reportIncompatibleVariableOverride]

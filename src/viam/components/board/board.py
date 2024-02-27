@@ -17,6 +17,10 @@ class Board(ComponentBase):
     This acts as an abstract base class for any drivers representing specific
     board implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.board import Board
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
