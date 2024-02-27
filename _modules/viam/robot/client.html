@@ -113,6 +113,8 @@
     <span class="n">FrameSystemConfig</span><span class="p">,</span>
     <span class="n">FrameSystemConfigRequest</span><span class="p">,</span>
     <span class="n">FrameSystemConfigResponse</span><span class="p">,</span>
+    <span class="n">GetCloudMetadataRequest</span><span class="p">,</span>
+    <span class="n">GetCloudMetadataResponse</span><span class="p">,</span>
     <span class="n">GetOperationsRequest</span><span class="p">,</span>
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
@@ -712,7 +714,19 @@
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">extra</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">ep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StopExtraParameters</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">params</span><span class="p">)))</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">StopAllRequest</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">ep</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">StopAll</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">StopAll</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+    <span class="c1">######################</span>
+    <span class="c1"># Get Cloud Metadata #</span>
+    <span class="c1">######################</span>
+
+<div class="viewcode-block" id="RobotClient.get_cloud_metadata"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.get_cloud_metadata">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_cloud_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCloudMetadataResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns app-related information about the robot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetCloudMetadataRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetCloudMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
