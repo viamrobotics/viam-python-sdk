@@ -636,4 +636,4 @@ class RobotClient:
         """
 
         request = GetCloudMetadataRequest()
-        return self._client.GetCloudMetadata(request)
+        return await self._client.GetCloudMetadata(request)
