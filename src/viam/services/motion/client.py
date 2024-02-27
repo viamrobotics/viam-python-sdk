@@ -1,4 +1,4 @@
-from typing import Any, Final, List, Mapping, Optional, Sequence, Iterable
+from typing import Any, Final, Iterable, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
