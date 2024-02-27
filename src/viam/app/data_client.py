@@ -703,7 +703,7 @@ class DataClient:
 
         ::
 
-            data_client.get_database_connection("a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
+            data_client.get_database_connection(org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
 
         Args:
             organization_id (str): Organization to retrieve the connection for.
