@@ -1,11 +1,43 @@
 import logging
 import sys
 from copy import copy
+from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from typing import Dict
+from typing import Dict, List, Optional
+
+from viam.robot.client import RobotClient
 
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
+
+
+class ModuleLogger:
+    parent: Optional[RobotClient]
+
+    def __init__(self, name: str, logger: logging.Logger):
+        self.name = name
+
+        self.stdoutLogger = logger
+
+    def start_logging_to_grpc(self, parent: RobotClient):
+        self.parent = parent
+
+    async def log(self, level: str, time: datetime, msg: str, caller=Dict[str, int], stack=List[str], retry=False):
+        if self.parent and not retry:
+            await self.parent.log(self, level, time, msg, caller, stack)
+        else:
+            if level.capitalize() == "DEBUG":
+                self.stdoutLogger.debug(msg)
+            elif level.capitalize() == "INFO":
+                self.stdoutLogger.info(msg)
+            elif level.capitalize() in ["WARN", "WARNING"]:
+                self.stdoutLogger.warning(msg)
+            elif level.capitalize() == "ERROR":
+                self.stdoutLogger.error(msg)
+            elif level.capitalize() in ["FATAL", "CRITICAL"]:
+                self.stdoutLogger.critical(msg)
+            else:
+                raise Exception(f"Level {level} is not acceptable. Log level must be DEBUG, INFO, WARN/WARNING, ERROR, or FATAL/CRITICAL.")
 
 
 class ColorFormatter(logging.Formatter):

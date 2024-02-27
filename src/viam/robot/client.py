@@ -1,5 +1,6 @@
 import asyncio
 from dataclasses import dataclass
+from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
@@ -46,7 +47,7 @@ from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, 
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
-from viam.utils import dict_to_struct
+from viam.utils import datetime_to_timestamp, dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
@@ -630,11 +631,20 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(self, logs: List[LogEntry]):
-        """Send log entries to be used by Python modules wanting to log over gRPC and not by normal Python SDK clients.
+    async def log(self, moduleLogger: logging.ModuleLogger, level: str, time: datetime, log: str, caller: Dict[str, int], stack: List[str]):
+        """Send log from Python module over gRPC.
+
+        Create a LogEntry object from the log to send to RDK.
 
         Args:
-            logs (List[LogEntry]): The list of log entries to be sent.
+            log (str): The log message
         """
-        request = LogRequest(logs=logs)
-        await self._client.Log(request)
+        try:
+            # fields" json structured of log instead of big string? look into log fields in python - look into
+            entry = LogEntry(
+                level=level, time=datetime_to_timestamp(time), logger_name=moduleLogger.name, message=log, caller=dict_to_struct(caller), stack="".join(stack)
+            )
+            request = LogRequest(logs=[entry])
+            await self._client.Log(request)
+        except Exception:
+            await moduleLogger.log(level, time, log, caller, stack, retry=True)
