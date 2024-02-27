@@ -385,16 +385,8 @@ class AppClient:
 
 
         async def connect() -> ViamClient:
-            dial_options = DialOptions(
-            credentials=Credentials(
-                type="api-key",
-                # Replace "<API-KEY>" (including brackets) with your API key
-                payload='<API-KEY>',
-            ),
-            # Replace "<API-KEY-ID>" (including brackets) with your API key
-            # ID
-            auth_entity='<API-KEY-ID>'
-            )
+            Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
             return await ViamClient.create_from_dial_options(dial_options)
 
 
