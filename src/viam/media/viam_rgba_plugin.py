@@ -1,11 +1,11 @@
 from typing import ClassVar, Tuple
 
 from PIL import Image
-from PIL.ImageFile import (  # type: ignore -- (njooma) this exists, manually checked
+from PIL.ImageFile import (
     ImageFile,
     PyDecoder,
     PyEncoder,
-    _safe_read,
+    _safe_read,  # type: ignore -- (njooma) this exists, manually checked
 )
 from PIL.ImageFile import (
     _save as image_save,  # type: ignore -- (njooma) this exists, manually checked

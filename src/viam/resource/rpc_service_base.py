@@ -48,7 +48,8 @@ class ResourceRPCServiceBase(abc.ABC, RPCServiceBase, Generic[ResourceType]):
             ):
                 return self.manager._resource_by_name_only(name)  # type: ignore
             return self.manager.get_resource(
-                self.RESOURCE_TYPE, self.RESOURCE_TYPE.get_resource_name(name)
-            )  # type: ignore
+                self.RESOURCE_TYPE,  # type: ignore
+                self.RESOURCE_TYPE.get_resource_name(name),  # type: ignore
+            )
         except ResourceNotFoundError as e:
             raise e.grpc_error
