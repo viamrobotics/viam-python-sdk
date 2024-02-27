@@ -753,7 +753,8 @@ class AppClient:
 
         ::
 
-            # The following line takes the location with ID "abc12abcde" and moves it to be a sub-location of the location with ID "xyz34xxxxx"
+            # The following line takes the location with ID "abc12abcde" and moves it to be a
+            # sub-location of the location with ID "xyz34xxxxx"
             my_updated_location = await cloud.update_location(
                 location_id="abc12abcde",
                 name="",
@@ -1551,7 +1552,8 @@ class AppClient:
 
             from viam.proto.app import AuthorizedPermissions
 
-            # Check whether the entity you're currently authenticated to has permission to control and/or read logs from robots in the "organization-identifier123" org
+            # Check whether the entity you're currently authenticated to has permission to control and/or
+            # read logs from robots in the "organization-identifier123" org
             permissions = [AuthorizedPermissions(resource_type="organization",
                                                  resource_id="organization-identifier123",
                                                  permissions=["control_robot",
