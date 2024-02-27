@@ -635,7 +635,7 @@ class AppClient:
 
             update_invite = await cloud.update_organization_invite_authorizations(
                 email="notarealemail@viam.com",
-                remove_authorizations=[authorization_to_add]
+                add_authorizations =[authorization_to_add]
             )
 
         Args:
