@@ -137,6 +137,16 @@
 <span class="sd">        When ``distance`` or ``velocity`` is 0, the base will stop.</span>
 <span class="sd">        This method blocks until completed or cancelled.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Move the base 40 mm at a velocity of 90 mm/s, forward.</span>
+<span class="sd">            await my_base.move_straight(distance=40, velocity=90)</span>
+
+<span class="sd">            # Move the base 40 mm at a velocity of -90 mm/s, backward.</span>
+<span class="sd">            await my_base.move_straight(distance=40, velocity=-90)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            distance (int): The distance (in millimeters) to move.</span>
 <span class="sd">                Negative implies backwards.</span>
@@ -160,6 +170,13 @@
 <span class="sd">        expressed in degrees per second.</span>
 <span class="sd">        When ``velocity`` is 0, the base will stop.</span>
 <span class="sd">        This method blocks until completed or cancelled.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Spin the base 10 degrees at an angular velocity of 15 deg/sec.</span>
+<span class="sd">            await my_base.spin(angle=10, velocity=15)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            angle (float): The angle (in degrees) to spin.</span>
@@ -186,6 +203,34 @@
 <span class="sd">        When ``linear`` and ``angular`` are both nonzero, the base will move in an arc,</span>
 <span class="sd">        with a tighter radius if angular power is greater than linear power.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Make your wheeled base move forward. Set linear power to 75%.</span>
+<span class="sd">            print(&quot;move forward&quot;)</span>
+<span class="sd">            await my_base.set_power(</span>
+<span class="sd">                linear=Vector3(x=0, y=-.75, z=0),</span>
+<span class="sd">                angular=Vector3(x=0, y=0, z=0))</span>
+
+<span class="sd">            # Make your wheeled base move backward. Set linear power to -100%.</span>
+<span class="sd">            print(&quot;move backward&quot;)</span>
+<span class="sd">            await my_base.set_power(</span>
+<span class="sd">                linear=Vector3(x=0, y=-1.0, z=0),</span>
+<span class="sd">                angular=Vector3(x=0, y=0, z=0))</span>
+
+<span class="sd">            # Make your wheeled base spin left. Set angular power to 100%.</span>
+<span class="sd">            print(&quot;spin left&quot;)</span>
+<span class="sd">            await my_base.set_power(</span>
+<span class="sd">                linear=Vector3(x=0, y=0, z=0),</span>
+<span class="sd">                angular=Vector3(x=0, y=0, z=1))</span>
+
+<span class="sd">            # Make your wheeled base spin right. Set angular power to -75%.</span>
+<span class="sd">            print(&quot;spin right&quot;)</span>
+<span class="sd">            await my_base.set_power(</span>
+<span class="sd">                linear=Vector3(x=0, y=0, z=0),</span>
+<span class="sd">                angular=Vector3(x=0, y=0, z=-.75))</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            linear (Vector3): The linear component. Only the Y component is used</span>
 <span class="sd">                for wheeled base. Positive implies forwards.</span>
@@ -207,6 +252,14 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set the linear and angular velocities of the base.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Set the linear velocity to 50 mm/sec and the angular velocity to</span>
+<span class="sd">            # 15 degree/sec.</span>
+<span class="sd">            await my_base.set_velocity(</span>
+<span class="sd">                linear=Vector3(x=0, y=50, z=0), angular=Vector3(x=0, y=0, z=15))</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            linear (Vector3): Velocity in mm/sec</span>
@@ -223,6 +276,16 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Stop the base.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Move the base forward 10 mm at a velocity of 50 mm/s.</span>
+<span class="sd">            await my_base.move_straight(distance=10, velocity=50)</span>
+
+<span class="sd">            # Stop the base.</span>
+<span class="sd">            await my_base.stop()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -230,6 +293,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">is_moving</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get if the base is currently moving.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Check whether the base is currently moving.</span>
+<span class="sd">            moving = await my_base.is_moving()</span>
+<span class="sd">            print(&#39;Moving: &#39;, moving)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Whether the base is moving.</span>
@@ -240,6 +311,22 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the base width and turning radius</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_base = Base.from_robot(robot=robot, name=&quot;my_base&quot;)</span>
+
+<span class="sd">            # Get the width and turning radius of the base</span>
+<span class="sd">            properties = await my_base.get_properties()</span>
+
+<span class="sd">            # Get the width</span>
+<span class="sd">            print(f&quot;Width of base: {properties.width_meters}&quot;)</span>
+
+<span class="sd">            # Get the turning radius</span>
+<span class="sd">            print(f&quot;Turning radius of base: {properties.turning_radius_meters}&quot;)</span>
+
+<span class="sd">            # Get the wheel circumference</span>
+<span class="sd">            print(f&quot;Wheel circumference of base: {properties.wheel_circumference_meters}&quot;)</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Properties: The properties of the base</span>

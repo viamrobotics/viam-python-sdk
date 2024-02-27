@@ -136,6 +136,13 @@ Classes
 
       Get the current position of the end of the arm expressed as a Pose.
 
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Get the end position of the arm as a Pose.
+          pos = await my_arm.get_end_position()
+
       :returns: The location and orientation of the arm described as a Pose.
       :rtype: Pose
 
@@ -145,6 +152,16 @@ Classes
       :async:
 
       Move the end of the arm to the Pose specified in ``pose``.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Create a Pose for the arm.
+          examplePose = Pose(x=5, y=5, z=5, o_x=5, o_y=5, o_z=5, theta=20)
+
+          # Move your arm to the Pose.
+          await my_arm.move_to_position(pose=examplePose)
 
       :param pose: The destination Pose for the arm.
       :type pose: Pose
@@ -156,6 +173,21 @@ Classes
 
       Move each joint on the arm to the corresponding angle specified in ``positions``.
 
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Declare a list of values with your desired rotational value for each joint on
+          # the arm.
+          degrees = [0.0, 45.0, 0.0, 0.0, 0.0]
+
+          # Declare a new JointPositions with these values.
+          jointPos = arm.move_to_joint_positions(
+              JointPositions(values=[0.0, 45.0, 0.0, 0.0, 0.0]))
+
+          # Move each joint of the arm to the position these values specify.
+          await my_arm.move_to_joint_positions(positions=jointPos)
+
       :param positions: The destination ``JointPositions`` for the arm.
       :type positions: JointPositions
 
@@ -165,6 +197,13 @@ Classes
       :async:
 
       Get the JointPositions representing the current position of the arm.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Get the current position of each joint on the arm as JointPositions.
+          pos = await my_arm.get_joint_positions()
 
       :returns: The current JointPositions for the arm.
       :rtype: JointPositions
@@ -176,12 +215,29 @@ Classes
 
       Stop all motion of the arm. It is assumed that the arm stops immediately.
 
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Stop all motion of the arm. It is assumed that the arm stops immediately.
+          await my_arm.stop()
+
 
    .. py:method:: is_moving() -> bool
       :abstractmethod:
       :async:
 
       Get if the arm is currently moving.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Stop all motion of the arm. It is assumed that the arm stops immediately.
+          await my_arm.stop()
+
+          # Print if the arm is currently moving.
+          print(my_arm.is_moving())
 
       :returns: Whether the arm is moving.
       :rtype: bool
@@ -192,6 +248,19 @@ Classes
       :async:
 
       Get the kinematics information associated with the arm.
+
+      ::
+
+          my_arm = Arm.from_robot(robot=robot, name="my_arm")
+
+          # Get the kinematics information associated with the arm.
+          kinematics = await my_arm.get_kinematics()
+
+          # Get the format of the kinematics file.
+          k_file = kinematics[0]
+
+          # Get the byte contents of the file.
+          k_bytes = kinematics[1]
 
       :returns:
 

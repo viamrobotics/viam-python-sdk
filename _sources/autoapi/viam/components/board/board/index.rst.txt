@@ -49,6 +49,24 @@ Classes
 
          Read the current value.
 
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get if it is true or false that the pin is set to high.
+             duty_cycle = await pin.get_pwm()
+
+             # Get the AnalogReader "my_example_analog_reader".
+             reader = await my_board.analog_reader_by_name(
+                 name="my_example_analog_reader")
+
+             # Get the value of the digital signal "my_example_analog_reader" has most
+             # recently measured.
+             reading = reader.read()
+
          :returns: The current value.
          :rtype: int
 
@@ -73,6 +91,18 @@ Classes
          Get the current value of the interrupt,
          which is based on the type of interrupt.
 
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the DigitalInterrupt "my_example_digital_interrupt".
+             interrupt = await my_board.digital_interrupt_by_name(
+                 name="my_example_digital_interrupt")
+
+             # Get the amount of times this DigitalInterrupt has been interrupted with a
+             # tick.
+             count = await interrupt.value()
+
          :returns: The current value.
          :rtype: int
 
@@ -94,6 +124,16 @@ Classes
 
          Set the pin to either low or high.
 
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the pin to high.
+             await pin.set(high="true")
+
          :param high: When true, sets the pin to high. When false, sets the pin to low.
          :type high: bool
 
@@ -103,6 +143,16 @@ Classes
          :async:
 
          Get the high/low state of the pin.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get if it is true or false that the state of the pin is high.
+             high = await pin.get()
 
          :returns: Indicates if the state of the pin is high.
          :rtype: bool
@@ -114,6 +164,16 @@ Classes
 
          Get the pin's given duty cycle.
 
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get if it is true or false that the state of the pin is high.
+             duty_cycle = await pin.get_pwm()
+
          :returns: The duty cycle.
          :rtype: float
 
@@ -123,6 +183,17 @@ Classes
          :async:
 
          Set the pin to the given ``duty_cycle``.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the duty cycle to .6, meaning that this pin will be in the high state for
+             # 60% of the duration of the PWM interval period.
+             await pin.set_pwm(cycle=.6)
 
          :param duty_cycle: The duty cycle.
          :type duty_cycle: float
@@ -134,6 +205,16 @@ Classes
 
          Get the PWM frequency of the pin.
 
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Get the PWM frequency of this pin.
+             freq = await pin.get_pwm_frequency()
+
          :returns: The PWM frequency.
          :rtype: int
 
@@ -144,6 +225,16 @@ Classes
 
          Set the pin to the given PWM ``frequency`` (in Hz).
          When ``frequency`` is 0, it will use the board's default PWM frequency.
+
+         ::
+
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the GPIOPin with pin number 15.
+             pin = await my_board.gpio_pin_by_name(name="15")
+
+             # Set the PWM frequency of this pin to 1600 Hz.
+             high = await pin.set_pwm_frequency(frequency=1600)
 
          :param frequency: The frequency, in Hz.
          :type frequency: int
@@ -161,6 +252,13 @@ Classes
 
       Get an AnalogReader by ``name``.
 
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the AnalogReader "my_example_analog_reader".
+          reader = await my_board.analog_reader_by_name(name="my_example_analog_reader")
+
       :param name: Name of the analog reader to be retrieved.
       :type name: str
 
@@ -173,6 +271,14 @@ Classes
       :async:
 
       Get a DigitalInterrupt by ``name``.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the DigitalInterrupt "my_example_digital_interrupt".
+          interrupt = await my_board.digital_interrupt_by_name(
+              name="my_example_digital_interrupt")
 
       :param name: Name of the digital interrupt.
       :type name: str
@@ -187,6 +293,13 @@ Classes
 
       Get a GPIO Pin by ``name``.
 
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the GPIOPin with pin number 15.
+          pin = await my_board.gpio_pin_by_name(name="15")
+
       :param name: Name of the GPIO pin.
       :type name: str
 
@@ -200,6 +313,13 @@ Classes
 
       Get the names of all known analog readers.
 
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the name of every AnalogReader configured on the board.
+          names = await my_board.analog_reader_names()
+
       :returns: The names of the analog readers..
       :rtype: List[str]
 
@@ -209,6 +329,13 @@ Classes
       :async:
 
       Get the names of all known digital interrupts.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the name of every DigitalInterrupt configured on the board.
+          names = await my_board.digital_interrupt_names()
 
       :returns: The names of the digital interrupts.
       :rtype: List[str]
@@ -220,6 +347,13 @@ Classes
 
       Return the current status of the board.
 
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the current status of the board.
+          status = await my_board.status()
+
       :returns: the status.
       :rtype: viam.proto.common.BoardStatus
 
@@ -230,6 +364,13 @@ Classes
 
       Set the board to the indicated power mode.
 
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Set the power mode of the board to OFFLINE_DEEP.
+          status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)
+
       :param mode: the desired power mode
 
 
@@ -238,6 +379,13 @@ Classes
       :async:
 
       Write an analog value to a pin on the board.
+
+      ::
+
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Set pin 11 to value 48.
+          await my_board.write_analog(pin="11", value=48)
 
       :param pin: name of the pin.
       :type pin: str
