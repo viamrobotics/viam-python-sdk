@@ -175,6 +175,8 @@ class Module:
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
         await self._connect_to_parent()
+        assert self.parent is not None
+        self._logger.parent = self.parent
         self._logger.start_logging_to_grpc(self.parent)
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}

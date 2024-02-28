@@ -3,26 +3,22 @@ import sys
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from typing import Dict, List, Optional
-
-from viam.robot.client import RobotClient
+from typing import Dict, List
 
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
 
 
 class ModuleLogger:
-    parent: Optional[RobotClient]
-
     def __init__(self, name: str, logger: logging.Logger):
         self.name = name
 
         self.stdoutLogger = logger
 
-    def start_logging_to_grpc(self, parent: RobotClient):
+    def start_logging_to_grpc(self, parent):
         self.parent = parent
 
-    async def log(self, level: str, time: datetime, msg: str, caller=Dict[str, int], stack=List[str], retry=False):
+    async def log(self, level: str, time: datetime, msg: str, caller: Dict[str, int], stack: List[str], retry=False):
         if self.parent and not retry:
             await self.parent.log(self, level, time, msg, caller, stack)
         else:
