@@ -635,7 +635,7 @@ class RobotClient:
         Get app-related information about the robot.
 
         Returns:
-            List[viam.proto.robot.GetCloudMetadataResponse]: App-related metadata.
+            viam.proto.robot.GetCloudMetadataResponse: App-related metadata.
         """
 
         request = GetCloudMetadataRequest()
