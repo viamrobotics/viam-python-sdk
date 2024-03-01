@@ -170,19 +170,19 @@ class Vision(ServiceBase):
 
         ::
 
-        # Grab the 3D camera from the machine
-        cam1 = Camera.from_robot(robot, "cam1")
+            import numpy as np
+            import open3d as o3d
 
-        # Grab the object segmenter you configured on your machine
-        my_segmenter = VisionClient.from_robot(robot, "my_segmenter")
-
-        # Get the objects from the camera output
-        objects = await my_segmenter.get_object_point_clouds(cam1)
-
-        Args:
-            camera_name (str): The name of the camera
-
-        Returns:
-            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
+            # Grab the 3D camera from the machine
+            cam1 = Camera.from_robot(robot, "cam1")
+            # Grab the object segmenter you configured on your machine
+            my_segmenter = VisionClient.from_robot(robot, "my_segmenter")
+            # Get the objects from the camera output
+            objects = await my_segmenter.get_object_point_clouds(cam1)
+            # write the first object point cloud into a temporary file
+            with open("/tmp/pointcloud_data.pcd", "wb") as f:
+                f.write(objects[0].point_cloud)
+            pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
+            points = np.asarray(pcd.points)
         """
         ...
