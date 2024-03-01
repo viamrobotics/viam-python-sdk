@@ -26,6 +26,17 @@ class MLModel(ServiceBase):
     async def infer(self, input_tensors: Dict[str, NDArray], *, timeout: Optional[float]) -> Dict[str, NDArray]:
         """Take an already ordered input tensor as an array, make an inference on the model, and return an output tensor map.
 
+        ::
+
+            import numpy as np
+
+            my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+
+            nd_array = np.array([1, 2, 3], dtype=np.float64)
+            input_tensors = {"0": nd_array}
+
+            output_tensors = await my_mlmodel.infer(input_tensors)
+
         Args:
             input_tensors (Dict[str, NDArray]): A dictionary of input flat tensors as specified in the metadata
 
@@ -37,6 +48,12 @@ class MLModel(ServiceBase):
     @abc.abstractmethod
     async def metadata(self, *, timeout: Optional[float]) -> Metadata:
         """Get the metadata (such as name, type, expected tensor/array shape, inputs, and outputs) associated with the ML model.
+
+        ::
+
+            my_mlmodel = MLModelClient.from_robot(robot=robot, name="my_mlmodel_service")
+
+            metadata = await my_mlmodel.metadata()
 
         Returns:
             Metadata: The metadata
