@@ -745,7 +745,7 @@ class DataClient:
         ::
 
             datasets = await data_client.list_dataset_by_ids(
-                ids=["<dataset-id>"]
+                ids=["abcd-1234xyz-8765z-123abc"]
             )
             print(datasets)
         """
@@ -766,7 +766,7 @@ class DataClient:
         ::
 
             datasets = await data_client.list_dataset_by_ids(
-                ids=["<dataset-id>"]
+                ids=["abcd-1234xyz-8765z-123abc"]
             )
             print(datasets)
         """
@@ -787,7 +787,7 @@ class DataClient:
         ::
 
             await data_client.rename_dataset(
-                id="<dataset-id>",
+                id="abcd-1234xyz-8765z-123abc",
                 name="<dataset-name>"
             )
         """
@@ -803,7 +803,7 @@ class DataClient:
         ::
 
             await data_client.delete_dataset(
-                id="<dataset-id>"
+                id="abcd-1234xyz-8765z-123abc"
             )
         """
         request = DeleteDatasetRequest(id=id)
@@ -839,7 +839,7 @@ class DataClient:
 
             await data_client.add_binary_data_to_dataset_by_ids(
                 binary_ids=my_binary_ids,
-                dataset_id="<dataset-id>"
+                dataset_id="abcd-1234xyz-8765z-123abc"
             )
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
@@ -875,7 +875,7 @@ class DataClient:
 
             await data_client.remove_binary_data_from_dataset_by_ids(
                 binary_ids=my_binary_ids,
-                dataset_id="<dataset-id>"
+                dataset_id="abcd-1234xyz-8765z-123abc"
             )
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
