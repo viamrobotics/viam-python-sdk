@@ -494,6 +494,10 @@ class RobotClient:
         """
         Get a list of all resource names
 
+        ::
+
+            resource_names = robot.resource_names
+
         Returns:
             List[viam.proto.common.ResourceName]: The list of resource names
         """
@@ -512,6 +516,11 @@ class RobotClient:
     async def close(self):
         """
         Cleanly close the underlying connections and stop any periodic tasks
+
+        ::
+
+            await robot.close()
+
         """
         LOGGER.debug("Closing RobotClient")
         if self._closed:
@@ -555,6 +564,7 @@ class RobotClient:
 
         ::
 
+           # Get the status of the resources on the machine.
             statuses = await robot.get_status()
 
         Args:
@@ -622,6 +632,12 @@ class RobotClient:
         """
         Get the configuration of the frame system of a given robot.
 
+        ::
+
+            # Get a list of each of the reference frames configured on the machine.
+            frame_system = await robot.get_frame_system_config()
+            print(f"frame system configuration: {frame_system}")
+
         Returns:
             List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot's frame system.
         """
@@ -663,6 +679,17 @@ class RobotClient:
         """
         Get the list of discovered component configurations.
 
+        ::
+
+            # Define a new discovery query.
+            q = robot.DiscoveryQuery(subtype=acme.API, model="some model")
+
+            # Define a list of discovery queries.
+            qs = [q]
+
+            # Get component configurations with these queries.
+            component_configs = await robot.discover_components(qs)
+
         Args:
 
             queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.
@@ -679,6 +706,10 @@ class RobotClient:
     async def stop_all(self, extra: Dict[ResourceName, Dict[str, Any]] = {}):
         """
         Cancel all current and outstanding operations for the robot and stop all actuators and movement
+
+        ::
+
+            await robot.stop_all()
 
         Args:
             extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources' ``stop`` methods,
