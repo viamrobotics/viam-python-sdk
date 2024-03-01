@@ -187,6 +187,7 @@ class Vision(ServiceBase):
 
         Args:
             camera_name (str): The name of the camera
+
         Returns:
             List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
         """
