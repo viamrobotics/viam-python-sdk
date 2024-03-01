@@ -108,6 +108,18 @@ class RobotClient:
             """
             Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
+            ::
+
+                # Replace "<API-KEY>" (including brackets) with your machine's API key
+                api_key = '<API-KEY>'
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key
+                # ID
+                api_key_id = '<API-KEY-ID>'
+
+                opts = RobotClient.Options.with_api_key(api_key, api_key_id)
+
+                robot = await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
             Args:
                 api_key (str): your API key
                 api_key_id (str): your API key ID. Must be a valid UUID
@@ -127,6 +139,23 @@ class RobotClient:
     async def at_address(cls, address: str, options: Options) -> Self:
         """Create a robot client that is connected to the robot at the provided address.
 
+        ::
+
+            async def connect():
+            opts = RobotClient.Options.with_api_key(
+                # Replace "<API-KEY>" (including brackets) with your machine's API key
+                api_key='<API-KEY>',
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's
+                # API key ID
+                api_key_id='<API-KEY-ID>'
+            )
+            return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+        async def main():
+            # Make a RobotClient
+            robot = await connect()
+
         Args:
             address (str): Address of the robot (IP address, URL, etc.)
             options (Options): Options for connecting and refreshing
@@ -145,6 +174,18 @@ class RobotClient:
         """Create a robot that is connected to a robot over the given channel.
 
         Any robots created using this method will *NOT* automatically close the channel upon exit.
+
+        ::
+
+            from viam.robot.client import RobotClient
+            from viam.rpc.dial import DialOptions, dial
+
+
+            async def connect_with_channel() -> RobotClient:
+                async with await dial('ADDRESS', DialOptions()) as channel:
+                    return await RobotClient.with_channel(channel, RobotClient.Options())
+
+            robot = await connect_with_channel()
 
         Args:
             channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``
@@ -219,6 +260,10 @@ class RobotClient:
     async def refresh(self):
         """
         Manually refresh the underlying parts of this robot
+
+        ::
+            await robot.refresh()
+
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
@@ -508,6 +553,10 @@ class RobotClient:
         Get the status of the robot's components. You can optionally
         provide a list of ``ResourceName`` for which you want statuses.
 
+        ::
+
+            statuses = await robot.get_status()
+
         Args:
             components (Optional[List[viam.proto.common.ResourceName]]): Optional list of
                 ``ResourceName`` for components you want statuses.
@@ -525,6 +574,10 @@ class RobotClient:
         """
         Get the list of operations currently running on the robot.
 
+        ::
+
+            operations = await robot.get_operations()
+
         Returns:
             List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.
         """
@@ -536,6 +589,10 @@ class RobotClient:
         """
         Cancels the specified operation on the robot.
 
+        ::
+
+            await robot.cancel_operation("INSERT OPERATION ID")
+
         Args:
             id (str): ID of operation to kill.
         """
@@ -546,6 +603,10 @@ class RobotClient:
         """
         Blocks on the specified operation on the robot. This function will only return when the specific operation
         has finished or has been cancelled.
+
+        ::
+
+            await robot.block_for_operation("INSERT OPERATION ID")
 
         Args:
             id (str): ID of operation to block on.
@@ -573,6 +634,10 @@ class RobotClient:
     ) -> PoseInFrame:
         """
         Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
+
+        ::
+
+            pose = await robot.transform_pose(PoseInFrame(), "origin")
 
         Args:
 
