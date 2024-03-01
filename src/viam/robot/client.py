@@ -632,7 +632,10 @@ class RobotClient:
 
     async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
         """
-        Returns app-related information about the robot.
+        Get app-related information about the robot.
+
+        Returns:
+            viam.proto.robot.GetCloudMetadataResponse: App-related metadata.
         """
 
         request = GetCloudMetadataRequest()
