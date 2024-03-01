@@ -112,8 +112,7 @@ class RobotClient:
 
                 # Replace "<API-KEY>" (including brackets) with your machine's API key
                 api_key = '<API-KEY>'
-                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key
-                # ID
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
                 api_key_id = '<API-KEY-ID>'
 
                 opts = RobotClient.Options.with_api_key(api_key, api_key_id)
