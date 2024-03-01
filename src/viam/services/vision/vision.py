@@ -184,5 +184,10 @@ class Vision(ServiceBase):
                 f.write(objects[0].point_cloud)
             pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
             points = np.asarray(pcd.points)
+
+        Args:
+            camera_name (str): The name of the camera
+        Returns:
+            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
         """
         ...
