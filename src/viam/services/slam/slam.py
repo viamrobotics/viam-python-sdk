@@ -20,7 +20,8 @@ class SLAM(ServiceBase):
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
-        """Get the internal state of the SLAM algorithm required to continue mapping/localization.
+        """
+        Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
         ::
 
@@ -31,7 +32,6 @@ class SLAM(ServiceBase):
 
         Returns:
             List[GetInternalStateResponse]: Chunks of the internal state of the SLAM algorithm
-
         """
         ...
 
