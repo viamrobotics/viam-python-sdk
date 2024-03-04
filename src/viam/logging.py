@@ -1,39 +1,36 @@
 import logging
 import sys
 from copy import copy
-from datetime import datetime
-from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from typing import Dict, List
+from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING, LogRecord  # noqa: F401
+from typing import Dict
 
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
 
 
-class ModuleLogger:
-    def __init__(self, name: str, logger: logging.Logger):
-        self.name = name
-
-        self.stdoutLogger = logger
-
-    def start_logging_to_grpc(self, parent):
+class ModuleHandler(logging.Handler):
+    def __init__(self, logger: logging.Logger, parent):
         self.parent = parent
+        LOGGERS[f"BACKUP_{logger.name}"] = logger
+        self.backup_logger = logger
 
-    async def log(self, level: str, time: datetime, msg: str, caller: Dict[str, int], stack: List[str], retry=False):
-        if self.parent and not retry:
-            await self.parent.log(self, level, time, msg, caller, stack)
-        else:
-            if level.capitalize() == "DEBUG":
-                self.stdoutLogger.debug(msg)
-            elif level.capitalize() == "INFO":
-                self.stdoutLogger.info(msg)
-            elif level.capitalize() in ["WARN", "WARNING"]:
-                self.stdoutLogger.warning(msg)
-            elif level.capitalize() == "ERROR":
-                self.stdoutLogger.error(msg)
-            elif level.capitalize() in ["FATAL", "CRITICAL"]:
-                self.stdoutLogger.critical(msg)
-            else:
-                raise Exception(f"Level {level} is not acceptable. Log level must be DEBUG, INFO, WARN/WARNING, ERROR, or FATAL/CRITICAL.")
+        logger.handlers.clear()
+        super().__init__()
+
+    def emit(self, record: LogRecord):
+        try:
+            self.parent.log(
+                record.name,
+                record.levelname,
+                record.asctime,
+                record.msg,
+                {record.filename: record.lineno},
+                record.stack_info,
+                record.__dict__,
+            )
+        except Exception:
+            self.backup_logger.log(record.levelno, record.msg, exc_info=record.exc_info)
+        return None
 
 
 class ColorFormatter(logging.Formatter):
@@ -88,6 +85,11 @@ def addHandlers(logger: logging.Logger):
     # filter out logs below error level
     err_handler.setLevel(max(ERROR, LOG_LEVEL))
     logger.addHandler(err_handler)
+
+
+def addModuleHandler(logger: logging.Logger, parent):
+    handler = ModuleHandler(logger, parent)
+    logger.addHandler(handler)
 
 
 def setLevel(level: int):

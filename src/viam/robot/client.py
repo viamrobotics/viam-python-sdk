@@ -47,7 +47,7 @@ from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, 
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
-from viam.utils import datetime_to_timestamp, dict_to_struct
+from viam.utils import datetime_to_timestamp, dict_to_struct, ValueTypes
 
 LOGGER = logging.getLogger(__name__)
 
@@ -631,20 +631,28 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(self, moduleLogger: logging.ModuleLogger, level: str, time: datetime, log: str, caller: Dict[str, int], stack: List[str]):
+    async def log(self, name: str, level: str, time: str, log: str, caller: Dict[str, int], stack_info: str, fields: Dict[str, ValueTypes]):
         """Send log from Python module over gRPC.
 
         Create a LogEntry object from the log to send to RDK.
 
         Args:
-            log (str): The log message
+            name (str): The logger's name.
+            level (str): The level of the log.
+            time (str): The log creation time.
+            log (str): The log message.
+            caller (Dict[str, int]): The filename and number when the log was created.
+            stack_info (str): The stack information of the log.
+            fields (Dict[str, ValueTypes]): The extra fields of the log
         """
-        try:
-            # fields" json structured of log instead of big string? look into log fields in python - look into
-            entry = LogEntry(
-                level=level, time=datetime_to_timestamp(time), logger_name=moduleLogger.name, message=log, caller=dict_to_struct(caller), stack="".join(stack)
-            )
-            request = LogRequest(logs=[entry])
-            await self._client.Log(request)
-        except Exception:
-            await moduleLogger.log(level, time, log, caller, stack, retry=True)
+        entry = LogEntry(
+            level=level,
+            time=datetime_to_timestamp(datetime.fromisoformat(time)),
+            logger_name=name,
+            message=log,
+            caller=dict_to_struct(caller),
+            stack=stack_info,
+            fields=[dict_to_struct(fields)],
+        )
+        request = LogRequest(logs=[entry])
+        await self._client.Log(request)
