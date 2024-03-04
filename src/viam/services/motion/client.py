@@ -150,8 +150,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             #  Define a destination GeoPoint at the GPS coordinates [0, 0]
             my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
 
-            # Move the base component to the designated geographic location, as reported by
-            # the movement sensor
+            # Move the base component to the designated geographic location, as reported by the movement sensor
             execution_id = await motion.move_on_globe(
                 component_name=my_base_resource_name,
                 destination=my_destination,
