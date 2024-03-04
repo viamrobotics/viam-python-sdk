@@ -232,8 +232,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             my_base_resource_name = Base.get_resource_name("my_base")
             my_slam_service_name = SLAMClient.get_resource_name("my_slam_service")
 
-            # Define a destination pose with respect to the origin of the map from the SLAM
-            # service "my_slam_service"
+            # Define a destination pose with respect to the origin of the map from the SLAM service "my_slam_service"
             my_pose = Pose(y=10)
 
             # Move the base component to the destination pose of Y=10, a location of

@@ -22,8 +22,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_paths(self, *, timeout: Optional[float]) -> List[Path]:
-        """
-        Get each path, the series of geo points the robot plans to travel through
+        """Get each path, the series of geo points the robot plans to travel through
         to get to a destination waypoint, in the machine’s motion planning.
 
         ::
@@ -45,8 +44,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_location(self, *, timeout: Optional[float]) -> GeoPoint:
-        """
-        Get the current location of the robot in the navigation service.
+        """Get the current location of the robot in the navigation service.
 
         ::
 
@@ -67,8 +65,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_obstacles(self, *, timeout: Optional[float]) -> List[GeoObstacle]:
-        """
-        Get an array or list of the obstacles currently in the service’s data storage.
+        """Get an array or list of the obstacles currently in the service’s data storage.
         These are objects designated for the robot to avoid when navigating.
         These include all transient obstacles which are discovered by the vision services configured for the navigation service,
         in addition to the obstacles that are configured as a part of the service.
@@ -92,8 +89,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_waypoints(self, *, timeout: Optional[float]) -> List[Waypoint]:
-        """
-        Get an array of waypoints currently in the service’s data storage.
+        """Get an array of waypoints currently in the service’s data storage.
         These are locations designated within a path for the robot to navigate to.
 
         ::
@@ -115,8 +111,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def add_waypoint(self, point: GeoPoint, *, timeout: Optional[float]):
-        """
-        Add a waypoint to the service’s data storage.
+        """Add a waypoint to the service’s data storage.
 
         ::
 
@@ -139,8 +134,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def remove_waypoint(self, id: str, *, timeout: Optional[float]):
-        """
-        Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
+        """Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
         the motion will be canceled, and the robot will proceed to the next waypoint.
 
         ::
@@ -159,8 +153,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_mode(self, *, timeout: Optional[float]) -> Mode.ValueType:
-        """
-        Get the Mode the service is operating in.
+        """Get the Mode the service is operating in.
 
         There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.
 
@@ -185,8 +178,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def set_mode(self, mode: Mode.ValueType, *, timeout: Optional[float]):
-        """
-        Set the Mode the service is operating in.
+        """Set the Mode the service is operating in.
 
         There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.
 
@@ -209,8 +201,7 @@ class Navigation(ServiceBase):
 
     @abc.abstractmethod
     async def get_properties(self, *, timeout: Optional[float]) -> MapType.ValueType:
-        """
-        Get information about the navigation service.
+        """Get information about the navigation service.
 
         ::
 

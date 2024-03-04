@@ -26,8 +26,7 @@ class SLAM(ServiceBase):
 
             slam = SLAMClient.from_robot(robot=robot, name="my_slam_service")
 
-            # Get the internal state of the SLAM algorithm required to continue
-            # mapping/localization.
+            # Get the internal state of the SLAM algorithm required to continue mapping/localization.
             internal_state = await slam.get_internal_state()
 
         Returns:
@@ -60,10 +59,10 @@ class SLAM(ServiceBase):
         Get current position of the specified component in the SLAM Map.
 
         ::
+
             slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
 
-            # Get the current position of the specified source component in the SLAM map as
-            # a Pose.
+            # Get the current position of the specified source component in the SLAM map as a Pose.
             pose = await slam.get_position()
 
         Returns:
