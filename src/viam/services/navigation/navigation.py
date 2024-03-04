@@ -49,6 +49,7 @@ class Navigation(ServiceBase):
         Get the current location of the robot in the navigation service.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Get the current location of the robot in the navigation service
@@ -73,6 +74,7 @@ class Navigation(ServiceBase):
         in addition to the obstacles that are configured as a part of the service.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Get a list containing each obstacle stored by the navigation service
@@ -95,6 +97,7 @@ class Navigation(ServiceBase):
         These are locations designated within a path for the robot to navigate to.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Get a list containing each waypoint stored by the navigation service
@@ -116,6 +119,7 @@ class Navigation(ServiceBase):
         Add a waypoint to the service’s data storage.
 
         ::
+
            my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Create a new waypoint with latitude and longitude values of 0 degrees
@@ -140,6 +144,7 @@ class Navigation(ServiceBase):
         the motion will be canceled, and the robot will proceed to the next waypoint.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Remove the waypoint matching that ObjectID from the service's data storage
@@ -163,6 +168,7 @@ class Navigation(ServiceBase):
             MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Get the Mode the service is operating in
@@ -188,10 +194,10 @@ class Navigation(ServiceBase):
             MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
-            # Set the Mode the service is operating in to MODE_WAYPOINT and begin
-            # navigation
+            # Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation
             await my_nav.set_mode(Mode.ValueType.MODE_WAYPOINT)
 
         Args:
@@ -207,6 +213,7 @@ class Navigation(ServiceBase):
         Get information about the navigation service.
 
         ::
+
             my_nav = NavigationClient.from_robot(robot=robot, name="my_nav_service")
 
             # Get the properties of the current navigation service.

@@ -86,11 +86,11 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
             # Move the gripper
             moved = await motion.move(component_name=gripper_name,
-                                    destination=PoseInFrame(reference_frame="myFrame",
-                                                            pose=goal_pose),
-                                    world_state=worldState,
-                                    constraints={},
-                                    extra={})
+                                  destination=PoseInFrame(reference_frame="myFrame",
+                                                          pose=goal_pose),
+                                  world_state=worldState,
+                                  constraints={},
+                                  extra={})
 
         Args:
             component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
@@ -351,8 +351,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
             motion = MotionClient.from_robot(robot=robot, name="builtin")
             my_base_resource_name = Base.get_resource_name("my_base")
-            # Get the plan(s) of the base component which was instructed
-            # to move by `MoveOnGlobe()` or `MoveOnMap()`
+            # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
             resp = await motion.get_plan(component_name=my_base_resource_name)
 
         Args:
