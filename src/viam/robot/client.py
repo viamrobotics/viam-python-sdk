@@ -144,8 +144,7 @@ class RobotClient:
             opts = RobotClient.Options.with_api_key(
                 # Replace "<API-KEY>" (including brackets) with your machine's API key
                 api_key='<API-KEY>',
-                # Replace "<API-KEY-ID>" (including brackets) with your machine's
-                # API key ID
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
                 api_key_id='<API-KEY-ID>'
             )
             return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
@@ -261,6 +260,7 @@ class RobotClient:
         Manually refresh the underlying parts of this robot
 
         ::
+
             await robot.refresh()
 
         """
