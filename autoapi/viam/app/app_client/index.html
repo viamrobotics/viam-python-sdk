@@ -581,6 +581,32 @@
 <dd><p>gRPC client for method calls to app.</p>
 <p>Constructor is used by <cite>ViamClient</cite> to instantiate relevant service stub. Calls to <cite>AppClient</cite>  methods should be made through
 <cite>ViamClient</cite>.</p>
+<p>Establish a Connection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
+<span class="kn">from</span> <span class="nn">viam.app.viam_client</span> <span class="kn">import</span> <span class="n">ViamClient</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="c1"># Make a ViamClient</span>
+    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="c1"># Instantiate an AppClient called &quot;cloud&quot; to run cloud app API methods on</span>
+    <span class="n">cloud</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">app_client</span>
+
+    <span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_organization">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_organization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Organization" title="viam.proto.app.Organization"><span class="pre">viam.proto.app.Organization</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_organization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_organization" title="Permalink to this definition"></a></dt>
@@ -590,6 +616,9 @@
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_organizations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_organizations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Organization" title="viam.proto.app.Organization"><span class="pre">viam.proto.app.Organization</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_organizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_organizations" title="Permalink to this definition"></a></dt>
 <dd><p>List the organization(s) the user is an authorized owner of.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">org_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_organizations</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of organizations.</p>
@@ -630,6 +659,10 @@ currently-authed org.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_organization_namespace_availability">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_organization_namespace_availability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_namespace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_organization_namespace_availability"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_organization_namespace_availability" title="Permalink to this definition"></a></dt>
 <dd><p>Check the availability of an organization namespace.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">available</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_organization_namespace_availability</span><span class="p">(</span>
+    <span class="n">public_namespace</span><span class="o">=</span><span class="s2">&quot;my-cool-organization&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>public_namespace</strong> (<em>str</em>) – Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash
@@ -681,6 +714,9 @@ characters.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_organization_members">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_organization_members</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationMember" title="viam.proto.app.OrganizationMember"><span class="pre">viam.proto.app.OrganizationMember</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><span class="pre">viam.proto.app.OrganizationInvite</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_organization_members"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_organization_members" title="Permalink to this definition"></a></dt>
 <dd><p>List the members and invites of the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">member_list</span><span class="p">,</span> <span class="n">invite_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_organization_members</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><dl class="simple">
@@ -699,6 +735,9 @@ characters.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_organization_invite">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_organization_invite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><span class="pre">viam.proto.app.Authorization</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><span class="pre">viam.proto.app.OrganizationInvite</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_organization_invite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_organization_invite" title="Permalink to this definition"></a></dt>
 <dd><p>Creates an organization invite and sends it via email.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_organization_invite</span><span class="p">(</span><span class="s2">&quot;youremail@email.com&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -720,6 +759,23 @@ be granted.</p></li>
 <dd><p>Update the authorizations attached to an organization invite that has already been created.</p>
 <p>Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have
 at least one authorization overall.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">Authorization</span>
+
+<span class="n">authorization_to_add</span> <span class="o">=</span> <span class="n">Authorization</span><span class="p">(</span>
+    <span class="n">authorization_type</span><span class="o">=</span><span class="s2">&quot;some type of auth&quot;</span><span class="p">,</span>
+    <span class="n">authorization_id</span><span class="o">=</span><span class="s2">&quot;identifier&quot;</span><span class="p">,</span>
+    <span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+    <span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;resource-identifier123&quot;</span><span class="p">,</span>
+    <span class="n">identity_id</span><span class="o">=</span><span class="s2">&quot;id12345&quot;</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;org_id_123&quot;</span>
+<span class="p">)</span>
+
+<span class="n">update_invite</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_organization_invite_authorizations</span><span class="p">(</span>
+    <span class="n">email</span><span class="o">=</span><span class="s2">&quot;notarealemail@viam.com&quot;</span><span class="p">,</span>
+    <span class="n">add_authorizations</span> <span class="o">=</span><span class="p">[</span><span class="n">authorization_to_add</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -745,6 +801,12 @@ remove when the invite only contains one authorization).</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_organization_member">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_organization_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_organization_member"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_organization_member" title="Permalink to this definition"></a></dt>
 <dd><p>Remove a member from the organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">member_list</span><span class="p">,</span> <span class="n">invite_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_organization_members</span><span class="p">()</span>
+<span class="n">first_user_id</span> <span class="o">=</span> <span class="n">member_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">user_id</span>
+
+<span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_organization_member</span><span class="p">(</span><span class="n">first_user_id</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>user_id</strong> (<em>str</em>) – The ID of the user to remove.</p>
@@ -756,6 +818,9 @@ remove when the invite only contains one authorization).</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_organization_invite">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_organization_invite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_organization_invite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_organization_invite" title="Permalink to this definition"></a></dt>
 <dd><p>Deletes a pending organization invite.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_organization_invite</span><span class="p">(</span><span class="s2">&quot;youremail@email.com&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – The email address the pending invite was sent to.</p>
@@ -770,6 +835,9 @@ remove when the invite only contains one authorization).</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.resend_organization_invite">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resend_organization_invite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.OrganizationInvite" title="viam.proto.app.OrganizationInvite"><span class="pre">viam.proto.app.OrganizationInvite</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.resend_organization_invite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.resend_organization_invite" title="Permalink to this definition"></a></dt>
 <dd><p>Re-sends a pending organization invite email.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">resend_organization_invite</span><span class="p">(</span><span class="s2">&quot;youremail@email.com&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>email</strong> (<em>str</em>) – The email address associated with the invite.</p>
@@ -784,6 +852,10 @@ remove when the invite only contains one authorization).</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_location">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Location" title="viam.proto.app.Location"><span class="pre">viam.proto.app.Location</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_location" title="Permalink to this definition"></a></dt>
 <dd><p>Create and name a location under the currently authed-to organization and the specified parent location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_new_location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_location</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Robotville&quot;</span><span class="p">,</span>
+                                              <span class="n">parent_location_id</span><span class="o">=</span><span class="s2">&quot;111ab12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -808,6 +880,9 @@ location ID is provided.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_location">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Location" title="viam.proto.app.Location"><span class="pre">viam.proto.app.Location</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_location" title="Permalink to this definition"></a></dt>
 <dd><p>Get a location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_location</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;123ab12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of the location to get. Defaults to the location ID provided at <cite>AppClient</cite> instantiation.</p>
@@ -829,6 +904,28 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_location">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Location" title="viam.proto.app.Location"><span class="pre">viam.proto.app.Location</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_location" title="Permalink to this definition"></a></dt>
 <dd><p>Change the name of a location and/or assign it a new parent location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The following line takes the location with ID &quot;abc12abcde&quot; and moves it to be a</span>
+<span class="c1"># sub-location of the location with ID &quot;xyz34xxxxx&quot;</span>
+<span class="n">my_updated_location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_location</span><span class="p">(</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;abc12abcde&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">parent_location_id</span><span class="o">=</span><span class="s2">&quot;xyz34xxxxx&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># The following line changes the name of the location without changing its parent location</span>
+<span class="n">my_updated_location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_location</span><span class="p">(</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;abc12abcde&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Land Before Robots&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The following line moves the location back up to be a top level location without changing its name</span>
+<span class="n">my_updated_location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_location</span><span class="p">(</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;abc12abcde&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">parent_location_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -855,6 +952,9 @@ change).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_location">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_location" title="Permalink to this definition"></a></dt>
 <dd><p>Delete a location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_location</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;abc12abcde&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>str</em>) – ID of the location to delete. Must be specified.</p>
@@ -869,6 +969,9 @@ change).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_locations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_locations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Location" title="viam.proto.app.Location"><span class="pre">viam.proto.app.Location</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_locations" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of all locations under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_locations</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of locations.</p>
@@ -893,6 +996,9 @@ change).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.location_auth">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location_auth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.LocationAuth" title="viam.proto.app.LocationAuth"><span class="pre">viam.proto.app.LocationAuth</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.location_auth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.location_auth" title="Permalink to this definition"></a></dt>
 <dd><p>Get a location’s <cite>LocationAuth</cite> (location secret(s)).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">loc_auth</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">location_auth</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;123xy12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>str</em>) – ID of the location to retrieve <cite>LocationAuth</cite> from. Defaults to the location ID provided at <cite>AppClient</cite>
@@ -915,6 +1021,9 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_location_secret">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_location_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.LocationAuth" title="viam.proto.app.LocationAuth"><span class="pre">viam.proto.app.LocationAuth</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_location_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_location_secret" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new location secret.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_loc_auth</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_location_secret</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of the location to generate a new secret for. Defaults to the location ID provided at
@@ -937,6 +1046,10 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_location_secret">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_location_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_location_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_location_secret" title="Permalink to this definition"></a></dt>
 <dd><p>Delete a location secret.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_location_secret</span><span class="p">(</span>
+    <span class="n">secret_id</span><span class="o">=</span><span class="s2">&quot;abcd123-456-7890ab-cxyz98-989898xyzxyz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -955,6 +1068,9 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Robot" title="viam.proto.app.Robot"><span class="pre">viam.proto.app.Robot</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot" title="Permalink to this definition"></a></dt>
 <dd><p>Get a robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_id</strong> (<em>str</em>) – ID of the robot to get.</p>
@@ -975,6 +1091,9 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_rover_rental_robots">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_rover_rental_robots</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.RoverRentalRobot" title="viam.proto.app.RoverRentalRobot"><span class="pre">viam.proto.app.RoverRentalRobot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_rover_rental_robots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_rover_rental_robots" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a list of rover rental robots within an org.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rental_robots</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_rover_rental_robots</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of rover rental robots.</p>
@@ -989,6 +1108,10 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_parts">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><span class="pre">RobotPart</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_parts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_parts" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of all the parts under a specific robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_parts</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_parts</span><span class="p">(</span>
+    <span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_id</strong> (<em>str</em>) – ID of the robot to get parts from.</p>
@@ -1009,6 +1132,10 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_part">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><span class="pre">RobotPart</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part" title="Permalink to this definition"></a></dt>
 <dd><p>Get a robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_robot_part</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1033,6 +1160,10 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_part_logs">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_part_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_log_entries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry"><span class="pre">LogEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part_logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part_logs" title="Permalink to this definition"></a></dt>
 <dd><p>Get the logs associated with a robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">part_logs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part_logs</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">,</span> <span class="n">num_log_entries</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1061,6 +1192,10 @@ filter).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.tail_robot_part_logs">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tail_robot_part_logs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.app._logs._LogsStream</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.LogEntry" title="viam.app.app_client.LogEntry"><span class="pre">LogEntry</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.tail_robot_part_logs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.tail_robot_part_logs" title="Permalink to this definition"></a></dt>
 <dd><p>Get an asynchronous iterator that receives live robot part logs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logs_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">tail_robot_part_logs</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1083,6 +1218,10 @@ filter).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_robot_part_history">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_robot_part_history</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.RobotPartHistoryEntry" title="viam.app.app_client.RobotPartHistoryEntry"><span class="pre">RobotPartHistoryEntry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_robot_part_history"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_robot_part_history" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list containing the history of a robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">part_history</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_robot_part_history</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to retrieve history from.</p>
@@ -1103,6 +1242,10 @@ filter).</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_robot_part">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_robot_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><span class="pre">RobotPart</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_robot_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_robot_part" title="Permalink to this definition"></a></dt>
 <dd><p>Change the name and assign an optional new configuration to a robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_robot_part</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_robot_part</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1128,6 +1271,10 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.new_robot_part">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new_robot_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.new_robot_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.new_robot_part" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_part_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">new_robot_part</span><span class="p">(</span>
+    <span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">,</span> <span class="n">part_name</span><span class="o">=</span><span class="s2">&quot;myNewSubPart&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1151,6 +1298,10 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_robot_part">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_robot_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_robot_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_robot_part" title="Permalink to this definition"></a></dt>
 <dd><p>Delete the specified robot part.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_robot_part</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to delete. Must be specified.</p>
@@ -1165,6 +1316,10 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.mark_part_as_main">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mark_part_as_main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.mark_part_as_main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.mark_part_as_main" title="Permalink to this definition"></a></dt>
 <dd><p>Mark a robot part as the main part of a robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">mark_part_as_main</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to mark as main.</p>
@@ -1179,6 +1334,10 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.mark_part_for_restart">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mark_part_for_restart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.mark_part_for_restart"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.mark_part_for_restart" title="Permalink to this definition"></a></dt>
 <dd><p>Mark the specified robot part for restart.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">mark_part_for_restart</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to mark for restart.</p>
@@ -1193,6 +1352,10 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_robot_part_secret">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_robot_part_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.RobotPart" title="viam.app.app_client.RobotPart"><span class="pre">RobotPart</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_robot_part_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_robot_part_secret" title="Permalink to this definition"></a></dt>
 <dd><p>Create a robot part secret.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">part_with_new_secret</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_robot_part_secret</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_part_id</strong> (<em>str</em>) – ID of the robot part to create a secret for.</p>
@@ -1213,6 +1376,11 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_robot_part_secret">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_robot_part_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secret_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_robot_part_secret"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_robot_part_secret" title="Permalink to this definition"></a></dt>
 <dd><p>Delete a robot part secret.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_robot_part_secret</span><span class="p">(</span>
+    <span class="n">robot_part_id</span><span class="o">=</span><span class="s2">&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;</span><span class="p">,</span>
+    <span class="n">secret_id</span><span class="o">=</span><span class="s2">&quot;123xyz12-abcd-4321-12ab-12xy1xyz12xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1230,6 +1398,9 @@ part’s config will remain as is (no change) if one isn’t passed.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_robots">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_robots</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Robot" title="viam.proto.app.Robot"><span class="pre">viam.proto.app.Robot</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_robots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_robots" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of all robots under the specified location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_machines</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_robots</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="s2">&quot;123ab12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>location_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – ID of the location to retrieve the robots from. Defaults to the location ID provided at
@@ -1252,6 +1423,9 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.new_robot">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.new_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.new_robot" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_machine_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">new_robot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;beepboop&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1276,6 +1450,11 @@ instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_robot">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Robot" title="viam.proto.app.Robot"><span class="pre">viam.proto.app.Robot</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_robot" title="Permalink to this definition"></a></dt>
 <dd><p>Change the name of an existing robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updated_robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_robot</span><span class="p">(</span>
+    <span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Orange-Robot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1302,6 +1481,9 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_robot">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_robot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_robot" title="Permalink to this definition"></a></dt>
 <dd><p>Delete the specified robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_robot</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>robot_id</strong> (<em>str</em>) – ID of the robot to delete.</p>
@@ -1316,6 +1498,9 @@ ID provided at <cite>AppClient</cite> instantiation.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_fragments">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_fragments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show_public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_fragments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_fragments" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of fragments under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fragments_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_fragments</span><span class="p">(</span><span class="n">show_public</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>show_public</strong> – Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
@@ -1334,26 +1519,35 @@ return. If False, only private fragments will return. Defaults to True.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_fragment">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_fragment" title="Permalink to this definition"></a></dt>
 <dd><p>Get a fragment.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>fragment_id</strong> (<em>str</em>) – ID of the fragment to get.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a fragment and print its name and when it was created.</span>
+<span class="n">the_fragment</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_fragment</span><span class="p">(</span>
+    <span class="n">fragment_id</span><span class="o">=</span><span class="s2">&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: &quot;</span><span class="p">,</span> <span class="n">the_fragment</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Created on: “, the_fragment.created_on)</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Args:</dt><dd><p>fragment_id (str): ID of the fragment to get.</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>GRPCError</strong> – If an invalid fragment ID is passed.</p>
+<dt>Raises:</dt><dd><p>GRPCError: If an invalid fragment ID is passed.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The fragment.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment">viam.app.app_client.Fragment</a></p>
+<dt>Returns:</dt><dd><p>viam.app.app_client.Fragment: The fragment.</p>
 </dd>
 </dl>
+</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_fragment">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_fragment" title="Permalink to this definition"></a></dt>
 <dd><p>Create a new private fragment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_fragment</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_fragment</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cool_smart_machine_to_configure_several_of&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1378,6 +1572,11 @@ assigned by updating the fragment.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_fragment">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#viam.app.app_client.Fragment" title="viam.app.app_client.Fragment"><span class="pre">Fragment</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_fragment" title="Permalink to this definition"></a></dt>
 <dd><p>Update a fragment name AND its config and/or visibility.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">updated_fragment</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_fragment</span><span class="p">(</span>
+    <span class="n">fragment_id</span><span class="o">=</span><span class="s2">&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;better_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1405,6 +1604,10 @@ visibility unchanged. A fragment is private by default when created.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.delete_fragment">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fragment_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.delete_fragment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.delete_fragment" title="Permalink to this definition"></a></dt>
 <dd><p>Delete a fragment.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">delete_fragment</span><span class="p">(</span>
+    <span class="n">fragment_id</span><span class="o">=</span><span class="s2">&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>fragment_id</strong> (<em>str</em>) – ID of the fragment to delete.</p>
@@ -1419,6 +1622,13 @@ visibility unchanged. A fragment is private by default when created.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.add_role">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">owner</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">operator</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">organization</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">location</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">robot</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.add_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.add_role" title="Permalink to this definition"></a></dt>
 <dd><p>Add a role under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">add_role</span><span class="p">(</span>
+    <span class="n">identity_id</span><span class="o">=</span><span class="s2">&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;</span><span class="p">,</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+    <span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span>
+    <span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;111ab12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1439,6 +1649,13 @@ Must match <cite>resource_id</cite>.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.remove_role">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identity_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">owner</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">operator</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">organization</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">location</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">robot</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.remove_role"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.remove_role" title="Permalink to this definition"></a></dt>
 <dd><p>Remove a role under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">remove_role</span><span class="p">(</span>
+    <span class="n">identity_id</span><span class="o">=</span><span class="s2">&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;</span><span class="p">,</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+    <span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span>
+    <span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;111ab12345&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1460,6 +1677,10 @@ Must match <cite>resource_id</cite>.</p></li>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_authorizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resource_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Authorization" title="viam.proto.app.Authorization"><span class="pre">viam.proto.app.Authorization</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_authorizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_authorizations" title="Permalink to this definition"></a></dt>
 <dd><p>List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
 are provided, all resource authorizations within the organizations are returned.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_auths</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_authorizations</span><span class="p">(</span>
+    <span class="n">resource_ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>resource_ids</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – IDs of the resources to retrieve authorizations from.
@@ -1481,6 +1702,18 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.check_permissions">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">permissions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><span class="pre">viam.proto.app.AuthorizedPermissions</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><span class="pre">viam.proto.app.AuthorizedPermissions</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.check_permissions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.check_permissions" title="Permalink to this definition"></a></dt>
 <dd><p>Checks validity of a list of permissions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">AuthorizedPermissions</span>
+
+<span class="c1"># Check whether the entity you&#39;re currently authenticated to has permission to control and/or</span>
+<span class="c1"># read logs from robots in the &quot;organization-identifier123&quot; org</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">(</span><span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;organization&quot;</span><span class="p">,</span>
+                                     <span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;organization-identifier123&quot;</span><span class="p">,</span>
+                                     <span class="n">permissions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;control_robot&quot;</span><span class="p">,</span>
+                                                  <span class="s2">&quot;read_robot_logs&quot;</span><span class="p">])]</span>
+
+<span class="n">filtered_permissions</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">check_permissions</span><span class="p">(</span><span class="n">permissions</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>permissions</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.AuthorizedPermissions" title="viam.proto.app.AuthorizedPermissions"><em>viam.proto.app.AuthorizedPermissions</em></a><em>]</em>) – the permissions to validate
@@ -1502,6 +1735,10 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_module">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_module" title="Permalink to this definition"></a></dt>
 <dd><p>Create a module under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">new_module</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_module</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;cool_new_hoverboard_module&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Module ID:&quot;</span><span class="p">,</span> <span class="n">new_module</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the module. Must be unique within your organization.</p>
@@ -1522,6 +1759,13 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.update_module">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Model" title="viam.proto.app.Model"><span class="pre">viam.proto.app.Model</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entrypoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">public</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.update_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.update_module" title="Permalink to this definition"></a></dt>
 <dd><p>Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url_of_my_module</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">update_module</span><span class="p">(</span>
+    <span class="n">module_id</span><span class="o">=</span><span class="s2">&quot;my-group:cool_new_hoverboard_module&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://docsformymodule.viam.com&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A base to support hoverboards.&quot;</span><span class="p">,</span>
+    <span class="n">entrypoint</span><span class="o">=</span><span class="s2">&quot;exec&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1550,6 +1794,9 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.upload_module_file">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">upload_module_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_file_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.ModuleFileInfo" title="viam.proto.app.ModuleFileInfo"><span class="pre">viam.proto.app.ModuleFileInfo</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.upload_module_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.upload_module_file" title="Permalink to this definition"></a></dt>
 <dd><p>Upload a module file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">upload_module_file</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;&lt;file&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1570,6 +1817,9 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.get_module">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Module" title="viam.proto.app.Module"><span class="pre">viam.proto.app.Module</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.get_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.get_module" title="Permalink to this definition"></a></dt>
 <dd><p>Get a module.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">the_module</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">get_module</span><span class="p">(</span><span class="n">module_id</span><span class="o">=</span><span class="s2">&quot;my-cool-modular-base&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>module_id</strong> (<em>str</em>) – ID of the module being retrieved, containing module name or namespace and module name.</p>
@@ -1590,6 +1840,9 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_modules">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_modules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.Module" title="viam.proto.app.Module"><span class="pre">viam.proto.app.Module</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_modules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_modules" title="Permalink to this definition"></a></dt>
 <dd><p>List the modules under the currently authed-to organization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modules_list</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_modules</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of modules.</p>
@@ -1604,6 +1857,17 @@ If None, defaults to all resources.</p>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_key">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">authorizations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.app_client.APIKeyAuthorization" title="viam.app.app_client.APIKeyAuthorization"><span class="pre">APIKeyAuthorization</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_key" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a new API key.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.app.app_client</span> <span class="kn">import</span> <span class="n">APIKeyAuthorization</span>
+
+<span class="n">auth</span> <span class="o">=</span> <span class="n">APIKeyAuthorization</span><span class="p">(</span>
+<span class="n">role</span><span class="o">=</span><span class="s2">&quot;owner&quot;</span><span class="p">,</span>
+<span class="n">resource_type</span><span class="o">=</span><span class="s2">&quot;robot&quot;</span><span class="p">,</span>
+<span class="n">resource_id</span><span class="o">=</span><span class="s2">&quot;your-robot-id123&quot;</span>
+<span class="p">)</span>
+
+<span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span> <span class="o">=</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_key</span><span class="p">([</span><span class="n">auth</span><span class="p">],</span> <span class="s2">&quot;my_key&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1628,6 +1892,10 @@ with the key.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.create_key_from_existing_key_authorizations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_key_from_existing_key_authorizations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.create_key_from_existing_key_authorizations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.create_key_from_existing_key_authorizations" title="Permalink to this definition"></a></dt>
 <dd><p>Creates a new API key with an existing key’s authorizations</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span> <span class="o">=</span> <span class="n">cloud</span><span class="o">.</span><span class="n">create_key_from_existing_key_authorizations</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR API KEY ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – the ID of the API key to duplication authorizations from</p>
@@ -1642,6 +1910,9 @@ with the key.</p></li>
 <dt class="sig sig-object py" id="viam.app.app_client.AppClient.list_keys">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/index.html#viam.proto.app.APIKeyWithAuthorizations" title="viam.proto.app.APIKeyWithAuthorizations"><span class="pre">viam.proto.app.APIKeyWithAuthorizations</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/app_client.html#AppClient.list_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.app_client.AppClient.list_keys" title="Permalink to this definition"></a></dt>
 <dd><p>Lists all keys for the currently-authed-to org.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="n">cloud</span><span class="o">.</span><span class="n">list_keys</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The existing API keys and authorizations.</p>

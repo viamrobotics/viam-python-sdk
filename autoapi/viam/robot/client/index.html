@@ -185,6 +185,34 @@
 <p>You must <code class="docutils literal notranslate"><span class="pre">close()</span></code> the robot to release resources.</p>
 <p>Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using <code class="docutils literal notranslate"><span class="pre">with_channel</span></code> are
 not automatically closed.</p>
+<p>Establish a Connection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
+<span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
+    <span class="n">opts</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span>
+        <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;&lt;API-KEY&gt;&#39;</span><span class="p">,</span>
+        <span class="c1"># Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+        <span class="n">api_key_id</span><span class="o">=</span><span class="s1">&#39;&lt;API-KEY-ID&gt;&#39;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;ADDRESS FROM THE VIAM APP&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Make a RobotClient</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Resources:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Options</span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.Options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.Options" title="Permalink to this definition"></a></dt>
@@ -229,6 +257,16 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.Options.with_api_key">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_api_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.Options.with_api_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.Options.with_api_key" title="Permalink to this definition"></a></dt>
 <dd><p>Create RobotClient.Options with an API key for credentials and default values for other arguments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;&lt;API-KEY&gt;&#39;</span>
+<span class="c1"># Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+<span class="n">api_key_id</span> <span class="o">=</span> <span class="s1">&#39;&lt;API-KEY-ID&gt;&#39;</span>
+
+<span class="n">opts</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">api_key_id</span><span class="p">)</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;ADDRESS FROM THE VIAM APP&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -254,6 +292,9 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.resource_names">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resource_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.robot.client.RobotClient.resource_names" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of all resource names</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">resource_names</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">resource_names</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of resource names</p>
@@ -268,6 +309,21 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.at_address">
 <em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">at_address</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><span class="pre">Options</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.at_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.at_address" title="Permalink to this definition"></a></dt>
 <dd><p>Create a robot client that is connected to the robot at the provided address.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
+    <span class="n">opts</span> <span class="o">=</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span>
+        <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;&lt;API-KEY&gt;&#39;</span><span class="p">,</span>
+        <span class="c1"># Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+        <span class="n">api_key_id</span><span class="o">=</span><span class="s1">&#39;&lt;API-KEY-ID&gt;&#39;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">at_address</span><span class="p">(</span><span class="s1">&#39;ADDRESS FROM THE VIAM APP&#39;</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Make a RobotClient</span>
+    <span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -289,6 +345,17 @@ If not set, the robot will not be refreshed automatically</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">with_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.ViamChannel" title="viam.rpc.dial.ViamChannel"><span class="pre">viam.rpc.dial.ViamChannel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#viam.robot.client.RobotClient.Options" title="viam.robot.client.RobotClient.Options"><span class="pre">Options</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.with_channel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.with_channel" title="Permalink to this definition"></a></dt>
 <dd><p>Create a robot that is connected to a robot over the given channel.</p>
 <p>Any robots created using this method will <em>NOT</em> automatically close the channel upon exit.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.robot.client</span> <span class="kn">import</span> <span class="n">RobotClient</span>
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">dial</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect_with_channel</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">RobotClient</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">dial</span><span class="p">(</span><span class="s1">&#39;ADDRESS&#39;</span><span class="p">,</span> <span class="n">DialOptions</span><span class="p">())</span> <span class="k">as</span> <span class="n">channel</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">with_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">RobotClient</span><span class="o">.</span><span class="n">Options</span><span class="p">())</span>
+
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect_with_channel</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -309,6 +376,9 @@ If not set, the robot will not be refreshed automatically</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.refresh">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.refresh" title="Permalink to this definition"></a></dt>
 <dd><p>Manually refresh the underlying parts of this robot</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -428,7 +498,11 @@ returned service to the desired service. This can be done using a few methods:</
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.close">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.close" title="Permalink to this definition"></a></dt>
-<dd><p>Cleanly close the underlying connections and stop any periodic tasks</p>
+<dd><p>Cleanly close the underlying connections and stop any periodic tasks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cleanly close the underlying connections and stop any periodic tasks.</span>
+<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -446,6 +520,10 @@ returned service to the desired service. This can be done using a few methods:</
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">components</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_status" title="Permalink to this definition"></a></dt>
 <dd><p>Get the status of the robot’s components. You can optionally
 provide a list of <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code> for which you want statuses.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the status of the resources on the machine.</span>
+<span class="n">statuses</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_status</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>components</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a><em>]</em><em>]</em>) – Optional list of
@@ -458,6 +536,9 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_operations">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_operations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Operation" title="viam.proto.robot.Operation"><span class="pre">viam.proto.robot.Operation</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_operations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_operations" title="Permalink to this definition"></a></dt>
 <dd><p>Get the list of operations currently running on the robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operations</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_operations</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The list of operations currently running on a given robot.</p>
@@ -472,6 +553,9 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.cancel_operation">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cancel_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.cancel_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.cancel_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Cancels the specified operation on the robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">cancel_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – ID of operation to kill.</p>
@@ -484,6 +568,9 @@ provide a list of <code class="docutils literal notranslate"><span class="pre">R
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">block_for_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.block_for_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.block_for_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Blocks on the specified operation on the robot. This function will only return when the specific operation
 has finished or has been cancelled.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">block_for_operation</span><span class="p">(</span><span class="s2">&quot;INSERT OPERATION ID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – ID of operation to block on.</p>
@@ -495,6 +582,11 @@ has finished or has been cancelled.</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.get_frame_system_config">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_frame_system_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.FrameSystemConfig" title="viam.proto.robot.FrameSystemConfig"><span class="pre">viam.proto.robot.FrameSystemConfig</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.get_frame_system_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.get_frame_system_config" title="Permalink to this definition"></a></dt>
 <dd><p>Get the configuration of the frame system of a given robot.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get a list of each of the reference frames configured on the machine.</span>
+<span class="n">frame_system</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">get_frame_system_config</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;frame system configuration: </span><span class="si">{</span><span class="n">frame_system</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The configuration of a given robot’s frame system.</p>
@@ -509,6 +601,9 @@ has finished or has been cancelled.</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.transform_pose">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transform_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">additional_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.Transform" title="viam.proto.common.Transform"><span class="pre">viam.proto.common.Transform</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><span class="pre">viam.proto.common.PoseInFrame</span></a></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.transform_pose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.transform_pose" title="Permalink to this definition"></a></dt>
 <dd><p>Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">transform_pose</span><span class="p">(</span><span class="n">PoseInFrame</span><span class="p">(),</span> <span class="s2">&quot;origin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -528,6 +623,16 @@ has finished or has been cancelled.</p>
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.discover_components">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">discover_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">queries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><span class="pre">viam.proto.robot.DiscoveryQuery</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.Discovery" title="viam.proto.robot.Discovery"><span class="pre">viam.proto.robot.Discovery</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.discover_components"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.discover_components" title="Permalink to this definition"></a></dt>
 <dd><p>Get the list of discovered component configurations.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new discovery query.</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">robot</span><span class="o">.</span><span class="n">DiscoveryQuery</span><span class="p">(</span><span class="n">subtype</span><span class="o">=</span><span class="n">acme</span><span class="o">.</span><span class="n">API</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;some model&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define a list of discovery queries.</span>
+<span class="n">qs</span> <span class="o">=</span> <span class="p">[</span><span class="n">q</span><span class="p">]</span>
+
+<span class="c1"># Get component configurations with these queries.</span>
+<span class="n">component_configs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">discover_components</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>queries</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.DiscoveryQuery" title="viam.proto.robot.DiscoveryQuery"><em>viam.proto.robot.DiscoveryQuery</em></a><em>]</em>) – The list of component models to lookup configurations for.</p>
@@ -538,7 +643,11 @@ has finished or has been cancelled.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.robot.client.RobotClient.stop_all">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.stop_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.stop_all" title="Permalink to this definition"></a></dt>
-<dd><p>Cancel all current and outstanding operations for the robot and stop all actuators and movement</p>
+<dd><p>Cancel all current and outstanding operations for the robot and stop all actuators and movement.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+<span class="k">await</span> <span class="n">robot</span><span class="o">.</span><span class="n">stop_all</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>extra</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Any extra parameters to pass to the resources’ <code class="docutils literal notranslate"><span class="pre">stop</span></code> methods,

@@ -49,6 +49,34 @@ Attributes
    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are
    not automatically closed.
 
+   Establish a Connection::
+
+       import asyncio
+
+       from viam.rpc.dial import DialOptions, Credentials
+       from viam.robot.client import RobotClient
+
+
+       async def connect():
+           opts = RobotClient.Options.with_api_key(
+               # Replace "<API-KEY>" (including brackets) with your machine's API key
+               api_key='<API-KEY>',
+               # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+               api_key_id='<API-KEY-ID>'
+           )
+           return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+       async def main():
+           # Make a RobotClient
+           robot = await connect()
+           print('Resources:')
+           print(robot.resource_names)
+           await robot.close()
+
+       if __name__ == '__main__':
+           asyncio.run(main())
+
    .. py:class:: Options
 
 
@@ -92,6 +120,17 @@ Attributes
 
          Create RobotClient.Options with an API key for credentials and default values for other arguments.
 
+         ::
+
+             # Replace "<API-KEY>" (including brackets) with your machine's API key
+             api_key = '<API-KEY>'
+             # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+             api_key_id = '<API-KEY-ID>'
+
+             opts = RobotClient.Options.with_api_key(api_key, api_key_id)
+
+             robot = await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
          :param api_key: your API key
          :type api_key: str
          :param api_key_id: your API key ID. Must be a valid UUID
@@ -109,6 +148,10 @@ Attributes
 
       Get a list of all resource names
 
+      ::
+
+          resource_names = robot.resource_names
+
       :returns: The list of resource names
       :rtype: List[viam.proto.common.ResourceName]
 
@@ -117,6 +160,22 @@ Attributes
       :async:
 
       Create a robot client that is connected to the robot at the provided address.
+
+      ::
+
+          async def connect():
+              opts = RobotClient.Options.with_api_key(
+                  # Replace "<API-KEY>" (including brackets) with your machine's API key
+                  api_key='<API-KEY>',
+                  # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+                  api_key_id='<API-KEY-ID>'
+              )
+              return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+          async def main():
+              # Make a RobotClient
+              robot = await connect()
 
       :param address: Address of the robot (IP address, URL, etc.)
       :type address: str
@@ -135,6 +194,18 @@ Attributes
 
       Any robots created using this method will *NOT* automatically close the channel upon exit.
 
+      ::
+
+          from viam.robot.client import RobotClient
+          from viam.rpc.dial import DialOptions, dial
+
+
+          async def connect_with_channel() -> RobotClient:
+              async with await dial('ADDRESS', DialOptions()) as channel:
+                  return await RobotClient.with_channel(channel, RobotClient.Options())
+
+          robot = await connect_with_channel()
+
       :param channel: The channel that is connected to a robot, obtained by ``viam.rpc.dial``
       :type channel: ViamChannel
       :param options: Options for refreshing. Any connection options will be ignored.
@@ -148,6 +219,10 @@ Attributes
       :async:
 
       Manually refresh the underlying parts of this robot
+
+      ::
+
+          await robot.refresh()
 
 
    .. py:method:: get_component(name: viam.proto.common.ResourceName) -> viam.components.component_base.ComponentBase
@@ -239,7 +314,12 @@ Attributes
    .. py:method:: close()
       :async:
 
-      Cleanly close the underlying connections and stop any periodic tasks
+      Cleanly close the underlying connections and stop any periodic tasks.
+
+      ::
+
+          # Cleanly close the underlying connections and stop any periodic tasks.
+          await robot.close()
 
 
    .. py:method:: __aenter__()
@@ -256,6 +336,11 @@ Attributes
       Get the status of the robot's components. You can optionally
       provide a list of ``ResourceName`` for which you want statuses.
 
+      ::
+
+          # Get the status of the resources on the machine.
+          statuses = await robot.get_status()
+
       :param components: Optional list of
                          ``ResourceName`` for components you want statuses.
       :type components: Optional[List[viam.proto.common.ResourceName]]
@@ -266,6 +351,10 @@ Attributes
 
       Get the list of operations currently running on the robot.
 
+      ::
+
+          operations = await robot.get_operations()
+
       :returns: The list of operations currently running on a given robot.
       :rtype: List[viam.proto.robot.Operation]
 
@@ -274,6 +363,10 @@ Attributes
       :async:
 
       Cancels the specified operation on the robot.
+
+      ::
+
+          await robot.cancel_operation("INSERT OPERATION ID")
 
       :param id: ID of operation to kill.
       :type id: str
@@ -285,6 +378,10 @@ Attributes
       Blocks on the specified operation on the robot. This function will only return when the specific operation
       has finished or has been cancelled.
 
+      ::
+
+          await robot.block_for_operation("INSERT OPERATION ID")
+
       :param id: ID of operation to block on.
       :type id: str
 
@@ -294,6 +391,12 @@ Attributes
 
       Get the configuration of the frame system of a given robot.
 
+      ::
+
+          # Get a list of each of the reference frames configured on the machine.
+          frame_system = await robot.get_frame_system_config()
+          print(f"frame system configuration: {frame_system}")
+
       :returns: The configuration of a given robot's frame system.
       :rtype: List[viam.proto.robot.FrameSystemConfig]
 
@@ -302,6 +405,10 @@ Attributes
       :async:
 
       Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.
+
+      ::
+
+          pose = await robot.transform_pose(PoseInFrame(), "origin")
 
       :param query: The pose that should be transformed.
       :type query: viam.proto.common.PoseInFrame
@@ -319,6 +426,17 @@ Attributes
 
       Get the list of discovered component configurations.
 
+      ::
+
+          # Define a new discovery query.
+          q = robot.DiscoveryQuery(subtype=acme.API, model="some model")
+
+          # Define a list of discovery queries.
+          qs = [q]
+
+          # Get component configurations with these queries.
+          component_configs = await robot.discover_components(qs)
+
       :param queries: The list of component models to lookup configurations for.
       :type queries: List[viam.proto.robot.DiscoveryQuery]
 
@@ -326,7 +444,12 @@ Attributes
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
       :async:
 
-      Cancel all current and outstanding operations for the robot and stop all actuators and movement
+      Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+
+      ::
+
+          # Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+          await robot.stop_all()
 
       :param extra: Any extra parameters to pass to the resources' ``stop`` methods,
                     keyed on the resource's ``ResourceName``

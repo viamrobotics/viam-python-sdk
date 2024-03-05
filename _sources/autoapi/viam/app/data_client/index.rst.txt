@@ -37,6 +37,32 @@ Attributes
    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
    `ViamClient`.
 
+   Establish a Connection::
+
+       import asyncio
+
+       from viam.rpc.dial import DialOptions, Credentials
+       from viam.app.viam_client import ViamClient
+
+
+       async def connect() -> ViamClient:
+           # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+           dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+           return await ViamClient.create_from_dial_options(dial_options)
+
+
+       async def main():
+           # Make a ViamClient
+           viam_client = await connect()
+           # Instantiate a DataClient to run data client API methods on
+           data_client = viam_client.data_client
+
+           viam_client.close()
+
+       if __name__ == '__main__':
+           asyncio.run(main())
+
+
    .. py:class:: TabularData(data: Mapping[str, Any], metadata: viam.proto.app.data.CaptureMetadata, time_requested: datetime.datetime, time_received: datetime.datetime)
 
 
@@ -118,6 +144,13 @@ Attributes
 
       Filter and download tabular data.
 
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="left_motor")
+          tabular_data = await data_client.tabular_data_by_filter(my_filter)
+
       :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
                      data.
       :type filter: viam.proto.app.data.Filter
@@ -132,6 +165,13 @@ Attributes
       :async:
 
       Filter and download binary data.
+
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_type="camera")
+          binary_data = await data_client.binary_data_by_filter(my_filter)
 
       :param filter: Optional `Filter` specifying binary data to retrieve. No `Filter` implies all
                      binary data.
@@ -157,6 +197,27 @@ Attributes
 
       Filter and download binary data.
 
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_ids = []
+
+          for obj in binary_metadata:
+              my_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                  )
+              )
+
+          binary_data = await data_client.binary_data_by_ids(my_ids)
+
       :param binary_ids: `BinaryID` objects specifying the desired data. Must be non-empty.
       :type binary_ids: List[viam.proto.app.data.BinaryID]
       :param dest: Optional filepath for writing retrieved data.
@@ -172,6 +233,15 @@ Attributes
       :async:
 
       Delete tabular data older than a specified number of days.
+
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="left_motor")
+          days_of_data_to_delete = 10
+          tabular_data = await data_client.delete_tabular_data(
+              org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
 
       :param organization_id: ID of organization to delete data from.
       :type organization_id: str
@@ -192,6 +262,13 @@ Attributes
 
       Filter and delete binary data.
 
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="left_motor")
+          res = await data_client.delete_binary_data_by_filter(my_filter)
+
       :param filter: Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
                      all data being deleted. Exercise caution when using this option.
       :type filter: viam.proto.app.data.Filter
@@ -201,6 +278,27 @@ Attributes
       :async:
 
       Filter and delete binary data.
+
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_ids = []
+
+          for obj in binary_metadata:
+              my_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                  )
+              )
+
+          binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
       :param binary_ids: `BinaryID` objects specifying the data to be deleted. Must be non-empty.
       :type binary_ids: List[viam.proto.app.data.BinaryID]
@@ -216,6 +314,29 @@ Attributes
 
       Add tags to binary data.
 
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          tags = ["tag1", "tag2"]
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_ids = []
+
+          for obj in binary_metadata:
+              my_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                  )
+              )
+
+          binary_data = await data_client.add_tags_to_binary_data_by_ids(tags, my_ids)
+
       :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
       :param binary_ids: List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
@@ -228,6 +349,14 @@ Attributes
       :async:
 
       Add tags to binary data.
+
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="my_camera")
+          tags = ["tag1", "tag2"]
+          res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)
 
       :param tags: List of tags to add to specified binary data. Must be non-empty.
       :type tags: List[str]
@@ -242,6 +371,30 @@ Attributes
       :async:
 
       Remove tags from binary.
+
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          tags = ["tag1", "tag2"]
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_ids = []
+
+          for obj in binary_metadata:
+              my_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                  )
+              )
+
+          binary_data = await data_client.remove_tags_from_binary_data_by_ids(
+              tags, my_ids)
 
       :param tags: List of tags to remove from specified binary data. Must be non-empty.
       :type tags: List[str]
@@ -258,6 +411,14 @@ Attributes
       :async:
 
       Remove tags from binary data.
+
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="my_camera")
+          tags = ["tag1", "tag2"]
+          res = await data_client.remove_tags_from_binary_data_by_filter(tags, my_filter)
 
       :param tags: List of tags to remove from specified binary data.
       :type tags: List[str]
@@ -276,6 +437,13 @@ Attributes
 
       Get a list of tags using a filter.
 
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="my_camera")
+          tags = await data_client.tags_by_filter(my_filter)
+
       :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
                      return.
       :type filter: viam.proto.app.data.Filter
@@ -288,6 +456,27 @@ Attributes
       :async:
 
       Add a bounding box to an image.
+
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          MY_BINARY_ID = BinaryID(
+              file_id=your-file_id,
+              organization_id=your-org-id,
+              location_id=your-location-id
+          )
+
+          bbox_label = await data_client.add_bounding_box_to_image_by_id(
+              binary_id=MY_BINARY_ID,
+              label="label",
+              x_min_normalized=0,
+              y_min_normalized=.1,
+              x_max_normalized=.2,
+              y_max_normalized=.3
+          )
+
+          print(bbox_label)
 
       :param binary_id: The ID of the image to add the bounding box to.
       :type binary_id: viam.proto.app.data.BinaryID
@@ -313,6 +502,21 @@ Attributes
 
       Removes a bounding box from an image.
 
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          MY_BINARY_ID = BinaryID(
+              file_id=your-file_id,
+              organization_id=your-org-id,
+              location_id=your-location-id
+          )
+
+          await data_client.remove_bounding_box_from_image_by_id(
+          binary_id=MY_BINARY_ID,
+          bbox_id="your-bounding-box-id-to-delete"
+          )
+
       :param bbox_id: The ID of the bounding box to remove.
       :type bbox_id: str
       :param Binary_id: Binary ID of the image to to remove the bounding box from
@@ -323,6 +527,14 @@ Attributes
       :async:
 
       Get a list of bounding box labels using a `Filter`.
+
+      ::
+
+          from viam.proto.app.data import Filter
+
+          my_filter = Filter(component_name="my_camera")
+          bounding_box_labels = await data_client.bounding_box_labels_by_filter(
+              my_filter)
 
       :param filter: `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
                      return.
@@ -336,6 +548,10 @@ Attributes
       :async:
 
       Get a connection to access a MongoDB Atlas Data federation instance.
+
+      ::
+
+          data_client.get_database_connection(org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
 
       :param organization_id: Organization to retrieve the connection for.
       :type organization_id: str
@@ -362,6 +578,14 @@ Attributes
       :returns: The dataset ID of the created dataset.
       :rtype: str
 
+      ::
+
+          name = await data_client.create_dataset(
+              name="<dataset-name>",
+              organization_id="<your-org-id>"
+          )
+          print(name)
+
 
    .. py:method:: list_dataset_by_ids(ids: List[str]) -> Sequence[viam.proto.app.dataset.Dataset]
       :async:
@@ -373,6 +597,13 @@ Attributes
 
       :returns: The list of datasets.
       :rtype: Sequence[Dataset]
+
+      ::
+
+          datasets = await data_client.list_dataset_by_ids(
+              ids=["abcd-1234xyz-8765z-123abc"]
+          )
+          print(datasets)
 
 
    .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
@@ -386,6 +617,13 @@ Attributes
       :returns: The list of datasets in the organization.
       :rtype: Sequence[Dataset]
 
+      ::
+
+          datasets = await data_client.list_dataset_by_ids(
+              ids=["abcd-1234xyz-8765z-123abc"]
+          )
+          print(datasets)
+
 
    .. py:method:: rename_dataset(id: str, name: str) -> None
       :async:
@@ -397,6 +635,13 @@ Attributes
       :param name: The new name of the dataset.
       :type name: str
 
+      ::
+
+          await data_client.rename_dataset(
+              id="abcd-1234xyz-8765z-123abc",
+              name="<dataset-name>"
+          )
+
 
    .. py:method:: delete_dataset(id: str) -> None
       :async:
@@ -405,6 +650,12 @@ Attributes
 
       :param id: The ID of the dataset.
       :type id: str
+
+      ::
+
+          await data_client.delete_dataset(
+              id="abcd-1234xyz-8765z-123abc"
+          )
 
 
    .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
@@ -419,6 +670,30 @@ Attributes
       :param dataset_id: The ID of the dataset to be added to.
       :type dataset_id: str
 
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_binary_ids = []
+
+          for obj in binary_metadata:
+              my_binary_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                      )
+                  )
+
+          await data_client.add_binary_data_to_dataset_by_ids(
+              binary_ids=my_binary_ids,
+              dataset_id="abcd-1234xyz-8765z-123abc"
+          )
+
 
    .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
       :async:
@@ -432,6 +707,30 @@ Attributes
       :param dataset_id: The ID of the dataset to be removed from.
       :type dataset_id: str
 
+      ::
+
+          from viam.proto.app.data import BinaryID
+
+          binary_metadata = await data_client.binary_data_by_filter(
+              include_file_data=False
+          )
+
+          my_binary_ids = []
+
+          for obj in binary_metadata:
+              my_binary_ids.append(
+                  BinaryID(
+                      file_id=obj.metadata.id,
+                      organization_id=obj.metadata.capture_metadata.organization_id,
+                      location_id=obj.metadata.capture_metadata.location_id
+                  )
+              )
+
+          await data_client.remove_binary_data_from_dataset_by_ids(
+              binary_ids=my_binary_ids,
+              dataset_id="abcd-1234xyz-8765z-123abc"
+          )
+
 
    .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
       :async:
@@ -440,6 +739,23 @@ Attributes
 
       Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
       app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
+
+      ::
+
+          time_requested = datetime(2023, 6, 5, 11)
+          time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+          file_id = await data_client.binary_data_capture_upload(
+              part_id="INSERT YOUR PART ID",
+              component_type='camera',
+              component_name='my_camera',
+              method_name='GetImages',
+              method_parameters=None,
+              tags=["tag_1", "tag_2"],
+              data_request_times=[time_requested, time_received],
+              file_extension=".jpg",
+              binary_data=b"Encoded image bytes"
+          )
 
       :param binary_data: The data to be uploaded, represented in bytes.
       :type binary_data: bytes
@@ -474,6 +790,21 @@ Attributes
       Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
       app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
+      ::
+
+          time_requested = datetime(2023, 6, 5, 11)
+          time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+          file_id = await data_client.tabular_data_capture_upload(
+              part_id="INSERT YOUR PART ID",
+              component_type='motor',
+              component_name='left_motor',
+              method_name='IsPowered',
+              tags=["tag_1", "tag_2"],
+              data_request_times=[(time_requested, time_received)],
+              tabular_data=[{'PowerPCT': 0, 'IsPowered': False}]
+          )
+
       :param tabular_data: List of the data to be uploaded, represented tabularly as a collection of dictionaries.
       :type tabular_data: List[Mapping[str, Any]]
       :param part_id: Part ID of the component used to capture the data.
@@ -504,6 +835,23 @@ Attributes
       :async:
 
       Uploads the metadata and contents of streaming binary data.
+
+      ::
+
+          time_requested = datetime(2023, 6, 5, 11)
+          time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+          file_id = await data_client.streaming_data_capture_upload(
+              data="byte-data-to-upload",
+              part_id="INSERT YOUR PART ID",
+              file_ext="png",
+              component_type='motor',
+              component_name='left_motor',
+              method_name='IsPowered',
+              data_request_times=[(time_requested, time_received)],
+              tags=["tag_1", "tag_2"]
+          )
+
 
       :param data: the data to be uploaded.
       :type data: bytes
@@ -539,6 +887,16 @@ Attributes
       Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
       "Files" subtab of the Data tab on app.viam.com.
 
+      ::
+
+          file_id = await data_client.file_upload(
+              data=b"Encoded image bytes",
+              part_id="INSERT YOUR PART ID",
+              tags=["tag_1", "tag_2"],
+              file_name="your-file",
+              file_extension=".txt"
+          )
+
       :param part_id: Part ID of the resource associated with the file.
       :type part_id: str
       :param data: Bytes representing file data to upload.
@@ -573,6 +931,14 @@ Attributes
 
       Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
       "Files" subtab of the Data tab on app.viam.com.
+
+      ::
+
+          file_id = await data_client.file_upload_from_path(
+              part_id="INSERT YOUR PART ID",
+              tags=["tag_1", "tag_2"],
+              filepath="/Users/<your-username>/<your-directory>/<your-file.txt>"
+          )
 
       :param filepath: Absolute filepath of file to be uploaded.
       :type filepath: str

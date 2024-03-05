@@ -158,6 +158,34 @@
 
 <span class="sd">    Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are</span>
 <span class="sd">    not automatically closed.</span>
+
+<span class="sd">    Establish a Connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.robot.client import RobotClient</span>
+
+
+<span class="sd">        async def connect():</span>
+<span class="sd">            opts = RobotClient.Options.with_api_key(</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+<span class="sd">                api_key=&#39;&lt;API-KEY&gt;&#39;,</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+<span class="sd">                api_key_id=&#39;&lt;API-KEY-ID&gt;&#39;</span>
+<span class="sd">            )</span>
+<span class="sd">            return await RobotClient.at_address(&#39;ADDRESS FROM THE VIAM APP&#39;, opts)</span>
+
+
+<span class="sd">        async def main():</span>
+<span class="sd">            # Make a RobotClient</span>
+<span class="sd">            robot = await connect()</span>
+<span class="sd">            print(&#39;Resources:&#39;)</span>
+<span class="sd">            print(robot.resource_names)</span>
+<span class="sd">            await robot.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="RobotClient.Options"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.Options">[docs]</a>    <span class="nd">@dataclass</span>
@@ -198,6 +226,17 @@
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Create RobotClient.Options with an API key for credentials and default values for other arguments.</span>
 
+<span class="sd">            ::</span>
+
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+<span class="sd">                api_key = &#39;&lt;API-KEY&gt;&#39;</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+<span class="sd">                api_key_id = &#39;&lt;API-KEY-ID&gt;&#39;</span>
+
+<span class="sd">                opts = RobotClient.Options.with_api_key(api_key, api_key_id)</span>
+
+<span class="sd">                robot = await RobotClient.at_address(&#39;ADDRESS FROM THE VIAM APP&#39;, opts)</span>
+
 <span class="sd">            Args:</span>
 <span class="sd">                api_key (str): your API key</span>
 <span class="sd">                api_key_id (str): your API key ID. Must be a valid UUID</span>
@@ -217,6 +256,22 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">at_address</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">Options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot client that is connected to the robot at the provided address.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect():</span>
+<span class="sd">                opts = RobotClient.Options.with_api_key(</span>
+<span class="sd">                    # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
+<span class="sd">                    api_key=&#39;&lt;API-KEY&gt;&#39;,</span>
+<span class="sd">                    # Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
+<span class="sd">                    api_key_id=&#39;&lt;API-KEY-ID&gt;&#39;</span>
+<span class="sd">                )</span>
+<span class="sd">                return await RobotClient.at_address(&#39;ADDRESS FROM THE VIAM APP&#39;, opts)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                # Make a RobotClient</span>
+<span class="sd">                robot = await connect()</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            address (str): Address of the robot (IP address, URL, etc.)</span>
 <span class="sd">            options (Options): Options for connecting and refreshing</span>
@@ -235,6 +290,18 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot that is connected to a robot over the given channel.</span>
 
 <span class="sd">        Any robots created using this method will *NOT* automatically close the channel upon exit.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.robot.client import RobotClient</span>
+<span class="sd">            from viam.rpc.dial import DialOptions, dial</span>
+
+
+<span class="sd">            async def connect_with_channel() -&gt; RobotClient:</span>
+<span class="sd">                async with await dial(&#39;ADDRESS&#39;, DialOptions()) as channel:</span>
+<span class="sd">                    return await RobotClient.with_channel(channel, RobotClient.Options())</span>
+
+<span class="sd">            robot = await connect_with_channel()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            channel (ViamChannel): The channel that is connected to a robot, obtained by ``viam.rpc.dial``</span>
@@ -309,6 +376,10 @@
 <div class="viewcode-block" id="RobotClient.refresh"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.refresh">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Manually refresh the underlying parts of this robot</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await robot.refresh()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ResourceNamesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">ResourceNames</span><span class="p">(</span><span class="n">ResourceNamesRequest</span><span class="p">())</span>
         <span class="n">resource_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">resources</span><span class="p">)</span>
@@ -539,6 +610,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get a list of all resource names</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            resource_names = robot.resource_names</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.common.ResourceName]: The list of resource names</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -556,7 +631,12 @@
 
 <div class="viewcode-block" id="RobotClient.close"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.close">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cleanly close the underlying connections and stop any periodic tasks</span>
+<span class="sd">        Cleanly close the underlying connections and stop any periodic tasks.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Cleanly close the underlying connections and stop any periodic tasks.</span>
+<span class="sd">            await robot.close()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing RobotClient&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closed</span><span class="p">:</span>
@@ -598,6 +678,11 @@
 <span class="sd">        Get the status of the robot&#39;s components. You can optionally</span>
 <span class="sd">        provide a list of ``ResourceName`` for which you want statuses.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get the status of the resources on the machine.</span>
+<span class="sd">            statuses = await robot.get_status()</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            components (Optional[List[viam.proto.common.ResourceName]]): Optional list of</span>
 <span class="sd">                ``ResourceName`` for components you want statuses.</span>
@@ -615,6 +700,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of operations currently running on the robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            operations = await robot.get_operations()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.robot.Operation]: The list of operations currently running on a given robot.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -626,6 +715,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Cancels the specified operation on the robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await robot.cancel_operation(&quot;INSERT OPERATION ID&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): ID of operation to kill.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -636,6 +729,10 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Blocks on the specified operation on the robot. This function will only return when the specific operation</span>
 <span class="sd">        has finished or has been cancelled.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await robot.block_for_operation(&quot;INSERT OPERATION ID&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): ID of operation to block on.</span>
@@ -651,6 +748,12 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the configuration of the frame system of a given robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get a list of each of the reference frames configured on the machine.</span>
+<span class="sd">            frame_system = await robot.get_frame_system_config()</span>
+<span class="sd">            print(f&quot;frame system configuration: {frame_system}&quot;)</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.robot.FrameSystemConfig]: The configuration of a given robot&#39;s frame system.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -663,6 +766,10 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoseInFrame</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Transform a given source Pose from the reference frame to a new specified destination which is a reference frame.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            pose = await robot.transform_pose(PoseInFrame(), &quot;origin&quot;)</span>
 
 <span class="sd">        Args:</span>
 
@@ -688,6 +795,17 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the list of discovered component configurations.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Define a new discovery query.</span>
+<span class="sd">            q = robot.DiscoveryQuery(subtype=acme.API, model=&quot;some model&quot;)</span>
+
+<span class="sd">            # Define a list of discovery queries.</span>
+<span class="sd">            qs = [q]</span>
+
+<span class="sd">            # Get component configurations with these queries.</span>
+<span class="sd">            component_configs = await robot.discover_components(qs)</span>
+
 <span class="sd">        Args:</span>
 
 <span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.</span>
@@ -703,7 +821,12 @@
 
 <div class="viewcode-block" id="RobotClient.stop_all"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.stop_all">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cancel all current and outstanding operations for the robot and stop all actuators and movement</span>
+<span class="sd">        Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+<span class="sd">            await robot.stop_all()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            extra (Dict[viam.proto.common.ResourceName, Dict[str, Any]]): Any extra parameters to pass to the resources&#39; ``stop`` methods,</span>

@@ -465,6 +465,33 @@
 
 <span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stub. Calls to `AppClient`  methods should be made through</span>
 <span class="sd">    `ViamClient`.</span>
+
+<span class="sd">    Establish a Connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.app.viam_client import ViamClient</span>
+
+
+<span class="sd">        async def connect() -&gt; ViamClient:</span>
+<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">        async def main():</span>
+
+<span class="sd">            # Make a ViamClient</span>
+<span class="sd">            viam_client = await connect()</span>
+<span class="sd">            # Instantiate an AppClient called &quot;cloud&quot; to run cloud app API methods on</span>
+<span class="sd">            cloud = viam_client.app_client</span>
+
+<span class="sd">            viam_client.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -534,6 +561,10 @@
 <div class="viewcode-block" id="AppClient.list_organizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Organization</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the organization(s) the user is an authorized owner of.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            org_list = await cloud.list_organizations()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Organization]: The list of organizations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -565,6 +596,11 @@
 
 <div class="viewcode-block" id="AppClient.get_organization_namespace_availability"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization_namespace_availability">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization_namespace_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">public_namespace</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Check the availability of an organization namespace.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            available = await cloud.get_organization_namespace_availability(</span>
+<span class="sd">                public_namespace=&quot;my-cool-organization&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            public_namespace (str): Organization namespace to check. Namespaces can only contain lowercase lowercase alphanumeric and dash</span>
@@ -621,6 +657,10 @@
 <div class="viewcode-block" id="AppClient.list_organization_members"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organization_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organization_members</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrganizationMember</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">OrganizationInvite</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the members and invites of the currently authed-to organization.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            member_list, invite_list = await cloud.list_organization_members()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first</span>
 <span class="sd">                [0] of organization members, and the second [1] of organization invites.</span>
@@ -632,6 +672,10 @@
 
 <div class="viewcode-block" id="AppClient.create_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates an organization invite and sends it via email.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.create_organization_invite(&quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): The email address to send the invite to.</span>
@@ -658,6 +702,24 @@
 <span class="sd">        Note that an invite can only have one authorization at each resource (e.g., organization, location, robot, etc.) level and must have</span>
 <span class="sd">        at least one authorization overall.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app import Authorization</span>
+
+<span class="sd">            authorization_to_add = Authorization(</span>
+<span class="sd">                authorization_type=&quot;some type of auth&quot;,</span>
+<span class="sd">                authorization_id=&quot;identifier&quot;,</span>
+<span class="sd">                resource_type=&quot;abc&quot;,</span>
+<span class="sd">                resource_id=&quot;resource-identifier123&quot;,</span>
+<span class="sd">                identity_id=&quot;id12345&quot;,</span>
+<span class="sd">                organization_id=&quot;org_id_123&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">            update_invite = await cloud.update_organization_invite_authorizations(</span>
+<span class="sd">                email=&quot;notarealemail@viam.com&quot;,</span>
+<span class="sd">                add_authorizations =[authorization_to_add]</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): Email of the user the invite was sent to.</span>
 <span class="sd">            add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.</span>
@@ -682,6 +744,13 @@
 <div class="viewcode-block" id="AppClient.delete_organization_member"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a member from the organization.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            member_list, invite_list = await cloud.list_organization_members()</span>
+<span class="sd">            first_user_id = member_list[0].user_id</span>
+
+<span class="sd">            await cloud.delete_organization_member(first_user_id)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            user_id (str): The ID of the user to remove.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -691,6 +760,10 @@
 
 <div class="viewcode-block" id="AppClient.delete_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Deletes a pending organization invite.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_organization_invite(&quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): The email address the pending invite was sent to.</span>
@@ -705,6 +778,10 @@
 <div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Re-sends a pending organization invite email.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.resend_organization_invite(&quot;youremail@email.com&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            email (str): The email address associated with the invite.</span>
 
@@ -718,6 +795,11 @@
 
 <div class="viewcode-block" id="AppClient.create_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and name a location under the currently authed-to organization and the specified parent location.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_new_location = await cloud.create_location(name=&quot;Robotville&quot;,</span>
+<span class="sd">                                                          parent_location_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the location.</span>
@@ -738,6 +820,10 @@
 <div class="viewcode-block" id="AppClient.get_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a location.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            location = await cloud.get_location(location_id=&quot;123ab12345&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (Optional[str]): ID of the location to get. Defaults to the location ID provided at `AppClient` instantiation.</span>
 
@@ -754,6 +840,29 @@
 
 <div class="viewcode-block" id="AppClient.update_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name of a location and/or assign it a new parent location.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # The following line takes the location with ID &quot;abc12abcde&quot; and moves it to be a</span>
+<span class="sd">            # sub-location of the location with ID &quot;xyz34xxxxx&quot;</span>
+<span class="sd">            my_updated_location = await cloud.update_location(</span>
+<span class="sd">                location_id=&quot;abc12abcde&quot;,</span>
+<span class="sd">                name=&quot;&quot;,</span>
+<span class="sd">                parent_location_id=&quot;xyz34xxxxx&quot;,</span>
+<span class="sd">            )</span>
+
+<span class="sd">            # The following line changes the name of the location without changing its parent location</span>
+<span class="sd">            my_updated_location = await cloud.update_location(</span>
+<span class="sd">                location_id=&quot;abc12abcde&quot;,</span>
+<span class="sd">                name=&quot;Land Before Robots&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">            # The following line moves the location back up to be a top level location without changing its name</span>
+<span class="sd">            my_updated_location = await cloud.update_location(</span>
+<span class="sd">                location_id=&quot;abc12abcde&quot;,</span>
+<span class="sd">                name=&quot;&quot;,</span>
+<span class="sd">                parent_location_id=&quot;&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to update. Must be specified.</span>
@@ -775,6 +884,10 @@
 <div class="viewcode-block" id="AppClient.delete_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a location.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_location(location_id=&quot;abc12abcde&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to delete. Must be specified.</span>
 
@@ -786,6 +899,10 @@
 
 <div class="viewcode-block" id="AppClient.list_locations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_locations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all locations under the currently authed-to organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            locations = await cloud.list_locations()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Location]: The list of locations.</span>
@@ -806,6 +923,10 @@
 <div class="viewcode-block" id="AppClient.location_auth"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.location_auth">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">location_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocationAuth</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a location&#39;s `LocationAuth` (location secret(s)).</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            loc_auth = await cloud.location_auth(location_id=&quot;123xy12345&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to retrieve `LocationAuth` from. Defaults to the location ID provided at `AppClient`</span>
 <span class="sd">                instantiation.</span>
@@ -823,6 +944,10 @@
 
 <div class="viewcode-block" id="AppClient.create_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocationAuth</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new location secret.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            new_loc_auth = await cloud.create_location_secret()</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (Optional[str]): ID of the location to generate a new secret for. Defaults to the location ID provided at</span>
@@ -842,6 +967,11 @@
 <div class="viewcode-block" id="AppClient.delete_location_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_location_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_location_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a location secret.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_location_secret(</span>
+<span class="sd">                secret_id=&quot;abcd123-456-7890ab-cxyz98-989898xyzxyz&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (str): ID of the location to delete secret from. Defaults to the location ID provided at `AppClient` instantiation.</span>
 <span class="sd">            secret_id (str): ID of the secret to delete.</span>
@@ -857,6 +987,10 @@
 
 <div class="viewcode-block" id="AppClient.get_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            robot = await cloud.get_robot(robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): ID of the robot to get.</span>
@@ -874,6 +1008,10 @@
 <div class="viewcode-block" id="AppClient.get_rover_rental_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_rover_rental_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_rover_rental_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RoverRentalRobot</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of rover rental robots within an org.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            rental_robots = await cloud.get_rover_rental_robots()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -884,6 +1022,11 @@
 
 <div class="viewcode-block" id="AppClient.get_robot_parts"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_parts">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_parts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RobotPart</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all the parts under a specific robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            list_of_parts = await cloud.get_robot_parts(</span>
+<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): ID of the robot to get parts from.</span>
@@ -900,6 +1043,11 @@
 
 <div class="viewcode-block" id="AppClient.get_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">indent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a robot part.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_robot_part = await cloud.get_robot_part(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to get.</span>
@@ -934,6 +1082,11 @@
         <span class="n">num_log_entries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the logs associated with a robot part.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            part_logs = await cloud.get_robot_part_logs(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;, num_log_entries=20)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to get logs from.</span>
@@ -996,6 +1149,11 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_LogsStream</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">LogEntry</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get an asynchronous iterator that receives live robot part logs.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            logs_stream = await cloud.tail_robot_part_logs(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to retrieve logs from.</span>
 <span class="sd">            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.</span>
@@ -1024,6 +1182,11 @@
 <div class="viewcode-block" id="AppClient.get_robot_part_history"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_part_history">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_part_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RobotPartHistoryEntry</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list containing the history of a robot part.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            part_history = await cloud.get_robot_part_history(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to retrieve history from.</span>
 
@@ -1039,6 +1202,11 @@
 
 <div class="viewcode-block" id="AppClient.update_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">robot_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name and assign an optional new configuration to a robot part.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            my_robot_part = await cloud.update_robot_part(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to update.</span>
@@ -1059,6 +1227,11 @@
 <div class="viewcode-block" id="AppClient.new_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.new_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">new_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">part_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new robot part.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            new_part_id = await cloud.new_robot_part(</span>
+<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;, part_name=&quot;myNewSubPart&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): ID of the the robot to create a new part for.</span>
 <span class="sd">            part_name (str): Name of the new part.</span>
@@ -1076,6 +1249,11 @@
 <div class="viewcode-block" id="AppClient.delete_robot_part"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified robot part.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_robot_part(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to delete. Must be specified.</span>
 
@@ -1087,6 +1265,11 @@
 
 <div class="viewcode-block" id="AppClient.mark_part_as_main"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_as_main">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_as_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a robot part as the main part of a robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.mark_part_as_main(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to mark as main.</span>
@@ -1100,6 +1283,11 @@
 <div class="viewcode-block" id="AppClient.mark_part_for_restart"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_for_restart">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_for_restart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark the specified robot part for restart.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.mark_part_for_restart(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to mark for restart.</span>
 
@@ -1111,6 +1299,11 @@
 
 <div class="viewcode-block" id="AppClient.create_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RobotPart</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a robot part secret.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            part_with_new_secret = await cloud.create_robot_part_secret(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to create a secret for.</span>
@@ -1128,6 +1321,12 @@
 <div class="viewcode-block" id="AppClient.delete_robot_part_secret"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot_part_secret">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot_part_secret</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a robot part secret.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_robot_part_secret(</span>
+<span class="sd">                robot_part_id=&quot;abc12345-1a23-1234-ab12-a22a22a2aa22&quot;,</span>
+<span class="sd">                secret_id=&quot;123xyz12-abcd-4321-12ab-12xy1xyz12xy&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_part_id (str): ID of the robot part to delete the secret from.</span>
 <span class="sd">            secret_id (str): ID of the secret to delete.</span>
@@ -1140,6 +1339,10 @@
 
 <div class="viewcode-block" id="AppClient.list_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Robot</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all robots under the specified location.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            list_of_machines = await cloud.list_robots(location_id=&quot;123ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            location_id (Optional[str]): ID of the location to retrieve the robots from. Defaults to the location ID provided at</span>
@@ -1159,6 +1362,10 @@
 <div class="viewcode-block" id="AppClient.new_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.new_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">new_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            new_machine_id = await cloud.new_robot(name=&quot;beepboop&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the new robot.</span>
 <span class="sd">            location_id (Optional[str]): ID of the location under which to create the robot. Defaults to the current authorized location.</span>
@@ -1176,6 +1383,12 @@
 
 <div class="viewcode-block" id="AppClient.update_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Robot</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the name of an existing robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            updated_robot = await cloud.update_robot(</span>
+<span class="sd">                robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;,</span>
+<span class="sd">                name=&quot;Orange-Robot&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): ID of the robot to update.</span>
@@ -1199,6 +1412,10 @@
 <div class="viewcode-block" id="AppClient.delete_robot"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_robot">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_robot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete the specified robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_robot(robot_id=&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot_id (str): ID of the robot to delete.</span>
 
@@ -1210,6 +1427,10 @@
 
 <div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the currently authed-to organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            fragments_list = await cloud.list_fragments(show_public=False)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will</span>
@@ -1226,6 +1447,13 @@
 <div class="viewcode-block" id="AppClient.get_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a fragment.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Get a fragment and print its name and when it was created.</span>
+<span class="sd">            the_fragment = await cloud.get_fragment(</span>
+<span class="sd">                fragment_id=&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;)</span>
+<span class="sd">            print(&quot;Name: &quot;, the_fragment.name, &quot;\nCreated on: &quot;, the_fragment.created_on)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            fragment_id (str): ID of the fragment to get.</span>
 
@@ -1241,6 +1469,11 @@
 
 <div class="viewcode-block" id="AppClient.create_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new private fragment.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            new_fragment = await cloud.create_fragment(</span>
+<span class="sd">                name=&quot;cool_smart_machine_to_configure_several_of&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the fragment.</span>
@@ -1263,6 +1496,12 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a fragment name AND its config and/or visibility.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            updated_fragment = await cloud.update_fragment(</span>
+<span class="sd">                fragment_id=&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;,</span>
+<span class="sd">                name=&quot;better_name&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            fragment_id (str): ID of the fragment to update.</span>
 <span class="sd">            name (str): New name to associate with the fragment.</span>
@@ -1284,6 +1523,11 @@
 <div class="viewcode-block" id="AppClient.delete_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fragment_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a fragment.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_fragment(</span>
+<span class="sd">                fragment_id=&quot;12a12ab1-1234-5678-abcd-abcd01234567&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            fragment_id (str): ID of the fragment to delete.</span>
 
@@ -1301,6 +1545,14 @@
         <span class="n">resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a role under the currently authed-to organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.add_role(</span>
+<span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
+<span class="sd">                role=&quot;owner&quot;,</span>
+<span class="sd">                resource_type=&quot;location&quot;,</span>
+<span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
@@ -1331,6 +1583,14 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a role under the currently authed-to organization.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.remove_role(</span>
+<span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
+<span class="sd">                role=&quot;owner&quot;,</span>
+<span class="sd">                resource_type=&quot;location&quot;,</span>
+<span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
@@ -1355,6 +1615,11 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs</span>
 <span class="sd">        are provided, all resource authorizations within the organizations are returned.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            list_of_auths = await cloud.list_authorizations(</span>
+<span class="sd">                resource_ids=[&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;])</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.</span>
 <span class="sd">                If None, defaults to all resources.</span>
@@ -1373,6 +1638,19 @@
 <div class="viewcode-block" id="AppClient.check_permissions"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.check_permissions">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">check_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">permissions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AuthorizedPermissions</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Checks validity of a list of permissions.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app import AuthorizedPermissions</span>
+
+<span class="sd">            # Check whether the entity you&#39;re currently authenticated to has permission to control and/or</span>
+<span class="sd">            # read logs from robots in the &quot;organization-identifier123&quot; org</span>
+<span class="sd">            permissions = [AuthorizedPermissions(resource_type=&quot;organization&quot;,</span>
+<span class="sd">                                                 resource_id=&quot;organization-identifier123&quot;,</span>
+<span class="sd">                                                 permissions=[&quot;control_robot&quot;,</span>
+<span class="sd">                                                              &quot;read_robot_logs&quot;])]</span>
+
+<span class="sd">            filtered_permissions = await cloud.check_permissions(permissions)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            permissions (List[viam.proto.app.AuthorizedPermissions]): the permissions to validate</span>
 <span class="sd">                (e.g., &quot;read_organization&quot;, &quot;control_robot&quot;)</span>
@@ -1389,6 +1667,11 @@
 
 <div class="viewcode-block" id="AppClient.create_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a module under the currently authed-to organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            new_module = await cloud.create_module(name=&quot;cool_new_hoverboard_module&quot;)</span>
+<span class="sd">            print(&quot;Module ID:&quot;, new_module[0])</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): The name of the module. Must be unique within your organization.</span>
@@ -1415,6 +1698,14 @@
         <span class="n">public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            url_of_my_module = await cloud.update_module(</span>
+<span class="sd">                module_id=&quot;my-group:cool_new_hoverboard_module&quot;,</span>
+<span class="sd">                url=&quot;https://docsformymodule.viam.com&quot;,</span>
+<span class="sd">                description=&quot;A base to support hoverboards.&quot;,</span>
+<span class="sd">                entrypoint=&quot;exec&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            module_id (str): ID of the module being updated, containing module name (e.g., &quot;my-module&quot;) or namespace and module name (e.g.,</span>
@@ -1445,6 +1736,10 @@
 <div class="viewcode-block" id="AppClient.upload_module_file"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.upload_module_file">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">upload_module_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_file_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ModuleFileInfo</span><span class="p">],</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload a module file</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            file_id = await cloud.upload_module_file(file=b&quot;&lt;file&gt;&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            module_file_info (Optional[viam.proto.app.ModuleFileInfo]): Relevant metadata.</span>
 <span class="sd">            file (bytes): Bytes of file to upload.</span>
@@ -1466,6 +1761,10 @@
 <div class="viewcode-block" id="AppClient.get_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Module</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a module.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            the_module = await cloud.get_module(module_id=&quot;my-cool-modular-base&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            module_id (str): ID of the module being retrieved, containing module name or namespace and module name.</span>
 
@@ -1482,6 +1781,10 @@
 <div class="viewcode-block" id="AppClient.list_modules"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Module</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the modules under the currently authed-to organization.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            modules_list = await cloud.list_modules()</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Module]: The list of modules.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1494,6 +1797,18 @@
     <span class="c1"># app deal with setting a default.</span>
 <div class="viewcode-block" id="AppClient.create_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyAuthorization</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new API key.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.app.app_client import APIKeyAuthorization</span>
+
+<span class="sd">            auth = APIKeyAuthorization(</span>
+<span class="sd">            role=&quot;owner&quot;,</span>
+<span class="sd">            resource_type=&quot;robot&quot;,</span>
+<span class="sd">            resource_id=&quot;your-robot-id123&quot;</span>
+<span class="sd">            )</span>
+
+<span class="sd">            api_key, api_key_id = cloud.create_key([auth], &quot;my_key&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate</span>
@@ -1515,6 +1830,11 @@
 <div class="viewcode-block" id="AppClient.create_key_from_existing_key_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key_from_existing_key_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key_from_existing_key_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new API key with an existing key&#39;s authorizations</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(</span>
+<span class="sd">                id=&quot;INSERT YOUR API KEY ID&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): the ID of the API key to duplication authorizations from</span>
 
@@ -1530,6 +1850,10 @@
 
 <div class="viewcode-block" id="AppClient.list_keys"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_keys">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyWithAuthorizations</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lists all keys for the currently-authed-to org.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            keys = cloud.list_keys()</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.&quot;&quot;&quot;</span>

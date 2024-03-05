@@ -194,6 +194,31 @@
 <dd><p>gRPC client for uploading and retrieving data from app.</p>
 <p>Constructor is used by <cite>ViamClient</cite> to instantiate relevant service stubs. Calls to <cite>DataClient</cite> methods should be made through
 <cite>ViamClient</cite>.</p>
+<p>Establish a Connection:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+
+<span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">Credentials</span>
+<span class="kn">from</span> <span class="nn">viam.app.viam_client</span> <span class="kn">import</span> <span class="n">ViamClient</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Make a ViamClient</span>
+    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="c1"># Instantiate a DataClient to run data client API methods on</span>
+    <span class="n">data_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">data_client</span>
+
+    <span class="n">viam_client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><span class="pre">viam.proto.app.data.CaptureMetadata</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_requested</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_received</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.TabularData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData" title="Permalink to this definition"></a></dt>
@@ -282,6 +307,12 @@
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData"><span class="pre">TabularData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and download tabular data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -303,6 +334,12 @@ data.</p></li>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.binary_data_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData"><span class="pre">BinaryData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and download binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_type</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
+<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -335,6 +372,26 @@ Defaults to 100 if no binary data is requested, otherwise 10. All binary data or
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.binary_data_by_ids">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData"><span class="pre">BinaryData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and download binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_ids</span><span class="p">(</span><span class="n">my_ids</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -358,6 +415,14 @@ Defaults to 100 if no binary data is requested, otherwise 10. All binary data or
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_tabular_data">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_tabular_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_older_than_days</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_tabular_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_tabular_data" title="Permalink to this definition"></a></dt>
 <dd><p>Delete tabular data older than a specified number of days.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
+<span class="n">days_of_data_to_delete</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_tabular_data</span><span class="p">(</span>
+    <span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;</span><span class="p">,</span> <span class="n">days_of_data_to_delete</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -379,6 +444,12 @@ is 10, this deletes any data that was captured up to 10 days ago. If it is 0, al
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_binary_data_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_binary_data_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and delete binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – Optional <cite>Filter</cite> specifying binary data to delete. Passing an empty <cite>Filter</cite> will lead to
@@ -391,6 +462,26 @@ all data being deleted. Exercise caution when using this option.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.delete_binary_data_by_ids">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.delete_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.delete_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Filter and delete binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_binary_data_by_ids</span><span class="p">(</span><span class="n">my_ids</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><em>viam.proto.app.data.BinaryID</em></a><em>]</em>) – <cite>BinaryID</cite> objects specifying the data to be deleted. Must be non-empty.</p>
@@ -411,6 +502,28 @@ all data being deleted. Exercise caution when using this option.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_tags_to_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_tags_to_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Add tags to binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">my_ids</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -428,6 +541,13 @@ all data being deleted. Exercise caution when using this option.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_tags_to_binary_data_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_tags_to_binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_tags_to_binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_tags_to_binary_data_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Add tags to binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_tags_to_binary_data_by_filter</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -446,6 +566,29 @@ tagged.</p></li>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids" title="Permalink to this definition"></a></dt>
 <dd><p>Remove tags from binary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_tags_from_binary_data_by_ids</span><span class="p">(</span>
+    <span class="n">tags</span><span class="p">,</span> <span class="n">my_ids</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -469,6 +612,13 @@ tagged.</p></li>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Remove tags from binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_tags_from_binary_data_by_filter</span><span class="p">(</span><span class="n">tags</span><span class="p">,</span> <span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -493,6 +643,12 @@ untagged.</p></li>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tags_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tags_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tags_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tags_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of tags using a filter.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tags_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – <cite>Filter</cite> specifying data to retrieve from. If no <cite>Filter</cite> is provided, all data tags will
@@ -511,6 +667,26 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.add_bounding_box_to_image_by_id">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_bounding_box_to_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_normalized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.add_bounding_box_to_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.add_bounding_box_to_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Add a bounding box to an image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">MY_BINARY_ID</span> <span class="o">=</span> <span class="n">BinaryID</span><span class="p">(</span>
+    <span class="n">file_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">file_id</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">-</span><span class="nb">id</span><span class="p">,</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">location</span><span class="o">-</span><span class="nb">id</span>
+<span class="p">)</span>
+
+<span class="n">bbox_label</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_bounding_box_to_image_by_id</span><span class="p">(</span>
+    <span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_ID</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;label&quot;</span><span class="p">,</span>
+    <span class="n">x_min_normalized</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">y_min_normalized</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span>
+    <span class="n">x_max_normalized</span><span class="o">=</span><span class="mf">.2</span><span class="p">,</span>
+    <span class="n">y_max_normalized</span><span class="o">=</span><span class="mf">.3</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bbox_label</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -538,6 +714,20 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_bounding_box_from_image_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_bounding_box_from_image_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id" title="Permalink to this definition"></a></dt>
 <dd><p>Removes a bounding box from an image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">MY_BINARY_ID</span> <span class="o">=</span> <span class="n">BinaryID</span><span class="p">(</span>
+    <span class="n">file_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">file_id</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">-</span><span class="nb">id</span><span class="p">,</span>
+    <span class="n">location_id</span><span class="o">=</span><span class="n">your</span><span class="o">-</span><span class="n">location</span><span class="o">-</span><span class="nb">id</span>
+<span class="p">)</span>
+
+<span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_bounding_box_from_image_by_id</span><span class="p">(</span>
+<span class="n">binary_id</span><span class="o">=</span><span class="n">MY_BINARY_ID</span><span class="p">,</span>
+<span class="n">bbox_id</span><span class="o">=</span><span class="s2">&quot;your-bounding-box-id-to-delete&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -552,6 +742,13 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.bounding_box_labels_by_filter">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bounding_box_labels_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.bounding_box_labels_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.bounding_box_labels_by_filter" title="Permalink to this definition"></a></dt>
 <dd><p>Get a list of bounding box labels using a <cite>Filter</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
+
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;my_camera&quot;</span><span class="p">)</span>
+<span class="n">bounding_box_labels</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">bounding_box_labels_by_filter</span><span class="p">(</span>
+    <span class="n">my_filter</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – <cite>Filter</cite> specifying data to retrieve from. If no <cite>Filter</cite> is provided, all labels will
@@ -570,6 +767,9 @@ return.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.get_database_connection">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_database_connection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.get_database_connection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.get_database_connection" title="Permalink to this definition"></a></dt>
 <dd><p>Get a connection to access a MongoDB Atlas Data federation instance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data_client</span><span class="o">.</span><span class="n">get_database_connection</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – Organization to retrieve the connection for.</p>
@@ -606,6 +806,13 @@ return.</p>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;dataset-name&gt;&quot;</span><span class="p">,</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -623,6 +830,12 @@ return.</p>
 <dd class="field-odd"><p>Sequence[<a class="reference internal" href="../../gen/app/dataset/v1/dataset_pb2/index.html#viam.gen.app.dataset.v1.dataset_pb2.Dataset" title="viam.gen.app.dataset.v1.dataset_pb2.Dataset">Dataset</a>]</p>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_ids</span><span class="p">(</span>
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -640,6 +853,12 @@ return.</p>
 <dd class="field-odd"><p>Sequence[<a class="reference internal" href="../../gen/app/dataset/v1/dataset_pb2/index.html#viam.gen.app.dataset.v1.dataset_pb2.Dataset" title="viam.gen.app.dataset.v1.dataset_pb2.Dataset">Dataset</a>]</p>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_ids</span><span class="p">(</span>
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -654,6 +873,12 @@ return.</p>
 </ul>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">rename_dataset</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&lt;dataset-name&gt;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -665,6 +890,11 @@ return.</p>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – The ID of the dataset.</p>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">delete_dataset</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -680,6 +910,29 @@ return.</p>
 </ul>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_binary_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_binary_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+<span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">add_binary_data_to_dataset_by_ids</span><span class="p">(</span>
+    <span class="n">binary_ids</span><span class="o">=</span><span class="n">my_binary_ids</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -695,6 +948,29 @@ return.</p>
 </ul>
 </dd>
 </dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
+
+<span class="n">binary_metadata</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span>
+    <span class="n">include_file_data</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">my_binary_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">binary_metadata</span><span class="p">:</span>
+    <span class="n">my_binary_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">BinaryID</span><span class="p">(</span>
+            <span class="n">file_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">location_id</span><span class="o">=</span><span class="n">obj</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">capture_metadata</span><span class="o">.</span><span class="n">location_id</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">remove_binary_data_from_dataset_by_ids</span><span class="p">(</span>
+    <span class="n">binary_ids</span><span class="o">=</span><span class="n">my_binary_ids</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="o">=</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
@@ -703,6 +979,22 @@ return.</p>
 <dd><p>Upload binary sensor data.</p>
 <p>Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
 app.viam.com. Binary data can be found under the “Files” subtab of the Data tab on app.viam.com.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_capture_upload</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;camera&#39;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;my_camera&#39;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;GetImages&#39;</span><span class="p">,</span>
+    <span class="n">method_parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">],</span>
+    <span class="n">file_extension</span><span class="o">=</span><span class="s2">&quot;.jpg&quot;</span><span class="p">,</span>
+    <span class="n">binary_data</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;Encoded image bytes&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -732,6 +1024,20 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd><p>Upload tabular sensor data.</p>
 <p>Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
 app.viam.com. Tabular data can be found under the “Sensors” subtab of the Data tab on app.viam.com.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_capture_upload</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">)],</span>
+    <span class="n">tabular_data</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;PowerPCT&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;IsPowered&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -764,6 +1070,21 @@ data.</p></li>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.streaming_data_capture_upload">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">streaming_data_capture_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.streaming_data_capture_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.streaming_data_capture_upload" title="Permalink to this definition"></a></dt>
 <dd><p>Uploads the metadata and contents of streaming binary data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">streaming_data_capture_upload</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="s2">&quot;byte-data-to-upload&quot;</span><span class="p">,</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
+    <span class="n">file_ext</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span>
+    <span class="n">component_type</span><span class="o">=</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="s1">&#39;left_motor&#39;</span><span class="p">,</span>
+    <span class="n">method_name</span><span class="o">=</span><span class="s1">&#39;IsPowered&#39;</span><span class="p">,</span>
+    <span class="n">data_request_times</span><span class="o">=</span><span class="p">[(</span><span class="n">time_requested</span><span class="p">,</span> <span class="n">time_received</span><span class="p">)],</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -797,6 +1118,15 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd><p>Upload arbitrary file data.</p>
 <p>Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
 “Files” subtab of the Data tab on app.viam.com.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">file_upload</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="sa">b</span><span class="s2">&quot;Encoded image bytes&quot;</span><span class="p">,</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;your-file&quot;</span><span class="p">,</span>
+    <span class="n">file_extension</span><span class="o">=</span><span class="s2">&quot;.txt&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -831,6 +1161,13 @@ provided. Files with a .jpeg, .jpg, or .png extension will be saved to the image
 <dd><p>Upload arbitrary file data.</p>
 <p>Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
 “Files” subtab of the Data tab on app.viam.com.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">file_upload_from_path</span><span class="p">(</span>
+    <span class="n">part_id</span><span class="o">=</span><span class="s2">&quot;INSERT YOUR PART ID&quot;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tag_1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag_2&quot;</span><span class="p">],</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;/Users/&lt;your-username&gt;/&lt;your-directory&gt;/&lt;your-file.txt&gt;&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

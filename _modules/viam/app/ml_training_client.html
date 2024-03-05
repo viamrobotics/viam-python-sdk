@@ -114,6 +114,32 @@
 
 <span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs.</span>
 <span class="sd">    Calls to `MLTrainingClient` methods should be made through `ViamClient`.</span>
+
+<span class="sd">    Establish a Connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.app.viam_client import ViamClient</span>
+
+
+<span class="sd">        async def connect() -&gt; ViamClient:</span>
+<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">        async def main():</span>
+
+<span class="sd">            # Make a ViamClient</span>
+<span class="sd">            viam_client = await connect()</span>
+<span class="sd">            # Instantiate an MLTrainingClient to run ML training client API methods on</span>
+<span class="sd">            ml_training_client = viam_client.ml_training_client</span>
+
+<span class="sd">            viam_client.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
@@ -141,6 +167,11 @@
 <div class="viewcode-block" id="MLTrainingClient.get_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.get_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingJobMetadata</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets training job data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            job_metadata = await ml_training_client.get_training_job(</span>
+<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): id of the requested training job.</span>
 
@@ -160,6 +191,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TrainingJobMetadata</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns training job data for all jobs within an org.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            jobs_metadata = await ml_training_client.list_training_jobs(</span>
+<span class="sd">                org_id=&quot;INSERT YOUR ORG ID&quot;)</span>
+
+<span class="sd">            first_job_id = jobs_metadata[1].id</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the id of the org to request training job data from.</span>
 <span class="sd">            training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.</span>
@@ -177,6 +215,11 @@
 
 <div class="viewcode-block" id="MLTrainingClient.cancel_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.cancel_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">cancel_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cancels the specified training job.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await ml_training_client.cancel_training_job(</span>
+<span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): the id of the job to be canceled.</span>

@@ -171,6 +171,32 @@
 
 <span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through</span>
 <span class="sd">    `ViamClient`.</span>
+
+<span class="sd">    Establish a Connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.app.viam_client import ViamClient</span>
+
+
+<span class="sd">        async def connect() -&gt; ViamClient:</span>
+<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">        async def main():</span>
+<span class="sd">            # Make a ViamClient</span>
+<span class="sd">            viam_client = await connect()</span>
+<span class="sd">            # Instantiate a DataClient to run data client API methods on</span>
+<span class="sd">            data_client = viam_client.data_client</span>
+
+<span class="sd">            viam_client.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
@@ -252,6 +278,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TabularData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_filter(my_filter)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular</span>
 <span class="sd">                data.</span>
@@ -296,6 +329,13 @@
         <span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">include_file_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">num_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_type=&quot;camera&quot;)</span>
+<span class="sd">            binary_data = await data_client.binary_data_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (Optional[viam.proto.app.data.Filter]): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all</span>
@@ -359,6 +399,27 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                    )</span>
+<span class="sd">                )</span>
+
+<span class="sd">            binary_data = await data_client.binary_data_by_ids(my_ids)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the desired data. Must be non-empty.</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
@@ -383,6 +444,15 @@
 <div class="viewcode-block" id="DataClient.delete_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete tabular data older than a specified number of days.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            days_of_data_to_delete = 10</span>
+<span class="sd">            tabular_data = await data_client.delete_tabular_data(</span>
+<span class="sd">                org_id=&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;, days_of_data_to_delete)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): ID of organization to delete data from.</span>
 <span class="sd">            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`</span>
@@ -399,6 +469,13 @@
 <div class="viewcode-block" id="DataClient.delete_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            res = await data_client.delete_binary_data_by_filter(my_filter)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
 <span class="sd">                all data being deleted. Exercise caution when using this option.</span>
@@ -410,6 +487,27 @@
 
 <div class="viewcode-block" id="DataClient.delete_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and delete binary data.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                    )</span>
+<span class="sd">                )</span>
+
+<span class="sd">            binary_data = await data_client.delete_binary_data_by_ids(my_ids)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.</span>
@@ -427,6 +525,29 @@
 <div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                    )</span>
+<span class="sd">                )</span>
+
+<span class="sd">            binary_data = await data_client.add_tags_to_binary_data_by_ids(tags, my_ids)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
 <span class="sd">            binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID` objects specifying binary data to tag. Must be non-empty.</span>
@@ -439,6 +560,14 @@
 
 <div class="viewcode-block" id="DataClient.add_tags_to_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.add_tags_to_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_tags_to_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add tags to binary data.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
+<span class="sd">            res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to add to specified binary data. Must be non-empty.</span>
@@ -454,6 +583,30 @@
 
 <div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                    )</span>
+<span class="sd">                )</span>
+
+<span class="sd">            binary_data = await data_client.remove_tags_from_binary_data_by_ids(</span>
+<span class="sd">                tags, my_ids)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.</span>
@@ -473,6 +626,14 @@
 
 <div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary data.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
+<span class="sd">            res = await data_client.remove_tags_from_binary_data_by_filter(tags, my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data.</span>
@@ -494,6 +655,13 @@
 
 <div class="viewcode-block" id="DataClient.tags_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tags_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tags_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of tags using a filter.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            tags = await data_client.tags_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will</span>
@@ -517,6 +685,27 @@
         <span class="n">y_max_normalized</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a bounding box to an image.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            MY_BINARY_ID = BinaryID(</span>
+<span class="sd">                file_id=your-file_id,</span>
+<span class="sd">                organization_id=your-org-id,</span>
+<span class="sd">                location_id=your-location-id</span>
+<span class="sd">            )</span>
+
+<span class="sd">            bbox_label = await data_client.add_bounding_box_to_image_by_id(</span>
+<span class="sd">                binary_id=MY_BINARY_ID,</span>
+<span class="sd">                label=&quot;label&quot;,</span>
+<span class="sd">                x_min_normalized=0,</span>
+<span class="sd">                y_min_normalized=.1,</span>
+<span class="sd">                x_max_normalized=.2,</span>
+<span class="sd">                y_max_normalized=.3</span>
+<span class="sd">            )</span>
+
+<span class="sd">            print(bbox_label)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.</span>
@@ -546,6 +735,21 @@
 <div class="viewcode-block" id="DataClient.remove_bounding_box_from_image_by_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_bounding_box_from_image_by_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_bounding_box_from_image_by_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bbox_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binary_id</span><span class="p">:</span> <span class="n">BinaryID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Removes a bounding box from an image.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            MY_BINARY_ID = BinaryID(</span>
+<span class="sd">                file_id=your-file_id,</span>
+<span class="sd">                organization_id=your-org-id,</span>
+<span class="sd">                location_id=your-location-id</span>
+<span class="sd">            )</span>
+
+<span class="sd">            await data_client.remove_bounding_box_from_image_by_id(</span>
+<span class="sd">            binary_id=MY_BINARY_ID,</span>
+<span class="sd">            bbox_id=&quot;your-bounding-box-id-to-delete&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            bbox_id (str): The ID of the bounding box to remove.</span>
 <span class="sd">            Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from</span>
@@ -555,6 +759,14 @@
 
 <div class="viewcode-block" id="DataClient.bounding_box_labels_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.bounding_box_labels_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">bounding_box_labels_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of bounding box labels using a `Filter`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import Filter</span>
+
+<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            bounding_box_labels = await data_client.bounding_box_labels_by_filter(</span>
+<span class="sd">                my_filter)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will</span>
@@ -570,6 +782,10 @@
 
 <div class="viewcode-block" id="DataClient.get_database_connection"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.get_database_connection">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_database_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a connection to access a MongoDB Atlas Data federation instance.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            data_client.get_database_connection(org_id=&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): Organization to retrieve the connection for.</span>
@@ -594,6 +810,14 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            name = await data_client.create_dataset(</span>
+<span class="sd">                name=&quot;&lt;dataset-name&gt;&quot;,</span>
+<span class="sd">                organization_id=&quot;&lt;your-org-id&gt;&quot;</span>
+<span class="sd">            )</span>
+<span class="sd">            print(name)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -607,6 +831,13 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
+<span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
+<span class="sd">            )</span>
+<span class="sd">            print(datasets)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByIDsRequest</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -621,6 +852,13 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
+<span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
+<span class="sd">            )</span>
+<span class="sd">            print(datasets)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByOrganizationIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByOrganizationID</span><span class="p">(</span>
@@ -635,6 +873,13 @@
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): The ID of the dataset.</span>
 <span class="sd">            name (str): The new name of the dataset.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await data_client.rename_dataset(</span>
+<span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;,</span>
+<span class="sd">                name=&quot;&lt;dataset-name&gt;&quot;</span>
+<span class="sd">            )</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">RenameDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -644,6 +889,12 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            id (str): The ID of the dataset.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await data_client.delete_dataset(</span>
+<span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="sd">            )</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -656,6 +907,30 @@
 <span class="sd">        Args:</span>
 <span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.</span>
 <span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_binary_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_binary_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                        )</span>
+<span class="sd">                    )</span>
+
+<span class="sd">            await data_client.add_binary_data_to_dataset_by_ids(</span>
+<span class="sd">                binary_ids=my_binary_ids,</span>
+<span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="sd">            )</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBinaryDataToDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -668,6 +943,30 @@
 <span class="sd">        Args:</span>
 <span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.</span>
 <span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.proto.app.data import BinaryID</span>
+
+<span class="sd">            binary_metadata = await data_client.binary_data_by_filter(</span>
+<span class="sd">                include_file_data=False</span>
+<span class="sd">            )</span>
+
+<span class="sd">            my_binary_ids = []</span>
+
+<span class="sd">            for obj in binary_metadata:</span>
+<span class="sd">                my_binary_ids.append(</span>
+<span class="sd">                    BinaryID(</span>
+<span class="sd">                        file_id=obj.metadata.id,</span>
+<span class="sd">                        organization_id=obj.metadata.capture_metadata.organization_id,</span>
+<span class="sd">                        location_id=obj.metadata.capture_metadata.location_id</span>
+<span class="sd">                    )</span>
+<span class="sd">                )</span>
+
+<span class="sd">            await data_client.remove_binary_data_from_dataset_by_ids(</span>
+<span class="sd">                binary_ids=my_binary_ids,</span>
+<span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
+<span class="sd">            )</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBinaryDataFromDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -688,6 +987,23 @@
 
 <span class="sd">        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
 <span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            time_requested = datetime(2023, 6, 5, 11)</span>
+<span class="sd">            time_received = datetime(2023, 6, 5, 11, 0, 3)</span>
+
+<span class="sd">            file_id = await data_client.binary_data_capture_upload(</span>
+<span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
+<span class="sd">                component_type=&#39;camera&#39;,</span>
+<span class="sd">                component_name=&#39;my_camera&#39;,</span>
+<span class="sd">                method_name=&#39;GetImages&#39;,</span>
+<span class="sd">                method_parameters=None,</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                data_request_times=[time_requested, time_received],</span>
+<span class="sd">                file_extension=&quot;.jpg&quot;,</span>
+<span class="sd">                binary_data=b&quot;Encoded image bytes&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            binary_data (bytes): The data to be uploaded, represented in bytes.</span>
@@ -747,6 +1063,21 @@
 
 <span class="sd">        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
 <span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; subtab of the Data tab on app.viam.com.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            time_requested = datetime(2023, 6, 5, 11)</span>
+<span class="sd">            time_received = datetime(2023, 6, 5, 11, 0, 3)</span>
+
+<span class="sd">            file_id = await data_client.tabular_data_capture_upload(</span>
+<span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
+<span class="sd">                component_type=&#39;motor&#39;,</span>
+<span class="sd">                component_name=&#39;left_motor&#39;,</span>
+<span class="sd">                method_name=&#39;IsPowered&#39;,</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                data_request_times=[(time_requested, time_received)],</span>
+<span class="sd">                tabular_data=[{&#39;PowerPCT&#39;: 0, &#39;IsPowered&#39;: False}]</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
@@ -823,6 +1154,23 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Uploads the metadata and contents of streaming binary data.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            time_requested = datetime(2023, 6, 5, 11)</span>
+<span class="sd">            time_received = datetime(2023, 6, 5, 11, 0, 3)</span>
+
+<span class="sd">            file_id = await data_client.streaming_data_capture_upload(</span>
+<span class="sd">                data=&quot;byte-data-to-upload&quot;,</span>
+<span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
+<span class="sd">                file_ext=&quot;png&quot;,</span>
+<span class="sd">                component_type=&#39;motor&#39;,</span>
+<span class="sd">                component_name=&#39;left_motor&#39;,</span>
+<span class="sd">                method_name=&#39;IsPowered&#39;,</span>
+<span class="sd">                data_request_times=[(time_requested, time_received)],</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;]</span>
+<span class="sd">            )</span>
+
+
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): the data to be uploaded.</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
@@ -885,6 +1233,16 @@
 <span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
 <span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            file_id = await data_client.file_upload(</span>
+<span class="sd">                data=b&quot;Encoded image bytes&quot;,</span>
+<span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                file_name=&quot;your-file&quot;,</span>
+<span class="sd">                file_extension=&quot;.txt&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
 <span class="sd">            data (bytes): Bytes representing file data to upload.</span>
@@ -932,6 +1290,14 @@
 
 <span class="sd">        Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the</span>
 <span class="sd">        &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            file_id = await data_client.file_upload_from_path(</span>
+<span class="sd">                part_id=&quot;INSERT YOUR PART ID&quot;,</span>
+<span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;],</span>
+<span class="sd">                filepath=&quot;/Users/&lt;your-username&gt;/&lt;your-directory&gt;/&lt;your-file.txt&gt;&quot;</span>
+<span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
