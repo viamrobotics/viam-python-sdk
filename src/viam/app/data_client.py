@@ -91,7 +91,7 @@ class DataClient:
 
 
         async def connect() -> ViamClient:
-            Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+            # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
             dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
             return await ViamClient.create_from_dial_options(dial_options)
 
@@ -1080,7 +1080,6 @@ class DataClient:
                 tags=["tag_1", "tag_2"]
             )
 
-            print(file_id)
 
         Args:
             data (bytes): the data to be uploaded.
