@@ -81,6 +81,32 @@ class DataClient:
 
     Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `DataClient` methods should be made through
     `ViamClient`.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.app.viam_client import ViamClient
+
+
+        async def connect() -> ViamClient:
+            # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+            return await ViamClient.create_from_dial_options(dial_options)
+
+
+        async def main():
+            # Make a ViamClient
+            viam_client = await connect()
+            # Instantiate a DataClient to run data client API methods on
+            data_client = viam_client.data_client
+
+            viam_client.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
+
     """
 
     class TabularData:
@@ -162,6 +188,13 @@ class DataClient:
     ) -> List[TabularData]:
         """Filter and download tabular data.
 
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="left_motor")
+            tabular_data = await data_client.tabular_data_by_filter(my_filter)
+
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
                 data.
@@ -206,6 +239,13 @@ class DataClient:
         self, filter: Optional[Filter] = None, dest: Optional[str] = None, include_file_data: bool = True, num_files: Optional[int] = None
     ) -> List[BinaryData]:
         """Filter and download binary data.
+
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_type="camera")
+            binary_data = await data_client.binary_data_by_filter(my_filter)
 
         Args:
             filter (Optional[viam.proto.app.data.Filter]): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all
@@ -269,6 +309,27 @@ class DataClient:
     ) -> List[BinaryData]:
         """Filter and download binary data.
 
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_ids = []
+
+            for obj in binary_metadata:
+                my_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            binary_data = await data_client.binary_data_by_ids(my_ids)
+
         Args:
             binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the desired data. Must be non-empty.
             dest (str): Optional filepath for writing retrieved data.
@@ -293,6 +354,15 @@ class DataClient:
     async def delete_tabular_data(self, organization_id: str, delete_older_than_days: int) -> int:
         """Delete tabular data older than a specified number of days.
 
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="left_motor")
+            days_of_data_to_delete = 10
+            tabular_data = await data_client.delete_tabular_data(
+                org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
+
         Args:
             organization_id (str): ID of organization to delete data from.
             delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
@@ -309,6 +379,13 @@ class DataClient:
     async def delete_binary_data_by_filter(self, filter: Optional[Filter]) -> int:
         """Filter and delete binary data.
 
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="left_motor")
+            res = await data_client.delete_binary_data_by_filter(my_filter)
+
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
                 all data being deleted. Exercise caution when using this option.
@@ -320,6 +397,27 @@ class DataClient:
 
     async def delete_binary_data_by_ids(self, binary_ids: List[BinaryID]) -> int:
         """Filter and delete binary data.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_ids = []
+
+            for obj in binary_metadata:
+                my_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            binary_data = await data_client.delete_binary_data_by_ids(my_ids)
 
         Args:
             binary_ids (List[viam.proto.app.data.BinaryID]): `BinaryID` objects specifying the data to be deleted. Must be non-empty.
@@ -337,6 +435,29 @@ class DataClient:
     async def add_tags_to_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> None:
         """Add tags to binary data.
 
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            tags = ["tag1", "tag2"]
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_ids = []
+
+            for obj in binary_metadata:
+                my_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            binary_data = await data_client.add_tags_to_binary_data_by_ids(tags, my_ids)
+
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
             binary_ids (List[viam.app.proto.BinaryID]): List of `BinaryID` objects specifying binary data to tag. Must be non-empty.
@@ -349,6 +470,14 @@ class DataClient:
 
     async def add_tags_to_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> None:
         """Add tags to binary data.
+
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="my_camera")
+            tags = ["tag1", "tag2"]
+            res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)
 
         Args:
             tags (List[str]): List of tags to add to specified binary data. Must be non-empty.
@@ -364,6 +493,30 @@ class DataClient:
 
     async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> int:
         """Remove tags from binary.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            tags = ["tag1", "tag2"]
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_ids = []
+
+            for obj in binary_metadata:
+                my_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            binary_data = await data_client.remove_tags_from_binary_data_by_ids(
+                tags, my_ids)
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
@@ -383,6 +536,14 @@ class DataClient:
 
     async def remove_tags_from_binary_data_by_filter(self, tags: List[str], filter: Optional[Filter] = None) -> int:
         """Remove tags from binary data.
+
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="my_camera")
+            tags = ["tag1", "tag2"]
+            res = await data_client.remove_tags_from_binary_data_by_filter(tags, my_filter)
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data.
@@ -404,6 +565,13 @@ class DataClient:
 
     async def tags_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
         """Get a list of tags using a filter.
+
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="my_camera")
+            tags = await data_client.tags_by_filter(my_filter)
 
         Args:
             filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all data tags will
@@ -427,6 +595,27 @@ class DataClient:
         y_max_normalized: float,
     ) -> str:
         """Add a bounding box to an image.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            MY_BINARY_ID = BinaryID(
+                file_id=your-file_id,
+                organization_id=your-org-id,
+                location_id=your-location-id
+            )
+
+            bbox_label = await data_client.add_bounding_box_to_image_by_id(
+                binary_id=MY_BINARY_ID,
+                label="label",
+                x_min_normalized=0,
+                y_min_normalized=.1,
+                x_max_normalized=.2,
+                y_max_normalized=.3
+            )
+
+            print(bbox_label)
 
         Args:
             binary_id (viam.proto.app.data.BinaryID): The ID of the image to add the bounding box to.
@@ -456,6 +645,21 @@ class DataClient:
     async def remove_bounding_box_from_image_by_id(self, bbox_id: str, binary_id: BinaryID) -> None:
         """Removes a bounding box from an image.
 
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            MY_BINARY_ID = BinaryID(
+                file_id=your-file_id,
+                organization_id=your-org-id,
+                location_id=your-location-id
+            )
+
+            await data_client.remove_bounding_box_from_image_by_id(
+            binary_id=MY_BINARY_ID,
+            bbox_id="your-bounding-box-id-to-delete"
+            )
+
         Args:
             bbox_id (str): The ID of the bounding box to remove.
             Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from
@@ -465,6 +669,14 @@ class DataClient:
 
     async def bounding_box_labels_by_filter(self, filter: Optional[Filter] = None) -> List[str]:
         """Get a list of bounding box labels using a `Filter`.
+
+        ::
+
+            from viam.proto.app.data import Filter
+
+            my_filter = Filter(component_name="my_camera")
+            bounding_box_labels = await data_client.bounding_box_labels_by_filter(
+                my_filter)
 
         Args:
             filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
@@ -480,6 +692,10 @@ class DataClient:
 
     async def get_database_connection(self, organization_id: str) -> str:
         """Get a connection to access a MongoDB Atlas Data federation instance.
+
+        ::
+
+            data_client.get_database_connection(org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
 
         Args:
             organization_id (str): Organization to retrieve the connection for.
@@ -504,6 +720,14 @@ class DataClient:
 
         Returns:
             str: The dataset ID of the created dataset.
+
+        ::
+
+            name = await data_client.create_dataset(
+                name="<dataset-name>",
+                organization_id="<your-org-id>"
+            )
+            print(name)
         """
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
@@ -517,6 +741,13 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets.
+
+        ::
+
+            datasets = await data_client.list_dataset_by_ids(
+                ids=["abcd-1234xyz-8765z-123abc"]
+            )
+            print(datasets)
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
@@ -531,6 +762,13 @@ class DataClient:
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
+
+        ::
+
+            datasets = await data_client.list_dataset_by_ids(
+                ids=["abcd-1234xyz-8765z-123abc"]
+            )
+            print(datasets)
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
@@ -545,6 +783,13 @@ class DataClient:
         Args:
             id (str): The ID of the dataset.
             name (str): The new name of the dataset.
+
+        ::
+
+            await data_client.rename_dataset(
+                id="abcd-1234xyz-8765z-123abc",
+                name="<dataset-name>"
+            )
         """
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
@@ -554,6 +799,12 @@ class DataClient:
 
         Args:
             id (str): The ID of the dataset.
+
+        ::
+
+            await data_client.delete_dataset(
+                id="abcd-1234xyz-8765z-123abc"
+            )
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -566,6 +817,30 @@ class DataClient:
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
             dataset_id (str): The ID of the dataset to be added to.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_binary_ids = []
+
+            for obj in binary_metadata:
+                my_binary_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                        )
+                    )
+
+            await data_client.add_binary_data_to_dataset_by_ids(
+                binary_ids=my_binary_ids,
+                dataset_id="abcd-1234xyz-8765z-123abc"
+            )
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
@@ -578,6 +853,30 @@ class DataClient:
         Args:
             binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
             dataset_id (str): The ID of the dataset to be removed from.
+
+        ::
+
+            from viam.proto.app.data import BinaryID
+
+            binary_metadata = await data_client.binary_data_by_filter(
+                include_file_data=False
+            )
+
+            my_binary_ids = []
+
+            for obj in binary_metadata:
+                my_binary_ids.append(
+                    BinaryID(
+                        file_id=obj.metadata.id,
+                        organization_id=obj.metadata.capture_metadata.organization_id,
+                        location_id=obj.metadata.capture_metadata.location_id
+                    )
+                )
+
+            await data_client.remove_binary_data_from_dataset_by_ids(
+                binary_ids=my_binary_ids,
+                dataset_id="abcd-1234xyz-8765z-123abc"
+            )
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
@@ -598,6 +897,23 @@ class DataClient:
 
         Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
         app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
+
+        ::
+
+            time_requested = datetime(2023, 6, 5, 11)
+            time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+            file_id = await data_client.binary_data_capture_upload(
+                part_id="INSERT YOUR PART ID",
+                component_type='camera',
+                component_name='my_camera',
+                method_name='GetImages',
+                method_parameters=None,
+                tags=["tag_1", "tag_2"],
+                data_request_times=[time_requested, time_received],
+                file_extension=".jpg",
+                binary_data=b"Encoded image bytes"
+            )
 
         Args:
             binary_data (bytes): The data to be uploaded, represented in bytes.
@@ -657,6 +973,21 @@ class DataClient:
 
         Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
         app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
+
+        ::
+
+            time_requested = datetime(2023, 6, 5, 11)
+            time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+            file_id = await data_client.tabular_data_capture_upload(
+                part_id="INSERT YOUR PART ID",
+                component_type='motor',
+                component_name='left_motor',
+                method_name='IsPowered',
+                tags=["tag_1", "tag_2"],
+                data_request_times=[(time_requested, time_received)],
+                tabular_data=[{'PowerPCT': 0, 'IsPowered': False}]
+            )
 
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
@@ -733,6 +1064,23 @@ class DataClient:
     ) -> str:
         """Uploads the metadata and contents of streaming binary data.
 
+        ::
+
+            time_requested = datetime(2023, 6, 5, 11)
+            time_received = datetime(2023, 6, 5, 11, 0, 3)
+
+            file_id = await data_client.streaming_data_capture_upload(
+                data="byte-data-to-upload",
+                part_id="INSERT YOUR PART ID",
+                file_ext="png",
+                component_type='motor',
+                component_name='left_motor',
+                method_name='IsPowered',
+                data_request_times=[(time_requested, time_received)],
+                tags=["tag_1", "tag_2"]
+            )
+
+
         Args:
             data (bytes): the data to be uploaded.
             part_id (str): Part ID of the resource associated with the file.
@@ -795,6 +1143,16 @@ class DataClient:
         Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
         "Files" subtab of the Data tab on app.viam.com.
 
+        ::
+
+            file_id = await data_client.file_upload(
+                data=b"Encoded image bytes",
+                part_id="INSERT YOUR PART ID",
+                tags=["tag_1", "tag_2"],
+                file_name="your-file",
+                file_extension=".txt"
+            )
+
         Args:
             part_id (str): Part ID of the resource associated with the file.
             data (bytes): Bytes representing file data to upload.
@@ -842,6 +1200,14 @@ class DataClient:
 
         Upload file data that may be stored on a robot along with the relevant metadata to app.viam.com. File data can be found under the
         "Files" subtab of the Data tab on app.viam.com.
+
+        ::
+
+            file_id = await data_client.file_upload_from_path(
+                part_id="INSERT YOUR PART ID",
+                tags=["tag_1", "tag_2"],
+                filepath="/Users/<your-username>/<your-directory>/<your-file.txt>"
+            )
 
         Args:
             filepath (str): Absolute filepath of file to be uploaded.

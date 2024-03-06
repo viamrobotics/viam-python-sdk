@@ -68,6 +68,34 @@ class RobotClient:
 
     Note: Robots used within a context are automatically closed UNLESS created with a channel. Robots created using ``with_channel`` are
     not automatically closed.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.robot.client import RobotClient
+
+
+        async def connect():
+            opts = RobotClient.Options.with_api_key(
+                # Replace "<API-KEY>" (including brackets) with your machine's API key
+                api_key='<API-KEY>',
+                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+                api_key_id='<API-KEY-ID>'
+            )
+            return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+
+
+        async def main():
+            # Make a RobotClient
+            robot = await connect()
+            print('Resources:')
+            print(robot.resource_names)
+            await robot.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
     """
 
     @dataclass
@@ -141,18 +169,19 @@ class RobotClient:
         ::
 
             async def connect():
-            opts = RobotClient.Options.with_api_key(
-                # Replace "<API-KEY>" (including brackets) with your machine's API key
-                api_key='<API-KEY>',
-                # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
-                api_key_id='<API-KEY-ID>'
-            )
-            return await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
+
+                opts = RobotClient.Options.with_api_key(
+                    # Replace "<API-KEY>" (including brackets) with your machine's API key
+                    api_key='<API-KEY>',
+                    # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
+                    api_key_id='<API-KEY-ID>'
+                )
+                return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
 
 
-        async def main():
-            # Make a RobotClient
-            robot = await connect()
+            async def main():
+                # Make a RobotClient
+                robot = await connect()
 
         Args:
             address (str): Address of the robot (IP address, URL, etc.)
@@ -262,7 +291,6 @@ class RobotClient:
         ::
 
             await robot.refresh()
-
         """
         response: ResourceNamesResponse = await self._client.ResourceNames(ResourceNamesRequest())
         resource_names: List[ResourceName] = list(response.resources)
@@ -519,7 +547,6 @@ class RobotClient:
         ::
 
             await robot.close()
-
         """
         LOGGER.debug("Closing RobotClient")
         if self._closed:
@@ -563,7 +590,7 @@ class RobotClient:
 
         ::
 
-           # Get the status of the resources on the machine.
+            # Get the status of the resources on the machine.
             statuses = await robot.get_status()
 
         Args:
@@ -704,7 +731,12 @@ class RobotClient:
 
     async def stop_all(self, extra: Dict[ResourceName, Dict[str, Any]] = {}):
         """
-        Cancel all current and outstanding operations for the robot and stop all actuators and movement
+        Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+
+        ::
+
+            # Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+            await robot.stop_all()
 
         ::
 
@@ -727,7 +759,10 @@ class RobotClient:
 
     async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
         """
-        Returns app-related information about the robot.
+        Get app-related information about the robot.
+
+        Returns:
+            viam.proto.robot.GetCloudMetadataResponse: App-related metadata.
         """
 
         request = GetCloudMetadataRequest()

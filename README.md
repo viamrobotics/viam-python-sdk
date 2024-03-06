@@ -8,7 +8,7 @@
 
 The Viam Python SDK allows you to build robots, access existing Viam robots, and manage your fleet of Viam robots.
 
-If you would like a blueprint on setting up a Python environment with Viam from scratch, you can follow our [Setup](https://python.viam.dev/setup.html) guide.
+If you would like a blueprint on setting up a Python environment with Viam from scratch, you can follow our [Setup](https://python.viam.dev/#installing-from-source) guide.
 
 If you would like to develop and contribute to Viam's Python SDK, take a look at the [Development](#development) portion of the README.
 
