@@ -30,6 +30,11 @@ class ResourceBase(Protocol):
         """
         Get the ResourceName for this Resource with the given name
 
+        ::
+
+            # Can be used with any resource, using an arm as an example
+            my_arm_name = my_arm.get_resource_name("my_arm")
+
         Args:
             name (str): The name of the Resource
         """
