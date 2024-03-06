@@ -227,7 +227,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
             motion = MotionClient.from_robot(robot=robot, name="builtin")
 
-            # Get the ResourceNames of the base and SLAM service
+            # Get the ResourceNames of the base component and SLAM service
             my_base_resource_name = Base.get_resource_name("my_base")
             my_slam_service_name = SLAMClient.get_resource_name("my_slam_service")
 
@@ -289,7 +289,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             motion = MotionClient.from_robot(robot=robot, name="builtin")
             my_base_resource_name = Base.get_resource_name("my_base")
 
-            # Assuming a move_on_globe started started the execution
+            # Assuming a move_on_globe(viam.proto.service.motion.MoveOnGlobe) started the execution
             # mvmnt_sensor = MovementSensor.get_resource_name("my_movement_sensor")
             # my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
             # execution_id = await motion.move_on_globe(

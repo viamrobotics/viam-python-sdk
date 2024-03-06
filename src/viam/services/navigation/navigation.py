@@ -38,8 +38,9 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            (List[navigation.Path]): An array comprised of Paths, each path being a user-provided destination,
-                or, Waypoint and the set of geopoints that the robot expects to travel through to get there.
+            (List[navigation.Path]): An array comprised of Paths, where each path is either a user-provided destination or
+                 a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
+                 reach the specified destination or Waypoint.
         """
         ...
 
