@@ -84,7 +84,7 @@ class RobotClient:
                 # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
                 api_key_id='<API-KEY-ID>'
             )
-            return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+            return await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
 
         async def main():
@@ -145,7 +145,7 @@ class RobotClient:
 
                 opts = RobotClient.Options.with_api_key(api_key, api_key_id)
 
-                robot = await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+                robot = await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
             Args:
                 api_key (str): your API key
@@ -169,6 +169,7 @@ class RobotClient:
         ::
 
             async def connect():
+
                 opts = RobotClient.Options.with_api_key(
                     # Replace "<API-KEY>" (including brackets) with your machine's API key
                     api_key='<API-KEY>',
@@ -545,7 +546,6 @@ class RobotClient:
 
         ::
 
-            # Cleanly close the underlying connections and stop any periodic tasks.
             await robot.close()
         """
         LOGGER.debug("Closing RobotClient")
@@ -736,6 +736,10 @@ class RobotClient:
         ::
 
             # Cancel all current and outstanding operations for the robot and stop all actuators and movement.
+            await robot.stop_all()
+
+        ::
+
             await robot.stop_all()
 
         Args:
