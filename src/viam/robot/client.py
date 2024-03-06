@@ -117,7 +117,7 @@ class RobotClient:
 
                 opts = RobotClient.Options.with_api_key(api_key, api_key_id)
 
-                robot = await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+                robot = await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
             Args:
                 api_key (str): your API key
@@ -147,7 +147,7 @@ class RobotClient:
                 # Replace "<API-KEY-ID>" (including brackets) with your machine's API key ID
                 api_key_id='<API-KEY-ID>'
             )
-            return await RobotClient.at_address('ADDRESS FROM THE VIAM APP', opts)
+            return await RobotClient.at_address('<ADDRESS-FROM-THE-VIAM-APP>', opts)
 
 
         async def main():
