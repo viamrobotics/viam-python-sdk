@@ -174,7 +174,7 @@
 <span class="sd">                # Replace &quot;&lt;API-KEY-ID&gt;&quot; (including brackets) with your machine&#39;s API key ID</span>
 <span class="sd">                api_key_id=&#39;&lt;API-KEY-ID&gt;&#39;</span>
 <span class="sd">            )</span>
-<span class="sd">            return await RobotClient.at_address(&#39;ADDRESS FROM THE VIAM APP&#39;, opts)</span>
+<span class="sd">            return await RobotClient.at_address(&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;, opts)</span>
 
 
 <span class="sd">        async def main():</span>
@@ -235,7 +235,7 @@
 
 <span class="sd">                opts = RobotClient.Options.with_api_key(api_key, api_key_id)</span>
 
-<span class="sd">                robot = await RobotClient.at_address(&#39;ADDRESS FROM THE VIAM APP&#39;, opts)</span>
+<span class="sd">                robot = await RobotClient.at_address(&#39;&lt;ADDRESS-FROM-THE-VIAM-APP&gt;&#39;, opts)</span>
 
 <span class="sd">            Args:</span>
 <span class="sd">                api_key (str): your API key</span>
@@ -259,6 +259,7 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            async def connect():</span>
+
 <span class="sd">                opts = RobotClient.Options.with_api_key(</span>
 <span class="sd">                    # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your machine&#39;s API key</span>
 <span class="sd">                    api_key=&#39;&lt;API-KEY&gt;&#39;,</span>
@@ -635,7 +636,6 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            # Cleanly close the underlying connections and stop any periodic tasks.</span>
 <span class="sd">            await robot.close()</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Closing RobotClient&quot;</span><span class="p">)</span>
@@ -826,6 +826,10 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            # Cancel all current and outstanding operations for the robot and stop all actuators and movement.</span>
+<span class="sd">            await robot.stop_all()</span>
+
+<span class="sd">        ::</span>
+
 <span class="sd">            await robot.stop_all()</span>
 
 <span class="sd">        Args:</span>
