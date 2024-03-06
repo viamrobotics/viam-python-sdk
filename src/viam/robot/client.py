@@ -542,7 +542,7 @@ class RobotClient:
 
     async def close(self):
         """
-        Cleanly close the underlying connections and stop any periodic tasks
+        Cleanly close the underlying connections and stop any periodic tasks.
 
         ::
 
