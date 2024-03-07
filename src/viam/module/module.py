@@ -1,6 +1,5 @@
 import sys
 from inspect import iscoroutinefunction
-from logging import Logger
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
 

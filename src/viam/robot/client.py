@@ -1,6 +1,5 @@
 import asyncio
 from dataclasses import dataclass
-from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
@@ -47,7 +46,7 @@ from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, 
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
-from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct
+from viam.utils import datetime_to_timestamp, dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
