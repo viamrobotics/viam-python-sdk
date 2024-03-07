@@ -1465,7 +1465,7 @@ Classes
 
 
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ...)
+.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1510,6 +1510,10 @@ Classes
 
    .. py:property:: packages
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PackageConfig]
+
+
+   .. py:property:: overwrite_fragment_status
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AppValidationStatus]
 
 
    .. py:attribute:: debug
