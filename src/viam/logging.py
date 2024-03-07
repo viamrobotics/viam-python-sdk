@@ -1,36 +1,37 @@
+import asyncio
 import logging
 import sys
 from copy import copy
+from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING, LogRecord  # noqa: F401
 from typing import Dict
 
+import viam
+
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
+_MODULE_PARENT = None
 
 
 class ModuleHandler(logging.Handler):
-    def __init__(self, logger: logging.Logger, parent):
-        self.parent = parent
-        LOGGERS[f"BACKUP_{logger.name}"] = logger
-        self.backup_logger = logger
+    def __init__(self, logger: logging.Logger):
+        self.parent = _MODULE_PARENT
 
         logger.handlers.clear()
         super().__init__()
 
     def emit(self, record: LogRecord):
+        assert isinstance(record, logging.LogRecord)
+        stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
+        message = f"{record.filename}:{record.lineno}\t{record.msg}"
+        time = datetime.fromtimestamp(record.created)
+
         try:
-            self.parent.log(
-                record.name,
-                record.levelname,
-                record.asctime,
-                record.msg,
-                {record.filename: record.lineno},
-                record.stack_info,
-                record.__dict__,
+            asyncio.create_task(
+                self.parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
             )
         except Exception:
-            self.backup_logger.log(record.levelno, record.msg, exc_info=record.exc_info)
-        return None
+            print(f"{time}\t{record.levelname}\t{record.name}\t{message}\t{stack}")
 
 
 class ColorFormatter(logging.Formatter):
@@ -78,18 +79,34 @@ def addHandlers(logger: logging.Logger):
     # filter out logs at error level or above
     handler.setLevel(LOG_LEVEL)
     handler.addFilter(filter=lambda record: (record.levelno < ERROR))
-    logger.addHandler(handler)
 
     err_handler = logging.StreamHandler(stream=sys.stderr)
     err_handler.setFormatter(format)
     # filter out logs below error level
     err_handler.setLevel(max(ERROR, LOG_LEVEL))
-    logger.addHandler(err_handler)
+
+    if _MODULE_PARENT is not None:
+        _startModuleLogging(logger)
+    else:
+        logger.addHandler(handler)
+        logger.addHandler(err_handler)
 
 
-def addModuleHandler(logger: logging.Logger, parent):
-    handler = ModuleHandler(logger, parent)
+def _startModuleLogging(logger: logging.Logger):
+    handler = ModuleHandler(logger)
+
+    format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
+    handler.setFormatter(format)
+    handler.setLevel(LOG_LEVEL)
+
     logger.addHandler(handler)
+
+
+def setParent(parent):
+    global _MODULE_PARENT
+    _MODULE_PARENT = parent
+    for logger in list(LOGGERS.values()):
+        _startModuleLogging(logger)
 
 
 def setLevel(level: int):

@@ -43,7 +43,6 @@ class Module:
     _lock: Lock
     parent: Optional[RobotClient] = None
     server: Server
-    loggers: List[Logger]
 
     @classmethod
     def from_args(cls) -> Self:
@@ -83,8 +82,8 @@ class Module:
                     log_level=self._log_level,
                 ),
             )
-            for logger in self.loggers:
-                logging.addModuleHandler(logger, self.parent)
+            LOGGER.debug("Starting module logging")
+            logging.setParent(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()

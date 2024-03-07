@@ -47,7 +47,7 @@ from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, 
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
-from viam.utils import datetime_to_timestamp, dict_to_struct, ValueTypes
+from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
@@ -631,7 +631,7 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(self, name: str, level: str, time: str, log: str, caller: Dict[str, int], stack_info: str, fields: Dict[str, ValueTypes]):
+    async def log(self, name: str, level: str, time, log: str, stack: str):
         """Send log from Python module over gRPC.
 
         Create a LogEntry object from the log to send to RDK.
@@ -645,14 +645,6 @@ class RobotClient:
             stack_info (str): The stack information of the log.
             fields (Dict[str, ValueTypes]): The extra fields of the log
         """
-        entry = LogEntry(
-            level=level,
-            time=datetime_to_timestamp(datetime.fromisoformat(time)),
-            logger_name=name,
-            message=log,
-            caller=dict_to_struct(caller),
-            stack=stack_info,
-            fields=[dict_to_struct(fields)],
-        )
+        entry = LogEntry(level=level, time=datetime_to_timestamp(time), logger_name=name, message=log, stack=stack)
         request = LogRequest(logs=[entry])
         await self._client.Log(request)
