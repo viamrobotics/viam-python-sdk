@@ -14,6 +14,7 @@ from viam.proto.common import (
     Transform,
     WorldState,
 )
+
 from viam.proto.service.motion import (
     Constraints,
     GetPlanRequest,
@@ -33,6 +34,7 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
+
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
@@ -286,19 +288,9 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
-            my_base_resource_name = Base.get_resource_name("my_base")
-
-            # Assuming a move_on_globe(viam.proto.service.motion.MoveOnGlobe) started the execution
-            # mvmnt_sensor = MovementSensor.get_resource_name("my_movement_sensor")
-            # my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
-            # execution_id = await motion.move_on_globe(
-            #    component_name=my_base_resource_name,
-            #    destination=my_destination,
-            #    movement_sensor_name=mvmnt_sensor_resource_name)
-
-            # Stop the base component which was instructed to move by `MoveOnGlobe()`
-            # or `MoveOnMap()`
+            # Assuming a `move_on_globe()` started started the execution
+            # Stop the base component which was instructed to move by `move_on_globe()`
+            # or `move_on_map()`
             my_base_resource_name = Base.get_resource_name("my_base")
             await motion.stop_plan(component_name=mvmnt_sensor)
 
@@ -328,7 +320,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()``call to move a component.
+        """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()`` call to move a component.
 
         The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
 
