@@ -288,7 +288,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         ::
 
-            # Assuming a `move_on_globe()` started started the execution
+            # Assuming a `move_on_globe()` started the execution
             # Stop the base component which was instructed to move by `move_on_globe()`
             # or `move_on_map()`
             my_base_resource_name = Base.get_resource_name("my_base")
