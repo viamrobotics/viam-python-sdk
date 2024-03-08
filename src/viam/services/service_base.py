@@ -48,7 +48,7 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            motion = MotionClient.from_robot(robot, "builtin")
 
             my_command = {
               "cmnd": "dosomething",
