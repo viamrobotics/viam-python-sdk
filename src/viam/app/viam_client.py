@@ -17,7 +17,7 @@ class ViamClient:
     """gRPC client for all communication and interaction with app.
 
     `ViamClient` class for creating and managing specialized client instances.
-    There is currently 1 way to instantiate a ViamClient object::
+    There is currently 1 way to instantiate a `ViamClient` object::
 
         ViamClient.create_from_dial_options(...)
     """
