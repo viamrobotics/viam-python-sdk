@@ -24,7 +24,7 @@ class ViamClient:
 
     @classmethod
     async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
-        """Create `ViamClient` that establishes a connection to the Viam app using an API key and API key ID.
+        """Create `ViamClient` that establishes a connection to the Viam app.
 
         ::
 
@@ -32,8 +32,7 @@ class ViamClient:
             ViamClient.create_from_dial_options(dial_options)
 
         Args:
-            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app,
-                including an API key and API key ID.
+            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app.
                 `creds` and `auth_entity` fields are required.
             app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
 
