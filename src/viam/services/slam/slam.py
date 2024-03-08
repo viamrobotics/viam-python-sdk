@@ -36,7 +36,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_point_cloud_map(self, *, timeout: Optional[float]) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: Optional[bool] = None, *, timeout: Optional[float]) -> List[bytes]:
         """
         Get the point cloud map.
 

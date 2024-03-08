@@ -42,7 +42,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         name = request.name
         slam = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await slam.get_point_cloud_map(timeout=timeout)
+        chunks = await slam.get_point_cloud_map(return_edited_map=request.return_edited_map, timeout=timeout)
         for chunk in chunks:
             response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
             await stream.send_message(response)

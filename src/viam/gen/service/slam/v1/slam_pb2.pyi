@@ -83,13 +83,21 @@ global___GetPositionResponse = GetPositionResponse
 class GetPointCloudMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    RETURN_EDITED_MAP_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of slam service'
+    return_edited_map: builtins.bool
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., return_edited_map: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_return_edited_map', b'_return_edited_map', 'return_edited_map', b'return_edited_map']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_return_edited_map', b'_return_edited_map', 'name', b'name', 'return_edited_map', b'return_edited_map']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_return_edited_map', b'_return_edited_map']) -> typing_extensions.Literal['return_edited_map'] | None:
         ...
 global___GetPointCloudMapRequest = GetPointCloudMapRequest
 
