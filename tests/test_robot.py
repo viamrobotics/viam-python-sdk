@@ -29,6 +29,8 @@ from viam.proto.robot import (
     FrameSystemConfig,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetCloudMetadataRequest,
+    GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetStatusRequest,
@@ -140,6 +142,12 @@ OPERATION_ID = "abc"
 
 OPERATIONS_RESPONSE = [Operation(id=OPERATION_ID)]
 
+GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
+    robot_part_id="the-robot-part",
+    primary_org_id="the-primary-org",
+    location_id="the-location",
+)
+
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -194,12 +202,18 @@ def service() -> RobotService:
         response = GetOperationsResponse(operations=OPERATIONS_RESPONSE)
         await stream.send_message(response)
 
+    async def GetCloudMetadata(stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GET_CLOUD_METADATA_RESPONSE)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
     service.TransformPose = TransformPose
     service.DiscoverComponents = DiscoverComponents
     service.GetOperations = GetOperations
+    service.GetCloudMetadata = GetCloudMetadata
 
     return service
 
@@ -405,6 +419,14 @@ class TestRobotClient:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             discoveries = await client.discover_components([DISCOVERY_QUERY])
             assert discoveries == DISCOVERY_RESPONSE
+            await client.close()
+
+    @pytest.mark.asyncio
+    async def test_get_cloud_metadata(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+            md = await client.get_cloud_metadata()
+            assert md == GET_CLOUD_METADATA_RESPONSE
             await client.close()
 
     @pytest.mark.asyncio

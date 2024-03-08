@@ -23,6 +23,10 @@ class MovementSensor(ComponentBase):
 
     This acts as an abstract base class for any sensors that can provide data regarding the robot's direction, position, and speed.
     This cannot be used on its own. If the ``__init__()`` function is overridden, it must call the ``super().__init__()`` function.
+
+    ::
+
+        from viam.components.movement_sensor import MovementSensor
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
@@ -68,6 +72,15 @@ class MovementSensor(ComponentBase):
     ) -> Tuple[GeoPoint, float]:
         """Get the current GeoPoint (latitude, longitude) and altitude (m)
 
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot,
+                name="my_movement_sensor")
+
+            # Get the current position of the movement sensor.
+            position = await my_movement_sensor.get_position()
+
         Returns:
             Tuple[GeoPoint, float]: The current lat/long, along with the altitude in m
         """
@@ -77,6 +90,14 @@ class MovementSensor(ComponentBase):
     async def get_linear_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
         """Get the current linear velocity as a ``Vector3`` with x, y, and z axes represented in m/sec
 
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the current linear velocity of the movement sensor.
+            lin_vel = await my_movement_sensor.get_linear_velocity()
+
         Returns:
             Vector3: The linear velocity in m/sec
         """
@@ -85,6 +106,17 @@ class MovementSensor(ComponentBase):
     @abc.abstractmethod
     async def get_angular_velocity(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Vector3:
         """Get the current angular velocity as a ``Vector3`` with x, y, and z axes represented in degrees/sec
+
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the current angular velocity of the movement sensor.
+            ang_vel = await my_movement_sensor.get_angular_velocity()
+
+            # Get the y component of angular velocity.
+            y_ang_vel = ang_vel.y
 
         Returns:
             Vector3: The angular velocity in degrees/sec
@@ -97,6 +129,17 @@ class MovementSensor(ComponentBase):
     ) -> Vector3:
         """Get the current linear acceleration as a ``Vector3`` with x, y, and z axes represented in m/sec^2
 
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the current linear acceleration of the movement sensor.
+            lin_accel = await my_movement_sensor.get_linear_acceleration()
+
+            # Get the x component of linear acceleration.
+            x_lin_accel = lin_accel.x
+
         Returns:
             Vector3: The linear acceleration in m/sec^2
         """
@@ -105,6 +148,14 @@ class MovementSensor(ComponentBase):
     @abc.abstractmethod
     async def get_compass_heading(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> float:
         """Get the current compass heading in degrees
+
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the current compass heading of the movement sensor.
+            heading = await my_movement_sensor.get_compass_heading()
 
         Returns:
             float: The compass heading in degrees
@@ -115,6 +166,14 @@ class MovementSensor(ComponentBase):
     async def get_orientation(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Orientation:
         """Get the current orientation
 
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the current orientation vector of the movement sensor.
+            orientation = await my_movement_sensor.get_orientation()
+
         Returns:
             Orientation: The orientation
         """
@@ -124,6 +183,14 @@ class MovementSensor(ComponentBase):
     async def get_properties(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Properties:
         """Get the supported properties of this sensor
 
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the supported properties of the movement sensor.
+            properties = await my_movement_sensor.get_properties()
+
         Returns:
             MovementSensor.Properties: The properties
         """
@@ -132,6 +199,14 @@ class MovementSensor(ComponentBase):
     @abc.abstractmethod
     async def get_accuracy(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Accuracy:
         """Get the accuracy of the various sensors
+
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the accuracy of the movement sensor.
+            accuracy = await my_movement_sensor.get_accuracy()
 
         Returns:
             MovementSensor.Accuracy: The accuracies of the movement sensor
@@ -143,6 +218,14 @@ class MovementSensor(ComponentBase):
     ) -> Mapping[str, SensorReading]:
         """Obtain the measurements/data specific to this sensor.
         If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+
+        ::
+
+            my_movement_sensor = MovementSensor.from_robot(
+                robot=robot, name="my_movement_sensor")
+
+            # Get the latest readings from the movement sensor.
+            readings = await my_movement_sensor.get_readings()
 
         Returns:
             Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.
