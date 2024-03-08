@@ -25,6 +25,14 @@ class ServiceBase(abc.ABC, ResourceBase):
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the service named ``name`` from the provided robot.
 
+        ::
+
+            # Assume that the connect function is written and will return a valid machine
+            robot = await connect()
+
+            # Can be used with any resource, using the motion service as an example
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
         Args:
             robot (RobotClient): The robot
             name (str): The name of the service
@@ -36,7 +44,19 @@ class ServiceBase(abc.ABC, ResourceBase):
         return cast(cls, service)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        """Send/receive arbitrary commands
+        """Send/receive arbitrary commands.
+
+        ::
+
+            # Can be used with any resource, using the motion service as an example
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+            my_command = {
+              "cmnd": "dosomething",
+              "someparameter": 52
+            }
+
+            await motion.do_command(my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute
