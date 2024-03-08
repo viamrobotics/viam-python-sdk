@@ -48,7 +48,6 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            # Can be used with any resource, using the motion service as an example
             motion = MotionClient.from_robot(robot=robot, name="builtin")
 
             my_command = {
@@ -56,7 +55,8 @@ class ServiceBase(abc.ABC, ResourceBase):
               "someparameter": 52
             }
 
-            await motion.do_command(my_command)
+            # Can be used with any resource, using the motion service as an example
+            await motion.do_command(command=my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute

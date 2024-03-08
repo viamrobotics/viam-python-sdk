@@ -88,7 +88,7 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient object.
+            # Assume that the connect function is written and will return a valid ViamClient
             viam_client = await connect()
 
             # Instantiate an AppClient called "fleet" to run fleet management API methods on
@@ -103,7 +103,7 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient.
+            # Assume that the connect function is written and will return a valid ViamClient
             viam_client = await connect()
 
             # Instantiate an MLTrainingClient to run ML training client API methods on
