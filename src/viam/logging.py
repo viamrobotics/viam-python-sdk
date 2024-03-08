@@ -15,6 +15,7 @@ _MODULE_PARENT = None
 
 class ModuleHandler(logging.Handler):
     def __init__(self, logger: logging.Logger):
+        self.logger = logger
         self.parent = _MODULE_PARENT
 
         logger.handlers.clear()
@@ -27,11 +28,16 @@ class ModuleHandler(logging.Handler):
         time = datetime.fromtimestamp(record.created)
 
         try:
+            assert self.parent is not None
             asyncio.create_task(
                 self.parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
             )
-        except Exception:
-            print(f"{time}\t{record.levelname}\t{record.name}\t{message}\t{stack}")
+        except Exception as err:
+            self.logger.handlers.clear()
+            addHandlers(self.logger, True)
+            self.logger.error(f"Module handler failed for {record.name} - {err}")
+            self.logger.log(record.levelno, message)
+            addHandlers(self.logger)
 
 
 class ColorFormatter(logging.Formatter):
@@ -69,7 +75,7 @@ def getLogger(name: str) -> logging.Logger:
     return logger
 
 
-def addHandlers(logger: logging.Logger):
+def addHandlers(logger: logging.Logger, default=False):
     logger.handlers.clear()
 
     format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
@@ -85,7 +91,7 @@ def addHandlers(logger: logging.Logger):
     # filter out logs below error level
     err_handler.setLevel(max(ERROR, LOG_LEVEL))
 
-    if _MODULE_PARENT is not None:
+    if _MODULE_PARENT is not None and not default:
         _startModuleLogging(logger)
     else:
         logger.addHandler(handler)
