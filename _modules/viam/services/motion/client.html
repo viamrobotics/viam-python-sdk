@@ -104,6 +104,7 @@
     <span class="n">Transform</span><span class="p">,</span>
     <span class="n">WorldState</span><span class="p">,</span>
 <span class="p">)</span>
+
 <span class="kn">from</span> <span class="nn">viam.proto.service.motion</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Constraints</span><span class="p">,</span>
     <span class="n">GetPlanRequest</span><span class="p">,</span>
@@ -123,6 +124,7 @@
     <span class="n">StopPlanRequest</span><span class="p">,</span>
     <span class="n">StopPlanResponse</span><span class="p">,</span>
 <span class="p">)</span>
+
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_client_base</span> <span class="kn">import</span> <span class="n">ServiceClientBase</span>
@@ -163,6 +165,24 @@
 
 <span class="sd">            resource_name = Arm.get_resource_name(&quot;externalFrame&quot;)</span>
 <span class="sd">            success = await MotionServiceClient.move(resource_name, ...)</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+
+<span class="sd">            # Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
+<span class="sd">            gripper_name = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
+<span class="sd">            my_frame = &quot;my_gripper_offset&quot;</span>
+
+<span class="sd">            goal_pose = Pose(x=0, y=0, z=300, o_x=0, o_y=0, o_z=1, theta=0)</span>
+
+<span class="sd">            # Move the gripper</span>
+<span class="sd">            moved = await motion.move(component_name=gripper_name,</span>
+<span class="sd">                                  destination=PoseInFrame(reference_frame=&quot;myFrame&quot;,</span>
+<span class="sd">                                                          pose=goal_pose),</span>
+<span class="sd">                                  world_state=worldState,</span>
+<span class="sd">                                  constraints={},</span>
+<span class="sd">                                  extra={})</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.</span>
@@ -210,6 +230,23 @@
 <span class="sd">        generated durring the ``move_on_globe()`` call.</span>
 
 <span class="sd">        You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+
+<span class="sd">            # Get the ResourceNames of the base and movement sensor</span>
+<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            mvmnt_sensor_resource_name = MovementSensor.get_resource_name(</span>
+<span class="sd">                &quot;my_movement_sensor&quot;)</span>
+<span class="sd">            #  Define a destination GeoPoint at the GPS coordinates [0, 0]</span>
+<span class="sd">            my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)</span>
+
+<span class="sd">            # Move the base component to the designated geographic location, as reported by the movement sensor</span>
+<span class="sd">            execution_id = await motion.move_on_globe(</span>
+<span class="sd">                component_name=my_base_resource_name,</span>
+<span class="sd">                destination=my_destination,</span>
+<span class="sd">                movement_sensor_name=mvmnt_sensor_resource_name)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The ResourceName of the base to move.</span>
@@ -278,6 +315,23 @@
 
 <span class="sd">        You can monitor the progress of the ``move_on_map()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+
+<span class="sd">            # Get the ResourceNames of the base component and SLAM service</span>
+<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            my_slam_service_name = SLAMClient.get_resource_name(&quot;my_slam_service&quot;)</span>
+
+<span class="sd">            # Define a destination pose with respect to the origin of the map from the SLAM service &quot;my_slam_service&quot;</span>
+<span class="sd">            my_pose = Pose(y=10)</span>
+
+<span class="sd">            # Move the base component to the destination pose of Y=10, a location of</span>
+<span class="sd">            # (0, 10, 0) in respect to the origin of the map</span>
+<span class="sd">            execution_id = await motion.move_on_map(component_name=my_base_resource_name,</span>
+<span class="sd">                                                    destination=my_pose,</span>
+<span class="sd">                                                    slam_service_name=my_slam_service_name)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The ResourceName of the base to move.</span>
 <span class="sd">            destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.</span>
@@ -322,6 +376,14 @@
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop a component being moved by an in progress ``move_on_globe()`` or ``move_on_map()`` call.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            # Assuming a `move_on_globe()` started the execution</span>
+<span class="sd">            # Stop the base component which was instructed to move by `move_on_globe()`</span>
+<span class="sd">            # or `move_on_map()`</span>
+<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            await motion.stop_plan(component_name=mvmnt_sensor)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to stop</span>
 
@@ -348,7 +410,7 @@
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetPlanResponse</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()``call to move a component.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()`` call to move a component.</span>
 
 <span class="sd">        The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.</span>
 
@@ -364,6 +426,13 @@
 <span class="sd">        Replans share the ExecutionID of the previously executing plan.</span>
 
 <span class="sd">        All repeated fields are in time ascending order.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            my_base_resource_name = Base.get_resource_name(&quot;my_base&quot;)</span>
+<span class="sd">            # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
+<span class="sd">            resp = await motion.get_plan(component_name=my_base_resource_name)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to stop</span>
@@ -401,6 +470,12 @@
 
 <span class="sd">        All repeated fields are in chronological order.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            # List the plan statuses of the motion service within the TTL</span>
+<span class="sd">            resp = await motion.list_plan_statuses()</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing</span>
 
@@ -436,6 +511,18 @@
 <span class="sd">        Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work</span>
 <span class="sd">        (``Base``, ``Gripper``, etc).</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            from viam.components.gripper import Gripper</span>
+<span class="sd">            from viam.services.motion import MotionClient</span>
+
+<span class="sd">            # Assume that the connect function is written and will return a valid machine.</span>
+<span class="sd">            robot = await connect()</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+<span class="sd">            gripperName = Gripper.get_resource_name(&quot;my_gripper&quot;)</span>
+<span class="sd">            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,</span>
+<span class="sd">                                                    destination_frame=&quot;world&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a robot.</span>
@@ -460,6 +547,18 @@
 
 <div class="viewcode-block" id="MotionClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/services/motion/index.html#viam.services.motion.client.MotionClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/receive arbitrary commands</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            # Access the motion service</span>
+<span class="sd">            motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+
+<span class="sd">            my_command = {</span>
+<span class="sd">              &quot;command&quot;: &quot;dosomething&quot;,</span>
+<span class="sd">              &quot;someparameter&quot;: 52</span>
+<span class="sd">            }</span>
+
+<span class="sd">            await motion.do_command(my_command)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            command (Dict[str, ValueTypes]): The command to execute</span>

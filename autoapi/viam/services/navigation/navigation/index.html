@@ -169,47 +169,247 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_paths">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.Path" title="viam.services.navigation.Path"><span class="pre">viam.services.navigation.Path</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_paths" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get each path, the series of geo points the robot plans to travel through
+to get to a destination waypoint, in the machine’s motion planning.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each path stored by the navigation service</span>
+<span class="n">paths</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_paths</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>An array comprised of Paths, where each path is either a user-provided destination or</dt><dd><p>a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
+reach the specified destination or Waypoint.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path">navigation.Path</a>])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_location">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><span class="pre">viam.services.navigation.GeoPoint</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_location" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get the current location of the robot in the navigation service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current location of the robot in the navigation service</span>
+<span class="n">location</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_location</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>The current location of the robot in the navigation service,</dt><dd><p>represented in a GeoPoint with latitude and longitude values.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(<a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint">navigation.GeoPoint</a>)</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_obstacles">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obstacles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle"><span class="pre">viam.services.navigation.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_obstacles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_obstacles" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get an array or list of the obstacles currently in the service’s data storage.
+These are objects designated for the robot to avoid when navigating.
+These include all transient obstacles which are discovered by the vision services configured for the navigation service,
+in addition to the obstacles that are configured as a part of the service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each obstacle stored by the navigation service</span>
+<span class="n">obstacles</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_obstacles</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A list comprised of each GeoObstacle in the service’s data storage.</dt><dd><p>These are objects designated for the robot to avoid when navigating.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle">navigation.GeoObstacle</a>])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_waypoints">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_waypoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.Waypoint" title="viam.services.navigation.Waypoint"><span class="pre">viam.services.navigation.Waypoint</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_waypoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_waypoints" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get an array of waypoints currently in the service’s data storage.
+These are locations designated within a path for the robot to navigate to.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get a list containing each waypoint stored by the navigation service</span>
+<span class="n">waypoints</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_waypoints</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>An array comprised of each Waypoint in the service’s data storage.</dt><dd><p>These are locations designated within a path for the robot to navigate to.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint">navigation.Waypoint</a>])</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.add_waypoint">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_waypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><span class="pre">viam.services.navigation.GeoPoint</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.add_waypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.add_waypoint" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Add a waypoint to the service’s data storage.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Create a new waypoint with latitude and longitude values of 0 degrees</span>
+ <span class="n">location</span> <span class="o">=</span> <span class="n">GeoPoint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+ <span class="c1"># Add your waypoint to the service&#39;s data storage</span>
+ <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">add_waypoint</span><span class="p">(</span><span class="n">point</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint"><em>navigation.GeoPoint</em></a>) – The current location of the robot in the navigation service,
+represented in a GeoPoint with latitude and longitude values.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.remove_waypoint">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_waypoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.remove_waypoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.remove_waypoint" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Remove a waypoint from the service’s data storage. If the robot is currently navigating to this waypoint,
+the motion will be canceled, and the robot will proceed to the next waypoint.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Remove the waypoint matching that ObjectID from the service&#39;s data storage</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">remove_waypoint</span><span class="p">(</span><span class="n">waypoint_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.</p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_mode">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.navigation.Mode.ValueType</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_mode" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get the Mode the service is operating in.</p>
+<p>There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</p>
+<blockquote>
+<div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
+MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the Mode the service is operating in</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_mode</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Mode the service is operating in.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>navigation.Mode.ValueType</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.set_mode">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.services.navigation.Mode.ValueType</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.set_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.set_mode" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Set the Mode the service is operating in.</p>
+<p>There are two options for modes: MODE_MANUAL or MODE_WAYPOINT.</p>
+<blockquote>
+<div><p>MODE_WAYPOINT: Start to look for added waypoints and begin autonomous navigation.
+MODE_MANUAL: Stop autonomous navigation between waypoints and allow the base to be controlled manually.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the Mode the service is operating in to MODE_WAYPOINT and begin navigation</span>
+<span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">set_mode</span><span class="p">(</span><span class="n">Mode</span><span class="o">.</span><span class="n">ValueType</span><span class="o">.</span><span class="n">MODE_WAYPOINT</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p></li>
+<li><p><strong>mode</strong> (<em>navigation.Mode.ValueType</em>) – The Mode for the service to operate in.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_properties">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">viam.services.navigation.MapType.ValueType</span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_properties" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get information about the navigation service.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_nav</span> <span class="o">=</span> <span class="n">NavigationClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_nav_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the properties of the current navigation service.</span>
+<span class="n">nav_properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_nav</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds)
+before calling a time-out and closing the underlying RPC call.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Information about the type of map the service is using.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MapType.ValueType</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.from_robot">

@@ -162,6 +162,12 @@
 <dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient.get_position">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../index.html#viam.services.slam.Pose" title="viam.services.slam.Pose"><span class="pre">viam.services.slam.Pose</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient.get_position" title="Permalink to this definition"></a></dt>
 <dd><p>Get current position of the specified component in the SLAM Map.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the current position of the specified source component in the SLAM map as a Pose.</span>
+<span class="n">pose</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam</span><span class="o">.</span><span class="n">get_position</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The current position of the specified component</p>
@@ -176,6 +182,12 @@
 <dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient.get_point_cloud_map">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient.get_point_cloud_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient.get_point_cloud_map" title="Permalink to this definition"></a></dt>
 <dd><p>Get the point cloud map.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the point cloud map in standard PCD format.</span>
+<span class="n">pcd_map</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam_svc</span><span class="o">.</span><span class="n">get_point_cloud_map</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p><dl class="simple">
@@ -194,6 +206,12 @@
 <dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient.get_internal_state">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_internal_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient.get_internal_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient.get_internal_state" title="Permalink to this definition"></a></dt>
 <dd><p>Get the internal state of the SLAM algorithm required to continue mapping/localization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the internal state of the SLAM algorithm required to continue mapping/localization.</span>
+<span class="n">internal_state</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam</span><span class="o">.</span><span class="n">get_internal_state</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Chunks of the internal state of the SLAM algorithm</p>
@@ -208,6 +226,12 @@
 <dt class="sig sig-object py" id="viam.services.slam.client.SLAMClient.get_properties">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.services.slam.MappingMode.ValueType</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/client.html#SLAMClient.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.client.SLAMClient.get_properties" title="Permalink to this definition"></a></dt>
 <dd><p>Get information regarding the current SLAM session.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the properties of your current SLAM session.</span>
+<span class="n">slam_properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">slam_svc</span><span class="o">.</span><span class="n">get_properties</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple of a boolean value representing if the SLAM session is being run in

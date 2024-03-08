@@ -178,6 +178,23 @@ originating ReferenceFrame’s name. Then pass in the resource name into <code c
 <span class="n">success</span> <span class="o">=</span> <span class="k">await</span> <span class="n">MotionServiceClient</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">resource_name</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Assumes a gripper configured with name &quot;my_gripper&quot; on the machine</span>
+<span class="n">gripper_name</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<span class="n">my_frame</span> <span class="o">=</span> <span class="s2">&quot;my_gripper_offset&quot;</span>
+
+<span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">o_x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">o_z</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Move the gripper</span>
+<span class="n">moved</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripper_name</span><span class="p">,</span>
+                      <span class="n">destination</span><span class="o">=</span><span class="n">PoseInFrame</span><span class="p">(</span><span class="n">reference_frame</span><span class="o">=</span><span class="s2">&quot;myFrame&quot;</span><span class="p">,</span>
+                                              <span class="n">pose</span><span class="o">=</span><span class="n">goal_pose</span><span class="p">),</span>
+                      <span class="n">world_state</span><span class="o">=</span><span class="n">worldState</span><span class="p">,</span>
+                      <span class="n">constraints</span><span class="o">=</span><span class="p">{},</span>
+                      <span class="n">extra</span><span class="o">=</span><span class="p">{})</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -208,6 +225,22 @@ GPS point after <code class="docutils literal notranslate"><span class="pre">mov
 <p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call retuns a unique ExectionID which you can use to identify all plans
 generated durring the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the ResourceNames of the base and movement sensor</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="n">mvmnt_sensor_resource_name</span> <span class="o">=</span> <span class="n">MovementSensor</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span>
+    <span class="s2">&quot;my_movement_sensor&quot;</span><span class="p">)</span>
+<span class="c1">#  Define a destination GeoPoint at the GPS coordinates [0, 0]</span>
+<span class="n">my_destination</span> <span class="o">=</span> <span class="n">movement_sensor</span><span class="o">.</span><span class="n">GeoPoint</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Move the base component to the designated geographic location, as reported by the movement sensor</span>
+<span class="n">execution_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move_on_globe</span><span class="p">(</span>
+    <span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">,</span>
+    <span class="n">destination</span><span class="o">=</span><span class="n">my_destination</span><span class="p">,</span>
+    <span class="n">movement_sensor_name</span><span class="o">=</span><span class="n">mvmnt_sensor_resource_name</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -255,6 +288,22 @@ Pose point after <code class="docutils literal notranslate"><span class="pre">mo
 <p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call retuns a unique ExectionID which you can use to identify all plans
 generated durring the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the ResourceNames of the base component and SLAM service</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="n">my_slam_service_name</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define a destination pose with respect to the origin of the map from the SLAM service &quot;my_slam_service&quot;</span>
+<span class="n">my_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Move the base component to the destination pose of Y=10, a location of</span>
+<span class="c1"># (0, 10, 0) in respect to the origin of the map</span>
+<span class="n">execution_id</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">move_on_map</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">,</span>
+                                        <span class="n">destination</span><span class="o">=</span><span class="n">my_pose</span><span class="p">,</span>
+                                        <span class="n">slam_service_name</span><span class="o">=</span><span class="n">my_slam_service_name</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -288,6 +337,13 @@ angular_degs_per_sec (float): Angular velocity this machine should target when t
 <dt class="sig sig-object py" id="viam.services.motion.client.MotionClient.stop_plan">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/services/motion/client.html#MotionClient.stop_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.client.MotionClient.stop_plan" title="Permalink to this definition"></a></dt>
 <dd><p>Stop a component being moved by an in progress <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming a `move_on_globe()` started the execution</span>
+<span class="c1"># Stop the base component which was instructed to move by `move_on_globe()`</span>
+<span class="c1"># or `move_on_map()`</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">stop_plan</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">mvmnt_sensor</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component to stop</p>
@@ -301,7 +357,7 @@ angular_degs_per_sec (float): Angular velocity this machine should target when t
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.motion.client.MotionClient.get_plan">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><span class="pre">viam.proto.common.ResourceName</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_plan_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execution_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.GetPlanResponse" title="viam.proto.service.motion.GetPlanResponse"><span class="pre">viam.proto.service.motion.GetPlanResponse</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/client.html#MotionClient.get_plan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.client.MotionClient.get_plan" title="Permalink to this definition"></a></dt>
-<dd><p>By default: returns the plan history of the most recent <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <a href="#id1"><span class="problematic" id="id2">``</span></a>move_on_map()``call to move a component.</p>
+<dd><p>By default: returns the plan history of the most recent <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> or <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call to move a component.</p>
 <p>The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.</p>
 <p>Returns a result if both of the following conditions are met:</p>
 <ul class="simple">
@@ -312,6 +368,12 @@ angular_degs_per_sec (float): Angular velocity this machine should target when t
 <p>Replans always create new plans.</p>
 <p>Replans share the ExecutionID of the previously executing plan.</p>
 <p>All repeated fields are in time ascending order.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="n">my_base_resource_name</span> <span class="o">=</span> <span class="n">Base</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_base&quot;</span><span class="p">)</span>
+<span class="c1"># Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_plan</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">my_base_resource_name</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -339,6 +401,11 @@ conditions since the motion service initialized:</p>
 <li><p>the plan’s status changed state within the last 24 hours</p></li>
 </ul>
 <p>All repeated fields are in chronological order.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="c1"># List the plan statuses of the motion service within the TTL</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">list_plan_statuses</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>only_active_plans</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will filter out any plans that are not executing</p>
@@ -362,6 +429,18 @@ associated IDs of all plans within the TTL ordered by timestamp in ascending ord
 </div>
 <p>Note that the example uses the <code class="docutils literal notranslate"><span class="pre">Arm</span></code> class, but any component class that inherits from <code class="docutils literal notranslate"><span class="pre">ComponentBase</span></code> will work
 (<code class="docutils literal notranslate"><span class="pre">Base</span></code>, <code class="docutils literal notranslate"><span class="pre">Gripper</span></code>, etc).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.components.gripper</span> <span class="kn">import</span> <span class="n">Gripper</span>
+<span class="kn">from</span> <span class="nn">viam.services.motion</span> <span class="kn">import</span> <span class="n">MotionClient</span>
+
+<span class="c1"># Assume that the connect function is written and will return a valid machine.</span>
+<span class="n">robot</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+<span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+<span class="n">gripperName</span> <span class="o">=</span> <span class="n">Gripper</span><span class="o">.</span><span class="n">get_resource_name</span><span class="p">(</span><span class="s2">&quot;my_gripper&quot;</span><span class="p">)</span>
+<span class="n">gripperPoseInWorld</span> <span class="o">=</span> <span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">get_pose</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="n">gripperName</span><span class="p">,</span>
+                                        <span class="n">destination_frame</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -384,6 +463,17 @@ calculating pose.</p></li>
 <dt class="sig sig-object py" id="viam.services.motion.client.MotionClient.do_command">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">do_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">__</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/motion/client.html#MotionClient.do_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.motion.client.MotionClient.do_command" title="Permalink to this definition"></a></dt>
 <dd><p>Send/receive arbitrary commands</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the motion service</span>
+<span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
+
+<span class="n">my_command</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;dosomething&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;someparameter&quot;</span><span class="p">:</span> <span class="mi">52</span>
+<span class="p">}</span>
+
+<span class="k">await</span> <span class="n">motion</span><span class="o">.</span><span class="n">do_command</span><span class="p">(</span><span class="n">my_command</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>

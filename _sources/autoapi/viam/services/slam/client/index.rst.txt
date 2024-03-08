@@ -34,6 +34,13 @@ Classes
 
       Get current position of the specified component in the SLAM Map.
 
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the current position of the specified source component in the SLAM map as a Pose.
+          pose = await slam.get_position()
+
       :returns: The current position of the specified component
       :rtype: Pose
 
@@ -42,6 +49,13 @@ Classes
       :async:
 
       Get the point cloud map.
+
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the point cloud map in standard PCD format.
+          pcd_map = await slam_svc.get_point_cloud_map()
 
       :returns:
 
@@ -55,6 +69,13 @@ Classes
 
       Get the internal state of the SLAM algorithm required to continue mapping/localization.
 
+      ::
+
+          slam = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the internal state of the SLAM algorithm required to continue mapping/localization.
+          internal_state = await slam.get_internal_state()
+
       :returns: Chunks of the internal state of the SLAM algorithm
       :rtype: List[GetInternalStateResponse]
 
@@ -63,6 +84,13 @@ Classes
       :async:
 
       Get information regarding the current SLAM session.
+
+      ::
+
+          slam_svc = SLAMClient.from_robot(robot=robot, name="my_slam_service")
+
+          # Get the properties of your current SLAM session.
+          slam_properties = await slam_svc.get_properties()
 
       :returns: A tuple of a boolean value representing if the SLAM session is being run in
                 the cloud and the mapping mode of said session
