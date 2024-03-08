@@ -84,7 +84,7 @@ class ViamClient:
     @property
     def app_client(self) -> AppClient:
         """Instantiate and return an `AppClient` used to make  `app` method calls.
-        To use the `DataClient`, you must first instantiate a `ViamClient`.
+        To use the `AppClient`, you must first instantiate a `ViamClient`.
 
         ::
 
@@ -113,7 +113,8 @@ class ViamClient:
 
     @property
     def billing_client(self) -> BillingClient:
-        """Instantiate and return a `BillingClient` used to make `billing` method calls."""
+        """Instantiate and return a `BillingClient` used to make `billing` method calls.
+            To use the `BillingClient`, you must first instantiate a `ViamClient`."""
         return BillingClient(self._channel, self._metadata)
 
     def close(self):
