@@ -777,6 +777,10 @@ class RobotClient:
         request = LogRequest(logs=[entry])
         await self._client.Log(request)
 
+    ######################
+    # Get Cloud Metadata #
+    ######################
+
     async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
         """
         Get app-related information about the robot.
