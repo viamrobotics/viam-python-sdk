@@ -16,6 +16,7 @@ LOGGER = logging.getLogger(__name__)
 class ViamClient:
     """gRPC client for all communication and interaction with app.
 
+    `ViamClient` class for creating and managing specialized client instances.
     There is currently 1 way to instantiate a `ViamClient` object::
 
         ViamClient.create_from_dial_options(...)
@@ -25,10 +26,14 @@ class ViamClient:
     async def create_from_dial_options(cls, dial_options: DialOptions, app_url: Optional[str] = None) -> Self:
         """Create `ViamClient` that establishes a connection to the Viam app.
 
-        Args:
+        ::
 
-            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and
-                `auth_entity` fields are required.
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+            ViamClient.create_from_dial_options(dial_options)
+
+        Args:
+            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app.
+                `creds` and `auth_entity` fields are required.
             app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.
 
         Raises:
@@ -62,22 +67,70 @@ class ViamClient:
 
     @property
     def data_client(self) -> DataClient:
-        """Insantiate and return a `DataClient` used to make `data` and `data_sync` method calls."""
+        """Instantiate and return a `DataClient` object used to make `data` and `data_sync` method calls.
+        To use the `DataClient`, you must first instantiate a `ViamClient`.
+
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate a DataClient to run data client API methods on
+                data_client = viam_client.data_client
+        """
         return DataClient(self._channel, self._metadata)
 
     @property
     def app_client(self) -> AppClient:
-        """Insantiate and return an `AppClient` used to make  `app` method calls."""
+        """Instantiate and return an `AppClient` used to make  `app` method calls.
+        To use the `AppClient`, you must first instantiate a `ViamClient`.
+
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate an AppClient called "fleet" to run fleet management API methods on
+                fleet = viam_client.app_client
+        """
         return AppClient(self._channel, self._metadata, self._location_id)
 
     @property
     def ml_training_client(self) -> MLTrainingClient:
-        """Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls."""
+        """Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.
+        To use the `MLTrainingClient`, you must first instantiate a `ViamClient`.
+
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate an MLTrainingClient to run ML training client API methods on
+                ml_training_client = viam_client.ml_training_client
+        """
         return MLTrainingClient(self._channel, self._metadata)
 
     @property
     def billing_client(self) -> BillingClient:
-        """Instantiate and return a `BillingClient` used to make `billing` method calls."""
+        """Instantiate and return a `BillingClient` used to make `billing` method calls.
+            To use the `BillingClient`, you must first instantiate a `ViamClient`."""
         return BillingClient(self._channel, self._metadata)
 
     def close(self):
