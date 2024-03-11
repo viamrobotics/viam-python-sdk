@@ -33,7 +33,7 @@ class ModuleHandler(logging.Handler):
                 self.parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
             )
         except Exception as err:
-            self.logger.handlers.clear()
+            # If the module log fails, log using stdout/stderr handlers, and then readd the module handler.
             addHandlers(self.logger, True)
             self.logger.error(f"Module handler failed for {record.name} - {err}")
             self.logger.log(record.levelno, message)
