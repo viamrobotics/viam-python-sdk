@@ -106,6 +106,7 @@
 <div class="viewcode-block" id="ViamClient"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient">[docs]</a><span class="k">class</span> <span class="nc">ViamClient</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for all communication and interaction with app.</span>
 
+<span class="sd">    `ViamClient` class for creating and managing specialized client instances.</span>
 <span class="sd">    There is currently 1 way to instantiate a `ViamClient` object::</span>
 
 <span class="sd">        ViamClient.create_from_dial_options(...)</span>
@@ -115,10 +116,14 @@
     <span class="k">async</span> <span class="k">def</span> <span class="nf">create_from_dial_options</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dial_options</span><span class="p">:</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">app_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create `ViamClient` that establishes a connection to the Viam app.</span>
 
-<span class="sd">        Args:</span>
+<span class="sd">        ::</span>
 
-<span class="sd">            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app. `creds` and</span>
-<span class="sd">                `auth_entity` fields are required.</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            ViamClient.create_from_dial_options(dial_options)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dial_options (viam.rpc.dial.DialOptions): Required information for authorization and connection to app.</span>
+<span class="sd">                `creds` and `auth_entity` fields are required.</span>
 <span class="sd">            app_url: (Optional[str]): URL of app. Uses app.viam.com if not specified.</span>
 
 <span class="sd">        Raises:</span>
@@ -152,22 +157,70 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return a `DataClient` used to make `data` and `data_sync` method calls.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `DataClient` object used to make `data` and `data_sync` method calls.</span>
+<span class="sd">        To use the `DataClient`, you must first instantiate a `ViamClient`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+<span class="sd">            async def main():</span>
+<span class="sd">                viam_client = await connect()</span>
+
+<span class="sd">                # Instantiate a DataClient to run data client API methods on</span>
+<span class="sd">                data_client = viam_client.data_client</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">DataClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">app_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AppClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Insantiate and return an `AppClient` used to make  `app` method calls.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return an `AppClient` used to make  `app` method calls.</span>
+<span class="sd">        To use the `AppClient`, you must first instantiate a `ViamClient`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                viam_client = await connect()</span>
+
+<span class="sd">                # Instantiate an AppClient called &quot;fleet&quot; to run fleet management API methods on</span>
+<span class="sd">                fleet = viam_client.app_client</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">AppClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_location_id</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ml_training_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MLTrainingClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `MLTrainingClient` used to make `ml_training` method calls.</span>
+<span class="sd">        To use the `MLTrainingClient`, you must first instantiate a `ViamClient`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                viam_client = await connect()</span>
+
+<span class="sd">                # Instantiate an MLTrainingClient to run ML training client API methods on</span>
+<span class="sd">                ml_training_client = viam_client.ml_training_client</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">MLTrainingClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">billing_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BillingClient</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `BillingClient` used to make `billing` method calls.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `BillingClient` used to make `billing` method calls.</span>
+<span class="sd">            To use the `BillingClient`, you must first instantiate a `ViamClient`.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">BillingClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ViamClient.close"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

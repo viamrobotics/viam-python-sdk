@@ -215,7 +215,19 @@ Classes
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 
-      Send/receive arbitrary commands
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
 
       :param command: The command to execute
       :type command: Dict[str, ValueTypes]
@@ -228,6 +240,21 @@ Classes
       :classmethod:
 
       Get the service named ``name`` from the provided robot.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
 
       :param robot: The robot
       :type robot: RobotClient
@@ -344,6 +371,21 @@ Classes
 
       Get the service named ``name`` from the provided robot.
 
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+          async def main():
+              robot = await connect()
+
+              # Can be used with any resource, using the motion service as an example
+              motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+              robot.close()
+
       :param robot: The robot
       :type robot: RobotClient
       :param name: The name of the service
@@ -357,7 +399,19 @@ Classes
       :abstractmethod:
       :async:
 
-      Send/receive arbitrary commands
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
 
       :param command: The command to execute
       :type command: Dict[str, ValueTypes]

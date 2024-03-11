@@ -115,6 +115,21 @@
     <span class="k">def</span> <span class="nf">from_robot</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">robot</span><span class="p">:</span> <span class="s2">&quot;RobotClient&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the service named ``name`` from the provided robot.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+<span class="sd">            async def main():</span>
+<span class="sd">                robot = await connect()</span>
+
+<span class="sd">                # Can be used with any resource, using the motion service as an example</span>
+<span class="sd">                motion = MotionClient.from_robot(robot=robot, name=&quot;builtin&quot;)</span>
+
+<span class="sd">                robot.close()</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            robot (RobotClient): The robot</span>
 <span class="sd">            name (str): The name of the service</span>
@@ -126,7 +141,19 @@
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">service</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ServiceBase.do_command"><a class="viewcode-back" href="../../../autoapi/viam/services/service_base/index.html#viam.services.service_base.ServiceBase.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/receive arbitrary commands</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send/receive arbitrary commands.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            motion = MotionClient.from_robot(robot, &quot;builtin&quot;)</span>
+
+<span class="sd">            my_command = {</span>
+<span class="sd">              &quot;cmnd&quot;: &quot;dosomething&quot;,</span>
+<span class="sd">              &quot;someparameter&quot;: 52</span>
+<span class="sd">            }</span>
+
+<span class="sd">            # Can be used with any resource, using the motion service as an example</span>
+<span class="sd">            await motion.do_command(command=my_command)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            command (Dict[str, ValueTypes]): The command to execute</span>
