@@ -28,7 +28,6 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient.
             ViamClient.create_from_dial_options(dial_options)
 
         Args:
@@ -72,11 +71,15 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient.
-            viam_client = await connect()
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
 
-            # Instantiate a DataClient to run data client API methods on
-            data_client = viam_client.data_client
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate a DataClient to run data client API methods on
+                data_client = viam_client.data_client
         """
         return DataClient(self._channel, self._metadata)
 
@@ -87,11 +90,15 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient
-            viam_client = await connect()
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
 
-            # Instantiate an AppClient called "fleet" to run fleet management API methods on
-            fleet = viam_client.app_client
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate an AppClient called "fleet" to run fleet management API methods on
+                fleet = viam_client.app_client
         """
         return AppClient(self._channel, self._metadata, self._location_id)
 
@@ -102,11 +109,15 @@ class ViamClient:
 
         ::
 
-            # Assume that the connect function is written and will return a valid ViamClient
-            viam_client = await connect()
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
 
-            # Instantiate an MLTrainingClient to run ML training client API methods on
-            ml_training_client = viam_client.ml_training_client
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate an MLTrainingClient to run ML training client API methods on
+                ml_training_client = viam_client.ml_training_client
         """
         return MLTrainingClient(self._channel, self._metadata)
 

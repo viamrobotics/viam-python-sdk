@@ -27,11 +27,18 @@ class ServiceBase(abc.ABC, ResourceBase):
 
         ::
 
-            # Assume that the connect function is written and will return a valid machine
-            robot = await connect()
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
 
-            # Can be used with any resource, using the motion service as an example
-            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            async def main():
+                robot = await connect()
+
+                # Can be used with any resource, using the motion service as an example
+                motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+                robot.close()
 
         Args:
             robot (RobotClient): The robot
