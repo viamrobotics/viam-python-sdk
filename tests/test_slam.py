@@ -36,6 +36,10 @@ class TestSLAMService:
         chunks = await self.slam.get_point_cloud_map()
         assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS
 
+    async def test_get_point_cloud_map_return_edited(self):
+        chunks = await self.slam.get_point_cloud_map(return_edited_map=True)
+        assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS_EDITED
+
     @pytest.mark.asyncio
     async def test_get_position(self):
         pos = await self.slam.get_position()
