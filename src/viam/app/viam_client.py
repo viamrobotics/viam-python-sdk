@@ -28,6 +28,7 @@ class ViamClient:
 
         ::
 
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
             ViamClient.create_from_dial_options(dial_options)
 
         Args:
