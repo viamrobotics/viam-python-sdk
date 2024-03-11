@@ -75,6 +75,7 @@ class ViamClient:
             async def connect() -> ViamClient:
                 # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
                 dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
 
             async def main():
                 viam_client = await connect()
@@ -94,6 +95,8 @@ class ViamClient:
             async def connect() -> ViamClient:
                 # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
                 dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
 
             async def main():
                 viam_client = await connect()
@@ -113,6 +116,8 @@ class ViamClient:
             async def connect() -> ViamClient:
                 # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
                 dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
 
             async def main():
                 viam_client = await connect()
