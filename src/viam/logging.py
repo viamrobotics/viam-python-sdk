@@ -29,17 +29,18 @@ class _ModuleHandler(logging.Handler):
 
     def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
-        stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
+        name = record.name.split(".")[-1]
         message = f"{record.filename}:{record.lineno}\t{record.msg}"
+        stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
         time = datetime.fromtimestamp(record.created)
 
         try:
             assert self._parent is not None
-            coro = asyncio.wait_for(self._parent.log(record.name, record.levelname, time, message, stack), 10)
+            coro = asyncio.wait_for(self._parent.log(name, record.levelname, time, message, stack), 10)
             asyncio.create_task(coro, name=f"{viam._TASK_PREFIX}-LOG-{record.created}")
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
-            self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
+            self._logger.error(f"ModuleLogger failed for {name} - {err}")
             self._logger.log(record.levelno, message)
 
 
