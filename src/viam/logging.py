@@ -43,7 +43,7 @@ class _ModuleHandler(logging.Handler):
             self._logger.log(record.levelno, message)
 
 
-class ColorFormatter(logging.Formatter):
+class _ColorFormatter(logging.Formatter):
     MAPPING = {
         "DEBUG": 37,  # white
         "INFO": 36,  # cyan
@@ -78,44 +78,44 @@ def getLogger(name: str) -> logging.Logger:
     return logger
 
 
-def addHandlers(logger: logging.Logger, default=False):
-    logger.handlers.clear()
+def addHandlers(logger: logging.Logger, use_default_handlers=False):
+    _addHandlers([logger], use_default_handlers)
 
-    format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
 
-    handler = logging.StreamHandler(stream=sys.stdout)
-    handler.setFormatter(format)
+def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
+    format = _ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
+
+    std_handler = logging.StreamHandler(stream=sys.stdout)
+    std_handler.setFormatter(format)
     # filter out logs at error level or above
-    handler.setLevel(LOG_LEVEL)
-    handler.addFilter(filter=lambda record: (record.levelno < ERROR))
+    std_handler.setLevel(LOG_LEVEL)
+    std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
 
     err_handler = logging.StreamHandler(stream=sys.stderr)
     err_handler.setFormatter(format)
     # filter out logs below error level
     err_handler.setLevel(max(ERROR, LOG_LEVEL))
 
-    if _MODULE_PARENT is not None and not default:
-        _startModuleLogging(logger)
+    handlers: List[logging.Handler] = []
+
+    if _MODULE_PARENT is not None and not use_default_handlers:
+        mod_handler = _ModuleHandler(_MODULE_PARENT)
+        mod_handler.setFormatter(format)
+        mod_handler.setLevel(LOG_LEVEL)
+        handlers = [mod_handler]
     else:
-        logger.addHandler(handler)
-        logger.addHandler(err_handler)
+        handlers = [std_handler, err_handler]
 
-
-def _startModuleLogging(logger: logging.Logger):
-    handler = ModuleHandler(logger)
-
-    format = ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
-    handler.setFormatter(format)
-    handler.setLevel(LOG_LEVEL)
-
-    logger.addHandler(handler)
+    for logger in loggers:
+        logger.handlers.clear()
+        for h in handlers:
+            logger.addHandler(h)
 
 
 def setParent(parent: "RobotClient"):
     global _MODULE_PARENT
     _MODULE_PARENT = parent
-    for logger in list(LOGGERS.values()):
-        _startModuleLogging(logger)
+    _addHandlers(LOGGERS.values())
 
 
 def setLevel(level: int):
@@ -123,7 +123,7 @@ def setLevel(level: int):
     LOG_LEVEL = level
     for logger in LOGGERS.values():
         logger.setLevel(LOG_LEVEL)
-        addHandlers(logger)
+    _addHandlers(LOGGERS.values())
 
 
 def silence():
