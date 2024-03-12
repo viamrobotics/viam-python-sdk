@@ -38,7 +38,7 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: GetPositionResponse = await self.client.GetPosition(request, timeout=timeout)
         return response.pose
 
-    async def get_point_cloud_map(self, return_edited_map: Optional[bool] = None, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]:
         request = GetPointCloudMapRequest(name=self.name, return_edited_map=return_edited_map)
         response: List[GetPointCloudMapResponse] = await self.client.GetPointCloudMap(request, timeout=timeout)
         return [r.point_cloud_pcd_chunk for r in response]
