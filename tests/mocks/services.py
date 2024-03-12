@@ -306,7 +306,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.service.slam import MappingMode, SensorType, SensorInfo
+from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
 from viam.proto.service.vision import Classification, Detection
 from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
@@ -604,8 +604,10 @@ class MockSLAM(SLAM):
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
     INTERNAL_STATE_FILE_TYPE = ".pbstream"
-    SENSOR_INFO = [SensorInfo(name="my-camera", type=SensorType.SENSOR_TYPE_CAMERA),
-                   SensorInfo(name="my-movement-sensor", type=SensorType.SENSOR_TYPE_MOVEMENT_SENSOR)]
+    SENSOR_INFO = [
+        SensorInfo(name="my-camera", type=SensorType.SENSOR_TYPE_CAMERA),
+        SensorInfo(name="my-movement-sensor", type=SensorType.SENSOR_TYPE_MOVEMENT_SENSOR),
+    ]
 
     def __init__(self, name: str):
         self.name = name
