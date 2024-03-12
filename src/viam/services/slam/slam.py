@@ -48,8 +48,6 @@ class SLAM(ServiceBase):
             pcd_map = await slam_svc.get_point_cloud_map()
 
         Args:
-            timeout (Optional[float]): An option to set how long to wait (in seconds)
-                before calling a time-out and closing the underlying RPC call.
             return_edited_map (bool): signal to the SLAM service to return an edited map, if the map package contains one and if
                 the SLAM service supports the feature
 
