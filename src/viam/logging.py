@@ -86,17 +86,6 @@ def addHandlers(logger: logging.Logger, use_default_handlers=False):
 def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
     format = _ColorFormatter("%(asctime)s\t\t" + "%(levelname)s\t" + "%(name)s (%(filename)s:%(lineno)d)\t" + "%(message)s\t")
 
-    std_handler = logging.StreamHandler(stream=sys.stdout)
-    std_handler.setFormatter(format)
-    # filter out logs at error level or above
-    std_handler.setLevel(LOG_LEVEL)
-    std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
-
-    err_handler = logging.StreamHandler(stream=sys.stderr)
-    err_handler.setFormatter(format)
-    # filter out logs below error level
-    err_handler.setLevel(max(ERROR, LOG_LEVEL))
-
     handlers: List[logging.Handler] = []
 
     if _MODULE_PARENT is not None and not use_default_handlers:
@@ -105,6 +94,17 @@ def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
         mod_handler.setLevel(LOG_LEVEL)
         handlers = [mod_handler]
     else:
+        std_handler = logging.StreamHandler(stream=sys.stdout)
+        std_handler.setFormatter(format)
+        # filter out logs at error level or above
+        std_handler.setLevel(LOG_LEVEL)
+        std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
+
+        err_handler = logging.StreamHandler(stream=sys.stderr)
+        err_handler.setFormatter(format)
+        # filter out logs below error level
+        err_handler.setLevel(max(ERROR, LOG_LEVEL))
+
         handlers = [std_handler, err_handler]
 
     for logger in loggers:
