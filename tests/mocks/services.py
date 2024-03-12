@@ -614,7 +614,7 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.INTERNAL_STATE_CHUNKS
 
-    async def get_point_cloud_map(self, return_edited_map: Optional[bool] = None, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
         if return_edited_map:
             return self.POINT_CLOUD_PCD_CHUNKS_EDITED
