@@ -24,6 +24,7 @@ class _ModuleHandler(logging.Handler):
     def __init__(self, parent: "RobotClient"):
         self._parent = parent
         self._logger = logging.getLogger("ModuleLogger")
+        self._logger.setLevel(LOG_LEVEL)
         addHandlers(self._logger, True)
         super().__init__()
 
@@ -40,7 +41,7 @@ class _ModuleHandler(logging.Handler):
             asyncio.create_task(coro, name=f"{viam._TASK_PREFIX}-LOG-{record.created}")
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
-            self._logger.error(f"ModuleLogger failed for {name} - {err}")
+            self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
             self._logger.log(record.levelno, message)
 
 
