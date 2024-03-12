@@ -3,8 +3,8 @@ import logging
 import sys
 from copy import copy
 from datetime import datetime
-from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING, LogRecord  # noqa: F401
-from typing import TYPE_CHECKING, Dict, Optional
+from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
+from typing import TYPE_CHECKING, Dict, Iterable, List, Optional
 
 import viam
 
@@ -17,15 +17,17 @@ LOGGERS: Dict[str, logging.Logger] = {}
 _MODULE_PARENT: Optional["RobotClient"] = None
 
 
-class ModuleHandler(logging.Handler):
-    def __init__(self, logger: logging.Logger):
-        self.logger = logger
-        self._parent = _MODULE_PARENT
+class _ModuleHandler(logging.Handler):
+    _parent: "RobotClient"
+    _logger: logging.Logger
 
-        logger.handlers.clear()
+    def __init__(self, parent: "RobotClient"):
+        self._parent = parent
+        self._logger = logging.getLogger("ModuleLogger")
+        addHandlers(self._logger, True)
         super().__init__()
 
-    def emit(self, record: LogRecord):
+    def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
         stack = f"exc_info: {record.exc_info}, exc_text: {record.exc_text}, stack_info: {record.stack_info}"
         message = f"{record.filename}:{record.lineno}\t{record.msg}"
@@ -35,15 +37,10 @@ class ModuleHandler(logging.Handler):
             assert self._parent is not None
             coro = asyncio.wait_for(self._parent.log(record.name, record.levelname, time, message, stack), 10)
             asyncio.create_task(coro, name=f"{viam._TASK_PREFIX}-LOG-{record.created}")
-            asyncio.create_task(
-                self._parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
-            )
         except Exception as err:
-            # If the module log fails, log using stdout/stderr handlers, and then readd the module handler.
-            addHandlers(self.logger, True)
-            self.logger.error(f"Module handler failed for {record.name} - {err}")
-            self.logger.log(record.levelno, message)
-            addHandlers(self.logger)
+            # If the module log fails, log using stdout/stderr handlers
+            self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
+            self._logger.log(record.levelno, message)
 
 
 class ColorFormatter(logging.Formatter):
