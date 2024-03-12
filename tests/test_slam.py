@@ -49,9 +49,11 @@ class TestSLAMService:
 
     @pytest.mark.asyncio
     async def test_get_properties(self):
-        (cloud_slam, mapping_mode) = await self.slam.get_properties()
+        (cloud_slam, mapping_mode, internal_state_file_type, sensor_info) = await self.slam.get_properties()
         assert cloud_slam == MockSLAM.CLOUD_SLAM
         assert mapping_mode == MockSLAM.MAPPING_MODE
+        assert internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
+        assert sensor_info == MockSLAM.SENSOR_INFO
 
 
 class TestService:
@@ -145,9 +147,11 @@ class TestClient:
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
-            (cloud_slam, mapping_mode) = await client.get_properties()
+            (cloud_slam, mapping_mode, internal_state_file_type, sensor_info) = await client.get_properties()
             assert cloud_slam == MockSLAM.CLOUD_SLAM
             assert mapping_mode == MockSLAM.MAPPING_MODE
+            assert internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
+            assert sensor_info == MockSLAM.SENSOR_INFO
 
     @pytest.mark.asyncio
     async def test_do(self):

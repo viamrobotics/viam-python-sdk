@@ -306,7 +306,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.service.slam import MappingMode
+from viam.proto.service.slam import MappingMode, SensorType, SensorInfo
 from viam.proto.service.vision import Classification, Detection
 from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
@@ -603,6 +603,9 @@ class MockSLAM(SLAM):
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
+    INTERNAL_STATE_FILE_TYPE = ".pbstream"
+    SENSOR_INFO = [SensorInfo(name="my-camera", type=SensorType.SENSOR_TYPE_CAMERA),
+                   SensorInfo(name="my-movement-sensor", type=SensorType.SENSOR_TYPE_MOVEMENT_SENSOR)]
 
     def __init__(self, name: str):
         self.name = name
@@ -621,9 +624,9 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.POSITION
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]:
         self.timeout = timeout
-        return (self.CLOUD_SLAM, self.MAPPING_MODE)
+        return (self.CLOUD_SLAM, self.MAPPING_MODE, self.INTERNAL_STATE_FILE_TYPE, self.SENSOR_INFO)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
