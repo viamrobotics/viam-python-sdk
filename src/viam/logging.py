@@ -6,6 +6,8 @@ from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
 from typing import TYPE_CHECKING, Dict, Iterable, List, Optional
 
+from grpclib.exceptions import StreamTerminatedError
+
 import viam
 
 if TYPE_CHECKING:
@@ -24,9 +26,21 @@ class _ModuleHandler(logging.Handler):
     def __init__(self, parent: "RobotClient"):
         self._parent = parent
         self._logger = logging.getLogger("ModuleLogger")
-        self._logger.setLevel(LOG_LEVEL)
         addHandlers(self._logger, True)
         super().__init__()
+        self._logger.setLevel(self.level)
+
+    def setLevel(self, level: int | str) -> None:
+        self._logger.setLevel(level)
+        return super().setLevel(level)
+
+    def handle_task_result(self, task: asyncio.Task):
+        try:
+            _ = task.result()
+        except (asyncio.CancelledError, asyncio.InvalidStateError, StreamTerminatedError):
+            pass
+        except Exception:
+            self._logger.exception("Exception raised by task = %r", task)
 
     def emit(self, record: logging.LogRecord):
         assert isinstance(record, logging.LogRecord)
@@ -37,8 +51,9 @@ class _ModuleHandler(logging.Handler):
 
         try:
             assert self._parent is not None
-            coro = asyncio.wait_for(self._parent.log(name, record.levelname, time, message, stack), 10)
-            asyncio.create_task(coro, name=f"{viam._TASK_PREFIX}-LOG-{record.created}")
+            asyncio.create_task(
+                self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
+            ).add_done_callback(self.handle_task_result)
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
             self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
