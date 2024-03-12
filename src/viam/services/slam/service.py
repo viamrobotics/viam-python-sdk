@@ -62,8 +62,10 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         assert request is not None
         slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        (cloud_slam, mapping_mode) = await slam.get_properties(timeout=timeout)
-        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mode=mapping_mode)
+        (cloud_slam, mapping_mode, internal_state_file_type, sensor_info) = await slam.get_properties(timeout=timeout)
+        response = GetPropertiesResponse(
+            cloud_slam=cloud_slam, mapping_mode=mapping_mode, internal_state_file_type=internal_state_file_type, sensor_info=sensor_info
+        )
         await stream.send_message(response)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:

@@ -17,7 +17,7 @@ from viam.proto.service.slam import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import MappingMode, Pose
+from . import MappingMode, Pose, SensorInfo
 from .slam import SLAM
 
 
@@ -48,10 +48,15 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return [r.internal_state_chunk for r in response]
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]:
         request = GetPropertiesRequest(name=self.name)
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-        return (response.cloud_slam, response.mapping_mode)
+
+        sensor_info = []
+        for si in response.sensor_info:
+            sensor_info.append(SensorInfo(name=si.name, type=si.type))
+
+        return (response.cloud_slam, response.mapping_mode, response.internal_state_file_type, sensor_info)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
