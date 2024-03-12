@@ -1,5 +1,6 @@
 import asyncio
 from dataclasses import dataclass
+from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
@@ -759,7 +760,7 @@ class RobotClient:
     # LOG #
     #######
 
-    async def log(self, name: str, level: str, time, log: str, stack: str):
+    async def log(self, name: str, level: str, time: datetime, log: str, stack: str):
         """Send log from Python module over gRPC.
 
         Create a LogEntry object from the log to send to RDK.
@@ -769,9 +770,7 @@ class RobotClient:
             level (str): The level of the log.
             time (str): The log creation time.
             log (str): The log message.
-            caller (Dict[str, int]): The filename and number when the log was created.
-            stack_info (str): The stack information of the log.
-            fields (Dict[str, ValueTypes]): The extra fields of the log
+            stack (str): The stack information of the log.
         """
         entry = LogEntry(level=level, time=datetime_to_timestamp(time), logger_name=name, message=log, stack=stack)
         request = LogRequest(logs=[entry])
