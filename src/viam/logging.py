@@ -4,19 +4,23 @@ import sys
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING, LogRecord  # noqa: F401
-from typing import Dict
+from typing import TYPE_CHECKING, Dict, Optional
 
 import viam
 
+if TYPE_CHECKING:
+    from .robot.client import RobotClient
+
+
 LOG_LEVEL = INFO
 LOGGERS: Dict[str, logging.Logger] = {}
-_MODULE_PARENT = None
+_MODULE_PARENT: Optional["RobotClient"] = None
 
 
 class ModuleHandler(logging.Handler):
     def __init__(self, logger: logging.Logger):
         self.logger = logger
-        self.parent = _MODULE_PARENT
+        self._parent = _MODULE_PARENT
 
         logger.handlers.clear()
         super().__init__()
@@ -28,9 +32,11 @@ class ModuleHandler(logging.Handler):
         time = datetime.fromtimestamp(record.created)
 
         try:
-            assert self.parent is not None
+            assert self._parent is not None
+            coro = asyncio.wait_for(self._parent.log(record.name, record.levelname, time, message, stack), 10)
+            asyncio.create_task(coro, name=f"{viam._TASK_PREFIX}-LOG-{record.created}")
             asyncio.create_task(
-                self.parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
+                self._parent.log(record.name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{time}"
             )
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers, and then readd the module handler.
@@ -108,7 +114,7 @@ def _startModuleLogging(logger: logging.Logger):
     logger.addHandler(handler)
 
 
-def setParent(parent):
+def setParent(parent: "RobotClient"):
     global _MODULE_PARENT
     _MODULE_PARENT = parent
     for logger in list(LOGGERS.values()):

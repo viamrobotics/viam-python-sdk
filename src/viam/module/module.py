@@ -134,7 +134,6 @@ class Module:
         model = Model.from_string(config.model, ignore_errors=True)
         creator = Registry.lookup_resource_creator(subtype, model)
         resource = creator(config, dependencies)
-        logging.getLogger(request.config.name)
         self.server.register(resource)
 
     async def reconfigure_resource(self, request: ReconfigureResourceRequest):
