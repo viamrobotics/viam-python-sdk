@@ -52,11 +52,7 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         request = GetPropertiesRequest(name=self.name)
         response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
 
-        sensor_info = []
-        for si in response.sensor_info:
-            sensor_info.append(SensorInfo(name=si.name, type=si.type))
-
-        return (response.cloud_slam, response.mapping_mode, response.internal_state_file_type, sensor_info)
+        return (response.cloud_slam, response.mapping_mode, response.internal_state_file_type, list(response.sensor_info))
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
