@@ -83,8 +83,14 @@ class SLAM(ServiceBase):
             slam_properties = await slam_svc.get_properties()
 
         Returns:
-            Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]: A tuple containing: A boolean value representing if the SLAM session
-            is being run in the cloud, the mapping mode of said session, a string with the internal state file type of the SLAM algorithm,
-            and a list containing information about the sensors used for the SLAM session.
+            Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]:
+                - bool:
+                    A boolean value representing if the SLAM session is being run in the cloud.
+                - MappingMode.ValueType:
+                    The mapping mode of the SLAM session.
+                - str:
+                    A string with the internal state file type of the SLAM algorithm.
+                - List[SensorInfo]:
+                    A list containing information about the sensors used for the SLAM session.
         """
         ...
