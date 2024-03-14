@@ -104,29 +104,33 @@ def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
 
     handlers: List[logging.Handler] = []
 
+    std_handler = logging.StreamHandler(stream=sys.stdout)
+    std_handler.setFormatter(format)
+    # filter out logs at error level or above
+    std_handler.setLevel(LOG_LEVEL)
+    std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
+
+    err_handler = logging.StreamHandler(stream=sys.stderr)
+    err_handler.setFormatter(format)
+    # filter out logs below error level
+    err_handler.setLevel(max(ERROR, LOG_LEVEL))
+
     if _MODULE_PARENT is not None and not use_default_handlers:
         mod_handler = _ModuleHandler(_MODULE_PARENT)
         mod_handler.setFormatter(format)
         mod_handler.setLevel(LOG_LEVEL)
         handlers = [mod_handler]
     else:
-        std_handler = logging.StreamHandler(stream=sys.stdout)
-        std_handler.setFormatter(format)
-        # filter out logs at error level or above
-        std_handler.setLevel(LOG_LEVEL)
-        std_handler.addFilter(filter=lambda record: (record.levelno < ERROR))
-
-        err_handler = logging.StreamHandler(stream=sys.stderr)
-        err_handler.setFormatter(format)
-        # filter out logs below error level
-        err_handler.setLevel(max(ERROR, LOG_LEVEL))
-
         handlers = [std_handler, err_handler]
 
     for logger in loggers:
         logger.handlers.clear()
-        for h in handlers:
-            logger.addHandler(h)
+        if 'viam.sessions_client' in LOGGERS and LOGGERS['viam.sessions_client'] == logger:
+            logger.addHandler(std_handler)
+            logger.addHandler(err_handler)
+        else:
+            for h in handlers:
+                logger.addHandler(h)
 
 
 def setParent(parent: "RobotClient"):
