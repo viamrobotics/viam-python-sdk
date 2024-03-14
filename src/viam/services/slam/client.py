@@ -1,4 +1,4 @@
-from typing import List, Mapping, Optional, Tuple
+from typing import List, Mapping, Optional
 
 from grpclib.client import Channel
 
@@ -11,13 +11,12 @@ from viam.proto.service.slam import (
     GetPositionRequest,
     GetPositionResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
     SLAMServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import MappingMode, Pose, SensorInfo
+from . import Pose
 from .slam import SLAM
 
 

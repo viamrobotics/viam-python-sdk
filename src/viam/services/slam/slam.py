@@ -1,9 +1,9 @@
 import abc
 import sys
-from typing import Final, List, Optional, Tuple
+from typing import Final, List, Optional
 
-from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.proto.service.slam import GetPropertiesResponse
+from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
 from . import Pose
@@ -12,6 +12,7 @@ if sys.version_info >= (3, 10):
     from typing import TypeAlias
 else:
     from typing_extensions import TypeAlias
+
 
 class SLAM(ServiceBase):
     """

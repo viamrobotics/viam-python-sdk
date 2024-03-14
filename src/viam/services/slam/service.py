@@ -67,7 +67,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
             cloud_slam=properties.cloud_slam,
             mapping_mode=properties.mapping_mode,
             internal_state_file_type=properties.internal_state_file_type,
-            sensor_info=properties.sensor_info
+            sensor_info=properties.sensor_info,
         )
         await stream.send_message(response)
 
