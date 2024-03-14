@@ -130,7 +130,23 @@ class ViamClient:
     @property
     def billing_client(self) -> BillingClient:
         """Instantiate and return a `BillingClient` used to make `billing` method calls.
-            To use the `BillingClient`, you must first instantiate a `ViamClient`."""
+            To use the `BillingClient`, you must first instantiate a `ViamClient`.
+
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate a BillingClient to run billing client API methods on
+                billing_client = viam_client.billing_client
+        """
+
         return BillingClient(self._channel, self._metadata)
 
     def close(self):
