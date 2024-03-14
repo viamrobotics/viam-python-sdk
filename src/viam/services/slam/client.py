@@ -48,11 +48,9 @@ class SLAMClient(SLAM, ReconfigurableResourceRPCClientBase):
         response: List[GetInternalStateResponse] = await self.client.GetInternalState(request, timeout=timeout)
         return [r.internal_state_chunk for r in response]
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> SLAM.Properties:
         request = GetPropertiesRequest(name=self.name)
-        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
-
-        return (response.cloud_slam, response.mapping_mode, response.internal_state_file_type, list(response.sensor_info))
+        return await self.client.GetProperties(request, timeout=timeout)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
