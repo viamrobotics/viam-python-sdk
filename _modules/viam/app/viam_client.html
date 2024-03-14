@@ -220,7 +220,23 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">billing_client</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BillingClient</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiate and return a `BillingClient` used to make `billing` method calls.</span>
-<span class="sd">            To use the `BillingClient`, you must first instantiate a `ViamClient`.&quot;&quot;&quot;</span>
+<span class="sd">            To use the `BillingClient`, you must first instantiate a `ViamClient`.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            async def connect() -&gt; ViamClient:</span>
+<span class="sd">                # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">                dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">                return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">            async def main():</span>
+<span class="sd">                viam_client = await connect()</span>
+
+<span class="sd">                # Instantiate a BillingClient to run billing client API methods on</span>
+<span class="sd">                billing_client = viam_client.billing_client</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">return</span> <span class="n">BillingClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ViamClient.close"><a class="viewcode-back" href="../../../autoapi/viam/app/viam_client/index.html#viam.app.viam_client.ViamClient.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

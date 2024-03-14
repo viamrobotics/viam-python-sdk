@@ -113,6 +113,32 @@
 
 <span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to</span>
 <span class="sd">    `BillingClient` methods should be made through `ViamClient`.</span>
+
+<span class="sd">    Establish a Connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.app.viam_client import ViamClient</span>
+
+
+<span class="sd">        async def connect() -&gt; ViamClient:</span>
+<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">        async def main():</span>
+<span class="sd">            # Make a ViamClient</span>
+<span class="sd">            viam_client = await connect()</span>
+<span class="sd">            # Instantiate a BillingClient to run billing client API methods on</span>
+<span class="sd">            billing_client = viam_client.billing_client</span>
+
+<span class="sd">            viam_client.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
@@ -133,6 +159,10 @@
 <div class="viewcode-block" id="BillingClient.get_current_month_usage"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_current_month_usage">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_current_month_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetCurrentMonthUsageResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access data usage information for the current month for a given organization.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">           usage = await viam_client.billing_client.get_current_month_usage(&quot;&lt;ORG-ID&gt;&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the organization to request usage data for</span>
 
@@ -144,6 +174,10 @@
 
 <div class="viewcode-block" id="BillingClient.get_invoice_pdf"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_invoice_pdf">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_invoice_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">invoice_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access invoice PDF data and optionally save it to a provided file path.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await viam_client.billing_client.get_invoice_pdf(&quot;&lt;INVOICE-ID&gt;&quot;, &quot;&lt;ORG-ID&gt;&quot;, &quot;&lt;FILENAME&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            invoice_id (str): the ID of the invoice being requested</span>
@@ -160,6 +194,10 @@
 <div class="viewcode-block" id="BillingClient.get_invoices_summary"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_invoices_summary">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_invoices_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetInvoicesSummaryResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access total outstanding balance plus invoice summaries for a given org.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            summary = await viam_client.billing_client.get_invoices_summary(&quot;&lt;ORG-ID&gt;&quot;)</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the org to request data for</span>
 
@@ -171,6 +209,10 @@
 
 <div class="viewcode-block" id="BillingClient.get_org_billing_information"><a class="viewcode-back" href="../../../autoapi/viam/app/billing_client/index.html#viam.app.billing_client.BillingClient.get_org_billing_information">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_org_billing_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetOrgBillingInformationResponse</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Access billing information (payment method, billing tier, etc.) for a given org.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            information = await viam_client.billing_client.get_org_billing_information(&quot;&lt;ORG-ID&gt;&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            org_id (str): the ID of the org to request data for</span>

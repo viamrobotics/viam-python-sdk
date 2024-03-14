@@ -219,8 +219,23 @@ To use the <cite>MLTrainingClient</cite>, you must first instantiate a <cite>Via
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.billing_client">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">billing_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../billing_client/index.html#viam.app.billing_client.BillingClient" title="viam.app.billing_client.BillingClient"><span class="pre">viam.app.billing_client.BillingClient</span></a></em><a class="headerlink" href="#viam.app.viam_client.ViamClient.billing_client" title="Permalink to this definition"></a></dt>
-<dd><p>Instantiate and return a <cite>BillingClient</cite> used to make <cite>billing</cite> method calls.
-To use the <cite>BillingClient</cite>, you must first instantiate a <cite>ViamClient</cite>.</p>
+<dd><dl class="simple">
+<dt>Instantiate and return a <cite>BillingClient</cite> used to make <cite>billing</cite> method calls.</dt><dd><p>To use the <cite>BillingClient</cite>, you must first instantiate a <cite>ViamClient</cite>.</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Instantiate a BillingClient to run billing client API methods on</span>
+    <span class="n">billing_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">billing_client</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
