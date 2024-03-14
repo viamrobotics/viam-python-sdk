@@ -14,7 +14,6 @@ from viam.proto.common import (
     Transform,
     WorldState,
 )
-
 from viam.proto.service.motion import (
     Constraints,
     GetPlanRequest,
@@ -34,7 +33,6 @@ from viam.proto.service.motion import (
     StopPlanRequest,
     StopPlanResponse,
 )
-
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 from viam.services.service_client_base import ServiceClientBase
