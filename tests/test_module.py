@@ -156,26 +156,27 @@ class TestModule:
 
     @pytest.mark.asyncio
     async def test_ready(self, module: Module):
-        p_addr = "SOME_FAKE_ADDRESS"
-        assert module._parent_address != p_addr
-        req = ReadyRequest(parent_address=p_addr)
-        resp = await module.ready(req)
-        assert module._parent_address == p_addr
-        assert len(resp.handlermap.handlers) == 2
+        with mock.patch('viam.module.Module._connect_to_parent'):
+            p_addr = "SOME_FAKE_ADDRESS"
+            assert module._parent_address != p_addr
+            req = ReadyRequest(parent_address=p_addr)
+            resp = await module.ready(req)
+            assert module._parent_address == p_addr
+            assert len(resp.handlermap.handlers) == 2
 
-        handler = resp.handlermap.handlers[0]
-        rn = Gizmo.get_resource_name("")
-        assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.component.gizmo.v1.GizmoService")
-        assert len(handler.models) == 1
-        model = handler.models[0]
-        assert model == "acme:demo:mygizmo"
+            handler = resp.handlermap.handlers[0]
+            rn = Gizmo.get_resource_name("")
+            assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.component.gizmo.v1.GizmoService")
+            assert len(handler.models) == 1
+            model = handler.models[0]
+            assert model == "acme:demo:mygizmo"
 
-        handler = resp.handlermap.handlers[1]
-        rn = SummationService.get_resource_name("")
-        assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.service.summation.v1.SummationService")
-        assert len(handler.models) == 1
-        model = handler.models[0]
-        assert model == "acme:demo:mysum"
+            handler = resp.handlermap.handlers[1]
+            rn = SummationService.get_resource_name("")
+            assert handler.subtype == ResourceRPCSubtype(subtype=rn, proto_service="acme.service.summation.v1.SummationService")
+            assert len(handler.models) == 1
+            model = handler.models[0]
+            assert model == "acme:demo:mysum"
 
     def test_add_model_from_registry(self):
         mod = Module("fake")

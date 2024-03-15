@@ -168,7 +168,6 @@ class Module:
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
         await self._connect_to_parent()
-        assert self.parent is not None
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
         for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():
