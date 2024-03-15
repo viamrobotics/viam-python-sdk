@@ -33,6 +33,11 @@ Classes
 
       
 
+   .. py:attribute:: Properties
+      :type: TypeAlias
+
+      
+
    .. py:method:: get_internal_state(*, timeout: Optional[float]) -> List[bytes]
       :abstractmethod:
       :async:
@@ -87,7 +92,7 @@ Classes
       :rtype: Pose
 
 
-   .. py:method:: get_properties(*, timeout: Optional[float]) -> Tuple[bool, viam.services.slam.MappingMode.ValueType]
+   .. py:method:: get_properties(*, timeout: Optional[float]) -> Properties
       :abstractmethod:
       :async:
 
@@ -100,9 +105,8 @@ Classes
           # Get the properties of your current SLAM session.
           slam_properties = await slam_svc.get_properties()
 
-      :returns: A tuple of a boolean value representing if the SLAM session is being run in
-                the cloud and the mapping mode of said session
-      :rtype: Tuple[bool, MappingMode.ValueType]
+      :returns: The properties of SLAM
+      :rtype: Properties
 
 
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self

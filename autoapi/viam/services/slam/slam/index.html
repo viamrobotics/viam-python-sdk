@@ -72,6 +72,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.services.slam.slam.SLAM"><code class="docutils literal notranslate"><span class="pre">SLAM</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.slam.SLAM.SUBTYPE"><code class="docutils literal notranslate"><span class="pre">SLAM.SUBTYPE</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.slam.SLAM.Properties"><code class="docutils literal notranslate"><span class="pre">SLAM.Properties</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.slam.SLAM.get_internal_state"><code class="docutils literal notranslate"><span class="pre">SLAM.get_internal_state()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.slam.SLAM.get_point_cloud_map"><code class="docutils literal notranslate"><span class="pre">SLAM.get_point_cloud_map()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.services.slam.slam.SLAM.get_position"><code class="docutils literal notranslate"><span class="pre">SLAM.get_position()</span></code></a></li>
@@ -161,6 +162,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <span class="sig-name descname"><span class="pre">SUBTYPE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Final</span></em><a class="headerlink" href="#viam.services.slam.slam.SLAM.SUBTYPE" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.services.slam.slam.SLAM.Properties">
+<span class="sig-name descname"><span class="pre">Properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">TypeAlias</span></em><a class="headerlink" href="#viam.services.slam.slam.SLAM.Properties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.slam.slam.SLAM.get_internal_state">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_internal_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM.get_internal_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM.get_internal_state" title="Permalink to this definition"></a></dt>
@@ -227,7 +233,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.slam.slam.SLAM.get_properties">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.services.slam.MappingMode.ValueType</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM.get_properties" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../../components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties"><span class="pre">Properties</span></a></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM.get_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM.get_properties" title="Permalink to this definition"></a></dt>
 <dd><p>Get information regarding the current SLAM session.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
 
@@ -237,11 +243,10 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>A tuple of a boolean value representing if the SLAM session is being run in
-the cloud and the mapping mode of said session</p>
+<dd class="field-odd"><p>The properties of SLAM</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Tuple[bool, MappingMode.ValueType]</p>
+<dd class="field-even"><p><a class="reference internal" href="../../../components/audio_input/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput.Properties" title="viam.components.audio_input.audio_input.AudioInput.Properties">Properties</a></p>
 </dd>
 </dl>
 </dd></dl>
