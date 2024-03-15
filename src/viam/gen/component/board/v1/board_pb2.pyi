@@ -3,9 +3,11 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 from .... import common
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
+import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
@@ -390,6 +392,53 @@ class GetDigitalInterruptValueResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['value', b'value']) -> None:
         ...
 global___GetDigitalInterruptValueResponse = GetDigitalInterruptValueResponse
+
+@typing_extensions.final
+class StreamTicksRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    PIN_NAMES_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'Board name'
+
+    @property
+    def pin_names(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Name of digital interrupts to recieve ticks from"""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., pin_names: collections.abc.Iterable[builtins.str] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'pin_names', b'pin_names']) -> None:
+        ...
+global___StreamTicksRequest = StreamTicksRequest
+
+@typing_extensions.final
+class StreamTicksResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    PIN_NAME_FIELD_NUMBER: builtins.int
+    TIME_FIELD_NUMBER: builtins.int
+    HIGH_FIELD_NUMBER: builtins.int
+    pin_name: builtins.str
+    'name of interrupt'
+    time: builtins.int
+    'Time in nanoseconds of a tick'
+    high: builtins.bool
+    'Value high or low of the tick'
+
+    def __init__(self, *, pin_name: builtins.str=..., time: builtins.int=..., high: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['high', b'high', 'pin_name', b'pin_name', 'time', b'time']) -> None:
+        ...
+global___StreamTicksResponse = StreamTicksResponse
 
 @typing_extensions.final
 class SetPowerModeRequest(google.protobuf.message.Message):
