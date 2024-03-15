@@ -612,6 +612,12 @@ class MockSLAM(SLAM):
     def __init__(self, name: str):
         self.name = name
         self.timeout: Optional[float] = None
+        self.properties = SLAM.Properties(
+                cloud_slam=self.CLOUD_SLAM,
+                mapping_mode=self.MAPPING_MODE,
+                internal_state_file_type=self.INTERNAL_STATE_FILE_TYPE,
+                sensor_info=self.SENSOR_INFO
+            )
         super().__init__(name)
 
     async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
@@ -626,9 +632,9 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.POSITION
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType, str, List[SensorInfo]]:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> SLAM.Properties:
         self.timeout = timeout
-        return (self.CLOUD_SLAM, self.MAPPING_MODE, self.INTERNAL_STATE_FILE_TYPE, self.SENSOR_INFO)
+        return self.properties
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
