@@ -19,6 +19,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.service.slam.v1.slam_pb2.MappingMode
+   viam.gen.service.slam.v1.slam_pb2.SensorType
    viam.gen.service.slam.v1.slam_pb2.GetPositionRequest
    viam.gen.service.slam.v1.slam_pb2.GetPositionResponse
    viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapRequest
@@ -27,6 +28,7 @@ Classes
    viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse
    viam.gen.service.slam.v1.slam_pb2.GetPropertiesRequest
    viam.gen.service.slam.v1.slam_pb2.GetPropertiesResponse
+   viam.gen.service.slam.v1.slam_pb2.SensorInfo
 
 
 
@@ -42,6 +44,10 @@ Attributes
    viam.gen.service.slam.v1.slam_pb2.MAPPING_MODE_LOCALIZE_ONLY
    viam.gen.service.slam.v1.slam_pb2.MAPPING_MODE_UPDATE_EXISTING_MAP
    viam.gen.service.slam.v1.slam_pb2.global___MappingMode
+   viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_UNSPECIFIED
+   viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_CAMERA
+   viam.gen.service.slam.v1.slam_pb2.SENSOR_TYPE_MOVEMENT_SENSOR
+   viam.gen.service.slam.v1.slam_pb2.global___SensorType
    viam.gen.service.slam.v1.slam_pb2.global___GetPositionRequest
    viam.gen.service.slam.v1.slam_pb2.global___GetPositionResponse
    viam.gen.service.slam.v1.slam_pb2.global___GetPointCloudMapRequest
@@ -50,6 +56,7 @@ Attributes
    viam.gen.service.slam.v1.slam_pb2.global___GetInternalStateResponse
    viam.gen.service.slam.v1.slam_pb2.global___GetPropertiesRequest
    viam.gen.service.slam.v1.slam_pb2.global___GetPropertiesResponse
+   viam.gen.service.slam.v1.slam_pb2.global___SensorInfo
 
 
 .. py:data:: DESCRIPTOR
@@ -88,6 +95,31 @@ Attributes
    
 
 .. py:data:: global___MappingMode
+
+   
+
+.. py:class:: SensorType
+
+
+   Bases: :py:obj:`_SensorType`
+
+
+.. py:data:: SENSOR_TYPE_UNSPECIFIED
+   :type: SensorType
+
+   
+
+.. py:data:: SENSOR_TYPE_CAMERA
+   :type: SensorType
+
+   
+
+.. py:data:: SENSOR_TYPE_MOVEMENT_SENSOR
+   :type: SensorType
+
+   
+
+.. py:data:: global___SensorType
 
    
 
@@ -160,7 +192,7 @@ Attributes
 
    
 
-.. py:class:: GetPointCloudMapRequest(*, name: str = ...)
+.. py:class:: GetPointCloudMapRequest(*, name: str = ..., return_edited_map: bool | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -175,6 +207,45 @@ Attributes
       :type: str
 
       Name of slam service
+
+   .. py:attribute:: return_edited_map
+      :type: bool
+
+      For SLAM services that implement handling an edited map, this boolean
+      should indicate whether to return that edited map. If the SLAM service
+      does not handle edited maps, the unedited map will be returned instead.
+
+   .. py:method:: HasField(field_name: Literal[_return_edited_map, b'_return_edited_map', return_edited_map, b'return_edited_map']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_return_edited_map, b'_return_edited_map']) -> Literal[return_edited_map] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:data:: global___GetPointCloudMapRequest
@@ -283,12 +354,16 @@ Attributes
 
    
 
-.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: global___MappingMode = ...)
+.. py:class:: GetPropertiesResponse(*, cloud_slam: bool = ..., mapping_mode: global___MappingMode = ..., internal_state_file_type: str | None = ..., sensor_info: collections.abc.Iterable[global___SensorInfo] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
    Returns properties information for the named slam service
+
+   .. py:property:: sensor_info
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]
+
 
    .. py:attribute:: cloud_slam
       :type: bool
@@ -300,8 +375,71 @@ Attributes
 
       
 
+   .. py:attribute:: internal_state_file_type
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_internal_state_file_type, b'_internal_state_file_type', internal_state_file_type, b'internal_state_file_type']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_internal_state_file_type, b'_internal_state_file_type']) -> Literal[internal_state_file_type] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
 
 .. py:data:: global___GetPropertiesResponse
+
+   
+
+.. py:class:: SensorInfo(*, name: str = ..., type: global___SensorType = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   Abstract base class for protocol messages.
+
+   Protocol message classes are almost always generated by the protocol
+   compiler.  These generated types subclass Message and implement the methods
+   shown below.
+
+   .. py:attribute:: name
+      :type: str
+
+      
+
+   .. py:attribute:: type
+      :type: global___SensorType
+
+      
+
+
+.. py:data:: global___SensorInfo
 
    
 

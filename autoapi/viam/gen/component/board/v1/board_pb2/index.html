@@ -161,6 +161,12 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueResponse" title="viam.gen.component.board.v1.board_pb2.GetDigitalInterruptValueResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetDigitalInterruptValueResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest" title="viam.gen.component.board.v1.board_pb2.StreamTicksRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.StreamTicksResponse" title="viam.gen.component.board.v1.board_pb2.StreamTicksResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.SetPowerModeRequest" title="viam.gen.component.board.v1.board_pb2.SetPowerModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerModeRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -247,6 +253,12 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueResponse" title="viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetDigitalInterruptValueResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.global___StreamTicksRequest" title="viam.gen.component.board.v1.board_pb2.global___StreamTicksRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StreamTicksRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.global___StreamTicksResponse" title="viam.gen.component.board.v1.board_pb2.global___StreamTicksResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___StreamTicksResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.component.board.v1.board_pb2.global___SetPowerModeRequest" title="viam.gen.component.board.v1.board_pb2.global___SetPowerModeRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___SetPowerModeRequest</span></code></a></p></td>
@@ -1038,6 +1050,95 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.component.board.v1.board_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetDigitalInterruptValueResponse</span></span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.global___GetDigitalInterruptValueResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.board.v1.board_pb2.</span></span><span class="sig-name descname"><span class="pre">StreamTicksRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksRequest.pin_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pin_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest.pin_names" title="Permalink to this definition"></a></dt>
+<dd><p>Name of digital interrupts to recieve ticks from</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Board name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.global___StreamTicksRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.board.v1.board_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StreamTicksRequest</span></span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.global___StreamTicksRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.component.board.v1.board_pb2.</span></span><span class="sig-name descname"><span class="pre">StreamTicksResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pin_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksResponse.pin_name">
+<span class="sig-name descname"><span class="pre">pin_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksResponse.pin_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of interrupt</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksResponse.time">
+<span class="sig-name descname"><span class="pre">time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksResponse.time" title="Permalink to this definition"></a></dt>
+<dd><p>Time in nanoseconds of a tick</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.StreamTicksResponse.high">
+<span class="sig-name descname"><span class="pre">high</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.StreamTicksResponse.high" title="Permalink to this definition"></a></dt>
+<dd><p>Value high or low of the tick</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.component.board.v1.board_pb2.global___StreamTicksResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.component.board.v1.board_pb2.</span></span><span class="sig-name descname"><span class="pre">global___StreamTicksResponse</span></span><a class="headerlink" href="#viam.gen.component.board.v1.board_pb2.global___StreamTicksResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
