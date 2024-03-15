@@ -156,7 +156,7 @@ class TestModule:
 
     @pytest.mark.asyncio
     async def test_ready(self, module: Module):
-        with mock.patch('viam.module.Module._connect_to_parent'):
+        with mock.patch("viam.module.Module._connect_to_parent"):
             p_addr = "SOME_FAKE_ADDRESS"
             assert module._parent_address != p_addr
             req = ReadyRequest(parent_address=p_addr)

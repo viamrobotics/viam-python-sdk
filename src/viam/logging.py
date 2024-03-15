@@ -125,7 +125,7 @@ def _addHandlers(loggers: Iterable[logging.Logger], use_default_handlers=False):
 
     for logger in loggers:
         logger.handlers.clear()
-        if 'viam.sessions_client' in LOGGERS and LOGGERS['viam.sessions_client'] == logger:
+        if "viam.sessions_client" in LOGGERS and LOGGERS["viam.sessions_client"] == logger:
             logger.addHandler(std_handler)
             logger.addHandler(err_handler)
         else:
