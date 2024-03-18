@@ -45,7 +45,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_point_cloud_map(self, *, timeout: Optional[float]) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float]) -> List[bytes]:
         """
         Get the point cloud map.
 
@@ -55,6 +55,10 @@ class SLAM(ServiceBase):
 
             # Get the point cloud map in standard PCD format.
             pcd_map = await slam_svc.get_point_cloud_map()
+
+        Args:
+            return_edited_map (bool): signal to the SLAM service to return an edited map, if the map package contains one and if
+                the SLAM service supports the feature
 
         Returns:
             List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all

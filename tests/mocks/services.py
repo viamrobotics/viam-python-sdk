@@ -600,6 +600,7 @@ class MockSensors(SensorsServiceBase):
 class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
+    POINT_CLOUD_PCD_CHUNKS_EDITED = [bytes(7), bytes(4)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
@@ -624,8 +625,10 @@ class MockSLAM(SLAM):
         self.timeout = timeout
         return self.INTERNAL_STATE_CHUNKS
 
-    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
+        if return_edited_map:
+            return self.POINT_CLOUD_PCD_CHUNKS_EDITED
         return self.POINT_CLOUD_PCD_CHUNKS
 
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
