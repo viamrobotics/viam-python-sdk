@@ -151,7 +151,7 @@ Classes
       :rtype: List[GetInternalStateResponse]
 
 
-   .. py:method:: get_point_cloud_map(*, timeout: Optional[float]) -> List[bytes]
+   .. py:method:: get_point_cloud_map(return_edited_map: bool = False, *, timeout: Optional[float]) -> List[bytes]
       :abstractmethod:
       :async:
 
@@ -163,6 +163,10 @@ Classes
 
           # Get the point cloud map in standard PCD format.
           pcd_map = await slam_svc.get_point_cloud_map()
+
+      :param return_edited_map: signal to the SLAM service to return an edited map, if the map package contains one and if
+                                the SLAM service supports the feature
+      :type return_edited_map: bool
 
       :returns:
 

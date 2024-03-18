@@ -189,7 +189,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.slam.slam.SLAM.get_point_cloud_map">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM.get_point_cloud_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM.get_point_cloud_map" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_point_cloud_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">return_edited_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/slam/slam.html#SLAM.get_point_cloud_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.slam.slam.SLAM.get_point_cloud_map" title="Permalink to this definition"></a></dt>
 <dd><p>Get the point cloud map.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">slam_svc</span> <span class="o">=</span> <span class="n">SLAMClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_slam_service&quot;</span><span class="p">)</span>
 
@@ -198,15 +198,19 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>return_edited_map</strong> (<em>bool</em>) – signal to the SLAM service to return an edited map, if the map package contains one and if
+the SLAM service supports the feature</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
 <dt>Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all</dt><dd><p>GetPointCloudMapResponse.point_cloud_pcd_chunk values</p>
 </dd>
 </dl>
 </p>
 </dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse">GetPointCloudMapResponse</a>]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse">GetPointCloudMapResponse</a>]</p>
 </dd>
 </dl>
 </dd></dl>
