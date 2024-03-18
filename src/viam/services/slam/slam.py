@@ -1,10 +1,17 @@
 import abc
-from typing import Final, List, Optional, Tuple
+import sys
+from typing import Final, List, Optional
 
+from viam.proto.service.slam import GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import MappingMode, Pose
+from . import Pose
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 
 class SLAM(ServiceBase):
@@ -17,6 +24,8 @@ class SLAM(ServiceBase):
     """
 
     SUBTYPE: Final = Subtype(RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "slam")  # pyright: ignore [reportIncompatibleVariableOverride]
+
+    Properties: "TypeAlias" = GetPropertiesResponse
 
     @abc.abstractmethod
     async def get_internal_state(self, *, timeout: Optional[float]) -> List[bytes]:
@@ -75,7 +84,7 @@ class SLAM(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_properties(self, *, timeout: Optional[float]) -> Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, *, timeout: Optional[float]) -> Properties:
         """
         Get information regarding the current SLAM session.
 
@@ -87,7 +96,6 @@ class SLAM(ServiceBase):
             slam_properties = await slam_svc.get_properties()
 
         Returns:
-            Tuple[bool, MappingMode.ValueType]: A tuple of a boolean value representing if the SLAM session is being run in
-            the cloud and the mapping mode of said session
+            Properties: The properties of SLAM
         """
         ...

@@ -23,6 +23,32 @@ class BillingClient:
 
     Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to
     `BillingClient` methods should be made through `ViamClient`.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.app.viam_client import ViamClient
+
+
+        async def connect() -> ViamClient:
+            # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+            return await ViamClient.create_from_dial_options(dial_options)
+
+
+        async def main():
+            # Make a ViamClient
+            viam_client = await connect()
+            # Instantiate a BillingClient to run billing client API methods on
+            billing_client = viam_client.billing_client
+
+            viam_client.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
+
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -43,6 +69,10 @@ class BillingClient:
     async def get_current_month_usage(self, org_id: str, timeout: Optional[float] = None) -> GetCurrentMonthUsageResponse:
         """Access data usage information for the current month for a given organization.
 
+        ::
+
+           usage = await viam_client.billing_client.get_current_month_usage("<ORG-ID>")
+
         Args:
             org_id (str): the ID of the organization to request usage data for
 
@@ -54,6 +84,10 @@ class BillingClient:
 
     async def get_invoice_pdf(self, invoice_id: str, org_id: str, dest: str, timeout: Optional[float] = None) -> None:
         """Access invoice PDF data and optionally save it to a provided file path.
+
+        ::
+
+            await viam_client.billing_client.get_invoice_pdf("<INVOICE-ID>", "<ORG-ID>", "<FILENAME>")
 
         Args:
             invoice_id (str): the ID of the invoice being requested
@@ -70,6 +104,10 @@ class BillingClient:
     async def get_invoices_summary(self, org_id: str, timeout: Optional[float] = None) -> GetInvoicesSummaryResponse:
         """Access total outstanding balance plus invoice summaries for a given org.
 
+        ::
+
+            summary = await viam_client.billing_client.get_invoices_summary("<ORG-ID>")
+
         Args:
             org_id (str): the ID of the org to request data for
 
@@ -81,6 +119,10 @@ class BillingClient:
 
     async def get_org_billing_information(self, org_id: str, timeout: Optional[float] = None) -> GetOrgBillingInformationResponse:
         """Access billing information (payment method, billing tier, etc.) for a given org.
+
+        ::
+
+            information = await viam_client.billing_client.get_org_billing_information("<ORG-ID>")
 
         Args:
             org_id (str): the ID of the org to request data for

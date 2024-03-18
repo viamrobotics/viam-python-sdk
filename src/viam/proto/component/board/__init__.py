@@ -25,6 +25,8 @@ from ....gen.component.board.v1.board_pb2 import (
     SetPWMResponse,
     StatusRequest,
     StatusResponse,
+    StreamTicksRequest,
+    StreamTicksResponse,
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
@@ -53,6 +55,8 @@ __all__ = [
     "SetPowerModeResponse",
     "StatusRequest",
     "StatusResponse",
+    "StreamTicksRequest",
+    "StreamTicksResponse",
     "WriteAnalogRequest",
     "WriteAnalogResponse",
 ]
