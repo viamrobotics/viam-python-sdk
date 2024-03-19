@@ -614,11 +614,11 @@ class MockSLAM(SLAM):
         self.name = name
         self.timeout: Optional[float] = None
         self.properties = SLAM.Properties(
-                cloud_slam=self.CLOUD_SLAM,
-                mapping_mode=self.MAPPING_MODE,
-                internal_state_file_type=self.INTERNAL_STATE_FILE_TYPE,
-                sensor_info=self.SENSOR_INFO
-            )
+            cloud_slam=self.CLOUD_SLAM,
+            mapping_mode=self.MAPPING_MODE,
+            internal_state_file_type=self.INTERNAL_STATE_FILE_TYPE,
+            sensor_info=self.SENSOR_INFO,
+        )
         super().__init__(name)
 
     async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
