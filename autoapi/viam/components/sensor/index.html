@@ -302,7 +302,7 @@ If the <code class="docutils literal notranslate"><span class="pre">Operation</s
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#viam.components.sensor.Sensor.close" title="Permalink to this definition"></a></dt>
 <dd><p>Safely shut down the resource and prevent further use.</p>
 <p>Close must be idempotent. Later configuration may allow a resource to be “open” again.
-If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
 non-Close methods are called.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">component</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
