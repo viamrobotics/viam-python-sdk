@@ -19,7 +19,7 @@ jobs:
         with:
           organization: viamrobotics
           username: ${{ github.actor }}
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: cancelling
         uses: andymckay/cancel-action@0.2
@@ -31,13 +31,14 @@ jobs:
         with:
           file: "viam_sdk.*\\.whl"
           regex: true
-          target: 'dist/'
+          target: "dist/"
           version: tags/${{ github.event.release.tag_name }}
 
       - name: Publish
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
+          verbose: true
 
       - name: Notify Slack
         uses: slackapi/slack-github-action@v1.24.0
