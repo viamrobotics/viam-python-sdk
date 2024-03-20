@@ -93,6 +93,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.transform_point_cloud"><code class="docutils literal notranslate"><span class="pre">RobotClient.transform_point_cloud()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.discover_components"><code class="docutils literal notranslate"><span class="pre">RobotClient.discover_components()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_cloud_metadata"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_cloud_metadata()</span></code></a></li>
 </ul>
 </li>
@@ -655,6 +656,24 @@ has finished or has been cancelled.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>extra</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a><em>, </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Any extra parameters to pass to the resources’ <code class="docutils literal notranslate"><span class="pre">stop</span></code> methods,
 keyed on the resource’s <code class="docutils literal notranslate"><span class="pre">ResourceName</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.log">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stack</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.log" title="Permalink to this definition"></a></dt>
+<dd><p>Send log from Python module over gRPC.</p>
+<p>Create a LogEntry object from the log to send to RDK.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The logger’s name.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The level of the log.</p></li>
+<li><p><strong>time</strong> (<em>str</em>) – The log creation time.</p></li>
+<li><p><strong>log</strong> (<em>str</em>) – The log message.</p></li>
+<li><p><strong>stack</strong> (<em>str</em>) – The stack information of the log.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>

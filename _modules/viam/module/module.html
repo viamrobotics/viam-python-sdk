@@ -171,6 +171,8 @@
                     <span class="n">log_level</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_level</span><span class="p">,</span>
                 <span class="p">),</span>
             <span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Starting module logging&quot;</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ResourceBase</span><span class="p">:</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_to_parent</span><span class="p">()</span>
@@ -255,6 +257,7 @@
 
 <div class="viewcode-block" id="Module.ready"><a class="viewcode-back" href="../../../autoapi/viam/module/module/index.html#viam.module.Module.ready">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">ReadyRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReadyResponse</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_address</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">parent_address</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connect_to_parent</span><span class="p">()</span>
 
         <span class="n">svcname_to_models</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Subtype</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Model</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">subtype_model_str</span> <span class="ow">in</span> <span class="n">Registry</span><span class="o">.</span><span class="n">REGISTERED_RESOURCE_CREATORS</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>

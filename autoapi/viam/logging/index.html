@@ -92,16 +92,6 @@
 <span id="viam-logging"></span><h1><a class="reference internal" href="#module-viam.logging" title="viam.logging"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.logging</span></code></a><a class="headerlink" href="#module-viam.logging" title="Permalink to this heading"></a></h1>
 <section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this heading"></a></h2>
-<section id="classes">
-<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.ColorFormatter" title="viam.logging.ColorFormatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ColorFormatter</span></code></a></p></td>
-<td><p>Formatter instances are used to convert a LogRecord to text.</p></td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
@@ -109,13 +99,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.getLogger" title="viam.logging.getLogger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getLogger</span></code></a>(→ logging.Logger)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.addHandlers" title="viam.logging.addHandlers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addHandlers</span></code></a>(logger)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.addHandlers" title="viam.logging.addHandlers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">addHandlers</span></code></a>(logger[, use_default_handlers])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.setLevel" title="viam.logging.setLevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setLevel</span></code></a>(level)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.setParent" title="viam.logging.setParent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setParent</span></code></a>(parent)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.silence" title="viam.logging.silence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">silence</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.logging.setLevel" title="viam.logging.setLevel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setLevel</span></code></a>(level)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.logging.silence" title="viam.logging.silence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">silence</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -143,79 +136,6 @@
 <span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">LOGGERS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">logging.Logger</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.logging.LOGGERS" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.logging.ColorFormatter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">ColorFormatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patern</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#ColorFormatter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.ColorFormatter" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">logging.Formatter</span></code></p>
-<p>Formatter instances are used to convert a LogRecord to text.</p>
-<p>Formatters need to know how a LogRecord is constructed. They are
-responsible for converting a LogRecord to (usually) a string which can
-be interpreted by either a human or an external system. The base Formatter
-allows a formatting string to be specified. If none is supplied, the
-style-dependent default value, “%(message)s”, “{message}”, or
-“${message}”, is used.</p>
-<p>The Formatter can be initialized with a format string which makes use of
-knowledge of the LogRecord attributes - e.g. the default value mentioned
-above makes use of the fact that the user’s message and arguments are pre-
-formatted into a LogRecord’s message attribute. Currently, the useful
-attributes in a LogRecord are described by:</p>
-<p>%(name)s            Name of the logger (logging channel)
-%(levelno)s         Numeric logging level for the message (DEBUG, INFO,</p>
-<blockquote>
-<div><p>WARNING, ERROR, CRITICAL)</p>
-</div></blockquote>
-<dl class="simple">
-<dt>%(levelname)s       Text logging level for the message (“DEBUG”, “INFO”,</dt><dd><p>“WARNING”, “ERROR”, “CRITICAL”)</p>
-</dd>
-<dt>%(pathname)s        Full pathname of the source file where the logging</dt><dd><p>call was issued (if available)</p>
-</dd>
-</dl>
-<p>%(filename)s        Filename portion of pathname
-%(module)s          Module (name portion of filename)
-%(lineno)d          Source line number where the logging call was issued</p>
-<blockquote>
-<div><p>(if available)</p>
-</div></blockquote>
-<p>%(funcName)s        Function name
-%(created)f         Time when the LogRecord was created (time.time()</p>
-<blockquote>
-<div><p>return value)</p>
-</div></blockquote>
-<p>%(asctime)s         Textual time when the LogRecord was created
-%(msecs)d           Millisecond portion of the creation time
-%(relativeCreated)d Time in milliseconds when the LogRecord was created,</p>
-<blockquote>
-<div><p>relative to the time the logging module was loaded
-(typically at application startup time)</p>
-</div></blockquote>
-<p>%(thread)d          Thread ID (if available)
-%(threadName)s      Thread name (if available)
-%(process)d         Process ID (if available)
-%(message)s         The result of record.getMessage(), computed just as</p>
-<blockquote>
-<div><p>the record is emitted</p>
-</div></blockquote>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.logging.ColorFormatter.MAPPING">
-<span class="sig-name descname"><span class="pre">MAPPING</span></span><a class="headerlink" href="#viam.logging.ColorFormatter.MAPPING" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.logging.ColorFormatter.format">
-<span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#ColorFormatter.format"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.ColorFormatter.format" title="Permalink to this definition"></a></dt>
-<dd><p>Format the specified record as text.</p>
-<p>The record’s attribute dictionary is used as the operand to a
-string formatting operation which yields the returned string.
-Before formatting the dictionary, a couple of preparatory steps
-are carried out. The message attribute of the record is computed
-using LogRecord.getMessage(). If the formatting string uses the
-time (as determined by a call to usesTime(), formatTime() is
-called to format the event time. If there is exception information,
-it is formatted using formatException() and appended to the message.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.logging.getLogger">
 <span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">getLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">logging.Logger</span></span></span><a class="reference internal" href="../../../_modules/viam/logging.html#getLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.getLogger" title="Permalink to this definition"></a></dt>
@@ -223,7 +143,12 @@ it is formatted using formatException() and appended to the message.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="viam.logging.addHandlers">
-<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">addHandlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">logging.Logger</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#addHandlers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.addHandlers" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">addHandlers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">logging.Logger</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_default_handlers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#addHandlers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.addHandlers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="viam.logging.setParent">
+<span class="sig-prename descclassname"><span class="pre">viam.logging.</span></span><span class="sig-name descname"><span class="pre">setParent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../robot/client/index.html#viam.robot.client.RobotClient" title="viam.robot.client.RobotClient"><span class="pre">viam.robot.client.RobotClient</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/viam/logging.html#setParent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.logging.setParent" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

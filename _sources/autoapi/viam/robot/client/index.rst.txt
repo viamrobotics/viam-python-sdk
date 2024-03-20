@@ -460,6 +460,25 @@ Attributes
       :type extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]]
 
 
+   .. py:method:: log(name: str, level: str, time: datetime.datetime, log: str, stack: str)
+      :async:
+
+      Send log from Python module over gRPC.
+
+      Create a LogEntry object from the log to send to RDK.
+
+      :param name: The logger's name.
+      :type name: str
+      :param level: The level of the log.
+      :type level: str
+      :param time: The log creation time.
+      :type time: str
+      :param log: The log message.
+      :type log: str
+      :param stack: The stack information of the log.
+      :type stack: str
+
+
    .. py:method:: get_cloud_metadata() -> viam.proto.robot.GetCloudMetadataResponse
       :async:
 

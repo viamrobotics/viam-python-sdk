@@ -90,6 +90,7 @@
   <h1>Source code for viam.robot.client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">asyncio</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
@@ -119,6 +120,8 @@
     <span class="n">GetOperationsResponse</span><span class="p">,</span>
     <span class="n">GetStatusRequest</span><span class="p">,</span>
     <span class="n">GetStatusResponse</span><span class="p">,</span>
+    <span class="n">LogEntry</span><span class="p">,</span>
+    <span class="n">LogRequest</span><span class="p">,</span>
     <span class="n">Operation</span><span class="p">,</span>
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
@@ -136,7 +139,7 @@
 <span class="kn">from</span> <span class="nn">viam.rpc.dial</span> <span class="kn">import</span> <span class="n">DialOptions</span><span class="p">,</span> <span class="n">ViamChannel</span><span class="p">,</span> <span class="n">dial</span>
 <span class="kn">from</span> <span class="nn">viam.services.service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.sessions_client</span> <span class="kn">import</span> <span class="n">SessionsClient</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -842,6 +845,26 @@
             <span class="n">ep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StopExtraParameters</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">params</span><span class="p">)))</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">StopAllRequest</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">ep</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">StopAll</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+    <span class="c1">#######</span>
+    <span class="c1"># LOG #</span>
+    <span class="c1">#######</span>
+
+<div class="viewcode-block" id="RobotClient.log"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.log">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">log</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stack</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Send log from Python module over gRPC.</span>
+
+<span class="sd">        Create a LogEntry object from the log to send to RDK.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The logger&#39;s name.</span>
+<span class="sd">            level (str): The level of the log.</span>
+<span class="sd">            time (str): The log creation time.</span>
+<span class="sd">            log (str): The log message.</span>
+<span class="sd">            stack (str): The stack information of the log.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">entry</span> <span class="o">=</span> <span class="n">LogEntry</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">datetime_to_timestamp</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">logger_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="n">log</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="n">stack</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">LogRequest</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="p">[</span><span class="n">entry</span><span class="p">])</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
 
     <span class="c1">######################</span>
     <span class="c1"># Get Cloud Metadata #</span>
