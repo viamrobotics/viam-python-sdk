@@ -81,6 +81,8 @@ class Module:
                     log_level=self._log_level,
                 ),
             )
+            LOGGER.debug("Starting module logging")
+            logging.setParent(self.parent)
 
     async def _get_resource(self, name: ResourceName) -> ResourceBase:
         await self._connect_to_parent()
@@ -165,6 +167,7 @@ class Module:
 
     async def ready(self, request: ReadyRequest) -> ReadyResponse:
         self._parent_address = request.parent_address
+        await self._connect_to_parent()
 
         svcname_to_models: Mapping[Tuple[str, Subtype], List[Model]] = {}
         for subtype_model_str in Registry.REGISTERED_RESOURCE_CREATORS().keys():

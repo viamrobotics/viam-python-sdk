@@ -1,5 +1,6 @@
 import asyncio
 from dataclasses import dataclass
+from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
@@ -29,6 +30,8 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
+    LogEntry,
+    LogRequest,
     Operation,
     ResourceNamesRequest,
     ResourceNamesResponse,
@@ -46,7 +49,7 @@ from viam.resource.types import RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE, 
 from viam.rpc.dial import DialOptions, ViamChannel, dial
 from viam.services.service_base import ServiceBase
 from viam.sessions_client import SessionsClient
-from viam.utils import dict_to_struct
+from viam.utils import datetime_to_timestamp, dict_to_struct
 
 LOGGER = logging.getLogger(__name__)
 
@@ -752,6 +755,26 @@ class RobotClient:
             ep.append(StopExtraParameters(name=name, params=dict_to_struct(params)))
         request = StopAllRequest(extra=ep)
         await self._client.StopAll(request)
+
+    #######
+    # LOG #
+    #######
+
+    async def log(self, name: str, level: str, time: datetime, log: str, stack: str):
+        """Send log from Python module over gRPC.
+
+        Create a LogEntry object from the log to send to RDK.
+
+        Args:
+            name (str): The logger's name.
+            level (str): The level of the log.
+            time (str): The log creation time.
+            log (str): The log message.
+            stack (str): The stack information of the log.
+        """
+        entry = LogEntry(level=level, time=datetime_to_timestamp(time), logger_name=name, message=log, stack=stack)
+        request = LogRequest(logs=[entry])
+        await self._client.Log(request)
 
     ######################
     # Get Cloud Metadata #
