@@ -4,7 +4,7 @@ import sys
 from copy import copy
 from datetime import datetime
 from logging import DEBUG, ERROR, FATAL, INFO, WARN, WARNING  # noqa: F401
-from typing import TYPE_CHECKING, Dict, Iterable, List, Optional
+from typing import TYPE_CHECKING, Dict, Iterable, List, Optional, Union
 
 from grpclib.exceptions import StreamTerminatedError
 
@@ -30,7 +30,7 @@ class _ModuleHandler(logging.Handler):
         super().__init__()
         self._logger.setLevel(self.level)
 
-    def setLevel(self, level: int | str) -> None:
+    def setLevel(self, level: Union[int, str]) -> None:
         self._logger.setLevel(level)
         return super().setLevel(level)
 
