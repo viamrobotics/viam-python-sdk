@@ -24,6 +24,32 @@ class MLTrainingClient:
 
     Constructor is used by `ViamClient` to instantiate relevant service stubs.
     Calls to `MLTrainingClient` methods should be made through `ViamClient`.
+
+    Establish a Connection::
+
+        import asyncio
+
+        from viam.rpc.dial import DialOptions, Credentials
+        from viam.app.viam_client import ViamClient
+
+
+        async def connect() -> ViamClient:
+            # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+            dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+            return await ViamClient.create_from_dial_options(dial_options)
+
+
+        async def main():
+
+            # Make a ViamClient
+            viam_client = await connect()
+            # Instantiate an MLTrainingClient to run ML training client API methods on
+            ml_training_client = viam_client.ml_training_client
+
+            viam_client.close()
+
+        if __name__ == '__main__':
+            asyncio.run(main())
     """
 
     def __init__(self, channel: Channel, metadata: Mapping[str, str]):
@@ -51,6 +77,11 @@ class MLTrainingClient:
     async def get_training_job(self, id: str) -> TrainingJobMetadata:
         """Gets training job data.
 
+        ::
+
+            job_metadata = await ml_training_client.get_training_job(
+                id="INSERT YOUR JOB ID")
+
         Args:
             id (str): id of the requested training job.
 
@@ -70,6 +101,13 @@ class MLTrainingClient:
     ) -> List[TrainingJobMetadata]:
         """Returns training job data for all jobs within an org.
 
+        ::
+
+            jobs_metadata = await ml_training_client.list_training_jobs(
+                org_id="INSERT YOUR ORG ID")
+
+            first_job_id = jobs_metadata[1].id
+
         Args:
             org_id (str): the id of the org to request training job data from.
             training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.
@@ -87,6 +125,11 @@ class MLTrainingClient:
 
     async def cancel_training_job(self, id: str) -> None:
         """Cancels the specified training job.
+
+        ::
+
+            await ml_training_client.cancel_training_job(
+                id="INSERT YOUR JOB ID")
 
         Args:
             id (str): the id of the job to be canceled.

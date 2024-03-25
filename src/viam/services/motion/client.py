@@ -1,10 +1,11 @@
-from typing import Any, Final, List, Mapping, Optional, Sequence
+from typing import Any, Final, Iterable, List, Mapping, Optional, Sequence
 
 from grpclib.client import Channel
 
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    Geometry,
     GeoObstacle,
     GeoPoint,
     Pose,
@@ -73,6 +74,24 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             resource_name = Arm.get_resource_name("externalFrame")
             success = await MotionServiceClient.move(resource_name, ...)
 
+        ::
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+            # Assumes a gripper configured with name "my_gripper" on the machine
+            gripper_name = Gripper.get_resource_name("my_gripper")
+            my_frame = "my_gripper_offset"
+
+            goal_pose = Pose(x=0, y=0, z=300, o_x=0, o_y=0, o_z=1, theta=0)
+
+            # Move the gripper
+            moved = await motion.move(component_name=gripper_name,
+                                  destination=PoseInFrame(reference_frame="myFrame",
+                                                          pose=goal_pose),
+                                  world_state=worldState,
+                                  constraints={},
+                                  extra={})
+
         Args:
             component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
             destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
@@ -119,6 +138,23 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         generated durring the ``move_on_globe()`` call.
 
         You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
+
+        ::
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+            # Get the ResourceNames of the base and movement sensor
+            my_base_resource_name = Base.get_resource_name("my_base")
+            mvmnt_sensor_resource_name = MovementSensor.get_resource_name(
+                "my_movement_sensor")
+            #  Define a destination GeoPoint at the GPS coordinates [0, 0]
+            my_destination = movement_sensor.GeoPoint(latitude=0, longitude=0)
+
+            # Move the base component to the designated geographic location, as reported by the movement sensor
+            execution_id = await motion.move_on_globe(
+                component_name=my_base_resource_name,
+                destination=my_destination,
+                movement_sensor_name=mvmnt_sensor_resource_name)
 
         Args:
             component_name (ResourceName): The ResourceName of the base to move.
@@ -171,6 +207,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         destination: Pose,
         slam_service_name: ResourceName,
         configuration: Optional[MotionConfiguration] = None,
+        obstacles: Optional[Iterable[Geometry]] = None,
         *,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
@@ -186,6 +223,23 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         You can monitor the progress of the ``move_on_map()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
+        ::
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+            # Get the ResourceNames of the base component and SLAM service
+            my_base_resource_name = Base.get_resource_name("my_base")
+            my_slam_service_name = SLAMClient.get_resource_name("my_slam_service")
+
+            # Define a destination pose with respect to the origin of the map from the SLAM service "my_slam_service"
+            my_pose = Pose(y=10)
+
+            # Move the base component to the destination pose of Y=10, a location of
+            # (0, 10, 0) in respect to the origin of the map
+            execution_id = await motion.move_on_map(component_name=my_base_resource_name,
+                                                    destination=my_pose,
+                                                    slam_service_name=my_slam_service_name)
+
         Args:
             component_name (ResourceName): The ResourceName of the base to move.
             destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.
@@ -199,6 +253,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+            obstacles (Optional[Iterable[Geometry]]): Obstacles to be considered for motion planning.
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
             RPC call.
@@ -214,6 +269,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             component_name=component_name,
             slam_service_name=slam_service_name,
             motion_configuration=configuration,
+            obstacles=obstacles,
             extra=dict_to_struct(extra),
         )
         response: MoveOnMapResponse = await self.client.MoveOnMap(request, timeout=timeout)
@@ -227,6 +283,14 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         timeout: Optional[float] = None,
     ):
         """Stop a component being moved by an in progress ``move_on_globe()`` or ``move_on_map()`` call.
+
+        ::
+
+            # Assuming a `move_on_globe()` started the execution
+            # Stop the base component which was instructed to move by `move_on_globe()`
+            # or `move_on_map()`
+            my_base_resource_name = Base.get_resource_name("my_base")
+            await motion.stop_plan(component_name=mvmnt_sensor)
 
         Args:
             component_name (ResourceName): The component to stop
@@ -254,7 +318,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> GetPlanResponse:
-        """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()``call to move a component.
+        """By default: returns the plan history of the most recent ``move_on_globe()`` or ``move_on_map()`` call to move a component.
 
         The plan history for executions before the most recent can be requested by providing an ExecutionID in the request.
 
@@ -270,6 +334,13 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Replans share the ExecutionID of the previously executing plan.
 
         All repeated fields are in time ascending order.
+
+        ::
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            my_base_resource_name = Base.get_resource_name("my_base")
+            # Get the plan(s) of the base component which was instructed to move by `MoveOnGlobe()` or `MoveOnMap()`
+            resp = await motion.get_plan(component_name=my_base_resource_name)
 
         Args:
             component_name (ResourceName): The component to stop
@@ -307,6 +378,12 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         All repeated fields are in chronological order.
 
+        ::
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            # List the plan statuses of the motion service within the TTL
+            resp = await motion.list_plan_statuses()
+
         Args:
             only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing
 
@@ -342,6 +419,18 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Note that the example uses the ``Arm`` class, but any component class that inherits from ``ComponentBase`` will work
         (``Base``, ``Gripper``, etc).
 
+        ::
+
+            from viam.components.gripper import Gripper
+            from viam.services.motion import MotionClient
+
+            # Assume that the connect function is written and will return a valid machine.
+            robot = await connect()
+
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+            gripperName = Gripper.get_resource_name("my_gripper")
+            gripperPoseInWorld = await motion.get_pose(component_name=gripperName,
+                                                    destination_frame="world")
 
         Args:
             component_name (viam.proto.common.ResourceName): Name of a component on a robot.
@@ -366,6 +455,18 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, ValueTypes]:
         """Send/receive arbitrary commands
+
+        ::
+
+            # Access the motion service
+            motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+            my_command = {
+              "command": "dosomething",
+              "someparameter": 52
+            }
+
+            await motion.do_command(my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute

@@ -6,9 +6,7 @@ on:
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.bump_version.outputs.version }}
     steps:
@@ -26,7 +24,12 @@ jobs:
           steps.is_organization_member.outputs.result == 'false'
 
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -75,9 +78,7 @@ jobs:
   build:
     needs: prepare
     if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -93,14 +94,25 @@ jobs:
           - arch: linux_x86_64
             ext: so
             whl: manylinux2014_x86_64
+          - arch: musllinux_x86_64
+            ext: so
+            whl: musllinux_1_2_x86_64
           - arch: linux_armv6l
             ext: so
             whl: linux_armv6l
+          - arch: linux_armv6l
+            ext: so
+            whl: linux_armv7l
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           ref: rc-${{ needs.prepare.outputs.version }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -110,6 +122,10 @@ jobs:
 
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
+
+      - name: HACK for arm7l
+        if: ${{ matrix.whl == 'linux_armv7l' }}
+        run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
 
       - name: Build
         run: poetry build -f wheel
@@ -126,9 +142,7 @@ jobs:
   release:
     needs: [prepare, build]
     if: github.repository_owner == 'viamrobotics' && startsWith(github.ref_name, 'rc-')
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/download-artifact@v3

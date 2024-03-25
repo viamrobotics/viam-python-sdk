@@ -17,6 +17,8 @@ from viam.proto.robot import (
     DiscoverComponentsResponse,
     FrameSystemConfigRequest,
     FrameSystemConfigResponse,
+    GetCloudMetadataRequest,
+    GetCloudMetadataResponse,
     GetOperationsRequest,
     GetOperationsResponse,
     GetSessionsRequest,
@@ -175,3 +177,6 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
 
     async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
         raise MethodNotImplementedError("Log").grpc_error
+
+    async def GetCloudMetadata(self, stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
+        raise MethodNotImplementedError("GetCloudMetadata").grpc_error

@@ -25,6 +25,21 @@ class ServiceBase(abc.ABC, ResourceBase):
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the service named ``name`` from the provided robot.
 
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+            async def main():
+                robot = await connect()
+
+                # Can be used with any resource, using the motion service as an example
+                motion = MotionClient.from_robot(robot=robot, name="builtin")
+
+                robot.close()
+
         Args:
             robot (RobotClient): The robot
             name (str): The name of the service
@@ -36,7 +51,19 @@ class ServiceBase(abc.ABC, ResourceBase):
         return cast(cls, service)
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        """Send/receive arbitrary commands
+        """Send/receive arbitrary commands.
+
+        ::
+
+            motion = MotionClient.from_robot(robot, "builtin")
+
+            my_command = {
+              "cmnd": "dosomething",
+              "someparameter": 52
+            }
+
+            # Can be used with any resource, using the motion service as an example
+            await motion.do_command(command=my_command)
 
         Args:
             command (Dict[str, ValueTypes]): The command to execute

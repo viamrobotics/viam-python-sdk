@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Mapping, Optional, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 import numpy as np
 from grpclib.server import Stream
@@ -216,6 +216,20 @@ from viam.proto.app.data import (
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
+from viam.proto.app.dataset import (
+    CreateDatasetRequest,
+    CreateDatasetResponse,
+    Dataset,
+    DatasetServiceBase,
+    DeleteDatasetRequest,
+    DeleteDatasetResponse,
+    ListDatasetsByIDsRequest,
+    ListDatasetsByIDsResponse,
+    ListDatasetsByOrganizationIDRequest,
+    ListDatasetsByOrganizationIDResponse,
+    RenameDatasetRequest,
+    RenameDatasetResponse,
+)
 from viam.proto.app.datasync import (
     DataCaptureUploadRequest,
     DataCaptureUploadResponse,
@@ -291,7 +305,7 @@ from viam.proto.service.sensors import (
     Readings,
     SensorsServiceBase,
 )
-from viam.proto.service.slam import MappingMode
+from viam.proto.service.slam import MappingMode, SensorInfo, SensorType
 from viam.proto.service.vision import Classification, Detection
 from viam.services.generic import Generic as GenericService
 from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
@@ -487,6 +501,7 @@ class MockMotion(MotionServiceBase):
         self.destination = request.destination
         self.slam_service = request.slam_service_name
         self.configuration = request.motion_configuration
+        self.obstacles = request.obstacles
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         self.execution_id = "some execution id"
@@ -584,30 +599,44 @@ class MockSensors(SensorsServiceBase):
 class MockSLAM(SLAM):
     INTERNAL_STATE_CHUNKS = [bytes(5), bytes(2)]
     POINT_CLOUD_PCD_CHUNKS = [bytes(3), bytes(2)]
+    POINT_CLOUD_PCD_CHUNKS_EDITED = [bytes(7), bytes(4)]
     POSITION = Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20)
     CLOUD_SLAM = False
     MAPPING_MODE = MappingMode.MAPPING_MODE_UNSPECIFIED
+    INTERNAL_STATE_FILE_TYPE = ".pbstream"
+    SENSOR_INFO = [
+        SensorInfo(name="my-camera", type=SensorType.SENSOR_TYPE_CAMERA),
+        SensorInfo(name="my-movement-sensor", type=SensorType.SENSOR_TYPE_MOVEMENT_SENSOR),
+    ]
 
     def __init__(self, name: str):
         self.name = name
         self.timeout: Optional[float] = None
+        self.properties = SLAM.Properties(
+            cloud_slam=self.CLOUD_SLAM,
+            mapping_mode=self.MAPPING_MODE,
+            internal_state_file_type=self.INTERNAL_STATE_FILE_TYPE,
+            sensor_info=self.SENSOR_INFO,
+        )
         super().__init__(name)
 
     async def get_internal_state(self, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
         return self.INTERNAL_STATE_CHUNKS
 
-    async def get_point_cloud_map(self, *, timeout: Optional[float] = None) -> List[bytes]:
+    async def get_point_cloud_map(self, return_edited_map: bool = False, *, timeout: Optional[float] = None) -> List[bytes]:
         self.timeout = timeout
+        if return_edited_map:
+            return self.POINT_CLOUD_PCD_CHUNKS_EDITED
         return self.POINT_CLOUD_PCD_CHUNKS
 
     async def get_position(self, *, timeout: Optional[float] = None) -> Pose:
         self.timeout = timeout
         return self.POSITION
 
-    async def get_properties(self, *, timeout: Optional[float] = None) -> Tuple[bool, MappingMode.ValueType]:
+    async def get_properties(self, *, timeout: Optional[float] = None) -> SLAM.Properties:
         self.timeout = timeout
-        return (self.CLOUD_SLAM, self.MAPPING_MODE)
+        return self.properties
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
@@ -820,18 +849,66 @@ class MockData(DataServiceBase):
     async def AddBinaryDataToDatasetByIDs(
         self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.added_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(AddBinaryDataToDatasetByIDsResponse())
 
     async def RemoveBinaryDataFromDatasetByIDs(
         self, stream: Stream[RemoveBinaryDataFromDatasetByIDsRequest, RemoveBinaryDataFromDatasetByIDsResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.removed_data_ids = request.binary_ids
+        self.dataset_id = request.dataset_id
+        await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         raise NotImplementedError()
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         raise NotImplementedError()
+
+
+class MockDataset(DatasetServiceBase):
+    def __init__(self, create_response: str, datasets_response: Sequence[Dataset]):
+        self.create_response = create_response
+        self.datasets_response = datasets_response
+
+    async def CreateDataset(self, stream: Stream[CreateDatasetRequest, CreateDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.org_id = request.organization_id
+        await stream.send_message(CreateDatasetResponse(id=self.create_response))
+
+    async def DeleteDataset(self, stream: Stream[DeleteDatasetRequest, DeleteDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.deleted_id = request.id
+        await stream.send_message(DeleteDatasetResponse())
+
+    async def ListDatasetsByIDs(self, stream: Stream[ListDatasetsByIDsRequest, ListDatasetsByIDsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.ids = request.ids
+        await stream.send_message(ListDatasetsByIDsResponse(datasets=self.datasets_response))
+
+    async def ListDatasetsByOrganizationID(
+        self, stream: Stream[ListDatasetsByOrganizationIDRequest, ListDatasetsByOrganizationIDResponse]
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.org_id = request.organization_id
+        await stream.send_message(ListDatasetsByOrganizationIDResponse(datasets=self.datasets_response))
+
+    async def RenameDataset(self, stream: Stream[RenameDatasetRequest, RenameDatasetResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.name = request.name
+        await stream.send_message((RenameDatasetResponse()))
 
 
 class MockDataSync(DataSyncServiceBase):

@@ -13,6 +13,8 @@ from ....gen.service.slam.v1.slam_pb2 import (
     GetPropertiesRequest,
     GetPropertiesResponse,
     MappingMode,
+    SensorInfo,
+    SensorType,
 )
 
 __all__ = [
@@ -27,4 +29,6 @@ __all__ = [
     "GetPropertiesRequest",
     "GetPropertiesResponse",
     "MappingMode",
+    "SensorInfo",
+    "SensorType",
 ]

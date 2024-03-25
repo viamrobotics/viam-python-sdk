@@ -42,7 +42,7 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         name = request.name
         slam = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        chunks = await slam.get_point_cloud_map(timeout=timeout)
+        chunks = await slam.get_point_cloud_map(return_edited_map=request.return_edited_map, timeout=timeout)
         for chunk in chunks:
             response = GetPointCloudMapResponse(point_cloud_pcd_chunk=chunk)
             await stream.send_message(response)
@@ -62,9 +62,8 @@ class SLAMRPCService(SLAMServiceBase, ResourceRPCServiceBase):
         assert request is not None
         slam = self.get_resource(request.name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        (cloud_slam, mapping_mode) = await slam.get_properties(timeout=timeout)
-        response = GetPropertiesResponse(cloud_slam=cloud_slam, mapping_mode=mapping_mode)
-        await stream.send_message(response)
+        properties = await slam.get_properties(timeout=timeout)
+        await stream.send_message(properties)
 
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()

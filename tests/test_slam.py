@@ -36,6 +36,10 @@ class TestSLAMService:
         chunks = await self.slam.get_point_cloud_map()
         assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS
 
+    async def test_get_point_cloud_map_return_edited(self):
+        chunks = await self.slam.get_point_cloud_map(return_edited_map=True)
+        assert chunks == MockSLAM.POINT_CLOUD_PCD_CHUNKS_EDITED
+
     @pytest.mark.asyncio
     async def test_get_position(self):
         pos = await self.slam.get_position()
@@ -49,9 +53,11 @@ class TestSLAMService:
 
     @pytest.mark.asyncio
     async def test_get_properties(self):
-        (cloud_slam, mapping_mode) = await self.slam.get_properties()
-        assert cloud_slam == MockSLAM.CLOUD_SLAM
-        assert mapping_mode == MockSLAM.MAPPING_MODE
+        properties = await self.slam.get_properties()
+        assert properties.cloud_slam == MockSLAM.CLOUD_SLAM
+        assert properties.mapping_mode == MockSLAM.MAPPING_MODE
+        assert properties.internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
+        assert properties.sensor_info == MockSLAM.SENSOR_INFO
 
 
 class TestService:
@@ -96,6 +102,8 @@ class TestService:
             response: GetPropertiesResponse = await client.GetProperties(request)
             assert response.cloud_slam == MockSLAM.CLOUD_SLAM
             assert response.mapping_mode == MockSLAM.MAPPING_MODE
+            assert response.internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
+            assert response.sensor_info == MockSLAM.SENSOR_INFO
 
     @pytest.mark.asyncio
     async def test_do(self):
@@ -145,9 +153,11 @@ class TestClient:
     async def test_get_properties(self):
         async with ChannelFor([self.service]) as channel:
             client = SLAMClient(self.name, channel)
-            (cloud_slam, mapping_mode) = await client.get_properties()
-            assert cloud_slam == MockSLAM.CLOUD_SLAM
-            assert mapping_mode == MockSLAM.MAPPING_MODE
+            properties = await client.get_properties()
+            assert properties.cloud_slam == MockSLAM.CLOUD_SLAM
+            assert properties.mapping_mode == MockSLAM.MAPPING_MODE
+            assert properties.internal_state_file_type == MockSLAM.INTERNAL_STATE_FILE_TYPE
+            assert properties.sensor_info == MockSLAM.SENSOR_INFO
 
     @pytest.mark.asyncio
     async def test_do(self):

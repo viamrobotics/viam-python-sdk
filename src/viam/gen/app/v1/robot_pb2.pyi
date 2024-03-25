@@ -54,6 +54,7 @@ class RobotConfig(google.protobuf.message.Message):
     MODULES_FIELD_NUMBER: builtins.int
     DISABLE_PARTIAL_START_FIELD_NUMBER: builtins.int
     PACKAGES_FIELD_NUMBER: builtins.int
+    OVERWRITE_FRAGMENT_STATUS_FIELD_NUMBER: builtins.int
 
     @property
     def cloud(self) -> global___CloudConfig:
@@ -94,13 +95,17 @@ class RobotConfig(google.protobuf.message.Message):
     def packages(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PackageConfig]:
         ...
 
-    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=...) -> None:
+    @property
+    def overwrite_fragment_status(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___AppValidationStatus]:
+        ...
+
+    def __init__(self, *, cloud: global___CloudConfig | None=..., remotes: collections.abc.Iterable[global___RemoteConfig] | None=..., components: collections.abc.Iterable[global___ComponentConfig] | None=..., processes: collections.abc.Iterable[global___ProcessConfig] | None=..., services: collections.abc.Iterable[global___ServiceConfig] | None=..., network: global___NetworkConfig | None=..., auth: global___AuthConfig | None=..., debug: builtins.bool | None=..., modules: collections.abc.Iterable[global___ModuleConfig] | None=..., disable_partial_start: builtins.bool | None=..., packages: collections.abc.Iterable[global___PackageConfig] | None=..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'network', b'network']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'modules', b'modules', 'network', b'network', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'services', b'services']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['_auth', b'_auth', '_debug', b'_debug', '_disable_partial_start', b'_disable_partial_start', '_network', b'_network', 'auth', b'auth', 'cloud', b'cloud', 'components', b'components', 'debug', b'debug', 'disable_partial_start', b'disable_partial_start', 'modules', b'modules', 'network', b'network', 'overwrite_fragment_status', b'overwrite_fragment_status', 'packages', b'packages', 'processes', b'processes', 'remotes', b'remotes', 'services', b'services']) -> None:
         ...
 
     @typing.overload
@@ -162,6 +167,8 @@ class CloudConfig(google.protobuf.message.Message):
     LOCATION_SECRET_FIELD_NUMBER: builtins.int
     SECRET_FIELD_NUMBER: builtins.int
     LOCATION_SECRETS_FIELD_NUMBER: builtins.int
+    PRIMARY_ORG_ID_FIELD_NUMBER: builtins.int
+    LOCATION_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     'Robot part id.'
     fqdn: builtins.str
@@ -177,11 +184,13 @@ class CloudConfig(google.protobuf.message.Message):
     @property
     def location_secrets(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___LocationSecret]:
         """All valid location secrets."""
+    primary_org_id: builtins.str
+    location_id: builtins.str
 
-    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., managed_by: builtins.str=..., signaling_address: builtins.str=..., signaling_insecure: builtins.bool=..., location_secret: builtins.str=..., secret: builtins.str=..., location_secrets: collections.abc.Iterable[global___LocationSecret] | None=..., primary_org_id: builtins.str=..., location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['fqdn', b'fqdn', 'id', b'id', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'location_secret', b'location_secret', 'location_secrets', b'location_secrets', 'managed_by', b'managed_by', 'primary_org_id', b'primary_org_id', 'secret', b'secret', 'signaling_address', b'signaling_address', 'signaling_insecure', b'signaling_insecure']) -> None:
         ...
 global___CloudConfig = CloudConfig
 

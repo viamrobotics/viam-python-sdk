@@ -30,6 +30,11 @@ class ResourceBase(Protocol):
         """
         Get the ResourceName for this Resource with the given name
 
+        ::
+
+            # Can be used with any resource, using an arm as an example
+            my_arm_name = my_arm.get_resource_name("my_arm")
+
         Args:
             name (str): The name of the Resource
         """
@@ -45,6 +50,11 @@ class ResourceBase(Protocol):
     def from_robot(cls, robot: "RobotClient", name: str) -> Self:
         """Get the Resource named ``name`` from the provided robot.
 
+        ::
+
+            # Can be used with any resource, using an arm as an example
+            my_arm = Arm.from_robot(robot, "my_arm")
+
         Args:
             robot (RobotClient): The robot
             name (str): The name of the Resource
@@ -59,6 +69,11 @@ class ResourceBase(Protocol):
         self, command: Mapping[str, "ValueTypes"], *, timeout: Optional[float] = None, **kwargs
     ) -> Mapping[str, "ValueTypes"]:
         """Send/Receive arbitrary commands to the Resource
+
+        ::
+
+            command = {"cmd": "test", "data1": 500}
+            result = component.do(command)
 
         Args:
             command (Mapping[str, ValueTypes]): The command to execute
@@ -90,7 +105,12 @@ class ResourceBase(Protocol):
         """Safely shut down the resource and prevent further use.
 
         Close must be idempotent. Later configuration may allow a resource to be "open" again.
-        If a resource does not want or need a close function, it is assumed that the resource does not need to retun errors when future
+        If a resource does not want or need a close function, it is assumed that the resource does not need to return errors when future
         non-Close methods are called.
+
+        ::
+
+            await component.close()
+
         """
         return

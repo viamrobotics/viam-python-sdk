@@ -3,8 +3,10 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 from .... import common
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
@@ -37,6 +39,23 @@ MAPPING_MODE_CREATE_NEW_MAP: MappingMode.ValueType
 MAPPING_MODE_LOCALIZE_ONLY: MappingMode.ValueType
 MAPPING_MODE_UPDATE_EXISTING_MAP: MappingMode.ValueType
 global___MappingMode = MappingMode
+
+class _SensorType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _SensorTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_SensorType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    SENSOR_TYPE_UNSPECIFIED: _SensorType.ValueType
+    SENSOR_TYPE_CAMERA: _SensorType.ValueType
+    SENSOR_TYPE_MOVEMENT_SENSOR: _SensorType.ValueType
+
+class SensorType(_SensorType, metaclass=_SensorTypeEnumTypeWrapper):
+    ...
+SENSOR_TYPE_UNSPECIFIED: SensorType.ValueType
+SENSOR_TYPE_CAMERA: SensorType.ValueType
+SENSOR_TYPE_MOVEMENT_SENSOR: SensorType.ValueType
+global___SensorType = SensorType
 
 @typing_extensions.final
 class GetPositionRequest(google.protobuf.message.Message):
@@ -83,13 +102,22 @@ global___GetPositionResponse = GetPositionResponse
 class GetPointCloudMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
+    RETURN_EDITED_MAP_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of slam service'
+    return_edited_map: builtins.bool
+    'For SLAM services that implement handling an edited map, this boolean\n    should indicate whether to return that edited map. If the SLAM service\n    does not handle edited maps, the unedited map will be returned instead.\n    '
 
-    def __init__(self, *, name: builtins.str=...) -> None:
+    def __init__(self, *, name: builtins.str=..., return_edited_map: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_return_edited_map', b'_return_edited_map', 'return_edited_map', b'return_edited_map']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_return_edited_map', b'_return_edited_map', 'name', b'name', 'return_edited_map', b'return_edited_map']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_return_edited_map', b'_return_edited_map']) -> typing_extensions.Literal['return_edited_map'] | None:
         ...
 global___GetPointCloudMapRequest = GetPointCloudMapRequest
 
@@ -155,12 +183,40 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLOUD_SLAM_FIELD_NUMBER: builtins.int
     MAPPING_MODE_FIELD_NUMBER: builtins.int
+    INTERNAL_STATE_FILE_TYPE_FIELD_NUMBER: builtins.int
+    SENSOR_INFO_FIELD_NUMBER: builtins.int
     cloud_slam: builtins.bool
     mapping_mode: global___MappingMode.ValueType
+    internal_state_file_type: builtins.str
 
-    def __init__(self, *, cloud_slam: builtins.bool=..., mapping_mode: global___MappingMode.ValueType=...) -> None:
+    @property
+    def sensor_info(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SensorInfo]:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['cloud_slam', b'cloud_slam', 'mapping_mode', b'mapping_mode']) -> None:
+    def __init__(self, *, cloud_slam: builtins.bool=..., mapping_mode: global___MappingMode.ValueType=..., internal_state_file_type: builtins.str | None=..., sensor_info: collections.abc.Iterable[global___SensorInfo] | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['_internal_state_file_type', b'_internal_state_file_type', 'internal_state_file_type', b'internal_state_file_type']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_internal_state_file_type', b'_internal_state_file_type', 'cloud_slam', b'cloud_slam', 'internal_state_file_type', b'internal_state_file_type', 'mapping_mode', b'mapping_mode', 'sensor_info', b'sensor_info']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_internal_state_file_type', b'_internal_state_file_type']) -> typing_extensions.Literal['internal_state_file_type'] | None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse
+
+@typing_extensions.final
+class SensorInfo(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    type: global___SensorType.ValueType
+
+    def __init__(self, *, name: builtins.str=..., type: global___SensorType.ValueType=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'type', b'type']) -> None:
+        ...
+global___SensorInfo = SensorInfo
