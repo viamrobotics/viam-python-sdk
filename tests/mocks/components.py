@@ -32,7 +32,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
-from viam.media.video import CameraMimeType, NamedImage, RawImage
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import (
     AnalogStatus,
     BoardStatus,
@@ -396,25 +396,21 @@ class MockCamera(Camera):
 
     async def get_image(
         self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Union[Image.Image, RawImage]:
+    ) -> ViamImage:
         self.extra = extra
         self.timeout = timeout
         mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
         if is_lazy or (not CameraMimeType.is_supported(mime_type)):
-            return RawImage(
+            return ViamImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
                 mime_type=mime_type,
             )
-        return self.image.copy()
+        return ViamImage(mime_type.encode_image(self.image), mime_type)
 
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         self.timeout = timeout
         return [
-            NamedImage(
-                name=self.name,
-                data=CameraMimeType.VIAM_RGBA.encode_image(self.image),
-                mime_type=CameraMimeType.VIAM_RGBA,
-            )
+            NamedImage(name=self.name, data=CameraMimeType.VIAM_RGBA.encode_image(self.image), mime_type=CameraMimeType.VIAM_RGBA)
         ], self.metadata
 
     async def get_point_cloud(

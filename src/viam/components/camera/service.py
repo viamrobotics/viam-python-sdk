@@ -54,11 +54,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
                 response_mime = mimetype
             else:
                 response_mime = request.mime_type
-            response = GetImageResponse(mime_type=response_mime)
-            img_bytes = mimetype.encode_image(image)
+            response = GetImageResponse(mime_type=response_mime, image=image.data)
         finally:
             image.close()
-        response.image = img_bytes
         await stream.send_message(response)
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
@@ -91,11 +89,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             mimetype = CameraMimeType.JPEG
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(mimetype, timeout=timeout, metadata=stream.metadata)
-        try:
-            img = mimetype.encode_image(image)
-        finally:
-            image.close()
-        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, ViamImage) else mimetype)  # type: ignore
+        response = HttpBody(data=image.data, content_type=image.mime_type if isinstance(image, ViamImage) else mimetype)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
