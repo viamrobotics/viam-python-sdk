@@ -23,7 +23,7 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import Camera, RawImage
+from . import Camera, ViamImage
 
 
 class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
@@ -95,7 +95,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             img = mimetype.encode_image(image)
         finally:
             image.close()
-        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, RawImage) else mimetype)  # type: ignore
+        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, ViamImage) else mimetype)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
