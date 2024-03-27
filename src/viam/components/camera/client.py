@@ -23,7 +23,7 @@ from . import Camera
 def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> ViamImage:
     if not request_mime_type:
         request_mime_type = response_mime_type
-    mime_type, _ = CameraMimeType.from_lazy(request_mime_type)
+    mime_type = CameraMimeType.from_string(request_mime_type)
     return ViamImage(data, mime_type)
 
 

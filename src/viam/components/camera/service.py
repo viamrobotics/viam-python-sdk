@@ -49,7 +49,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
                 request.mime_type = self._camera_mime_types[camera.name]
 
-            mimetype, _ = CameraMimeType.from_lazy(request.mime_type)
+            mimetype = CameraMimeType.from_string(request.mime_type)
             if CameraMimeType.is_supported(mimetype):
                 response_mime = mimetype
             else:

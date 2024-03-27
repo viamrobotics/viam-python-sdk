@@ -257,13 +257,6 @@ class TestClient:
             rgba_bytes = rgba_img.image.tobytes()
             assert rgba_bytes == image.copy().convert("RGBA").tobytes()
 
-            # Test lazy mime type
-            raw_img = await client.get_image(CameraMimeType.PNG.with_lazy_suffix)
-            assert isinstance(raw_img, ViamImage)
-            assert raw_img.image is None
-            assert raw_img.data == image.tobytes()
-            assert raw_img.mime_type == CameraMimeType.PNG
-
             # Test unknown mime type
             raw_img = await client.get_image("unknown")
             assert isinstance(raw_img, ViamImage)

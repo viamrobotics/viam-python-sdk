@@ -45,7 +45,7 @@ class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        mime_type, _ = CameraMimeType.from_lazy(request.mime_type)
+        mime_type = CameraMimeType.from_string(request.mime_type)
         image = ViamImage(request.image, mime_type)
 
         result = await vision.get_detections(image, extra=extra, timeout=timeout)
@@ -71,7 +71,7 @@ class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
 
-        mime_type, _ = CameraMimeType.from_lazy(request.mime_type)
+        mime_type = CameraMimeType.from_string(request.mime_type)
         image = ViamImage(request.image, mime_type)
 
         result = await vision.get_classifications(image, request.n, extra=extra, timeout=timeout)

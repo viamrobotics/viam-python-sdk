@@ -399,8 +399,8 @@ class MockCamera(Camera):
     ) -> ViamImage:
         self.extra = extra
         self.timeout = timeout
-        mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
-        if is_lazy or (not CameraMimeType.is_supported(mime_type)):
+        mime_type = CameraMimeType.from_string(mime_type)
+        if not CameraMimeType.is_supported(mime_type):
             return ViamImage(
                 data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
                 mime_type=mime_type,

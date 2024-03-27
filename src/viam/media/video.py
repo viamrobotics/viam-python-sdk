@@ -11,8 +11,6 @@ from viam.proto.component.camera import Format
 
 from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 
-LAZY_SUFFIX = "+lazy"
-
 # Formats that are supported by PIL
 LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
 
@@ -71,19 +69,10 @@ class CameraMimeType(str, Enum):
     UNSUPPORTED = "unsupported"
 
     @classmethod
-    def from_lazy(cls, value: str) -> Tuple[Self, bool]:
-        is_lazy = False
-        mime_type = value
-        if value.endswith(LAZY_SUFFIX):
-            mime_type = value[: (len(value) - len(LAZY_SUFFIX))]
-            is_lazy = True
-        if not cls.is_supported(value) and not is_lazy:
-            mime_type = CameraMimeType.UNSUPPORTED
-        return (cls(mime_type), is_lazy)
-
-    @property
-    def with_lazy_suffix(self) -> str:
-        return f"{self.value}{LAZY_SUFFIX}"
+    def from_string(cls, value: str) -> Self:
+        if not cls.is_supported(value):
+            return CameraMimeType.UNSUPPORTED
+        return cls(value)
 
     def encode_image(self, image: Union[Image.Image, RawImage]) -> bytes:
         if isinstance(image, RawImage):
@@ -97,12 +86,6 @@ class CameraMimeType(str, Enum):
             return buf.getvalue()
         else:
             raise ValueError(f"Cannot encode image to {self}")
-
-    @property
-    def _should_be_raw(self) -> bool:
-        return self in [CameraMimeType.UNSUPPORTED, CameraMimeType.PCD, CameraMimeType.VIAM_RAW_DEPTH] or not CameraMimeType.is_supported(
-            self
-        )
 
     @classmethod
     def is_supported(cls, mime_type: str) -> bool:
