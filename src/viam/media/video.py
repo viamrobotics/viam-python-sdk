@@ -142,8 +142,8 @@ class ViamImage:
     Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
     """
 
-    height: Optional[int]
-    width: Optional[int]
+    _height: Optional[int]
+    _width: Optional[int]
     _data: bytes
     _mime_type: CameraMimeType
     _image: Optional[Image.Image] = None
@@ -172,6 +172,22 @@ class ViamImage:
         self.close()
         self._image_decoded = False
         self._image = None
+
+    @property
+    def width(self) -> Union[int, None]:
+        return self._width
+
+    @width.setter
+    def width(self, width: int):
+        self._width = width
+
+    @property
+    def height(self) -> Union[int, None]:
+        return self._height
+
+    @height.setter
+    def height(self, height: int):
+        self._height = height
 
     @property
     def image(self) -> Optional[Image.Image]:
@@ -225,8 +241,8 @@ class ViamImage:
         except UnidentifiedImageError:
             return
 
-        self.width = image.width
-        self.height = image.height
+        self._width = image.width
+        self._height = image.height
 
 
 class NamedImage(ViamImage):

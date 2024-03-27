@@ -103,18 +103,17 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             extra = {}
 
         mime_type = CameraMimeType.JPEG
-        if image.image is None:
+        if image.width is None or image.height is None:
             raise UnidentifiedImageError
-        else:
-            request = GetClassificationsRequest(
-                name=self.name,
-                image=image.data,
-                width=image.image.width,
-                height=image.image.height,
-                mime_type=mime_type,
-                n=count,
-                extra=dict_to_struct(extra),
-            )
+        request = GetClassificationsRequest(
+            name=self.name,
+            image=image.data,
+            width=image.width,
+            height=image.height,
+            mime_type=mime_type,
+            n=count,
+            extra=dict_to_struct(extra),
+        )
         response: GetClassificationsResponse = await self.client.GetClassifications(request, timeout=timeout)
         return list(response.classifications)
 
