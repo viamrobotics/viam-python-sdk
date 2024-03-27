@@ -159,6 +159,8 @@ class ViamImage:
     Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
     """
 
+    height: Optional[int]
+    width: Optional[int]
     _data: bytes
     _mime_type: CameraMimeType
     _image: Optional[Image.Image] = None
@@ -167,6 +169,7 @@ class ViamImage:
     def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
         self._mime_type = mime_type
+        self._get_image_dimensions()
 
     @property
     def data(self) -> bytes:
@@ -220,13 +223,27 @@ class ViamImage:
         if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
             raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
 
-        width = int.from_bytes(self.data[8:16], "big")
-        height = int.from_bytes(self.data[16:24], "big")
+        self.width = int.from_bytes(self.data[8:16], "big")
+        self.height = int.from_bytes(self.data[16:24], "big")
         depth_arr = array("H", self.data[24:])
         depth_arr.byteswap()
 
-        depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
+        depth_arr_2d = [[depth_arr[row * self.width + col] for col in range(self.width)] for row in range(self.height)]
         return depth_arr_2d
+
+    def _get_image_dimensions(self) -> None:
+        """Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``."""
+
+        if self.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
+            return
+
+        try:
+            image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+        except UnidentifiedImageError:
+            return
+
+        self.width = image.width
+        self.height = image.height
 
 
 class NamedImage(ViamImage):

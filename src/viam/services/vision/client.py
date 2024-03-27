@@ -63,14 +63,14 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             extra = {}
         mime_type = CameraMimeType.JPEG
 
-        if image.image is None:
+        if image.width is None or image.height is None:
             raise UnidentifiedImageError
         else:
             request = GetDetectionsRequest(
                 name=self.name,
                 image=image.data,
-                width=image.image.width,
-                height=image.image.height,
+                width=image.width,
+                height=image.height,
                 mime_type=mime_type,
                 extra=dict_to_struct(extra),
             )
