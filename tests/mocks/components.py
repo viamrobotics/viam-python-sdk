@@ -8,7 +8,7 @@ else:
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
