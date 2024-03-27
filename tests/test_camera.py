@@ -1,5 +1,4 @@
 from datetime import datetime
-from io import BytesIO
 
 import pytest
 from google.api.httpbody_pb2 import HttpBody
@@ -10,7 +9,7 @@ from PIL import Image
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraRPCService
 from viam.components.generic.service import GenericRPCService
-from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, NamedImage, RawImage, ViamImage
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse, ResponseMetadata
 from viam.proto.component.camera import (
     CameraServiceStub,
@@ -240,7 +239,7 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
+    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
