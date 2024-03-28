@@ -64,15 +64,14 @@ class Module:
         return cls(address, log_level=log_level)
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
-        if 'reconfigure' in dir(sys.stdout):
-            """Modules are launched from the viam-server, and a module's stdout is not connected to
-            a tty. Python reacts to that environment by disabling line buffering. Which means
-            `print` statements are not immediately flushed to the viam-server. This is confusing for
-            customers and can interfere with debugging. We reconfigure stdout and stderr here to
-            better align python with other languages/viam SDKs and user expectations.
-
-            Note: `reconfigure` only exists in python3.7+. """
+        # When a module is launched by viam-server, its stdout is not connected to a tty.  In
+        # response, python disables line buffering, which prevents `print` statements from being
+        # immediately flushed to viam-server. This behavior can be confusing, interfere with
+        # debugging, and is non-standard when compared to other languages.  Here, stdout and stderr
+        # are reconfigured to immediately flush.
+        if isinstance(sys.stdout, io.TextIOWrapper):
             sys.stdout.reconfigure(line_buffering=True)
+        if isinstance(sys.stderr, io.TextIOWrapper):
             sys.stderr.reconfigure(line_buffering=True)
         self._address = address
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
