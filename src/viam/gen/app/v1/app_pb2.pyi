@@ -507,17 +507,26 @@ class CreateOrganizationInviteRequest(google.protobuf.message.Message):
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     EMAIL_FIELD_NUMBER: builtins.int
     AUTHORIZATIONS_FIELD_NUMBER: builtins.int
+    SEND_EMAIL_INVITE_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
 
     @property
     def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
         ...
+    send_email_invite: builtins.bool
+    'Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.\n    When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.\n    '
 
-    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., authorizations: collections.abc.Iterable[global___Authorization] | None=..., send_email_invite: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'email', b'email', 'organization_id', b'organization_id']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_send_email_invite', b'_send_email_invite', 'send_email_invite', b'send_email_invite']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_send_email_invite', b'_send_email_invite', 'authorizations', b'authorizations', 'email', b'email', 'organization_id', b'organization_id', 'send_email_invite', b'send_email_invite']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_send_email_invite', b'_send_email_invite']) -> typing_extensions.Literal['send_email_invite'] | None:
         ...
 global___CreateOrganizationInviteRequest = CreateOrganizationInviteRequest
 

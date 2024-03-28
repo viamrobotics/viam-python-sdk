@@ -274,6 +274,10 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             invite = await client.create_organization_invite(EMAIL, AUTHORIZATIONS)
             assert invite == INVITE
+            assert service.send_email_invite is True
+
+            await client.create_organization_invite(EMAIL, AUTHORIZATIONS, False)
+            assert service.send_email_invite is False
 
     @pytest.mark.asyncio
     async def test_delete_organization_invite(self, service: MockApp):
