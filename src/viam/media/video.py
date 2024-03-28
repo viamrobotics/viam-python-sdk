@@ -1,7 +1,7 @@
 from array import array
 from enum import Enum
 from io import BytesIO
-from typing import List, NamedTuple, Optional, Tuple, Union
+from typing import List, NamedTuple, Optional, Union
 
 from PIL import Image, UnidentifiedImageError
 from typing_extensions import Self
@@ -10,8 +10,6 @@ from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
 
 from .viam_rgba_plugin import RGBA_FORMAT_LABEL
-
-LAZY_SUFFIX = "+lazy"
 
 # Formats that are supported by PIL
 LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
@@ -71,52 +69,8 @@ class CameraMimeType(str, Enum):
     UNSUPPORTED = "unsupported"
 
     @classmethod
-    def from_lazy(cls, value: str) -> Tuple[Self, bool]:
-        is_lazy = False
-        mime_type = value
-        if value.endswith(LAZY_SUFFIX):
-            mime_type = value[: (len(value) - len(LAZY_SUFFIX))]
-            is_lazy = True
-        if not cls.is_supported(value) and not is_lazy:
-            mime_type = CameraMimeType.UNSUPPORTED
-        return (cls(mime_type), is_lazy)
-
-    @property
-    def with_lazy_suffix(self) -> str:
-        return f"{self.value}{LAZY_SUFFIX}"
-
-    def encode_image(self, image: Union[Image.Image, RawImage]) -> bytes:
-        if isinstance(image, RawImage):
-            return image.data
-
-        if self.name in LIBRARY_SUPPORTED_FORMATS:
-            buf = BytesIO()
-            if image.mode == "RGBA" and self.name == "JPEG":
-                image = image.convert("RGB")
-            image.save(buf, format=self.name)
-            return buf.getvalue()
-        else:
-            raise ValueError(f"Cannot encode image to {self}")
-
-    @property
-    def _should_be_raw(self) -> bool:
-        return self in [CameraMimeType.UNSUPPORTED, CameraMimeType.PCD, CameraMimeType.VIAM_RAW_DEPTH] or not CameraMimeType.is_supported(
-            self
-        )
-
-    @classmethod
-    def is_supported(cls, mime_type: str) -> bool:
-        """Check if the provided mime_type is supported.
-
-        Args:
-            mime_type (str): The mime_type to check
-
-        Returns:
-            bool: Whether the mime_type is supported
-        """
-        if mime_type == cls.UNSUPPORTED:
-            return False
-        return mime_type in set(item.value for item in cls)
+    def from_string(cls, value: str) -> Self:
+        return cls(value)
 
     @classmethod
     def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":
@@ -159,6 +113,8 @@ class ViamImage:
     Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
     """
 
+    _height: Optional[int]
+    _width: Optional[int]
     _data: bytes
     _mime_type: CameraMimeType
     _image: Optional[Image.Image] = None
@@ -167,6 +123,7 @@ class ViamImage:
     def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
         self._mime_type = mime_type
+        self._get_image_dimensions()
 
     @property
     def data(self) -> bytes:
@@ -188,13 +145,26 @@ class ViamImage:
         self._image = None
 
     @property
+    def width(self) -> Union[int, None]:
+        """The width of the image"""
+        return self._width
+
+    @width.setter
+    def width(self, width: int):
+        self._width = width
+
+    @property
+    def height(self) -> Union[int, None]:
+        """The height of the image"""
+        return self._height
+
+    @height.setter
+    def height(self, height: int):
+        self._height = height
+
+    @property
     def image(self) -> Optional[Image.Image]:
         """The PIL.Image representation of the image. If the mime type is not supported, this will be None."""
-        if not CameraMimeType.is_supported(self.mime_type):
-            self._image = None
-            self._image_decoded = True
-            return self._image
-
         try:
             self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
         except UnidentifiedImageError:
@@ -222,11 +192,29 @@ class ViamImage:
 
         width = int.from_bytes(self.data[8:16], "big")
         height = int.from_bytes(self.data[16:24], "big")
+        self.width = width
+        self.height = height
         depth_arr = array("H", self.data[24:])
         depth_arr.byteswap()
 
         depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
         return depth_arr_2d
+
+    def _get_image_dimensions(self) -> None:
+        """
+        Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``.
+        """
+
+        if self.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
+            return
+
+        try:
+            image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+        except UnidentifiedImageError:
+            return
+
+        self._width = image.width
+        self._height = image.height
 
 
 class NamedImage(ViamImage):

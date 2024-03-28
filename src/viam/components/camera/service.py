@@ -23,7 +23,7 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import Camera, RawImage
+from . import Camera, ViamImage
 
 
 class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
@@ -49,16 +49,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
                 request.mime_type = self._camera_mime_types[camera.name]
 
-            mimetype, _ = CameraMimeType.from_lazy(request.mime_type)
-            if CameraMimeType.is_supported(mimetype):
-                response_mime = mimetype
-            else:
-                response_mime = request.mime_type
-            response = GetImageResponse(mime_type=response_mime)
-            img_bytes = mimetype.encode_image(image)
+            response = GetImageResponse(mime_type=request.mime_type, image=image.data)
         finally:
             image.close()
-        response.image = img_bytes
         await stream.send_message(response)
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
@@ -91,11 +84,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             mimetype = CameraMimeType.JPEG
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(mimetype, timeout=timeout, metadata=stream.metadata)
-        try:
-            img = mimetype.encode_image(image)
-        finally:
-            image.close()
-        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, RawImage) else mimetype)  # type: ignore
+        response = HttpBody(data=image.data, content_type=image.mime_type if isinstance(image, ViamImage) else mimetype)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
