@@ -211,12 +211,14 @@ class ViamImage:
         if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
             raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
 
-        self.width = int.from_bytes(self.data[8:16], "big")
-        self.height = int.from_bytes(self.data[16:24], "big")
+        width = int.from_bytes(self.data[8:16], "big")
+        height = int.from_bytes(self.data[16:24], "big")
+        self.width = width
+        self.height = height
         depth_arr = array("H", self.data[24:])
         depth_arr.byteswap()
 
-        depth_arr_2d = [[depth_arr[row * self.width + col] for col in range(self.width)] for row in range(self.height)]
+        depth_arr_2d = [[depth_arr[row * width + col] for col in range(width)] for row in range(height)]
         return depth_arr_2d
 
     def _get_image_dimensions(self) -> None:
