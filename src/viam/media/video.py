@@ -1,7 +1,7 @@
 from array import array
 from enum import Enum
 from io import BytesIO
-from typing import List, NamedTuple, Optional, Tuple, Union
+from typing import List, NamedTuple, Optional, Union
 
 from PIL import Image, UnidentifiedImageError
 from typing_extensions import Self
@@ -175,6 +175,7 @@ class ViamImage:
 
     @property
     def width(self) -> Union[int, None]:
+        """The width of the image"""
         return self._width
 
     @width.setter
@@ -183,6 +184,7 @@ class ViamImage:
 
     @property
     def height(self) -> Union[int, None]:
+        """The height of the image"""
         return self._height
 
     @height.setter
@@ -231,7 +233,9 @@ class ViamImage:
         return depth_arr_2d
 
     def _get_image_dimensions(self) -> None:
-        """Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``."""
+        """
+        Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``.
+        """
 
         if self.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
             return
