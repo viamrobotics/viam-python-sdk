@@ -13,7 +13,7 @@ from viam.components.component_base import ComponentBase
 from viam.components.movement_sensor import MovementSensor
 from viam.components.sensor import Sensor
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import PoseInFrame, ResourceName, Transform
+from viam.proto.common import PoseInFrame, ResourceName, Transform, LogEntry
 from viam.proto.robot import (
     BlockForOperationRequest,
     CancelOperationRequest,
@@ -30,7 +30,6 @@ from viam.proto.robot import (
     GetOperationsResponse,
     GetStatusRequest,
     GetStatusResponse,
-    LogEntry,
     LogRequest,
     Operation,
     ResourceNamesRequest,
