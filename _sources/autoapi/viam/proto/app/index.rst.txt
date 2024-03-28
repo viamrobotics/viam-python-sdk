@@ -1245,7 +1245,7 @@ Classes
       The detail page of the module
 
 
-.. py:class:: CreateOrganizationInviteRequest(*, organization_id: str = ..., email: str = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ...)
+.. py:class:: CreateOrganizationInviteRequest(*, organization_id: str = ..., email: str = ..., authorizations: collections.abc.Iterable[global___Authorization] | None = ..., send_email_invite: bool | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1269,6 +1269,44 @@ Classes
       :type: str
 
       
+
+   .. py:attribute:: send_email_invite
+      :type: bool
+
+      Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.
+      When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.
+
+   .. py:method:: HasField(field_name: Literal[_send_email_invite, b'_send_email_invite', send_email_invite, b'send_email_invite']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_send_email_invite, b'_send_email_invite']) -> Literal[send_email_invite] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: CreateOrganizationInviteResponse(*, invite: global___OrganizationInvite | None = ...)

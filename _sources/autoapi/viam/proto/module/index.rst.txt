@@ -179,7 +179,7 @@ Classes
 
 
 
-.. py:class:: ReadyRequest(*, parent_address: str = ...)
+.. py:class:: ReadyRequest(*, parent_address: str = ..., webrtc_offer: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -195,8 +195,13 @@ Classes
 
       
 
+   .. py:attribute:: webrtc_offer
+      :type: str
 
-.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ...)
+      
+
+
+.. py:class:: ReadyResponse(*, ready: bool = ..., handlermap: global___HandlerMap | None = ..., webrtc_answer: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -213,6 +218,11 @@ Classes
 
    .. py:attribute:: ready
       :type: bool
+
+      
+
+   .. py:attribute:: webrtc_answer
+      :type: str
 
       
 

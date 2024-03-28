@@ -452,7 +452,7 @@ Attributes
       :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
 
 
-   .. py:method:: create_organization_invite(email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
+   .. py:method:: create_organization_invite(email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None, send_email_invite=True) -> viam.proto.app.OrganizationInvite
       :async:
 
       Creates an organization invite and sends it via email.
@@ -467,6 +467,12 @@ Attributes
                              authorizations to include in the invite. If not provided, full owner permissions will
                              be granted.
       :type authorizations: Optional[List[viam.proto.app.Authorization]]
+      :param send_email_invite: Whether or not an email should be sent to the recipient of an invite.
+      :type send_email_invite: Optional[bool]
+      :param The user must accept the email to be added to the associated authorizations.:
+      :param When set to false:
+      :param the user automatically receives the associated authorization:
+      :param on the next login of the user with the associated email address.:
 
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
