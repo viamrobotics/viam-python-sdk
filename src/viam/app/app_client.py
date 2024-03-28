@@ -581,10 +581,7 @@ class AppClient:
         return list(response.members), list(response.invites)
 
     async def create_organization_invite(
-            self,
-            email: str,
-            authorizations: Optional[List[Authorization]] = None,
-            send_email_invite=True
+        self, email: str, authorizations: Optional[List[Authorization]] = None, send_email_invite=True
     ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
@@ -607,10 +604,7 @@ class AppClient:
         """
         organization_id = await self._get_organization_id()
         request = CreateOrganizationInviteRequest(
-            organization_id=organization_id,
-            email=email,
-            authorizations=authorizations,
-            send_email_invite=send_email_invite
+            organization_id=organization_id, email=email, authorizations=authorizations, send_email_invite=send_email_invite
         )
         response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
         return response.invite

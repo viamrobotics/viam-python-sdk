@@ -1064,6 +1064,7 @@ class MockApp(AppServiceBase):
         self.rover_rental_robots = rover_rental_robots
         self.api_key = api_key
         self.api_keys_with_authorizations = api_keys_with_authorizations
+        self.send_email_invite = False
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         raise NotImplementedError()
@@ -1115,6 +1116,7 @@ class MockApp(AppServiceBase):
     async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.send_email_invite = request.send_email_invite
         await stream.send_message(CreateOrganizationInviteResponse(invite=self.invite))
 
     async def UpdateOrganizationInviteAuthorizations(
