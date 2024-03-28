@@ -4,7 +4,6 @@ import pytest
 from google.api.httpbody_pb2 import HttpBody
 from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
-from PIL import Image
 
 from viam.components.camera import Camera, CameraClient
 from viam.components.camera.service import CameraRPCService
@@ -40,8 +39,8 @@ from .mocks.components import GEOMETRIES, MockCamera
 
 
 @pytest.fixture(scope="function")
-def image() -> Image.Image:
-    return Image.new("RGBA", (100, 100), "#AABBCCDD")
+def image() -> ViamImage:
+    return ViamImage(b"data", CameraMimeType.PNG)
 
 
 @pytest.fixture(scope="function")
@@ -84,24 +83,20 @@ def generic_service(camera: Camera) -> GenericRPCService:
 
 class TestCamera:
     @pytest.mark.asyncio
-    async def test_get_image(self, camera: MockCamera, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, image: ViamImage):
         img = await camera.get_image(CameraMimeType.PNG)
-        assert img.data == CameraMimeType.PNG.encode_image(image)
-        assert img.mime_type == CameraMimeType.PNG
+        assert img.data == image.data
+        assert img.mime_type == image.mime_type
 
         img = await camera.get_image(CameraMimeType.PNG, {"1": 1})
         assert camera.extra == {"1": 1}
 
-        img = await camera.get_image(CameraMimeType.VIAM_RGBA)
-        assert img.data == CameraMimeType.VIAM_RGBA.encode_image(image)
-        assert img.mime_type == CameraMimeType.VIAM_RGBA
-
     @pytest.mark.asyncio
-    async def test_get_images(self, camera: Camera, image: Image.Image, metadata: ResponseMetadata):
+    async def test_get_images(self, camera: Camera, image: ViamImage, metadata: ResponseMetadata):
         imgs, md = await camera.get_images()
         assert isinstance(imgs[0], NamedImage)
         assert imgs[0].name == camera.name
-        assert imgs[0].data == CameraMimeType.VIAM_RGBA.encode_image(image)
+        assert imgs[0].data == image.data
         assert md == metadata
 
     @pytest.mark.asyncio
@@ -144,7 +139,7 @@ class TestCamera:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
@@ -152,24 +147,13 @@ class TestService:
             # Test known mime type
             request = GetImageRequest(name="camera", mime_type=CameraMimeType.PNG)
             response: GetImageResponse = await client.GetImage(request, timeout=18.2)
-            assert response.image == CameraMimeType.PNG.encode_image(image)
+            assert response.image == image.data
             assert camera.timeout == loose_approx(18.2)
-
-            # Test raw mime type
-            request = GetImageRequest(name="camera", mime_type=CameraMimeType.VIAM_RGBA)
-            response: GetImageResponse = await client.GetImage(request)
-            assert response.image == CameraMimeType.VIAM_RGBA.encode_image(image)
-            assert response.mime_type == CameraMimeType.VIAM_RGBA
-
-            # Test unknown mime type
-            request = GetImageRequest(name="camera", mime_type="unknown")
-            response: GetImageResponse = await client.GetImage(request)
-            assert response.image == image.convert("RGBA").tobytes("raw", "RGBA")
-            assert response.mime_type == "unknown"
 
             # Test empty mime type. Empty mime type should default to JPEG for non-depth cameras
             request = GetImageRequest(name="camera")
             response: GetImageResponse = await client.GetImage(request)
+            assert response.image == image.data
             assert service._camera_mime_types["camera"] == CameraMimeType.JPEG
 
     @pytest.mark.asyncio
@@ -181,20 +165,20 @@ class TestService:
             request = GetImagesRequest(name="camera")
             response: GetImagesResponse = await client.GetImages(request, timeout=18.2)
             raw_img = response.images[0]
-            assert raw_img.format == Format.FORMAT_RAW_RGBA
+            assert raw_img.format == Format.FORMAT_PNG
             assert raw_img.source_name == camera.name
             assert response.response_metadata == metadata
             assert camera.timeout == loose_approx(18.2)
 
     @pytest.mark.asyncio
-    async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
+    async def test_render_frame(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraServiceStub(channel)
             request = RenderFrameRequest(name="camera", mime_type=CameraMimeType.PNG)
             response: HttpBody = await client.RenderFrame(request, timeout=4.4)
             assert response.content_type == CameraMimeType.PNG
-            assert response.data == CameraMimeType.PNG.encode_image(image)
+            assert response.data == image.data
             assert camera.timeout == loose_approx(4.4)
 
     @pytest.mark.asyncio
@@ -239,32 +223,17 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: Image.Image):
+    async def test_get_image(self, camera: MockCamera, service: CameraRPCService, image: ViamImage):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
 
-            # Test known mime type
-            png_img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
-            assert png_img.data == CameraMimeType.PNG.encode_image(image)
-            assert isinstance(png_img.image, Image.Image)
-            assert png_img.image.tobytes() == image.tobytes()
-            assert camera.timeout == loose_approx(1.82)
-
-            # Test raw mime type
-            rgba_img = await client.get_image(CameraMimeType.VIAM_RGBA)
-            assert isinstance(rgba_img.image, Image.Image)
-            rgba_bytes = rgba_img.image.tobytes()
-            assert rgba_bytes == image.copy().convert("RGBA").tobytes()
-
-            # Test unknown mime type
-            raw_img = await client.get_image("unknown")
-            assert isinstance(raw_img, ViamImage)
-            assert raw_img.image is None
-            assert raw_img.mime_type == CameraMimeType.UNSUPPORTED
+            img = await client.get_image(timeout=1.82, mime_type=CameraMimeType.PNG)
+            assert img.data == image.data
+            assert img.mime_type == image.mime_type
 
     @pytest.mark.asyncio
-    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: Image.Image, metadata: ResponseMetadata):
+    async def test_get_images(self, camera: MockCamera, service: CameraRPCService, image: ViamImage, metadata: ResponseMetadata):
         assert camera.timeout is None
         async with ChannelFor([service]) as channel:
             client = CameraClient("camera", channel)
@@ -272,8 +241,7 @@ class TestClient:
             imgs, md = await client.get_images(timeout=1.82)
             assert isinstance(imgs[0], NamedImage)
             assert imgs[0].name == camera.name
-            assert imgs[0].image is not None
-            assert imgs[0].image.tobytes() == image.tobytes()
+            assert imgs[0].data == image.data
             assert md == metadata
             assert camera.timeout == loose_approx(1.82)
 

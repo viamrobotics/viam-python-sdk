@@ -71,21 +71,8 @@ class CameraMimeType(str, Enum):
     @classmethod
     def from_string(cls, value: str) -> Self:
         if not cls.is_supported(value):
-            return CameraMimeType.UNSUPPORTED
+            return cls(CameraMimeType.UNSUPPORTED)
         return cls(value)
-
-    def encode_image(self, image: Union[Image.Image, RawImage]) -> bytes:
-        if isinstance(image, RawImage):
-            return image.data
-
-        if self.name in LIBRARY_SUPPORTED_FORMATS:
-            buf = BytesIO()
-            if image.mode == "RGBA" and self.name == "JPEG":
-                image = image.convert("RGB")
-            image.save(buf, format=self.name)
-            return buf.getvalue()
-        else:
-            raise ValueError(f"Cannot encode image to {self}")
 
     @classmethod
     def is_supported(cls, mime_type: str) -> bool:
