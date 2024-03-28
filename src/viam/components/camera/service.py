@@ -49,12 +49,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
                 request.mime_type = self._camera_mime_types[camera.name]
 
-            mimetype = CameraMimeType.from_string(request.mime_type)
-            if CameraMimeType.is_supported(mimetype):
-                response_mime = mimetype
-            else:
-                response_mime = request.mime_type
-            response = GetImageResponse(mime_type=response_mime, image=image.data)
+            response = GetImageResponse(mime_type=request.mime_type, image=image.data)
         finally:
             image.close()
         await stream.send_message(response)

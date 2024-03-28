@@ -70,23 +70,7 @@ class CameraMimeType(str, Enum):
 
     @classmethod
     def from_string(cls, value: str) -> Self:
-        if not cls.is_supported(value):
-            return cls(CameraMimeType.UNSUPPORTED)
         return cls(value)
-
-    @classmethod
-    def is_supported(cls, mime_type: str) -> bool:
-        """Check if the provided mime_type is supported.
-
-        Args:
-            mime_type (str): The mime_type to check
-
-        Returns:
-            bool: Whether the mime_type is supported
-        """
-        if mime_type == cls.UNSUPPORTED:
-            return False
-        return mime_type in set(item.value for item in cls)
 
     @classmethod
     def from_proto(cls, format: Format.ValueType) -> "CameraMimeType":
@@ -181,11 +165,6 @@ class ViamImage:
     @property
     def image(self) -> Optional[Image.Image]:
         """The PIL.Image representation of the image. If the mime type is not supported, this will be None."""
-        if not CameraMimeType.is_supported(self.mime_type):
-            self._image = None
-            self._image_decoded = True
-            return self._image
-
         try:
             self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
         except UnidentifiedImageError:
