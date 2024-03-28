@@ -580,7 +580,12 @@ class AppClient:
         response: ListOrganizationMembersResponse = await self._app_client.ListOrganizationMembers(request, metadata=self._metadata)
         return list(response.members), list(response.invites)
 
-    async def create_organization_invite(self, email: str, authorizations: Optional[List[Authorization]] = None, send_email_invite=True) -> OrganizationInvite:
+    async def create_organization_invite(
+            self,
+            email: str,
+            authorizations: Optional[List[Authorization]] = None,
+            send_email_invite=True
+    ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
         ::
@@ -601,7 +606,12 @@ class AppClient:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
         """
         organization_id = await self._get_organization_id()
-        request = CreateOrganizationInviteRequest(organization_id=organization_id, email=email, authorizations=authorizations, send_email_invite=send_email_invite)
+        request = CreateOrganizationInviteRequest(
+            organization_id=organization_id,
+            email=email,
+            authorizations=authorizations,
+            send_email_invite=send_email_invite
+        )
         response: CreateOrganizationInviteResponse = await self._app_client.CreateOrganizationInvite(request, metadata=self._metadata)
         return response.invite
 
