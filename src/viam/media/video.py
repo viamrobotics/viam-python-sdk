@@ -66,7 +66,6 @@ class CameraMimeType(str, Enum):
     JPEG = "image/jpeg"
     PNG = "image/png"
     PCD = "pointcloud/pcd"
-    UNSUPPORTED = "unsupported"
 
     @classmethod
     def from_string(cls, value: str) -> Self:
@@ -87,9 +86,8 @@ class CameraMimeType(str, Enum):
             Format.FORMAT_RAW_DEPTH: CameraMimeType.VIAM_RAW_DEPTH,
             Format.FORMAT_JPEG: CameraMimeType.JPEG,
             Format.FORMAT_PNG: CameraMimeType.PNG,
-            Format.FORMAT_UNSPECIFIED: CameraMimeType.UNSUPPORTED,
         }
-        return mimetypes.get(format, CameraMimeType.UNSUPPORTED)
+        return mimetypes.get(format, CameraMimeType.JPEG)
 
     def to_proto(self) -> Format.ValueType:
         """Returns the mimetype in a proto enum.
@@ -102,7 +100,6 @@ class CameraMimeType(str, Enum):
             self.VIAM_RAW_DEPTH: Format.FORMAT_RAW_DEPTH,
             self.JPEG: Format.FORMAT_JPEG,
             self.PNG: Format.FORMAT_PNG,
-            self.UNSUPPORTED: Format.FORMAT_UNSPECIFIED,
         }
         return formats.get(self, Format.FORMAT_UNSPECIFIED)
 

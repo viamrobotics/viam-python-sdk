@@ -8,15 +8,6 @@ from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
 
 class TestViamImage:
-    def test_unsupported_image(self):
-        img = ViamImage(b"123", CameraMimeType.UNSUPPORTED)
-        assert img._image is None
-        assert img._image_decoded is False
-        assert img.image is None
-        assert img._image is None
-        assert img._image_decoded is True
-        img.close()
-
     def test_supported_image(self):
         i = Image.new("RGBA", (100, 100), "#AABBCCDD")
         b = BytesIO()
@@ -70,5 +61,5 @@ class TestViamImage:
 class TestNamedImage:
     def test_name(self):
         name = "img"
-        img = NamedImage(name, b"123", CameraMimeType.UNSUPPORTED)
+        img = NamedImage(name, b"123", CameraMimeType.JPEG)
         assert img.name == name
