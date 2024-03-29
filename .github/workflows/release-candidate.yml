@@ -152,6 +152,10 @@ jobs:
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
 
+      - name: HACK for arm7l
+        if: ${{ matrix.whl == 'linux_armv7l' }}
+        run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
+
       - name: Build
         run: poetry build -f wheel
 
