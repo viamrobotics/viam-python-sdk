@@ -1,4 +1,4 @@
-import sys
+import io, sys
 from inspect import iscoroutinefunction
 from threading import Lock
 from typing import List, Mapping, Optional, Sequence, Tuple
