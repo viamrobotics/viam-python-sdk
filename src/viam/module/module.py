@@ -1,3 +1,4 @@
+import io
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
@@ -64,6 +65,15 @@ class Module:
         return cls(address, log_level=log_level)
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
+        # When a module is launched by viam-server, its stdout is not connected to a tty.  In
+        # response, python disables line buffering, which prevents `print` statements from being
+        # immediately flushed to viam-server. This behavior can be confusing, interfere with
+        # debugging, and is non-standard when compared to other languages.  Here, stdout and stderr
+        # are reconfigured to immediately flush.
+        if isinstance(sys.stdout, io.TextIOWrapper):
+            sys.stdout.reconfigure(line_buffering=True)
+        if isinstance(sys.stderr, io.TextIOWrapper):
+            sys.stderr.reconfigure(line_buffering=True)
         self._address = address
         self.server = Server(resources=[], module_service=ModuleRPCService(self))
         self._log_level = log_level
