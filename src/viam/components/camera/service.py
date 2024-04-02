@@ -42,16 +42,13 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(request.mime_type, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        try:
-            if not request.mime_type:
-                if camera.name not in self._camera_mime_types:
-                    self._camera_mime_types[camera.name] = CameraMimeType.JPEG
+        if not request.mime_type:
+            if camera.name not in self._camera_mime_types:
+                self._camera_mime_types[camera.name] = CameraMimeType.JPEG
 
-                request.mime_type = self._camera_mime_types[camera.name]
+            request.mime_type = self._camera_mime_types[camera.name]
 
-            response = GetImageResponse(mime_type=request.mime_type, image=image.data)
-        finally:
-            image.close()
+        response = GetImageResponse(mime_type=request.mime_type, image=image.data)
         await stream.send_message(response)
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
@@ -64,12 +61,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         images, metadata = await camera.get_images(timeout=timeout, metadata=stream.metadata)
         img_bytes_lst = []
         for img in images:
-            try:
-                fmt = img.mime_type.to_proto()
-                img_bytes = img.data
-                img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
-            finally:
-                img.close()
+            fmt = img.mime_type.to_proto()
+            img_bytes = img.data
+            img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 

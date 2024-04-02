@@ -27,7 +27,6 @@ class TestViamImage:
 
         img.mime_type = CameraMimeType.JPEG
         assert img._mime_type == CameraMimeType.JPEG
-        img.close()
 
 
 class TestNamedImage:
@@ -60,3 +59,13 @@ def test_bytes_to_depth_array():
     assert standard_data[-1][3] == data_arr[183]
     assert standard_data[-1][3] == 9 * 3
     assert standard_data[4][4] == 4 * 4
+
+
+def test_get_image_dimensions():
+    i = Image.new("RGBA", (100, 100), "#AABBCCDD")
+    b = BytesIO()
+    i.save(b, "PNG")
+    img = ViamImage(b.getvalue(), CameraMimeType.PNG)
+    get_image_dimensions(img)
+    assert img.width == 100
+    assert img.height == 100

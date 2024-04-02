@@ -80,9 +80,6 @@ class ViamImage:
         if value == self.mime_type:
             return
         self._mime_type = value
-        self.close()
-        self._image_decoded = False
-        self._image = None
 
     @property
     def width(self) -> Union[int, None]:
@@ -101,11 +98,6 @@ class ViamImage:
     @height.setter
     def height(self, height: int):
         self._height = height
-
-    def close(self):
-        """Close the image and release resources."""
-        if self._image is not None:
-            self._image.close()
 
 
 class NamedImage(ViamImage):
