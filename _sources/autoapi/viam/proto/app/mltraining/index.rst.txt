@@ -288,7 +288,7 @@ Classes
       
 
 
-.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., status: global___TrainingStatus = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., id: str = ..., error_status: google.rpc.status_pb2.Status | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ...)
+.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -303,16 +303,16 @@ Classes
       :type: global___SubmitTrainingJobRequest
 
 
+   .. py:property:: error_status
+      :type: google.rpc.status_pb2.Status
+
+
    .. py:property:: created_on
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
    .. py:property:: last_modified
       :type: google.protobuf.timestamp_pb2.Timestamp
-
-
-   .. py:property:: error_status
-      :type: google.rpc.status_pb2.Status
 
 
    .. py:property:: training_started
@@ -323,17 +323,46 @@ Classes
       :type: google.protobuf.timestamp_pb2.Timestamp
 
 
+   .. py:property:: tags
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+
+   .. py:attribute:: id
+      :type: str
+
+      
+
+   .. py:attribute:: dataset_id
+      :type: str
+
+      
+
+   .. py:attribute:: organization_id
+      :type: str
+
+      
+
+   .. py:attribute:: model_name
+      :type: str
+
+      
+
+   .. py:attribute:: model_version
+      :type: str
+
+      
+
+   .. py:attribute:: model_type
+      :type: global___ModelType
+
+      
+
    .. py:attribute:: status
       :type: global___TrainingStatus
 
       
 
    .. py:attribute:: synced_model_id
-      :type: str
-
-      
-
-   .. py:attribute:: id
       :type: str
 
       

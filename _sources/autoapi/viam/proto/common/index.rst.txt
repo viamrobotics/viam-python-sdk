@@ -884,7 +884,7 @@ Classes
 
 
 
-.. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ...)
+.. py:class:: ResourceName(*, namespace: str = ..., type: str = ..., subtype: str = ..., name: str = ..., machine_part_id: str | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -914,6 +914,43 @@ Classes
       :type: str
 
       
+
+   .. py:attribute:: machine_part_id
+      :type: str
+
+      
+
+   .. py:method:: HasField(field_name: Literal[_machine_part_id, b'_machine_part_id', machine_part_id, b'machine_part_id']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+   .. py:method:: WhichOneof(oneof_group: Literal[_machine_part_id, b'_machine_part_id']) -> Literal[machine_part_id] | None
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
 
 
 .. py:class:: ResponseMetadata(*, captured_at: google.protobuf.timestamp_pb2.Timestamp | None = ...)
