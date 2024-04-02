@@ -41,10 +41,11 @@ class Camera(ComponentBase):
         """Get the next image from the camera as a ViamImage.
         Be sure to close the image when finished.
 
-        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
+        NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.utils.bytes_to_depth_array`
         to convert the data to a standard representation.
 
         ::
+            from viam.media.utils import bytes_to_depth_array
 
             my_camera = Camera.from_robot(robot=robot, name="my_camera")
 
@@ -53,7 +54,7 @@ class Camera(ComponentBase):
 
             # Convert "frame" to a standard 2D image representation.
             # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
-            standard_frame = frame.bytes_to_depth_array()
+            standard_frame = bytes_to_depth_array(frame)
 
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
