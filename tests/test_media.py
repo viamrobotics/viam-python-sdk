@@ -1,4 +1,5 @@
 import os
+import pytest
 from array import array
 from io import BytesIO
 
@@ -27,6 +28,17 @@ class TestViamImage:
 
         img.mime_type = CameraMimeType.JPEG
         assert img._mime_type == CameraMimeType.JPEG
+
+    def test_set_image_dimensions(self):
+        img = ViamImage(b"data", CameraMimeType.JPEG)
+        with pytest.raises(AttributeError):
+            img.width
+        with pytest.raises(AttributeError):
+            img.height
+        img.width = 100
+        img.height = 100
+        assert img.width == 100
+        assert img.height == 100
 
 
 class TestNamedImage:
@@ -66,6 +78,10 @@ def test_get_image_dimensions():
     b = BytesIO()
     i.save(b, "PNG")
     img = ViamImage(b.getvalue(), CameraMimeType.PNG)
+    with pytest.raises(AttributeError):
+        img.width
+    with pytest.raises(AttributeError):
+        img.height
     get_image_dimensions(img)
     assert img.width == 100
     assert img.height == 100
