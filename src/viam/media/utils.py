@@ -44,6 +44,8 @@ def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
 def get_image_dimensions(image: ViamImage) -> None:
     """
     Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``.
+
+    Alternatively, image dimensions can be set manually as well (i.e.: image.width = 100)
     """
     if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
         NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use get_image_dimensions()")
