@@ -89,7 +89,7 @@ def test_get_image_dimensions():
     i2 = Image.new("RGBA", (100, 100), "#AABBCCDD")
     b2 = BytesIO()
     i2.save(b2, "VIAM_RGBA")
-    img2 = ViamImage(b.getvalue(), CameraMimeType.JPEG)
+    img2 = ViamImage(b.getvalue(), CameraMimeType.VIAM_RGBA)
     with pytest.raises(AttributeError):
         img2.width
     with pytest.raises(AttributeError):
@@ -97,3 +97,15 @@ def test_get_image_dimensions():
     get_image_dimensions(img2)
     assert img2.width == 100
     assert img2.height == 100
+
+    i3 = Image.new("RGB", (100, 100), "#AABBCCDD")
+    b3 = BytesIO()
+    i3.save(b3, "JPEG")
+    img3 = ViamImage(b.getvalue(), CameraMimeType.JPEG)
+    with pytest.raises(AttributeError):
+        img3.width
+    with pytest.raises(AttributeError):
+        img3.height
+    get_image_dimensions(img3)
+    assert img3.width == 100
+    assert img3.height == 100
