@@ -1,8 +1,8 @@
 import os
-import pytest
 from array import array
 from io import BytesIO
 
+import pytest
 from PIL import Image
 
 from viam.media.utils import bytes_to_depth_array, get_image_dimensions, viam_to_pil_image
@@ -85,3 +85,15 @@ def test_get_image_dimensions():
     get_image_dimensions(img)
     assert img.width == 100
     assert img.height == 100
+
+    i2 = Image.new("RGBA", (100, 100), "#AABBCCDD")
+    b2 = BytesIO()
+    i2.save(b2, "VIAM_RGBA")
+    img2 = ViamImage(b.getvalue(), CameraMimeType.JPEG)
+    with pytest.raises(AttributeError):
+        img2.width
+    with pytest.raises(AttributeError):
+        img2.height
+    get_image_dimensions(img2)
+    assert img2.width == 100
+    assert img2.height == 100
