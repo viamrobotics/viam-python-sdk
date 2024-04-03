@@ -1,11 +1,10 @@
-import struct
 from array import array
 from io import BytesIO
 from typing import List
 
 from PIL import Image
 
-from viam.errors import NotSupportedError, ViamError
+from viam.errors import NotSupportedError
 from viam.media.video import CameraMimeType, ViamImage
 
 from .viam_rgba_plugin import RGBA_FORMAT_LABEL
@@ -46,53 +45,9 @@ def get_image_dimensions(image: ViamImage) -> None:
     """
     Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``.
     """
-    data = str(image.data)
-    size = len(image.data)
     if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
         NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use get_image_dimensions()")
 
-    # See PNG 2. Edition spec (http://www.w3.org/TR/PNG/)
-    # Bytes 0-7 are below, 4-byte chunk length, then 'IHDR'
-    # and finally the 4-byte width, height
-    if (size >= 24) and image.data[0:8] == b"\x89PNG\r\n\x1a\n" and (image.data[12:16] == b"IHDR"):
-        assert image.mime_type == CameraMimeType.PNG
-        w, h = struct.unpack(">LL", image.data[16:24])
-        image.width = int(w)
-        image.height = int(h)
-        return
-    # This is for an older PNG version.
-    elif (size >= 16) and image.data[0:8] == b"\x89PNG\r\n\x1a\n":
-        assert image.mime_type == CameraMimeType.PNG
-        w, h = struct.unpack(">LL", image.data[8:16])
-        image.width = int(w)
-        image.height = int(h)
-        return
-    # handle JPEGs
-    # elif (size >= 2) and data.startswith("\377\330"):
-    #     assert image.mime_type == CameraMimeType.JPEG
-    #     jpeg = BytesIO(image.data)
-    #     jpeg.read(2)
-    #     b = jpeg.read(1)
-    #     try:
-    #         while b and ord(b) != 0xDA:
-    #             while ord(b) != 0xFF:
-    #                 b = jpeg.read(1)
-    #             while ord(b) == 0xFF:
-    #                 b = jpeg.read(1)
-    #             if ord(b) >= 0xC0 and ord(b) <= 0xC3:
-    #                 jpeg.read(3)
-    #                 h, w = struct.unpack(">HH", jpeg.read(4))
-    #                 break
-    #             else:
-    #                 jpeg.read(int(struct.unpack(">H", jpeg.read(2))[0]) - 2)
-    #             b = jpeg.read(1)
-    #         image.width = int(w)
-    #         image.height = int(h)
-    #         return
-    #     except struct.error:
-    #         pass
-    #     except ValueError:
-    #         pass
-    # elif image.mime_type = CAMERAMIMETYPE.VIAM_RGBA:
-
-    raise ViamError(f"Could not find image dimensions of image {image}")
+    pil_img = viam_to_pil_image(image)
+    image.width = pil_img.width
+    image.height = pil_img.height
