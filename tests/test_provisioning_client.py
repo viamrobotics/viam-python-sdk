@@ -67,7 +67,7 @@ class TestClient:
     async def test_set_network_credentials(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
-            await client.set_network_credentials(type=NETWORK_TYPE, ssid=SSID, psk=PSK)
+            await client.set_network_credentials(network_type=NETWORK_TYPE, ssid=SSID, psk=PSK)
             assert service.network_type == NETWORK_TYPE
             assert service.ssid == SSID
             assert service.psk == PSK
