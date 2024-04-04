@@ -279,6 +279,18 @@ from viam.proto.service.mlmodel import (
     FlatTensorDataUInt64,
     FlatTensors,
 )
+from viam.proto.provisioning import (
+    NetworkInfo,
+    ProvisioningServiceBase,
+    GetNetworkListRequest,
+    GetNetworkListResponse,
+    GetSmartMachineStatusRequest,
+    GetSmartMachineStatusResponse,
+    SetNetworkCredentialsRequest,
+    SetNetworkCredentialsResponse,
+    SetSmartMachineCredentialsRequest,
+    SetSmartMachineCredentialsResponse,
+)
 from viam.proto.service.motion import (
     Constraints,
     GetPlanRequest,
@@ -696,6 +708,40 @@ class MockNavigation(Navigation):
 
     async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
         return {"command": command}
+
+
+class MockProvisioning(ProvisioningServiceBase):
+    def __init__(
+        self,
+        smart_machine_status: GetSmartMachineStatusResponse,
+        network_info: List[NetworkInfo],
+    ):
+        self.smart_machine_status = smart_machine_status
+        self.network_info = network_info
+
+    async def GetNetworkList(self, stream: Stream[GetNetworkListRequest, GetNetworkListResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetNetworkListResponse(networks=self.network_info))
+
+    async def GetSmartMachineStatus(self, stream: Stream[GetSmartMachineStatusRequest, GetSmartMachineStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(self.smart_machine_status)
+
+    async def SetNetworkCredentialsRequest(self, stream: Stream[SetNetworkCredentialsRequest, SetSmartMachineCredentialsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.network_type = request.type
+        self.ssid = request.ssid
+        self.psk = request.psk
+        await stream.send_message(SetSmartMachineCredentialsResponse())
+
+    async def SetSmartMachineCredentials(self, stream: Stream[SetSmartMachineCredentialsRequest, SetSmartMachineCredentialsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.cloud_config = request.cloud
+        await stream.send_message(SetSmartMachineCredentialsResponse())
 
 
 class MockData(DataServiceBase):
