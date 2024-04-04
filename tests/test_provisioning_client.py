@@ -42,6 +42,7 @@ CLOUD_CONFIG = CloudConfig(id=ID, secret=SECRET, app_address=APP_ADDRESS)
 AUTH_TOKEN = "auth_token"
 PROVISIONING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 
+
 @pytest.fixture(scope="function")
 def service() -> MockProvisioning:
     return MockProvisioning(smart_machine_status=SMART_MACHINE_STATUS_RESPONSE, network_info=NETWORK_INFO)
@@ -54,7 +55,6 @@ class TestClient:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
             network_info = await client.get_network_list(channel, PROVISIONING_SERVICE_METADATA)
             assert network_info == NETWORK_INFO
-
 
     @pytest.mark.asyncio
     async def test_get_smart_machine_status(self, service: MockProvisioning):

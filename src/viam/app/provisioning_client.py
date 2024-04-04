@@ -17,10 +17,12 @@ from viam.proto.provisioning import (
 
 LOGGER = logging.getLogger(__name__)
 
+
 class ProvisioningClient:
     """gRPC client for getting and setting smart machine info.
 
-    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to `ProvisioningClient` methods should be made through `ViamClient`.
+    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to
+    `ProvisioningClient` methods should be made through `ViamClient`.
 
     Establish a connection::
 
@@ -91,5 +93,3 @@ class ProvisioningClient:
     async def set_smart_machine_credentials(self, cloud_config: Optional[CloudConfig] = None) -> None:
         request = SetSmartMachineCredentialsRequest(cloud=cloud_config)
         await self._provisioning_client.SetSmartMachineCredentials(request, metadata=self._metadata)
-
-
