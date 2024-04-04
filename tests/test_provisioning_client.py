@@ -53,7 +53,7 @@ class TestClient:
     async def test_get_network_list(self, service: MockProvisioning):
         async with ChannelFor([service]) as channel:
             client = ProvisioningClient(channel, PROVISIONING_SERVICE_METADATA)
-            network_info = await client.get_network_list(channel, PROVISIONING_SERVICE_METADATA)
+            network_info = await client.get_network_list()
             assert network_info == NETWORK_INFO
 
     @pytest.mark.asyncio
