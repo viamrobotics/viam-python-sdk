@@ -14,12 +14,24 @@ LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
 
 
 def viam_to_pil_image(image: ViamImage) -> Image.Image:
+    """
+    Convert a ViamImage to a PIL.Image.
+
+    Args:
+        image (ViamImage): The image to convert.
+
+    Returns:
+        Image.Image: The resulting PIL.Image
+    """
     return Image.open(BytesIO(image.data), formats=LIBRARY_SUPPORTED_FORMATS)
 
 
 def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
-    """Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
-    a standard representation.
+    """
+    Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
+
+    Args:
+        image (ViamImage): The image to be decoded.
 
     Raises:
         NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
@@ -43,9 +55,16 @@ def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
 
 def get_image_dimensions(image: ViamImage) -> None:
     """
-    Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba``.
+    Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba`` and set
+    the corresponding properties of the image.
 
     Alternatively, image dimensions can be set manually as well (i.e.: image.width = 100)
+
+    Args:
+        image (ViamImage): The image to get dimensions of.
+
+    Raises:
+        NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
     """
     if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
         NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use get_image_dimensions()")
