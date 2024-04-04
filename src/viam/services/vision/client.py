@@ -1,8 +1,8 @@
 from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
-from PIL import UnidentifiedImageError
 
+from viam.errors import ViamError
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject
 from viam.proto.service.vision import (
@@ -64,7 +64,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         mime_type = CameraMimeType.JPEG
 
         if image.width is None or image.height is None:
-            raise UnidentifiedImageError
+            raise ViamError(f"image {image} needs to have a specified width and height")
         else:
             request = GetDetectionsRequest(
                 name=self.name,
@@ -104,7 +104,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
 
         mime_type = CameraMimeType.JPEG
         if image.width is None or image.height is None:
-            raise UnidentifiedImageError
+            raise ViamError(f"image {image} needs to have a specified width and height")
         request = GetClassificationsRequest(
             name=self.name,
             image=image.data,

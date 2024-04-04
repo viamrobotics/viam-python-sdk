@@ -72,3 +72,4 @@ def get_image_dimensions(image: ViamImage) -> None:
     pil_img = viam_to_pil_image(image)
     image.width = pil_img.width
     image.height = pil_img.height
+    pil_img.close()

@@ -45,6 +45,9 @@ class Vision(ServiceBase):
         Args:
             camera_name (str): The name of the camera to use for detection
 
+        Raises:
+            ViamError: Raised if given an image without a specified width and height
+
         Returns:
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
@@ -81,6 +84,9 @@ class Vision(ServiceBase):
 
         Args:
             image (Image): The image to get detections from
+
+        Raises:
+            ViamError: Raised if given an image without a specified width and height
 
         Returns:
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
