@@ -729,7 +729,7 @@ class MockProvisioning(ProvisioningServiceBase):
         assert request is not None
         await stream.send_message(self.smart_machine_status)
 
-    async def SetNetworkCredentialsRequest(self, stream: Stream[SetNetworkCredentialsRequest, SetNetworkCredentialsResponse]) -> None:
+    async def SetNetworkCredentials(self, stream: Stream[SetNetworkCredentialsRequest, SetNetworkCredentialsResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
         self.network_type = request.type
