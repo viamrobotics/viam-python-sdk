@@ -3,7 +3,9 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 import sys
 if sys.version_info >= (3, 8):
@@ -49,3 +51,91 @@ class AcceptLegalResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___AcceptLegalResponse = AcceptLegalResponse
+
+@typing_extensions.final
+class RegisterAuthApplicationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    APPLICATION_NAME_FIELD_NUMBER: builtins.int
+    ORG_ID_FIELD_NUMBER: builtins.int
+    ORIGIN_URIS_FIELD_NUMBER: builtins.int
+    REDIRECT_URIS_FIELD_NUMBER: builtins.int
+    LOGOUT_URI_FIELD_NUMBER: builtins.int
+    application_name: builtins.str
+    org_id: builtins.str
+
+    @property
+    def origin_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def redirect_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+    logout_uri: builtins.str
+
+    def __init__(self, *, application_name: builtins.str=..., org_id: builtins.str=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['application_name', b'application_name', 'logout_uri', b'logout_uri', 'org_id', b'org_id', 'origin_uris', b'origin_uris', 'redirect_uris', b'redirect_uris']) -> None:
+        ...
+global___RegisterAuthApplicationRequest = RegisterAuthApplicationRequest
+
+@typing_extensions.final
+class RegisterAuthApplicationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    APPLICATION_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_NAME_FIELD_NUMBER: builtins.int
+    SECRET_FIELD_NUMBER: builtins.int
+    application_id: builtins.str
+    application_name: builtins.str
+    secret: builtins.str
+
+    def __init__(self, *, application_id: builtins.str=..., application_name: builtins.str=..., secret: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['application_id', b'application_id', 'application_name', b'application_name', 'secret', b'secret']) -> None:
+        ...
+global___RegisterAuthApplicationResponse = RegisterAuthApplicationResponse
+
+@typing_extensions.final
+class UpdateAuthApplicationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_NAME_FIELD_NUMBER: builtins.int
+    ORIGIN_URIS_FIELD_NUMBER: builtins.int
+    REDIRECT_URIS_FIELD_NUMBER: builtins.int
+    LOGOUT_URI_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    application_id: builtins.str
+    application_name: builtins.str
+
+    @property
+    def origin_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def redirect_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+    logout_uri: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=..., application_id: builtins.str=..., application_name: builtins.str=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['application_id', b'application_id', 'application_name', b'application_name', 'logout_uri', b'logout_uri', 'org_id', b'org_id', 'origin_uris', b'origin_uris', 'redirect_uris', b'redirect_uris']) -> None:
+        ...
+global___UpdateAuthApplicationRequest = UpdateAuthApplicationRequest
+
+@typing_extensions.final
+class UpdateAuthApplicationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    APPLICATION_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_NAME_FIELD_NUMBER: builtins.int
+    application_id: builtins.str
+    application_name: builtins.str
+
+    def __init__(self, *, application_id: builtins.str=..., application_name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['application_id', b'application_id', 'application_name', b'application_name']) -> None:
+        ...
+global___UpdateAuthApplicationResponse = UpdateAuthApplicationResponse
