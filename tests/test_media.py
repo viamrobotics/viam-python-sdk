@@ -5,7 +5,7 @@ from io import BytesIO
 import pytest
 from PIL import Image
 
-from viam.media.utils import bytes_to_depth_array, get_image_dimensions, viam_to_pil_image
+from viam.media.utils import bytes_to_depth_array, determine_image_dimensions, viam_to_pil_image
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
 
@@ -73,7 +73,7 @@ def test_bytes_to_depth_array():
     assert standard_data[4][4] == 4 * 4
 
 
-def test_get_image_dimensions():
+def test_determine_image_dimensions():
     i = Image.new("RGBA", (100, 100), "#AABBCCDD")
     b = BytesIO()
     i.save(b, "PNG")
@@ -82,7 +82,7 @@ def test_get_image_dimensions():
         img.width
     with pytest.raises(AttributeError):
         img.height
-    get_image_dimensions(img)
+    determine_image_dimensions(img)
     assert img.width == 100
     assert img.height == 100
 
@@ -94,7 +94,7 @@ def test_get_image_dimensions():
         img2.width
     with pytest.raises(AttributeError):
         img2.height
-    get_image_dimensions(img2)
+    determine_image_dimensions(img2)
     assert img2.width == 100
     assert img2.height == 100
 
@@ -106,6 +106,6 @@ def test_get_image_dimensions():
         img3.width
     with pytest.raises(AttributeError):
         img3.height
-    get_image_dimensions(img3)
+    determine_image_dimensions(img3)
     assert img3.width == 100
     assert img3.height == 100

@@ -53,7 +53,7 @@ def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
     return depth_arr_2d
 
 
-def get_image_dimensions(image: ViamImage) -> None:
+def determine_image_dimensions(image: ViamImage) -> None:
     """
     Get image dimensions from the data of an image that has the MIME type ``image/jpeg``, ``image/png``, or ``image/vnd.viam.rgba`` and set
     the corresponding properties of the image.
@@ -67,7 +67,7 @@ def get_image_dimensions(image: ViamImage) -> None:
         NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
     """
     if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
-        NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use get_image_dimensions()")
+        NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use determine_image_dimensions()")
 
     pil_img = viam_to_pil_image(image)
     image.width = pil_img.width
