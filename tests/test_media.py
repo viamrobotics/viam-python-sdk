@@ -5,6 +5,7 @@ from io import BytesIO
 import pytest
 from PIL import Image
 
+from viam.errors import NotSupportedError
 from viam.media.utils import bytes_to_depth_array, determine_image_dimensions, viam_to_pil_image
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
@@ -59,18 +60,22 @@ def test_viam_to_pil_image():
 
 def test_bytes_to_depth_array():
     with open(f"{os.path.dirname(__file__)}/../data/fakeDM.vnd.viam.dep", "rb") as depth_map:
-        image = ViamImage(depth_map.read(), CameraMimeType.VIAM_RAW_DEPTH)
-    assert isinstance(image, ViamImage)
-    standard_data = bytes_to_depth_array(image)
+        img = ViamImage(depth_map.read(), CameraMimeType.VIAM_RAW_DEPTH)
+    assert isinstance(img, ViamImage)
+    standard_data = bytes_to_depth_array(img)
     assert len(standard_data) == 10
     assert len(standard_data[0]) == 20
-    data_arr = array("H", image.data[24:])
+    data_arr = array("H", img.data[24:])
     data_arr.byteswap()
     assert len(data_arr) == 200
     assert standard_data[0][0] == data_arr[0]
     assert standard_data[-1][3] == data_arr[183]
     assert standard_data[-1][3] == 9 * 3
     assert standard_data[4][4] == 4 * 4
+
+    img2 = ViamImage(b"data", CameraMimeType.PCD)
+    with pytest.raises(NotSupportedError):
+        bytes_to_depth_array(img2)
 
 
 def test_determine_image_dimensions():
@@ -109,3 +114,7 @@ def test_determine_image_dimensions():
     determine_image_dimensions(img3)
     assert img3.width == 100
     assert img3.height == 100
+
+    img4 = ViamImage(b"data", CameraMimeType.PCD)
+    with pytest.raises(NotSupportedError):
+        determine_image_dimensions(img4)

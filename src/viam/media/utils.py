@@ -67,7 +67,7 @@ def determine_image_dimensions(image: ViamImage) -> None:
         NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
     """
     if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
-        NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use determine_image_dimensions()")
+        raise NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use determine_image_dimensions()")
 
     pil_img = viam_to_pil_image(image)
     image.width = pil_img.width
