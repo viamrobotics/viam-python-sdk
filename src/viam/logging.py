@@ -60,7 +60,6 @@ class _ModuleHandler(logging.Handler):
                 loop.create_task(
                     self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
                 ).add_done_callback(self.handle_task_result)
-                loop.close()
         except Exception as err:
             # If the module log fails, log using stdout/stderr handlers
             self._logger.error(f"ModuleLogger failed for {record.name} - {err}")
