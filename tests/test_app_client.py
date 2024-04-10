@@ -554,7 +554,7 @@ class TestClient:
     async def test_add_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.add_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
+            await client.add_role(org_id=ID, identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
             assert service.resource_type == TYPE
@@ -564,7 +564,7 @@ class TestClient:
     async def test_remove_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.remove_role(identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
+            await client.remove_role(org_id=ID, identity_id=ID, role=ROLE, resource_type=TYPE, resource_id=ID)
             assert service.identity_id == ID
             assert service.role == ROLE
             assert service.resource_type == TYPE

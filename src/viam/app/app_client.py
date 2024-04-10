@@ -1451,6 +1451,7 @@ class AppClient:
 
     async def add_role(
         self,
+        org_id: str,
         identity_id: str,
         role: Union[Literal["owner"], Literal["operator"]],
         resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
@@ -1467,6 +1468,7 @@ class AppClient:
                 resource_id="111ab12345")
 
         Args:
+            org_id (str): The ID of the organization to create the role in.
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
@@ -1477,6 +1479,7 @@ class AppClient:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
         """
         authorization = await self._create_authorization(
+            organization_id=org_id,
             identity_id=identity_id,
             identity_type="",
             role=role,
@@ -1488,6 +1491,7 @@ class AppClient:
 
     async def remove_role(
         self,
+        org_id: str,
         identity_id: str,
         role: Union[Literal["owner"], Literal["operator"]],
         resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
@@ -1504,6 +1508,7 @@ class AppClient:
                 resource_id="111ab12345")
 
         Args:
+            org_id (str): The ID of the organization the role exists in.
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
@@ -1514,6 +1519,7 @@ class AppClient:
             GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
         """
         authorization = await self._create_authorization(
+            organization_id=org_id,
             identity_id=identity_id,
             identity_type="",
             role=role,
