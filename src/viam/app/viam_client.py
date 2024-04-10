@@ -8,6 +8,7 @@ from viam.app.app_client import AppClient
 from viam.app.billing_client import BillingClient
 from viam.app.data_client import DataClient
 from viam.app.ml_training_client import MLTrainingClient
+from viam.app.provisioning_client import ProvisioningClient
 from viam.rpc.dial import DialOptions, _dial_app, _get_access_token
 
 LOGGER = logging.getLogger(__name__)
@@ -148,6 +149,27 @@ class ViamClient:
         """
 
         return BillingClient(self._channel, self._metadata)
+
+    @property
+    def provisioning_client(self) -> ProvisioningClient:
+        """Instantiate and return a `ProvisioningClient` used to make  `provisioning` method calls.
+        To use the `ProvisioningClient`, you must first instantiate a `ViamClient`.
+
+        ::
+
+            async def connect() -> ViamClient:
+                # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+                dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+                return await ViamClient.create_from_dial_options(dial_options)
+
+
+            async def main():
+                viam_client = await connect()
+
+                # Instantiate a ProvisioningClient to run provisioning API methods on
+                provisioning_client = viam_client.provisioning_client
+        """
+        return ProvisioningClient(self._channel, self._metadata)
 
     def close(self):
         """Close opened channels used for the various service stubs initialized."""
