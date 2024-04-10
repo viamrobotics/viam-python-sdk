@@ -442,9 +442,10 @@ class AppClient:
             organization_id=organization_id,
         )
 
-    async def _create_authorization_for_new_api_key(self, auth: APIKeyAuthorization) -> Authorization:
+    async def _create_authorization_for_new_api_key(self, org_id: str, auth: APIKeyAuthorization) -> Authorization:
         """Creates a new Authorization specifically for creating an API key."""
         return await self._create_authorization(
+            organization_id=org_id,
             identity_id="",  # setting `identity_id` when creating an API key results in an error
             identity_type="api-key",
             role=auth._role,  # type: ignore -- Ignoring because this is technically a `string`
@@ -1715,7 +1716,7 @@ class AppClient:
 
     # TODO(RSDK-5569): when user-based auth exists, make `name` default to `None` and let
     # app deal with setting a default.
-    async def create_key(self, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
+    async def create_key(self, org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]:
         """Creates a new API key.
 
         ::
@@ -1731,6 +1732,7 @@ class AppClient:
             api_key, api_key_id = cloud.create_key([auth], "my_key")
 
         Args:
+            org_id (str): The ID of the organization to create the key for.
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
                 with the key.
             name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
@@ -1742,7 +1744,7 @@ class AppClient:
             Tuple[str, str]: The api key and api key ID.
         """
         name = name if name is not None else str(datetime.now())
-        authorizations_pb = [await self._create_authorization_for_new_api_key(auth) for auth in authorizations]
+        authorizations_pb = [await self._create_authorization_for_new_api_key(org_id, auth) for auth in authorizations]
         request = CreateKeyRequest(authorizations=authorizations_pb, name=name)
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
         return (response.key, response.id)

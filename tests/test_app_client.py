@@ -276,7 +276,7 @@ class TestClient:
             assert invite == INVITE
             assert service.send_email_invite is True
 
-            await client.create_organization_invite(org_id=ID, email=EMAIL, authorizations=AUTHORIZATIONS, send_email_invites=False)
+            await client.create_organization_invite(org_id=ID, email=EMAIL, authorizations=AUTHORIZATIONS, send_email_invite=False)
             assert service.send_email_invite is False
 
     @pytest.mark.asyncio
@@ -324,7 +324,7 @@ class TestClient:
     async def test_delete_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.delete_location(org_id=ID, location_id=ID)
+            await client.delete_location(location_id=ID)
             assert service.location_id == ID
 
     @pytest.mark.asyncio
@@ -648,7 +648,7 @@ class TestClient:
     async def test_create_key(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            api_key = await client.create_key(authorizations=API_KEY_AUTHORIZATIONS, name=NAME)
+            api_key = await client.create_key(org_id=ID, authorizations=API_KEY_AUTHORIZATIONS, name=NAME)
             assert (API_KEY, ID) == api_key
 
     @pytest.mark.asyncio
