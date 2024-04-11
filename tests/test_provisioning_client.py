@@ -1,10 +1,8 @@
 import pytest
-
 from grpclib.testing import ChannelFor
 
 from viam.app.provisioning_client import ProvisioningClient
-
-from viam.proto.provisioning import GetSmartMachineStatusResponse, NetworkInfo, ProvisioningInfo, CloudConfig
+from viam.proto.provisioning import CloudConfig, GetSmartMachineStatusResponse, NetworkInfo, ProvisioningInfo
 
 from .mocks.services import MockProvisioning
 
@@ -35,7 +33,7 @@ SMART_MACHINE_STATUS_RESPONSE = GetSmartMachineStatusResponse(
     has_smart_machine_credentials=HAS_CREDENTIALS,
     is_online=IS_ONLINE,
     latest_connection_attempt=NETWORK_INFO_LATEST,
-    errors=ERRORS
+    errors=ERRORS,
 )
 CLOUD_CONFIG = CloudConfig(id=ID, secret=SECRET, app_address=APP_ADDRESS)
 
