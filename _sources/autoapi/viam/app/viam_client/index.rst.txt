@@ -122,6 +122,26 @@ Attributes
               # Instantiate a BillingClient to run billing client API methods on
               billing_client = viam_client.billing_client
 
+   .. py:property:: provisioning_client
+      :type: viam.app.provisioning_client.ProvisioningClient
+
+      Instantiate and return a `ProvisioningClient` used to make  `provisioning` method calls.
+      To use the `ProvisioningClient`, you must first instantiate a `ViamClient`.
+
+      ::
+
+          async def connect() -> ViamClient:
+              # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+              dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+              return await ViamClient.create_from_dial_options(dial_options)
+
+
+          async def main():
+              viam_client = await connect()
+
+              # Instantiate a ProvisioningClient to run provisioning API methods on
+              provisioning_client = viam_client.provisioning_client
+
    .. py:method:: create_from_dial_options(dial_options: viam.rpc.dial.DialOptions, app_url: Optional[str] = None) -> typing_extensions.Self
       :classmethod:
       :async:

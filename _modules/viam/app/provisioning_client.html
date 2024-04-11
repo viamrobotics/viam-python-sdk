@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.app.provisioning_client &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.components</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.services</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.robot</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.resource</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.module</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.media</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.rpc</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.proto</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">viam.app.provisioning_client</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.app.provisioning_client</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+
+<span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">viam.proto.provisioning</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CloudConfig</span><span class="p">,</span>
+    <span class="n">GetNetworkListRequest</span><span class="p">,</span>
+    <span class="n">GetNetworkListResponse</span><span class="p">,</span>
+    <span class="n">GetSmartMachineStatusRequest</span><span class="p">,</span>
+    <span class="n">GetSmartMachineStatusResponse</span><span class="p">,</span>
+    <span class="n">NetworkInfo</span><span class="p">,</span>
+    <span class="n">ProvisioningServiceStub</span><span class="p">,</span>
+    <span class="n">SetNetworkCredentialsRequest</span><span class="p">,</span>
+    <span class="n">SetSmartMachineCredentialsRequest</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="ProvisioningClient"><a class="viewcode-back" href="../../../autoapi/viam/app/provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient">[docs]</a><span class="k">class</span> <span class="nc">ProvisioningClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;gRPC client for getting and setting smart machine info.</span>
+
+<span class="sd">    Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to</span>
+<span class="sd">    `ProvisioningClient` methods should be made through `ViamClient`.</span>
+
+<span class="sd">    Establish a connection::</span>
+
+<span class="sd">        import asyncio</span>
+
+<span class="sd">        from viam.rpc.dial import DialOptions, Credentials</span>
+<span class="sd">        from viam.app.viam_client import ViamClient</span>
+
+
+<span class="sd">        async def connect() -&gt; ViamClient:</span>
+<span class="sd">            # Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+<span class="sd">            dial_options = DialOptions.with_api_key(&quot;&lt;API-KEY&gt;&quot;, &quot;&lt;API-KEY-ID&gt;&quot;)</span>
+<span class="sd">            return await ViamClient.create_from_dial_options(dial_options)</span>
+
+
+<span class="sd">        async def main():</span>
+
+<span class="sd">            # Make a ViamClient</span>
+<span class="sd">            viam_client = await connect()</span>
+<span class="sd">            # Instantiate a ProvisioningClient to run provisioning client API methods on</span>
+<span class="sd">            provisioning_client = viam_client.provisioning_client</span>
+
+<span class="sd">            viam_client.close()</span>
+
+<span class="sd">        if __name__ == &#39;__main__&#39;:</span>
+<span class="sd">            asyncio.run(main())</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a `ProvisioningClient` that maintains a connection to app.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel (grpclib.client.Channel): Connection to app.</span>
+<span class="sd">            metadata (Mapping[str, str]): Required authorization token to send requests to app.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_provisioning_client</span> <span class="o">=</span> <span class="n">ProvisioningServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channel</span> <span class="o">=</span> <span class="n">channel</span>
+
+    <span class="n">_provisioning_client</span><span class="p">:</span> <span class="n">ProvisioningServiceStub</span>
+    <span class="n">_metadata</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
+
+<div class="viewcode-block" id="ProvisioningClient.get_network_list"><a class="viewcode-back" href="../../../autoapi/viam/app/provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient.get_network_list">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_network_list</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">NetworkInfo</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns list of networks that are visible to the Smart Machine.&quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetNetworkListRequest</span><span class="p">()</span>
+        <span class="n">resp</span><span class="p">:</span> <span class="n">GetNetworkListResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provisioning_client</span><span class="o">.</span><span class="n">GetNetworkList</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">networks</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProvisioningClient.get_smart_machine_status"><a class="viewcode-back" href="../../../autoapi/viam/app/provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient.get_smart_machine_status">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_smart_machine_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GetSmartMachineStatusResponse</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the status of the smart machine.&quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetSmartMachineStatusRequest</span><span class="p">()</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provisioning_client</span><span class="o">.</span><span class="n">GetSmartMachineStatus</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProvisioningClient.set_network_credentials"><a class="viewcode-back" href="../../../autoapi/viam/app/provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient.set_network_credentials">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_network_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">network_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ssid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">psk</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets the network credentials of the Smart Machine.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            network_type (str): The type of the network.</span>
+<span class="sd">            ssid (str): The SSID of the network.</span>
+<span class="sd">            psk (str): The network&#39;s passkey.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetNetworkCredentialsRequest</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="n">network_type</span><span class="p">,</span> <span class="n">ssid</span><span class="o">=</span><span class="n">ssid</span><span class="p">,</span> <span class="n">psk</span><span class="o">=</span><span class="n">psk</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provisioning_client</span><span class="o">.</span><span class="n">SetNetworkCredentials</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ProvisioningClient.set_smart_machine_credentials"><a class="viewcode-back" href="../../../autoapi/viam/app/provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient.set_smart_machine_credentials">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_smart_machine_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cloud_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CloudConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SetSmartMachineCredentialsRequest</span><span class="p">(</span><span class="n">cloud</span><span class="o">=</span><span class="n">cloud_config</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_provisioning_client</span><span class="o">.</span><span class="n">SetSmartMachineCredentials</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

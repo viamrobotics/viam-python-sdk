@@ -1,0 +1,96 @@
+:py:mod:`viam.app.provisioning_client`
+======================================
+
+.. py:module:: viam.app.provisioning_client
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.provisioning_client.ProvisioningClient
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.app.provisioning_client.LOGGER
+
+
+.. py:data:: LOGGER
+
+   
+
+.. py:class:: ProvisioningClient(channel: grpclib.client.Channel, metadata: Mapping[str, str])
+
+
+   gRPC client for getting and setting smart machine info.
+
+   Constructor is used by `ViamClient` to instantiate relevant service stubs. Calls to
+   `ProvisioningClient` methods should be made through `ViamClient`.
+
+   Establish a connection::
+
+       import asyncio
+
+       from viam.rpc.dial import DialOptions, Credentials
+       from viam.app.viam_client import ViamClient
+
+
+       async def connect() -> ViamClient:
+           # Replace "<API-KEY>" (including brackets) with your API key and "<API-KEY-ID>" with your API key ID
+           dial_options = DialOptions.with_api_key("<API-KEY>", "<API-KEY-ID>")
+           return await ViamClient.create_from_dial_options(dial_options)
+
+
+       async def main():
+
+           # Make a ViamClient
+           viam_client = await connect()
+           # Instantiate a ProvisioningClient to run provisioning client API methods on
+           provisioning_client = viam_client.provisioning_client
+
+           viam_client.close()
+
+       if __name__ == '__main__':
+           asyncio.run(main())
+
+
+   .. py:method:: get_network_list() -> List[viam.proto.provisioning.NetworkInfo]
+      :async:
+
+      Returns list of networks that are visible to the Smart Machine.
+
+
+   .. py:method:: get_smart_machine_status() -> viam.proto.provisioning.GetSmartMachineStatusResponse
+      :async:
+
+      Returns the status of the smart machine.
+
+
+   .. py:method:: set_network_credentials(network_type: str, ssid: str, psk: str) -> None
+      :async:
+
+      Sets the network credentials of the Smart Machine.
+
+      :param network_type: The type of the network.
+      :type network_type: str
+      :param ssid: The SSID of the network.
+      :type ssid: str
+      :param psk: The network's passkey.
+      :type psk: str
+
+
+   .. py:method:: set_smart_machine_credentials(cloud_config: Optional[viam.proto.provisioning.CloudConfig] = None) -> None
+      :async:
+
+
+

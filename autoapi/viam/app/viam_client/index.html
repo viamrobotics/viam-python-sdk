@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="viam.resource" href="../../resource/index.html" />
-    <link rel="prev" title="viam.app.ml_training_client" href="../ml_training_client/index.html" /> 
+    <link rel="prev" title="viam.app.provisioning_client" href="../provisioning_client/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -64,6 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../billing_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.billing_client</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../data_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.data_client</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ml_training_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.ml_training_client</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../provisioning_client/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.provisioning_client</span></code></a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">viam.app.viam_client</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#classes">Classes</a></li>
@@ -74,6 +75,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.app_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.app_client</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.ml_training_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.ml_training_client</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.billing_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.billing_client</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.provisioning_client"><code class="docutils literal notranslate"><span class="pre">ViamClient.provisioning_client</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.create_from_dial_options"><code class="docutils literal notranslate"><span class="pre">ViamClient.create_from_dial_options()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.viam_client.ViamClient.close"><code class="docutils literal notranslate"><span class="pre">ViamClient.close()</span></code></a></li>
 </ul>
@@ -238,6 +240,26 @@ To use the <cite>MLTrainingClient</cite>, you must first instantiate a <cite>Via
 </div>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.provisioning_client">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">provisioning_client</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../provisioning_client/index.html#viam.app.provisioning_client.ProvisioningClient" title="viam.app.provisioning_client.ProvisioningClient"><span class="pre">viam.app.provisioning_client.ProvisioningClient</span></a></em><a class="headerlink" href="#viam.app.viam_client.ViamClient.provisioning_client" title="Permalink to this definition"></a></dt>
+<dd><p>Instantiate and return a <cite>ProvisioningClient</cite> used to make  <cite>provisioning</cite> method calls.
+To use the <cite>ProvisioningClient</cite>, you must first instantiate a <cite>ViamClient</cite>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">ViamClient</span><span class="p">:</span>
+    <span class="c1"># Replace &quot;&lt;API-KEY&gt;&quot; (including brackets) with your API key and &quot;&lt;API-KEY-ID&gt;&quot; with your API key ID</span>
+    <span class="n">dial_options</span> <span class="o">=</span> <span class="n">DialOptions</span><span class="o">.</span><span class="n">with_api_key</span><span class="p">(</span><span class="s2">&quot;&lt;API-KEY&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;API-KEY-ID&gt;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">await</span> <span class="n">ViamClient</span><span class="o">.</span><span class="n">create_from_dial_options</span><span class="p">(</span><span class="n">dial_options</span><span class="p">)</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">viam_client</span> <span class="o">=</span> <span class="k">await</span> <span class="n">connect</span><span class="p">()</span>
+
+    <span class="c1"># Instantiate a ProvisioningClient to run provisioning API methods on</span>
+    <span class="n">provisioning_client</span> <span class="o">=</span> <span class="n">viam_client</span><span class="o">.</span><span class="n">provisioning_client</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.viam_client.ViamClient.create_from_dial_options">
 <em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_from_dial_options</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dial_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../rpc/dial/index.html#viam.rpc.dial.DialOptions" title="viam.rpc.dial.DialOptions"><span class="pre">viam.rpc.dial.DialOptions</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">typing_extensions.Self</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/viam_client.html#ViamClient.create_from_dial_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.viam_client.ViamClient.create_from_dial_options" title="Permalink to this definition"></a></dt>
@@ -282,7 +304,7 @@ To use the <cite>MLTrainingClient</cite>, you must first instantiate a <cite>Via
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ml_training_client/index.html" class="btn btn-neutral float-left" title="viam.app.ml_training_client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../provisioning_client/index.html" class="btn btn-neutral float-left" title="viam.app.provisioning_client" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../resource/index.html" class="btn btn-neutral float-right" title="viam.resource" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
