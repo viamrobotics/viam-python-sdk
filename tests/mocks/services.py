@@ -265,6 +265,18 @@ from viam.proto.common import (
     PoseInFrame,
     ResourceName,
 )
+from viam.proto.provisioning import (
+    GetNetworkListRequest,
+    GetNetworkListResponse,
+    GetSmartMachineStatusRequest,
+    GetSmartMachineStatusResponse,
+    NetworkInfo,
+    ProvisioningServiceBase,
+    SetNetworkCredentialsRequest,
+    SetNetworkCredentialsResponse,
+    SetSmartMachineCredentialsRequest,
+    SetSmartMachineCredentialsResponse,
+)
 from viam.proto.service.mlmodel import (
     FlatTensor,
     FlatTensorDataDouble,
@@ -278,18 +290,6 @@ from viam.proto.service.mlmodel import (
     FlatTensorDataUInt32,
     FlatTensorDataUInt64,
     FlatTensors,
-)
-from viam.proto.provisioning import (
-    NetworkInfo,
-    ProvisioningServiceBase,
-    GetNetworkListRequest,
-    GetNetworkListResponse,
-    GetSmartMachineStatusRequest,
-    GetSmartMachineStatusResponse,
-    SetNetworkCredentialsRequest,
-    SetNetworkCredentialsResponse,
-    SetSmartMachineCredentialsRequest,
-    SetSmartMachineCredentialsResponse,
 )
 from viam.proto.service.motion import (
     Constraints,
