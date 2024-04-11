@@ -479,7 +479,7 @@ class AppClient:
         """Return details about the requested organization.
 
         Args:
-            org_id (str): ID of the organization to query.
+            org_id (str): The ID of the organization to query.
 
         Raises:
             GRPCError: If the provided org_id is invalid, or not currently authed to.
@@ -571,7 +571,7 @@ class AppClient:
         return list(response.members), list(response.invites)
 
     async def create_organization_invite(
-            self, org_id: str, email: str, authorizations: Optional[List[Authorization]] = None, send_email_invite=True
+        self, org_id: str, email: str, authorizations: Optional[List[Authorization]] = None, send_email_invite=True
     ) -> OrganizationInvite:
         """Creates an organization invite and sends it via email.
 
