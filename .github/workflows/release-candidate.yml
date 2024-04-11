@@ -27,19 +27,6 @@ jobs:
       - name: Output Event
         run: echo "${{ toJSON(github.event) }}"
 
-      - name: Check if organization member
-        id: is_organization_member
-        uses: jamessingleton/is-organization-member@1.0.1
-        with:
-          organization: viamrobotics
-          username: ${{ github.actor }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cancelling - user not part of organization
-        uses: andymckay/cancel-action@0.2
-        if: |
-          steps.is_organization_member.outputs.result == 'false'
-
       - name: Install GH CLI
         run: |
           type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)

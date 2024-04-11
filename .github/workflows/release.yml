@@ -10,19 +10,6 @@ jobs:
     outputs:
       version: ${{ steps.bump_version.outputs.version }}
     steps:
-      - name: Check if organization member
-        id: is_organization_member
-        uses: jamessingleton/is-organization-member@1.0.1
-        with:
-          organization: viamrobotics
-          username: ${{ github.actor }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cancelling - user not part of organization
-        uses: andymckay/cancel-action@0.2
-        if: |
-          steps.is_organization_member.outputs.result == 'false'
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
