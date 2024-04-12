@@ -1,4 +1,4 @@
-from typing import Mapping, List, Optional
+from typing import List, Mapping, Optional
 
 from grpclib.client import Channel
 
