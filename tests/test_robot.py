@@ -49,7 +49,7 @@ from viam.resource.manager import ResourceManager
 from viam.resource.registry import Registry
 from viam.resource.rpc_client_base import ResourceRPCClientBase
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, RESOURCE_TYPE_SERVICE
-from viam.robot.client import RobotClient
+from viam.robot.client import RobotClient, CloudMetadata
 from viam.robot.service import RobotService
 from viam.services.motion.client import MotionClient
 from viam.utils import dict_to_struct, message_to_struct, struct_to_message
@@ -143,9 +143,11 @@ OPERATION_ID = "abc"
 OPERATIONS_RESPONSE = [Operation(id=OPERATION_ID)]
 
 GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
-    robot_part_id="the-robot-part",
+    robot_part_id="the-machine-id",
     primary_org_id="the-primary-org",
     location_id="the-location",
+    machine_id="the-machine-id",
+    machine_part_id="the-machine-part-id",
 )
 
 
@@ -426,7 +428,12 @@ class TestRobotClient:
         async with ChannelFor([service]) as channel:
             client = await RobotClient.with_channel(channel, RobotClient.Options())
             md = await client.get_cloud_metadata()
-            assert md == GET_CLOUD_METADATA_RESPONSE
+            assert md == CloudMetadata(
+                primary_org_id=GET_CLOUD_METADATA_RESPONSE.primary_org_id,
+                location_id=GET_CLOUD_METADATA_RESPONSE.location_id,
+                machine_id=GET_CLOUD_METADATA_RESPONSE.machine_id,
+                machine_part_id=GET_CLOUD_METADATA_RESPONSE.machine_part_id,
+            )
             await client.close()
 
     @pytest.mark.asyncio
