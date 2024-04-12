@@ -113,6 +113,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.mltraining.ListTrainingJobsResponse.jobs"><code class="docutils literal notranslate"><span class="pre">ListTrainingJobsResponse.jobs</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.mltraining.ModelFramework"><code class="docutils literal notranslate"><span class="pre">ModelFramework</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.mltraining.ModelType"><code class="docutils literal notranslate"><span class="pre">ModelType</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobRequest"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobRequest.tags"><code class="docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest.tags</span></code></a></li>
@@ -241,19 +242,22 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.ListTrainingJobsResponse" title="viam.proto.app.mltraining.ListTrainingJobsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListTrainingJobsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.ModelType" title="viam.proto.app.mltraining.ModelType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.ModelFramework" title="viam.proto.app.mltraining.ModelFramework"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelFramework</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobRequest" title="viam.proto.app.mltraining.SubmitTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.ModelType" title="viam.proto.app.mltraining.ModelType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobRequest" title="viam.proto.app.mltraining.SubmitTrainingJobRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobResponse" title="viam.proto.app.mltraining.SubmitTrainingJobResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.SubmitTrainingJobResponse" title="viam.proto.app.mltraining.SubmitTrainingJobResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubmitTrainingJobResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.TrainingJobMetadata" title="viam.proto.app.mltraining.TrainingJobMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingJobMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.TrainingJobMetadata" title="viam.proto.app.mltraining.TrainingJobMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingJobMetadata</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.TrainingStatus" title="viam.proto.app.mltraining.TrainingStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.mltraining.TrainingStatus" title="viam.proto.app.mltraining.TrainingStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TrainingStatus</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -437,6 +441,12 @@ shown below.</p>
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">jobs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___TrainingJobMetadata</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.app.mltraining.ListTrainingJobsResponse.jobs" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.mltraining.ModelFramework">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.mltraining.</span></span><span class="sig-name descname"><span class="pre">ModelFramework</span></span><a class="headerlink" href="#viam.proto.app.mltraining.ModelFramework" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_ModelFramework</span></code></p>
 </dd></dl>
 
 <dl class="py class">
