@@ -37,6 +37,27 @@ MODEL_TYPE_MULTI_LABEL_CLASSIFICATION: ModelType.ValueType
 MODEL_TYPE_OBJECT_DETECTION: ModelType.ValueType
 global___ModelType = ModelType
 
+class _ModelFramework:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _ModelFrameworkEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_ModelFramework.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    MODEL_FRAMEWORK_UNSPECIFIED: _ModelFramework.ValueType
+    MODEL_FRAMEWORK_TFLITE: _ModelFramework.ValueType
+    MODEL_FRAMEWORK_TENSORFLOW: _ModelFramework.ValueType
+    MODEL_FRAMEWORK_PYTORCH: _ModelFramework.ValueType
+    MODEL_FRAMEWORK_ONNX: _ModelFramework.ValueType
+
+class ModelFramework(_ModelFramework, metaclass=_ModelFrameworkEnumTypeWrapper):
+    ...
+MODEL_FRAMEWORK_UNSPECIFIED: ModelFramework.ValueType
+MODEL_FRAMEWORK_TFLITE: ModelFramework.ValueType
+MODEL_FRAMEWORK_TENSORFLOW: ModelFramework.ValueType
+MODEL_FRAMEWORK_PYTORCH: ModelFramework.ValueType
+MODEL_FRAMEWORK_ONNX: ModelFramework.ValueType
+global___ModelFramework = ModelFramework
+
 class _TrainingStatus:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType

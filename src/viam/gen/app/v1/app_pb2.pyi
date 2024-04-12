@@ -2301,6 +2301,28 @@ class MLModelMetadata(google.protobuf.message.Message):
 global___MLModelMetadata = MLModelMetadata
 
 @typing_extensions.final
+class MLTrainingMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VERSIONS_FIELD_NUMBER: builtins.int
+    MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    DRAFT_FIELD_NUMBER: builtins.int
+
+    @property
+    def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """A list of package versions for ML training source distribution"""
+    model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+    model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+    draft: builtins.bool
+
+    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., draft: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
+        ...
+global___MLTrainingMetadata = MLTrainingMetadata
+
+@typing_extensions.final
 class RegistryItem(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
@@ -2317,6 +2339,7 @@ class RegistryItem(google.protobuf.message.Message):
     TOTAL_EXTERNAL_ORGANIZATION_USAGE_FIELD_NUMBER: builtins.int
     MODULE_METADATA_FIELD_NUMBER: builtins.int
     ML_MODEL_METADATA_FIELD_NUMBER: builtins.int
+    ML_TRAINING_METADATA_FIELD_NUMBER: builtins.int
     CREATED_AT_FIELD_NUMBER: builtins.int
     UPDATED_AT_FIELD_NUMBER: builtins.int
     item_id: builtins.str
@@ -2353,6 +2376,10 @@ class RegistryItem(google.protobuf.message.Message):
         ...
 
     @property
+    def ml_training_metadata(self) -> global___MLTrainingMetadata:
+        ...
+
+    @property
     def created_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """When the item was created"""
 
@@ -2360,16 +2387,16 @@ class RegistryItem(google.protobuf.message.Message):
     def updated_at(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """When the item was last updated, either through an update or upload."""
 
-    def __init__(self, *, item_id: builtins.str=..., organization_id: builtins.str=..., public_namespace: builtins.str=..., name: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., total_robot_usage: builtins.int=..., total_external_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., total_external_organization_usage: builtins.int=..., module_metadata: global___ModuleMetadata | None=..., ml_model_metadata: global___MLModelMetadata | None=..., created_at: google.protobuf.timestamp_pb2.Timestamp | None=..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+    def __init__(self, *, item_id: builtins.str=..., organization_id: builtins.str=..., public_namespace: builtins.str=..., name: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., total_robot_usage: builtins.int=..., total_external_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., total_external_organization_usage: builtins.int=..., module_metadata: global___ModuleMetadata | None=..., ml_model_metadata: global___MLModelMetadata | None=..., ml_training_metadata: global___MLTrainingMetadata | None=..., created_at: google.protobuf.timestamp_pb2.Timestamp | None=..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']) -> builtins.bool:
+    def HasField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['metadata', b'metadata']) -> typing_extensions.Literal['module_metadata', 'ml_model_metadata'] | None:
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['metadata', b'metadata']) -> typing_extensions.Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata'] | None:
         ...
 global___RegistryItem = RegistryItem
 
