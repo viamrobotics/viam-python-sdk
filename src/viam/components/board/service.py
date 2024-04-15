@@ -6,7 +6,7 @@ from grpclib.server import Stream
 from h2.exceptions import StreamClosedError
 
 import viam
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
 from viam.logging import getLogger
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
@@ -242,38 +242,5 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
                 asyncio.create_task(stream.__aexit__(None, e, None))
                 return True
 
-        await board.stream_ticks(interrupts=request.pin_names, callback=callback, metadtata=stream.metadata)
-        # loop = asyncio.get_running_loop()
-        # print("HERE SERVER")
-        # def read():
-        #     stop = False
-        #     while(True):
-        #         print("GETTING")
-        #         if stop:
-        #              break
-        #         tick: Tick = queue.get()
-        #         response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
-        #         try:
-        #                         stream._cancel_done = False  # Undo hack, see below
-        #                         print("SENDING MESSAGE")
-        #                         stream.send_message(response)
-        #         except StreamClosedError:
-        #                         print("stream closed")
-        #                         LOGGER.error("stream closed")
-        #                         asyncio.create_task(stream.__aexit__(None, None, None))
-        #                         stop = True
-        #         except Exception as e:
-        #                         print("error here")
-        #                         LOGGER.error(e)
-        #                         asyncio.create_task(stream.__aexit__(None, e, None))
-        #         #loop.create_task(send_tick(), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
-        # def loop_in_thread(loop):
-        #     asyncio.set_event_loop(loop)
-        #     loop.run_until_complete(read())
-
-        # print("starting thread")
-        # t = threading.Thread(target=read)
-        # # t.daemon = True
-        # t.start()
-        # print("HERE")
+        board.stream_ticks(interrupts=request.pin_names, callback=callback, metadtata=stream.metadata)
         stream._cancel_done = True
