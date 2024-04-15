@@ -1,6 +1,6 @@
 import abc
 from datetime import timedelta
-from typing import Any, Dict, Final, List, Optional
+from typing import Any, Dict, Final, List, Optional, Callable,Coroutine, Awaitable
 from multiprocessing import Queue
 from dataclasses import dataclass
 
@@ -398,9 +398,8 @@ class Board(ComponentBase):
         """
         ...
 
-
     @abc.abstractmethod
-    async def stream_ticks(self, interrupts: List[str], queue: Queue,  *, timeout: Optional[float] = None, **kwargs):
+    def stream_ticks(self, interrupts: List[str], callback: Callable[[Tick], Awaitable[bool]],  *, timeout: Optional[float] = None, **kwargs):
         """
         Stream the digital interrupt ticks.
 

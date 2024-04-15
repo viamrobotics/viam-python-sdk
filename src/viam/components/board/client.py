@@ -1,5 +1,5 @@
 from datetime import timedelta
-from typing import Any, Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional, Callable,Coroutine, Awaitable
 import asyncio
 from multiprocessing import Queue
 
@@ -257,7 +257,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     def stream_ticks(
     self,
     interrupts: list[str],
-    queue: Queue,
+    callback: Callable[[Tick], Coroutine[Any, Any, bool]],
     *,
     extra: Optional[Dict[str, Any]] = None,
     **__,
@@ -266,22 +266,20 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = StreamTicksRequest(name = self.name, pin_names=interrupts, extra = dict_to_struct(extra))
 
-        asyncio.create_task(self._stream_ticks(request, queue), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
+        asyncio.create_task(self._stream_ticks(request, callback), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
 
 
-    async def _stream_ticks(self, request: StreamTicksRequest, queue: Queue):
+    async def _stream_ticks(self, request: StreamTicksRequest, callback: Callable[[Tick], Awaitable[bool]]):
             try:
-                print("get the steeaming")
                 async with self.client.StreamTicks.open() as stream:
                     await stream.send_message(request, end=True)
                     resp: StreamTicksResponse
                     while True:
                         async for resp in stream:
-                            print("got a tick resp")
-                            tick = Tick(resp.pin_name, resp.high, resp.time)
-                            queue.put(tick)
+                            tick =Tick(resp.pin_name, resp.high, resp.time)
+                            await callback(tick)
             except asyncio.CancelledError:
-                    pass
+                    return
             except Exception as e:
                 LOGGER.error(e)
 

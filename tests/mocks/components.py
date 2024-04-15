@@ -8,8 +8,8 @@ else:
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
-from multiprocessing import Pipe, Queue
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union, Callable, Awaitable
+from multiprocessing import Pipe
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
@@ -259,7 +259,7 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = False
         self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Queue] = []
+        self.callbacks: List[Callable[[Tick], Awaitable[bool]]] = []
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
@@ -272,11 +272,11 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.num_ticks += 1
         tick = Tick(pin_name = self.name, high = high, time = time)
         print(tick.pin_name)
-        for queue in self.callbacks:
-            queue.put(tick)
+        for callback in self.callbacks:
+            await callback(tick)
 
-    async def add_callback(self, queue: Queue):
-        self.callbacks.append(queue)
+    async def add_callback(self, callback: Callable[[Tick], Awaitable[bool]]):
+        self.callbacks.append(callback)
 
 
 class MockGPIOPin(Board.GPIOPin):
@@ -325,7 +325,7 @@ class MockBoard(Board):
         analog_readers: Dict[str, Board.AnalogReader],
         digital_interrupts: Dict[str, MockDigitalInterrupt],
         gpio_pins: Dict[str, Board.GPIOPin],
-        callbacks: Dict[str, Queue] = {},
+        callbacks: Dict[str, Callable[[Tick], bool]] = {},
     ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
@@ -387,11 +387,11 @@ class MockBoard(Board):
         self.analog_write_pin = pin
         self.analog_write_value = value
 
-    async def stream_ticks(self, interrupts: list[str], queue: Queue, *, timeout: Optional[float] = None, **kwargs):
+    async def stream_ticks(self, interrupts: list[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs):
         self.timeout = timeout
         for name in interrupts:
             di = self.digital_interrupts[name]
-            di.callbacks.append(queue)
+            di.callbacks.append(callback)
 
 
 

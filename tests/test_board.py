@@ -1,5 +1,5 @@
 from datetime import timedelta
-from typing import cast
+from typing import cast, Callable
 from multiprocessing import Queue
 import asyncio
 import pytest
@@ -157,9 +157,10 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
-        queue = Queue()
+        def callback(tick:Tick) -> bool:
+            return False
         interrupts = ["interrupt1", "interrupt2"]
-        await board.stream_ticks(interrupts=interrupts, queue=queue, timeout=1.11)
+        await board.stream_ticks(interrupts=interrupts, callback=callback, timeout=1.11)
         assert board.timeout == loose_approx(1.11)
         assert len(board.digital_interrupts["interrupt1"].callbacks) == 1
         assert len(board.digital_interrupts["interrupt2"].callbacks) == 1
@@ -369,53 +370,17 @@ class TestService:
             extra = {"foo": "stream_ticks"}
             request = StreamTicksRequest(name=board.name, pin_names=interrupts, extra=dict_to_struct(extra))
 
-
-
-            #    async with client.StreamEvents.open(timeout=1) as stream:
-            #     await stream.send_message(request, end=True)
-            #     response: StreamEventsResponse
-            #     async for response in stream:
-            #         event = Event.from_proto(response.event)
-            #         assert event.control == Control.BUTTON_START
-            #         assert event.event == EventType.BUTTON_RELEASE
-            #         assert event.value == 0
-            #         break
-            #     await stream.cancel()
-
             async with client.StreamTicks.open(timeout=1) as stream:
                 await stream.send_message(request, end=True)
-                await asyncio.sleep(0.3)
-                print("getting message")
-                #resp = await stream.recv_message()
-                #stream.cancel()
-
-
-            tick1()
-            await asyncio.sleep(0.1)
-            #assert resp.time is False
-
-
-
-
-            # async with client.StreamTicks.open(timeout=3) as stream:
-            #     await stream.send_message(request, end=True)
-            #     # Wait for ticks to occur.
-            #     await asyncio.sleep(0.3)
-            #    # resp = await stream.recv_message()
-            #     async for resp in stream:
-            #         assert resp.pin_name == "interrupt1"
-            #         assert resp.high is True
-            #         assert resp.time == 1000
-
-            #         # #resp = await stream.recv_message()
-            #         # assert resp.pin_name == "interrupt2"
-            #         # assert resp.high is True
-            #         # assert resp.time == 1001
-            #         break
-            #         print("CANCELING...")
-
-            tick1()
-            #await stream.cancel()
+                resp = await stream.recv_message()
+                assert resp.pin_name == "interrupt1"
+                assert resp.high is True
+                assert resp.time == 1000
+                resp = await stream.recv_message()
+                assert resp.pin_name == "interrupt2"
+                assert resp.high is True
+                assert resp.time == 1001
+                await stream.cancel()
 
 
 class TestClient:
@@ -602,38 +567,47 @@ class TestGPIOPinClient:
             assert board.analog_write_pin == "pin1"
             assert board.analog_write_value == 42
 
-    # @pytest.mark.asyncio
-    # async def test_stream_ticks(self, board: MockBoard, service:BoardRPCService):
-    #     async with ChannelFor([service]) as channel:
-    #         client = BoardClient(name=board.name, channel=channel)
-    #         queue = Queue()
-    #         pin_names = ["interrupt1", "interrupt2"]
-    #         extra = {"foo": "bar", "baz": [1, 2, 3]}
+    @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard, service:BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(name=board.name, channel=channel)
+            pin_names = ["interrupt1", "interrupt2"]
+            extra = {"foo": "bar", "baz": [1, 2, 3]}
 
-    #         int1 = board.digital_interrupts["interrupt1"]
-    #         int2 = board.digital_interrupts["interrupt2"]
-    #         def tick1():
-    #             asyncio.get_running_loop().create_task(
-    #                 int1.tick(high=True, time=1000)
-    #             )
-    #         def tick2():
-    #             asyncio.get_running_loop().create_task(
-    #                 int2.tick(high=False, time=1001)
-    #             )
+            # int1 = board.digital_interrupts["interrupt1"]
+            # int2 = board.digital_interrupts["interrupt2"]
+            # def tick1():
+            #     asyncio.get_running_loop().create_task(
+            #         int1.tick(high=True, time=1000)
+            #     )
+            # def tick2():
+            #     asyncio.get_running_loop().create_task(
+            #         int2.tick(high=False, time=1001)
+            #     )
 
-    #         asyncio.get_running_loop().call_later(0.1, tick1)
-    #         asyncio.get_running_loop().call_later(0.2, tick2)
-    #         client.stream_ticks(pin_names, queue, extra=extra)
-    #         await asyncio.sleep(0.3)
-    #         assert queue.empty() is False
-    #         tick1 = queue.get()
-    #         assert tick1.pin_name == "interrupt1"
-    #         assert tick1.high is True
-    #         assert tick1.time == 1000
-    #         assert queue.empty() is False
-    #         tick2 = queue.get()
-    #         assert tick2.pin_name == "interrupt2"
-    #         assert tick2.high is False
+            count = 0
+            async def callback(tick:Tick) -> bool:
+                print("in callback")
+                assert tick.pin_name == "interrupt1"
+                assert tick.high is True
+                assert tick.time == 2000000
+                return False
+
+            # asyncio.get_running_loop().call_later(0.1, tick1)
+            # asyncio.get_running_loop().call_later(0.2, tick2)
+            print("calling client stream ticks")
+            client.stream_ticks(pin_names, callback, extra=extra)
+            assert True is False
+            await asyncio.sleep(1)
+            # assert queue.empty() is False
+            # tick1 = queue.get()
+            # assert tick1.pin_name == "interrupt1"
+            # assert tick1.high is True
+            # assert tick1.time == 1000
+            # assert queue.empty() is False
+            # tick2 = queue.get()
+            # assert tick2.pin_name == "interrupt2"
+            # assert tick2.high is False
             # assert tick2.time == 1001
 
 
