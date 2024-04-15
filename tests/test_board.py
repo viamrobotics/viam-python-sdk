@@ -1,12 +1,14 @@
 from datetime import timedelta
 from typing import cast
-
+from multiprocessing import Queue
+import asyncio
 import pytest
 from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import BoardClient
+
+from viam.components.board import BoardClient, Tick
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -39,6 +41,8 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
+    StreamTicksRequest,
+    StreamTicksResponse,
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
@@ -58,6 +62,7 @@ def board() -> MockBoard:
         },
         digital_interrupts={
             "interrupt1": MockDigitalInterrupt("interrupt1"),
+            "interrupt2": MockDigitalInterrupt("interrupt2"),
         },
         gpio_pins={"pin1": MockGPIOPin("pin1")},
     )
@@ -108,7 +113,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
-        assert names == ["interrupt1"]
+        assert names == ["interrupt1", "interrupt2"]
 
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
@@ -116,7 +121,7 @@ class TestBoard:
         status = await board.status(extra=extra, timeout=1.82)
         assert status == BoardStatus(
             analogs={"reader1": AnalogStatus(value=3)},
-            digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
+            digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
         )
         assert board.extra == extra
         assert board.timeout == loose_approx(1.82)
@@ -149,6 +154,16 @@ class TestBoard:
         assert board.timeout == loose_approx(1.11)
         assert board.analog_write_value == value
         assert board.analog_write_pin == pin
+
+    @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard):
+        queue = Queue()
+        interrupts = ["interrupt1", "interrupt2"]
+        await board.stream_ticks(interrupts=interrupts, queue=queue, timeout=1.11)
+        assert board.timeout == loose_approx(1.11)
+        assert len(board.digital_interrupts["interrupt1"].callbacks) == 1
+        assert len(board.digital_interrupts["interrupt2"].callbacks) == 1
+
 
 
 class TestService:
@@ -282,7 +297,7 @@ class TestService:
 
             assert response.status == BoardStatus(
                 analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
+                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(5.55)
@@ -331,6 +346,76 @@ class TestService:
             assert board.timeout == loose_approx(6.66)
             assert board.analog_write_value == value
             assert board.analog_write_pin == pin
+
+    @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            int1 = board.digital_interrupts["interrupt1"]
+            int2 = board.digital_interrupts["interrupt2"]
+            def tick1():
+                asyncio.create_task(
+                    int1.tick(high=True, time=1000)
+                )
+
+            def tick2():
+                asyncio.create_task(
+                    int2.tick(high=True, time=1001)
+                )
+
+            asyncio.get_running_loop().call_later(0.1, tick1)
+            asyncio.get_running_loop().call_later(0.2, tick2)
+            client = BoardServiceStub(channel)
+            interrupts = ["interrupt1", "interrupt2"]
+            extra = {"foo": "stream_ticks"}
+            request = StreamTicksRequest(name=board.name, pin_names=interrupts, extra=dict_to_struct(extra))
+
+
+
+            #    async with client.StreamEvents.open(timeout=1) as stream:
+            #     await stream.send_message(request, end=True)
+            #     response: StreamEventsResponse
+            #     async for response in stream:
+            #         event = Event.from_proto(response.event)
+            #         assert event.control == Control.BUTTON_START
+            #         assert event.event == EventType.BUTTON_RELEASE
+            #         assert event.value == 0
+            #         break
+            #     await stream.cancel()
+
+            async with client.StreamTicks.open(timeout=1) as stream:
+                await stream.send_message(request, end=True)
+                await asyncio.sleep(0.3)
+                print("getting message")
+                #resp = await stream.recv_message()
+                #stream.cancel()
+
+
+            tick1()
+            await asyncio.sleep(0.1)
+            #assert resp.time is False
+
+
+
+
+            # async with client.StreamTicks.open(timeout=3) as stream:
+            #     await stream.send_message(request, end=True)
+            #     # Wait for ticks to occur.
+            #     await asyncio.sleep(0.3)
+            #    # resp = await stream.recv_message()
+            #     async for resp in stream:
+            #         assert resp.pin_name == "interrupt1"
+            #         assert resp.high is True
+            #         assert resp.time == 1000
+
+            #         # #resp = await stream.recv_message()
+            #         # assert resp.pin_name == "interrupt2"
+            #         # assert resp.high is True
+            #         # assert resp.time == 1001
+            #         break
+            #         print("CANCELING...")
+
+            tick1()
+            #await stream.cancel()
 
 
 class TestClient:
@@ -387,7 +472,7 @@ class TestClient:
             client = BoardClient(name=board.name, channel=channel)
 
             names = await client.digital_interrupt_names()
-            assert names == ["interrupt1"]
+            assert names == ["interrupt1", "interrupt2"]
 
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard, service: BoardRPCService):
@@ -398,7 +483,7 @@ class TestClient:
             status = await client.status(extra=extra, timeout=1.1)
             assert status == BoardStatus(
                 analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
+                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(1.1)
@@ -516,3 +601,47 @@ class TestGPIOPinClient:
             await client.write_analog(pin, value, extra=extra)
             assert board.analog_write_pin == "pin1"
             assert board.analog_write_value == 42
+
+    # @pytest.mark.asyncio
+    # async def test_stream_ticks(self, board: MockBoard, service:BoardRPCService):
+    #     async with ChannelFor([service]) as channel:
+    #         client = BoardClient(name=board.name, channel=channel)
+    #         queue = Queue()
+    #         pin_names = ["interrupt1", "interrupt2"]
+    #         extra = {"foo": "bar", "baz": [1, 2, 3]}
+
+    #         int1 = board.digital_interrupts["interrupt1"]
+    #         int2 = board.digital_interrupts["interrupt2"]
+    #         def tick1():
+    #             asyncio.get_running_loop().create_task(
+    #                 int1.tick(high=True, time=1000)
+    #             )
+    #         def tick2():
+    #             asyncio.get_running_loop().create_task(
+    #                 int2.tick(high=False, time=1001)
+    #             )
+
+    #         asyncio.get_running_loop().call_later(0.1, tick1)
+    #         asyncio.get_running_loop().call_later(0.2, tick2)
+    #         client.stream_ticks(pin_names, queue, extra=extra)
+    #         await asyncio.sleep(0.3)
+    #         assert queue.empty() is False
+    #         tick1 = queue.get()
+    #         assert tick1.pin_name == "interrupt1"
+    #         assert tick1.high is True
+    #         assert tick1.time == 1000
+    #         assert queue.empty() is False
+    #         tick2 = queue.get()
+    #         assert tick2.pin_name == "interrupt2"
+    #         assert tick2.high is False
+            # assert tick2.time == 1001
+
+
+
+
+
+
+
+
+
+

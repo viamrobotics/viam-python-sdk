@@ -9,14 +9,14 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
 from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
-
+from multiprocessing import Pipe, Queue
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
-from viam.components.board import Board
+from viam.components.board import Board, Tick
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -259,15 +259,24 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = False
         self.last_tick = 0
         self.num_ticks = 0
+        self.callbacks: List[Queue] = []
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         return self.num_ticks
 
-    async def tick(self, high: bool, nanos: int):  # Call this to get the mock interrupt to change
+    async def tick(self, high: bool, time: int):  # Call this to get the mock interrupt to change
+        print("ticking...")
         self.high = high
-        self.last_tick = nanos
+        self.last_tick = time
         self.num_ticks += 1
+        tick = Tick(pin_name = self.name, high = high, time = time)
+        print(tick.pin_name)
+        for queue in self.callbacks:
+            queue.put(tick)
+
+    async def add_callback(self, queue: Queue):
+        self.callbacks.append(queue)
 
 
 class MockGPIOPin(Board.GPIOPin):
@@ -314,14 +323,16 @@ class MockBoard(Board):
         self,
         name: str,
         analog_readers: Dict[str, Board.AnalogReader],
-        digital_interrupts: Dict[str, Board.DigitalInterrupt],
+        digital_interrupts: Dict[str, MockDigitalInterrupt],
         gpio_pins: Dict[str, Board.GPIOPin],
+        callbacks: Dict[str, Queue] = {},
     ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
         self.geometries = GEOMETRIES
         self.gpios = gpio_pins
         self.timeout: Optional[float] = None
+        self.callbacks = callbacks
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
@@ -375,6 +386,15 @@ class MockBoard(Board):
         self.timeout = timeout
         self.analog_write_pin = pin
         self.analog_write_value = value
+
+    async def stream_ticks(self, interrupts: list[str], queue: Queue, *, timeout: Optional[float] = None, **kwargs):
+        self.timeout = timeout
+        for name in interrupts:
+            di = self.digital_interrupts[name]
+            di.callbacks.append(queue)
+
+
+
 
 
 class MockCamera(Camera):

@@ -1,9 +1,12 @@
 from datetime import timedelta
 from typing import Any, Dict, List, Mapping, Optional
+import asyncio
+from multiprocessing import Queue
 
 from google.protobuf.duration_pb2 import Duration
-from grpclib.client import Channel
 
+import viam
+from viam.logging import getLogger
 from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
@@ -24,12 +27,18 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
-    WriteAnalogRequest,
+    StreamTicksRequest,
+    StreamTicksResponse,
+    WriteAnalogRequest
 )
+from grpclib.client import Channel
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Board
+from .board import Board, Tick
+
+
+LOGGER = getLogger(__name__)
 
 
 class AnalogReaderClient(Board.AnalogReader):
@@ -243,3 +252,40 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
         await self.client.WriteAnalog(request, timeout=timeout)
+
+
+    def stream_ticks(
+    self,
+    interrupts: list[str],
+    queue: Queue,
+    *,
+    extra: Optional[Dict[str, Any]] = None,
+    **__,
+    ):
+        if extra is None:
+            extra = {}
+        request = StreamTicksRequest(name = self.name, pin_names=interrupts, extra = dict_to_struct(extra))
+
+        asyncio.create_task(self._stream_ticks(request, queue), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
+
+
+    async def _stream_ticks(self, request: StreamTicksRequest, queue: Queue):
+            try:
+                print("get the steeaming")
+                async with self.client.StreamTicks.open() as stream:
+                    await stream.send_message(request, end=True)
+                    resp: StreamTicksResponse
+                    while True:
+                        async for resp in stream:
+                            print("got a tick resp")
+                            tick = Tick(resp.pin_name, resp.high, resp.time)
+                            queue.put(tick)
+            except asyncio.CancelledError:
+                    pass
+            except Exception as e:
+                LOGGER.error(e)
+
+
+
+
+

@@ -1,6 +1,12 @@
 from grpclib.server import Stream
+from multiprocessing import Queue
+import asyncio
+import threading
+from h2.exceptions import StreamClosedError
 
+import viam
 from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.logging import getLogger
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceBase,
@@ -32,7 +38,10 @@ from viam.proto.component.board import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .board import Board
+
+from .board import Board, Tick
+
+LOGGER = getLogger(__name__)
 
 
 class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
@@ -208,4 +217,56 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         await stream.send_message(response)
 
     async def StreamTicks(self, stream: Stream[StreamTicksRequest, StreamTicksResponse]) -> None:
-        raise MethodNotImplementedError("StreamTicks").grpc_error
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        board = self.get_resource(name)
+        queue = Queue()
+        await board.stream_ticks(interrupts=request.pin_names, queue=queue, metadtata=stream.metadata)
+        loop = asyncio.get_running_loop()
+        print("HERE SERVER")
+        def read():
+            stop = False
+            while(True):
+                print("GETTING")
+                if stop:
+                     break
+                tick: Tick = queue.get()
+                response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
+                try:
+                                stream._cancel_done = False  # Undo hack, see below
+                                print("SENDING MESSAGE")
+                                stream.send_message(response)
+                except StreamClosedError:
+                                print("stream closed")
+                                LOGGER.error("stream closed")
+                                asyncio.create_task(stream.__aexit__(None, None, None))
+                                stop = True
+                except Exception as e:
+                                print("error here")
+                                LOGGER.error(e)
+                                asyncio.create_task(stream.__aexit__(None, e, None))
+                #loop.create_task(send_tick(), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
+        def loop_in_thread(loop):
+            asyncio.set_event_loop(loop)
+            loop.run_until_complete(read())
+
+        print("starting thread")
+        t = threading.Thread(target=read)
+        # t.daemon = True
+        t.start()
+        print("HERE")
+        stream._cancel_done = True
+
+
+
+
+
+
+
+
+
+
+
+
+
