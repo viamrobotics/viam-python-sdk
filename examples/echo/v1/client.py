@@ -1,42 +1,37 @@
-import asyncio
+import sys
 
-from viam.components.board import Board, Tick
-from viam.components.sensor import Sensor
-from viam.robot.client import RobotClient
-
-async def connect():
-    opts = RobotClient.Options.with_api_key(
-        api_key='fuz2myr6r1528mb6ayf5i3di17g6pevs',
-        api_key_id='3074554d-dd14-4e53-98b4-510a1ca58fe5'
-    )
-    return await RobotClient.at_address('penta-main.4hk6rzx88z.viam.cloud', opts)
-
-async def main():
-    machine = await connect()
-
-    print('Resources:')
-    print(machine.resource_names)
+from viam.proto.rpc.examples.echo import (
+    EchoBiDiRequest,
+    EchoMultipleRequest,
+    EchoRequest,
+    EchoServiceStub,
+)
+from viam.rpc.dial import DialOptions, dial
 
 
-    async def callback(tick:Tick) -> bool:
-                print("in callback!")
-                return False
+async def echo(msg: str):
+    opts = DialOptions(insecure=True, disable_webrtc=True)
+    async with await dial("127.0.0.1:8080", opts) as channel:
+        service = EchoServiceStub(channel.channel)
+
+        # Simple Echo
+        request = EchoRequest(message=msg)
+        response = await service.Echo(request)
+        print(f"Echo response received: {response.message}")
+
+        # Echo Multiple (Unary Stream)
+        request = EchoMultipleRequest(message=msg)
+        async with service.EchoMultiple.open() as stream:
+            await stream.send_message(request, end=True)
+            replies = [reply.message async for reply in stream]
+            print(f"Echo Multiple response received: {replies}")
+
+        # Echo BiDi (Stream Stream)
+        requests = [EchoBiDiRequest(message=f"First message: {msg}"), EchoBiDiRequest(message=f"Second message: {msg}")]
+        responses = await service.EchoBiDi(requests)
+        print("Received Echo BiDi response: " + f"{[response.message for response in responses]}")
 
 
-    # Note that the pin supplied is a placeholder. Please change this to a valid pin you are using.
-    # local
-    local = Board.from_robot(machine, "local")
-    local.stream_ticks(interrupts=["11"], callback=callback)
-
-    # sensor-1
-    sensor_1 = Sensor.from_robot(machine, "sensor-1")
-    sensor_1_return_value = await sensor_1.get_readings()
-    print(f"sensor-1 get_readings return value: {sensor_1_return_value}")
-
-    # Don't forget to close the machine when you're done!
-    await machine.close()
-
-if __name__ == '__main__':
-    asyncio.run(main())
-
-    asyncio.run(main())
+if __name__ == "__main__":
+    msg = sys.argv[1] if len(sys.argv) > 1 else "foo"
+    asyncio.run(echo(msg))

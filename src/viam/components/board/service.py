@@ -242,5 +242,9 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
                 asyncio.create_task(stream.__aexit__(None, e, None))
                 return True
 
-        board.stream_ticks(interrupts=request.pin_names, callback=callback, metadtata=stream.metadata)
+        pins = []
+        for name in request.pin_names:
+            pins.append(name)
+
+        board.stream_ticks(interrupts=pins, callback=callback, metadtata=stream.metadata)
         stream._cancel_done = True
