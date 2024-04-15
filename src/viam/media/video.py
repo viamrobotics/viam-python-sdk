@@ -1,9 +1,18 @@
+from array import array
 from enum import Enum
-from typing import Optional, Union
+from io import BytesIO
+from typing import List, Optional, Union
 
+from PIL import Image, UnidentifiedImageError
 from typing_extensions import Self
 
+from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
+
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL
+
+# Formats that are supported by PIL
+LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
 
 
 class CameraMimeType(str, Enum):
@@ -56,10 +65,12 @@ class ViamImage:
     Provides the raw data and the mime type.
     """
 
-    _height: Optional[int]
-    _width: Optional[int]
     _data: bytes
     _mime_type: CameraMimeType
+    _image: Optional[Image.Image] = None
+    _image_decoded = False
+    _height: Optional[int] = None
+    _width: Optional[int] = None
 
     def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
@@ -78,20 +89,57 @@ class ViamImage:
     @property
     def width(self) -> Union[int, None]:
         """The width of the image"""
-        return self._width
+        if self._width is not None:
+            return self._width
 
-    @width.setter
-    def width(self, width: int):
-        self._width = width
+        if not self._image_decoded:
+            try:
+                self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+            except UnidentifiedImageError:
+                self._image = None
+            self._image_decoded = True
+        # If we have decoded the image and the image is not none, then set the width so we don't have to do this again
+        if self._image_decoded and self._image is not None:
+            self._width = self._image.width
+        return self._width
 
     @property
     def height(self) -> Union[int, None]:
         """The height of the image"""
+        if self._height is not None:
+            return self._height
+
+        if not self._image_decoded:
+            try:
+                self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
+            except UnidentifiedImageError:
+                self._image = None
+            self._image_decoded = True
+        # If we have decoded the image and the image is not none, then set the height so we don't have to do this again
+        if self._image_decoded and self._image is not None:
+            self._height = self._image.height
         return self._height
 
-    @height.setter
-    def height(self, height: int):
-        self._height = height
+    def bytes_to_depth_array(self) -> List[List[int]]:
+        """
+        Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
+
+        Raises:
+            NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.
+
+        Returns:
+            List[List[int]]: The standard representation of the image.
+        """
+        if self.mime_type != CameraMimeType.VIAM_RAW_DEPTH:
+            raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
+
+        self._width = int.from_bytes(self.data[8:16], "big")
+        self._height = int.from_bytes(self.data[16:24], "big")
+        depth_arr = array("H", self.data[24:])
+        depth_arr.byteswap()
+
+        depth_arr_2d = [[depth_arr[row * self._width + col] for col in range(self._width)] for row in range(self._height)]
+        return depth_arr_2d
 
 
 class NamedImage(ViamImage):

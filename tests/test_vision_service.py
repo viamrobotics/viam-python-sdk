@@ -2,8 +2,10 @@ from random import random
 
 import pytest
 from grpclib.testing import ChannelFor
+from PIL import Image
 
-from viam.media.video import CameraMimeType, ViamImage
+from viam.media.utils import pil_to_viam_image
+from viam.media.video import CameraMimeType
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -34,9 +36,8 @@ from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockVision
 
-IMAGE = ViamImage(b"data", CameraMimeType.JPEG)
-IMAGE.width = 2
-IMAGE.height = 4
+i = Image.new("RGBA", (100, 100), "#AABBCCDD")
+IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG)
 DETECTORS = [
     "detector-0",
     "detector-1",
