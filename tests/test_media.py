@@ -6,7 +6,7 @@ import pytest
 from PIL import Image
 
 from viam.errors import NotSupportedError
-from viam.media.utils import bytes_to_depth_array, determine_image_dimensions, viam_to_pil_image
+from viam.media.utils import bytes_to_depth_array, determine_image_dimensions, pil_to_viam_image, viam_to_pil_image
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
 
@@ -19,16 +19,6 @@ class TestViamImage:
         assert img._mime_type == CameraMimeType.PNG
         pil_img = viam_to_pil_image(img)
         assert pil_img.tobytes() == i.tobytes()
-
-    def test_mime_type_update(self):
-        i = Image.new("RGBA", (100, 100), "#AABBCCDD")
-        b = BytesIO()
-        i.save(b, "PNG")
-        img = ViamImage(b.getvalue(), CameraMimeType.PNG)
-        assert img._mime_type == CameraMimeType.PNG
-
-        img.mime_type = CameraMimeType.JPEG
-        assert img._mime_type == CameraMimeType.JPEG
 
     def test_set_image_dimensions(self):
         img = ViamImage(b"data", CameraMimeType.JPEG)
@@ -49,13 +39,16 @@ class TestNamedImage:
         assert img.name == name
 
 
-def test_viam_to_pil_image():
+def test_image_conversion():
     i = Image.new("RGBA", (100, 100), "#AABBCCDD")
-    b = BytesIO()
-    i.save(b, "PNG")
-    img = ViamImage(b.getvalue(), CameraMimeType.JPEG)
-    pil_img = viam_to_pil_image(img)
-    assert pil_img.tobytes() == i.tobytes()
+
+    v_img = pil_to_viam_image(i, CameraMimeType.JPEG)
+    assert isinstance(v_img, ViamImage)
+    assert v_img.mime_type == CameraMimeType.JPEG
+
+    pil_img = viam_to_pil_image(v_img)
+    v_img2 = pil_to_viam_image(pil_img, CameraMimeType.JPEG)
+    assert v_img2.data == v_img.data
 
 
 def test_bytes_to_depth_array():
@@ -116,5 +109,12 @@ def test_determine_image_dimensions():
     assert img3.height == 100
 
     img4 = ViamImage(b"data", CameraMimeType.PCD)
-    with pytest.raises(NotSupportedError):
-        determine_image_dimensions(img4)
+    with pytest.raises(AttributeError):
+        img4.width
+    with pytest.raises(AttributeError):
+        img4.height
+    determine_image_dimensions(img4)
+    with pytest.raises(AttributeError):
+        img4.width
+    with pytest.raises(AttributeError):
+        img4.height

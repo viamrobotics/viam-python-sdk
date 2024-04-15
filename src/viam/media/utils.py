@@ -26,6 +26,29 @@ def viam_to_pil_image(image: ViamImage) -> Image.Image:
     return Image.open(BytesIO(image.data), formats=LIBRARY_SUPPORTED_FORMATS)
 
 
+def pil_to_viam_image(image: Image.Image, mime_type: CameraMimeType) -> ViamImage:
+    """
+    Convert a PIL.Image to a ViamImage.
+
+    Args:
+        image (Image.Image): The image to convert.
+        mime_type (CameraMimeType): The mime type to convert the image to.
+
+    Returns:
+        ViamImage: The resulting ViamImage
+    """
+    if mime_type.name in LIBRARY_SUPPORTED_FORMATS:
+        buf = BytesIO()
+        if image.mode == "RGBA" and mime_type == CameraMimeType.JPEG:
+            image = image.convert("RGB")
+        image.save(buf, format=mime_type.name)
+        data = buf.getvalue()
+    else:
+        raise ValueError(f"Cannot encode image to {mime_type}")
+
+    return ViamImage(data, mime_type)
+
+
 def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
     """
     Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
@@ -39,7 +62,7 @@ def bytes_to_depth_array(image: ViamImage) -> List[List[int]]:
     Returns:
         List[List[int]]: The standard representation of the image.
     """
-    if image.mime_type != CameraMimeType.VIAM_RAW_DEPTH.value:
+    if image.mime_type != CameraMimeType.VIAM_RAW_DEPTH:
         raise NotSupportedError("Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()")
 
     width = int.from_bytes(image.data[8:16], "big")
@@ -62,12 +85,9 @@ def determine_image_dimensions(image: ViamImage) -> None:
 
     Args:
         image (ViamImage): The image to get dimensions of.
-
-    Raises:
-        NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
     """
-    if image.mime_type not in [CameraMimeType.JPEG, CameraMimeType.PNG, CameraMimeType.VIAM_RGBA]:
-        raise NotSupportedError("Type must be `image/jpeg`, `image/png`, or `image/vnd.viam.rgba` to use determine_image_dimensions()")
+    if image.mime_type.name not in LIBRARY_SUPPORTED_FORMATS:
+        return
 
     pil_img = viam_to_pil_image(image)
     image.width = pil_img.width

@@ -53,7 +53,7 @@ class CameraMimeType(str, Enum):
 class ViamImage:
     """A native implementation of an image.
 
-    Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
+    Provides the raw data and the mime type.
     """
 
     _height: Optional[int]
@@ -74,12 +74,6 @@ class ViamImage:
     def mime_type(self) -> CameraMimeType:
         """The mime type of the image"""
         return self._mime_type
-
-    @mime_type.setter
-    def mime_type(self, value: CameraMimeType):
-        if value == self.mime_type:
-            return
-        self._mime_type = value
 
     @property
     def width(self) -> Union[int, None]:

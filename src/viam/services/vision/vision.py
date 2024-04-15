@@ -76,9 +76,6 @@ class Vision(ServiceBase):
             # Get an image from the camera
             img = await cam1.get_image()
 
-            # Get image dimensions
-            determine_image_dimensions(img)
-
             # Get detections from that image
             detections = await my_detector.get_detections(img)
 
@@ -147,9 +144,6 @@ class Vision(ServiceBase):
 
             # Get an image from the camera
             img = await cam1.get_image()
-
-            # Get image dimensions
-            determine_image_dimensions(img)
 
             # Get the 2 classifications with the highest confidence scores
             classifications = await my_classifier.get_classifications(img, 2)

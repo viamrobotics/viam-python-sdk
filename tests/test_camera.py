@@ -150,11 +150,11 @@ class TestService:
             assert response.image == image.data
             assert camera.timeout == loose_approx(18.2)
 
-            # Test empty mime type. Empty mime type should default to JPEG for non-depth cameras
+            # Test empty mime type. Empty mime type should default to response mime type
             request = GetImageRequest(name="camera")
             response: GetImageResponse = await client.GetImage(request)
             assert response.image == image.data
-            assert service._camera_mime_types["camera"] == CameraMimeType.JPEG
+            assert response.mime_type == image.mime_type
 
     @pytest.mark.asyncio
     async def test_get_images(self, camera: MockCamera, service: CameraRPCService, metadata: ResponseMetadata):

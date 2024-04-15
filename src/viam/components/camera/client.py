@@ -20,13 +20,6 @@ from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dic
 from . import Camera
 
 
-def get_image_from_response(data: bytes, response_mime_type: str, request_mime_type: str) -> ViamImage:
-    if not request_mime_type:
-        request_mime_type = response_mime_type
-    mime_type = CameraMimeType.from_string(request_mime_type)
-    return ViamImage(data, mime_type)
-
-
 class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
     """
     gRPC client for the Camera component
@@ -49,7 +42,7 @@ class CameraClient(Camera, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GetImageRequest(name=self.name, mime_type=mime_type, extra=dict_to_struct(extra))
         response: GetImageResponse = await self.client.GetImage(request, timeout=timeout)
-        return get_image_from_response(response.image, response_mime_type=response.mime_type, request_mime_type=request.mime_type)
+        return ViamImage(response.image, CameraMimeType.from_string(response.mime_type))
 
     async def get_images(
         self,
