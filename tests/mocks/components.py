@@ -7,9 +7,10 @@ else:
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union, Callable, Awaitable
 from multiprocessing import Pipe
+from secrets import choice
+from typing import Any, Awaitable, Callable, Dict, List, Mapping, Optional, Tuple, Union
+
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
 
@@ -270,7 +271,7 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = high
         self.last_tick = time
         self.num_ticks += 1
-        tick = Tick(pin_name = self.name, high = high, time = time)
+        tick = Tick(pin_name=self.name, high=high, time=time)
         print(tick.pin_name)
         for callback in self.callbacks:
             await callback(tick)
@@ -387,14 +388,13 @@ class MockBoard(Board):
         self.analog_write_pin = pin
         self.analog_write_value = value
 
-    async def stream_ticks(self, interrupts: list[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs):
+    async def stream_ticks(
+        self, interrupts: list[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs
+    ):
         self.timeout = timeout
         for name in interrupts:
             di = self.digital_interrupts[name]
             di.callbacks.append(callback)
-
-
-
 
 
 class MockCamera(Camera):

@@ -1,9 +1,10 @@
-from datetime import timedelta
-from typing import Any, Dict, List, Mapping, Optional, Callable,Coroutine, Awaitable
 import asyncio
+from datetime import timedelta
 from multiprocessing import Queue
+from typing import Any, Awaitable, Callable, Coroutine, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
+from grpclib.client import Channel
 
 import viam
 from viam.logging import getLogger
@@ -29,14 +30,12 @@ from viam.proto.component.board import (
     StatusResponse,
     StreamTicksRequest,
     StreamTicksResponse,
-    WriteAnalogRequest
+    WriteAnalogRequest,
 )
-from grpclib.client import Channel
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .board import Board, Tick
-
 
 LOGGER = getLogger(__name__)
 
@@ -253,37 +252,30 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
         await self.client.WriteAnalog(request, timeout=timeout)
 
-
     def stream_ticks(
-    self,
-    interrupts: list[str],
-    callback: Callable[[Tick], Coroutine[Any, Any, bool]],
-    *,
-    extra: Optional[Dict[str, Any]] = None,
-    **__,
+        self,
+        interrupts: list[str],
+        callback: Callable[[Tick], Coroutine[Any, Any, bool]],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        **__,
     ):
         if extra is None:
             extra = {}
-        request = StreamTicksRequest(name = self.name, pin_names=interrupts, extra = dict_to_struct(extra))
+        request = StreamTicksRequest(name=self.name, pin_names=interrupts, extra=dict_to_struct(extra))
 
         asyncio.create_task(self._stream_ticks(request, callback), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
 
-
     async def _stream_ticks(self, request: StreamTicksRequest, callback: Callable[[Tick], Awaitable[bool]]):
-            try:
-                async with self.client.StreamTicks.open() as stream:
-                    await stream.send_message(request, end=True)
-                    resp: StreamTicksResponse
-                    while True:
-                        async for resp in stream:
-                            tick =Tick(resp.pin_name, resp.high, resp.time)
-                            await callback(tick)
-            except asyncio.CancelledError:
-                    return
-            except Exception as e:
-                LOGGER.error(e)
-
-
-
-
-
+        try:
+            async with self.client.StreamTicks.open() as stream:
+                await stream.send_message(request, end=True)
+                resp: StreamTicksResponse
+                while True:
+                    async for resp in stream:
+                        tick = Tick(resp.pin_name, resp.high, resp.time)
+                        await callback(tick)
+        except asyncio.CancelledError:
+            return
+        except Exception as e:
+            LOGGER.error(e)

@@ -1,7 +1,8 @@
-from grpclib.server import Stream
-from multiprocessing import Queue
 import asyncio
 import threading
+from multiprocessing import Queue
+
+from grpclib.server import Stream
 from h2.exceptions import StreamClosedError
 
 import viam
@@ -37,7 +38,6 @@ from viam.proto.component.board import (
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
-
 
 from .board import Board, Tick
 
@@ -224,24 +224,23 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         board = self.get_resource(name)
         print("HERE SERVER STREAM TICKS")
 
-        async def callback(tick:Tick) -> bool:
+        async def callback(tick: Tick) -> bool:
             response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
             try:
-                    stream._cancel_done = False  # Undo hack, see below
-                    print("SENDING MESSAGE")
-                    await stream.send_message(response)
-                    return False
+                stream._cancel_done = False  # Undo hack, see below
+                print("SENDING MESSAGE")
+                await stream.send_message(response)
+                return False
             except StreamClosedError:
-                    print("stream closed")
-                    LOGGER.error("stream closed")
-                    asyncio.create_task(stream.__aexit__(None, None, None))
-                    return True
+                print("stream closed")
+                LOGGER.error("stream closed")
+                asyncio.create_task(stream.__aexit__(None, None, None))
+                return True
             except Exception as e:
-                    print("error here")
-                    LOGGER.error(e)
-                    asyncio.create_task(stream.__aexit__(None, e, None))
-                    return True
-
+                print("error here")
+                LOGGER.error(e)
+                asyncio.create_task(stream.__aexit__(None, e, None))
+                return True
 
         await board.stream_ticks(interrupts=request.pin_names, callback=callback, metadtata=stream.metadata)
         # loop = asyncio.get_running_loop()
@@ -278,16 +277,3 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         # t.start()
         # print("HERE")
         stream._cancel_done = True
-
-
-
-
-
-
-
-
-
-
-
-
-

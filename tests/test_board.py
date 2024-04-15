@@ -1,12 +1,12 @@
-from datetime import timedelta
-from typing import cast, Callable
-from multiprocessing import Queue
 import asyncio
+from datetime import timedelta
+from multiprocessing import Queue
+from typing import Callable, cast
+
 import pytest
 from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
-
 
 from viam.components.board import BoardClient, Tick
 from viam.components.board.service import BoardRPCService
@@ -157,14 +157,14 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
-        def callback(tick:Tick) -> bool:
+        def callback(tick: Tick) -> bool:
             return False
+
         interrupts = ["interrupt1", "interrupt2"]
         await board.stream_ticks(interrupts=interrupts, callback=callback, timeout=1.11)
         assert board.timeout == loose_approx(1.11)
         assert len(board.digital_interrupts["interrupt1"].callbacks) == 1
         assert len(board.digital_interrupts["interrupt2"].callbacks) == 1
-
 
 
 class TestService:
@@ -353,15 +353,12 @@ class TestService:
         async with ChannelFor([service]) as channel:
             int1 = board.digital_interrupts["interrupt1"]
             int2 = board.digital_interrupts["interrupt2"]
+
             def tick1():
-                asyncio.create_task(
-                    int1.tick(high=True, time=1000)
-                )
+                asyncio.create_task(int1.tick(high=True, time=1000))
 
             def tick2():
-                asyncio.create_task(
-                    int2.tick(high=True, time=1001)
-                )
+                asyncio.create_task(int2.tick(high=True, time=1001))
 
             asyncio.get_running_loop().call_later(0.1, tick1)
             asyncio.get_running_loop().call_later(0.2, tick2)
@@ -568,7 +565,7 @@ class TestGPIOPinClient:
             assert board.analog_write_value == 42
 
     @pytest.mark.asyncio
-    async def test_stream_ticks(self, board: MockBoard, service:BoardRPCService):
+    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
             pin_names = ["interrupt1", "interrupt2"]
@@ -586,7 +583,8 @@ class TestGPIOPinClient:
             #     )
 
             count = 0
-            async def callback(tick:Tick) -> bool:
+
+            async def callback(tick: Tick) -> bool:
                 print("in callback")
                 assert tick.pin_name == "interrupt1"
                 assert tick.high is True
@@ -609,13 +607,3 @@ class TestGPIOPinClient:
             # assert tick2.pin_name == "interrupt2"
             # assert tick2.high is False
             # assert tick2.time == 1001
-
-
-
-
-
-
-
-
-
-
