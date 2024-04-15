@@ -11,9 +11,6 @@ from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import (
-    AnalogStatus,
-    BoardStatus,
-    DigitalInterruptStatus,
     DoCommandRequest,
     DoCommandResponse,
     GetGeometriesRequest,
@@ -37,8 +34,6 @@ from viam.proto.component.board import (
     SetPowerModeResponse,
     SetPWMFrequencyRequest,
     SetPWMRequest,
-    StatusRequest,
-    StatusResponse,
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
@@ -109,17 +104,6 @@ class TestBoard:
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
         assert names == ["interrupt1"]
-
-    @pytest.mark.asyncio
-    async def test_status(self, board: MockBoard):
-        extra = {"foo": "bar", "baz": [1, 2, 3]}
-        status = await board.status(extra=extra, timeout=1.82)
-        assert status == BoardStatus(
-            analogs={"reader1": AnalogStatus(value=3)},
-            digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
-        )
-        assert board.extra == extra
-        assert board.timeout == loose_approx(1.82)
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard):
@@ -272,22 +256,6 @@ class TestService:
             assert pin.timeout is None
 
     @pytest.mark.asyncio
-    async def test_status(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardServiceStub(channel)
-
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            request = StatusRequest(name=board.name, extra=dict_to_struct(extra))
-            response: StatusResponse = await client.Status(request, timeout=5.55)
-
-            assert response.status == BoardStatus(
-                analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
-            )
-            assert board.extra == extra
-            assert board.timeout == loose_approx(5.55)
-
-    @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
@@ -388,20 +356,6 @@ class TestClient:
 
             names = await client.digital_interrupt_names()
             assert names == ["interrupt1"]
-
-    @pytest.mark.asyncio
-    async def test_status(self, board: MockBoard, service: BoardRPCService):
-        async with ChannelFor([service]) as channel:
-            client = BoardClient(name=board.name, channel=channel)
-
-            extra = {"foo": "bar", "baz": [1, 2, 3]}
-            status = await client.status(extra=extra, timeout=1.1)
-            assert status == BoardStatus(
-                analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
-            )
-            assert board.extra == extra
-            assert board.timeout == loose_approx(1.1)
 
     @pytest.mark.asyncio
     async def test_do(self, board: MockBoard, service: BoardRPCService):

@@ -36,10 +36,7 @@ from viam.media.audio import Audio, AudioStream
 from viam.media.video import NamedImage
 from viam.operations import run_with_operation
 from viam.proto.common import (
-    AnalogStatus,
-    BoardStatus,
     Capsule,
-    DigitalInterruptStatus,
     Geometry,
     GeoPoint,
     KinematicsFileFormat,
@@ -310,12 +307,6 @@ class ExampleBoard(Board):
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
-
-    async def status(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> BoardStatus:
-        return BoardStatus(
-            analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
-            digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
-        )
 
     async def set_power_mode(self, **kwargs):
         raise NotImplementedError()

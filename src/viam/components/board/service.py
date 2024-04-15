@@ -22,8 +22,6 @@ from viam.proto.component.board import (
     SetPWMFrequencyResponse,
     SetPWMRequest,
     SetPWMResponse,
-    StatusRequest,
-    StatusResponse,
     StreamTicksRequest,
     StreamTicksResponse,
     WriteAnalogRequest,
@@ -41,16 +39,6 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
     """
 
     RESOURCE_TYPE = Board
-
-    async def Status(self, stream: Stream[StatusRequest, StatusResponse]) -> None:
-        request = await stream.recv_message()
-        assert request is not None
-        name = request.name
-        board = self.get_resource(name)
-        timeout = stream.deadline.time_remaining() if stream.deadline else None
-        status = await board.status(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = StatusResponse(status=status)
-        await stream.send_message(response)
 
     async def SetGPIO(self, stream: Stream[SetGPIORequest, SetGPIOResponse]) -> None:
         request = await stream.recv_message()

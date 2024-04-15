@@ -1,3 +1,6 @@
+import asyncio
+
+from viam.proto.component.board import Status as BoardStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
@@ -12,7 +15,9 @@ __all__ = [
 
 
 async def create_status(component: Board) -> Status:
-    return Status(name=Board.get_resource_name(component.name), status=message_to_struct(await component.status()))
+    (analogs, digital_interrupts) = await asyncio.gather(component.analog_reader_names(), component.digital_interrupt_names())
+    s = BoardStatus(analogs=analogs, digital_interrupts=digital_interrupts)
+    return Status(name=Board.get_resource_name(component.name), status=message_to_struct(s))
 
 
 Registry.register_subtype(ResourceRegistration(Board, BoardRPCService, lambda name, channel: BoardClient(name, channel), create_status))

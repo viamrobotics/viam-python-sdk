@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Mapping, Optional
 from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
 
-from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -22,8 +22,6 @@ from viam.proto.component.board import (
     SetPowerModeRequest,
     SetPWMFrequencyRequest,
     SetPWMRequest,
-    StatusRequest,
-    StatusResponse,
     WriteAnalogRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
@@ -177,30 +175,13 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
 
     async def analog_reader_names(self) -> List[str]:
         if self._analog_reader_names is None:
-            status = await self.status()
-            names = [name for name in status.analogs.keys()]
-            self._analog_reader_names = names
+            return []
         return self._analog_reader_names
 
     async def digital_interrupt_names(self) -> List[str]:
         if self._digital_interrupt_names is None:
-            status = await self.status()
-            names = [name for name in status.digital_interrupts.keys()]
-            self._digital_interrupt_names = names
+            return []
         return self._digital_interrupt_names
-
-    async def status(
-        self,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **__,
-    ) -> BoardStatus:
-        if extra is None:
-            extra = {}
-        request = StatusRequest(name=self.name, extra=dict_to_struct(extra))
-        response: StatusResponse = await self.client.Status(request, timeout=timeout)
-        return response.status
 
     async def do_command(
         self,

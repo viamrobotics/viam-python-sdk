@@ -2,7 +2,6 @@ import abc
 from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 
@@ -334,23 +333,6 @@ class Board(ComponentBase):
 
         Returns:
             List[str]: The names of the digital interrupts.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
-        """
-        Return the current status of the board.
-
-        ::
-
-            my_board = Board.from_robot(robot=robot, name="my_board")
-
-            # Get the current status of the board.
-            status = await my_board.status()
-
-        Returns:
-            viam.proto.common.BoardStatus: the status.
         """
         ...
 

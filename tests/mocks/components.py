@@ -34,10 +34,7 @@ from viam.media import MediaStreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
-    AnalogStatus,
-    BoardStatus,
     Capsule,
-    DigitalInterruptStatus,
     Geometry,
     GeoPoint,
     Orientation,
@@ -347,14 +344,6 @@ class MockBoard(Board):
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
-
-    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
-        self.extra = extra
-        self.timeout = timeout
-        return BoardStatus(
-            analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
-            digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
-        )
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
