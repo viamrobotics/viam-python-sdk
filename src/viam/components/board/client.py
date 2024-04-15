@@ -1,7 +1,7 @@
 import asyncio
 from datetime import timedelta
 from multiprocessing import Queue
-from typing import Any, Awaitable, Callable, Coroutine, Dict, List, Mapping, Optional
+from typing import Any, Awaitable, Callable, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
@@ -255,7 +255,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     def stream_ticks(
         self,
         interrupts: list[str],
-        callback: Callable[[Tick], Coroutine[Any, Any, bool]],
+        callback: Callable[[Tick], Awaitable [bool]],
         *,
         extra: Optional[Dict[str, Any]] = None,
         **__,
