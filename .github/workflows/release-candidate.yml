@@ -17,27 +17,18 @@ on:
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     outputs:
       rc_version: ${{ steps.bump_version.outputs.rc_version }}
       version: ${{ steps.bump_version.outputs.version }}
     steps:
-      - name: Output Event
-        run: echo "${{ toJSON(github.event) }}"
-
-      - name: Install GH CLI
-        run: |
-          type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-          && sudo apt update \
-          && sudo apt install gh -y
-
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -97,9 +88,7 @@ jobs:
   build:
     needs: prepare
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -126,9 +115,14 @@ jobs:
             whl: linux_armv7l
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: rc-${{ needs.prepare.outputs.version }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -158,9 +152,7 @@ jobs:
   release:
     needs: [prepare, build]
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/download-artifact@v3

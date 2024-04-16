@@ -12,12 +12,14 @@ on:
 jobs:
   generate-docs:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Push/Workflow Dispatch
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1

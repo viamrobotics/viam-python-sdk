@@ -92,7 +92,7 @@ jobs:
             whl: linux_armv7l
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: rc-${{ needs.prepare.outputs.version }}
 
