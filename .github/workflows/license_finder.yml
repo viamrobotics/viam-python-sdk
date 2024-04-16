@@ -10,17 +10,18 @@ jobs:
   license_finder:
     if: github.repository_owner == 'viamrobotics'
     name: Audit 3rd-Party Licenses
-    runs-on: [x64, qemu-host]
+    runs-on: ubuntu-latest
     container:
       image: ghcr.io/viamrobotics/canon:amd64-cache
-      options: --platform linux/amd64
     timeout-minutes: 30
 
     steps:
-      - name: Check out code in rdk directory
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          fetch-depth: 2
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
