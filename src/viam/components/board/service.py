@@ -222,9 +222,11 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         board = self.get_resource(name)
+        print(board)
         print("HERE SERVER STREAM TICKS")
 
         async def callback(tick: Tick) -> bool:
+            print("IN CALLBACK")
             response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
             try:
                 stream._cancel_done = False  # Undo hack, see below
@@ -245,6 +247,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         pins = []
         for name in request.pin_names:
             pins.append(name)
-
-        board.stream_ticks(interrupts=pins, callback=callback, metadtata=stream.metadata)
+        print("calling board stream ticks")
+        await board.stream_ticks(interrupts=pins, callback=callback, metadtata=stream.metadata)
         stream._cancel_done = True
+        await asyncio.sleep(5)
+        print("returning")

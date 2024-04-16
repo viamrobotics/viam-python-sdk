@@ -1,8 +1,7 @@
 import abc
 from dataclasses import dataclass
 from datetime import timedelta
-from multiprocessing import Queue
-from typing import Any, Awaitable, Callable, Dict, Final, List, Optional
+from typing import Any, Coroutine, Callable, Dict, Final, List, Optional, Awaitable
 
 from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode

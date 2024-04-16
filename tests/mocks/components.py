@@ -273,10 +273,12 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.num_ticks += 1
         tick = Tick(pin_name=self.name, high=high, time=time)
         print(tick.pin_name)
+        print(self.callbacks)
         for callback in self.callbacks:
             await callback(tick)
 
     async def add_callback(self, callback: Callable[[Tick], Awaitable[bool]]):
+        print("in add_callback")
         self.callbacks.append(callback)
 
 
@@ -391,10 +393,12 @@ class MockBoard(Board):
     async def stream_ticks(
         self, interrupts: list[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs
     ):
+        print("FAKE BOARD STREAM TICKS")
         self.timeout = timeout
+        print("adding callback to here di")
         for name in interrupts:
             di = self.digital_interrupts[name]
-            di.callbacks.append(callback)
+            await di.add_callback(callback)
 
 
 class MockCamera(Camera):
