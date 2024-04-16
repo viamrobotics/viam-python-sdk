@@ -1,7 +1,8 @@
 import abc
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Any, Coroutine, Callable, Dict, Final, List, Optional, Awaitable
+from typing import Any, Dict, Final, List, Optional
+from multiprocessing import Queue,Pipe
 
 from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode
@@ -401,7 +402,7 @@ class Board(ComponentBase):
 
     @abc.abstractmethod
     def stream_ticks(
-        self, interrupts: List[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs
+        self, interrupts: List[str], queue: Queue, *, timeout: Optional[float] = None, **kwargs
     ):
         """
         Stream the digital interrupt ticks.

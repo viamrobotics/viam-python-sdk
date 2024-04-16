@@ -217,38 +217,31 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         await stream.send_message(response)
 
     async def StreamTicks(self, stream: Stream[StreamTicksRequest, StreamTicksResponse]) -> None:
-        print("HERE SERVER STREAM TICKS")
         request = await stream.recv_message()
         assert request is not None
         name = request.name
         board = self.get_resource(name)
-        print(board)
-        print("HERE SERVER STREAM TICKS")
+        queue = Queue()
+        await board.stream_ticks(interrupts=request.pin_names, queue=queue, metadtata=stream.metadata)
+        loop = asyncio.get_running_loop()
+        print("HERE SERVER")
+        def read():
+            while(True):
+                tick: Tick = queue.get()
+                response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
+                try:
+                    stream._cancel_done = False  # Undo hack, see below
+                    print("SENDING MESSAGE")
+                    stream.send_message(response)
+                except StreamClosedError:
+                    LOGGER.error("stream closed")
+                    asyncio.create_task(stream.__aexit__(None, None, None))
+                except Exception as e:
+                    print("error here")
+                    LOGGER.error(e)
+                    asyncio.create_task(stream.__aexit__(None, e, None))
 
-        async def callback(tick: Tick) -> bool:
-            print("IN CALLBACK")
-            response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
-            try:
-                stream._cancel_done = False  # Undo hack, see below
-                print("SENDING MESSAGE")
-                await stream.send_message(response)
-                return False
-            except StreamClosedError:
-                print("stream closed")
-                LOGGER.error("stream closed")
-                asyncio.create_task(stream.__aexit__(None, None, None))
-                return True
-            except Exception as e:
-                print("error here")
-                LOGGER.error(e)
-                asyncio.create_task(stream.__aexit__(None, e, None))
-                return True
-
-        pins = []
-        for name in request.pin_names:
-            pins.append(name)
-        print("calling board stream ticks")
-        await board.stream_ticks(interrupts=pins, callback=callback, metadtata=stream.metadata)
+        print("starting thread")
+        t = threading.Thread(target=read)
+        t.start()
         stream._cancel_done = True
-        await asyncio.sleep(5)
-        print("returning")

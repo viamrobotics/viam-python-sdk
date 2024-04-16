@@ -157,11 +157,9 @@ class TestBoard:
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
-        def callback(tick: Tick) -> bool:
-            return False
-
+        queue = Queue()
         interrupts = ["interrupt1", "interrupt2"]
-        await board.stream_ticks(interrupts=interrupts, callback=callback, timeout=1.11)
+        await board.stream_ticks(interrupts=interrupts, queue = queue, timeout=1.11)
         assert board.timeout == loose_approx(1.11)
         assert len(board.digital_interrupts["interrupt1"].callbacks) == 1
         assert len(board.digital_interrupts["interrupt2"].callbacks) == 1
@@ -371,6 +369,7 @@ class TestService:
                 await stream.send_message(request, end=True)
                 print("sent message")
                 resp = await stream.recv_message()
+                print("got message")
                 await asyncio.sleep(0.3)
                 assert resp.pin_name == "interrupt1"
                 assert resp.high is True
@@ -583,15 +582,10 @@ class TestGPIOPinClient:
 
 
             test_tick = Tick(pin_name="", time=0, high=False)
-            async def callback(tick: Tick) -> bool:
-                print("in callback")
-                global test_tick
-                test_tick = tick
-                return False
 
-
+            queue = Queue()
             asyncio.get_running_loop().call_later(0.3, tick1)
-            client.stream_ticks(pin_names, callback, extra=extra)
+            client.stream_ticks(pin_names, queue, extra=extra)
             assert test_tick.pin_name == "interrupt1"
             assert test_tick.high is True
             assert test_tick.time == 1000

@@ -253,29 +253,31 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         await self.client.WriteAnalog(request, timeout=timeout)
 
     def stream_ticks(
-        self,
-        interrupts: list[str],
-        callback: Callable[[Tick], Awaitable [bool]],
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        **__,
+    self,
+    interrupts: list[str],
+    queue: Queue,
+    *,
+    extra: Optional[Dict[str, Any]] = None,
+    **__,
     ):
         if extra is None:
             extra = {}
-        request = StreamTicksRequest(name=self.name, pin_names=interrupts, extra=dict_to_struct(extra))
+        request = StreamTicksRequest(name = self.name, pin_names=interrupts, extra = dict_to_struct(extra))
 
-        asyncio.create_task(self._stream_ticks(request, callback), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
+        asyncio.create_task(self._stream_ticks(request, queue), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
 
-    async def _stream_ticks(self, request: StreamTicksRequest, callback: Callable[[Tick], Awaitable[bool]]):
-        try:
-            async with self.client.StreamTicks.open() as stream:
-                await stream.send_message(request, end=True)
-                resp: StreamTicksResponse
-                while True:
-                    async for resp in stream:
-                        tick = Tick(resp.pin_name, resp.high, resp.time)
-                        await callback(tick)
-        except asyncio.CancelledError:
-            return
-        except Exception as e:
-            LOGGER.error(e)
+
+    async def _stream_ticks(self, request: StreamTicksRequest, queue: Queue):
+            try:
+                async with self.client.StreamTicks.open() as stream:
+                    await stream.send_message(request, end=True)
+                    resp: StreamTicksResponse
+                    while True:
+                        async for resp in stream:
+                            print("got a tick resp")
+                            tick = Tick(resp.pin_name, resp.high, resp.time)
+                            queue.put(tick)
+            except asyncio.CancelledError:
+                    pass
+            except Exception as e:
+                LOGGER.error(e)

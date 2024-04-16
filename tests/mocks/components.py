@@ -7,7 +7,7 @@ else:
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from multiprocessing import Pipe
+from multiprocessing import Queue
 from secrets import choice
 from typing import Any, Awaitable, Callable, Dict, List, Mapping, Optional, Tuple, Union
 
@@ -260,7 +260,7 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = False
         self.last_tick = 0
         self.num_ticks = 0
-        self.callbacks: List[Callable[[Tick], Awaitable[bool]]] = []
+        self.callbacks: List[Queue] = []
         super().__init__(name)
 
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
@@ -275,9 +275,9 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         print(tick.pin_name)
         print(self.callbacks)
         for callback in self.callbacks:
-            await callback(tick)
+            callback.put(tick)
 
-    async def add_callback(self, callback: Callable[[Tick], Awaitable[bool]]):
+    async def add_callback(self, callback:Queue):
         print("in add_callback")
         self.callbacks.append(callback)
 
@@ -391,14 +391,14 @@ class MockBoard(Board):
         self.analog_write_value = value
 
     async def stream_ticks(
-        self, interrupts: list[str], callback: Callable[[Tick], Awaitable[bool]], *, timeout: Optional[float] = None, **kwargs
+        self, interrupts: list[str], queue: Queue, *, timeout: Optional[float] = None, **kwargs
     ):
         print("FAKE BOARD STREAM TICKS")
         self.timeout = timeout
         print("adding callback to here di")
         for name in interrupts:
             di = self.digital_interrupts[name]
-            await di.add_callback(callback)
+            await di.add_callback(queue)
 
 
 class MockCamera(Camera):
