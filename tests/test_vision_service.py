@@ -4,7 +4,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from PIL import Image
 
-from viam.media.pil import pil_to_viam_image
+from viam.media.utils.pil import pil_to_viam_image
 from viam.media.video import CameraMimeType
 from viam.proto.common import (
     DoCommandRequest,

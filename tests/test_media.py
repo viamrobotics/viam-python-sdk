@@ -6,7 +6,7 @@ import pytest
 from PIL import Image
 
 from viam.errors import NotSupportedError
-from viam.media.pil import pil_to_viam_image, viam_to_pil_image
+from viam.media.utils.pil import pil_to_viam_image, viam_to_pil_image
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 
 

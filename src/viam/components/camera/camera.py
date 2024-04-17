@@ -45,8 +45,6 @@ class Camera(ComponentBase):
         to convert the data to a standard representation.
 
         ::
-            from viam.media.utils import bytes_to_depth_array
-
             my_camera = Camera.from_robot(robot=robot, name="my_camera")
 
             # Assume "frame" has a mime_type of "image/vnd.viam.dep"
@@ -54,7 +52,7 @@ class Camera(ComponentBase):
 
             # Convert "frame" to a standard 2D image representation.
             # Remove the 1st 3x8 bytes and reshape the raw bytes to List[List[Int]].
-            standard_frame = bytes_to_depth_array(frame)
+            standard_frame = frame.bytes_to_depth_array()
 
         Args:
             mime_type (str): The desired mime type of the image. This does not guarantee output type
