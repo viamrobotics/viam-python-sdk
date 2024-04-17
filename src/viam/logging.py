@@ -55,6 +55,7 @@ class _ModuleHandler(logging.Handler):
                     self._parent.log(name, record.levelname, time, message, stack), name=f"{viam._TASK_PREFIX}-LOG-{record.created}"
                 ).add_done_callback(self.handle_task_result)
             except RuntimeError:
+                # If the log is coming from a thread that doesn't have an event loop, create and set a new one.
                 loop = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop)
                 loop.create_task(
