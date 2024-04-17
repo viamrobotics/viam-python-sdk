@@ -1,11 +1,8 @@
 # TODO: Update type checking based with RSDK-4089
 # pyright: reportGeneralTypeIssues=false
-from typing import Dict
-
 from google.api.httpbody_pb2 import HttpBody
 from grpclib.server import Stream
 
-from viam.media.video import CameraMimeType
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.camera import (
     CameraServiceBase,
@@ -23,7 +20,7 @@ from viam.proto.component.camera import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from . import Camera, RawImage
+from . import Camera
 
 
 class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
@@ -32,7 +29,6 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
     """
 
     RESOURCE_TYPE = Camera
-    _camera_mime_types: Dict[str, CameraMimeType] = {}
 
     async def GetImage(self, stream: Stream[GetImageRequest, GetImageResponse]) -> None:
         request = await stream.recv_message()
@@ -42,23 +38,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
 
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(request.mime_type, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        try:
-            if not request.mime_type:
-                if camera.name not in self._camera_mime_types:
-                    self._camera_mime_types[camera.name] = CameraMimeType.JPEG
-
-                request.mime_type = self._camera_mime_types[camera.name]
-
-            mimetype, _ = CameraMimeType.from_lazy(request.mime_type)
-            if CameraMimeType.is_supported(mimetype):
-                response_mime = mimetype
-            else:
-                response_mime = request.mime_type
-            response = GetImageResponse(mime_type=response_mime)
-            img_bytes = mimetype.encode_image(image)
-        finally:
-            image.close()
-        response.image = img_bytes
+        response = GetImageResponse(mime_type=image.mime_type, image=image.data)
         await stream.send_message(response)
 
     async def GetImages(self, stream: Stream[GetImagesRequest, GetImagesResponse]) -> None:
@@ -71,12 +51,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         images, metadata = await camera.get_images(timeout=timeout, metadata=stream.metadata)
         img_bytes_lst = []
         for img in images:
-            try:
-                fmt = img.mime_type.to_proto()
-                img_bytes = img.data
-                img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
-            finally:
-                img.close()
+            fmt = img.mime_type.to_proto()
+            img_bytes = img.data
+            img_bytes_lst.append(Image(source_name=name, format=fmt, image=img_bytes))
         response = GetImagesResponse(images=img_bytes_lst, response_metadata=metadata)
         await stream.send_message(response)
 
@@ -85,17 +62,9 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         assert request is not None
         name = request.name
         camera = self.get_resource(name)
-        try:
-            mimetype = CameraMimeType(request.mime_type)
-        except ValueError:
-            mimetype = CameraMimeType.JPEG
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        image = await camera.get_image(mimetype, timeout=timeout, metadata=stream.metadata)
-        try:
-            img = mimetype.encode_image(image)
-        finally:
-            image.close()
-        response = HttpBody(data=img, content_type=image.mime_type if isinstance(image, RawImage) else mimetype)  # type: ignore
+        image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
+        response = HttpBody(data=image.data, content_type=image.mime_type)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
