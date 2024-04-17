@@ -64,7 +64,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
         camera = self.get_resource(name)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         image = await camera.get_image(request.mime_type, timeout=timeout, metadata=stream.metadata)
-        response = HttpBody(data=image.data, content_type=image.mime_type)
+        response = HttpBody(data=image.data, content_type=image.mime_type)  # type: ignore
         await stream.send_message(response)
 
     async def GetPointCloud(self, stream: Stream[GetPointCloudRequest, GetPointCloudResponse]) -> None:
