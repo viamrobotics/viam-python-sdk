@@ -1,7 +1,7 @@
 import asyncio
 from datetime import timedelta
 from multiprocessing import Queue
-from typing import Any, Awaitable, Callable, Dict, List, Mapping, Optional
+from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
 from grpclib.client import Channel
@@ -32,10 +32,11 @@ from viam.proto.component.board import (
     StreamTicksResponse,
     WriteAnalogRequest,
 )
+from viam.media.media import Stream, StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .board import Board, Tick
+from .board import Board, Tick, TickStream
 
 LOGGER = getLogger(__name__)
 
@@ -252,32 +253,22 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
         await self.client.WriteAnalog(request, timeout=timeout)
 
-    def stream_ticks(
+    async def stream_ticks(
     self,
-    interrupts: list[str],
-    queue: Queue,
+    interrupts: list[Board.DigitalInterrupt],
     *,
     extra: Optional[Dict[str, Any]] = None,
     **__,
-    ):
+    ) -> TickStream:
         if extra is None:
             extra = {}
-        request = StreamTicksRequest(name = self.name, pin_names=interrupts, extra = dict_to_struct(extra))
+        names = []
+        for di in interrupts:
+            names.append(di.name)
+        request = StreamTicksRequest(name = self.name, pin_names=names, extra = dict_to_struct(extra))
 
-        asyncio.create_task(self._stream_ticks(request, queue), name=f"{viam._TASK_PREFIX}-board_stream_ticks")
+        async with self.client.StreamTicks.open() as tick_stream:
+                await tick_stream.send_message(request)
+                return tick_stream
 
 
-    async def _stream_ticks(self, request: StreamTicksRequest, queue: Queue):
-            try:
-                async with self.client.StreamTicks.open() as stream:
-                    await stream.send_message(request, end=True)
-                    resp: StreamTicksResponse
-                    while True:
-                        async for resp in stream:
-                            print("got a tick resp")
-                            tick = Tick(resp.pin_name, resp.high, resp.time)
-                            queue.put(tick)
-            except asyncio.CancelledError:
-                    pass
-            except Exception as e:
-                LOGGER.error(e)

@@ -221,27 +221,27 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         board = self.get_resource(name)
-        queue = Queue()
-        await board.stream_ticks(interrupts=request.pin_names, queue=queue, metadtata=stream.metadata)
-        loop = asyncio.get_running_loop()
-        print("HERE SERVER")
-        def read():
-            while(True):
-                tick: Tick = queue.get()
-                response = StreamTicksResponse(pin_name=tick.pin_name, high=tick.high, time=tick.time)
-                try:
-                    stream._cancel_done = False  # Undo hack, see below
-                    print("SENDING MESSAGE")
-                    stream.send_message(response)
-                except StreamClosedError:
-                    LOGGER.error("stream closed")
-                    asyncio.create_task(stream.__aexit__(None, None, None))
-                except Exception as e:
-                    print("error here")
-                    LOGGER.error(e)
-                    asyncio.create_task(stream.__aexit__(None, e, None))
 
-        print("starting thread")
-        t = threading.Thread(target=read)
-        t.start()
-        stream._cancel_done = True
+        dis = []
+        for name in request.pin_names:
+            dis.append(await board.digital_interrupt_by_name(name))
+
+        tick_stream = await board.stream_ticks(interrupts = dis, metadata=stream.metadata)
+        print("here server")
+        async for tick in tick_stream:
+            try:
+                print ("here sending")
+                await stream.send_message(StreamTicksResponse(pin_name=tick.pin_name, time=tick.time, high=tick.high))
+            except StreamClosedError:
+                print("here stream closed error")
+                return
+            except Exception:
+                LOGGER.error(Exception)
+                print("exception here")
+                return
+
+
+
+
+
+

@@ -7,6 +7,7 @@ from google.protobuf.struct_pb2 import Struct
 from grpclib import GRPCError, Status
 from grpclib.client import Channel
 
+
 import viam
 from viam.errors import NotSupportedError
 from viam.logging import getLogger

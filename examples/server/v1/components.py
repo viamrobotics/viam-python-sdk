@@ -31,7 +31,7 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.media import MediaStreamWithIterator
+from viam.media import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import NamedImage
 from viam.operations import run_with_operation
@@ -158,7 +158,7 @@ class ExampleAudioInput(AudioInput):
 
                 await asyncio.sleep(self.latency.total_seconds())
 
-        return MediaStreamWithIterator(read())
+        return StreamWithIterator(read())
 
     async def get_properties(self) -> AudioInput.Properties:
         return AudioInput.Properties(

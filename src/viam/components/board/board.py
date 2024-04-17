@@ -7,6 +7,7 @@ from multiprocessing import Queue,Pipe
 from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.media.media import Stream
 
 from ..component_base import ComponentBase
 
@@ -16,6 +17,8 @@ class Tick:
     pin_name: str
     high: bool
     time: int
+
+TickStream = Stream[Tick]
 
 
 class Board(ComponentBase):
@@ -84,6 +87,7 @@ class Board(ComponentBase):
 
         name: str
         """The name of the digital interrupt"""
+
 
         def __init__(self, name: str):
             self.name = name
@@ -401,9 +405,9 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    def stream_ticks(
-        self, interrupts: List[str], queue: Queue, *, timeout: Optional[float] = None, **kwargs
-    ):
+    async def stream_ticks(
+        self, interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
+    ) -> TickStream:
         """
         Stream the digital interrupt ticks.
 

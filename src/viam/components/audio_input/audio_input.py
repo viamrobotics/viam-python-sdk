@@ -67,7 +67,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         """Stream audio samples from the audio input of the underlying robot
 
         Returns:
-            MediaStream[Audio]: The stream of audio chunks
+            Stream[Audio]: The stream of audio chunks
         """
         ...
 
