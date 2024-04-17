@@ -4,6 +4,7 @@ import pytest
 from grpclib.testing import ChannelFor
 from PIL import Image
 
+from viam.media.utils.pil import pil_to_viam_image
 from viam.media.video import CameraMimeType
 from viam.proto.common import (
     DoCommandRequest,
@@ -35,6 +36,8 @@ from viam.utils import dict_to_struct, struct_to_dict
 
 from .mocks.services import MockVision
 
+i = Image.new("RGBA", (100, 100), "#AABBCCDD")
+IMAGE = pil_to_viam_image(i, CameraMimeType.JPEG)
 DETECTORS = [
     "detector-0",
     "detector-1",
@@ -129,9 +132,8 @@ class TestVision:
 
     @pytest.mark.asyncio
     async def test_get_detections(self, vision: MockVision):
-        image = Image.new("RGB", (100, 100), "#AABBCCDD")
         extra = {"foo": "get_detections"}
-        response = await vision.get_detections(image, extra=extra)
+        response = await vision.get_detections(IMAGE, extra=extra)
         assert response == DETECTIONS
         assert vision.extra == extra
 
@@ -144,9 +146,8 @@ class TestVision:
 
     @pytest.mark.asyncio
     async def test_get_classifications(self, vision: MockVision):
-        image = Image.new("RGB", (100, 100), "#AABBCCDD")
         extra = {"foo": "get_classifications"}
-        response = await vision.get_classifications(image, 1, extra=extra)
+        response = await vision.get_classifications(IMAGE, 1, extra=extra)
         assert response == CLASSIFICATIONS
         assert vision.extra == extra
 
@@ -179,11 +180,10 @@ class TestService:
     async def test_get_detections(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
-            image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_detections"}
             request = GetDetectionsRequest(
                 name=vision.name,
-                image=CameraMimeType.JPEG.encode_image(image),
+                image=IMAGE.data,
                 width=100,
                 height=100,
                 mime_type=CameraMimeType.JPEG,
@@ -207,11 +207,10 @@ class TestService:
     async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionServiceStub(channel)
-            image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_classifications"}
             request = GetClassificationsRequest(
                 name=vision.name,
-                image=CameraMimeType.JPEG.encode_image(image),
+                image=IMAGE.data,
                 width=100,
                 height=100,
                 mime_type=CameraMimeType.JPEG,
@@ -261,9 +260,8 @@ class TestClient:
     async def test_get_detections(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
-            image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_detections"}
-            response = await client.get_detections(image, extra=extra)
+            response = await client.get_detections(IMAGE, extra=extra)
             assert response == DETECTIONS
             assert vision.extra == extra
 
@@ -280,9 +278,8 @@ class TestClient:
     async def test_get_classifications(self, vision: MockVision, service: VisionRPCService):
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
-            image = Image.new("RGB", (100, 100), "#AABBCCDD")
             extra = {"foo": "get_classifications"}
-            response = await client.get_classifications(image, 1, extra=extra)
+            response = await client.get_classifications(IMAGE, 1, extra=extra)
             assert response == CLASSIFICATIONS
             assert vision.extra == extra
 

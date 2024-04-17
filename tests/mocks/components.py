@@ -8,10 +8,9 @@ else:
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 
 from google.protobuf.timestamp_pb2 import Timestamp
-from PIL import Image
 
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
@@ -31,8 +30,20 @@ from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
-from viam.media.video import CameraMimeType, NamedImage, RawImage
-from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
+from viam.proto.common import (
+    AnalogStatus,
+    Capsule,
+    DigitalInterruptStatus,
+    Geometry,
+    GeoPoint,
+    Orientation,
+    Pose,
+    PoseInFrame,
+    ResponseMetadata,
+    Sphere,
+    Vector3,
+)
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
@@ -364,7 +375,7 @@ class MockBoard(Board):
 
 class MockCamera(Camera):
     def __init__(self, name: str):
-        self.image = Image.new("RGBA", (100, 100), "#AABBCCDD")
+        self.image = ViamImage(b"data", CameraMimeType.PNG)
         self.geometries = GEOMETRIES
         self.point_cloud = b"THIS IS A POINT CLOUD"
         self.extra = None
@@ -381,26 +392,14 @@ class MockCamera(Camera):
 
     async def get_image(
         self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
-    ) -> Union[Image.Image, RawImage]:
+    ) -> ViamImage:
         self.extra = extra
         self.timeout = timeout
-        mime_type, is_lazy = CameraMimeType.from_lazy(mime_type)
-        if is_lazy or (not CameraMimeType.is_supported(mime_type)):
-            return RawImage(
-                data=self.image.convert("RGBA").tobytes("raw", "RGBA"),
-                mime_type=mime_type,
-            )
-        return self.image.copy()
+        return self.image
 
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         self.timeout = timeout
-        return [
-            NamedImage(
-                name=self.name,
-                data=CameraMimeType.VIAM_RGBA.encode_image(self.image),
-                mime_type=CameraMimeType.VIAM_RGBA,
-            )
-        ], self.metadata
+        return [NamedImage(self.name, self.image.data, self.image.mime_type)], self.metadata
 
     async def get_point_cloud(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs

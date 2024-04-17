@@ -10,6 +10,7 @@ else:
     from typing import AsyncIterator
 
 from datetime import timedelta
+from io import BytesIO
 from multiprocessing import Lock
 from pathlib import Path
 from typing import Any, Dict, List, Mapping, Optional, Tuple
@@ -33,7 +34,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
-from viam.media.video import NamedImage
+from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.operations import run_with_operation
 from viam.proto.common import (
     Capsule,
@@ -324,14 +325,17 @@ class ExampleBoard(Board):
 class ExampleCamera(Camera):
     def __init__(self, name: str):
         p = Path(__file__)
-        self.image = Image.open(p.parent.absolute().joinpath("viam.webp"))
+        img = Image.open(p.parent.absolute().joinpath("viam.webp"))
+        buf = BytesIO()
+        img.copy().save(buf, format="JPEG")
+        self.image = ViamImage(buf.getvalue(), CameraMimeType.JPEG)
         super().__init__(name)
 
     def __del__(self):
         self.image.close()
 
-    async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> Image.Image:
-        return self.image.copy()
+    async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> ViamImage:
+        return self.image
 
     async def get_images(self, timeout: Optional[float] = None, **kwargs) -> Tuple[List[NamedImage], ResponseMetadata]:
         raise NotImplementedError()
