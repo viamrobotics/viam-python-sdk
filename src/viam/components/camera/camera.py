@@ -45,6 +45,7 @@ class Camera(ComponentBase):
         to convert the data to a standard representation.
 
         ::
+
             my_camera = Camera.from_robot(robot=robot, name="my_camera")
 
             # Assume "frame" has a mime_type of "image/vnd.viam.dep"
