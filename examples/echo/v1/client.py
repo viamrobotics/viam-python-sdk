@@ -1,3 +1,4 @@
+import asyncio
 import sys
 
 from viam.proto.rpc.examples.echo import (

@@ -7,9 +7,7 @@ from .client import BoardClient
 from .service import BoardRPCService
 
 __all__ = [
-    "Board",
-    "Tick",
-    "TickStream"
+    "Board"
 ]
 
 
