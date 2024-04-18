@@ -44,15 +44,23 @@ class ResourceName(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
+    MACHINE_PART_ID_FIELD_NUMBER: builtins.int
     namespace: builtins.str
     type: builtins.str
     subtype: builtins.str
     name: builtins.str
+    machine_part_id: builtins.str
 
-    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=...) -> None:
+    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=..., machine_part_id: builtins.str | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
+    def HasField(self, field_name: typing_extensions.Literal['_machine_part_id', b'_machine_part_id', 'machine_part_id', b'machine_part_id']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['_machine_part_id', b'_machine_part_id', 'machine_part_id', b'machine_part_id', 'name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['_machine_part_id', b'_machine_part_id']) -> typing_extensions.Literal['machine_part_id'] | None:
         ...
 global___ResourceName = ResourceName
 

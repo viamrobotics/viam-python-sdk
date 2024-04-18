@@ -738,13 +738,17 @@ class GetCloudMetadataResponse(google.protobuf.message.Message):
     ROBOT_PART_ID_FIELD_NUMBER: builtins.int
     PRIMARY_ORG_ID_FIELD_NUMBER: builtins.int
     LOCATION_ID_FIELD_NUMBER: builtins.int
+    MACHINE_ID_FIELD_NUMBER: builtins.int
+    MACHINE_PART_ID_FIELD_NUMBER: builtins.int
     robot_part_id: builtins.str
     primary_org_id: builtins.str
     location_id: builtins.str
+    machine_id: builtins.str
+    machine_part_id: builtins.str
 
-    def __init__(self, *, robot_part_id: builtins.str=..., primary_org_id: builtins.str=..., location_id: builtins.str=...) -> None:
+    def __init__(self, *, robot_part_id: builtins.str=..., primary_org_id: builtins.str=..., location_id: builtins.str=..., machine_id: builtins.str=..., machine_part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'primary_org_id', b'primary_org_id', 'robot_part_id', b'robot_part_id']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'machine_id', b'machine_id', 'machine_part_id', b'machine_part_id', 'primary_org_id', b'primary_org_id', 'robot_part_id', b'robot_part_id']) -> None:
         ...
 global___GetCloudMetadataResponse = GetCloudMetadataResponse
