@@ -8,7 +8,7 @@ else:
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
-from typing import Any, Callable, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
@@ -56,6 +56,7 @@ GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
 ]
+
 
 class MockArm(Arm):
     def __init__(self, name: str):
