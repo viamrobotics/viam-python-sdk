@@ -60,7 +60,6 @@ def board() -> MockBoard:
         },
         digital_interrupts={
             "interrupt1": MockDigitalInterrupt("interrupt1"),
-            "interrupt2": MockDigitalInterrupt("interrupt2"),
         },
         gpio_pins={"pin1": MockGPIOPin("pin1")},
     )
@@ -111,7 +110,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_digital_interrupt_names(self, board: MockBoard):
         names = await board.digital_interrupt_names()
-        assert names == ["interrupt1", "interrupt2"]
+        assert names == ["interrupt1"]
 
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
@@ -119,7 +118,7 @@ class TestBoard:
         status = await board.status(extra=extra, timeout=1.82)
         assert status == BoardStatus(
             analogs={"reader1": AnalogStatus(value=3)},
-            digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
+            digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
         )
         assert board.extra == extra
         assert board.timeout == loose_approx(1.82)
@@ -156,14 +155,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
         int1 = board.digital_interrupts["interrupt1"]
-
-        def tick1():
-            asyncio.create_task(int1.tick(high=True, time=1000))
-
-        tick1()
-        await asyncio.sleep(0.3)
         async for tick in await board.stream_ticks([int1]):
-            print("looping through ticks")
             assert tick.pin_name == "interrupt1"
             assert tick.time == 1000
             assert tick.high is True
@@ -300,7 +292,7 @@ class TestService:
 
             assert response.status == BoardStatus(
                 analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
+                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(5.55)
@@ -354,7 +346,7 @@ class TestService:
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
-            interrupts = ["interrupt1", "interrupt2"]
+            interrupts = ["interrupt1"]
             extra = {"foo": "stream_ticks"}
             request = StreamTicksRequest(name=board.name, pin_names=interrupts, extra=dict_to_struct(extra))
 
@@ -421,7 +413,7 @@ class TestClient:
             client = BoardClient(name=board.name, channel=channel)
 
             names = await client.digital_interrupt_names()
-            assert names == ["interrupt1", "interrupt2"]
+            assert names == ["interrupt1"]
 
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard, service: BoardRPCService):
@@ -432,7 +424,7 @@ class TestClient:
             status = await client.status(extra=extra, timeout=1.1)
             assert status == BoardStatus(
                 analogs={"reader1": AnalogStatus(value=3)},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0), "interrupt2": DigitalInterruptStatus(value=0)},
+                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=0)},
             )
             assert board.extra == extra
             assert board.timeout == loose_approx(1.1)

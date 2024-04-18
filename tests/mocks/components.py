@@ -264,9 +264,9 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
     async def value(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
         return self.num_ticks
 
-    async def tick(self, high: bool, time: int):  # Call this to get the mock interrupt to change
+    async def tick(self, high: bool, nanos: int):  # Call this to get the mock interrupt to change
         self.high = high
-        self.last_tick = time
+        self.last_tick = nanos
         self.num_ticks += 1
 
 
@@ -314,8 +314,8 @@ class MockBoard(Board):
         self,
         name: str,
         analog_readers: Dict[str, Board.AnalogReader],
-        digital_interrupts: Dict[str, MockDigitalInterrupt],
-        gpio_pins: Dict[str, Board.GPIOPin]
+        digital_interrupts: Dict[str, Board.DigitalInterrupt],
+        gpio_pins: Dict[str, Board.GPIOPin],
     ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
