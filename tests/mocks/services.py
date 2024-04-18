@@ -265,6 +265,18 @@ from viam.proto.common import (
     PoseInFrame,
     ResourceName,
 )
+from viam.proto.provisioning import (
+    GetNetworkListRequest,
+    GetNetworkListResponse,
+    GetSmartMachineStatusRequest,
+    GetSmartMachineStatusResponse,
+    NetworkInfo,
+    ProvisioningServiceBase,
+    SetNetworkCredentialsRequest,
+    SetNetworkCredentialsResponse,
+    SetSmartMachineCredentialsRequest,
+    SetSmartMachineCredentialsResponse,
+)
 from viam.proto.service.mlmodel import (
     FlatTensor,
     FlatTensorDataDouble,
@@ -698,6 +710,43 @@ class MockNavigation(Navigation):
         return {"command": command}
 
 
+class MockProvisioning(ProvisioningServiceBase):
+    def __init__(
+        self,
+        smart_machine_status: GetSmartMachineStatusResponse,
+        network_info: List[NetworkInfo],
+    ):
+        self.smart_machine_status = smart_machine_status
+        self.network_info = network_info
+
+    async def GetNetworkList(self, stream: Stream[GetNetworkListRequest, GetNetworkListResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetNetworkListResponse(networks=self.network_info))
+
+    async def GetSmartMachineStatus(self, stream: Stream[GetSmartMachineStatusRequest, GetSmartMachineStatusResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(self.smart_machine_status)
+
+    async def SetNetworkCredentials(self, stream: Stream[SetNetworkCredentialsRequest, SetNetworkCredentialsResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.network_type = request.type
+        self.ssid = request.ssid
+        self.psk = request.psk
+        await stream.send_message(SetNetworkCredentialsResponse())
+
+    async def SetSmartMachineCredentials(
+        self,
+        stream: Stream[SetSmartMachineCredentialsRequest, SetSmartMachineCredentialsResponse],
+    ) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        self.cloud_config = request.cloud
+        await stream.send_message(SetSmartMachineCredentialsResponse())
+
+
 class MockData(DataServiceBase):
     def __init__(
         self,
@@ -1064,6 +1113,7 @@ class MockApp(AppServiceBase):
         self.rover_rental_robots = rover_rental_robots
         self.api_key = api_key
         self.api_keys_with_authorizations = api_keys_with_authorizations
+        self.send_email_invite = False
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
         raise NotImplementedError()
@@ -1115,6 +1165,7 @@ class MockApp(AppServiceBase):
     async def CreateOrganizationInvite(self, stream: Stream[CreateOrganizationInviteRequest, CreateOrganizationInviteResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.send_email_invite = request.send_email_invite
         await stream.send_message(CreateOrganizationInviteResponse(invite=self.invite))
 
     async def UpdateOrganizationInviteAuthorizations(

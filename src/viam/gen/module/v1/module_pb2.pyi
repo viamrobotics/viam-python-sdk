@@ -145,14 +145,12 @@ global___HandlerMap = HandlerMap
 class ReadyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PARENT_ADDRESS_FIELD_NUMBER: builtins.int
-    WEBRTC_OFFER_FIELD_NUMBER: builtins.int
     parent_address: builtins.str
-    webrtc_offer: builtins.str
 
-    def __init__(self, *, parent_address: builtins.str=..., webrtc_offer: builtins.str=...) -> None:
+    def __init__(self, *, parent_address: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['parent_address', b'parent_address', 'webrtc_offer', b'webrtc_offer']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['parent_address', b'parent_address']) -> None:
         ...
 global___ReadyRequest = ReadyRequest
 
@@ -161,21 +159,19 @@ class ReadyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     READY_FIELD_NUMBER: builtins.int
     HANDLERMAP_FIELD_NUMBER: builtins.int
-    WEBRTC_ANSWER_FIELD_NUMBER: builtins.int
     ready: builtins.bool
 
     @property
     def handlermap(self) -> global___HandlerMap:
         ...
-    webrtc_answer: builtins.str
 
-    def __init__(self, *, ready: builtins.bool=..., handlermap: global___HandlerMap | None=..., webrtc_answer: builtins.str=...) -> None:
+    def __init__(self, *, ready: builtins.bool=..., handlermap: global___HandlerMap | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['handlermap', b'handlermap']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['handlermap', b'handlermap', 'ready', b'ready', 'webrtc_answer', b'webrtc_answer']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['handlermap', b'handlermap', 'ready', b'ready']) -> None:
         ...
 global___ReadyResponse = ReadyResponse
 

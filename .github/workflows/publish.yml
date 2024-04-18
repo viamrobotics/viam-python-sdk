@@ -7,25 +7,9 @@ on:
 jobs:
   publish:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Check if organization member
-        id: is_organization_member
-        if: github.event_name == 'workflow_dispatch'
-        uses: jamessingleton/is-organization-member@1.0.1
-        with:
-          organization: viamrobotics
-          username: ${{ github.actor }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: cancelling
-        uses: andymckay/cancel-action@0.2
-        if: |
-          github.event_name == 'workflow_dispatch' && steps.is_organization_member.outputs.result == 'false'
-
       - name: Download Release
         uses: dsaltares/fetch-gh-release-asset@master
         with:

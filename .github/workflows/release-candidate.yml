@@ -17,40 +17,18 @@ on:
 jobs:
   prepare:
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     outputs:
       rc_version: ${{ steps.bump_version.outputs.rc_version }}
       version: ${{ steps.bump_version.outputs.version }}
     steps:
-      - name: Output Event
-        run: echo "${{ toJSON(github.event) }}"
-
-      - name: Check if organization member
-        id: is_organization_member
-        uses: jamessingleton/is-organization-member@1.0.1
-        with:
-          organization: viamrobotics
-          username: ${{ github.actor }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cancelling - user not part of organization
-        uses: andymckay/cancel-action@0.2
-        if: |
-          steps.is_organization_member.outputs.result == 'false'
-
-      - name: Install GH CLI
-        run: |
-          type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-          && sudo apt update \
-          && sudo apt install gh -y
-
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -110,9 +88,7 @@ jobs:
   build:
     needs: prepare
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
@@ -139,9 +115,14 @@ jobs:
             whl: linux_armv7l
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: rc-${{ needs.prepare.outputs.version }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -151,6 +132,10 @@ jobs:
 
       - name: Download binary
         run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
+
+      - name: HACK for arm7l
+        if: ${{ matrix.whl == 'linux_armv7l' }}
+        run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
 
       - name: Build
         run: poetry build -f wheel
@@ -167,9 +152,7 @@ jobs:
   release:
     needs: [prepare, build]
     if: github.repository_owner == 'viamrobotics'
-    runs-on: [self-hosted, x64]
-    container:
-      image: ghcr.io/viamrobotics/canon:amd64
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/download-artifact@v3
