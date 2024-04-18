@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from viam.media.media import MediaReader, Stream
+from viam.streams import Stream, StreamReader
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo
 
 
@@ -12,5 +12,5 @@ class Audio:
     chunk: AudioChunk
 
 
-AudioReader = MediaReader[Audio]
+AudioReader = StreamReader[Audio]
 AudioStream = Stream[Audio]

@@ -2,7 +2,7 @@ from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
-from viam.media import Stream, StreamWithIterator
+from viam.streams import Stream, StreamWithIterator
 from viam.media.audio import Audio
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.audioinput import (

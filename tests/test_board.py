@@ -1,14 +1,13 @@
 import asyncio
 from datetime import timedelta
-from multiprocessing import Queue
-from typing import Callable, cast, AsyncIterator
+from typing import cast
 
 import pytest
 from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import BoardClient, Tick
+from viam.components.board import BoardClient
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -42,7 +41,6 @@ from viam.proto.component.board import (
     StatusRequest,
     StatusResponse,
     StreamTicksRequest,
-    StreamTicksResponse,
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
@@ -158,8 +156,9 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
         int1 = board.digital_interrupts["interrupt1"]
+
         def tick1():
-             asyncio.create_task(int1.tick(high=True, time=1000))
+            asyncio.create_task(int1.tick(high=True, time=1000))
 
         tick1()
         await asyncio.sleep(0.3)
@@ -168,7 +167,6 @@ class TestBoard:
             assert tick.pin_name == "interrupt1"
             assert tick.time == 1000
             assert tick.high is True
-
 
 
 class TestService:
@@ -355,17 +353,6 @@ class TestService:
     # @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
-            int1 = board.digital_interrupts["interrupt1"]
-            int2 = board.digital_interrupts["interrupt2"]
-
-            # def tick1():
-            #     asyncio.create_task(int1.tick(high=True, time=1000))
-
-            # def tick2():
-            #     asyncio.create_task(int2.tick(high=True, time=1001))
-
-            # asyncio.get_running_loop().call_later(0.1, tick1)
-            # asyncio.get_running_loop().call_later(0.2, tick2)
             client = BoardServiceStub(channel)
             interrupts = ["interrupt1", "interrupt2"]
             extra = {"foo": "stream_ticks"}
@@ -373,9 +360,8 @@ class TestService:
 
             async with client.StreamTicks.open(timeout=1) as stream:
                 await stream.send_message(request, end=True)
-                print("sent message")
                 resp = await stream.recv_message()
-                print("recieved response")
+                assert resp is not None
                 assert resp.pin_name == "interrupt1"
                 assert resp.high is True
                 assert resp.time == 1000
@@ -565,27 +551,15 @@ class TestGPIOPinClient:
             assert board.analog_write_pin == "pin1"
             assert board.analog_write_value == 42
 
-
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
             di = await client.digital_interrupt_by_name("interrupt1")
 
-            tick_stream = await client.stream_ticks(interrupts = [di])
-            response: Tick = await tick_stream.next()
-            print(response)
-            assert True is False
-
-
-
-
-
-
-
-
-
-
-
-
-
+            tick_stream = await client.stream_ticks(interrupts=[di])
+            async for tick in tick_stream:
+                assert tick.pin_name == 'interrupt1'
+                assert tick.high is True
+                assert tick.time == 1000
+                break

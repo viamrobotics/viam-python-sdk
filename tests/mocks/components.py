@@ -9,8 +9,6 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from secrets import choice
 from typing import Any, Callable, Dict, List, Mapping, Optional, Tuple, Union
-from multiprocessing import Pipe
-import asyncio
 
 from google.protobuf.timestamp_pb2 import Timestamp
 from PIL import Image
@@ -32,7 +30,7 @@ from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.media import StreamWithIterator
+from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
@@ -58,9 +56,6 @@ GEOMETRIES = [
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), sphere=Sphere(radius_mm=2)),
     Geometry(center=Pose(x=1, y=2, z=3, o_x=2, o_y=3, o_z=4, theta=20), capsule=Capsule(radius_mm=3, length_mm=8)),
 ]
-
-pipe_r, pipe_w = Pipe(duplex=False)
-
 
 class MockArm(Arm):
     def __init__(self, name: str):
@@ -272,9 +267,6 @@ class MockDigitalInterrupt(Board.DigitalInterrupt):
         self.high = high
         self.last_tick = time
         self.num_ticks += 1
-        tick = Tick(pin_name=self.name, high=high, time=time)
-
-
 
 
 class MockGPIOPin(Board.GPIOPin):
@@ -322,15 +314,13 @@ class MockBoard(Board):
         name: str,
         analog_readers: Dict[str, Board.AnalogReader],
         digital_interrupts: Dict[str, MockDigitalInterrupt],
-        gpio_pins: Dict[str, Board.GPIOPin],
-        callbacks: Dict[str, Callable[[Tick], bool]] = {},
+        gpio_pins: Dict[str, Board.GPIOPin]
     ):
         self.analog_readers = analog_readers
         self.digital_interrupts = digital_interrupts
         self.geometries = GEOMETRIES
         self.gpios = gpio_pins
         self.timeout: Optional[float] = None
-        self.callbacks = callbacks
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
@@ -389,7 +379,7 @@ class MockBoard(Board):
         self, interrupts: list[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
     ):
         async def read() -> AsyncIterator[Tick]:
-                yield Tick(pin_name = interrupts[0].name, high=True, time=1000)
+            yield Tick(pin_name=interrupts[0].name, high=True, time=1000)
 
         return StreamWithIterator(read())
 

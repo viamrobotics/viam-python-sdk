@@ -1,12 +1,9 @@
-import asyncio
 from datetime import timedelta
-from multiprocessing import Queue
-from typing import Any, AsyncIterator, Dict, List, Mapping, Optional
+from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream as ClientStream
 
-import viam
 from viam.logging import getLogger
 from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
@@ -32,11 +29,11 @@ from viam.proto.component.board import (
     StreamTicksResponse,
     WriteAnalogRequest,
 )
-from viam.media.media import Stream, StreamWithIterator
+from viam.streams import Stream, StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .board import Board, Tick, TickStream
+from .board import Board, Tick
 
 LOGGER = getLogger(__name__)
 
@@ -254,21 +251,27 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         await self.client.WriteAnalog(request, timeout=timeout)
 
     async def stream_ticks(
-    self,
-    interrupts: list[Board.DigitalInterrupt],
-    *,
-    extra: Optional[Dict[str, Any]] = None,
-    **__,
-    ) -> TickStream:
+        self,
+        interrupts: List[Board.DigitalInterrupt],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        **__,
+    ) -> Stream[Tick]:
         if extra is None:
             extra = {}
         names = []
         for di in interrupts:
             names.append(di.name)
-        request = StreamTicksRequest(name = self.name, pin_names=names, extra = dict_to_struct(extra))
+        request = StreamTicksRequest(name=self.name, pin_names=names, extra=dict_to_struct(extra))
 
-        async with self.client.StreamTicks.open() as tick_stream:
-                await tick_stream.send_message(request)
-                return tick_stream
+        async def read():
+            tick_stream: ClientStream[StreamTicksRequest, StreamTicksResponse]
+            async with self.client.StreamTicks.open() as tick_stream:
+                try:
+                    await tick_stream.send_message(request, end=True)
+                    async for response in tick_stream:
+                        yield Tick(pin_name=response.pin_name, high=response.high, time=response.time)
+                except Exception as e:
+                    raise (e)
 
-
+        return StreamWithIterator(read())
