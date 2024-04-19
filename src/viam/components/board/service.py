@@ -224,7 +224,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         tick_stream = await board.stream_ticks(interrupts=dis, metadata=stream.metadata)
         async for tick in tick_stream:
             try:
-                await stream.send_message(StreamTicksResponse(pin_name=tick.pin_name, time=tick.time, high=tick.high))
+                await stream.send_message(tick)
             except StreamClosedError:
                 return
             except Exception as e:

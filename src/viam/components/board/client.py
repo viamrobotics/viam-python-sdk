@@ -269,8 +269,8 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             async with self.client.StreamTicks.open() as tick_stream:
                 try:
                     await tick_stream.send_message(request, end=True)
-                    async for response in tick_stream:
-                        yield Tick(pin_name=response.pin_name, high=response.high, time=response.time)
+                    async for tick in tick_stream:
+                        yield tick
                 except Exception as e:
                     raise (e)
 

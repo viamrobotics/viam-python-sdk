@@ -1,23 +1,15 @@
 import abc
-from dataclasses import dataclass
 from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
 from viam.proto.common import BoardStatus
-from viam.proto.component.board import PowerMode
+from viam.proto.component.board import PowerMode, StreamTicksResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
 
-
-@dataclass
-class Tick:
-    pin_name: str
-    high: bool
-    time: int
-
-
+Tick = StreamTicksResponse
 TickStream = Stream[Tick]
 
 
@@ -424,3 +416,4 @@ class Board(ComponentBase):
             interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.
         """
         ...
+
