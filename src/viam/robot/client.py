@@ -53,16 +53,6 @@ from viam.utils import datetime_to_timestamp, dict_to_struct
 LOGGER = logging.getLogger(__name__)
 
 
-@dataclass
-class CloudMetadata:
-    """App-related information about the robot"""
-
-    primary_org_id: str
-    location_id: str
-    machine_id: str
-    machine_part_id: str
-
-
 class RobotClient:
     """gRPC client for a Robot. This class should be used for all interactions with a robot.
 
@@ -789,7 +779,7 @@ class RobotClient:
     # Get Cloud Metadata #
     ######################
 
-    async def get_cloud_metadata(self) -> CloudMetadata:
+    async def get_cloud_metadata(self) -> GetCloudMetadataResponse:
         """
         Get app-related information about the robot.
 
@@ -798,11 +788,4 @@ class RobotClient:
         """
 
         request = GetCloudMetadataRequest()
-        resp: GetCloudMetadataResponse = await self._client.GetCloudMetadata(request)
-
-        return CloudMetadata(
-            primary_org_id=resp.primary_org_id,
-            location_id=resp.location_id,
-            machine_id=resp.machine_id,
-            machine_part_id=resp.machine_part_id,
-        )
+        return await self._client.GetCloudMetadata(request)
