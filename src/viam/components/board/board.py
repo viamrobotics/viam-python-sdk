@@ -416,4 +416,3 @@ class Board(ComponentBase):
             interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.
         """
         ...
-
