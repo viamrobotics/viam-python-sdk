@@ -326,7 +326,7 @@ class ExampleBoard(Board):
     async def stream_ticks(
         self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
     ) -> TickStream:
-            raise NotImplementedError()
+        raise NotImplementedError()
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
