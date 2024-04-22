@@ -16,7 +16,7 @@ from PIL import Image
 from viam.components.arm import Arm, JointPositions, KinematicsFileFormat
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
-from viam.components.board import Board
+from viam.components.board import Board, Tick
 from viam.components.camera import Camera, DistortionParameters, IntrinsicParameters
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -30,7 +30,7 @@ from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.media import MediaStreamWithIterator
+from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, RawImage
 from viam.proto.common import (
@@ -146,7 +146,7 @@ class MockAudioInput(AudioInput):
                 )
 
         self.timeout = timeout
-        return MediaStreamWithIterator(read())
+        return StreamWithIterator(read())
 
     async def get_properties(self, *, timeout: Optional[float] = None, **kwargs) -> AudioInput.Properties:
         self.timeout = timeout
@@ -375,6 +375,14 @@ class MockBoard(Board):
         self.timeout = timeout
         self.analog_write_pin = pin
         self.analog_write_value = value
+
+    async def stream_ticks(
+        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
+    ):
+        async def read() -> AsyncIterator[Tick]:
+            yield Tick(pin_name=interrupts[0].name, high=True, time=1000)
+
+        return StreamWithIterator(read())
 
 
 class MockCamera(Camera):

@@ -2,8 +2,9 @@ from datetime import timedelta
 from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
-from grpclib.client import Channel
+from grpclib.client import Channel, Stream as ClientStream
 
+from viam.logging import getLogger
 from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
@@ -24,12 +25,17 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
+    StreamTicksRequest,
+    StreamTicksResponse,
     WriteAnalogRequest,
 )
+from viam.streams import StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from . import Board
+from .board import Board, TickStream
+
+LOGGER = getLogger(__name__)
 
 
 class AnalogReaderClient(Board.AnalogReader):
@@ -243,3 +249,29 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = WriteAnalogRequest(name=self.name, pin=pin, value=value, extra=dict_to_struct(extra))
         await self.client.WriteAnalog(request, timeout=timeout)
+
+    async def stream_ticks(
+        self,
+        interrupts: List[Board.DigitalInterrupt],
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        **__,
+    ) -> TickStream:
+        if extra is None:
+            extra = {}
+        names = []
+        for di in interrupts:
+            names.append(di.name)
+        request = StreamTicksRequest(name=self.name, pin_names=names, extra=dict_to_struct(extra))
+
+        async def read():
+            tick_stream: ClientStream[StreamTicksRequest, StreamTicksResponse]
+            async with self.client.StreamTicks.open() as tick_stream:
+                try:
+                    await tick_stream.send_message(request, end=True)
+                    async for tick in tick_stream:
+                        yield tick
+                except Exception as e:
+                    raise (e)
+
+        return StreamWithIterator(read())

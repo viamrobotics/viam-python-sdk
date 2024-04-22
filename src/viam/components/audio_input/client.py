@@ -2,7 +2,7 @@ from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
-from viam.media import MediaStream, MediaStreamWithIterator
+from viam.streams import Stream, StreamWithIterator
 from viam.media.audio import Audio
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.audioinput import (
@@ -29,7 +29,7 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
         self.client = AudioInputServiceStub(channel)
         super().__init__(name)
 
-    async def stream(self, *, timeout: Optional[float] = None, **__) -> MediaStream[Audio]:
+    async def stream(self, *, timeout: Optional[float] = None, **__) -> Stream[Audio]:
         async def read() -> AsyncIterator[Audio]:
             async with self.client.Chunks.open(timeout=timeout) as chunks_stream:
                 await chunks_stream.send_message(
@@ -50,7 +50,7 @@ class AudioInputClient(AudioInput, ReconfigurableResourceRPCClientBase):
                     audio = Audio(info=info, chunk=response.chunk)
                     yield audio
 
-        return MediaStreamWithIterator(read())
+        return StreamWithIterator(read())
 
     async def get_properties(self, *, timeout: Optional[float] = None, **__) -> AudioInput.Properties:
         request = PropertiesRequest(name=self.name)

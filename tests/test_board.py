@@ -39,6 +39,7 @@ from viam.proto.component.board import (
     SetPWMRequest,
     StatusRequest,
     StatusResponse,
+    StreamTicksRequest,
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
@@ -149,6 +150,14 @@ class TestBoard:
         assert board.timeout == loose_approx(1.11)
         assert board.analog_write_value == value
         assert board.analog_write_pin == pin
+
+    @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard):
+        int1 = board.digital_interrupts["interrupt1"]
+        async for tick in await board.stream_ticks([int1]):
+            assert tick.pin_name == "interrupt1"
+            assert tick.time == 1000
+            assert tick.high is True
 
 
 class TestService:
@@ -331,6 +340,22 @@ class TestService:
             assert board.timeout == loose_approx(6.66)
             assert board.analog_write_value == value
             assert board.analog_write_pin == pin
+
+    # @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardServiceStub(channel)
+            interrupts = ["interrupt1"]
+            extra = {"foo": "stream_ticks"}
+            request = StreamTicksRequest(name=board.name, pin_names=interrupts, extra=dict_to_struct(extra))
+
+            async with client.StreamTicks.open(timeout=1) as stream:
+                await stream.send_message(request, end=True)
+                resp = await stream.recv_message()
+                assert resp is not None
+                assert resp.pin_name == "interrupt1"
+                assert resp.high is True
+                assert resp.time == 1000
 
 
 class TestClient:
@@ -516,3 +541,16 @@ class TestGPIOPinClient:
             await client.write_analog(pin, value, extra=extra)
             assert board.analog_write_pin == "pin1"
             assert board.analog_write_value == 42
+
+    @pytest.mark.asyncio
+    async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
+        async with ChannelFor([service]) as channel:
+            client = BoardClient(name=board.name, channel=channel)
+            di = await client.digital_interrupt_by_name("interrupt1")
+
+            tick_stream = await client.stream_ticks(interrupts=[di])
+            async for tick in tick_stream:
+                assert tick.pin_name == 'interrupt1'
+                assert tick.high is True
+                assert tick.time == 1000
+                break

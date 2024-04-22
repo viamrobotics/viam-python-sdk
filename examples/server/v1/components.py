@@ -19,7 +19,7 @@ from PIL import Image
 from viam.components.arm import Arm
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
-from viam.components.board import Board
+from viam.components.board import Board, TickStream
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -31,7 +31,7 @@ from viam.components.pose_tracker import PoseTracker
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.media import MediaStreamWithIterator
+from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import NamedImage
 from viam.operations import run_with_operation
@@ -158,7 +158,7 @@ class ExampleAudioInput(AudioInput):
 
                 await asyncio.sleep(self.latency.total_seconds())
 
-        return MediaStreamWithIterator(read())
+        return StreamWithIterator(read())
 
     async def get_properties(self) -> AudioInput.Properties:
         return AudioInput.Properties(
@@ -321,6 +321,11 @@ class ExampleBoard(Board):
         raise NotImplementedError()
 
     async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
+        raise NotImplementedError()
+
+    async def stream_ticks(
+        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
+    ) -> TickStream:
         raise NotImplementedError()
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:

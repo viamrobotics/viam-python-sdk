@@ -1,6 +1,8 @@
 from grpclib.server import Stream
+from h2.exceptions import StreamClosedError
 
-from viam.errors import MethodNotImplementedError, ResourceNotFoundError
+from viam.errors import ResourceNotFoundError
+from viam.logging import getLogger
 from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceBase,
@@ -33,6 +35,8 @@ from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
 from .board import Board
+
+LOGGER = getLogger(__name__)
 
 
 class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
@@ -208,4 +212,21 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         await stream.send_message(response)
 
     async def StreamTicks(self, stream: Stream[StreamTicksRequest, StreamTicksResponse]) -> None:
-        raise MethodNotImplementedError("StreamTicks").grpc_error
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        board = self.get_resource(name)
+
+        dis = []
+        for name in request.pin_names:
+            dis.append(await board.digital_interrupt_by_name(name))
+
+        tick_stream = await board.stream_ticks(interrupts=dis, metadata=stream.metadata)
+        async for tick in tick_stream:
+            try:
+                await stream.send_message(tick)
+            except StreamClosedError:
+                return
+            except Exception as e:
+                LOGGER.error(e)
+                return
