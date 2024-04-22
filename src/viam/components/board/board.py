@@ -398,7 +398,7 @@ class Board(ComponentBase):
     @abc.abstractmethod
     async def stream_ticks(
         self, interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
-    ) -> Stream[Tick]:
+    ) -> TickStream:
         """
         Stream digital interrupt ticks.
 
@@ -414,5 +414,8 @@ class Board(ComponentBase):
 
         Args:
             interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.
+
+        Returns:
+            TickStream: stream of ticks.
         """
         ...

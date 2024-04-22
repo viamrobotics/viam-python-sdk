@@ -29,11 +29,11 @@ from viam.proto.component.board import (
     StreamTicksResponse,
     WriteAnalogRequest,
 )
-from viam.streams import Stream, StreamWithIterator
+from viam.streams import StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
-from .board import Board, Tick
+from .board import Board, TickStream
 
 LOGGER = getLogger(__name__)
 
@@ -256,7 +256,7 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
         *,
         extra: Optional[Dict[str, Any]] = None,
         **__,
-    ) -> Stream[Tick]:
+    ) -> TickStream:
         if extra is None:
             extra = {}
         names = []
