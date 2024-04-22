@@ -19,7 +19,7 @@ from PIL import Image
 from viam.components.arm import Arm
 from viam.components.audio_input import AudioInput
 from viam.components.base import Base
-from viam.components.board import Board
+from viam.components.board import Board, TickStream
 from viam.components.camera import Camera
 from viam.components.encoder import Encoder
 from viam.components.gantry import Gantry
@@ -322,6 +322,11 @@ class ExampleBoard(Board):
 
     async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
         raise NotImplementedError()
+
+    async def stream_ticks(
+        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
+    ) -> TickStream:
+            raise NotImplementedError()
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:
         return GEOMETRIES
