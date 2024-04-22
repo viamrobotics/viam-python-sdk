@@ -230,8 +230,8 @@ class Motor(ComponentBase):
             print('Powered: ', powered)
 
         Returns:
-            bool: Indicates whether the motor is currently powered.
-            float: The current power percentage of the motor
+            Tuple[bool, float]: A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and
+                the second [1] value indicates the current power percentage of the motor.
         """
         ...
 

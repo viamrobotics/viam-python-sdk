@@ -111,7 +111,7 @@ class MLTrainingClient:
         Args:
             org_id (str): the id of the org to request training job data from.
             training_status (Optional[TrainingStatus]): status of training jobs to filter the list by.
-            If unspecified, all training jobs will be returned.
+                If unspecified, all training jobs will be returned.
 
         Returns:
             List[viam.proto.app.mltraining.TrainingJobMetadata]: a list of training job data.

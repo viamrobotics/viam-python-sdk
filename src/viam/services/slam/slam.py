@@ -62,7 +62,7 @@ class SLAM(ServiceBase):
 
         Returns:
             List[GetPointCloudMapResponse]: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
-                GetPointCloudMapResponse.point_cloud_pcd_chunk values
+            GetPointCloudMapResponse.point_cloud_pcd_chunk values.
         """
         ...
 
