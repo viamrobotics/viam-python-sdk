@@ -31,7 +31,7 @@ Classes
 .. py:class:: AudioInput(name: str)
 
 
-   Bases: :py:obj:`viam.components.component_base.ComponentBase`, :py:obj:`viam.media.MediaSource`\ [\ :py:obj:`viam.media.audio.Audio`\ ]
+   Bases: :py:obj:`viam.components.component_base.ComponentBase`, :py:obj:`viam.streams.StreamSource`\ [\ :py:obj:`viam.media.audio.Audio`\ ]
 
    AudioInput represents a component that can capture audio.
 
@@ -98,7 +98,7 @@ Classes
       Stream audio samples from the audio input of the underlying robot
 
       :returns: The stream of audio chunks
-      :rtype: MediaStream[Audio]
+      :rtype: Stream[Audio]
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **kwargs) -> Properties

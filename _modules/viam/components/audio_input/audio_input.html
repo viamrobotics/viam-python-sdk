@@ -96,7 +96,7 @@
 <span class="kn">from</span> <span class="nn">google.protobuf.duration_pb2</span> <span class="kn">import</span> <span class="n">Duration</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
-<span class="kn">from</span> <span class="nn">viam.media</span> <span class="kn">import</span> <span class="n">MediaSource</span>
+<span class="kn">from</span> <span class="nn">viam.streams</span> <span class="kn">import</span> <span class="n">StreamSource</span>
 <span class="kn">from</span> <span class="nn">viam.media.audio</span> <span class="kn">import</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">AudioStream</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="n">PropertiesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="n">Subtype</span>
@@ -104,7 +104,7 @@
 <span class="kn">from</span> <span class="nn">..component_base</span> <span class="kn">import</span> <span class="n">ComponentBase</span>
 
 
-<div class="viewcode-block" id="AudioInput"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput">[docs]</a><span class="k">class</span> <span class="nc">AudioInput</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">MediaSource</span><span class="p">[</span><span class="n">Audio</span><span class="p">]):</span>
+<div class="viewcode-block" id="AudioInput"><a class="viewcode-back" href="../../../../autoapi/viam/components/audio_input/index.html#viam.components.audio_input.audio_input.AudioInput">[docs]</a><span class="k">class</span> <span class="nc">AudioInput</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">,</span> <span class="n">StreamSource</span><span class="p">[</span><span class="n">Audio</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;AudioInput represents a component that can capture audio.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
@@ -157,7 +157,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Stream audio samples from the audio input of the underlying robot</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            MediaStream[Audio]: The stream of audio chunks</span>
+<span class="sd">            Stream[Audio]: The stream of audio chunks</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

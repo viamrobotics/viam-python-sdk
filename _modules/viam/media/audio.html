@@ -90,7 +90,7 @@
   <h1>Source code for viam.media.audio</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 
-<span class="kn">from</span> <span class="nn">viam.media.media</span> <span class="kn">import</span> <span class="n">MediaReader</span><span class="p">,</span> <span class="n">MediaStream</span>
+<span class="kn">from</span> <span class="nn">viam.streams</span> <span class="kn">import</span> <span class="n">Stream</span><span class="p">,</span> <span class="n">StreamReader</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.audioinput</span> <span class="kn">import</span> <span class="n">AudioChunk</span><span class="p">,</span> <span class="n">AudioChunkInfo</span>
 
 
@@ -102,8 +102,8 @@
     <span class="n">chunk</span><span class="p">:</span> <span class="n">AudioChunk</span></div>
 
 
-<span class="n">AudioReader</span> <span class="o">=</span> <span class="n">MediaReader</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
-<span class="n">AudioStream</span> <span class="o">=</span> <span class="n">MediaStream</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
+<span class="n">AudioReader</span> <span class="o">=</span> <span class="n">StreamReader</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
+<span class="n">AudioStream</span> <span class="o">=</span> <span class="n">Stream</span><span class="p">[</span><span class="n">Audio</span><span class="p">]</span>
 </pre></div>
 
            </div>

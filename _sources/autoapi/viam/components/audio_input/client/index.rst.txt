@@ -24,13 +24,13 @@ Classes
 
    gRPC client for the AudioInput component.
 
-   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.media.MediaStream[viam.media.audio.Audio]
+   .. py:method:: stream(*, timeout: Optional[float] = None, **__) -> viam.streams.Stream[viam.media.audio.Audio]
       :async:
 
       Stream audio samples from the audio input of the underlying robot
 
       :returns: The stream of audio chunks
-      :rtype: MediaStream[Audio]
+      :rtype: Stream[Audio]
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.audio_input.audio_input.AudioInput.Properties

@@ -89,8 +89,10 @@
              
   <h1>Source code for viam.components.board.service</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
+<span class="kn">from</span> <span class="nn">h2.exceptions</span> <span class="kn">import</span> <span class="n">StreamClosedError</span>
 
-<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">MethodNotImplementedError</span><span class="p">,</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ResourceNotFoundError</span>
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">GetGeometriesRequest</span><span class="p">,</span> <span class="n">GetGeometriesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.board</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BoardServiceBase</span><span class="p">,</span>
@@ -123,6 +125,8 @@
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">Board</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="BoardRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardRPCService">[docs]</a><span class="k">class</span> <span class="nc">BoardRPCService</span><span class="p">(</span><span class="n">BoardServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">Board</span><span class="p">]):</span>
@@ -298,7 +302,24 @@
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BoardRPCService.StreamTicks"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/service/index.html#viam.components.board.service.BoardRPCService.StreamTicks">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">StreamTicks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">StreamTicksRequest</span><span class="p">,</span> <span class="n">StreamTicksResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">MethodNotImplementedError</span><span class="p">(</span><span class="s2">&quot;StreamTicks&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">grpc_error</span></div></div>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">board</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">dis</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">pin_names</span><span class="p">:</span>
+            <span class="n">dis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="n">tick_stream</span> <span class="o">=</span> <span class="k">await</span> <span class="n">board</span><span class="o">.</span><span class="n">stream_ticks</span><span class="p">(</span><span class="n">interrupts</span><span class="o">=</span><span class="n">dis</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">stream</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">tick_stream</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">tick</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">StreamClosedError</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="k">return</span></div></div>
 </pre></div>
 
            </div>

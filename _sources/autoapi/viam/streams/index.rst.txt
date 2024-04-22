@@ -1,0 +1,88 @@
+:py:mod:`viam.streams`
+======================
+
+.. py:module:: viam.streams
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   viam.streams.Stream
+   viam.streams.StreamReader
+   viam.streams.StreamSource
+   viam.streams.StreamWithIterator
+
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.streams.StreamType
+
+
+.. py:data:: StreamType
+
+   
+
+.. py:class:: Stream
+
+
+   Bases: :py:obj:`Protocol`\ [\ :py:obj:`StreamType`\ ]
+
+   .. py:method:: next() -> StreamType
+      :async:
+
+
+   .. py:method:: __aiter__() -> collections.abc.AsyncIterator
+
+
+   .. py:method:: __anext__() -> StreamType
+      :async:
+
+
+
+.. py:class:: StreamReader
+
+
+   Bases: :py:obj:`Protocol`\ [\ :py:obj:`StreamType`\ ]
+
+   .. py:method:: read() -> StreamType
+      :async:
+
+
+
+.. py:class:: StreamSource
+
+
+   Bases: :py:obj:`Protocol`\ [\ :py:obj:`StreamType`\ ]
+
+   .. py:method:: stream() -> Stream[StreamType]
+      :async:
+
+
+
+.. py:class:: StreamWithIterator(stream: collections.abc.AsyncIterator[StreamType])
+
+
+   Bases: :py:obj:`Stream`\ [\ :py:obj:`StreamType`\ ]
+
+   .. py:method:: next() -> StreamType
+      :async:
+
+
+   .. py:method:: __aiter__()
+
+
+   .. py:method:: __anext__() -> StreamType
+      :async:
+
+
+

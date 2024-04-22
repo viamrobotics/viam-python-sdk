@@ -92,8 +92,9 @@
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.duration_pb2</span> <span class="kn">import</span> <span class="n">Duration</span>
-<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
+<span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span> <span class="k">as</span> <span class="n">ClientStream</span>
 
+<span class="kn">from</span> <span class="nn">viam.logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">BoardStatus</span><span class="p">,</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">Geometry</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.board</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">BoardServiceStub</span><span class="p">,</span>
@@ -114,12 +115,17 @@
     <span class="n">SetPWMRequest</span><span class="p">,</span>
     <span class="n">StatusRequest</span><span class="p">,</span>
     <span class="n">StatusResponse</span><span class="p">,</span>
+    <span class="n">StreamTicksRequest</span><span class="p">,</span>
+    <span class="n">StreamTicksResponse</span><span class="p">,</span>
     <span class="n">WriteAnalogRequest</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.streams</span> <span class="kn">import</span> <span class="n">StreamWithIterator</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">get_geometries</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Board</span>
+<span class="kn">from</span> <span class="nn">.board</span> <span class="kn">import</span> <span class="n">Board</span><span class="p">,</span> <span class="n">TickStream</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="AnalogReaderClient"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.AnalogReaderClient">[docs]</a><span class="k">class</span> <span class="nc">AnalogReaderClient</span><span class="p">(</span><span class="n">Board</span><span class="o">.</span><span class="n">AnalogReader</span><span class="p">):</span>
@@ -332,7 +338,33 @@
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">WriteAnalogRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">pin</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">WriteAnalog</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div></div>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">WriteAnalog</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BoardClient.stream_ticks"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/client/index.html#viam.components.board.client.BoardClient.stream_ticks">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">stream_ticks</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">interrupts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Board</span><span class="o">.</span><span class="n">DigitalInterrupt</span><span class="p">],</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">__</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TickStream</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">di</span> <span class="ow">in</span> <span class="n">interrupts</span><span class="p">:</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">di</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">StreamTicksRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pin_names</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">))</span>
+
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
+            <span class="n">tick_stream</span><span class="p">:</span> <span class="n">ClientStream</span><span class="p">[</span><span class="n">StreamTicksRequest</span><span class="p">,</span> <span class="n">StreamTicksResponse</span><span class="p">]</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">StreamTicks</span><span class="o">.</span><span class="n">open</span><span class="p">()</span> <span class="k">as</span> <span class="n">tick_stream</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">await</span> <span class="n">tick_stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">async</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">tick_stream</span><span class="p">:</span>
+                        <span class="k">yield</span> <span class="n">tick</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">StreamWithIterator</span><span class="p">(</span><span class="n">read</span><span class="p">())</span></div></div>
 </pre></div>
 
            </div>
