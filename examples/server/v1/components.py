@@ -314,9 +314,7 @@ class ExampleBoard(Board):
     async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
         raise NotImplementedError()
 
-    async def stream_ticks(
-        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
-    ) -> TickStream:
+    async def stream_ticks(self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream:
         raise NotImplementedError()
 
     async def get_geometries(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> List[Geometry]:

@@ -26,7 +26,7 @@ async def create_status(component: Board) -> Status:
         val = await digital_interrupt.value()
         digital_interrupts[y] = DigitalInterruptStatus(value=val)
 
-    s = BoardStatus(analogs=None, digital_interrupts=None)
+    s = BoardStatus(analogs=analogs, digital_interrupts=digital_interrupts)
     return Status(name=Board.get_resource_name(component.name), status=message_to_struct(s))
 
 

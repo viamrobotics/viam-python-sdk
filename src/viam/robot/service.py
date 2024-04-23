@@ -31,6 +31,8 @@ from viam.proto.robot import (
     ResourceNamesResponse,
     ResourceRPCSubtypesRequest,
     ResourceRPCSubtypesResponse,
+    RestartModuleRequest,
+    RestartModuleResponse,
     RobotServiceBase,
     SendSessionHeartbeatRequest,
     SendSessionHeartbeatResponse,
@@ -86,6 +88,9 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
         if resource_names:
             statuses = [s for s in statuses if s.name in resource_names]
         return statuses
+
+    async def RestartModule(self, stream: Stream[RestartModuleRequest, RestartModuleResponse]) -> None:
+        return None
 
     async def ResourceNames(self, stream: Stream[ResourceNamesRequest, ResourceNamesResponse]) -> None:
         request = await stream.recv_message()

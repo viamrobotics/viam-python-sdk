@@ -365,9 +365,7 @@ class MockBoard(Board):
         self.analog_write_pin = pin
         self.analog_write_value = value
 
-    async def stream_ticks(
-        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
-    ):
+    async def stream_ticks(self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs):
         async def read() -> AsyncIterator[Tick]:
             yield Tick(pin_name=interrupts[0].name, high=True, time=1000)
 

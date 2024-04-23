@@ -116,15 +116,15 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
         status = await create_status(board)
-        analogs, digitals = {}, {}
-        for x in board.analog_readers:
-            val = await board.analog_readers[x].read()
-            analogs[x] = AnalogStatus(value=val)
-        for y in board.digital_interrupts:
-            val = await board.digital_interrupts[y].value()
-            digitals[y] = DigitalInterruptStatus(value=val)
+        read = await board.analog_readers["reader1"].read()
+        val = await board.digital_interrupts["interrupt1"].value()
         assert status.name == MockBoard.get_resource_name(board.name)
-        assert status.status == message_to_struct(BoardStatus(analogs=analogs, digital_interrupts=digitals))
+        assert status.status == message_to_struct(
+            BoardStatus(
+                analogs={"reader1": AnalogStatus(value=int(read))},
+                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=val)},
+            )
+        )
 
     @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard):
