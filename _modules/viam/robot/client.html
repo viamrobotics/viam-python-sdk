@@ -722,7 +722,7 @@
 <span class="sd">            await robot.cancel_operation(&quot;INSERT OPERATION ID&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): ID of operation to kill.</span>
+<span class="sd">            id (str): ID of operation to cancel.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelOperationRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">CancelOperation</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
@@ -778,6 +778,8 @@
 <span class="sd">            query (viam.proto.common.PoseInFrame): The pose that should be transformed.</span>
 <span class="sd">            destination (str) : The name of the reference frame to transform the given pose to.</span>
 
+<span class="sd">        Returns:</span>
+<span class="sd">            PoseInFrame: The pose and the reference frame for the new destination.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">TransformPoseRequest</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">destination</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span> <span class="n">supplemental_transforms</span><span class="o">=</span><span class="n">additional_transforms</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">TransformPoseResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">TransformPose</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -812,6 +814,8 @@
 
 <span class="sd">            queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.</span>
 
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Discovery]: A list of discovered component configurations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DiscoverComponentsRequest</span><span class="p">(</span><span class="n">queries</span><span class="o">=</span><span class="n">queries</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DiscoverComponentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">DiscoverComponents</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
@@ -857,7 +861,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): The logger&#39;s name.</span>
 <span class="sd">            level (str): The level of the log.</span>
-<span class="sd">            time (str): The log creation time.</span>
+<span class="sd">            time (datetime): The log creation time.</span>
 <span class="sd">            log (str): The log message.</span>
 <span class="sd">            stack (str): The stack information of the log.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

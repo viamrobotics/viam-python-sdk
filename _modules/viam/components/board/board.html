@@ -373,7 +373,7 @@
 <span class="sd">            name (str): Name of the digital interrupt.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            DigitalInterrupt: the digital interrupt.</span>
+<span class="sd">            DigitalInterrupt: The digital interrupt.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -393,7 +393,7 @@
 <span class="sd">            name (str): Name of the GPIO pin.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            GPIOPin: the pin.</span>
+<span class="sd">            GPIOPin: The pin.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -410,7 +410,7 @@
 <span class="sd">            names = await my_board.analog_reader_names()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The names of the analog readers..</span>
+<span class="sd">            List[str]: The list of names of all known analog readers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -444,7 +444,7 @@
 <span class="sd">            status = await my_board.status()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            viam.proto.common.BoardStatus: the status.</span>
+<span class="sd">            viam.proto.common.BoardStatus: The status.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -463,7 +463,7 @@
 <span class="sd">            status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            mode: the desired power mode</span>
+<span class="sd">            mode (PowerMode): The desired power mode.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -480,8 +480,8 @@
 <span class="sd">            await my_board.write_analog(pin=&quot;11&quot;, value=48)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            pin (str): name of the pin.</span>
-<span class="sd">            value (int): value to write.</span>
+<span class="sd">            pin (str): The name of the pin.</span>
+<span class="sd">            value (int): The value to write.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

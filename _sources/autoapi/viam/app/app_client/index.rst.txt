@@ -445,10 +445,8 @@ Attributes
 
           member_list, invite_list = await cloud.list_organization_members()
 
-      :returns:
-
-                A tuple containing two lists; the first
-                    [0] of organization members, and the second [1] of organization invites.
+      :returns: A tuple containing two lists; the first
+                [0] of organization members, and the second [1] of organization invites.
       :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
 
 
@@ -468,11 +466,10 @@ Attributes
                              be granted.
       :type authorizations: Optional[List[viam.proto.app.Authorization]]
       :param send_email_invite: Whether or not an email should be sent to the recipient of an invite.
+                                The user must accept the email to be added to the associated authorizations.
+                                When set to false, the user automatically receives the associated authorization
+                                on the next login of the user with the associated email address.
       :type send_email_invite: Optional[bool]
-      :param The user must accept the email to be added to the associated authorizations.:
-      :param When set to false:
-      :param the user automatically receives the associated authorization:
-      :param on the next login of the user with the associated email address.:
 
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
@@ -1121,23 +1118,20 @@ Attributes
 
       Get a fragment.
 
-              ::
+      ::
 
-                  # Get a fragment and print its name and when it was created.
-                  the_fragment = await cloud.get_fragment(
-                      fragment_id="12a12ab1-1234-5678-abcd-abcd01234567")
-                  print("Name: ", the_fragment.name, "
-      Created on: ", the_fragment.created_on)
+          # Get a fragment and print its name and when it was created.
+          the_fragment = await cloud.get_fragment(
+              fragment_id="12a12ab1-1234-5678-abcd-abcd01234567")
+          print("Name: ", the_fragment.name, "\nCreated on: ", the_fragment.created_on)
 
-              Args:
-                  fragment_id (str): ID of the fragment to get.
+      :param fragment_id: ID of the fragment to get.
+      :type fragment_id: str
 
-              Raises:
-                  GRPCError: If an invalid fragment ID is passed.
+      :raises GRPCError: If an invalid fragment ID is passed.
 
-              Returns:
-                  viam.app.app_client.Fragment: The fragment.
-
+      :returns: The fragment.
+      :rtype: viam.app.app_client.Fragment
 
 
    .. py:method:: create_fragment(name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment
@@ -1190,7 +1184,7 @@ Attributes
       :rtype: viam.app.app_client.Fragment
 
 
-   .. py:method:: delete_fragment(fragment_id) -> None
+   .. py:method:: delete_fragment(fragment_id: str) -> None
       :async:
 
       Delete a fragment.
@@ -1450,7 +1444,8 @@ Attributes
       :param id: the ID of the API key to duplication authorizations from
       :type id: str
 
-      :returns: Tuple[str, str] The API key and API key id
+      :returns: The API key and API key id
+      :rtype: Tuple[str, str]
 
 
    .. py:method:: list_keys() -> List[viam.proto.app.APIKeyWithAuthorizations]

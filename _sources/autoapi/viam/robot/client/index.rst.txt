@@ -368,7 +368,7 @@ Attributes
 
           await robot.cancel_operation("INSERT OPERATION ID")
 
-      :param id: ID of operation to kill.
+      :param id: ID of operation to cancel.
       :type id: str
 
 
@@ -415,6 +415,9 @@ Attributes
       :param destination: The name of the reference frame to transform the given pose to.
       :type destination: str
 
+      :returns: The pose and the reference frame for the new destination.
+      :rtype: PoseInFrame
+
 
    .. py:method:: transform_point_cloud()
       :abstractmethod:
@@ -439,6 +442,9 @@ Attributes
 
       :param queries: The list of component models to lookup configurations for.
       :type queries: List[viam.proto.robot.DiscoveryQuery]
+
+      :returns: A list of discovered component configurations.
+      :rtype: List[Discovery]
 
 
    .. py:method:: stop_all(extra: Dict[viam.proto.common.ResourceName, Dict[str, Any]] = {})
@@ -472,7 +478,7 @@ Attributes
       :param level: The level of the log.
       :type level: str
       :param time: The log creation time.
-      :type time: str
+      :type time: datetime
       :param log: The log message.
       :type log: str
       :param stack: The stack information of the log.

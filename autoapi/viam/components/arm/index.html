@@ -429,11 +429,11 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul class="simple">
-<li><p>KinematicsFileFormat.ValueType:
-The format of the file, either in URDF format or Viam’s kinematic parameter format (spatial vector algebra).</p></li>
-<li><p>bytes: The byte contents of the file.</p></li>
-</ul>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A tuple containing two values; the first [0] value represents the format of the</dt><dd><p>file, either in URDF format or Viam’s kinematic parameter format (spatial vector algebra), and the second [1] value
+represents the byte contents of the file.</p>
+</dd>
+</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -518,6 +518,12 @@ The format of the file, either in URDF format or Viam’s kinematic parameter fo
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

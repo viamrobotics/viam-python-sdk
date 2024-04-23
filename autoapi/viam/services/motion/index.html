@@ -317,7 +317,7 @@ originating ReferenceFrame’s name. Then pass in the resource name into <code c
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.ResourceName" title="viam.proto.common.ResourceName"><em>viam.proto.common.ResourceName</em></a>) – Name of a component on a given robot.</p></li>
 <li><p><strong>destination</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.PoseInFrame" title="viam.proto.common.PoseInFrame"><em>viam.proto.common.PoseInFrame</em></a>) – The destination to move to, expressed as a <code class="docutils literal notranslate"><span class="pre">Pose</span></code> and the frame in which it was
 observed.</p></li>
-<li><p><strong>world_state</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><em>viam.proto.common.WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any contraints
+<li><p><strong>world_state</strong> (<a class="reference internal" href="../../proto/common/index.html#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><em>viam.proto.common.WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any constraints
 expressed in the WorldState message.</p></li>
 <li><p><strong>constraints</strong> (<a class="reference internal" href="../../proto/service/motion/index.html#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><em>viam.proto.service.motion.Constraints</em></a>) – When supplied, the motion service will create a plan that obeys any
 specified constraints</p></li>
@@ -338,8 +338,8 @@ specified constraints</p></li>
 <dd><p>Move a component to a specific latitude and longitude, using a <code class="docutils literal notranslate"><span class="pre">MovementSensor</span></code> to check the location.</p>
 <p><code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> is non blocking, meaning the motion service will move the component to the destination
 GPS point after <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> returns.</p>
-<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call retuns a unique ExectionID which you can use to identify all plans
-generated durring the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call.</p>
+<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call returns a unique ExecutionID which you can use to identify all plans
+generated during the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_globe()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
@@ -361,29 +361,31 @@ generated durring the <code class="docutils literal notranslate"><span class="pr
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the base to move.</p></li>
-<li><p><strong>destination</strong> (<a class="reference internal" href="../../components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint" title="viam.components.movement_sensor.GeoPoint"><em>GeoPoint</em></a>) – The location of the component’s destination, represented in geographic notation as a</p></li>
-<li><p><strong>GeoPoint</strong> (<em>lat</em><em>, </em><em>lng</em>) – </p></li>
-<li><p><strong>movement_sensor_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the movement sensor that you want to use to check</p></li>
-<li><p><strong>location.</strong> (<em>the machine’s</em>) – </p></li>
-<li><p><strong>obstacles</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><em>GeoObstacle</em></a><em>]</em><em>]</em>) – Obstacles to consider when planning the motion of the component,</p></li>
-<li><p><strong>GeoObstacle.</strong> (<em>with each represented as a</em>) – <ul>
-<li><p>Default: None</p></li>
+<li><p><strong>destination</strong> (<a class="reference internal" href="../../components/movement_sensor/index.html#viam.components.movement_sensor.GeoPoint" title="viam.components.movement_sensor.GeoPoint"><em>GeoPoint</em></a>) – The location of the component’s destination, represented in geographic notation as a
+GeoPoint (lat, lng).</p></li>
+<li><p><strong>movement_sensor_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the movement sensor that you want to use to check
+the machine’s location.</p></li>
+<li><p><strong>obstacles</strong> (<em>Optional</em><em>[</em><em>Sequence</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.GeoObstacle" title="viam.gen.common.v1.common_pb2.GeoObstacle"><em>GeoObstacle</em></a><em>]</em><em>]</em>) – Obstacles to consider when planning the motion of the component,
+with each represented as a GeoObstacle. Default: None</p></li>
+<li><p><strong>heading</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – The compass heading, in degrees, that the machine’s movement sensor should report
+at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</p></li>
+<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#viam.services.motion.MotionConfiguration" title="viam.services.motion.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this
+motion service. This parameter and each of its fields are optional.
+- obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</p>
+<blockquote>
+<div><p>you want to use for transient obstacle avoidance.</p>
+</div></blockquote>
+<ul>
+<li><p>position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</p></li>
+<li><p>obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</p></li>
+<li><p>plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</p></li>
+<li><p>linear_m_per_sec (float): Linear velocity this machine should target when moving.</p></li>
+<li><p>angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
 </ul>
 </p></li>
-<li><p><strong>heading</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – The compass heading, in degrees, that the machine’s movement sensor should report</p></li>
-<li><p><strong>point.</strong> (<em>at the destination</em>) – Range: [0-360) 0: North, 90: East, 180: South, 270: West
-Default: None</p></li>
-<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#viam.services.motion.MotionConfiguration" title="viam.services.motion.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – The configuration you want to set across this machine for this</p></li>
-<li><p><strong>optional.</strong> (<em>motion service. This parameter and each</em><em> of </em><em>its fields are</em>) – obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
-you want to use for transient obstacle avoidance.
-position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
-plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
-linear_m_per_sec (float): Linear velocity this machine should target when moving.
-angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
 <li><p><strong>extra</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Extra options to pass to the underlying RPC call.</p></li>
-<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing</p></li>
-<li><p><strong>call.</strong> (<em>the underlying RPC</em>) – </p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing
+the underlying RPC call.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -401,8 +403,8 @@ angular_degs_per_sec (float): Angular velocity this machine should target when t
 <dd><p>Move a component to a specific pose, using a <code class="docutils literal notranslate"><span class="pre">SlamService</span></code> for the SLAM map, using a <code class="docutils literal notranslate"><span class="pre">SLAM</span> <span class="pre">Service</span></code> to check the location.</p>
 <p><code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> is non blocking, meaning the motion service will move the component to the destination
 Pose point after <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> returns.</p>
-<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call retuns a unique ExectionID which you can use to identify all plans
-generated durring the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
+<p>Each successful <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call returns a unique ExecutionID which you can use to identify all plans
+generated during the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call.</p>
 <p>You can monitor the progress of the <code class="docutils literal notranslate"><span class="pre">move_on_map()</span></code> call by querying <code class="docutils literal notranslate"><span class="pre">get_plan()</span></code> and <code class="docutils literal notranslate"><span class="pre">list_plan_statuses()</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">motion</span> <span class="o">=</span> <span class="n">MotionClient</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;builtin&quot;</span><span class="p">)</span>
 
@@ -426,18 +428,24 @@ generated durring the <code class="docutils literal notranslate"><span class="pr
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the base to move.</p></li>
 <li><p><strong>destination</strong> (<a class="reference internal" href="../../components/arm/index.html#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination, which can be any Pose with respect to the SLAM map’s origin.</p></li>
 <li><p><strong>slam_service_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the SLAM service from which the SLAM map is requested.</p></li>
-<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#viam.services.motion.MotionConfiguration" title="viam.services.motion.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – The configuration you want to set across this machine for this motion service.</p></li>
-<li><p><strong>optional.</strong> (<em>This parameter and each</em><em> of </em><em>its fields are</em>) – obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
-for transient obstacle avoidance.
-position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
-plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
-linear_m_per_sec (float): Linear velocity this machine should target when moving.
-angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
+<li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#viam.services.motion.MotionConfiguration" title="viam.services.motion.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this motion service.
+This parameter and each of its fields are optional.
+- obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</p>
+<blockquote>
+<div><p>for transient obstacle avoidance.</p>
+</div></blockquote>
+<ul>
+<li><p>position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</p></li>
+<li><p>obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</p></li>
+<li><p>plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</p></li>
+<li><p>linear_m_per_sec (float): Linear velocity this machine should target when moving.</p></li>
+<li><p>angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
+</ul>
+</p></li>
 <li><p><strong>obstacles</strong> (<em>Optional</em><em>[</em><em>Iterable</em><em>[</em><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Geometry" title="viam.gen.common.v1.common_pb2.Geometry"><em>Geometry</em></a><em>]</em><em>]</em>) – Obstacles to be considered for motion planning.</p></li>
 <li><p><strong>extra</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Extra options to pass to the underlying RPC call.</p></li>
-<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying</p></li>
-<li><p><strong>call.</strong> (<em>RPC</em>) – </p></li>
+<li><p><strong>timeout</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
+RPC call.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -463,9 +471,6 @@ angular_degs_per_sec (float): Angular velocity this machine should target when t
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>component_name</strong> (<a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component to stop</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -634,6 +639,12 @@ calculating pose.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

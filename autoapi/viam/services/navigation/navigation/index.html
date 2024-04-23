@@ -183,15 +183,12 @@ to get to a destination waypoint, in the machine’s motion planning.</p>
 before calling a time-out and closing the underlying RPC call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>An array comprised of Paths, where each path is either a user-provided destination or</dt><dd><p>a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
+<dd class="field-even"><p>An array comprised of Paths, where each path is either a user-provided destination or
+a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
 reach the specified destination or Waypoint.</p>
 </dd>
-</dl>
-</p>
-</dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path">navigation.Path</a>])</p>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Path" title="viam.proto.service.navigation.Path">navigation.Path</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -212,14 +209,11 @@ reach the specified destination or Waypoint.</p>
 before calling a time-out and closing the underlying RPC call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>The current location of the robot in the navigation service,</dt><dd><p>represented in a GeoPoint with latitude and longitude values.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>The current location of the robot in the navigation service,
+represented in a GeoPoint with latitude and longitude values.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(<a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint">navigation.GeoPoint</a>)</p>
+<dd class="field-odd"><p><a class="reference internal" href="../index.html#viam.services.navigation.GeoPoint" title="viam.services.navigation.GeoPoint">navigation.GeoPoint</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -243,14 +237,11 @@ in addition to the obstacles that are configured as a part of the service.</p>
 before calling a time-out and closing the underlying RPC call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A list comprised of each GeoObstacle in the service’s data storage.</dt><dd><p>These are objects designated for the robot to avoid when navigating.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>A list comprised of each GeoObstacle in the service’s data storage.
+These are objects designated for the robot to avoid when navigating.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle">navigation.GeoObstacle</a>])</p>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle">navigation.GeoObstacle</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -272,14 +263,11 @@ These are locations designated within a path for the robot to navigate to.</p>
 before calling a time-out and closing the underlying RPC call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>An array comprised of each Waypoint in the service’s data storage.</dt><dd><p>These are locations designated within a path for the robot to navigate to.</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>An array comprised of each Waypoint in the service’s data storage.
+These are locations designated within a path for the robot to navigate to.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>(List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint">navigation.Waypoint</a>])</p>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../../../proto/service/navigation/index.html#viam.proto.service.navigation.Waypoint" title="viam.proto.service.navigation.Waypoint">navigation.Waypoint</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -484,6 +472,12 @@ before calling a time-out and closing the underlying RPC call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

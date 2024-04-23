@@ -100,9 +100,8 @@ Attributes
       :param org_id: the id of the org to request training job data from.
       :type org_id: str
       :param training_status: status of training jobs to filter the list by.
+                              If unspecified, all training jobs will be returned.
       :type training_status: Optional[TrainingStatus]
-      :param If unspecified:
-      :param all training jobs will be returned.:
 
       :returns: a list of training job data.
       :rtype: List[viam.proto.app.mltraining.TrainingJobMetadata]

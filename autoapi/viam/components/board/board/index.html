@@ -491,7 +491,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the digital interrupt.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the digital interrupt.</p>
+<dd class="field-even"><p>The digital interrupt.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.board.Board.DigitalInterrupt" title="viam.components.board.board.Board.DigitalInterrupt">DigitalInterrupt</a></p>
@@ -514,7 +514,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the GPIO pin.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the pin.</p>
+<dd class="field-even"><p>The pin.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference internal" href="#viam.components.board.board.Board.GPIOPin" title="viam.components.board.board.Board.GPIOPin">GPIOPin</a></p>
@@ -534,7 +534,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The names of the analog readers..</p>
+<dd class="field-odd"><p>The list of names of all known analog readers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>List[str]</p>
@@ -574,7 +574,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the status.</p>
+<dd class="field-odd"><p>The status.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.BoardStatus" title="viam.proto.common.BoardStatus">viam.proto.common.BoardStatus</a></p>
@@ -594,7 +594,7 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mode</strong> – the desired power mode</p>
+<dd class="field-odd"><p><strong>mode</strong> (<a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.PowerMode" title="viam.gen.component.board.v1.board_pb2.PowerMode"><em>PowerMode</em></a>) – The desired power mode.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -612,8 +612,8 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pin</strong> (<em>str</em>) – name of the pin.</p></li>
-<li><p><strong>value</strong> (<em>int</em>) – value to write.</p></li>
+<li><p><strong>pin</strong> (<em>str</em>) – The name of the pin.</p></li>
+<li><p><strong>value</strong> (<em>int</em>) – The value to write.</p></li>
 </ul>
 </dd>
 </dl>
@@ -720,6 +720,12 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

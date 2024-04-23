@@ -255,15 +255,10 @@ If a sensor is not configured to have a measurement or fails to read a piece of 
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><p>The readings for the PowerSensor:
-{</p>
-<blockquote>
-<div><p>voltage: float
-current: float
-is_ac: bool
-power: float</p>
-</div></blockquote>
-<p>}</p>
+<dd class="field-odd"><p><dl class="simple">
+<dt>The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in</dt><dd><p>amperes (float), is_ac (bool), and power in watts (float).</p>
+</dd>
+</dl>
 </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -348,6 +343,12 @@ power: float</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

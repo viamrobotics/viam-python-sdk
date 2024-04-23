@@ -300,7 +300,7 @@ Attributes
       :param name: Name of the digital interrupt.
       :type name: str
 
-      :returns: the digital interrupt.
+      :returns: The digital interrupt.
       :rtype: DigitalInterrupt
 
 
@@ -320,7 +320,7 @@ Attributes
       :param name: Name of the GPIO pin.
       :type name: str
 
-      :returns: the pin.
+      :returns: The pin.
       :rtype: GPIOPin
 
 
@@ -337,7 +337,7 @@ Attributes
           # Get the name of every AnalogReader configured on the board.
           names = await my_board.analog_reader_names()
 
-      :returns: The names of the analog readers..
+      :returns: The list of names of all known analog readers.
       :rtype: List[str]
 
 
@@ -371,7 +371,7 @@ Attributes
           # Get the current status of the board.
           status = await my_board.status()
 
-      :returns: the status.
+      :returns: The status.
       :rtype: viam.proto.common.BoardStatus
 
 
@@ -388,7 +388,8 @@ Attributes
           # Set the power mode of the board to OFFLINE_DEEP.
           status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)
 
-      :param mode: the desired power mode
+      :param mode: The desired power mode.
+      :type mode: PowerMode
 
 
    .. py:method:: write_analog(pin: str, value: int, *, timeout: Optional[float] = None, **kwargs)
@@ -404,9 +405,9 @@ Attributes
           # Set pin 11 to value 48.
           await my_board.write_analog(pin="11", value=48)
 
-      :param pin: name of the pin.
+      :param pin: The name of the pin.
       :type pin: str
-      :param value: value to write.
+      :param value: The value to write.
       :type value: int
 
 
@@ -496,6 +497,9 @@ Attributes
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation

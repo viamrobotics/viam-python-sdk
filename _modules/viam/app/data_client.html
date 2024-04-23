@@ -291,7 +291,7 @@
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[Mapping[str, Any]]: The tabular data.</span>
+<span class="sd">            List[TabularData]: The tabular data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -345,13 +345,13 @@
 <span class="sd">                to true (i.e., both the files&#39; data and metadata are returned).</span>
 <span class="sd">            num_files (Optional[str]): Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.</span>
 <span class="sd">                Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,</span>
-<span class="sd">                    whichever comes first.</span>
+<span class="sd">                whichever comes first.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            ValueError: If `num_files` is less than 0.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[bytes]: The binary data.</span>
+<span class="sd">            List[BinaryData]: The binary data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">num_files</span> <span class="o">=</span> <span class="n">num_files</span> <span class="k">if</span> <span class="n">num_files</span> <span class="k">else</span> <span class="mi">10</span> <span class="k">if</span> <span class="n">include_file_data</span> <span class="k">else</span> <span class="mi">100</span>
         <span class="k">if</span> <span class="n">num_files</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -428,7 +428,7 @@
 <span class="sd">            GRPCError: If no `BinaryID` objects are provided.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[bytes]: The binary data.</span>
+<span class="sd">            List[BinaryData]: The binary data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -457,6 +457,9 @@
 <span class="sd">            organization_id (str): ID of organization to delete data from.</span>
 <span class="sd">            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`</span>
 <span class="sd">                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of items deleted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteTabularDataRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="o">=</span><span class="n">delete_older_than_days</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DeleteTabularDataResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">DeleteTabularData</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -479,6 +482,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to</span>
 <span class="sd">                all data being deleted. Exercise caution when using this option.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            int: The number of items deleted.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
@@ -610,7 +616,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.</span>
-<span class="sd">            file_ids (List[str]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.</span>
+<span class="sd">            binary_ids (List[BinaryID]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no binary_ids or tags are provided.</span>
@@ -804,13 +810,6 @@
 <div class="viewcode-block" id="DataClient.create_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new dataset.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            name (str): The name of the dataset being created.</span>
-<span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            str: The dataset ID of the created dataset.</span>
-
 <span class="sd">        ::</span>
 
 <span class="sd">            name = await data_client.create_dataset(</span>
@@ -818,6 +817,13 @@
 <span class="sd">                organization_id=&quot;&lt;your-org-id&gt;&quot;</span>
 <span class="sd">            )</span>
 <span class="sd">            print(name)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The name of the dataset being created.</span>
+<span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The dataset ID of the created dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateDatasetRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateDatasetResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">CreateDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -826,18 +832,18 @@
 <div class="viewcode-block" id="DataClient.list_dataset_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_dataset_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_dataset_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of datasets using their IDs.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            ids (List[str]): The IDs of the datasets being called for.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Sequence[Dataset]: The list of datasets.</span>
-
 <span class="sd">        ::</span>
 
 <span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
 <span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ids (List[str]): The IDs of the datasets being called for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Sequence[Dataset]: The list of datasets.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByIDsRequest</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="n">ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -847,18 +853,18 @@
 <div class="viewcode-block" id="DataClient.list_datasets_by_organization_id"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.list_datasets_by_organization_id">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_datasets_by_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dataset</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the datasets in an organization.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            organization_id (str): The ID of the organization.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
-
 <span class="sd">        ::</span>
 
 <span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
 <span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListDatasetsByOrganizationIDRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListDatasetsByOrganizationIDResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">ListDatasetsByOrganizationID</span><span class="p">(</span>
@@ -870,16 +876,16 @@
 <div class="viewcode-block" id="DataClient.rename_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.rename_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">rename_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Rename a dataset specified by the dataset ID.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset.</span>
-<span class="sd">            name (str): The new name of the dataset.</span>
-
 <span class="sd">        ::</span>
 
 <span class="sd">            await data_client.rename_dataset(</span>
 <span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;,</span>
 <span class="sd">                name=&quot;&lt;dataset-name&gt;&quot;</span>
 <span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the dataset.</span>
+<span class="sd">            name (str): The new name of the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RenameDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">RenameDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -887,14 +893,14 @@
 <div class="viewcode-block" id="DataClient.delete_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a dataset.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            id (str): The ID of the dataset.</span>
-
 <span class="sd">        ::</span>
 
 <span class="sd">            await data_client.delete_dataset(</span>
 <span class="sd">                id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
 <span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the dataset.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteDatasetRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_client</span><span class="o">.</span><span class="n">DeleteDataset</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -903,10 +909,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the BinaryData to the provided dataset.</span>
 
 <span class="sd">        This BinaryData will be tagged with the VIAM_DATASET_{id} label.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.</span>
-<span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
 
 <span class="sd">        ::</span>
 
@@ -931,6 +933,10 @@
 <span class="sd">                binary_ids=my_binary_ids,</span>
 <span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
 <span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddBinaryDataToDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -939,10 +945,6 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove the BinaryData from the provided dataset.</span>
 
 <span class="sd">        This BinaryData will lose the VIAM_DATASET_{id} tag.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.</span>
-<span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
 
 <span class="sd">        ::</span>
 
@@ -967,6 +969,10 @@
 <span class="sd">                binary_ids=my_binary_ids,</span>
 <span class="sd">                dataset_id=&quot;abcd-1234xyz-8765z-123abc&quot;</span>
 <span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.</span>
+<span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBinaryDataFromDatasetByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -1021,6 +1027,9 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the file_id of the uploaded data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
             <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
@@ -1089,15 +1098,16 @@
 <span class="sd">            tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.</span>
 <span class="sd">            data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing</span>
 <span class="sd">                `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.</span>
-
-
-<span class="sd">        Passing a list of tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the same</span>
-<span class="sd">        metadata.</span>
+<span class="sd">                Passing a list of tabular data and Timestamps with length n &gt; 1 will result in n datapoints being uploaded, all tied to the</span>
+<span class="sd">                same metadata.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 <span class="sd">            ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular</span>
 <span class="sd">                data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the file_id of the uploaded data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
@@ -1169,7 +1179,6 @@
 <span class="sd">                data_request_times=[(time_requested, time_received)],</span>
 <span class="sd">                tags=[&quot;tag_1&quot;, &quot;tag_2&quot;]</span>
 <span class="sd">            )</span>
-
 
 <span class="sd">        Args:</span>
 <span class="sd">            data (bytes): the data to be uploaded.</span>

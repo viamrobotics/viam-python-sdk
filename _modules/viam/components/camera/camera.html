@@ -170,12 +170,8 @@
 <span class="sd">            timestamp = metadata.captured_at</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[List[NamedImage], ResponseMetadata]:</span>
-<span class="sd">                - List[NamedImage]:</span>
-<span class="sd">                  The list of images returned from the camera system.</span>
-
-<span class="sd">                - ResponseMetadata:</span>
-<span class="sd">                  The metadata associated with this response</span>
+<span class="sd">            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images returned from the</span>
+<span class="sd">                camera system, and the second [1] the metadata associated with this response.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -205,8 +201,8 @@
 <span class="sd">            points = np.asarray(pcd.points)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bytes: The pointcloud data.</span>
-<span class="sd">            str: The mimetype of the pointcloud (e.g. PCD).</span>
+<span class="sd">            Tuple[bytes, str]: A tuple containing two values; the first [0] the pointcloud data, and the second [1] the mimetype of the</span>
+<span class="sd">                pointcloud (e.g. PCD).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

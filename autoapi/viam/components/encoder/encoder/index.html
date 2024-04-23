@@ -220,14 +220,14 @@ The position will be either in relative units (ticks away from a zero position) 
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><dl class="simple">
-<dt>Position of the encoder which can either be ticks since last zeroing</dt><dd><p>for a relative encoder or degrees for an absolute encoder.</p>
+<dt>A tuple containing two values; the first [0] the Position of the encoder which can either be</dt><dd><p>ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
+position the encoder returns (ticks or degrees).</p>
 </dd>
 </dl>
-<p>PositionType: The type of position the encoder returns (ticks or degrees)</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>float</p>
+<dd class="field-odd"><p>Tuple[float, <a class="reference internal" href="../../../gen/component/encoder/v1/encoder_pb2/index.html#viam.gen.component.encoder.v1.encoder_pb2.PositionType" title="viam.gen.component.encoder.v1.encoder_pb2.PositionType">PositionType</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -328,6 +328,12 @@ The position will be either in relative units (ticks away from a zero position) 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

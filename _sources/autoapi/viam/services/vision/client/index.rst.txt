@@ -74,7 +74,7 @@ Classes
           detections = await my_detector.get_detections(img)
 
       :param image: The image to get detections from
-      :type image: Image
+      :type image: Image | RawImage
 
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
@@ -127,7 +127,7 @@ Classes
           classifications = await my_classifier.get_classifications(img, 2)
 
       :param image: The image to get detections from
-      :type image: Image
+      :type image: Image | RawImage
       :param count: The number of classifications desired
       :type count: int
 
@@ -232,6 +232,9 @@ Classes
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation

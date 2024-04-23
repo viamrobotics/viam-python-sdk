@@ -169,7 +169,7 @@
 <span class="sd">            detections = await my_detector.get_detections(img)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            image (Image): The image to get detections from</span>
+<span class="sd">            image (Image | RawImage): The image to get detections from</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
@@ -235,7 +235,7 @@
 <span class="sd">            classifications = await my_classifier.get_classifications(img, 2)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            image (Image): The image to get detections from</span>
+<span class="sd">            image (Image | RawImage): The image to get detections from</span>
 <span class="sd">            count (int): The number of classifications desired</span>
 
 <span class="sd">        Returns:</span>

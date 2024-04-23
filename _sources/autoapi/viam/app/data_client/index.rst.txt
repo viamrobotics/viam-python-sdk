@@ -158,7 +158,7 @@ Attributes
       :type dest: str
 
       :returns: The tabular data.
-      :rtype: List[Mapping[str, Any]]
+      :rtype: List[TabularData]
 
 
    .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None, include_file_data: bool = True, num_files: Optional[int] = None) -> List[BinaryData]
@@ -183,13 +183,13 @@ Attributes
       :type include_file_data: bool
       :param num_files: Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
                         Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,
-                            whichever comes first.
+                        whichever comes first.
       :type num_files: Optional[str]
 
       :raises ValueError: If `num_files` is less than 0.
 
       :returns: The binary data.
-      :rtype: List[bytes]
+      :rtype: List[BinaryData]
 
 
    .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[BinaryData]
@@ -226,7 +226,7 @@ Attributes
       :raises GRPCError: If no `BinaryID` objects are provided.
 
       :returns: The binary data.
-      :rtype: List[bytes]
+      :rtype: List[BinaryData]
 
 
    .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int) -> int
@@ -248,6 +248,9 @@ Attributes
       :param delete_older_than_days: Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
                                      is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
       :type delete_older_than_days: int
+
+      :returns: The number of items deleted.
+      :rtype: int
 
 
    .. py:method:: delete_tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter]) -> int
@@ -272,6 +275,9 @@ Attributes
       :param filter: Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
                      all data being deleted. Exercise caution when using this option.
       :type filter: viam.proto.app.data.Filter
+
+      :returns: The number of items deleted.
+      :rtype: int
 
 
    .. py:method:: delete_binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID]) -> int
@@ -398,8 +404,8 @@ Attributes
 
       :param tags: List of tags to remove from specified binary data. Must be non-empty.
       :type tags: List[str]
-      :param file_ids: List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
-      :type file_ids: List[str]
+      :param binary_ids: List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
+      :type binary_ids: List[BinaryID]
 
       :raises GRPCError: If no binary_ids or tags are provided.
 
@@ -570,14 +576,6 @@ Attributes
 
       Create a new dataset.
 
-      :param name: The name of the dataset being created.
-      :type name: str
-      :param organization_id: The ID of the organization where the dataset is being created.
-      :type organization_id: str
-
-      :returns: The dataset ID of the created dataset.
-      :rtype: str
-
       ::
 
           name = await data_client.create_dataset(
@@ -586,11 +584,26 @@ Attributes
           )
           print(name)
 
+      :param name: The name of the dataset being created.
+      :type name: str
+      :param organization_id: The ID of the organization where the dataset is being created.
+      :type organization_id: str
+
+      :returns: The dataset ID of the created dataset.
+      :rtype: str
+
 
    .. py:method:: list_dataset_by_ids(ids: List[str]) -> Sequence[viam.proto.app.dataset.Dataset]
       :async:
 
       Get a list of datasets using their IDs.
+
+      ::
+
+          datasets = await data_client.list_dataset_by_ids(
+              ids=["abcd-1234xyz-8765z-123abc"]
+          )
+          print(datasets)
 
       :param ids: The IDs of the datasets being called for.
       :type ids: List[str]
@@ -598,18 +611,18 @@ Attributes
       :returns: The list of datasets.
       :rtype: Sequence[Dataset]
 
+
+   .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
+      :async:
+
+      Get the datasets in an organization.
+
       ::
 
           datasets = await data_client.list_dataset_by_ids(
               ids=["abcd-1234xyz-8765z-123abc"]
           )
           print(datasets)
-
-
-   .. py:method:: list_datasets_by_organization_id(organization_id: str) -> Sequence[viam.proto.app.dataset.Dataset]
-      :async:
-
-      Get the datasets in an organization.
 
       :param organization_id: The ID of the organization.
       :type organization_id: str
@@ -617,23 +630,11 @@ Attributes
       :returns: The list of datasets in the organization.
       :rtype: Sequence[Dataset]
 
-      ::
-
-          datasets = await data_client.list_dataset_by_ids(
-              ids=["abcd-1234xyz-8765z-123abc"]
-          )
-          print(datasets)
-
 
    .. py:method:: rename_dataset(id: str, name: str) -> None
       :async:
 
       Rename a dataset specified by the dataset ID.
-
-      :param id: The ID of the dataset.
-      :type id: str
-      :param name: The new name of the dataset.
-      :type name: str
 
       ::
 
@@ -642,20 +643,25 @@ Attributes
               name="<dataset-name>"
           )
 
+      :param id: The ID of the dataset.
+      :type id: str
+      :param name: The new name of the dataset.
+      :type name: str
+
 
    .. py:method:: delete_dataset(id: str) -> None
       :async:
 
       Delete a dataset.
 
-      :param id: The ID of the dataset.
-      :type id: str
-
       ::
 
           await data_client.delete_dataset(
               id="abcd-1234xyz-8765z-123abc"
           )
+
+      :param id: The ID of the dataset.
+      :type id: str
 
 
    .. py:method:: add_binary_data_to_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
@@ -664,11 +670,6 @@ Attributes
       Add the BinaryData to the provided dataset.
 
       This BinaryData will be tagged with the VIAM_DATASET_{id} label.
-
-      :param binary_ids: The IDs of binary data to add to dataset.
-      :type binary_ids: List[BinaryID]
-      :param dataset_id: The ID of the dataset to be added to.
-      :type dataset_id: str
 
       ::
 
@@ -694,6 +695,11 @@ Attributes
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
 
+      :param binary_ids: The IDs of binary data to add to dataset.
+      :type binary_ids: List[BinaryID]
+      :param dataset_id: The ID of the dataset to be added to.
+      :type dataset_id: str
+
 
    .. py:method:: remove_binary_data_from_dataset_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dataset_id: str) -> None
       :async:
@@ -701,11 +707,6 @@ Attributes
       Remove the BinaryData from the provided dataset.
 
       This BinaryData will lose the VIAM_DATASET_{id} tag.
-
-      :param binary_ids: The IDs of binary data to remove from dataset.
-      :type binary_ids: List[BinaryID]
-      :param dataset_id: The ID of the dataset to be removed from.
-      :type dataset_id: str
 
       ::
 
@@ -730,6 +731,11 @@ Attributes
               binary_ids=my_binary_ids,
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
+
+      :param binary_ids: The IDs of binary data to remove from dataset.
+      :type binary_ids: List[BinaryID]
+      :param dataset_id: The ID of the dataset to be removed from.
+      :type dataset_id: str
 
 
    .. py:method:: binary_data_capture_upload(binary_data: bytes, part_id: str, component_type: str, component_name: str, method_name: str, file_extension: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None) -> str
@@ -781,6 +787,9 @@ Attributes
 
       :raises GRPCError: If an invalid part ID is passed.
 
+      :returns: the file_id of the uploaded data.
+      :rtype: str
+
 
    .. py:method:: tabular_data_capture_upload(tabular_data: List[Mapping[str, Any]], part_id: str, component_type: str, component_name: str, method_name: str, method_parameters: Optional[Mapping[str, Any]] = None, tags: Optional[List[str]] = None, data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]] = None) -> str
       :async:
@@ -821,14 +830,16 @@ Attributes
       :type tags: Optional[List[str]]
       :param data_request_times: Optional list of tuples, each containing
                                  `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
+                                 Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the
+                                 same metadata.
       :type data_request_times: Optional[List[Tuple[datetime.datetime, datetime.datetime]]]
-
-      Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
-      metadata.
 
       :raises GRPCError: If an invalid part ID is passed.
       :raises ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
           data.
+
+      :returns: the file_id of the uploaded data.
+      :rtype: str
 
 
    .. py:method:: streaming_data_capture_upload(data: bytes, part_id: str, file_ext: str, component_type: Optional[str] = None, component_name: Optional[str] = None, method_name: Optional[str] = None, method_parameters: Optional[Mapping[str, Any]] = None, data_request_times: Optional[Tuple[datetime.datetime, datetime.datetime]] = None, tags: Optional[List[str]] = None) -> str
@@ -851,7 +862,6 @@ Attributes
               data_request_times=[(time_requested, time_received)],
               tags=["tag_1", "tag_2"]
           )
-
 
       :param data: the data to be uploaded.
       :type data: bytes

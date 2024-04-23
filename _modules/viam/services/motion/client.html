@@ -186,7 +186,7 @@
 <span class="sd">            component_name (viam.proto.common.ResourceName): Name of a component on a given robot.</span>
 <span class="sd">            destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was</span>
 <span class="sd">                observed.</span>
-<span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints</span>
+<span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints</span>
 <span class="sd">                expressed in the WorldState message.</span>
 <span class="sd">            constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any</span>
 <span class="sd">                specified constraints</span>
@@ -224,8 +224,8 @@
 <span class="sd">        ``move_on_globe()`` is non blocking, meaning the motion service will move the component to the destination</span>
 <span class="sd">        GPS point after ``move_on_globe()`` returns.</span>
 
-<span class="sd">        Each successful ``move_on_globe()`` call retuns a unique ExectionID which you can use to identify all plans</span>
-<span class="sd">        generated durring the ``move_on_globe()`` call.</span>
+<span class="sd">        Each successful ``move_on_globe()`` call returns a unique ExecutionID which you can use to identify all plans</span>
+<span class="sd">        generated during the ``move_on_globe()`` call.</span>
 
 <span class="sd">        You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.</span>
 
@@ -249,28 +249,25 @@
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The ResourceName of the base to move.</span>
 <span class="sd">            destination (GeoPoint): The location of the component’s destination, represented in geographic notation as a</span>
-<span class="sd">            GeoPoint (lat, lng).</span>
+<span class="sd">                GeoPoint (lat, lng).</span>
 <span class="sd">            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check</span>
-<span class="sd">            the machine’s location.</span>
+<span class="sd">                the machine’s location.</span>
 <span class="sd">            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to consider when planning the motion of the component,</span>
-<span class="sd">            with each represented as a GeoObstacle.</span>
-<span class="sd">                - Default: None</span>
+<span class="sd">                with each represented as a GeoObstacle. Default: None</span>
 <span class="sd">            heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report</span>
-<span class="sd">            at the destination point.</span>
-<span class="sd">                Range: [0-360) 0: North, 90: East, 180: South, 270: West</span>
-<span class="sd">                Default: None</span>
+<span class="sd">                at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this</span>
-<span class="sd">            motion service. This parameter and each of its fields are optional.</span>
-<span class="sd">                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</span>
-<span class="sd">                you want to use for transient obstacle avoidance.</span>
-<span class="sd">                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
-<span class="sd">                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
-<span class="sd">                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
-<span class="sd">                linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
-<span class="sd">                angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
+<span class="sd">                motion service. This parameter and each of its fields are optional.</span>
+<span class="sd">                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</span>
+<span class="sd">                    you want to use for transient obstacle avoidance.</span>
+<span class="sd">                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
+<span class="sd">                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
+<span class="sd">                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
+<span class="sd">                - linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
+<span class="sd">                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
 <span class="sd">            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing</span>
-<span class="sd">            the underlying RPC call.</span>
+<span class="sd">                the underlying RPC call.</span>
 
 
 <span class="sd">        Returns:</span>
@@ -308,8 +305,8 @@
 <span class="sd">        ``move_on_map()`` is non blocking, meaning the motion service will move the component to the destination</span>
 <span class="sd">        Pose point after ``move_on_map()`` returns.</span>
 
-<span class="sd">        Each successful ``move_on_map()`` call retuns a unique ExectionID which you can use to identify all plans</span>
-<span class="sd">        generated durring the ``move_on_map()`` call.</span>
+<span class="sd">        Each successful ``move_on_map()`` call returns a unique ExecutionID which you can use to identify all plans</span>
+<span class="sd">        generated during the ``move_on_map()`` call.</span>
 
 <span class="sd">        You can monitor the progress of the ``move_on_map()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.</span>
 
@@ -335,18 +332,18 @@
 <span class="sd">            destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.</span>
 <span class="sd">            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.</span>
-<span class="sd">            This parameter and each of its fields are optional.</span>
-<span class="sd">                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</span>
-<span class="sd">                for transient obstacle avoidance.</span>
-<span class="sd">                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
-<span class="sd">                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
-<span class="sd">                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
-<span class="sd">                linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
-<span class="sd">                angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
+<span class="sd">                This parameter and each of its fields are optional.</span>
+<span class="sd">                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</span>
+<span class="sd">                    for transient obstacle avoidance.</span>
+<span class="sd">                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
+<span class="sd">                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
+<span class="sd">                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
+<span class="sd">                - linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
+<span class="sd">                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
 <span class="sd">            obstacles (Optional[Iterable[Geometry]]): Obstacles to be considered for motion planning.</span>
 <span class="sd">            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying</span>
-<span class="sd">            RPC call.</span>
+<span class="sd">                RPC call.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.</span>
@@ -384,9 +381,6 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to stop</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>

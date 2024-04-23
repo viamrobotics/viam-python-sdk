@@ -114,13 +114,10 @@ Classes
           # Get the readings provided by the sensor.
           readings = await my_power_sensor.get_readings()
 
-      :returns: The readings for the PowerSensor:
-                {
-                   voltage: float
-                   current: float
-                   is_ac: bool
-                   power: float
-                }
+      :returns:
+
+                The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
+                    amperes (float), is_ac (bool), and power in watts (float).
       :rtype: Mapping[str, Any]
 
 
@@ -187,6 +184,9 @@ Classes
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation

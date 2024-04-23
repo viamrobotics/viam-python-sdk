@@ -355,11 +355,14 @@ whether it is supported by this motor.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Indicates whether the motor is currently powered.
-float: The current power percentage of the motor</p>
+<dd class="field-odd"><p><dl class="simple">
+<dt>A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and</dt><dd><p>the second [1] value indicates the current power percentage of the motor.</p>
+</dd>
+</dl>
+</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dd class="field-even"><p>Tuple[bool, float]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -461,6 +464,12 @@ float: The current power percentage of the motor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

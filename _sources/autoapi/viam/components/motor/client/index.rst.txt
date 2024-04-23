@@ -167,9 +167,11 @@ Classes
 
           print('Powered: ', powered)
 
-      :returns: Indicates whether the motor is currently powered.
-                float: The current power percentage of the motor
-      :rtype: bool
+      :returns:
+
+                A tuple containing two values; the first [0] value indicates whether the motor is currently powered, and
+                    the second [1] value indicates the current power percentage of the motor.
+      :rtype: Tuple[bool, float]
 
 
    .. py:method:: is_moving(*, timeout: Optional[float] = None) -> bool
@@ -251,6 +253,9 @@ Classes
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation

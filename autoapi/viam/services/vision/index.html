@@ -364,7 +364,7 @@ from the given camera, with the given detector applied to it.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p>
+<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a><em> | </em><a class="reference internal" href="../../components/camera/index.html#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><em>RawImage</em></a>) – The image to get detections from</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
@@ -427,7 +427,7 @@ from the given camera, with the given detector applied to it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p></li>
+<li><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a><em> | </em><a class="reference internal" href="../../components/camera/index.html#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><em>RawImage</em></a>) – The image to get detections from</p></li>
 <li><p><strong>count</strong> (<em>int</em>) – The number of classifications desired</p></li>
 </ul>
 </dd>
@@ -549,6 +549,12 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
 </dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -646,7 +652,7 @@ from the given camera, with the given detector applied to it.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p>
+<dd class="field-odd"><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a><em> | </em><a class="reference internal" href="../../components/camera/index.html#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><em>RawImage</em></a>) – The image to get detections from</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A list of 2D bounding boxes, their labels, and the
@@ -709,7 +715,7 @@ from the given camera, with the given detector applied to it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a>) – The image to get detections from</p></li>
+<li><p><strong>image</strong> (<a class="reference internal" href="../../gen/component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><em>Image</em></a><em> | </em><a class="reference internal" href="../../components/camera/index.html#viam.components.camera.RawImage" title="viam.components.camera.RawImage"><em>RawImage</em></a>) – The image to get detections from</p></li>
 <li><p><strong>count</strong> (<em>int</em>) – The number of classifications desired</p></li>
 </ul>
 </dd>
@@ -830,6 +836,12 @@ picture obtained from the specified 3D camera (using the specified segmenter).</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the Resource</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The ResourceName of this Resource</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName">ResourceName</a></p>
 </dd>
 </dl>
 </dd></dl>

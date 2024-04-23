@@ -72,10 +72,8 @@ Classes
                                 the SLAM service supports the feature
       :type return_edited_map: bool
 
-      :returns:
-
-                Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
-                    GetPointCloudMapResponse.point_cloud_pcd_chunk values
+      :returns: Complete pointcloud in standard PCD format. Chunks of the PointCloud, concatenating all
+                GetPointCloudMapResponse.point_cloud_pcd_chunk values.
       :rtype: List[GetPointCloudMapResponse]
 
 
@@ -179,6 +177,9 @@ Classes
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation

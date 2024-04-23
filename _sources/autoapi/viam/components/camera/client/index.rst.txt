@@ -78,11 +78,8 @@ Functions
 
       :returns:
 
-                    - List[NamedImage]:
-                      The list of images returned from the camera system.
-
-                    - ResponseMetadata:
-                      The metadata associated with this response
+                A tuple containing two values; the first [0] a list of images returned from the
+                    camera system, and the second [1] the metadata associated with this response.
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
@@ -109,9 +106,11 @@ Functions
           pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
           points = np.asarray(pcd.points)
 
-      :returns: The pointcloud data.
-                str: The mimetype of the pointcloud (e.g. PCD).
-      :rtype: bytes
+      :returns:
+
+                A tuple containing two values; the first [0] the pointcloud data, and the second [1] the mimetype of the
+                    pointcloud (e.g. PCD).
+      :rtype: Tuple[bytes, str]
 
 
    .. py:method:: get_properties(*, timeout: Optional[float] = None, **__) -> viam.components.camera.Camera.Properties
@@ -191,6 +190,9 @@ Functions
 
       :param name: The name of the Resource
       :type name: str
+
+      :returns: The ResourceName of this Resource
+      :rtype: ResourceName
 
 
    .. py:method:: get_operation(kwargs: Mapping[str, Any]) -> viam.operations.Operation
