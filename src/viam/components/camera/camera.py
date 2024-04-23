@@ -80,12 +80,8 @@ class Camera(ComponentBase):
             timestamp = metadata.captured_at
 
         Returns:
-            Tuple[List[NamedImage], ResponseMetadata]:
-                - List[NamedImage]:
-                  The list of images returned from the camera system.
-
-                - ResponseMetadata:
-                  The metadata associated with this response
+            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images returned from the
+                camera system, and the second [1] the metadata associated with this response.
         """
         ...
 
@@ -115,8 +111,8 @@ class Camera(ComponentBase):
             points = np.asarray(pcd.points)
 
         Returns:
-            bytes: The pointcloud data.
-            str: The mimetype of the pointcloud (e.g. PCD).
+            Tuple[bytes, str]: A tuple containing two values; the first [0] the pointcloud data, and the second [1] the mimetype of the
+                pointcloud (e.g. PCD).
         """
         ...
 

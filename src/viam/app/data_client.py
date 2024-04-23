@@ -201,7 +201,7 @@ class DataClient:
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[Mapping[str, Any]]: The tabular data.
+            List[TabularData]: The tabular data.
         """
         filter = filter if filter else Filter()
         last = ""
@@ -255,13 +255,13 @@ class DataClient:
                 to true (i.e., both the files' data and metadata are returned).
             num_files (Optional[str]): Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
                 Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,
-                    whichever comes first.
+                whichever comes first.
 
         Raises:
             ValueError: If `num_files` is less than 0.
 
         Returns:
-            List[bytes]: The binary data.
+            List[BinaryData]: The binary data.
         """
         num_files = num_files if num_files else 10 if include_file_data else 100
         if num_files < 0:
@@ -338,7 +338,7 @@ class DataClient:
             GRPCError: If no `BinaryID` objects are provided.
 
         Returns:
-            List[bytes]: The binary data.
+            List[BinaryData]: The binary data.
         """
         request = BinaryDataByIDsRequest(binary_ids=binary_ids, include_binary=True)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
@@ -367,6 +367,9 @@ class DataClient:
             organization_id (str): ID of organization to delete data from.
             delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
                 is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
+
+        Returns:
+            int: The number of items deleted.
         """
         request = DeleteTabularDataRequest(organization_id=organization_id, delete_older_than_days=delete_older_than_days)
         response: DeleteTabularDataResponse = await self._data_client.DeleteTabularData(request, metadata=self._metadata)
@@ -389,6 +392,9 @@ class DataClient:
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying binary data to delete. Passing an empty `Filter` will lead to
                 all data being deleted. Exercise caution when using this option.
+
+        Returns:
+            int: The number of items deleted.
         """
         filter = filter if filter else Filter()
         request = DeleteBinaryDataByFilterRequest(filter=filter)
@@ -520,7 +526,7 @@ class DataClient:
 
         Args:
             tags (List[str]): List of tags to remove from specified binary data. Must be non-empty.
-            file_ids (List[str]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
+            binary_ids (List[BinaryID]): List of `BinaryID` objects specifying binary data to untag. Must be non-empty.
 
         Raises:
             GRPCError: If no binary_ids or tags are provided.
@@ -714,13 +720,6 @@ class DataClient:
     async def create_dataset(self, name: str, organization_id: str) -> str:
         """Create a new dataset.
 
-        Args:
-            name (str): The name of the dataset being created.
-            organization_id (str): The ID of the organization where the dataset is being created.
-
-        Returns:
-            str: The dataset ID of the created dataset.
-
         ::
 
             name = await data_client.create_dataset(
@@ -728,6 +727,13 @@ class DataClient:
                 organization_id="<your-org-id>"
             )
             print(name)
+
+        Args:
+            name (str): The name of the dataset being created.
+            organization_id (str): The ID of the organization where the dataset is being created.
+
+        Returns:
+            str: The dataset ID of the created dataset.
         """
         request = CreateDatasetRequest(name=name, organization_id=organization_id)
         response: CreateDatasetResponse = await self._dataset_client.CreateDataset(request, metadata=self._metadata)
@@ -736,18 +742,18 @@ class DataClient:
     async def list_dataset_by_ids(self, ids: List[str]) -> Sequence[Dataset]:
         """Get a list of datasets using their IDs.
 
-        Args:
-            ids (List[str]): The IDs of the datasets being called for.
-
-        Returns:
-            Sequence[Dataset]: The list of datasets.
-
         ::
 
             datasets = await data_client.list_dataset_by_ids(
                 ids=["abcd-1234xyz-8765z-123abc"]
             )
             print(datasets)
+
+        Args:
+            ids (List[str]): The IDs of the datasets being called for.
+
+        Returns:
+            Sequence[Dataset]: The list of datasets.
         """
         request = ListDatasetsByIDsRequest(ids=ids)
         response: ListDatasetsByIDsResponse = await self._dataset_client.ListDatasetsByIDs(request, metadata=self._metadata)
@@ -757,18 +763,18 @@ class DataClient:
     async def list_datasets_by_organization_id(self, organization_id: str) -> Sequence[Dataset]:
         """Get the datasets in an organization.
 
-        Args:
-            organization_id (str): The ID of the organization.
-
-        Returns:
-            Sequence[Dataset]: The list of datasets in the organization.
-
         ::
 
             datasets = await data_client.list_dataset_by_ids(
                 ids=["abcd-1234xyz-8765z-123abc"]
             )
             print(datasets)
+
+        Args:
+            organization_id (str): The ID of the organization.
+
+        Returns:
+            Sequence[Dataset]: The list of datasets in the organization.
         """
         request = ListDatasetsByOrganizationIDRequest(organization_id=organization_id)
         response: ListDatasetsByOrganizationIDResponse = await self._dataset_client.ListDatasetsByOrganizationID(
@@ -780,16 +786,16 @@ class DataClient:
     async def rename_dataset(self, id: str, name: str) -> None:
         """Rename a dataset specified by the dataset ID.
 
-        Args:
-            id (str): The ID of the dataset.
-            name (str): The new name of the dataset.
-
         ::
 
             await data_client.rename_dataset(
                 id="abcd-1234xyz-8765z-123abc",
                 name="<dataset-name>"
             )
+
+        Args:
+            id (str): The ID of the dataset.
+            name (str): The new name of the dataset.
         """
         request = RenameDatasetRequest(id=id, name=name)
         await self._dataset_client.RenameDataset(request, metadata=self._metadata)
@@ -797,14 +803,14 @@ class DataClient:
     async def delete_dataset(self, id: str) -> None:
         """Delete a dataset.
 
-        Args:
-            id (str): The ID of the dataset.
-
         ::
 
             await data_client.delete_dataset(
                 id="abcd-1234xyz-8765z-123abc"
             )
+
+        Args:
+            id (str): The ID of the dataset.
         """
         request = DeleteDatasetRequest(id=id)
         await self._dataset_client.DeleteDataset(request, metadata=self._metadata)
@@ -813,10 +819,6 @@ class DataClient:
         """Add the BinaryData to the provided dataset.
 
         This BinaryData will be tagged with the VIAM_DATASET_{id} label.
-
-        Args:
-            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
-            dataset_id (str): The ID of the dataset to be added to.
 
         ::
 
@@ -841,6 +843,10 @@ class DataClient:
                 binary_ids=my_binary_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
+
+        Args:
+            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
+            dataset_id (str): The ID of the dataset to be added to.
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.AddBinaryDataToDatasetByIDs(request, metadata=self._metadata)
@@ -849,10 +855,6 @@ class DataClient:
         """Remove the BinaryData from the provided dataset.
 
         This BinaryData will lose the VIAM_DATASET_{id} tag.
-
-        Args:
-            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
-            dataset_id (str): The ID of the dataset to be removed from.
 
         ::
 
@@ -877,6 +879,10 @@ class DataClient:
                 binary_ids=my_binary_ids,
                 dataset_id="abcd-1234xyz-8765z-123abc"
             )
+
+        Args:
+            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
+            dataset_id (str): The ID of the dataset to be removed from.
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
         await self._data_client.RemoveBinaryDataFromDatasetByIDs(request, metadata=self._metadata)
@@ -931,6 +937,9 @@ class DataClient:
 
         Raises:
             GRPCError: If an invalid part ID is passed.
+
+        Returns:
+            str: the file_id of the uploaded data.
         """
         sensor_contents = SensorData(
             metadata=(
@@ -999,15 +1008,16 @@ class DataClient:
             tags (Optional[List[str]]): Optional list of tags to allow for tag-based data filtering when retrieving data.
             data_request_times (Optional[List[Tuple[datetime.datetime, datetime.datetime]]]): Optional list of tuples, each containing
                 `datetime` objects denoting the times this data was requested[0] by the robot and received[1] from the appropriate sensor.
-
-
-        Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the same
-        metadata.
+                Passing a list of tabular data and Timestamps with length n > 1 will result in n datapoints being uploaded, all tied to the
+                same metadata.
 
         Raises:
             GRPCError: If an invalid part ID is passed.
             ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
                 data.
+
+        Returns:
+            str: the file_id of the uploaded data.
         """
         sensor_contents = []
         if data_request_times:
@@ -1079,7 +1089,6 @@ class DataClient:
                 data_request_times=[(time_requested, time_received)],
                 tags=["tag_1", "tag_2"]
             )
-
 
         Args:
             data (bytes): the data to be uploaded.

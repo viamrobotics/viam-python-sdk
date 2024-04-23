@@ -37,6 +37,9 @@ class ResourceBase(Protocol):
 
         Args:
             name (str): The name of the Resource
+
+        Returns:
+            ResourceName: The ResourceName of this Resource
         """
         return ResourceName(
             namespace=cls.SUBTYPE.namespace,

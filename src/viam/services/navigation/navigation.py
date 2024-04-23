@@ -38,9 +38,9 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            (List[navigation.Path]): An array comprised of Paths, where each path is either a user-provided destination or
-                 a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
-                 reach the specified destination or Waypoint.
+            List[navigation.Path]: An array comprised of Paths, where each path is either a user-provided destination or
+            a Waypoint, along with the corresponding set of geopoints. This outlines the route the machine is expected to take to
+            reach the specified destination or Waypoint.
         """
         ...
 
@@ -61,8 +61,8 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            (navigation.GeoPoint): The current location of the robot in the navigation service,
-                represented in a GeoPoint with latitude and longitude values.
+            navigation.GeoPoint: The current location of the robot in the navigation service,
+            represented in a GeoPoint with latitude and longitude values.
         """
         ...
 
@@ -86,8 +86,8 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            (List[navigation.GeoObstacle]): A list comprised of each GeoObstacle in the service’s data storage.
-                These are objects designated for the robot to avoid when navigating.
+            List[navigation.GeoObstacle]: A list comprised of each GeoObstacle in the service’s data storage.
+            These are objects designated for the robot to avoid when navigating.
         """
         ...
 
@@ -109,8 +109,8 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            (List[navigation.Waypoint]): An array comprised of each Waypoint in the service’s data storage.
-                These are locations designated within a path for the robot to navigate to.
+            List[navigation.Waypoint]: An array comprised of each Waypoint in the service’s data storage.
+            These are locations designated within a path for the robot to navigate to.
         """
         ...
 
@@ -131,7 +131,7 @@ class Navigation(ServiceBase):
             await my_nav.add_waypoint(point=location)
 
         Args:
-            point(navigation.GeoPoint): The current location of the robot in the navigation service,
+            point (navigation.GeoPoint): The current location of the robot in the navigation service,
                 represented in a GeoPoint with latitude and longitude values.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
@@ -152,7 +152,7 @@ class Navigation(ServiceBase):
             await my_nav.remove_waypoint(waypoint_id)
 
         Args:
-            id(str): The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.
+            id (str): The MongoDB ObjectID of the Waypoint to remove from the service’s data storage.
             timeout (Optional[float]): An option to set how long to wait (in seconds)
                 before calling a time-out and closing the underlying RPC call.
         """

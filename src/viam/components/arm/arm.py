@@ -192,10 +192,8 @@ class Arm(ComponentBase):
             k_bytes = kinematics[1]
 
         Returns:
-            Tuple[KinematicsFileFormat.ValueType, bytes]:
-                - KinematicsFileFormat.ValueType:
-                  The format of the file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra).
-
-                - bytes: The byte contents of the file.
+            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
+                file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra), and the second [1] value
+                represents the byte contents of the file.
         """
         ...

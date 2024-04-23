@@ -632,7 +632,7 @@ class RobotClient:
             await robot.cancel_operation("INSERT OPERATION ID")
 
         Args:
-            id (str): ID of operation to kill.
+            id (str): ID of operation to cancel.
         """
         request = CancelOperationRequest(id=id)
         await self._client.CancelOperation(request)
@@ -688,6 +688,8 @@ class RobotClient:
             query (viam.proto.common.PoseInFrame): The pose that should be transformed.
             destination (str) : The name of the reference frame to transform the given pose to.
 
+        Returns:
+            PoseInFrame: The pose and the reference frame for the new destination.
         """
         request = TransformPoseRequest(source=query, destination=destination, supplemental_transforms=additional_transforms)
         response: TransformPoseResponse = await self._client.TransformPose(request)
@@ -722,6 +724,8 @@ class RobotClient:
 
             queries (List[viam.proto.robot.DiscoveryQuery]): The list of component models to lookup configurations for.
 
+        Returns:
+            List[Discovery]: A list of discovered component configurations.
         """
         request = DiscoverComponentsRequest(queries=queries)
         response: DiscoverComponentsResponse = await self._client.DiscoverComponents(request)
@@ -767,7 +771,7 @@ class RobotClient:
         Args:
             name (str): The logger's name.
             level (str): The level of the log.
-            time (str): The log creation time.
+            time (datetime): The log creation time.
             log (str): The log message.
             stack (str): The stack information of the log.
         """
