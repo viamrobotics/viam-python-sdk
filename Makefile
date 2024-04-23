@@ -30,6 +30,7 @@ _buf: clean
 
 buf:
 	poetry run $(MAKE) _buf
+	$(MAKE) better_imports
 
 _better_imports:
 	python3 -m etc.generate_proto_import -v
