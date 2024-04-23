@@ -123,6 +123,40 @@ class SubmitTrainingJobResponse(google.protobuf.message.Message):
 global___SubmitTrainingJobResponse = SubmitTrainingJobResponse
 
 @typing_extensions.final
+class SubmitCustomTrainingJobRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DATASET_ID_FIELD_NUMBER: builtins.int
+    REGISTRY_ITEM_ID_FIELD_NUMBER: builtins.int
+    ORGANIZATION_ID_FIELD_NUMBER: builtins.int
+    MODEL_NAME_FIELD_NUMBER: builtins.int
+    MODEL_VERSION_FIELD_NUMBER: builtins.int
+    dataset_id: builtins.str
+    registry_item_id: builtins.str
+    organization_id: builtins.str
+    model_name: builtins.str
+    model_version: builtins.str
+
+    def __init__(self, *, dataset_id: builtins.str=..., registry_item_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['dataset_id', b'dataset_id', 'model_name', b'model_name', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id']) -> None:
+        ...
+global___SubmitCustomTrainingJobRequest = SubmitCustomTrainingJobRequest
+
+@typing_extensions.final
+class SubmitCustomTrainingJobResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    id: builtins.str
+
+    def __init__(self, *, id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+        ...
+global___SubmitCustomTrainingJobResponse = SubmitCustomTrainingJobResponse
+
+@typing_extensions.final
 class GetTrainingJobRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -195,6 +229,9 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     MODEL_NAME_FIELD_NUMBER: builtins.int
     MODEL_VERSION_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
+    MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
+    IS_CUSTOM_JOB_FIELD_NUMBER: builtins.int
+    REGISTRY_ITEM_ID_FIELD_NUMBER: builtins.int
     STATUS_FIELD_NUMBER: builtins.int
     ERROR_STATUS_FIELD_NUMBER: builtins.int
     CREATED_ON_FIELD_NUMBER: builtins.int
@@ -213,6 +250,9 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     model_name: builtins.str
     model_version: builtins.str
     model_type: global___ModelType.ValueType
+    model_framework: global___ModelFramework.ValueType
+    is_custom_job: builtins.bool
+    registry_item_id: builtins.str
     status: global___TrainingStatus.ValueType
 
     @property
@@ -240,13 +280,13 @@ class TrainingJobMetadata(google.protobuf.message.Message):
     def tags(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         ...
 
-    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., id: builtins.str=..., dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., status: global___TrainingStatus.ValueType=..., error_status: google.rpc.status_pb2.Status | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., training_started: google.protobuf.timestamp_pb2.Timestamp | None=..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
+    def __init__(self, *, request: global___SubmitTrainingJobRequest | None=..., id: builtins.str=..., dataset_id: builtins.str=..., organization_id: builtins.str=..., model_name: builtins.str=..., model_version: builtins.str=..., model_type: global___ModelType.ValueType=..., model_framework: global___ModelFramework.ValueType=..., is_custom_job: builtins.bool=..., registry_item_id: builtins.str=..., status: global___TrainingStatus.ValueType=..., error_status: google.rpc.status_pb2.Status | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None=..., training_started: google.protobuf.timestamp_pb2.Timestamp | None=..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None=..., synced_model_id: builtins.str=..., tags: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'error_status', b'error_status', 'last_modified', b'last_modified', 'request', b'request', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'last_modified', b'last_modified', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dataset_id', b'dataset_id', 'error_status', b'error_status', 'id', b'id', 'is_custom_job', b'is_custom_job', 'last_modified', b'last_modified', 'model_framework', b'model_framework', 'model_name', b'model_name', 'model_type', b'model_type', 'model_version', b'model_version', 'organization_id', b'organization_id', 'registry_item_id', b'registry_item_id', 'request', b'request', 'status', b'status', 'synced_model_id', b'synced_model_id', 'tags', b'tags', 'training_ended', b'training_ended', 'training_started', b'training_started']) -> None:
         ...
 global___TrainingJobMetadata = TrainingJobMetadata
 

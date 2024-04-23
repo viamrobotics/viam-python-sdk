@@ -6,7 +6,8 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.components.board import BoardClient
+from viam.proto.common import AnalogStatus, DigitalInterruptStatus
+from viam.components.board import BoardClient, BoardStatus, create_status
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
@@ -39,7 +40,7 @@ from viam.proto.component.board import (
     WriteAnalogResponse,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict
+from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
@@ -111,6 +112,19 @@ class TestBoard:
         command = {"command": "args"}
         resp = await board.do_command(command)
         assert resp == {"command": command}
+
+    @pytest.mark.asyncio
+    async def test_status(self, board: MockBoard):
+        status = await create_status(board)
+        analogs, digitals = {}, {}
+        for x in board.analog_readers:
+            val = await board.analog_readers[x].read()
+            analogs[x] = AnalogStatus(value=val)
+        for y in board.digital_interrupts:
+            val = await board.digital_interrupts[y].value()
+            digitals[y] = DigitalInterruptStatus(value=val)
+        assert status.name == MockBoard.get_resource_name(board.name)
+        assert status.status == message_to_struct(BoardStatus(analogs=analogs, digital_interrupts=digitals))
 
     @pytest.mark.asyncio
     async def test_set_power_mode(self, board: MockBoard):
@@ -504,7 +518,7 @@ class TestGPIOPinClient:
 
             tick_stream = await client.stream_ticks(interrupts=[di])
             async for tick in tick_stream:
-                assert tick.pin_name == 'interrupt1'
+                assert tick.pin_name == "interrupt1"
                 assert tick.high is True
                 assert tick.time == 1000
                 break
