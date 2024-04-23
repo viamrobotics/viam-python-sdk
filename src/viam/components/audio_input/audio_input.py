@@ -6,7 +6,7 @@ from typing import Final, Optional
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
 
-from viam.media import MediaSource
+from viam.streams import StreamSource
 from viam.media.audio import Audio, AudioStream
 from viam.proto.component.audioinput import PropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
@@ -14,7 +14,7 @@ from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT,
 from ..component_base import ComponentBase
 
 
-class AudioInput(ComponentBase, MediaSource[Audio]):
+class AudioInput(ComponentBase, StreamSource[Audio]):
     """AudioInput represents a component that can capture audio.
 
     This acts as an abstract base class for any drivers representing specific
@@ -67,7 +67,7 @@ class AudioInput(ComponentBase, MediaSource[Audio]):
         """Stream audio samples from the audio input of the underlying robot
 
         Returns:
-            MediaStream[Audio]: The stream of audio chunks
+            Stream[Audio]: The stream of audio chunks
         """
         ...
 

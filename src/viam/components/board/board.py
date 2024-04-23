@@ -2,10 +2,14 @@ import abc
 from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.component.board import PowerMode
+from viam.proto.component.board import PowerMode, StreamTicksResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.streams import Stream
 
 from ..component_base import ComponentBase
+
+Tick = StreamTicksResponse
+TickStream = Stream[Tick]
 
 
 class Board(ComponentBase):
@@ -370,5 +374,30 @@ class Board(ComponentBase):
         Args:
             pin (str): name of the pin.
             value (int): value to write.
+        """
+        ...
+
+    @abc.abstractmethod
+    async def stream_ticks(
+        self, interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
+    ) -> TickStream:
+        """
+        Stream digital interrupt ticks.
+
+        ::
+
+
+            my_board = Board.from_robot(robot=robot, name="my_board")
+            di8 = await my_board.digital_interrupt_by_name(name="8"))
+            di11 = await my_board.digital_interrupt_by_name(name="11"))
+
+            Stream ticks from pins 8 and 11.
+            ticks = my_board.stream_ticks([di8, di11])
+
+        Args:
+            interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.
+
+        Returns:
+            TickStream: stream of ticks.
         """
         ...

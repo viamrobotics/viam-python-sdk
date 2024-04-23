@@ -143,9 +143,11 @@ OPERATION_ID = "abc"
 OPERATIONS_RESPONSE = [Operation(id=OPERATION_ID)]
 
 GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
-    robot_part_id="the-robot-part",
+    robot_part_id="the-machine-id",
     primary_org_id="the-primary-org",
     location_id="the-location",
+    machine_id="the-machine-id",
+    machine_part_id="the-machine-part-id",
 )
 
 
