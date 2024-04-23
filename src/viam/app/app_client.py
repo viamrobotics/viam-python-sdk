@@ -573,7 +573,7 @@ class AppClient:
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
-                [0] of organization members, and the second [1] of organization invites.
+            [0] of organization members, and the second [1] of organization invites.
         """
         organization_id = await self._get_organization_id()
         request = ListOrganizationMembersRequest(organization_id=organization_id)
@@ -595,9 +595,9 @@ class AppClient:
                 authorizations to include in the invite. If not provided, full owner permissions will
                 be granted.
             send_email_invite (Optional[bool]): Whether or not an email should be sent to the recipient of an invite.
-            The user must accept the email to be added to the associated authorizations.
-            When set to false, the user automatically receives the associated authorization
-            on the next login of the user with the associated email address.
+                The user must accept the email to be added to the associated authorizations.
+                When set to false, the user automatically receives the associated authorization
+                on the next login of the user with the associated email address.
 
         Raises:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
@@ -1370,7 +1370,7 @@ class AppClient:
             # Get a fragment and print its name and when it was created.
             the_fragment = await cloud.get_fragment(
                 fragment_id="12a12ab1-1234-5678-abcd-abcd01234567")
-            print("Name: ", the_fragment.name, "\nCreated on: ", the_fragment.created_on)
+            print("Name: ", the_fragment.name, "\\nCreated on: ", the_fragment.created_on)
 
         Args:
             fragment_id (str): ID of the fragment to get.
@@ -1438,7 +1438,7 @@ class AppClient:
         response: UpdateFragmentResponse = await self._app_client.UpdateFragment(request, metadata=self._metadata)
         return Fragment.from_proto(response.fragment)
 
-    async def delete_fragment(self, fragment_id) -> None:
+    async def delete_fragment(self, fragment_id: str) -> None:
         """Delete a fragment.
 
         ::
@@ -1757,7 +1757,7 @@ class AppClient:
             id (str): the ID of the API key to duplication authorizations from
 
         Returns:
-            Tuple[str, str] The API key and API key id
+            Tuple[str, str]: The API key and API key id
         """
         request = CreateKeyFromExistingKeyAuthorizationsRequest(id=id)
         response: CreateKeyFromExistingKeyAuthorizationsResponse = await self._app_client.CreateKeyFromExistingKeyAuthorizations(

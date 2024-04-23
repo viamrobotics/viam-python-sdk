@@ -282,7 +282,7 @@ class Board(ComponentBase):
             name (str): Name of the digital interrupt.
 
         Returns:
-            DigitalInterrupt: the digital interrupt.
+            DigitalInterrupt: The digital interrupt.
         """
         ...
 
@@ -302,7 +302,7 @@ class Board(ComponentBase):
             name (str): Name of the GPIO pin.
 
         Returns:
-            GPIOPin: the pin.
+            GPIOPin: The pin.
         """
         ...
 
@@ -319,7 +319,7 @@ class Board(ComponentBase):
             names = await my_board.analog_reader_names()
 
         Returns:
-            List[str]: The names of the analog readers..
+            List[str]: The list of names of all known analog readers.
         """
         ...
 
@@ -355,7 +355,7 @@ class Board(ComponentBase):
             status = await my_board.set_power_mode(mode=PowerMode.POWER_MODE_OFFLINE_DEEP)
 
         Args:
-            mode: the desired power mode
+            mode (PowerMode): The desired power mode.
         """
         ...
 
@@ -372,8 +372,8 @@ class Board(ComponentBase):
             await my_board.write_analog(pin="11", value=48)
 
         Args:
-            pin (str): name of the pin.
-            value (int): value to write.
+            pin (str): The name of the pin.
+            value (int): The value to write.
         """
         ...
 

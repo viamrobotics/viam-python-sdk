@@ -229,6 +229,5 @@ class MovementSensor(ComponentBase):
 
         Returns:
             Mapping[str, Any]: The readings for the MovementSensor. Can be of any type.
-
         """
         ...

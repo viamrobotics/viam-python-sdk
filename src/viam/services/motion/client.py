@@ -96,7 +96,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             component_name (viam.proto.common.ResourceName): Name of a component on a given robot.
             destination (viam.proto.common.PoseInFrame): The destination to move to, expressed as a ``Pose`` and the frame in which it was
                 observed.
-            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any contraints
+            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints
                 expressed in the WorldState message.
             constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any
                 specified constraints
@@ -134,8 +134,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         ``move_on_globe()`` is non blocking, meaning the motion service will move the component to the destination
         GPS point after ``move_on_globe()`` returns.
 
-        Each successful ``move_on_globe()`` call retuns a unique ExectionID which you can use to identify all plans
-        generated durring the ``move_on_globe()`` call.
+        Each successful ``move_on_globe()`` call returns a unique ExecutionID which you can use to identify all plans
+        generated during the ``move_on_globe()`` call.
 
         You can monitor the progress of the ``move_on_globe()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
@@ -159,28 +159,25 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         Args:
             component_name (ResourceName): The ResourceName of the base to move.
             destination (GeoPoint): The location of the component’s destination, represented in geographic notation as a
-            GeoPoint (lat, lng).
+                GeoPoint (lat, lng).
             movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
-            the machine’s location.
+                the machine’s location.
             obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to consider when planning the motion of the component,
-            with each represented as a GeoObstacle.
-                - Default: None
+                with each represented as a GeoObstacle. Default: None
             heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report
-            at the destination point.
-                Range: [0-360) 0: North, 90: East, 180: South, 270: West
-                Default: None
+                at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
-            motion service. This parameter and each of its fields are optional.
-                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
-                you want to use for transient obstacle avoidance.
-                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
-                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
-                linear_m_per_sec (float): Linear velocity this machine should target when moving.
-                angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+                motion service. This parameter and each of its fields are optional.
+                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
+                    you want to use for transient obstacle avoidance.
+                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
+                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
+                - linear_m_per_sec (float): Linear velocity this machine should target when moving.
+                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
-            the underlying RPC call.
+                the underlying RPC call.
 
 
         Returns:
@@ -218,8 +215,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         ``move_on_map()`` is non blocking, meaning the motion service will move the component to the destination
         Pose point after ``move_on_map()`` returns.
 
-        Each successful ``move_on_map()`` call retuns a unique ExectionID which you can use to identify all plans
-        generated durring the ``move_on_map()`` call.
+        Each successful ``move_on_map()`` call returns a unique ExecutionID which you can use to identify all plans
+        generated during the ``move_on_map()`` call.
 
         You can monitor the progress of the ``move_on_map()`` call by querying ``get_plan()`` and ``list_plan_statuses()``.
 
@@ -245,18 +242,18 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             destination (Pose): The destination, which can be any Pose with respect to the SLAM map’s origin.
             slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
-            This parameter and each of its fields are optional.
-                obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
-                for transient obstacle avoidance.
-                position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-                obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
-                plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
-                linear_m_per_sec (float): Linear velocity this machine should target when moving.
-                angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+                This parameter and each of its fields are optional.
+                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
+                    for transient obstacle avoidance.
+                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
+                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
+                - linear_m_per_sec (float): Linear velocity this machine should target when moving.
+                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
             obstacles (Optional[Iterable[Geometry]]): Obstacles to be considered for motion planning.
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying
-            RPC call.
+                RPC call.
 
         Returns:
             str: ExecutionID of the ``move_on_map()`` call, which can be used to track execution progress.
@@ -294,9 +291,6 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Args:
             component_name (ResourceName): The component to stop
-
-        Returns:
-            None
         """
         if extra is None:
             extra = {}

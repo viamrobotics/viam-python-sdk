@@ -79,7 +79,7 @@ class Vision(ServiceBase):
             detections = await my_detector.get_detections(img)
 
         Args:
-            image (Image): The image to get detections from
+            image (Image | RawImage): The image to get detections from
 
         Returns:
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
@@ -145,7 +145,7 @@ class Vision(ServiceBase):
             classifications = await my_classifier.get_classifications(img, 2)
 
         Args:
-            image (Image): The image to get detections from
+            image (Image | RawImage): The image to get detections from
             count (int): The number of classifications desired
 
         Returns:
