@@ -10,6 +10,7 @@ from ...gen.proto.rpc.v1.auth_pb2 import (
     AuthenticateToResponse,
     Credentials,
 )
+from ...gen.proto.rpc.v1.auth_unimplemented_grpc import UnimplementedAuthServiceBase, UnimplementedExternalAuthServiceBase
 
 __all__ = [
     "AuthServiceBase",
@@ -21,4 +22,6 @@ __all__ = [
     "AuthenticateToRequest",
     "AuthenticateToResponse",
     "Credentials",
+    "UnimplementedAuthServiceBase",
+    "UnimplementedExternalAuthServiceBase",
 ]

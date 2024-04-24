@@ -4,10 +4,12 @@ Do not edit manually!
 """
 from ....gen.component.posetracker.v1.pose_tracker_grpc import PoseTrackerServiceBase, PoseTrackerServiceStub
 from ....gen.component.posetracker.v1.pose_tracker_pb2 import GetPosesRequest, GetPosesResponse
+from ....gen.component.posetracker.v1.pose_tracker_unimplemented_grpc import UnimplementedPoseTrackerServiceBase
 
 __all__ = [
     "PoseTrackerServiceBase",
     "PoseTrackerServiceStub",
     "GetPosesRequest",
     "GetPosesResponse",
+    "UnimplementedPoseTrackerServiceBase",
 ]

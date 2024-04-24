@@ -21,6 +21,7 @@ from ....gen.app.mltraining.v1.ml_training_pb2 import (
     TrainingJobMetadata,
     TrainingStatus,
 )
+from ....gen.app.mltraining.v1.ml_training_unimplemented_grpc import UnimplementedMLTrainingServiceBase
 
 __all__ = [
     "MLTrainingServiceBase",
@@ -41,4 +42,5 @@ __all__ = [
     "SubmitTrainingJobResponse",
     "TrainingJobMetadata",
     "TrainingStatus",
+    "UnimplementedMLTrainingServiceBase",
 ]

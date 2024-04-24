@@ -19,6 +19,7 @@ from ....gen.component.base.v1.base_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.base.v1.base_unimplemented_grpc import UnimplementedBaseServiceBase
 
 __all__ = [
     "BaseServiceBase",
@@ -37,4 +38,5 @@ __all__ = [
     "SpinResponse",
     "StopRequest",
     "StopResponse",
+    "UnimplementedBaseServiceBase",
 ]

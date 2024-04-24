@@ -14,6 +14,7 @@ from ....gen.component.servo.v1.servo_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.servo.v1.servo_unimplemented_grpc import UnimplementedServoServiceBase
 
 __all__ = [
     "ServoServiceBase",
@@ -27,4 +28,5 @@ __all__ = [
     "Status",
     "StopRequest",
     "StopResponse",
+    "UnimplementedServoServiceBase",
 ]

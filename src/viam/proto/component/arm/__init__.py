@@ -19,6 +19,7 @@ from ....gen.component.arm.v1.arm_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.arm.v1.arm_unimplemented_grpc import UnimplementedArmServiceBase
 
 __all__ = [
     "ArmServiceBase",
@@ -37,4 +38,5 @@ __all__ = [
     "Status",
     "StopRequest",
     "StopResponse",
+    "UnimplementedArmServiceBase",
 ]

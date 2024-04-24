@@ -11,6 +11,7 @@ from .....gen.proto.rpc.examples.echoresource.v1.echoresource_pb2 import (
     EchoResourceRequest,
     EchoResourceResponse,
 )
+from .....gen.proto.rpc.examples.echoresource.v1.echoresource_unimplemented_grpc import UnimplementedEchoResourceServiceBase
 
 __all__ = [
     "EchoResourceServiceBase",
@@ -21,4 +22,5 @@ __all__ = [
     "EchoResourceMultipleResponse",
     "EchoResourceRequest",
     "EchoResourceResponse",
+    "UnimplementedEchoResourceServiceBase",
 ]

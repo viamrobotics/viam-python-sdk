@@ -17,6 +17,7 @@ from ....gen.app.agent.v1.agent_pb2 import (
     UpdateAgentConfigRequest,
     UpdateAgentConfigResponse,
 )
+from ....gen.app.agent.v1.agent_unimplemented_grpc import UnimplementedAgentAppServiceBase, UnimplementedAgentDeviceServiceBase
 
 __all__ = [
     "AgentAppServiceBase",
@@ -35,4 +36,6 @@ __all__ = [
     "SubsystemUpdateInfo",
     "UpdateAgentConfigRequest",
     "UpdateAgentConfigResponse",
+    "UnimplementedAgentAppServiceBase",
+    "UnimplementedAgentDeviceServiceBase",
 ]

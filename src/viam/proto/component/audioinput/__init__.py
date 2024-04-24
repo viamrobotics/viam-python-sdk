@@ -13,6 +13,7 @@ from ....gen.component.audioinput.v1.audioinput_pb2 import (
     RecordRequest,
     SampleFormat,
 )
+from ....gen.component.audioinput.v1.audioinput_unimplemented_grpc import UnimplementedAudioInputServiceBase
 
 __all__ = [
     "AudioInputServiceBase",
@@ -25,4 +26,5 @@ __all__ = [
     "PropertiesResponse",
     "RecordRequest",
     "SampleFormat",
+    "UnimplementedAudioInputServiceBase",
 ]

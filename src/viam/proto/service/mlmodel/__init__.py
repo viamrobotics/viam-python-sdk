@@ -25,6 +25,7 @@ from ....gen.service.mlmodel.v1.mlmodel_pb2 import (
     MetadataResponse,
     TensorInfo,
 )
+from ....gen.service.mlmodel.v1.mlmodel_unimplemented_grpc import UnimplementedMLModelServiceBase
 
 __all__ = [
     "MLModelServiceBase",
@@ -49,4 +50,5 @@ __all__ = [
     "MetadataRequest",
     "MetadataResponse",
     "TensorInfo",
+    "UnimplementedMLModelServiceBase",
 ]

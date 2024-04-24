@@ -11,6 +11,7 @@ from .....gen.proto.rpc.examples.echo.v1.echo_pb2 import (
     EchoRequest,
     EchoResponse,
 )
+from .....gen.proto.rpc.examples.echo.v1.echo_unimplemented_grpc import UnimplementedEchoServiceBase
 
 __all__ = [
     "EchoServiceBase",
@@ -21,4 +22,5 @@ __all__ = [
     "EchoMultipleResponse",
     "EchoRequest",
     "EchoResponse",
+    "UnimplementedEchoServiceBase",
 ]

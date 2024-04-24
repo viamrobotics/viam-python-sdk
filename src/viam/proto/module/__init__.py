@@ -17,6 +17,7 @@ from ...gen.module.v1.module_pb2 import (
     ValidateConfigRequest,
     ValidateConfigResponse,
 )
+from ...gen.module.v1.module_unimplemented_grpc import UnimplementedModuleServiceBase
 
 __all__ = [
     "ModuleServiceBase",
@@ -33,4 +34,5 @@ __all__ = [
     "RemoveResourceResponse",
     "ValidateConfigRequest",
     "ValidateConfigResponse",
+    "UnimplementedModuleServiceBase",
 ]

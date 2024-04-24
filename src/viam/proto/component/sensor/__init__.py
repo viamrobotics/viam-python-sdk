@@ -3,8 +3,10 @@
 Do not edit manually!
 """
 from ....gen.component.sensor.v1.sensor_grpc import SensorServiceBase, SensorServiceStub
+from ....gen.component.sensor.v1.sensor_unimplemented_grpc import UnimplementedSensorServiceBase
 
 __all__ = [
     "SensorServiceBase",
     "SensorServiceStub",
+    "UnimplementedSensorServiceBase",
 ]

@@ -4,10 +4,12 @@ Do not edit manually!
 """
 from ....gen.service.shell.v1.shell_grpc import ShellServiceBase, ShellServiceStub
 from ....gen.service.shell.v1.shell_pb2 import ShellRequest, ShellResponse
+from ....gen.service.shell.v1.shell_unimplemented_grpc import UnimplementedShellServiceBase
 
 __all__ = [
     "ShellServiceBase",
     "ShellServiceStub",
     "ShellRequest",
     "ShellResponse",
+    "UnimplementedShellServiceBase",
 ]

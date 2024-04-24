@@ -4,10 +4,12 @@ Do not edit manually!
 """
 from ....gen.service.datamanager.v1.data_manager_grpc import DataManagerServiceBase, DataManagerServiceStub
 from ....gen.service.datamanager.v1.data_manager_pb2 import SyncRequest, SyncResponse
+from ....gen.service.datamanager.v1.data_manager_unimplemented_grpc import UnimplementedDataManagerServiceBase
 
 __all__ = [
     "DataManagerServiceBase",
     "DataManagerServiceStub",
     "SyncRequest",
     "SyncResponse",
+    "UnimplementedDataManagerServiceBase",
 ]

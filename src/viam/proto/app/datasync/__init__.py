@@ -19,6 +19,7 @@ from ....gen.app.datasync.v1.data_sync_pb2 import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
+from ....gen.app.datasync.v1.data_sync_unimplemented_grpc import UnimplementedDataSyncServiceBase
 
 __all__ = [
     "DataSyncServiceBase",
@@ -37,4 +38,5 @@ __all__ = [
     "StreamingDataCaptureUploadRequest",
     "StreamingDataCaptureUploadResponse",
     "UploadMetadata",
+    "UnimplementedDataSyncServiceBase",
 ]

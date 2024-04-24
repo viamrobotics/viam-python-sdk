@@ -16,6 +16,7 @@ from ....gen.service.slam.v1.slam_pb2 import (
     SensorInfo,
     SensorType,
 )
+from ....gen.service.slam.v1.slam_unimplemented_grpc import UnimplementedSLAMServiceBase
 
 __all__ = [
     "SLAMServiceBase",
@@ -31,4 +32,5 @@ __all__ = [
     "MappingMode",
     "SensorInfo",
     "SensorType",
+    "UnimplementedSLAMServiceBase",
 ]

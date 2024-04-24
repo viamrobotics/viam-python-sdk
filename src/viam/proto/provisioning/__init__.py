@@ -16,6 +16,7 @@ from ...gen.provisioning.v1.provisioning_pb2 import (
     SetSmartMachineCredentialsRequest,
     SetSmartMachineCredentialsResponse,
 )
+from ...gen.provisioning.v1.provisioning_unimplemented_grpc import UnimplementedProvisioningServiceBase
 
 __all__ = [
     "ProvisioningServiceBase",
@@ -31,4 +32,5 @@ __all__ = [
     "SetNetworkCredentialsResponse",
     "SetSmartMachineCredentialsRequest",
     "SetSmartMachineCredentialsResponse",
+    "UnimplementedProvisioningServiceBase",
 ]

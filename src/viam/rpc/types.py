@@ -5,6 +5,8 @@ import grpclib
 from grpclib._typing import IServable
 from grpclib.client import Channel
 
+from viam.errors import MethodNotImplementedError
+
 
 class RPCServiceBase(IServable):
     """The base requirements for an RPC Service.
@@ -16,6 +18,28 @@ class RPCServiceBase(IServable):
     @abstractmethod
     def __mapping__(self) -> Mapping[str, grpclib.const.Handler]:
         ...
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+
+        # Automatically set abstract methods as unimplemented
+        abstracts = set()
+
+        # Check the existing abstract methods of the parents, keeping only the ones that are not implemented.
+        for scls in cls.__bases__:
+            for name in getattr(scls, "__abstractmethods__", ()):
+                value = getattr(cls, name, None)
+                if getattr(value, "__isabstractmethod__", False):
+                    if name[:2] == "__" and name[-2:] == "__":
+                        # Ignore dunder methods
+                        continue
+                    abstracts.add(name)
+
+        def not_implemented(self, **kwargs):
+            raise MethodNotImplementedError(name).grpc_error
+
+        for name in abstracts:
+            setattr(cls, name, not_implemented)
 
 
 @runtime_checkable

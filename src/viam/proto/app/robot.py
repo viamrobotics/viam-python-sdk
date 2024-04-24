@@ -37,6 +37,7 @@ from ...gen.app.v1.robot_pb2 import (
     SessionsConfig,
     Translation,
 )
+from ...gen.app.v1.robot_unimplemented_grpc import UnimplementedRobotServiceBase
 
 __all__ = [
     "RobotServiceBase",
@@ -73,4 +74,5 @@ __all__ = [
     "ServiceConfig",
     "SessionsConfig",
     "Translation",
+    "UnimplementedRobotServiceBase",
 ]

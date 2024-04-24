@@ -58,6 +58,7 @@ from ....gen.app.data.v1.data_pb2 import (
     TagsFilter,
     TagsFilterType,
 )
+from ....gen.app.data.v1.data_unimplemented_grpc import UnimplementedDataServiceBase
 
 __all__ = [
     "DataServiceBase",
@@ -115,4 +116,5 @@ __all__ = [
     "TagsByFilterResponse",
     "TagsFilter",
     "TagsFilterType",
+    "UnimplementedDataServiceBase",
 ]

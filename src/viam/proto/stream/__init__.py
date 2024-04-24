@@ -11,6 +11,7 @@ from ...gen.stream.v1.stream_pb2 import (
     RemoveStreamRequest,
     RemoveStreamResponse,
 )
+from ...gen.stream.v1.stream_unimplemented_grpc import UnimplementedStreamServiceBase
 
 __all__ = [
     "StreamServiceBase",
@@ -21,4 +22,5 @@ __all__ = [
     "ListStreamsResponse",
     "RemoveStreamRequest",
     "RemoveStreamResponse",
+    "UnimplementedStreamServiceBase",
 ]

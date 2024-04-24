@@ -13,6 +13,7 @@ from ....gen.component.gripper.v1.gripper_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.gripper.v1.gripper_unimplemented_grpc import UnimplementedGripperServiceBase
 
 __all__ = [
     "GripperServiceBase",
@@ -25,4 +26,5 @@ __all__ = [
     "OpenResponse",
     "StopRequest",
     "StopResponse",
+    "UnimplementedGripperServiceBase",
 ]

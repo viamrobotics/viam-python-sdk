@@ -22,6 +22,7 @@ from ....gen.app.cloudslam.v1.cloud_slam_pb2 import (
     StopMappingSessionRequest,
     StopMappingSessionResponse,
 )
+from ....gen.app.cloudslam.v1.cloud_slam_unimplemented_grpc import UnimplementedCloudSLAMServiceBase
 
 __all__ = [
     "CloudSLAMServiceBase",
@@ -43,4 +44,5 @@ __all__ = [
     "StartMappingSessionResponse",
     "StopMappingSessionRequest",
     "StopMappingSessionResponse",
+    "UnimplementedCloudSLAMServiceBase",
 ]

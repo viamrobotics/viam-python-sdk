@@ -3,8 +3,10 @@
 Do not edit manually!
 """
 from ....gen.service.generic.v1.generic_grpc import GenericServiceBase, GenericServiceStub
+from ....gen.service.generic.v1.generic_unimplemented_grpc import UnimplementedGenericServiceBase
 
 __all__ = [
     "GenericServiceBase",
     "GenericServiceStub",
+    "UnimplementedGenericServiceBase",
 ]

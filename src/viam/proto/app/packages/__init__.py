@@ -17,6 +17,7 @@ from ....gen.app.packages.v1.packages_pb2 import (
     PackageInfo,
     PackageType,
 )
+from ....gen.app.packages.v1.packages_unimplemented_grpc import UnimplementedPackageServiceBase
 
 __all__ = [
     "PackageServiceBase",
@@ -33,4 +34,5 @@ __all__ = [
     "Package",
     "PackageInfo",
     "PackageType",
+    "UnimplementedPackageServiceBase",
 ]

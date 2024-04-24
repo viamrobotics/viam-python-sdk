@@ -13,6 +13,7 @@ from ....gen.component.testecho.v1.testecho_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.testecho.v1.testecho_unimplemented_grpc import UnimplementedTestEchoServiceBase
 
 __all__ = [
     "TestEchoServiceBase",
@@ -25,4 +26,5 @@ __all__ = [
     "EchoResponse",
     "StopRequest",
     "StopResponse",
+    "UnimplementedTestEchoServiceBase",
 ]

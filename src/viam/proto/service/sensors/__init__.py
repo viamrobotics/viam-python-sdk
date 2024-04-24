@@ -4,6 +4,7 @@ Do not edit manually!
 """
 from ....gen.service.sensors.v1.sensors_grpc import SensorsServiceBase, SensorsServiceStub
 from ....gen.service.sensors.v1.sensors_pb2 import GetReadingsRequest, GetReadingsResponse, GetSensorsRequest, GetSensorsResponse, Readings
+from ....gen.service.sensors.v1.sensors_unimplemented_grpc import UnimplementedSensorsServiceBase
 
 __all__ = [
     "SensorsServiceBase",
@@ -13,4 +14,5 @@ __all__ = [
     "GetSensorsRequest",
     "GetSensorsResponse",
     "Readings",
+    "UnimplementedSensorsServiceBase",
 ]

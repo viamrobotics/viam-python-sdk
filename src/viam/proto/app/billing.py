@@ -18,6 +18,7 @@ from ...gen.app.v1.billing_pb2 import (
     PaymentMethodCard,
     PaymentMethodType,
 )
+from ...gen.app.v1.billing_unimplemented_grpc import UnimplementedBillingServiceBase
 
 __all__ = [
     "BillingServiceBase",
@@ -35,4 +36,5 @@ __all__ = [
     "InvoiceSummary",
     "PaymentMethodCard",
     "PaymentMethodType",
+    "UnimplementedBillingServiceBase",
 ]

@@ -175,6 +175,7 @@ from ...gen.app.v1.app_pb2 import (
     VersionHistory,
     Visibility,
 )
+from ...gen.app.v1.app_unimplemented_grpc import UnimplementedAppServiceBase
 
 __all__ = [
     "AppServiceBase",
@@ -349,4 +350,5 @@ __all__ = [
     "Uploads",
     "VersionHistory",
     "Visibility",
+    "UnimplementedAppServiceBase",
 ]

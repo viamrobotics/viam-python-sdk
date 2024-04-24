@@ -29,6 +29,7 @@ from ....gen.component.board.v1.board_pb2 import (
     WriteAnalogRequest,
     WriteAnalogResponse,
 )
+from ....gen.component.board.v1.board_unimplemented_grpc import UnimplementedBoardServiceBase
 
 __all__ = [
     "BoardServiceBase",
@@ -57,4 +58,5 @@ __all__ = [
     "StreamTicksResponse",
     "WriteAnalogRequest",
     "WriteAnalogResponse",
+    "UnimplementedBoardServiceBase",
 ]

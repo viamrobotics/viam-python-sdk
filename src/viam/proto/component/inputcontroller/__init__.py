@@ -15,6 +15,7 @@ from ....gen.component.inputcontroller.v1.input_controller_pb2 import (
     TriggerEventRequest,
     TriggerEventResponse,
 )
+from ....gen.component.inputcontroller.v1.input_controller_unimplemented_grpc import UnimplementedInputControllerServiceBase
 
 __all__ = [
     "InputControllerServiceBase",
@@ -29,4 +30,5 @@ __all__ = [
     "StreamEventsResponse",
     "TriggerEventRequest",
     "TriggerEventResponse",
+    "UnimplementedInputControllerServiceBase",
 ]

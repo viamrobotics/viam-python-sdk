@@ -16,6 +16,7 @@ from ....gen.proto.rpc.webrtc.v1.grpc_pb2 import (
     Strings,
 )
 from ....gen.proto.rpc.webrtc.v1.signaling_grpc import SignalingServiceBase, SignalingServiceStub
+from ....gen.proto.rpc.webrtc.v1.signaling_unimplemented_grpc import UnimplementedSignalingServiceBase
 
 __all__ = [
     "Metadata",
@@ -31,4 +32,5 @@ __all__ = [
     "Strings",
     "SignalingServiceBase",
     "SignalingServiceStub",
+    "UnimplementedSignalingServiceBase",
 ]

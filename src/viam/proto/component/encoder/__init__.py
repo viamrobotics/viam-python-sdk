@@ -12,6 +12,7 @@ from ....gen.component.encoder.v1.encoder_pb2 import (
     ResetPositionRequest,
     ResetPositionResponse,
 )
+from ....gen.component.encoder.v1.encoder_unimplemented_grpc import UnimplementedEncoderServiceBase
 
 __all__ = [
     "EncoderServiceBase",
@@ -23,4 +24,5 @@ __all__ = [
     "PositionType",
     "ResetPositionRequest",
     "ResetPositionResponse",
+    "UnimplementedEncoderServiceBase",
 ]

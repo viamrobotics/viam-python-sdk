@@ -24,6 +24,7 @@ from ....gen.component.motor.v1.motor_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.motor.v1.motor_unimplemented_grpc import UnimplementedMotorServiceBase
 
 __all__ = [
     "MotorServiceBase",
@@ -47,4 +48,5 @@ __all__ = [
     "Status",
     "StopRequest",
     "StopResponse",
+    "UnimplementedMotorServiceBase",
 ]

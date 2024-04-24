@@ -26,6 +26,7 @@ from ....gen.proto.rpc.webrtc.v1.signaling_pb2 import (
     OptionalWebRTCConfigResponse,
     WebRTCConfig,
 )
+from ....gen.proto.rpc.webrtc.v1.signaling_unimplemented_grpc import UnimplementedSignalingServiceBase
 
 __all__ = [
     "SignalingServiceBase",
@@ -51,4 +52,5 @@ __all__ = [
     "OptionalWebRTCConfigRequest",
     "OptionalWebRTCConfigResponse",
     "WebRTCConfig",
+    "UnimplementedSignalingServiceBase",
 ]

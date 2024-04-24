@@ -11,6 +11,7 @@ from ....gen.component.powersensor.v1.powersensor_pb2 import (
     GetVoltageRequest,
     GetVoltageResponse,
 )
+from ....gen.component.powersensor.v1.powersensor_unimplemented_grpc import UnimplementedPowerSensorServiceBase
 
 __all__ = [
     "PowerSensorServiceBase",
@@ -21,4 +22,5 @@ __all__ = [
     "GetPowerResponse",
     "GetVoltageRequest",
     "GetVoltageResponse",
+    "UnimplementedPowerSensorServiceBase",
 ]

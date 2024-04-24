@@ -21,6 +21,7 @@ from ....gen.component.camera.v1.camera_pb2 import (
     Webcam,
     Webcams,
 )
+from ....gen.component.camera.v1.camera_unimplemented_grpc import UnimplementedCameraServiceBase
 
 __all__ = [
     "CameraServiceBase",
@@ -41,4 +42,5 @@ __all__ = [
     "RenderFrameRequest",
     "Webcam",
     "Webcams",
+    "UnimplementedCameraServiceBase",
 ]

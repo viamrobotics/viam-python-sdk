@@ -18,6 +18,7 @@ from ....gen.component.gantry.v1.gantry_pb2 import (
     StopRequest,
     StopResponse,
 )
+from ....gen.component.gantry.v1.gantry_unimplemented_grpc import UnimplementedGantryServiceBase
 
 __all__ = [
     "GantryServiceBase",
@@ -35,4 +36,5 @@ __all__ = [
     "Status",
     "StopRequest",
     "StopResponse",
+    "UnimplementedGantryServiceBase",
 ]

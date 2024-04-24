@@ -16,6 +16,7 @@ from ....gen.app.dataset.v1.dataset_pb2 import (
     RenameDatasetRequest,
     RenameDatasetResponse,
 )
+from ....gen.app.dataset.v1.dataset_unimplemented_grpc import UnimplementedDatasetServiceBase
 
 __all__ = [
     "DatasetServiceBase",
@@ -31,4 +32,5 @@ __all__ = [
     "ListDatasetsByOrganizationIDResponse",
     "RenameDatasetRequest",
     "RenameDatasetResponse",
+    "UnimplementedDatasetServiceBase",
 ]

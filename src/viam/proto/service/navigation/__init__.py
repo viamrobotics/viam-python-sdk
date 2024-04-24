@@ -27,6 +27,7 @@ from ....gen.service.navigation.v1.navigation_pb2 import (
     SetModeResponse,
     Waypoint,
 )
+from ....gen.service.navigation.v1.navigation_unimplemented_grpc import UnimplementedNavigationServiceBase
 
 __all__ = [
     "NavigationServiceBase",
@@ -53,4 +54,5 @@ __all__ = [
     "SetModeRequest",
     "SetModeResponse",
     "Waypoint",
+    "UnimplementedNavigationServiceBase",
 ]

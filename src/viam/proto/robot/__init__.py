@@ -51,6 +51,7 @@ from ...gen.robot.v1.robot_pb2 import (
     TransformPoseRequest,
     TransformPoseResponse,
 )
+from ...gen.robot.v1.robot_unimplemented_grpc import UnimplementedRobotServiceBase
 
 __all__ = [
     "RobotServiceBase",
@@ -101,4 +102,5 @@ __all__ = [
     "TransformPCDResponse",
     "TransformPoseRequest",
     "TransformPoseResponse",
+    "UnimplementedRobotServiceBase",
 ]

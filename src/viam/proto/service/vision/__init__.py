@@ -17,6 +17,7 @@ from ....gen.service.vision.v1.vision_pb2 import (
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
 )
+from ....gen.service.vision.v1.vision_unimplemented_grpc import UnimplementedVisionServiceBase
 
 __all__ = [
     "VisionServiceBase",
@@ -33,4 +34,5 @@ __all__ = [
     "GetDetectionsResponse",
     "GetObjectPointCloudsRequest",
     "GetObjectPointCloudsResponse",
+    "UnimplementedVisionServiceBase",
 ]

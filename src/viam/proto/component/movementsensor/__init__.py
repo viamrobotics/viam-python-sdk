@@ -21,6 +21,7 @@ from ....gen.component.movementsensor.v1.movementsensor_pb2 import (
     GetPropertiesRequest,
     GetPropertiesResponse,
 )
+from ....gen.component.movementsensor.v1.movementsensor_unimplemented_grpc import UnimplementedMovementSensorServiceBase
 
 __all__ = [
     "MovementSensorServiceBase",
@@ -41,4 +42,5 @@ __all__ = [
     "GetPositionResponse",
     "GetPropertiesRequest",
     "GetPropertiesResponse",
+    "UnimplementedMovementSensorServiceBase",
 ]

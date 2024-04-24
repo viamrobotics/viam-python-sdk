@@ -13,6 +13,7 @@ from ...gen.app.v1.end_user_pb2 import (
     UpdateAuthApplicationRequest,
     UpdateAuthApplicationResponse,
 )
+from ...gen.app.v1.end_user_unimplemented_grpc import UnimplementedEndUserServiceBase
 
 __all__ = [
     "EndUserServiceBase",
@@ -25,4 +26,5 @@ __all__ = [
     "RegisterAuthApplicationResponse",
     "UpdateAuthApplicationRequest",
     "UpdateAuthApplicationResponse",
+    "UnimplementedEndUserServiceBase",
 ]

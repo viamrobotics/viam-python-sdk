@@ -32,6 +32,7 @@ from ....gen.service.motion.v1.motion_pb2 import (
     StopPlanRequest,
     StopPlanResponse,
 )
+from ....gen.service.motion.v1.motion_unimplemented_grpc import UnimplementedMotionServiceBase
 
 __all__ = [
     "MotionServiceBase",
@@ -63,4 +64,5 @@ __all__ = [
     "PlanWithStatus",
     "StopPlanRequest",
     "StopPlanResponse",
+    "UnimplementedMotionServiceBase",
 ]
