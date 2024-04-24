@@ -12,7 +12,7 @@ from grpclib.exceptions import GRPCError, StreamTerminatedError
 from grpclib.metadata import _MetadataLike
 
 from viam import logging
-from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest
+from viam.proto.robot import RobotServiceStub, SendSessionHeartbeatRequest, StartSessionRequest, StartSessionResponse
 from viam.rpc.dial import DialOptions, dial
 
 LOGGER = logging.getLogger(__name__)
@@ -45,19 +45,29 @@ class SessionsClient:
     supports stopping actuating components when it's not.
     """
 
+    channel: Channel
+    client: RobotServiceStub
+    _address: str
+    _dial_options: DialOptions
+    _disabled: bool
+    _lock: Lock
+    _current_id: str
+    _heartbeat_interval: Optional[timedelta]
+    _supported: _SupportedState
+    _thread: Optional[Thread]
+
     def __init__(self, channel: Channel, direct_dial_address: str, dial_options: Optional[DialOptions], *, disabled: bool = False):
         self.channel = channel
         self.client = RobotServiceStub(channel)
         self._address = direct_dial_address
-        self._dial_options = dial_options
         self._disabled = disabled
         self._dial_options = deepcopy(dial_options) if dial_options is not None else DialOptions()
         self._dial_options.disable_webrtc = True
-        self._lock: Lock = Lock()
-        self._current_id: str = ""
-        self._heartbeat_interval: Optional[timedelta] = None
-        self._supported: _SupportedState = _SupportedState.UNKNOWN
-        self._thread: Optional[Thread] = None
+        self._lock = Lock()
+        self._current_id = ""
+        self._heartbeat_interval = None
+        self._supported = _SupportedState.UNKNOWN
+        self._thread = None
 
         listen(self.channel, SendRequest, self._send_request)
         listen(self.channel, RecvTrailingMetadata, self._recv_trailers)
@@ -100,7 +110,7 @@ class SessionsClient:
 
         request = StartSessionRequest(resume=self._current_id)
         try:
-            response = await self.client.StartSession(request)
+            response: StartSessionResponse = await self.client.StartSession(request)
         except GRPCError as error:
             if error.status == Status.UNIMPLEMENTED:
                 with self._lock:
