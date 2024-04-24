@@ -60,3 +60,12 @@ def _rname_hash(self: _ResourceName) -> int:
 
 
 _ResourceName.__hash__ = _rname_hash  # type: ignore
+
+
+def _rname_eq(self: _ResourceName, other: object) -> bool:
+    if isinstance(other, _ResourceName):
+        return self.__hash__() == other.__hash__()  # type: ignore
+    return False
+
+
+_ResourceName.__eq__ = _rname_eq  # type: ignore
