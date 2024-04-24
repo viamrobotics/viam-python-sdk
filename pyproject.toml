@@ -52,6 +52,10 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   ]
   pyright = "^1.1.339"
 
+  [tool.poetry.extras]
+  mlmodel = ["numpy"]
+
+
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = "tests"
@@ -74,9 +78,6 @@ line_length = 140
 [build-system]
 requires = [ "poetry-core>=1.0.0" ]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.extras]
-mlmodel = ["numpy"]
 
 [tool.pyright]
 include = [ "src" ]

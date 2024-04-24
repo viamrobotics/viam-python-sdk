@@ -22,11 +22,10 @@ typecheck:
 
 _buf: clean
 	rm -rf src/viam/gen
-	chmod +x etc/unimplemented_service_plugin.py
 	buf generate -v buf.build/viamrobotics/api
 	buf generate buf.build/viamrobotics/goutils
-	protol -e googl* --in-place -s _grpc.py -s _unimplemented_grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
-	protol -e googl* --in-place -s _grpc.py -s _unimplemented_grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
+	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
+	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
 	find src/viam/gen -type d -exec touch {}/__init__.py \;
 
 buf:

@@ -5,8 +5,6 @@ import grpclib
 from grpclib._typing import IServable
 from grpclib.client import Channel
 
-from viam.errors import MethodNotImplementedError
-
 
 class RPCServiceBase(IServable):
     """The base requirements for an RPC Service.
