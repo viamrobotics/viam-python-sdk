@@ -5,14 +5,10 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class EchoResourceRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -23,11 +19,11 @@ class EchoResourceRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message', 'name', b'name']) -> None:
         ...
 global___EchoResourceRequest = EchoResourceRequest
 
-@typing_extensions.final
+@typing.final
 class EchoResourceResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -36,11 +32,11 @@ class EchoResourceResponse(google.protobuf.message.Message):
     def __init__(self, *, message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message']) -> None:
         ...
 global___EchoResourceResponse = EchoResourceResponse
 
-@typing_extensions.final
+@typing.final
 class EchoResourceMultipleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -51,11 +47,11 @@ class EchoResourceMultipleRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message', 'name', b'name']) -> None:
         ...
 global___EchoResourceMultipleRequest = EchoResourceMultipleRequest
 
-@typing_extensions.final
+@typing.final
 class EchoResourceMultipleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -64,11 +60,11 @@ class EchoResourceMultipleResponse(google.protobuf.message.Message):
     def __init__(self, *, message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message']) -> None:
         ...
 global___EchoResourceMultipleResponse = EchoResourceMultipleResponse
 
-@typing_extensions.final
+@typing.final
 class EchoResourceBiDiRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -79,11 +75,11 @@ class EchoResourceBiDiRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message', 'name', b'name']) -> None:
         ...
 global___EchoResourceBiDiRequest = EchoResourceBiDiRequest
 
-@typing_extensions.final
+@typing.final
 class EchoResourceBiDiResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MESSAGE_FIELD_NUMBER: builtins.int
@@ -92,6 +88,6 @@ class EchoResourceBiDiResponse(google.protobuf.message.Message):
     def __init__(self, *, message: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['message', b'message']) -> None:
+    def ClearField(self, field_name: typing.Literal['message', b'message']) -> None:
         ...
 global___EchoResourceBiDiResponse = EchoResourceBiDiResponse

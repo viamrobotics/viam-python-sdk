@@ -6,14 +6,10 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetVoltageRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -28,14 +24,14 @@ class GetVoltageRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetVoltageRequest = GetVoltageRequest
 
-@typing_extensions.final
+@typing.final
 class GetVoltageResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VOLTS_FIELD_NUMBER: builtins.int
@@ -48,11 +44,11 @@ class GetVoltageResponse(google.protobuf.message.Message):
     def __init__(self, *, volts: builtins.float=..., is_ac: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_ac', b'is_ac', 'volts', b'volts']) -> None:
+    def ClearField(self, field_name: typing.Literal['is_ac', b'is_ac', 'volts', b'volts']) -> None:
         ...
 global___GetVoltageResponse = GetVoltageResponse
 
-@typing_extensions.final
+@typing.final
 class GetCurrentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -67,14 +63,14 @@ class GetCurrentRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetCurrentRequest = GetCurrentRequest
 
-@typing_extensions.final
+@typing.final
 class GetCurrentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AMPERES_FIELD_NUMBER: builtins.int
@@ -87,11 +83,11 @@ class GetCurrentResponse(google.protobuf.message.Message):
     def __init__(self, *, amperes: builtins.float=..., is_ac: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['amperes', b'amperes', 'is_ac', b'is_ac']) -> None:
+    def ClearField(self, field_name: typing.Literal['amperes', b'amperes', 'is_ac', b'is_ac']) -> None:
         ...
 global___GetCurrentResponse = GetCurrentResponse
 
-@typing_extensions.final
+@typing.final
 class GetPowerRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -106,14 +102,14 @@ class GetPowerRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPowerRequest = GetPowerRequest
 
-@typing_extensions.final
+@typing.final
 class GetPowerResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WATTS_FIELD_NUMBER: builtins.int
@@ -123,6 +119,6 @@ class GetPowerResponse(google.protobuf.message.Message):
     def __init__(self, *, watts: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['watts', b'watts']) -> None:
+    def ClearField(self, field_name: typing.Literal['watts', b'watts']) -> None:
         ...
 global___GetPowerResponse = GetPowerResponse

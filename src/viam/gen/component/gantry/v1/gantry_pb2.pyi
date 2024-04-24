@@ -8,14 +8,10 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -29,14 +25,14 @@ class GetPositionRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPositionRequest = GetPositionRequest
 
-@typing_extensions.final
+@typing.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int
@@ -48,11 +44,11 @@ class GetPositionResponse(google.protobuf.message.Message):
     def __init__(self, *, positions_mm: collections.abc.Iterable[builtins.float] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['positions_mm', b'positions_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['positions_mm', b'positions_mm']) -> None:
         ...
 global___GetPositionResponse = GetPositionResponse
 
-@typing_extensions.final
+@typing.final
 class MoveToPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -76,14 +72,14 @@ class MoveToPositionRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., positions_mm: collections.abc.Iterable[builtins.float] | None=..., speeds_mm_per_sec: collections.abc.Iterable[builtins.float] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm', 'speeds_mm_per_sec', b'speeds_mm_per_sec']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name', 'positions_mm', b'positions_mm', 'speeds_mm_per_sec', b'speeds_mm_per_sec']) -> None:
         ...
 global___MoveToPositionRequest = MoveToPositionRequest
 
-@typing_extensions.final
+@typing.final
 class MoveToPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -91,7 +87,7 @@ class MoveToPositionResponse(google.protobuf.message.Message):
         ...
 global___MoveToPositionResponse = MoveToPositionResponse
 
-@typing_extensions.final
+@typing.final
 class HomeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -105,14 +101,14 @@ class HomeRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___HomeRequest = HomeRequest
 
-@typing_extensions.final
+@typing.final
 class HomeResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HOMED_FIELD_NUMBER: builtins.int
@@ -122,11 +118,11 @@ class HomeResponse(google.protobuf.message.Message):
     def __init__(self, *, homed: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['homed', b'homed']) -> None:
+    def ClearField(self, field_name: typing.Literal['homed', b'homed']) -> None:
         ...
 global___HomeResponse = HomeResponse
 
-@typing_extensions.final
+@typing.final
 class GetLengthsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -140,14 +136,14 @@ class GetLengthsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetLengthsRequest = GetLengthsRequest
 
-@typing_extensions.final
+@typing.final
 class GetLengthsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LENGTHS_MM_FIELD_NUMBER: builtins.int
@@ -159,11 +155,11 @@ class GetLengthsResponse(google.protobuf.message.Message):
     def __init__(self, *, lengths_mm: collections.abc.Iterable[builtins.float] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['lengths_mm', b'lengths_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['lengths_mm', b'lengths_mm']) -> None:
         ...
 global___GetLengthsResponse = GetLengthsResponse
 
-@typing_extensions.final
+@typing.final
 class StopRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -178,14 +174,14 @@ class StopRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StopRequest = StopRequest
 
-@typing_extensions.final
+@typing.final
 class StopResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -193,12 +189,13 @@ class StopResponse(google.protobuf.message.Message):
         ...
 global___StopResponse = StopResponse
 
-@typing_extensions.final
+@typing.final
 class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSITIONS_MM_FIELD_NUMBER: builtins.int
     LENGTHS_MM_FIELD_NUMBER: builtins.int
     IS_MOVING_FIELD_NUMBER: builtins.int
+    is_moving: builtins.bool
 
     @property
     def positions_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -207,16 +204,15 @@ class Status(google.protobuf.message.Message):
     @property
     def lengths_mm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         ...
-    is_moving: builtins.bool
 
     def __init__(self, *, positions_mm: collections.abc.Iterable[builtins.float] | None=..., lengths_mm: collections.abc.Iterable[builtins.float] | None=..., is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving', 'lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['is_moving', b'is_moving', 'lengths_mm', b'lengths_mm', 'positions_mm', b'positions_mm']) -> None:
         ...
 global___Status = Status
 
-@typing_extensions.final
+@typing.final
 class IsMovingRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -225,11 +221,11 @@ class IsMovingRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
         ...
 global___IsMovingRequest = IsMovingRequest
 
-@typing_extensions.final
+@typing.final
 class IsMovingResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     IS_MOVING_FIELD_NUMBER: builtins.int
@@ -238,6 +234,6 @@ class IsMovingResponse(google.protobuf.message.Message):
     def __init__(self, *, is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
+    def ClearField(self, field_name: typing.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___IsMovingResponse = IsMovingResponse

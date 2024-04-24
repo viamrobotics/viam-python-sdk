@@ -7,14 +7,10 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetSmartMachineStatusRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -22,7 +18,7 @@ class GetSmartMachineStatusRequest(google.protobuf.message.Message):
         ...
 global___GetSmartMachineStatusRequest = GetSmartMachineStatusRequest
 
-@typing_extensions.final
+@typing.final
 class GetSmartMachineStatusResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PROVISIONING_INFO_FIELD_NUMBER: builtins.int
@@ -30,12 +26,12 @@ class GetSmartMachineStatusResponse(google.protobuf.message.Message):
     IS_ONLINE_FIELD_NUMBER: builtins.int
     LATEST_CONNECTION_ATTEMPT_FIELD_NUMBER: builtins.int
     ERRORS_FIELD_NUMBER: builtins.int
+    has_smart_machine_credentials: builtins.bool
+    is_online: builtins.bool
 
     @property
     def provisioning_info(self) -> global___ProvisioningInfo:
         ...
-    has_smart_machine_credentials: builtins.bool
-    is_online: builtins.bool
 
     @property
     def latest_connection_attempt(self) -> global___NetworkInfo:
@@ -48,14 +44,14 @@ class GetSmartMachineStatusResponse(google.protobuf.message.Message):
     def __init__(self, *, provisioning_info: global___ProvisioningInfo | None=..., has_smart_machine_credentials: builtins.bool=..., is_online: builtins.bool=..., latest_connection_attempt: global___NetworkInfo | None=..., errors: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['errors', b'errors', 'has_smart_machine_credentials', b'has_smart_machine_credentials', 'is_online', b'is_online', 'latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['errors', b'errors', 'has_smart_machine_credentials', b'has_smart_machine_credentials', 'is_online', b'is_online', 'latest_connection_attempt', b'latest_connection_attempt', 'provisioning_info', b'provisioning_info']) -> None:
         ...
 global___GetSmartMachineStatusResponse = GetSmartMachineStatusResponse
 
-@typing_extensions.final
+@typing.final
 class SetNetworkCredentialsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
@@ -68,11 +64,11 @@ class SetNetworkCredentialsRequest(google.protobuf.message.Message):
     def __init__(self, *, type: builtins.str=..., ssid: builtins.str=..., psk: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['psk', b'psk', 'ssid', b'ssid', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['psk', b'psk', 'ssid', b'ssid', 'type', b'type']) -> None:
         ...
 global___SetNetworkCredentialsRequest = SetNetworkCredentialsRequest
 
-@typing_extensions.final
+@typing.final
 class SetNetworkCredentialsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -80,7 +76,7 @@ class SetNetworkCredentialsResponse(google.protobuf.message.Message):
         ...
 global___SetNetworkCredentialsResponse = SetNetworkCredentialsResponse
 
-@typing_extensions.final
+@typing.final
 class SetSmartMachineCredentialsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLOUD_FIELD_NUMBER: builtins.int
@@ -92,14 +88,14 @@ class SetSmartMachineCredentialsRequest(google.protobuf.message.Message):
     def __init__(self, *, cloud: global___CloudConfig | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['cloud', b'cloud']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['cloud', b'cloud']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['cloud', b'cloud']) -> None:
+    def ClearField(self, field_name: typing.Literal['cloud', b'cloud']) -> None:
         ...
 global___SetSmartMachineCredentialsRequest = SetSmartMachineCredentialsRequest
 
-@typing_extensions.final
+@typing.final
 class SetSmartMachineCredentialsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -107,7 +103,7 @@ class SetSmartMachineCredentialsResponse(google.protobuf.message.Message):
         ...
 global___SetSmartMachineCredentialsResponse = SetSmartMachineCredentialsResponse
 
-@typing_extensions.final
+@typing.final
 class GetNetworkListRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -115,7 +111,7 @@ class GetNetworkListRequest(google.protobuf.message.Message):
         ...
 global___GetNetworkListRequest = GetNetworkListRequest
 
-@typing_extensions.final
+@typing.final
 class GetNetworkListResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NETWORKS_FIELD_NUMBER: builtins.int
@@ -127,11 +123,11 @@ class GetNetworkListResponse(google.protobuf.message.Message):
     def __init__(self, *, networks: collections.abc.Iterable[global___NetworkInfo] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['networks', b'networks']) -> None:
+    def ClearField(self, field_name: typing.Literal['networks', b'networks']) -> None:
         ...
 global___GetNetworkListResponse = GetNetworkListResponse
 
-@typing_extensions.final
+@typing.final
 class ProvisioningInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_ID_FIELD_NUMBER: builtins.int
@@ -144,11 +140,11 @@ class ProvisioningInfo(google.protobuf.message.Message):
     def __init__(self, *, fragment_id: builtins.str=..., model: builtins.str=..., manufacturer: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragment_id', b'fragment_id', 'manufacturer', b'manufacturer', 'model', b'model']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment_id', b'fragment_id', 'manufacturer', b'manufacturer', 'model', b'model']) -> None:
         ...
 global___ProvisioningInfo = ProvisioningInfo
 
-@typing_extensions.final
+@typing.final
 class NetworkInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TYPE_FIELD_NUMBER: builtins.int
@@ -167,11 +163,11 @@ class NetworkInfo(google.protobuf.message.Message):
     def __init__(self, *, type: builtins.str=..., ssid: builtins.str=..., security: builtins.str=..., signal: builtins.int=..., connected: builtins.bool=..., last_error: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['connected', b'connected', 'last_error', b'last_error', 'security', b'security', 'signal', b'signal', 'ssid', b'ssid', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['connected', b'connected', 'last_error', b'last_error', 'security', b'security', 'signal', b'signal', 'ssid', b'ssid', 'type', b'type']) -> None:
         ...
 global___NetworkInfo = NetworkInfo
 
-@typing_extensions.final
+@typing.final
 class CloudConfig(google.protobuf.message.Message):
     """minimal CloudConfig to create /etc/viam.json"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -187,6 +183,6 @@ class CloudConfig(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., secret: builtins.str=..., app_address: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['app_address', b'app_address', 'id', b'id', 'secret', b'secret']) -> None:
+    def ClearField(self, field_name: typing.Literal['app_address', b'app_address', 'id', b'id', 'secret', b'secret']) -> None:
         ...
 global___CloudConfig = CloudConfig

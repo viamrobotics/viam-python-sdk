@@ -37,7 +37,7 @@ KINEMATICS_FILE_FORMAT_SVA: KinematicsFileFormat.ValueType
 KINEMATICS_FILE_FORMAT_URDF: KinematicsFileFormat.ValueType
 global___KinematicsFileFormat = KinematicsFileFormat
 
-@typing_extensions.final
+@typing.final
 class ResourceName(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAMESPACE_FIELD_NUMBER: builtins.int
@@ -52,11 +52,11 @@ class ResourceName(google.protobuf.message.Message):
     def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
         ...
 global___ResourceName = ResourceName
 
-@typing_extensions.final
+@typing.final
 class AnalogStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -66,11 +66,11 @@ class AnalogStatus(google.protobuf.message.Message):
     def __init__(self, *, value: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['value', b'value']) -> None:
+    def ClearField(self, field_name: typing.Literal['value', b'value']) -> None:
         ...
 global___AnalogStatus = AnalogStatus
 
-@typing_extensions.final
+@typing.final
 class DigitalInterruptStatus(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -80,11 +80,11 @@ class DigitalInterruptStatus(google.protobuf.message.Message):
     def __init__(self, *, value: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['value', b'value']) -> None:
+    def ClearField(self, field_name: typing.Literal['value', b'value']) -> None:
         ...
 global___DigitalInterruptStatus = DigitalInterruptStatus
 
-@typing_extensions.final
+@typing.final
 class Pose(google.protobuf.message.Message):
     """Pose is a combination of location and orientation.
     Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which
@@ -121,11 +121,11 @@ class Pose(google.protobuf.message.Message):
     def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=..., o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
+    def ClearField(self, field_name: typing.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta', 'x', b'x', 'y', b'y', 'z', b'z']) -> None:
         ...
 global___Pose = Pose
 
-@typing_extensions.final
+@typing.final
 class Orientation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     O_X_FIELD_NUMBER: builtins.int
@@ -144,11 +144,11 @@ class Orientation(google.protobuf.message.Message):
     def __init__(self, *, o_x: builtins.float=..., o_y: builtins.float=..., o_z: builtins.float=..., theta: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta']) -> None:
+    def ClearField(self, field_name: typing.Literal['o_x', b'o_x', 'o_y', b'o_y', 'o_z', b'o_z', 'theta', b'theta']) -> None:
         ...
 global___Orientation = Orientation
 
-@typing_extensions.final
+@typing.final
 class PoseInFrame(google.protobuf.message.Message):
     """PoseInFrame contains a pose and the and the reference frame in which it was observed"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -163,14 +163,14 @@ class PoseInFrame(google.protobuf.message.Message):
     def __init__(self, *, reference_frame: builtins.str=..., pose: global___Pose | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose', 'reference_frame', b'reference_frame']) -> None:
+    def ClearField(self, field_name: typing.Literal['pose', b'pose', 'reference_frame', b'reference_frame']) -> None:
         ...
 global___PoseInFrame = PoseInFrame
 
-@typing_extensions.final
+@typing.final
 class Vector3(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_FIELD_NUMBER: builtins.int
@@ -183,11 +183,11 @@ class Vector3(google.protobuf.message.Message):
     def __init__(self, *, x: builtins.float=..., y: builtins.float=..., z: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['x', b'x', 'y', b'y', 'z', b'z']) -> None:
+    def ClearField(self, field_name: typing.Literal['x', b'x', 'y', b'y', 'z', b'z']) -> None:
         ...
 global___Vector3 = Vector3
 
-@typing_extensions.final
+@typing.final
 class Sphere(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RADIUS_MM_FIELD_NUMBER: builtins.int
@@ -196,11 +196,11 @@ class Sphere(google.protobuf.message.Message):
     def __init__(self, *, radius_mm: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['radius_mm', b'radius_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['radius_mm', b'radius_mm']) -> None:
         ...
 global___Sphere = Sphere
 
-@typing_extensions.final
+@typing.final
 class Capsule(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RADIUS_MM_FIELD_NUMBER: builtins.int
@@ -211,11 +211,11 @@ class Capsule(google.protobuf.message.Message):
     def __init__(self, *, radius_mm: builtins.float=..., length_mm: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['length_mm', b'length_mm', 'radius_mm', b'radius_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['length_mm', b'length_mm', 'radius_mm', b'radius_mm']) -> None:
         ...
 global___Capsule = Capsule
 
-@typing_extensions.final
+@typing.final
 class RectangularPrism(google.protobuf.message.Message):
     """RectangularPrism contains a Vector3 field corresponding to the X, Y, Z dimensions of the prism in mms
     These dimensions are with respect to the referenceframe in which the RectangularPrism is defined
@@ -230,14 +230,14 @@ class RectangularPrism(google.protobuf.message.Message):
     def __init__(self, *, dims_mm: global___Vector3 | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['dims_mm', b'dims_mm']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['dims_mm', b'dims_mm']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['dims_mm', b'dims_mm']) -> None:
+    def ClearField(self, field_name: typing.Literal['dims_mm', b'dims_mm']) -> None:
         ...
 global___RectangularPrism = RectangularPrism
 
-@typing_extensions.final
+@typing.final
 class Geometry(google.protobuf.message.Message):
     """Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -246,6 +246,8 @@ class Geometry(google.protobuf.message.Message):
     BOX_FIELD_NUMBER: builtins.int
     CAPSULE_FIELD_NUMBER: builtins.int
     LABEL_FIELD_NUMBER: builtins.int
+    label: builtins.str
+    'Label of the geometry. If none supplied, will be an empty string.'
 
     @property
     def center(self) -> global___Pose:
@@ -262,23 +264,21 @@ class Geometry(google.protobuf.message.Message):
     @property
     def capsule(self) -> global___Capsule:
         ...
-    label: builtins.str
-    'Label of the geometry. If none supplied, will be an empty string.'
 
     def __init__(self, *, center: global___Pose | None=..., sphere: global___Sphere | None=..., box: global___RectangularPrism | None=..., capsule: global___Capsule | None=..., label: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'sphere', b'sphere']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'sphere', b'sphere']) -> None:
+    def ClearField(self, field_name: typing.Literal['box', b'box', 'capsule', b'capsule', 'center', b'center', 'geometry_type', b'geometry_type', 'label', b'label', 'sphere', b'sphere']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['geometry_type', b'geometry_type']) -> typing_extensions.Literal['sphere', 'box', 'capsule'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['geometry_type', b'geometry_type']) -> typing.Literal['sphere', 'box', 'capsule'] | None:
         ...
 global___Geometry = Geometry
 
-@typing_extensions.final
+@typing.final
 class GeometriesInFrame(google.protobuf.message.Message):
     """GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was
     observed.
@@ -296,11 +296,11 @@ class GeometriesInFrame(google.protobuf.message.Message):
     def __init__(self, *, reference_frame: builtins.str=..., geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'reference_frame', b'reference_frame']) -> None:
+    def ClearField(self, field_name: typing.Literal['geometries', b'geometries', 'reference_frame', b'reference_frame']) -> None:
         ...
 global___GeometriesInFrame = GeometriesInFrame
 
-@typing_extensions.final
+@typing.final
 class PointCloudObject(google.protobuf.message.Message):
     """PointCloudObject contains an image in bytes with point cloud data of all of the objects captured by a given observer as well as a
     repeated list of geometries which respresents the center point and geometry of each of the objects within the point cloud
@@ -318,14 +318,14 @@ class PointCloudObject(google.protobuf.message.Message):
     def __init__(self, *, point_cloud: builtins.bytes=..., geometries: global___GeometriesInFrame | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['geometries', b'geometries']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['geometries', b'geometries']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'point_cloud', b'point_cloud']) -> None:
+    def ClearField(self, field_name: typing.Literal['geometries', b'geometries', 'point_cloud', b'point_cloud']) -> None:
         ...
 global___PointCloudObject = PointCloudObject
 
-@typing_extensions.final
+@typing.final
 class GeoPoint(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LATITUDE_FIELD_NUMBER: builtins.int
@@ -336,11 +336,11 @@ class GeoPoint(google.protobuf.message.Message):
     def __init__(self, *, latitude: builtins.float=..., longitude: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['latitude', b'latitude', 'longitude', b'longitude']) -> None:
+    def ClearField(self, field_name: typing.Literal['latitude', b'latitude', 'longitude', b'longitude']) -> None:
         ...
 global___GeoPoint = GeoPoint
 
-@typing_extensions.final
+@typing.final
 class GeoObstacle(google.protobuf.message.Message):
     """GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
     captured in latitude and longitude.
@@ -360,14 +360,14 @@ class GeoObstacle(google.protobuf.message.Message):
     def __init__(self, *, location: global___GeoPoint | None=..., geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries', 'location', b'location']) -> None:
+    def ClearField(self, field_name: typing.Literal['geometries', b'geometries', 'location', b'location']) -> None:
         ...
 global___GeoObstacle = GeoObstacle
 
-@typing_extensions.final
+@typing.final
 class Transform(google.protobuf.message.Message):
     """Transform contains a pose and two reference frames. The first reference frame is the starting reference frame, and the second reference
     frame is the observer reference frame. The second reference frame has a pose which represents the pose of an object in the first
@@ -391,17 +391,17 @@ class Transform(google.protobuf.message.Message):
     def __init__(self, *, reference_frame: builtins.str=..., pose_in_observer_frame: global___PoseInFrame | None=..., physical_object: global___Geometry | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
+    def ClearField(self, field_name: typing.Literal['_physical_object', b'_physical_object', 'physical_object', b'physical_object', 'pose_in_observer_frame', b'pose_in_observer_frame', 'reference_frame', b'reference_frame']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_physical_object', b'_physical_object']) -> typing_extensions.Literal['physical_object'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_physical_object', b'_physical_object']) -> typing.Literal['physical_object'] | None:
         ...
 global___Transform = Transform
 
-@typing_extensions.final
+@typing.final
 class WorldState(google.protobuf.message.Message):
     """WorldState contains information about the physical environment around a given robot. All of the fields within this message are optional,
     they can include information about the physical dimensions of an obstacle, the freespace of a robot, and any desired transforms between a
@@ -422,11 +422,11 @@ class WorldState(google.protobuf.message.Message):
     def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
+    def ClearField(self, field_name: typing.Literal['obstacles', b'obstacles', 'transforms', b'transforms']) -> None:
         ...
 global___WorldState = WorldState
 
-@typing_extensions.final
+@typing.final
 class ActuatorStatus(google.protobuf.message.Message):
     """ActuatorStatus is a generic status for resources that only need to return actuator status."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -436,11 +436,11 @@ class ActuatorStatus(google.protobuf.message.Message):
     def __init__(self, *, is_moving: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['is_moving', b'is_moving']) -> None:
+    def ClearField(self, field_name: typing.Literal['is_moving', b'is_moving']) -> None:
         ...
 global___ActuatorStatus = ActuatorStatus
 
-@typing_extensions.final
+@typing.final
 class ResponseMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CAPTURED_AT_FIELD_NUMBER: builtins.int
@@ -456,17 +456,17 @@ class ResponseMetadata(google.protobuf.message.Message):
     def __init__(self, *, captured_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> None:
+    def ClearField(self, field_name: typing.Literal['_captured_at', b'_captured_at', 'captured_at', b'captured_at']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_captured_at', b'_captured_at']) -> typing_extensions.Literal['captured_at'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_captured_at', b'_captured_at']) -> typing.Literal['captured_at'] | None:
         ...
 global___ResponseMetadata = ResponseMetadata
 
-@typing_extensions.final
+@typing.final
 class DoCommandRequest(google.protobuf.message.Message):
     """DoCommandRequest represents a generic DoCommand input"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -481,14 +481,14 @@ class DoCommandRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., command: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['command', b'command']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['command', b'command']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['command', b'command', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['command', b'command', 'name', b'name']) -> None:
         ...
 global___DoCommandRequest = DoCommandRequest
 
-@typing_extensions.final
+@typing.final
 class DoCommandResponse(google.protobuf.message.Message):
     """DoCommandResponse represents a generic DoCommand output"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -501,14 +501,14 @@ class DoCommandResponse(google.protobuf.message.Message):
     def __init__(self, *, result: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['result', b'result']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['result', b'result']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['result', b'result']) -> None:
+    def ClearField(self, field_name: typing.Literal['result', b'result']) -> None:
         ...
 global___DoCommandResponse = DoCommandResponse
 
-@typing_extensions.final
+@typing.final
 class GetKinematicsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -523,14 +523,14 @@ class GetKinematicsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetKinematicsRequest = GetKinematicsRequest
 
-@typing_extensions.final
+@typing.final
 class GetKinematicsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FORMAT_FIELD_NUMBER: builtins.int
@@ -543,11 +543,11 @@ class GetKinematicsResponse(google.protobuf.message.Message):
     def __init__(self, *, format: global___KinematicsFileFormat.ValueType=..., kinematics_data: builtins.bytes=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['format', b'format', 'kinematics_data', b'kinematics_data']) -> None:
+    def ClearField(self, field_name: typing.Literal['format', b'format', 'kinematics_data', b'kinematics_data']) -> None:
         ...
 global___GetKinematicsResponse = GetKinematicsResponse
 
-@typing_extensions.final
+@typing.final
 class GetGeometriesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -562,14 +562,14 @@ class GetGeometriesRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetGeometriesRequest = GetGeometriesRequest
 
-@typing_extensions.final
+@typing.final
 class GetGeometriesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     GEOMETRIES_FIELD_NUMBER: builtins.int
@@ -581,11 +581,11 @@ class GetGeometriesResponse(google.protobuf.message.Message):
     def __init__(self, *, geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['geometries', b'geometries']) -> None:
+    def ClearField(self, field_name: typing.Literal['geometries', b'geometries']) -> None:
         ...
 global___GetGeometriesResponse = GetGeometriesResponse
 
-@typing_extensions.final
+@typing.final
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -600,18 +600,18 @@ class GetReadingsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetReadingsRequest = GetReadingsRequest
 
-@typing_extensions.final
+@typing.final
 class GetReadingsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class ReadingsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -625,10 +625,10 @@ class GetReadingsResponse(google.protobuf.message.Message):
         def __init__(self, *, key: builtins.str=..., value: google.protobuf.struct_pb2.Value | None=...) -> None:
             ...
 
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     READINGS_FIELD_NUMBER: builtins.int
 
@@ -639,11 +639,11 @@ class GetReadingsResponse(google.protobuf.message.Message):
     def __init__(self, *, readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:
+    def ClearField(self, field_name: typing.Literal['readings', b'readings']) -> None:
         ...
 global___GetReadingsResponse = GetReadingsResponse
 
-@typing_extensions.final
+@typing.final
 class LogEntry(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HOST_FIELD_NUMBER: builtins.int
@@ -656,17 +656,17 @@ class LogEntry(google.protobuf.message.Message):
     FIELDS_FIELD_NUMBER: builtins.int
     host: builtins.str
     level: builtins.str
+    logger_name: builtins.str
+    message: builtins.str
+    stack: builtins.str
 
     @property
     def time(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
-    logger_name: builtins.str
-    message: builtins.str
 
     @property
     def caller(self) -> google.protobuf.struct_pb2.Struct:
         ...
-    stack: builtins.str
 
     @property
     def fields(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.struct_pb2.Struct]:
@@ -675,10 +675,10 @@ class LogEntry(google.protobuf.message.Message):
     def __init__(self, *, host: builtins.str=..., level: builtins.str=..., time: google.protobuf.timestamp_pb2.Timestamp | None=..., logger_name: builtins.str=..., message: builtins.str=..., caller: google.protobuf.struct_pb2.Struct | None=..., stack: builtins.str=..., fields: collections.abc.Iterable[google.protobuf.struct_pb2.Struct] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['caller', b'caller', 'time', b'time']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['caller', b'caller', 'time', b'time']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['caller', b'caller', 'fields', b'fields', 'host', b'host', 'level', b'level', 'logger_name', b'logger_name', 'message', b'message', 'stack', b'stack', 'time', b'time']) -> None:
+    def ClearField(self, field_name: typing.Literal['caller', b'caller', 'fields', b'fields', 'host', b'host', 'level', b'level', 'logger_name', b'logger_name', 'message', b'message', 'stack', b'stack', 'time', b'time']) -> None:
         ...
 global___LogEntry = LogEntry
 SAFETY_HEARTBEAT_MONITORED_FIELD_NUMBER: builtins.int

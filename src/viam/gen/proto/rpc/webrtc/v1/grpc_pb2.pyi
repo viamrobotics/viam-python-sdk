@@ -9,14 +9,10 @@ import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.rpc.status_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class PacketMessage(google.protobuf.message.Message):
     """A PacketMessage is used to packetize large messages (> 64KiB) to be able to safely
     transmit over WebRTC data channels.
@@ -30,11 +26,11 @@ class PacketMessage(google.protobuf.message.Message):
     def __init__(self, *, data: builtins.bytes=..., eom: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data', 'eom', b'eom']) -> None:
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'eom', b'eom']) -> None:
         ...
 global___PacketMessage = PacketMessage
 
-@typing_extensions.final
+@typing.final
 class Stream(google.protobuf.message.Message):
     """A Stream represents an instance of a gRPC stream between
     a client and a server.
@@ -46,11 +42,11 @@ class Stream(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___Stream = Stream
 
-@typing_extensions.final
+@typing.final
 class Request(google.protobuf.message.Message):
     """A Request is a frame coming from a client. It is always
     associated with a stream where the client assigns the stream
@@ -62,6 +58,7 @@ class Request(google.protobuf.message.Message):
     HEADERS_FIELD_NUMBER: builtins.int
     MESSAGE_FIELD_NUMBER: builtins.int
     RST_STREAM_FIELD_NUMBER: builtins.int
+    rst_stream: builtins.bool
 
     @property
     def stream(self) -> global___Stream:
@@ -74,22 +71,21 @@ class Request(google.protobuf.message.Message):
     @property
     def message(self) -> global___RequestMessage:
         ...
-    rst_stream: builtins.bool
 
     def __init__(self, *, stream: global___Stream | None=..., headers: global___RequestHeaders | None=..., message: global___RequestMessage | None=..., rst_stream: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['headers', b'headers', 'message', b'message', 'rst_stream', b'rst_stream', 'stream', b'stream', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message', 'rst_stream'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['type', b'type']) -> typing.Literal['headers', 'message', 'rst_stream'] | None:
         ...
 global___Request = Request
 
-@typing_extensions.final
+@typing.final
 class RequestHeaders(google.protobuf.message.Message):
     """RequestHeaders describe the unary or streaming call to make."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -109,14 +105,14 @@ class RequestHeaders(google.protobuf.message.Message):
     def __init__(self, *, method: builtins.str=..., metadata: global___Metadata | None=..., timeout: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'timeout', b'timeout']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['metadata', b'metadata', 'timeout', b'timeout']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'method', b'method', 'timeout', b'timeout']) -> None:
+    def ClearField(self, field_name: typing.Literal['metadata', b'metadata', 'method', b'method', 'timeout', b'timeout']) -> None:
         ...
 global___RequestHeaders = RequestHeaders
 
-@typing_extensions.final
+@typing.final
 class RequestMessage(google.protobuf.message.Message):
     """A RequestMessage contains individual gRPC messages and a potential
     end-of-stream (EOS) marker.
@@ -126,23 +122,23 @@ class RequestMessage(google.protobuf.message.Message):
     PACKET_MESSAGE_FIELD_NUMBER: builtins.int
     EOS_FIELD_NUMBER: builtins.int
     has_message: builtins.bool
+    eos: builtins.bool
 
     @property
     def packet_message(self) -> global___PacketMessage:
         ...
-    eos: builtins.bool
 
     def __init__(self, *, has_message: builtins.bool=..., packet_message: global___PacketMessage | None=..., eos: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['packet_message', b'packet_message']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['packet_message', b'packet_message']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['eos', b'eos', 'has_message', b'has_message', 'packet_message', b'packet_message']) -> None:
+    def ClearField(self, field_name: typing.Literal['eos', b'eos', 'has_message', b'has_message', 'packet_message', b'packet_message']) -> None:
         ...
 global___RequestMessage = RequestMessage
 
-@typing_extensions.final
+@typing.final
 class Response(google.protobuf.message.Message):
     """A Response is a frame coming from a server. It is always
     associated with a stream where the client assigns the stream
@@ -174,17 +170,17 @@ class Response(google.protobuf.message.Message):
     def __init__(self, *, stream: global___Stream | None=..., headers: global___ResponseHeaders | None=..., message: global___ResponseMessage | None=..., trailers: global___ResponseTrailers | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['headers', b'headers', 'message', b'message', 'stream', b'stream', 'trailers', b'trailers', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['headers', 'message', 'trailers'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['type', b'type']) -> typing.Literal['headers', 'message', 'trailers'] | None:
         ...
 global___Response = Response
 
-@typing_extensions.final
+@typing.final
 class ResponseHeaders(google.protobuf.message.Message):
     """ResponseHeaders contain custom metadata that are sent to the client
     before any message or trailers (unless only trailers are sent).
@@ -199,14 +195,14 @@ class ResponseHeaders(google.protobuf.message.Message):
     def __init__(self, *, metadata: global___Metadata | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['metadata', b'metadata']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['metadata', b'metadata']) -> None:
+    def ClearField(self, field_name: typing.Literal['metadata', b'metadata']) -> None:
         ...
 global___ResponseHeaders = ResponseHeaders
 
-@typing_extensions.final
+@typing.final
 class ResponseMessage(google.protobuf.message.Message):
     """ResponseMessage contains the data of a response to a call."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -219,14 +215,14 @@ class ResponseMessage(google.protobuf.message.Message):
     def __init__(self, *, packet_message: global___PacketMessage | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['packet_message', b'packet_message']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['packet_message', b'packet_message']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['packet_message', b'packet_message']) -> None:
+    def ClearField(self, field_name: typing.Literal['packet_message', b'packet_message']) -> None:
         ...
 global___ResponseMessage = ResponseMessage
 
-@typing_extensions.final
+@typing.final
 class ResponseTrailers(google.protobuf.message.Message):
     """ResponseTrailers contain the status of a response and any custom metadata."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -244,14 +240,14 @@ class ResponseTrailers(google.protobuf.message.Message):
     def __init__(self, *, status: google.rpc.status_pb2.Status | None=..., metadata: global___Metadata | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['metadata', b'metadata', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['metadata', b'metadata', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing.Literal['metadata', b'metadata', 'status', b'status']) -> None:
         ...
 global___ResponseTrailers = ResponseTrailers
 
-@typing_extensions.final
+@typing.final
 class Strings(google.protobuf.message.Message):
     """Strings are a series of values."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -264,18 +260,18 @@ class Strings(google.protobuf.message.Message):
     def __init__(self, *, values: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['values', b'values']) -> None:
+    def ClearField(self, field_name: typing.Literal['values', b'values']) -> None:
         ...
 global___Strings = Strings
 
-@typing_extensions.final
+@typing.final
 class Metadata(google.protobuf.message.Message):
     """Metadata is for custom key values provided by a client or server
     during a stream.
     """
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class MdEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -289,10 +285,10 @@ class Metadata(google.protobuf.message.Message):
         def __init__(self, *, key: builtins.str=..., value: global___Strings | None=...) -> None:
             ...
 
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     MD_FIELD_NUMBER: builtins.int
 
@@ -303,6 +299,6 @@ class Metadata(google.protobuf.message.Message):
     def __init__(self, *, md: collections.abc.Mapping[builtins.str, global___Strings] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['md', b'md']) -> None:
+    def ClearField(self, field_name: typing.Literal['md', b'md']) -> None:
         ...
 global___Metadata = Metadata

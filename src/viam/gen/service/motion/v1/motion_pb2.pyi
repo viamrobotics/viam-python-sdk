@@ -45,7 +45,7 @@ PLAN_STATE_SUCCEEDED: PlanState.ValueType
 PLAN_STATE_FAILED: PlanState.ValueType
 global___PlanState = PlanState
 
-@typing_extensions.final
+@typing.final
 class MoveRequest(google.protobuf.message.Message):
     """Moves any component on the robot to a specified destination which can be from the reference frame of any other component on the robot."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -83,22 +83,22 @@ class MoveRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.PoseInFrame | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., world_state: common.v1.common_pb2.WorldState | None=..., constraints: global___Constraints | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'world_state', b'world_state']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_constraints', b'_constraints']) -> typing_extensions.Literal['constraints'] | None:
+    def ClearField(self, field_name: typing.Literal['_constraints', b'_constraints', '_world_state', b'_world_state', 'component_name', b'component_name', 'constraints', b'constraints', 'destination', b'destination', 'extra', b'extra', 'name', b'name', 'world_state', b'world_state']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_world_state', b'_world_state']) -> typing_extensions.Literal['world_state'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_constraints', b'_constraints']) -> typing.Literal['constraints'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_world_state', b'_world_state']) -> typing.Literal['world_state'] | None:
         ...
 global___MoveRequest = MoveRequest
 
-@typing_extensions.final
+@typing.final
 class MoveResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SUCCESS_FIELD_NUMBER: builtins.int
@@ -107,11 +107,11 @@ class MoveResponse(google.protobuf.message.Message):
     def __init__(self, *, success: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['success', b'success']) -> None:
+    def ClearField(self, field_name: typing.Literal['success', b'success']) -> None:
         ...
 global___MoveResponse = MoveResponse
 
-@typing_extensions.final
+@typing.final
 class MoveOnMapRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -151,17 +151,17 @@ class MoveOnMapRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.Pose | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., slam_service_name: common.v1.common_pb2.ResourceName | None=..., motion_configuration: global___MotionConfiguration | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.Geometry] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'slam_service_name', b'slam_service_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'obstacles', b'obstacles', 'slam_service_name', b'slam_service_name']) -> None:
+    def ClearField(self, field_name: typing.Literal['_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'motion_configuration', b'motion_configuration', 'name', b'name', 'obstacles', b'obstacles', 'slam_service_name', b'slam_service_name']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_motion_configuration', b'_motion_configuration']) -> typing.Literal['motion_configuration'] | None:
         ...
 global___MoveOnMapRequest = MoveOnMapRequest
 
-@typing_extensions.final
+@typing.final
 class MoveOnMapResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EXECUTION_ID_FIELD_NUMBER: builtins.int
@@ -171,11 +171,11 @@ class MoveOnMapResponse(google.protobuf.message.Message):
     def __init__(self, *, execution_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['execution_id', b'execution_id']) -> None:
         ...
 global___MoveOnMapResponse = MoveOnMapResponse
 
-@typing_extensions.final
+@typing.final
 class ObstacleDetector(google.protobuf.message.Message):
     """Pairs a vision service with a camera, informing the service about which camera it may use"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -193,14 +193,14 @@ class ObstacleDetector(google.protobuf.message.Message):
     def __init__(self, *, vision_service: common.v1.common_pb2.ResourceName | None=..., camera: common.v1.common_pb2.ResourceName | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> None:
+    def ClearField(self, field_name: typing.Literal['camera', b'camera', 'vision_service', b'vision_service']) -> None:
         ...
 global___ObstacleDetector = ObstacleDetector
 
-@typing_extensions.final
+@typing.final
 class MotionConfiguration(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OBSTACLE_DETECTORS_FIELD_NUMBER: builtins.int
@@ -209,10 +209,6 @@ class MotionConfiguration(google.protobuf.message.Message):
     PLAN_DEVIATION_M_FIELD_NUMBER: builtins.int
     LINEAR_M_PER_SEC_FIELD_NUMBER: builtins.int
     ANGULAR_DEGS_PER_SEC_FIELD_NUMBER: builtins.int
-
-    @property
-    def obstacle_detectors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]:
-        """The ObstacleDetectors that will be used for transient obstacle avoidance"""
     position_polling_frequency_hz: builtins.float
     'Sets the frequency to poll for the position of the robot'
     obstacle_polling_frequency_hz: builtins.float
@@ -224,37 +220,41 @@ class MotionConfiguration(google.protobuf.message.Message):
     angular_degs_per_sec: builtins.float
     'Optional angular velocity to target when turning'
 
+    @property
+    def obstacle_detectors(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ObstacleDetector]:
+        """The ObstacleDetectors that will be used for transient obstacle avoidance"""
+
     def __init__(self, *, obstacle_detectors: collections.abc.Iterable[global___ObstacleDetector] | None=..., position_polling_frequency_hz: builtins.float | None=..., obstacle_polling_frequency_hz: builtins.float | None=..., plan_deviation_m: builtins.float | None=..., linear_m_per_sec: builtins.float | None=..., angular_degs_per_sec: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_detectors', b'obstacle_detectors', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> typing_extensions.Literal['angular_degs_per_sec'] | None:
+    def ClearField(self, field_name: typing.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec', '_linear_m_per_sec', b'_linear_m_per_sec', '_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz', '_plan_deviation_m', b'_plan_deviation_m', '_position_polling_frequency_hz', b'_position_polling_frequency_hz', 'angular_degs_per_sec', b'angular_degs_per_sec', 'linear_m_per_sec', b'linear_m_per_sec', 'obstacle_detectors', b'obstacle_detectors', 'obstacle_polling_frequency_hz', b'obstacle_polling_frequency_hz', 'plan_deviation_m', b'plan_deviation_m', 'position_polling_frequency_hz', b'position_polling_frequency_hz']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> typing_extensions.Literal['linear_m_per_sec'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_angular_degs_per_sec', b'_angular_degs_per_sec']) -> typing.Literal['angular_degs_per_sec'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> typing_extensions.Literal['obstacle_polling_frequency_hz'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_linear_m_per_sec', b'_linear_m_per_sec']) -> typing.Literal['linear_m_per_sec'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_plan_deviation_m', b'_plan_deviation_m']) -> typing_extensions.Literal['plan_deviation_m'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_obstacle_polling_frequency_hz', b'_obstacle_polling_frequency_hz']) -> typing.Literal['obstacle_polling_frequency_hz'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> typing_extensions.Literal['position_polling_frequency_hz'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_plan_deviation_m', b'_plan_deviation_m']) -> typing.Literal['plan_deviation_m'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_position_polling_frequency_hz', b'_position_polling_frequency_hz']) -> typing.Literal['position_polling_frequency_hz'] | None:
         ...
 global___MotionConfiguration = MotionConfiguration
 
-@typing_extensions.final
+@typing.final
 class MoveOnGlobeRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -267,12 +267,12 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
+    heading: builtins.float
+    'Optional compass heading to achieve at the destination, in degrees [0-360)'
 
     @property
     def destination(self) -> common.v1.common_pb2.GeoPoint:
         """Destination, encoded as a GeoPoint"""
-    heading: builtins.float
-    'Optional compass heading to achieve at the destination, in degrees [0-360)'
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
@@ -297,22 +297,22 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_heading', b'_heading']) -> typing_extensions.Literal['heading'] | None:
+    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_motion_configuration', b'_motion_configuration']) -> typing_extensions.Literal['motion_configuration'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_heading', b'_heading']) -> typing.Literal['heading'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_motion_configuration', b'_motion_configuration']) -> typing.Literal['motion_configuration'] | None:
         ...
 global___MoveOnGlobeRequest = MoveOnGlobeRequest
 
-@typing_extensions.final
+@typing.final
 class MoveOnGlobeResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EXECUTION_ID_FIELD_NUMBER: builtins.int
@@ -322,11 +322,11 @@ class MoveOnGlobeResponse(google.protobuf.message.Message):
     def __init__(self, *, execution_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['execution_id', b'execution_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['execution_id', b'execution_id']) -> None:
         ...
 global___MoveOnGlobeResponse = MoveOnGlobeResponse
 
-@typing_extensions.final
+@typing.final
 class GetPoseRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -335,12 +335,12 @@ class GetPoseRequest(google.protobuf.message.Message):
     SUPPLEMENTAL_TRANSFORMS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
+    destination_frame: builtins.str
+    'the reference frame in which the component\'s pose\n    should be provided, if unset this defaults\n    to the "world" reference frame\n    '
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
         """the component whose pose is being requested"""
-    destination_frame: builtins.str
-    'the reference frame in which the component\'s pose\n    should be provided, if unset this defaults\n    to the "world" reference frame\n    '
 
     @property
     def supplemental_transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.Transform]:
@@ -355,14 +355,14 @@ class GetPoseRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., destination_frame: builtins.str=..., supplemental_transforms: collections.abc.Iterable[common.v1.common_pb2.Transform] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame', 'extra', b'extra', 'name', b'name', 'supplemental_transforms', b'supplemental_transforms']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'destination_frame', b'destination_frame', 'extra', b'extra', 'name', b'name', 'supplemental_transforms', b'supplemental_transforms']) -> None:
         ...
 global___GetPoseRequest = GetPoseRequest
 
-@typing_extensions.final
+@typing.final
 class GetPoseResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
@@ -374,14 +374,14 @@ class GetPoseResponse(google.protobuf.message.Message):
     def __init__(self, *, pose: common.v1.common_pb2.PoseInFrame | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+    def ClearField(self, field_name: typing.Literal['pose', b'pose']) -> None:
         ...
 global___GetPoseResponse = GetPoseResponse
 
-@typing_extensions.final
+@typing.final
 class StopPlanRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -401,14 +401,14 @@ class StopPlanRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___StopPlanRequest = StopPlanRequest
 
-@typing_extensions.final
+@typing.final
 class StopPlanResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -416,7 +416,7 @@ class StopPlanResponse(google.protobuf.message.Message):
         ...
 global___StopPlanResponse = StopPlanResponse
 
-@typing_extensions.final
+@typing.final
 class ListPlanStatusesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -434,14 +434,14 @@ class ListPlanStatusesRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., only_active_plans: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'only_active_plans', b'only_active_plans']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name', 'only_active_plans', b'only_active_plans']) -> None:
         ...
 global___ListPlanStatusesRequest = ListPlanStatusesRequest
 
-@typing_extensions.final
+@typing.final
 class ListPlanStatusesResponse(google.protobuf.message.Message):
     """Status of all executed / executing plan statuses with associated IDs within the 24 hour TTL"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -456,11 +456,11 @@ class ListPlanStatusesResponse(google.protobuf.message.Message):
     def __init__(self, *, plan_statuses_with_ids: collections.abc.Iterable[global___PlanStatusWithID] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['plan_statuses_with_ids', b'plan_statuses_with_ids']) -> None:
+    def ClearField(self, field_name: typing.Literal['plan_statuses_with_ids', b'plan_statuses_with_ids']) -> None:
         ...
 global___ListPlanStatusesResponse = ListPlanStatusesResponse
 
-@typing_extensions.final
+@typing.final
 class GetPlanRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -470,14 +470,14 @@ class GetPlanRequest(google.protobuf.message.Message):
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'The name of the motion service'
-
-    @property
-    def component_name(self) -> common.v1.common_pb2.ResourceName:
-        """The name of the component which was requested to be moved."""
     last_plan_only: builtins.bool
     'If supplied, the response will only return\n    the the last plan for the component / execution\n    '
     execution_id: builtins.str
     'If you want to know about the plans of a previous execution'
+
+    @property
+    def component_name(self) -> common.v1.common_pb2.ResourceName:
+        """The name of the component which was requested to be moved."""
 
     @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
@@ -486,17 +486,17 @@ class GetPlanRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., last_plan_only: builtins.bool=..., execution_id: builtins.str | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra', 'last_plan_only', b'last_plan_only', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['_execution_id', b'_execution_id', 'component_name', b'component_name', 'execution_id', b'execution_id', 'extra', b'extra', 'last_plan_only', b'last_plan_only', 'name', b'name']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_execution_id', b'_execution_id']) -> typing_extensions.Literal['execution_id'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_execution_id', b'_execution_id']) -> typing.Literal['execution_id'] | None:
         ...
 global___GetPlanRequest = GetPlanRequest
 
-@typing_extensions.final
+@typing.final
 class GetPlanResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CURRENT_PLAN_WITH_STATUS_FIELD_NUMBER: builtins.int
@@ -517,14 +517,14 @@ class GetPlanResponse(google.protobuf.message.Message):
     def __init__(self, *, current_plan_with_status: global___PlanWithStatus | None=..., replan_history: collections.abc.Iterable[global___PlanWithStatus] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['current_plan_with_status', b'current_plan_with_status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['current_plan_with_status', b'current_plan_with_status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['current_plan_with_status', b'current_plan_with_status', 'replan_history', b'replan_history']) -> None:
+    def ClearField(self, field_name: typing.Literal['current_plan_with_status', b'current_plan_with_status', 'replan_history', b'replan_history']) -> None:
         ...
 global___GetPlanResponse = GetPlanResponse
 
-@typing_extensions.final
+@typing.final
 class Constraints(google.protobuf.message.Message):
     """Constraints specifies all enumerated constraints to be passed to Viam's motion planning, along with any optional parameters"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -547,11 +547,11 @@ class Constraints(google.protobuf.message.Message):
     def __init__(self, *, linear_constraint: collections.abc.Iterable[global___LinearConstraint] | None=..., orientation_constraint: collections.abc.Iterable[global___OrientationConstraint] | None=..., collision_specification: collections.abc.Iterable[global___CollisionSpecification] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['collision_specification', b'collision_specification', 'linear_constraint', b'linear_constraint', 'orientation_constraint', b'orientation_constraint']) -> None:
+    def ClearField(self, field_name: typing.Literal['collision_specification', b'collision_specification', 'linear_constraint', b'linear_constraint', 'orientation_constraint', b'orientation_constraint']) -> None:
         ...
 global___Constraints = Constraints
 
-@typing_extensions.final
+@typing.final
 class LinearConstraint(google.protobuf.message.Message):
     """LinearConstraint specifies that the component being moved should move linearly relative to its goal.
     It does not constrain the motion of components other than the `component_name` specified in motion.Move
@@ -567,22 +567,22 @@ class LinearConstraint(google.protobuf.message.Message):
     def __init__(self, *, line_tolerance_mm: builtins.float | None=..., orientation_tolerance_degs: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_line_tolerance_mm', b'_line_tolerance_mm']) -> typing_extensions.Literal['line_tolerance_mm'] | None:
+    def ClearField(self, field_name: typing.Literal['_line_tolerance_mm', b'_line_tolerance_mm', '_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'line_tolerance_mm', b'line_tolerance_mm', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> typing_extensions.Literal['orientation_tolerance_degs'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_line_tolerance_mm', b'_line_tolerance_mm']) -> typing.Literal['line_tolerance_mm'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> typing.Literal['orientation_tolerance_degs'] | None:
         ...
 global___LinearConstraint = LinearConstraint
 
-@typing_extensions.final
+@typing.final
 class OrientationConstraint(google.protobuf.message.Message):
     """OrientationConstraint specifies that the component being moved will not deviate its orientation beyond some threshold relative
     to the goal. It does not constrain the motion of components other than the `component_name` specified in motion.Move
@@ -595,22 +595,22 @@ class OrientationConstraint(google.protobuf.message.Message):
     def __init__(self, *, orientation_tolerance_degs: builtins.float | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> None:
+    def ClearField(self, field_name: typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs', 'orientation_tolerance_degs', b'orientation_tolerance_degs']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> typing_extensions.Literal['orientation_tolerance_degs'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_orientation_tolerance_degs', b'_orientation_tolerance_degs']) -> typing.Literal['orientation_tolerance_degs'] | None:
         ...
 global___OrientationConstraint = OrientationConstraint
 
-@typing_extensions.final
+@typing.final
 class CollisionSpecification(google.protobuf.message.Message):
     """CollisionSpecification is used to selectively apply obstacle avoidance to specific parts of the robot"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class AllowedFrameCollisions(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         FRAME1_FIELD_NUMBER: builtins.int
@@ -621,7 +621,7 @@ class CollisionSpecification(google.protobuf.message.Message):
         def __init__(self, *, frame1: builtins.str=..., frame2: builtins.str=...) -> None:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['frame1', b'frame1', 'frame2', b'frame2']) -> None:
+        def ClearField(self, field_name: typing.Literal['frame1', b'frame1', 'frame2', b'frame2']) -> None:
             ...
     ALLOWS_FIELD_NUMBER: builtins.int
 
@@ -632,11 +632,11 @@ class CollisionSpecification(google.protobuf.message.Message):
     def __init__(self, *, allows: collections.abc.Iterable[global___CollisionSpecification.AllowedFrameCollisions] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['allows', b'allows']) -> None:
+    def ClearField(self, field_name: typing.Literal['allows', b'allows']) -> None:
         ...
 global___CollisionSpecification = CollisionSpecification
 
-@typing_extensions.final
+@typing.final
 class PlanWithStatus(google.protobuf.message.Message):
     """Describes a plan, its current status & all status changes
     that have occured previously on that plan
@@ -661,14 +661,14 @@ class PlanWithStatus(google.protobuf.message.Message):
     def __init__(self, *, plan: global___Plan | None=..., status: global___PlanStatus | None=..., status_history: collections.abc.Iterable[global___PlanStatus] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['plan', b'plan', 'status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['plan', b'plan', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['plan', b'plan', 'status', b'status', 'status_history', b'status_history']) -> None:
+    def ClearField(self, field_name: typing.Literal['plan', b'plan', 'status', b'status', 'status_history', b'status_history']) -> None:
         ...
 global___PlanWithStatus = PlanWithStatus
 
-@typing_extensions.final
+@typing.final
 class PlanStatusWithID(google.protobuf.message.Message):
     """PlanStatusWithID describes the state of a given plan at a
     point in time plus the plan_id, component_name and execution_id
@@ -681,6 +681,8 @@ class PlanStatusWithID(google.protobuf.message.Message):
     STATUS_FIELD_NUMBER: builtins.int
     plan_id: builtins.str
     'The unique ID of the plan'
+    execution_id: builtins.str
+    'The unique ID which identifies the plan execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
@@ -689,8 +691,6 @@ class PlanStatusWithID(google.protobuf.message.Message):
         NOTE: A plan may move more components than just the
         component_name.
         """
-    execution_id: builtins.str
-    'The unique ID which identifies the plan execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning.\n    '
 
     @property
     def status(self) -> global___PlanStatus:
@@ -699,14 +699,14 @@ class PlanStatusWithID(google.protobuf.message.Message):
     def __init__(self, *, plan_id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., status: global___PlanStatus | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'status', b'status']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name', b'component_name', 'status', b'status']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'plan_id', b'plan_id', 'status', b'status']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'plan_id', b'plan_id', 'status', b'status']) -> None:
         ...
 global___PlanStatusWithID = PlanStatusWithID
 
-@typing_extensions.final
+@typing.final
 class PlanStatus(google.protobuf.message.Message):
     """Plan status describes the state of a given plan at a
     point in time
@@ -717,27 +717,27 @@ class PlanStatus(google.protobuf.message.Message):
     REASON_FIELD_NUMBER: builtins.int
     state: global___PlanState.ValueType
     'The state of the plan execution'
+    reason: builtins.str
+    'The reason for the state change. If motion plan failed\n    this will return the error message.\n    If motion needed to re-plan, this will return\n    the re-plan reason.\n    '
 
     @property
     def timestamp(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """The time the executing plan transtioned to the state"""
-    reason: builtins.str
-    'The reason for the state change. If motion plan failed\n    this will return the error message.\n    If motion needed to re-plan, this will return\n    the re-plan reason.\n    '
 
     def __init__(self, *, state: global___PlanState.ValueType=..., timestamp: google.protobuf.timestamp_pb2.Timestamp | None=..., reason: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_reason', b'_reason', 'reason', b'reason', 'timestamp', b'timestamp']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_reason', b'_reason', 'reason', b'reason', 'timestamp', b'timestamp']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_reason', b'_reason', 'reason', b'reason', 'state', b'state', 'timestamp', b'timestamp']) -> None:
+    def ClearField(self, field_name: typing.Literal['_reason', b'_reason', 'reason', b'reason', 'state', b'state', 'timestamp', b'timestamp']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_reason', b'_reason']) -> typing_extensions.Literal['reason'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_reason', b'_reason']) -> typing.Literal['reason'] | None:
         ...
 global___PlanStatus = PlanStatus
 
-@typing_extensions.final
+@typing.final
 class Plan(google.protobuf.message.Message):
     """A plan describes a motion plan"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -747,6 +747,8 @@ class Plan(google.protobuf.message.Message):
     STEPS_FIELD_NUMBER: builtins.int
     id: builtins.str
     "The plan's unique ID"
+    execution_id: builtins.str
+    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning\n    '
 
     @property
     def component_name(self) -> common.v1.common_pb2.ResourceName:
@@ -755,8 +757,6 @@ class Plan(google.protobuf.message.Message):
         NOTE: A plan may move more components than just the
         root component.
         """
-    execution_id: builtins.str
-    'The unique ID which identifies the execution.\n    Multiple plans will share the same execution_id if they were\n    generated due to replanning\n    '
 
     @property
     def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PlanStep]:
@@ -765,18 +765,18 @@ class Plan(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., component_name: common.v1.common_pb2.ResourceName | None=..., execution_id: builtins.str=..., steps: collections.abc.Iterable[global___PlanStep] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['component_name', b'component_name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['component_name', b'component_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'id', b'id', 'steps', b'steps']) -> None:
+    def ClearField(self, field_name: typing.Literal['component_name', b'component_name', 'execution_id', b'execution_id', 'id', b'id', 'steps', b'steps']) -> None:
         ...
 global___Plan = Plan
 
-@typing_extensions.final
+@typing.final
 class PlanStep(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class StepEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -790,10 +790,10 @@ class PlanStep(google.protobuf.message.Message):
         def __init__(self, *, key: builtins.str=..., value: global___ComponentState | None=...) -> None:
             ...
 
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     STEP_FIELD_NUMBER: builtins.int
 
@@ -808,11 +808,11 @@ class PlanStep(google.protobuf.message.Message):
     def __init__(self, *, step: collections.abc.Mapping[builtins.str, global___ComponentState] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['step', b'step']) -> None:
+    def ClearField(self, field_name: typing.Literal['step', b'step']) -> None:
         ...
 global___PlanStep = PlanStep
 
-@typing_extensions.final
+@typing.final
 class ComponentState(google.protobuf.message.Message):
     """A pose"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -825,9 +825,9 @@ class ComponentState(google.protobuf.message.Message):
     def __init__(self, *, pose: common.v1.common_pb2.Pose | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['pose', b'pose']) -> None:
+    def ClearField(self, field_name: typing.Literal['pose', b'pose']) -> None:
         ...
 global___ComponentState = ComponentState

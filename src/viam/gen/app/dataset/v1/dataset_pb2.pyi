@@ -8,14 +8,10 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class Dataset(google.protobuf.message.Message):
     """Dataset stores the metadata of a dataset."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -34,14 +30,14 @@ class Dataset(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., organization_id: builtins.str=..., time_created: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['time_created', b'time_created']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['time_created', b'time_created']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name', 'organization_id', b'organization_id', 'time_created', b'time_created']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name', 'organization_id', b'organization_id', 'time_created', b'time_created']) -> None:
         ...
 global___Dataset = Dataset
 
-@typing_extensions.final
+@typing.final
 class CreateDatasetRequest(google.protobuf.message.Message):
     """CreateDatasetRequest defines the name and organization ID of a dataset."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -53,11 +49,11 @@ class CreateDatasetRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'organization_id', b'organization_id']) -> None:
         ...
 global___CreateDatasetRequest = CreateDatasetRequest
 
-@typing_extensions.final
+@typing.final
 class CreateDatasetResponse(google.protobuf.message.Message):
     """CreateDatasetResponse returns the dataset ID of the created dataset."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -67,11 +63,11 @@ class CreateDatasetResponse(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___CreateDatasetResponse = CreateDatasetResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteDatasetRequest(google.protobuf.message.Message):
     """DeleteDatasetRequest deletes the dataset specified by the dataset ID."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -81,11 +77,11 @@ class DeleteDatasetRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___DeleteDatasetRequest = DeleteDatasetRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteDatasetResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -93,7 +89,7 @@ class DeleteDatasetResponse(google.protobuf.message.Message):
         ...
 global___DeleteDatasetResponse = DeleteDatasetResponse
 
-@typing_extensions.final
+@typing.final
 class RenameDatasetRequest(google.protobuf.message.Message):
     """RenameDatasetRequest applies the new name to the dataset specified by the dataset ID."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -105,11 +101,11 @@ class RenameDatasetRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
         ...
 global___RenameDatasetRequest = RenameDatasetRequest
 
-@typing_extensions.final
+@typing.final
 class RenameDatasetResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -117,7 +113,7 @@ class RenameDatasetResponse(google.protobuf.message.Message):
         ...
 global___RenameDatasetResponse = RenameDatasetResponse
 
-@typing_extensions.final
+@typing.final
 class ListDatasetsByOrganizationIDRequest(google.protobuf.message.Message):
     """ListDatasetsByOrganizationIDRequest requests all of the datasets for an organization."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -127,11 +123,11 @@ class ListDatasetsByOrganizationIDRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
         ...
 global___ListDatasetsByOrganizationIDRequest = ListDatasetsByOrganizationIDRequest
 
-@typing_extensions.final
+@typing.final
 class ListDatasetsByOrganizationIDResponse(google.protobuf.message.Message):
     """ListDatasetsByOrganizationIDResponse returns all the dataset metadata for the organization."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -144,11 +140,11 @@ class ListDatasetsByOrganizationIDResponse(google.protobuf.message.Message):
     def __init__(self, *, datasets: collections.abc.Iterable[global___Dataset] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['datasets', b'datasets']) -> None:
+    def ClearField(self, field_name: typing.Literal['datasets', b'datasets']) -> None:
         ...
 global___ListDatasetsByOrganizationIDResponse = ListDatasetsByOrganizationIDResponse
 
-@typing_extensions.final
+@typing.final
 class ListDatasetsByIDsRequest(google.protobuf.message.Message):
     """ListDatasetsByIDsRequest requests all of the datasets by their dataset IDs."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -161,11 +157,11 @@ class ListDatasetsByIDsRequest(google.protobuf.message.Message):
     def __init__(self, *, ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['ids', b'ids']) -> None:
+    def ClearField(self, field_name: typing.Literal['ids', b'ids']) -> None:
         ...
 global___ListDatasetsByIDsRequest = ListDatasetsByIDsRequest
 
-@typing_extensions.final
+@typing.final
 class ListDatasetsByIDsResponse(google.protobuf.message.Message):
     """ListDatasetsByIDsResponse returns all the dataset metadata for the associated dataset IDs."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -178,6 +174,6 @@ class ListDatasetsByIDsResponse(google.protobuf.message.Message):
     def __init__(self, *, datasets: collections.abc.Iterable[global___Dataset] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['datasets', b'datasets']) -> None:
+    def ClearField(self, field_name: typing.Literal['datasets', b'datasets']) -> None:
         ...
 global___ListDatasetsByIDsResponse = ListDatasetsByIDsResponse

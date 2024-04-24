@@ -9,14 +9,10 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetPosesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -39,18 +35,18 @@ class GetPosesRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., body_names: collections.abc.Iterable[builtins.str] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['body_names', b'body_names', 'extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['body_names', b'body_names', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPosesRequest = GetPosesRequest
 
-@typing_extensions.final
+@typing.final
 class GetPosesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class BodyPosesEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -64,10 +60,10 @@ class GetPosesResponse(google.protobuf.message.Message):
         def __init__(self, *, key: builtins.str=..., value: common.v1.common_pb2.PoseInFrame | None=...) -> None:
             ...
 
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     BODY_POSES_FIELD_NUMBER: builtins.int
 
@@ -78,6 +74,6 @@ class GetPosesResponse(google.protobuf.message.Message):
     def __init__(self, *, body_poses: collections.abc.Mapping[builtins.str, common.v1.common_pb2.PoseInFrame] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['body_poses', b'body_poses']) -> None:
+    def ClearField(self, field_name: typing.Literal['body_poses', b'body_poses']) -> None:
         ...
 global___GetPosesResponse = GetPosesResponse

@@ -9,14 +9,10 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetSensorsRequest(google.protobuf.message.Message):
     """The sensors service messages are deprecated"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -31,14 +27,14 @@ class GetSensorsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetSensorsRequest = GetSensorsRequest
 
-@typing_extensions.final
+@typing.final
 class GetSensorsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SENSOR_NAMES_FIELD_NUMBER: builtins.int
@@ -50,11 +46,11 @@ class GetSensorsResponse(google.protobuf.message.Message):
     def __init__(self, *, sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['sensor_names', b'sensor_names']) -> None:
+    def ClearField(self, field_name: typing.Literal['sensor_names', b'sensor_names']) -> None:
         ...
 global___GetSensorsResponse = GetSensorsResponse
 
-@typing_extensions.final
+@typing.final
 class GetReadingsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -73,18 +69,18 @@ class GetReadingsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., sensor_names: collections.abc.Iterable[common.v1.common_pb2.ResourceName] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name', 'sensor_names', b'sensor_names']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name', 'sensor_names', b'sensor_names']) -> None:
         ...
 global___GetReadingsRequest = GetReadingsRequest
 
-@typing_extensions.final
+@typing.final
 class Readings(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    @typing_extensions.final
+    @typing.final
     class ReadingsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
         KEY_FIELD_NUMBER: builtins.int
@@ -98,10 +94,10 @@ class Readings(google.protobuf.message.Message):
         def __init__(self, *, key: builtins.str=..., value: google.protobuf.struct_pb2.Value | None=...) -> None:
             ...
 
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
             ...
 
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+        def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
             ...
     NAME_FIELD_NUMBER: builtins.int
     READINGS_FIELD_NUMBER: builtins.int
@@ -117,14 +113,14 @@ class Readings(google.protobuf.message.Message):
     def __init__(self, *, name: common.v1.common_pb2.ResourceName | None=..., readings: collections.abc.Mapping[builtins.str, google.protobuf.struct_pb2.Value] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['name', b'name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['name', b'name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'readings', b'readings']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'readings', b'readings']) -> None:
         ...
 global___Readings = Readings
 
-@typing_extensions.final
+@typing.final
 class GetReadingsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     READINGS_FIELD_NUMBER: builtins.int
@@ -136,6 +132,6 @@ class GetReadingsResponse(google.protobuf.message.Message):
     def __init__(self, *, readings: collections.abc.Iterable[global___Readings] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['readings', b'readings']) -> None:
+    def ClearField(self, field_name: typing.Literal['readings', b'readings']) -> None:
         ...
 global___GetReadingsResponse = GetReadingsResponse

@@ -58,7 +58,7 @@ VISIBILITY_PUBLIC: Visibility.ValueType
 'Public modules are visible to everyone'
 global___Visibility = Visibility
 
-@typing_extensions.final
+@typing.final
 class Robot(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -81,14 +81,14 @@ class Robot(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_access', b'last_access']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'last_access', b'last_access', 'location', b'location', 'name', b'name']) -> None:
         ...
 global___Robot = Robot
 
-@typing_extensions.final
+@typing.final
 class RobotPart(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -113,6 +113,9 @@ class RobotPart(google.protobuf.message.Message):
     robot: builtins.str
     location_id: builtins.str
     'Store the location_id to allow for unique indexes across parts and locations. This filed MUST be updated each time the robots location\n    changes.\n    '
+    main_part: builtins.bool
+    fqdn: builtins.str
+    local_fqdn: builtins.str
 
     @property
     def robot_config(self) -> google.protobuf.struct_pb2.Struct:
@@ -125,9 +128,6 @@ class RobotPart(google.protobuf.message.Message):
     @property
     def user_supplied_info(self) -> google.protobuf.struct_pb2.Struct:
         ...
-    main_part: builtins.bool
-    fqdn: builtins.str
-    local_fqdn: builtins.str
 
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -140,14 +140,14 @@ class RobotPart(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., dns_name: builtins.str=..., secret: builtins.str=..., robot: builtins.str=..., location_id: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=..., last_access: google.protobuf.timestamp_pb2.Timestamp | None=..., user_supplied_info: google.protobuf.struct_pb2.Struct | None=..., main_part: builtins.bool=..., fqdn: builtins.str=..., local_fqdn: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'last_access', b'last_access', 'robot_config', b'robot_config', 'user_supplied_info', b'user_supplied_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'dns_name', b'dns_name', 'fqdn', b'fqdn', 'id', b'id', 'last_access', b'last_access', 'local_fqdn', b'local_fqdn', 'location_id', b'location_id', 'main_part', b'main_part', 'name', b'name', 'robot', b'robot', 'robot_config', b'robot_config', 'secret', b'secret', 'secrets', b'secrets', 'user_supplied_info', b'user_supplied_info']) -> None:
         ...
 global___RobotPart = RobotPart
 
-@typing_extensions.final
+@typing.final
 class RobotPartHistoryEntry(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_FIELD_NUMBER: builtins.int
@@ -168,14 +168,14 @@ class RobotPartHistoryEntry(google.protobuf.message.Message):
     def __init__(self, *, part: builtins.str=..., robot: builtins.str=..., when: google.protobuf.timestamp_pb2.Timestamp | None=..., old: global___RobotPart | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['old', b'old', 'when', b'when']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['old', b'old', 'when', b'when']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
+    def ClearField(self, field_name: typing.Literal['old', b'old', 'part', b'part', 'robot', b'robot', 'when', b'when']) -> None:
         ...
 global___RobotPartHistoryEntry = RobotPartHistoryEntry
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -183,7 +183,7 @@ class ListOrganizationsRequest(google.protobuf.message.Message):
         ...
 global___ListOrganizationsRequest = ListOrganizationsRequest
 
-@typing_extensions.final
+@typing.final
 class Organization(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -194,29 +194,29 @@ class Organization(google.protobuf.message.Message):
     CID_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
-
-    @property
-    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
     public_namespace: builtins.str
     default_region: builtins.str
     'GCS region of the organization. Locations created under this org will have their GCS region set to this by default and packages\n    associated with this org will be stored in this region.\n    '
     cid: builtins.str
 
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., public_namespace: builtins.str=..., default_region: builtins.str=..., cid: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', 'cid', b'cid', 'created_on', b'created_on', 'default_region', b'default_region', 'id', b'id', 'name', b'name', 'public_namespace', b'public_namespace']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_cid', b'_cid']) -> typing_extensions.Literal['cid'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_cid', b'_cid']) -> typing.Literal['cid'] | None:
         ...
 global___Organization = Organization
 
-@typing_extensions.final
+@typing.final
 class OrganizationMember(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     USER_ID_FIELD_NUMBER: builtins.int
@@ -240,17 +240,17 @@ class OrganizationMember(google.protobuf.message.Message):
     def __init__(self, *, user_id: builtins.str=..., emails: collections.abc.Iterable[builtins.str] | None=..., date_added: google.protobuf.timestamp_pb2.Timestamp | None=..., last_login: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'last_login', b'last_login']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_last_login', b'_last_login', 'date_added', b'date_added', 'emails', b'emails', 'last_login', b'last_login', 'user_id', b'user_id']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_last_login', b'_last_login']) -> typing_extensions.Literal['last_login'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_last_login', b'_last_login']) -> typing.Literal['last_login'] | None:
         ...
 global___OrganizationMember = OrganizationMember
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATIONS_FIELD_NUMBER: builtins.int
@@ -262,11 +262,11 @@ class ListOrganizationsResponse(google.protobuf.message.Message):
     def __init__(self, *, organizations: collections.abc.Iterable[global___Organization] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organizations', b'organizations']) -> None:
+    def ClearField(self, field_name: typing.Literal['organizations', b'organizations']) -> None:
         ...
 global___ListOrganizationsResponse = ListOrganizationsResponse
 
-@typing_extensions.final
+@typing.final
 class OrganizationInvite(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -287,14 +287,14 @@ class OrganizationInvite(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorizations', b'authorizations', 'created_on', b'created_on', 'email', b'email', 'organization_id', b'organization_id']) -> None:
         ...
 global___OrganizationInvite = OrganizationInvite
 
-@typing_extensions.final
+@typing.final
 class CreateOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -303,11 +303,11 @@ class CreateOrganizationRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
         ...
 global___CreateOrganizationRequest = CreateOrganizationRequest
 
-@typing_extensions.final
+@typing.final
 class CreateOrganizationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_FIELD_NUMBER: builtins.int
@@ -319,14 +319,14 @@ class CreateOrganizationResponse(google.protobuf.message.Message):
     def __init__(self, *, organization: global___Organization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['organization', b'organization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization', b'organization']) -> None:
         ...
 global___CreateOrganizationResponse = CreateOrganizationResponse
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -335,11 +335,11 @@ class GetOrganizationRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
         ...
 global___GetOrganizationRequest = GetOrganizationRequest
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_FIELD_NUMBER: builtins.int
@@ -351,14 +351,14 @@ class GetOrganizationResponse(google.protobuf.message.Message):
     def __init__(self, *, organization: global___Organization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['organization', b'organization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization', b'organization']) -> None:
         ...
 global___GetOrganizationResponse = GetOrganizationResponse
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationNamespaceAvailabilityRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
@@ -367,11 +367,11 @@ class GetOrganizationNamespaceAvailabilityRequest(google.protobuf.message.Messag
     def __init__(self, *, public_namespace: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['public_namespace', b'public_namespace']) -> None:
+    def ClearField(self, field_name: typing.Literal['public_namespace', b'public_namespace']) -> None:
         ...
 global___GetOrganizationNamespaceAvailabilityRequest = GetOrganizationNamespaceAvailabilityRequest
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationNamespaceAvailabilityResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AVAILABLE_FIELD_NUMBER: builtins.int
@@ -380,11 +380,11 @@ class GetOrganizationNamespaceAvailabilityResponse(google.protobuf.message.Messa
     def __init__(self, *, available: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['available', b'available']) -> None:
+    def ClearField(self, field_name: typing.Literal['available', b'available']) -> None:
         ...
 global___GetOrganizationNamespaceAvailabilityResponse = GetOrganizationNamespaceAvailabilityResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -402,30 +402,30 @@ class UpdateOrganizationRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., name: builtins.str | None=..., public_namespace: builtins.str | None=..., region: builtins.str | None=..., cid: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'public_namespace', b'public_namespace', 'region', b'region']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_cid', b'_cid']) -> typing_extensions.Literal['cid'] | None:
+    def ClearField(self, field_name: typing.Literal['_cid', b'_cid', '_name', b'_name', '_public_namespace', b'_public_namespace', '_region', b'_region', 'cid', b'cid', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'region', b'region']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_name', b'_name']) -> typing_extensions.Literal['name'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_cid', b'_cid']) -> typing.Literal['cid'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_public_namespace', b'_public_namespace']) -> typing_extensions.Literal['public_namespace'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_name', b'_name']) -> typing.Literal['name'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_region', b'_region']) -> typing_extensions.Literal['region'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_public_namespace', b'_public_namespace']) -> typing.Literal['public_namespace'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_region', b'_region']) -> typing.Literal['region'] | None:
         ...
 global___UpdateOrganizationRequest = UpdateOrganizationRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateOrganizationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_FIELD_NUMBER: builtins.int
@@ -437,14 +437,14 @@ class UpdateOrganizationResponse(google.protobuf.message.Message):
     def __init__(self, *, organization: global___Organization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['organization', b'organization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization', b'organization']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization', b'organization']) -> None:
         ...
 global___UpdateOrganizationResponse = UpdateOrganizationResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -453,11 +453,11 @@ class DeleteOrganizationRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
         ...
 global___DeleteOrganizationRequest = DeleteOrganizationRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -465,7 +465,7 @@ class DeleteOrganizationResponse(google.protobuf.message.Message):
         ...
 global___DeleteOrganizationResponse = DeleteOrganizationResponse
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationMembersRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -474,11 +474,11 @@ class ListOrganizationMembersRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
         ...
 global___ListOrganizationMembersRequest = ListOrganizationMembersRequest
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationMembersResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -497,11 +497,11 @@ class ListOrganizationMembersResponse(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., members: collections.abc.Iterable[global___OrganizationMember] | None=..., invites: collections.abc.Iterable[global___OrganizationInvite] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['invites', b'invites', 'members', b'members', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['invites', b'invites', 'members', b'members', 'organization_id', b'organization_id']) -> None:
         ...
 global___ListOrganizationMembersResponse = ListOrganizationMembersResponse
 
-@typing_extensions.final
+@typing.final
 class CreateOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -510,27 +510,27 @@ class CreateOrganizationInviteRequest(google.protobuf.message.Message):
     SEND_EMAIL_INVITE_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     email: builtins.str
+    send_email_invite: builtins.bool
+    'Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.\n    When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.\n    '
 
     @property
     def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
         ...
-    send_email_invite: builtins.bool
-    'Set to true (the default) to send an email to the recipient of an invite. The user must accept the email to be added to the associated authorizations.\n    When set to false, the user automatically receives the associated authorization on the next login of the user with the associated email address.\n    '
 
     def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., authorizations: collections.abc.Iterable[global___Authorization] | None=..., send_email_invite: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_send_email_invite', b'_send_email_invite', 'send_email_invite', b'send_email_invite']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_send_email_invite', b'_send_email_invite', 'send_email_invite', b'send_email_invite']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_send_email_invite', b'_send_email_invite', 'authorizations', b'authorizations', 'email', b'email', 'organization_id', b'organization_id', 'send_email_invite', b'send_email_invite']) -> None:
+    def ClearField(self, field_name: typing.Literal['_send_email_invite', b'_send_email_invite', 'authorizations', b'authorizations', 'email', b'email', 'organization_id', b'organization_id', 'send_email_invite', b'send_email_invite']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_send_email_invite', b'_send_email_invite']) -> typing_extensions.Literal['send_email_invite'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_send_email_invite', b'_send_email_invite']) -> typing.Literal['send_email_invite'] | None:
         ...
 global___CreateOrganizationInviteRequest = CreateOrganizationInviteRequest
 
-@typing_extensions.final
+@typing.final
 class CreateOrganizationInviteResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVITE_FIELD_NUMBER: builtins.int
@@ -542,14 +542,14 @@ class CreateOrganizationInviteResponse(google.protobuf.message.Message):
     def __init__(self, *, invite: global___OrganizationInvite | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['invite', b'invite']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> None:
+    def ClearField(self, field_name: typing.Literal['invite', b'invite']) -> None:
         ...
 global___CreateOrganizationInviteResponse = CreateOrganizationInviteResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateOrganizationInviteAuthorizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -570,11 +570,11 @@ class UpdateOrganizationInviteAuthorizationsRequest(google.protobuf.message.Mess
     def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=..., add_authorizations: collections.abc.Iterable[global___Authorization] | None=..., remove_authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['add_authorizations', b'add_authorizations', 'email', b'email', 'organization_id', b'organization_id', 'remove_authorizations', b'remove_authorizations']) -> None:
+    def ClearField(self, field_name: typing.Literal['add_authorizations', b'add_authorizations', 'email', b'email', 'organization_id', b'organization_id', 'remove_authorizations', b'remove_authorizations']) -> None:
         ...
 global___UpdateOrganizationInviteAuthorizationsRequest = UpdateOrganizationInviteAuthorizationsRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateOrganizationInviteAuthorizationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVITE_FIELD_NUMBER: builtins.int
@@ -586,14 +586,14 @@ class UpdateOrganizationInviteAuthorizationsResponse(google.protobuf.message.Mes
     def __init__(self, *, invite: global___OrganizationInvite | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['invite', b'invite']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> None:
+    def ClearField(self, field_name: typing.Literal['invite', b'invite']) -> None:
         ...
 global___UpdateOrganizationInviteAuthorizationsResponse = UpdateOrganizationInviteAuthorizationsResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -604,11 +604,11 @@ class DeleteOrganizationInviteRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
         ...
 global___DeleteOrganizationInviteRequest = DeleteOrganizationInviteRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationInviteResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -616,7 +616,7 @@ class DeleteOrganizationInviteResponse(google.protobuf.message.Message):
         ...
 global___DeleteOrganizationInviteResponse = DeleteOrganizationInviteResponse
 
-@typing_extensions.final
+@typing.final
 class ResendOrganizationInviteRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -627,11 +627,11 @@ class ResendOrganizationInviteRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., email: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['email', b'email', 'organization_id', b'organization_id']) -> None:
         ...
 global___ResendOrganizationInviteRequest = ResendOrganizationInviteRequest
 
-@typing_extensions.final
+@typing.final
 class ResendOrganizationInviteResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INVITE_FIELD_NUMBER: builtins.int
@@ -643,14 +643,14 @@ class ResendOrganizationInviteResponse(google.protobuf.message.Message):
     def __init__(self, *, invite: global___OrganizationInvite | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['invite', b'invite']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['invite', b'invite']) -> None:
+    def ClearField(self, field_name: typing.Literal['invite', b'invite']) -> None:
         ...
 global___ResendOrganizationInviteResponse = ResendOrganizationInviteResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationMemberRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -661,11 +661,11 @@ class DeleteOrganizationMemberRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., user_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'user_id', b'user_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'user_id', b'user_id']) -> None:
         ...
 global___DeleteOrganizationMemberRequest = DeleteOrganizationMemberRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteOrganizationMemberResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -673,7 +673,7 @@ class DeleteOrganizationMemberResponse(google.protobuf.message.Message):
         ...
 global___DeleteOrganizationMemberResponse = DeleteOrganizationMemberResponse
 
-@typing_extensions.final
+@typing.final
 class OrganizationIdentity(google.protobuf.message.Message):
     """Location
 
@@ -691,11 +691,11 @@ class OrganizationIdentity(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
         ...
 global___OrganizationIdentity = OrganizationIdentity
 
-@typing_extensions.final
+@typing.final
 class LocationOrganization(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -708,11 +708,11 @@ class LocationOrganization(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., primary: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'primary', b'primary']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'primary', b'primary']) -> None:
         ...
 global___LocationOrganization = LocationOrganization
 
-@typing_extensions.final
+@typing.final
 class LocationAuth(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SECRET_FIELD_NUMBER: builtins.int
@@ -730,11 +730,11 @@ class LocationAuth(google.protobuf.message.Message):
     def __init__(self, *, secret: builtins.str=..., location_id: builtins.str=..., secrets: collections.abc.Iterable[global___SharedSecret] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'secret', b'secret', 'secrets', b'secrets']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'secret', b'secret', 'secrets', b'secrets']) -> None:
         ...
 global___LocationAuth = LocationAuth
 
-@typing_extensions.final
+@typing.final
 class StorageConfig(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     REGION_FIELD_NUMBER: builtins.int
@@ -744,11 +744,11 @@ class StorageConfig(google.protobuf.message.Message):
     def __init__(self, *, region: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['region', b'region']) -> None:
+    def ClearField(self, field_name: typing.Literal['region', b'region']) -> None:
         ...
 global___StorageConfig = StorageConfig
 
-@typing_extensions.final
+@typing.final
 class Location(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -765,6 +765,8 @@ class Location(google.protobuf.message.Message):
     'Location name.'
     parent_location_id: builtins.str
     'Location ID of the parent location.'
+    robot_count: builtins.int
+    ''
 
     @property
     def auth(self) -> global___LocationAuth:
@@ -777,8 +779,6 @@ class Location(google.protobuf.message.Message):
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Location creation timestamp."""
-    robot_count: builtins.int
-    ''
 
     @property
     def config(self) -> global___StorageConfig:
@@ -787,14 +787,14 @@ class Location(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str=..., auth: global___LocationAuth | None=..., organizations: collections.abc.Iterable[global___LocationOrganization] | None=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., robot_count: builtins.int=..., config: global___StorageConfig | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id', 'robot_count', b'robot_count']) -> None:
+    def ClearField(self, field_name: typing.Literal['auth', b'auth', 'config', b'config', 'created_on', b'created_on', 'id', b'id', 'name', b'name', 'organizations', b'organizations', 'parent_location_id', b'parent_location_id', 'robot_count', b'robot_count']) -> None:
         ...
 global___Location = Location
 
-@typing_extensions.final
+@typing.final
 class SharedSecret(google.protobuf.message.Message):
     """SharedSecret is a secret used for LocationAuth and RobotParts."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -825,24 +825,24 @@ class SharedSecret(google.protobuf.message.Message):
     id: builtins.str
     secret: builtins.str
     'The payload of the secret. Used during authentication to the rpc framework.'
+    state: global___SharedSecret.State.ValueType
+    'State of the shared secret. In most cases it should be enabled. We may support\n    disabling a specific secret while keeping it in the database.\n    '
 
     @property
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         """Date/time the secret was first created."""
-    state: global___SharedSecret.State.ValueType
-    'State of the shared secret. In most cases it should be enabled. We may support\n    disabling a specific secret while keeping it in the database.\n    '
 
     def __init__(self, *, id: builtins.str=..., secret: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., state: global___SharedSecret.State.ValueType=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'secret', b'secret', 'state', b'state']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'secret', b'secret', 'state', b'state']) -> None:
         ...
 global___SharedSecret = SharedSecret
 
-@typing_extensions.final
+@typing.final
 class CreateLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -858,17 +858,17 @@ class CreateLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., parent_location_id: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_parent_location_id', b'_parent_location_id', 'parent_location_id', b'parent_location_id']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_parent_location_id', b'_parent_location_id', 'parent_location_id', b'parent_location_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_parent_location_id', b'_parent_location_id', 'name', b'name', 'organization_id', b'organization_id', 'parent_location_id', b'parent_location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_parent_location_id', b'_parent_location_id', 'name', b'name', 'organization_id', b'organization_id', 'parent_location_id', b'parent_location_id']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_parent_location_id', b'_parent_location_id']) -> typing_extensions.Literal['parent_location_id'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_parent_location_id', b'_parent_location_id']) -> typing.Literal['parent_location_id'] | None:
         ...
 global___CreateLocationRequest = CreateLocationRequest
 
-@typing_extensions.final
+@typing.final
 class CreateLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
@@ -880,14 +880,14 @@ class CreateLocationResponse(google.protobuf.message.Message):
     def __init__(self, *, location: global___Location | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
+    def ClearField(self, field_name: typing.Literal['location', b'location']) -> None:
         ...
 global___CreateLocationResponse = CreateLocationResponse
 
-@typing_extensions.final
+@typing.final
 class GetLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -897,11 +897,11 @@ class GetLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___GetLocationRequest = GetLocationRequest
 
-@typing_extensions.final
+@typing.final
 class GetLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
@@ -913,14 +913,14 @@ class GetLocationResponse(google.protobuf.message.Message):
     def __init__(self, *, location: global___Location | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
+    def ClearField(self, field_name: typing.Literal['location', b'location']) -> None:
         ...
 global___GetLocationResponse = GetLocationResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -939,26 +939,26 @@ class UpdateLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=..., name: builtins.str | None=..., parent_location_id: builtins.str | None=..., region: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_name', b'_name', '_parent_location_id', b'_parent_location_id', '_region', b'_region', 'name', b'name', 'parent_location_id', b'parent_location_id', 'region', b'region']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_name', b'_name', '_parent_location_id', b'_parent_location_id', '_region', b'_region', 'name', b'name', 'parent_location_id', b'parent_location_id', 'region', b'region']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_name', b'_name', '_parent_location_id', b'_parent_location_id', '_region', b'_region', 'location_id', b'location_id', 'name', b'name', 'parent_location_id', b'parent_location_id', 'region', b'region']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_name', b'_name']) -> typing_extensions.Literal['name'] | None:
+    def ClearField(self, field_name: typing.Literal['_name', b'_name', '_parent_location_id', b'_parent_location_id', '_region', b'_region', 'location_id', b'location_id', 'name', b'name', 'parent_location_id', b'parent_location_id', 'region', b'region']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_parent_location_id', b'_parent_location_id']) -> typing_extensions.Literal['parent_location_id'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_name', b'_name']) -> typing.Literal['name'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_region', b'_region']) -> typing_extensions.Literal['region'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_parent_location_id', b'_parent_location_id']) -> typing.Literal['parent_location_id'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_region', b'_region']) -> typing.Literal['region'] | None:
         ...
 global___UpdateLocationRequest = UpdateLocationRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
@@ -970,14 +970,14 @@ class UpdateLocationResponse(google.protobuf.message.Message):
     def __init__(self, *, location: global___Location | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['location', b'location']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['location', b'location']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location']) -> None:
+    def ClearField(self, field_name: typing.Literal['location', b'location']) -> None:
         ...
 global___UpdateLocationResponse = UpdateLocationResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -987,11 +987,11 @@ class DeleteLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___DeleteLocationRequest = DeleteLocationRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -999,7 +999,7 @@ class DeleteLocationResponse(google.protobuf.message.Message):
         ...
 global___DeleteLocationResponse = DeleteLocationResponse
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationsWithAccessToLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1008,11 +1008,11 @@ class GetOrganizationsWithAccessToLocationRequest(google.protobuf.message.Messag
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___GetOrganizationsWithAccessToLocationRequest = GetOrganizationsWithAccessToLocationRequest
 
-@typing_extensions.final
+@typing.final
 class GetOrganizationsWithAccessToLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_IDENTITIES_FIELD_NUMBER: builtins.int
@@ -1024,11 +1024,11 @@ class GetOrganizationsWithAccessToLocationResponse(google.protobuf.message.Messa
     def __init__(self, *, organization_identities: collections.abc.Iterable[global___OrganizationIdentity] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_identities', b'organization_identities']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_identities', b'organization_identities']) -> None:
         ...
 global___GetOrganizationsWithAccessToLocationResponse = GetOrganizationsWithAccessToLocationResponse
 
-@typing_extensions.final
+@typing.final
 class ListLocationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -1038,11 +1038,11 @@ class ListLocationsRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id']) -> None:
         ...
 global___ListLocationsRequest = ListLocationsRequest
 
-@typing_extensions.final
+@typing.final
 class ShareLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1055,11 +1055,11 @@ class ShareLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
         ...
 global___ShareLocationRequest = ShareLocationRequest
 
-@typing_extensions.final
+@typing.final
 class ShareLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1067,7 +1067,7 @@ class ShareLocationResponse(google.protobuf.message.Message):
         ...
 global___ShareLocationResponse = ShareLocationResponse
 
-@typing_extensions.final
+@typing.final
 class UnshareLocationRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1080,11 +1080,11 @@ class UnshareLocationRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'organization_id', b'organization_id']) -> None:
         ...
 global___UnshareLocationRequest = UnshareLocationRequest
 
-@typing_extensions.final
+@typing.final
 class UnshareLocationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1092,7 +1092,7 @@ class UnshareLocationResponse(google.protobuf.message.Message):
         ...
 global___UnshareLocationResponse = UnshareLocationResponse
 
-@typing_extensions.final
+@typing.final
 class ListLocationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATIONS_FIELD_NUMBER: builtins.int
@@ -1104,11 +1104,11 @@ class ListLocationsResponse(google.protobuf.message.Message):
     def __init__(self, *, locations: collections.abc.Iterable[global___Location] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['locations', b'locations']) -> None:
+    def ClearField(self, field_name: typing.Literal['locations', b'locations']) -> None:
         ...
 global___ListLocationsResponse = ListLocationsResponse
 
-@typing_extensions.final
+@typing.final
 class CreateLocationSecretRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1118,11 +1118,11 @@ class CreateLocationSecretRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___CreateLocationSecretRequest = CreateLocationSecretRequest
 
-@typing_extensions.final
+@typing.final
 class CreateLocationSecretResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTH_FIELD_NUMBER: builtins.int
@@ -1134,14 +1134,14 @@ class CreateLocationSecretResponse(google.protobuf.message.Message):
     def __init__(self, *, auth: global___LocationAuth | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['auth', b'auth']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> None:
+    def ClearField(self, field_name: typing.Literal['auth', b'auth']) -> None:
         ...
 global___CreateLocationSecretResponse = CreateLocationSecretResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteLocationSecretRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1152,11 +1152,11 @@ class DeleteLocationSecretRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=..., secret_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'secret_id', b'secret_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'secret_id', b'secret_id']) -> None:
         ...
 global___DeleteLocationSecretRequest = DeleteLocationSecretRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteLocationSecretResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1164,7 +1164,7 @@ class DeleteLocationSecretResponse(google.protobuf.message.Message):
         ...
 global___DeleteLocationSecretResponse = DeleteLocationSecretResponse
 
-@typing_extensions.final
+@typing.final
 class LocationAuthRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1173,11 +1173,11 @@ class LocationAuthRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___LocationAuthRequest = LocationAuthRequest
 
-@typing_extensions.final
+@typing.final
 class LocationAuthResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTH_FIELD_NUMBER: builtins.int
@@ -1189,14 +1189,14 @@ class LocationAuthResponse(google.protobuf.message.Message):
     def __init__(self, *, auth: global___LocationAuth | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['auth', b'auth']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['auth', b'auth']) -> None:
+    def ClearField(self, field_name: typing.Literal['auth', b'auth']) -> None:
         ...
 global___LocationAuthResponse = LocationAuthResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1205,11 +1205,11 @@ class GetRobotRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___GetRobotRequest = GetRobotRequest
 
-@typing_extensions.final
+@typing.final
 class GetRoverRentalRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
@@ -1218,11 +1218,11 @@ class GetRoverRentalRobotsRequest(google.protobuf.message.Message):
     def __init__(self, *, org_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
         ...
 global___GetRoverRentalRobotsRequest = GetRoverRentalRobotsRequest
 
-@typing_extensions.final
+@typing.final
 class RoverRentalRobot(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -1237,11 +1237,11 @@ class RoverRentalRobot(google.protobuf.message.Message):
     def __init__(self, *, robot_id: builtins.str=..., location_id: builtins.str=..., robot_name: builtins.str=..., robot_main_part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'robot_id', b'robot_id', 'robot_main_part_id', b'robot_main_part_id', 'robot_name', b'robot_name']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id', 'robot_id', b'robot_id', 'robot_main_part_id', b'robot_main_part_id', 'robot_name', b'robot_name']) -> None:
         ...
 global___RoverRentalRobot = RoverRentalRobot
 
-@typing_extensions.final
+@typing.final
 class GetRoverRentalRobotsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOTS_FIELD_NUMBER: builtins.int
@@ -1253,11 +1253,11 @@ class GetRoverRentalRobotsResponse(google.protobuf.message.Message):
     def __init__(self, *, robots: collections.abc.Iterable[global___RoverRentalRobot] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robots', b'robots']) -> None:
+    def ClearField(self, field_name: typing.Literal['robots', b'robots']) -> None:
         ...
 global___GetRoverRentalRobotsResponse = GetRoverRentalRobotsResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_FIELD_NUMBER: builtins.int
@@ -1269,14 +1269,14 @@ class GetRobotResponse(google.protobuf.message.Message):
     def __init__(self, *, robot: global___Robot | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['robot', b'robot']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['robot', b'robot']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robot', b'robot']) -> None:
+    def ClearField(self, field_name: typing.Literal['robot', b'robot']) -> None:
         ...
 global___GetRobotResponse = GetRobotResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -1285,11 +1285,11 @@ class GetRobotPartsRequest(google.protobuf.message.Message):
     def __init__(self, *, robot_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robot_id', b'robot_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['robot_id', b'robot_id']) -> None:
         ...
 global___GetRobotPartsRequest = GetRobotPartsRequest
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PARTS_FIELD_NUMBER: builtins.int
@@ -1301,11 +1301,11 @@ class GetRobotPartsResponse(google.protobuf.message.Message):
     def __init__(self, *, parts: collections.abc.Iterable[global___RobotPart] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['parts', b'parts']) -> None:
+    def ClearField(self, field_name: typing.Literal['parts', b'parts']) -> None:
         ...
 global___GetRobotPartsResponse = GetRobotPartsResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1314,32 +1314,32 @@ class GetRobotPartRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___GetRobotPartRequest = GetRobotPartRequest
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_FIELD_NUMBER: builtins.int
     CONFIG_JSON_FIELD_NUMBER: builtins.int
+    config_json: builtins.str
 
     @property
     def part(self) -> global___RobotPart:
         ...
-    config_json: builtins.str
 
     def __init__(self, *, part: global___RobotPart | None=..., config_json: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['part', b'part']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['part', b'part']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['config_json', b'config_json', 'part', b'part']) -> None:
+    def ClearField(self, field_name: typing.Literal['config_json', b'config_json', 'part', b'part']) -> None:
         ...
 global___GetRobotPartResponse = GetRobotPartResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartLogsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1360,40 +1360,40 @@ class GetRobotPartLogsRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=..., page_token: builtins.str | None=..., levels: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'filter', b'filter', 'page_token', b'page_token']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'page_token', b'page_token']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_filter', b'_filter']) -> typing_extensions.Literal['filter'] | None:
+    def ClearField(self, field_name: typing.Literal['_filter', b'_filter', '_page_token', b'_page_token', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id', 'levels', b'levels', 'page_token', b'page_token']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_page_token', b'_page_token']) -> typing_extensions.Literal['page_token'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_filter', b'_filter']) -> typing.Literal['filter'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
         ...
 global___GetRobotPartLogsRequest = GetRobotPartLogsRequest
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartLogsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOGS_FIELD_NUMBER: builtins.int
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
 
     @property
     def logs(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.LogEntry]:
         ...
-    next_page_token: builtins.str
 
     def __init__(self, *, logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=..., next_page_token: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['logs', b'logs', 'next_page_token', b'next_page_token']) -> None:
+    def ClearField(self, field_name: typing.Literal['logs', b'logs', 'next_page_token', b'next_page_token']) -> None:
         ...
 global___GetRobotPartLogsResponse = GetRobotPartLogsResponse
 
-@typing_extensions.final
+@typing.final
 class TailRobotPartLogsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1406,17 +1406,17 @@ class TailRobotPartLogsRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., errors_only: builtins.bool=..., filter: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_filter', b'_filter', 'filter', b'filter']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_filter', b'_filter', 'filter', b'filter']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_filter', b'_filter', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_filter', b'_filter', 'errors_only', b'errors_only', 'filter', b'filter', 'id', b'id']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_filter', b'_filter']) -> typing_extensions.Literal['filter'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_filter', b'_filter']) -> typing.Literal['filter'] | None:
         ...
 global___TailRobotPartLogsRequest = TailRobotPartLogsRequest
 
-@typing_extensions.final
+@typing.final
 class TailRobotPartLogsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOGS_FIELD_NUMBER: builtins.int
@@ -1428,11 +1428,11 @@ class TailRobotPartLogsResponse(google.protobuf.message.Message):
     def __init__(self, *, logs: collections.abc.Iterable[common.v1.common_pb2.LogEntry] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['logs', b'logs']) -> None:
+    def ClearField(self, field_name: typing.Literal['logs', b'logs']) -> None:
         ...
 global___TailRobotPartLogsResponse = TailRobotPartLogsResponse
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartHistoryRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1441,11 +1441,11 @@ class GetRobotPartHistoryRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___GetRobotPartHistoryRequest = GetRobotPartHistoryRequest
 
-@typing_extensions.final
+@typing.final
 class GetRobotPartHistoryResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     HISTORY_FIELD_NUMBER: builtins.int
@@ -1457,11 +1457,11 @@ class GetRobotPartHistoryResponse(google.protobuf.message.Message):
     def __init__(self, *, history: collections.abc.Iterable[global___RobotPartHistoryEntry] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['history', b'history']) -> None:
+    def ClearField(self, field_name: typing.Literal['history', b'history']) -> None:
         ...
 global___GetRobotPartHistoryResponse = GetRobotPartHistoryResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateRobotPartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1477,14 +1477,14 @@ class UpdateRobotPartRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., robot_config: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['robot_config', b'robot_config']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['robot_config', b'robot_config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'name', b'name', 'robot_config', b'robot_config']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name', 'robot_config', b'robot_config']) -> None:
         ...
 global___UpdateRobotPartRequest = UpdateRobotPartRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateRobotPartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_FIELD_NUMBER: builtins.int
@@ -1496,14 +1496,14 @@ class UpdateRobotPartResponse(google.protobuf.message.Message):
     def __init__(self, *, part: global___RobotPart | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['part', b'part']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['part', b'part']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part', b'part']) -> None:
+    def ClearField(self, field_name: typing.Literal['part', b'part']) -> None:
         ...
 global___UpdateRobotPartResponse = UpdateRobotPartResponse
 
-@typing_extensions.final
+@typing.final
 class NewRobotPartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -1514,11 +1514,11 @@ class NewRobotPartRequest(google.protobuf.message.Message):
     def __init__(self, *, robot_id: builtins.str=..., part_name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_name', b'part_name', 'robot_id', b'robot_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_name', b'part_name', 'robot_id', b'robot_id']) -> None:
         ...
 global___NewRobotPartRequest = NewRobotPartRequest
 
-@typing_extensions.final
+@typing.final
 class NewRobotPartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -1527,11 +1527,11 @@ class NewRobotPartResponse(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id']) -> None:
         ...
 global___NewRobotPartResponse = NewRobotPartResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotPartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -1540,11 +1540,11 @@ class DeleteRobotPartRequest(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id']) -> None:
         ...
 global___DeleteRobotPartRequest = DeleteRobotPartRequest
 
-@typing_extensions.final
+@typing.final
 class GetRobotAPIKeysRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_ID_FIELD_NUMBER: builtins.int
@@ -1553,11 +1553,11 @@ class GetRobotAPIKeysRequest(google.protobuf.message.Message):
     def __init__(self, *, robot_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robot_id', b'robot_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['robot_id', b'robot_id']) -> None:
         ...
 global___GetRobotAPIKeysRequest = GetRobotAPIKeysRequest
 
-@typing_extensions.final
+@typing.final
 class APIKey(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1575,14 +1575,14 @@ class APIKey(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., key: builtins.str=..., name: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'id', b'id', 'key', b'key', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'id', b'id', 'key', b'key', 'name', b'name']) -> None:
         ...
 global___APIKey = APIKey
 
-@typing_extensions.final
+@typing.final
 class GetRobotAPIKeysResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     API_KEYS_FIELD_NUMBER: builtins.int
@@ -1594,11 +1594,11 @@ class GetRobotAPIKeysResponse(google.protobuf.message.Message):
     def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['api_keys', b'api_keys']) -> None:
+    def ClearField(self, field_name: typing.Literal['api_keys', b'api_keys']) -> None:
         ...
 global___GetRobotAPIKeysResponse = GetRobotAPIKeysResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotPartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1606,7 +1606,7 @@ class DeleteRobotPartResponse(google.protobuf.message.Message):
         ...
 global___DeleteRobotPartResponse = DeleteRobotPartResponse
 
-@typing_extensions.final
+@typing.final
 class Fragment(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1621,16 +1621,8 @@ class Fragment(google.protobuf.message.Message):
     ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
-
-    @property
-    def fragment(self) -> google.protobuf.struct_pb2.Struct:
-        ...
     organization_owner: builtins.str
     public: builtins.bool
-
-    @property
-    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        ...
     organization_name: builtins.str
     robot_part_count: builtins.int
     'number of robot parts using this fragment'
@@ -1639,17 +1631,25 @@ class Fragment(google.protobuf.message.Message):
     only_used_by_owner: builtins.bool
     'whether the organization(s) using this fragment is the same as the fragment org'
 
+    @property
+    def fragment(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count']) -> None:
         ...
 global___Fragment = Fragment
 
-@typing_extensions.final
+@typing.final
 class ListFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -1660,11 +1660,11 @@ class ListFragmentsRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., show_public: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'show_public', b'show_public']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'show_public', b'show_public']) -> None:
         ...
 global___ListFragmentsRequest = ListFragmentsRequest
 
-@typing_extensions.final
+@typing.final
 class ListFragmentsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENTS_FIELD_NUMBER: builtins.int
@@ -1676,11 +1676,11 @@ class ListFragmentsResponse(google.protobuf.message.Message):
     def __init__(self, *, fragments: collections.abc.Iterable[global___Fragment] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragments', b'fragments']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragments', b'fragments']) -> None:
         ...
 global___ListFragmentsResponse = ListFragmentsResponse
 
-@typing_extensions.final
+@typing.final
 class GetFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1689,11 +1689,11 @@ class GetFragmentRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___GetFragmentRequest = GetFragmentRequest
 
-@typing_extensions.final
+@typing.final
 class GetFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_FIELD_NUMBER: builtins.int
@@ -1705,37 +1705,37 @@ class GetFragmentResponse(google.protobuf.message.Message):
     def __init__(self, *, fragment: global___Fragment | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment', b'fragment']) -> None:
         ...
 global___GetFragmentResponse = GetFragmentResponse
 
-@typing_extensions.final
+@typing.final
 class CreateFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     name: builtins.str
+    organization_id: builtins.str
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
-    organization_id: builtins.str
 
     def __init__(self, *, name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., organization_id: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['config', b'config']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['config', b'config']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['config', b'config', 'name', b'name', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['config', b'config', 'name', b'name', 'organization_id', b'organization_id']) -> None:
         ...
 global___CreateFragmentRequest = CreateFragmentRequest
 
-@typing_extensions.final
+@typing.final
 class CreateFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_FIELD_NUMBER: builtins.int
@@ -1747,14 +1747,14 @@ class CreateFragmentResponse(google.protobuf.message.Message):
     def __init__(self, *, fragment: global___Fragment | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment', b'fragment']) -> None:
         ...
 global___CreateFragmentResponse = CreateFragmentResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1763,26 +1763,26 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     PUBLIC_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
+    public: builtins.bool
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
-    public: builtins.bool
 
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'public', b'public']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_public', b'_public', 'config', b'config', 'public', b'public']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public']) -> None:
+    def ClearField(self, field_name: typing.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_public', b'_public']) -> typing_extensions.Literal['public'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_public', b'_public']) -> typing.Literal['public'] | None:
         ...
 global___UpdateFragmentRequest = UpdateFragmentRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     FRAGMENT_FIELD_NUMBER: builtins.int
@@ -1794,14 +1794,14 @@ class UpdateFragmentResponse(google.protobuf.message.Message):
     def __init__(self, *, fragment: global___Fragment | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['fragment', b'fragment']) -> None:
+    def ClearField(self, field_name: typing.Literal['fragment', b'fragment']) -> None:
         ...
 global___UpdateFragmentResponse = UpdateFragmentResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteFragmentRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1810,11 +1810,11 @@ class DeleteFragmentRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___DeleteFragmentRequest = DeleteFragmentRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteFragmentResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1822,7 +1822,7 @@ class DeleteFragmentResponse(google.protobuf.message.Message):
         ...
 global___DeleteFragmentResponse = DeleteFragmentResponse
 
-@typing_extensions.final
+@typing.final
 class ListRobotsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_ID_FIELD_NUMBER: builtins.int
@@ -1831,11 +1831,11 @@ class ListRobotsRequest(google.protobuf.message.Message):
     def __init__(self, *, location_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['location_id', b'location_id']) -> None:
         ...
 global___ListRobotsRequest = ListRobotsRequest
 
-@typing_extensions.final
+@typing.final
 class ListRobotsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOTS_FIELD_NUMBER: builtins.int
@@ -1847,11 +1847,11 @@ class ListRobotsResponse(google.protobuf.message.Message):
     def __init__(self, *, robots: collections.abc.Iterable[global___Robot] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robots', b'robots']) -> None:
+    def ClearField(self, field_name: typing.Literal['robots', b'robots']) -> None:
         ...
 global___ListRobotsResponse = ListRobotsResponse
 
-@typing_extensions.final
+@typing.final
 class NewRobotRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -1862,11 +1862,11 @@ class NewRobotRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., location: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['location', b'location', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['location', b'location', 'name', b'name']) -> None:
         ...
 global___NewRobotRequest = NewRobotRequest
 
-@typing_extensions.final
+@typing.final
 class NewRobotResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1875,11 +1875,11 @@ class NewRobotResponse(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___NewRobotResponse = NewRobotResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateRobotRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1892,11 +1892,11 @@ class UpdateRobotRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., name: builtins.str=..., location: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'location', b'location', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'location', b'location', 'name', b'name']) -> None:
         ...
 global___UpdateRobotRequest = UpdateRobotRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateRobotResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ROBOT_FIELD_NUMBER: builtins.int
@@ -1908,14 +1908,14 @@ class UpdateRobotResponse(google.protobuf.message.Message):
     def __init__(self, *, robot: global___Robot | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['robot', b'robot']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['robot', b'robot']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['robot', b'robot']) -> None:
+    def ClearField(self, field_name: typing.Literal['robot', b'robot']) -> None:
         ...
 global___UpdateRobotResponse = UpdateRobotResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -1924,11 +1924,11 @@ class DeleteRobotRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___DeleteRobotRequest = DeleteRobotRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1936,7 +1936,7 @@ class DeleteRobotResponse(google.protobuf.message.Message):
         ...
 global___DeleteRobotResponse = DeleteRobotResponse
 
-@typing_extensions.final
+@typing.final
 class MarkPartAsMainRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -1945,11 +1945,11 @@ class MarkPartAsMainRequest(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id']) -> None:
         ...
 global___MarkPartAsMainRequest = MarkPartAsMainRequest
 
-@typing_extensions.final
+@typing.final
 class MarkPartAsMainResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1957,7 +1957,7 @@ class MarkPartAsMainResponse(google.protobuf.message.Message):
         ...
 global___MarkPartAsMainResponse = MarkPartAsMainResponse
 
-@typing_extensions.final
+@typing.final
 class MarkPartForRestartRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -1966,11 +1966,11 @@ class MarkPartForRestartRequest(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id']) -> None:
         ...
 global___MarkPartForRestartRequest = MarkPartForRestartRequest
 
-@typing_extensions.final
+@typing.final
 class MarkPartForRestartResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1978,7 +1978,7 @@ class MarkPartForRestartResponse(google.protobuf.message.Message):
         ...
 global___MarkPartForRestartResponse = MarkPartForRestartResponse
 
-@typing_extensions.final
+@typing.final
 class CreateRobotPartSecretRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -1988,11 +1988,11 @@ class CreateRobotPartSecretRequest(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id']) -> None:
         ...
 global___CreateRobotPartSecretRequest = CreateRobotPartSecretRequest
 
-@typing_extensions.final
+@typing.final
 class CreateRobotPartSecretResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_FIELD_NUMBER: builtins.int
@@ -2004,14 +2004,14 @@ class CreateRobotPartSecretResponse(google.protobuf.message.Message):
     def __init__(self, *, part: global___RobotPart | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['part', b'part']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['part', b'part']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part', b'part']) -> None:
+    def ClearField(self, field_name: typing.Literal['part', b'part']) -> None:
         ...
 global___CreateRobotPartSecretResponse = CreateRobotPartSecretResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotPartSecretRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PART_ID_FIELD_NUMBER: builtins.int
@@ -2022,11 +2022,11 @@ class DeleteRobotPartSecretRequest(google.protobuf.message.Message):
     def __init__(self, *, part_id: builtins.str=..., secret_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['part_id', b'part_id', 'secret_id', b'secret_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['part_id', b'part_id', 'secret_id', b'secret_id']) -> None:
         ...
 global___DeleteRobotPartSecretRequest = DeleteRobotPartSecretRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteRobotPartSecretResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2034,7 +2034,7 @@ class DeleteRobotPartSecretResponse(google.protobuf.message.Message):
         ...
 global___DeleteRobotPartSecretResponse = DeleteRobotPartSecretResponse
 
-@typing_extensions.final
+@typing.final
 class Authorization(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATION_TYPE_FIELD_NUMBER: builtins.int
@@ -2055,11 +2055,11 @@ class Authorization(google.protobuf.message.Message):
     def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., identity_id: builtins.str=..., organization_id: builtins.str=..., identity_type: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'identity_id', b'identity_id', 'identity_type', b'identity_type', 'organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'identity_id', b'identity_id', 'identity_type', b'identity_type', 'organization_id', b'organization_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___Authorization = Authorization
 
-@typing_extensions.final
+@typing.final
 class AddRoleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATION_FIELD_NUMBER: builtins.int
@@ -2071,14 +2071,14 @@ class AddRoleRequest(google.protobuf.message.Message):
     def __init__(self, *, authorization: global___Authorization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['authorization', b'authorization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['authorization', b'authorization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization', b'authorization']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorization', b'authorization']) -> None:
         ...
 global___AddRoleRequest = AddRoleRequest
 
-@typing_extensions.final
+@typing.final
 class AddRoleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2086,7 +2086,7 @@ class AddRoleResponse(google.protobuf.message.Message):
         ...
 global___AddRoleResponse = AddRoleResponse
 
-@typing_extensions.final
+@typing.final
 class RemoveRoleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATION_FIELD_NUMBER: builtins.int
@@ -2098,14 +2098,14 @@ class RemoveRoleRequest(google.protobuf.message.Message):
     def __init__(self, *, authorization: global___Authorization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['authorization', b'authorization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['authorization', b'authorization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization', b'authorization']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorization', b'authorization']) -> None:
         ...
 global___RemoveRoleRequest = RemoveRoleRequest
 
-@typing_extensions.final
+@typing.final
 class RemoveRoleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2113,7 +2113,7 @@ class RemoveRoleResponse(google.protobuf.message.Message):
         ...
 global___RemoveRoleResponse = RemoveRoleResponse
 
-@typing_extensions.final
+@typing.final
 class ChangeRoleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     OLD_AUTHORIZATION_FIELD_NUMBER: builtins.int
@@ -2130,14 +2130,14 @@ class ChangeRoleRequest(google.protobuf.message.Message):
     def __init__(self, *, old_authorization: global___Authorization | None=..., new_authorization: global___Authorization | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> None:
+    def ClearField(self, field_name: typing.Literal['new_authorization', b'new_authorization', 'old_authorization', b'old_authorization']) -> None:
         ...
 global___ChangeRoleRequest = ChangeRoleRequest
 
-@typing_extensions.final
+@typing.final
 class ChangeRoleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2145,7 +2145,7 @@ class ChangeRoleResponse(google.protobuf.message.Message):
         ...
 global___ChangeRoleResponse = ChangeRoleResponse
 
-@typing_extensions.final
+@typing.final
 class ListAuthorizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2159,11 +2159,11 @@ class ListAuthorizationsRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., resource_ids: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['organization_id', b'organization_id', 'resource_ids', b'resource_ids']) -> None:
+    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'resource_ids', b'resource_ids']) -> None:
         ...
 global___ListAuthorizationsRequest = ListAuthorizationsRequest
 
-@typing_extensions.final
+@typing.final
 class ListAuthorizationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATIONS_FIELD_NUMBER: builtins.int
@@ -2175,11 +2175,11 @@ class ListAuthorizationsResponse(google.protobuf.message.Message):
     def __init__(self, *, authorizations: collections.abc.Iterable[global___Authorization] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorizations', b'authorizations']) -> None:
         ...
 global___ListAuthorizationsResponse = ListAuthorizationsResponse
 
-@typing_extensions.final
+@typing.final
 class CheckPermissionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PERMISSIONS_FIELD_NUMBER: builtins.int
@@ -2191,11 +2191,11 @@ class CheckPermissionsRequest(google.protobuf.message.Message):
     def __init__(self, *, permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['permissions', b'permissions']) -> None:
+    def ClearField(self, field_name: typing.Literal['permissions', b'permissions']) -> None:
         ...
 global___CheckPermissionsRequest = CheckPermissionsRequest
 
-@typing_extensions.final
+@typing.final
 class AuthorizedPermissions(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     RESOURCE_TYPE_FIELD_NUMBER: builtins.int
@@ -2211,11 +2211,11 @@ class AuthorizedPermissions(google.protobuf.message.Message):
     def __init__(self, *, resource_type: builtins.str=..., resource_id: builtins.str=..., permissions: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['permissions', b'permissions', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing.Literal['permissions', b'permissions', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___AuthorizedPermissions = AuthorizedPermissions
 
-@typing_extensions.final
+@typing.final
 class CheckPermissionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZED_PERMISSIONS_FIELD_NUMBER: builtins.int
@@ -2227,11 +2227,11 @@ class CheckPermissionsResponse(google.protobuf.message.Message):
     def __init__(self, *, authorized_permissions: collections.abc.Iterable[global___AuthorizedPermissions] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorized_permissions', b'authorized_permissions']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorized_permissions', b'authorized_permissions']) -> None:
         ...
 global___CheckPermissionsResponse = CheckPermissionsResponse
 
-@typing_extensions.final
+@typing.final
 class ModuleVersion(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSION_FIELD_NUMBER: builtins.int
@@ -2240,6 +2240,8 @@ class ModuleVersion(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
+    entrypoint: builtins.str
+    'The entrypoint for this version of the module'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -2248,22 +2250,22 @@ class ModuleVersion(google.protobuf.message.Message):
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
-    entrypoint: builtins.str
-    'The entrypoint for this version of the module'
 
     def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
         ...
 global___ModuleVersion = ModuleVersion
 
-@typing_extensions.final
+@typing.final
 class ModuleMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODELS_FIELD_NUMBER: builtins.int
     VERSIONS_FIELD_NUMBER: builtins.int
     ENTRYPOINT_FIELD_NUMBER: builtins.int
+    entrypoint: builtins.str
+    'The executable to run to start the module program'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
@@ -2274,17 +2276,15 @@ class ModuleMetadata(google.protobuf.message.Message):
         """A list of versions of the module that are available
         When this is returned from the backend, the versions are sorted in ascending order by the semver version
         """
-    entrypoint: builtins.str
-    'The executable to run to start the module program'
 
     def __init__(self, *, models: collections.abc.Iterable[global___Model] | None=..., versions: collections.abc.Iterable[global___ModuleVersion] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['entrypoint', b'entrypoint', 'models', b'models', 'versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'models', b'models', 'versions', b'versions']) -> None:
         ...
 global___ModuleMetadata = ModuleMetadata
 
-@typing_extensions.final
+@typing.final
 class MLModelMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
@@ -2296,33 +2296,33 @@ class MLModelMetadata(google.protobuf.message.Message):
     def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['versions', b'versions']) -> None:
         ...
 global___MLModelMetadata = MLModelMetadata
 
-@typing_extensions.final
+@typing.final
 class MLTrainingMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
     MODEL_TYPE_FIELD_NUMBER: builtins.int
     MODEL_FRAMEWORK_FIELD_NUMBER: builtins.int
     DRAFT_FIELD_NUMBER: builtins.int
-
-    @property
-    def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
-        """A list of package versions for ML training source distribution"""
     model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType
     model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
     draft: builtins.bool
 
+    @property
+    def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """A list of package versions for ML training source distribution"""
+
     def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., draft: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
+    def ClearField(self, field_name: typing.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
         ...
 global___MLTrainingMetadata = MLTrainingMetadata
 
-@typing_extensions.final
+@typing.final
 class RegistryItem(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
@@ -2390,17 +2390,17 @@ class RegistryItem(google.protobuf.message.Message):
     def __init__(self, *, item_id: builtins.str=..., organization_id: builtins.str=..., public_namespace: builtins.str=..., name: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., total_robot_usage: builtins.int=..., total_external_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., total_external_organization_usage: builtins.int=..., module_metadata: global___ModuleMetadata | None=..., ml_model_metadata: global___MLModelMetadata | None=..., ml_training_metadata: global___MLTrainingMetadata | None=..., created_at: google.protobuf.timestamp_pb2.Timestamp | None=..., updated_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['created_at', b'created_at', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'updated_at', b'updated_at']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['created_at', b'created_at', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_at', b'created_at', 'description', b'description', 'item_id', b'item_id', 'metadata', b'metadata', 'ml_model_metadata', b'ml_model_metadata', 'ml_training_metadata', b'ml_training_metadata', 'module_metadata', b'module_metadata', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_external_organization_usage', b'total_external_organization_usage', 'total_external_robot_usage', b'total_external_robot_usage', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'type', b'type', 'updated_at', b'updated_at', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['metadata', b'metadata']) -> typing_extensions.Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['metadata', b'metadata']) -> typing.Literal['module_metadata', 'ml_model_metadata', 'ml_training_metadata'] | None:
         ...
 global___RegistryItem = RegistryItem
 
-@typing_extensions.final
+@typing.final
 class GetRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
@@ -2409,11 +2409,11 @@ class GetRegistryItemRequest(google.protobuf.message.Message):
     def __init__(self, *, item_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['item_id', b'item_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['item_id', b'item_id']) -> None:
         ...
 global___GetRegistryItemRequest = GetRegistryItemRequest
 
-@typing_extensions.final
+@typing.final
 class GetRegistryItemResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_FIELD_NUMBER: builtins.int
@@ -2425,14 +2425,14 @@ class GetRegistryItemResponse(google.protobuf.message.Message):
     def __init__(self, *, item: global___RegistryItem | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['item', b'item']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['item', b'item']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['item', b'item']) -> None:
+    def ClearField(self, field_name: typing.Literal['item', b'item']) -> None:
         ...
 global___GetRegistryItemResponse = GetRegistryItemResponse
 
-@typing_extensions.final
+@typing.final
 class CreateRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2448,11 +2448,11 @@ class CreateRegistryItemRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'organization_id', b'organization_id', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'organization_id', b'organization_id', 'type', b'type']) -> None:
         ...
 global___CreateRegistryItemRequest = CreateRegistryItemRequest
 
-@typing_extensions.final
+@typing.final
 class CreateRegistryItemResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2460,7 +2460,7 @@ class CreateRegistryItemResponse(google.protobuf.message.Message):
         ...
 global___CreateRegistryItemResponse = CreateRegistryItemResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
@@ -2475,11 +2475,11 @@ class UpdateRegistryItemRequest(google.protobuf.message.Message):
     def __init__(self, *, item_id: builtins.str=..., type: app.packages.v1.packages_pb2.PackageType.ValueType=..., description: builtins.str=..., visibility: global___Visibility.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'item_id', b'item_id', 'type', b'type', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['description', b'description', 'item_id', b'item_id', 'type', b'type', 'visibility', b'visibility']) -> None:
         ...
 global___UpdateRegistryItemRequest = UpdateRegistryItemRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateRegistryItemResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2487,7 +2487,7 @@ class UpdateRegistryItemResponse(google.protobuf.message.Message):
         ...
 global___UpdateRegistryItemResponse = UpdateRegistryItemResponse
 
-@typing_extensions.final
+@typing.final
 class ListRegistryItemsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2499,6 +2499,8 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The id of the organization to return registry items for.'
+    search_term: builtins.str
+    page_token: builtins.str
 
     @property
     def types(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[app.packages.v1.packages_pb2.PackageType.ValueType]:
@@ -2515,32 +2517,30 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     @property
     def statuses(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___RegistryItemStatus.ValueType]:
         ...
-    search_term: builtins.str
-    page_token: builtins.str
 
     def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_organization_id', b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None:
+    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_page_token', b'_page_token']) -> typing_extensions.Literal['page_token'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_organization_id', b'_organization_id']) -> typing.Literal['organization_id'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_search_term', b'_search_term']) -> typing_extensions.Literal['search_term'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_page_token', b'_page_token']) -> typing.Literal['page_token'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_search_term', b'_search_term']) -> typing.Literal['search_term'] | None:
         ...
 global___ListRegistryItemsRequest = ListRegistryItemsRequest
 
-@typing_extensions.final
+@typing.final
 class ListRegistryItemsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEMS_FIELD_NUMBER: builtins.int
@@ -2552,11 +2552,11 @@ class ListRegistryItemsResponse(google.protobuf.message.Message):
     def __init__(self, *, items: collections.abc.Iterable[global___RegistryItem] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['items', b'items']) -> None:
+    def ClearField(self, field_name: typing.Literal['items', b'items']) -> None:
         ...
 global___ListRegistryItemsResponse = ListRegistryItemsResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteRegistryItemRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ITEM_ID_FIELD_NUMBER: builtins.int
@@ -2566,11 +2566,11 @@ class DeleteRegistryItemRequest(google.protobuf.message.Message):
     def __init__(self, *, item_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['item_id', b'item_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['item_id', b'item_id']) -> None:
         ...
 global___DeleteRegistryItemRequest = DeleteRegistryItemRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteRegistryItemResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -2578,7 +2578,7 @@ class DeleteRegistryItemResponse(google.protobuf.message.Message):
         ...
 global___DeleteRegistryItemResponse = DeleteRegistryItemResponse
 
-@typing_extensions.final
+@typing.final
 class CreateModuleRequest(google.protobuf.message.Message):
     """Modules"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -2592,11 +2592,11 @@ class CreateModuleRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'organization_id', b'organization_id']) -> None:
         ...
 global___CreateModuleRequest = CreateModuleRequest
 
-@typing_extensions.final
+@typing.final
 class CreateModuleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
@@ -2609,11 +2609,11 @@ class CreateModuleResponse(google.protobuf.message.Message):
     def __init__(self, *, module_id: builtins.str=..., url: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id', 'url', b'url']) -> None:
+    def ClearField(self, field_name: typing.Literal['module_id', b'module_id', 'url', b'url']) -> None:
         ...
 global___CreateModuleResponse = CreateModuleResponse
 
-@typing_extensions.final
+@typing.final
 class UpdateModuleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
@@ -2630,21 +2630,21 @@ class UpdateModuleRequest(google.protobuf.message.Message):
     'The url to reference for documentation, code, etc.'
     description: builtins.str
     'A short description of the module that explains its purpose'
+    entrypoint: builtins.str
+    'The executable to run to start the module program'
 
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """A list of models that are available in the module"""
-    entrypoint: builtins.str
-    'The executable to run to start the module program'
 
     def __init__(self, *, module_id: builtins.str=..., visibility: global___Visibility.ValueType=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'url', b'url', 'visibility', b'visibility']) -> None:
         ...
 global___UpdateModuleRequest = UpdateModuleRequest
 
-@typing_extensions.final
+@typing.final
 class UpdateModuleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     URL_FIELD_NUMBER: builtins.int
@@ -2654,11 +2654,11 @@ class UpdateModuleResponse(google.protobuf.message.Message):
     def __init__(self, *, url: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['url', b'url']) -> None:
+    def ClearField(self, field_name: typing.Literal['url', b'url']) -> None:
         ...
 global___UpdateModuleResponse = UpdateModuleResponse
 
-@typing_extensions.final
+@typing.final
 class Model(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     API_FIELD_NUMBER: builtins.int
@@ -2671,11 +2671,11 @@ class Model(google.protobuf.message.Message):
     def __init__(self, *, api: builtins.str=..., model: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['api', b'api', 'model', b'model']) -> None:
+    def ClearField(self, field_name: typing.Literal['api', b'api', 'model', b'model']) -> None:
         ...
 global___Model = Model
 
-@typing_extensions.final
+@typing.final
 class ModuleFileInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
@@ -2691,36 +2691,36 @@ class ModuleFileInfo(google.protobuf.message.Message):
     def __init__(self, *, module_id: builtins.str=..., version: builtins.str=..., platform: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id', 'platform', b'platform', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['module_id', b'module_id', 'platform', b'platform', 'version', b'version']) -> None:
         ...
 global___ModuleFileInfo = ModuleFileInfo
 
-@typing_extensions.final
+@typing.final
 class UploadModuleFileRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_FILE_INFO_FIELD_NUMBER: builtins.int
     FILE_FIELD_NUMBER: builtins.int
+    file: builtins.bytes
+    'The file contents to be uploaded'
 
     @property
     def module_file_info(self) -> global___ModuleFileInfo:
         """The information about the module file being uploaded"""
-    file: builtins.bytes
-    'The file contents to be uploaded'
 
     def __init__(self, *, module_file_info: global___ModuleFileInfo | None=..., file: builtins.bytes=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['file', b'file', 'module_file', b'module_file', 'module_file_info', b'module_file_info']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['file', b'file', 'module_file', b'module_file', 'module_file_info', b'module_file_info']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['file', b'file', 'module_file', b'module_file', 'module_file_info', b'module_file_info']) -> None:
+    def ClearField(self, field_name: typing.Literal['file', b'file', 'module_file', b'module_file', 'module_file_info', b'module_file_info']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['module_file', b'module_file']) -> typing_extensions.Literal['module_file_info', 'file'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['module_file', b'module_file']) -> typing.Literal['module_file_info', 'file'] | None:
         ...
 global___UploadModuleFileRequest = UploadModuleFileRequest
 
-@typing_extensions.final
+@typing.final
 class UploadModuleFileResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     URL_FIELD_NUMBER: builtins.int
@@ -2730,11 +2730,11 @@ class UploadModuleFileResponse(google.protobuf.message.Message):
     def __init__(self, *, url: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['url', b'url']) -> None:
+    def ClearField(self, field_name: typing.Literal['url', b'url']) -> None:
         ...
 global___UploadModuleFileResponse = UploadModuleFileResponse
 
-@typing_extensions.final
+@typing.final
 class GetModuleRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
@@ -2744,11 +2744,11 @@ class GetModuleRequest(google.protobuf.message.Message):
     def __init__(self, *, module_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['module_id', b'module_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['module_id', b'module_id']) -> None:
         ...
 global___GetModuleRequest = GetModuleRequest
 
-@typing_extensions.final
+@typing.final
 class GetModuleResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_FIELD_NUMBER: builtins.int
@@ -2760,14 +2760,14 @@ class GetModuleResponse(google.protobuf.message.Message):
     def __init__(self, *, module: global___Module | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['module', b'module']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['module', b'module']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['module', b'module']) -> None:
+    def ClearField(self, field_name: typing.Literal['module', b'module']) -> None:
         ...
 global___GetModuleResponse = GetModuleResponse
 
-@typing_extensions.final
+@typing.final
 class Module(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULE_ID_FIELD_NUMBER: builtins.int
@@ -2788,20 +2788,10 @@ class Module(google.protobuf.message.Message):
     'The name of the module'
     visibility: global___Visibility.ValueType
     'The visibility of the module'
-
-    @property
-    def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]:
-        """The versions of the module that are available
-        When this is returned from the backend, the versions are sorted in ascending order by the semver version
-        """
     url: builtins.str
     'The url to reference for documentation, code, etc.'
     description: builtins.str
     'A short description of the module that explains its purpose'
-
-    @property
-    def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
-        """A list of models that are available in the module"""
     total_robot_usage: builtins.int
     'The total number of robots using this module'
     total_organization_usage: builtins.int
@@ -2813,14 +2803,24 @@ class Module(google.protobuf.message.Message):
     public_namespace: builtins.str
     'The public namespace of the organization that owns the module\n    This is empty if no public namespace is set\n    '
 
+    @property
+    def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___VersionHistory]:
+        """The versions of the module that are available
+        When this is returned from the backend, the versions are sorted in ascending order by the semver version
+        """
+
+    @property
+    def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
+        """A list of models that are available in the module"""
+
     def __init__(self, *, module_id: builtins.str=..., name: builtins.str=..., visibility: global___Visibility.ValueType=..., versions: collections.abc.Iterable[global___VersionHistory] | None=..., url: builtins.str=..., description: builtins.str=..., models: collections.abc.Iterable[global___Model] | None=..., total_robot_usage: builtins.int=..., total_organization_usage: builtins.int=..., organization_id: builtins.str=..., entrypoint: builtins.str=..., public_namespace: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
+    def ClearField(self, field_name: typing.Literal['description', b'description', 'entrypoint', b'entrypoint', 'models', b'models', 'module_id', b'module_id', 'name', b'name', 'organization_id', b'organization_id', 'public_namespace', b'public_namespace', 'total_organization_usage', b'total_organization_usage', 'total_robot_usage', b'total_robot_usage', 'url', b'url', 'versions', b'versions', 'visibility', b'visibility']) -> None:
         ...
 global___Module = Module
 
-@typing_extensions.final
+@typing.final
 class VersionHistory(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSION_FIELD_NUMBER: builtins.int
@@ -2829,6 +2829,8 @@ class VersionHistory(google.protobuf.message.Message):
     ENTRYPOINT_FIELD_NUMBER: builtins.int
     version: builtins.str
     'The semver string that represents the major/minor/patch version of the module'
+    entrypoint: builtins.str
+    'The entrypoint for this version of the module'
 
     @property
     def files(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Uploads]:
@@ -2837,17 +2839,15 @@ class VersionHistory(google.protobuf.message.Message):
     @property
     def models(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Model]:
         """The models that this verion of the module provides"""
-    entrypoint: builtins.str
-    'The entrypoint for this version of the module'
 
     def __init__(self, *, version: builtins.str=..., files: collections.abc.Iterable[global___Uploads] | None=..., models: collections.abc.Iterable[global___Model] | None=..., entrypoint: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
+    def ClearField(self, field_name: typing.Literal['entrypoint', b'entrypoint', 'files', b'files', 'models', b'models', 'version', b'version']) -> None:
         ...
 global___VersionHistory = VersionHistory
 
-@typing_extensions.final
+@typing.final
 class Uploads(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     PLATFORM_FIELD_NUMBER: builtins.int
@@ -2862,14 +2862,14 @@ class Uploads(google.protobuf.message.Message):
     def __init__(self, *, platform: builtins.str=..., uploaded_at: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['uploaded_at', b'uploaded_at']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['uploaded_at', b'uploaded_at']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['platform', b'platform', 'uploaded_at', b'uploaded_at']) -> None:
+    def ClearField(self, field_name: typing.Literal['platform', b'platform', 'uploaded_at', b'uploaded_at']) -> None:
         ...
 global___Uploads = Uploads
 
-@typing_extensions.final
+@typing.final
 class ListModulesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
@@ -2879,17 +2879,17 @@ class ListModulesRequest(google.protobuf.message.Message):
     def __init__(self, *, organization_id: builtins.str | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', 'organization_id', b'organization_id']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_organization_id', b'_organization_id']) -> typing_extensions.Literal['organization_id'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_organization_id', b'_organization_id']) -> typing.Literal['organization_id'] | None:
         ...
 global___ListModulesRequest = ListModulesRequest
 
-@typing_extensions.final
+@typing.final
 class ListModulesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MODULES_FIELD_NUMBER: builtins.int
@@ -2901,11 +2901,11 @@ class ListModulesResponse(google.protobuf.message.Message):
     def __init__(self, *, modules: collections.abc.Iterable[global___Module] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['modules', b'modules']) -> None:
+    def ClearField(self, field_name: typing.Literal['modules', b'modules']) -> None:
         ...
 global___ListModulesResponse = ListModulesResponse
 
-@typing_extensions.final
+@typing.final
 class GetUserIDByEmailRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     EMAIL_FIELD_NUMBER: builtins.int
@@ -2914,11 +2914,11 @@ class GetUserIDByEmailRequest(google.protobuf.message.Message):
     def __init__(self, *, email: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['email', b'email']) -> None:
+    def ClearField(self, field_name: typing.Literal['email', b'email']) -> None:
         ...
 global___GetUserIDByEmailRequest = GetUserIDByEmailRequest
 
-@typing_extensions.final
+@typing.final
 class GetUserIDByEmailResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     USER_ID_FIELD_NUMBER: builtins.int
@@ -2927,11 +2927,11 @@ class GetUserIDByEmailResponse(google.protobuf.message.Message):
     def __init__(self, *, user_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['user_id', b'user_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['user_id', b'user_id']) -> None:
         ...
 global___GetUserIDByEmailResponse = GetUserIDByEmailResponse
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationsByUserRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     USER_ID_FIELD_NUMBER: builtins.int
@@ -2940,11 +2940,11 @@ class ListOrganizationsByUserRequest(google.protobuf.message.Message):
     def __init__(self, *, user_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['user_id', b'user_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['user_id', b'user_id']) -> None:
         ...
 global___ListOrganizationsByUserRequest = ListOrganizationsByUserRequest
 
-@typing_extensions.final
+@typing.final
 class OrgDetails(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
@@ -2955,11 +2955,11 @@ class OrgDetails(google.protobuf.message.Message):
     def __init__(self, *, org_id: builtins.str=..., org_name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id', 'org_name', b'org_name']) -> None:
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id', 'org_name', b'org_name']) -> None:
         ...
 global___OrgDetails = OrgDetails
 
-@typing_extensions.final
+@typing.final
 class ListOrganizationsByUserResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGS_FIELD_NUMBER: builtins.int
@@ -2971,29 +2971,29 @@ class ListOrganizationsByUserResponse(google.protobuf.message.Message):
     def __init__(self, *, orgs: collections.abc.Iterable[global___OrgDetails] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['orgs', b'orgs']) -> None:
+    def ClearField(self, field_name: typing.Literal['orgs', b'orgs']) -> None:
         ...
 global___ListOrganizationsByUserResponse = ListOrganizationsByUserResponse
 
-@typing_extensions.final
+@typing.final
 class CreateKeyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATIONS_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
+    name: builtins.str
 
     @property
     def authorizations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Authorization]:
         ...
-    name: builtins.str
 
     def __init__(self, *, authorizations: collections.abc.Iterable[global___Authorization] | None=..., name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorizations', b'authorizations', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorizations', b'authorizations', 'name', b'name']) -> None:
         ...
 global___CreateKeyRequest = CreateKeyRequest
 
-@typing_extensions.final
+@typing.final
 class CreateKeyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     KEY_FIELD_NUMBER: builtins.int
@@ -3004,11 +3004,11 @@ class CreateKeyResponse(google.protobuf.message.Message):
     def __init__(self, *, key: builtins.str=..., id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___CreateKeyResponse = CreateKeyResponse
 
-@typing_extensions.final
+@typing.final
 class DeleteKeyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -3017,11 +3017,11 @@ class DeleteKeyRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___DeleteKeyRequest = DeleteKeyRequest
 
-@typing_extensions.final
+@typing.final
 class DeleteKeyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -3029,7 +3029,7 @@ class DeleteKeyResponse(google.protobuf.message.Message):
         ...
 global___DeleteKeyResponse = DeleteKeyResponse
 
-@typing_extensions.final
+@typing.final
 class AuthorizationDetails(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     AUTHORIZATION_TYPE_FIELD_NUMBER: builtins.int
@@ -3046,11 +3046,11 @@ class AuthorizationDetails(google.protobuf.message.Message):
     def __init__(self, *, authorization_type: builtins.str=..., authorization_id: builtins.str=..., resource_type: builtins.str=..., resource_id: builtins.str=..., org_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'org_id', b'org_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
+    def ClearField(self, field_name: typing.Literal['authorization_id', b'authorization_id', 'authorization_type', b'authorization_type', 'org_id', b'org_id', 'resource_id', b'resource_id', 'resource_type', b'resource_type']) -> None:
         ...
 global___AuthorizationDetails = AuthorizationDetails
 
-@typing_extensions.final
+@typing.final
 class APIKeyWithAuthorizations(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     API_KEY_FIELD_NUMBER: builtins.int
@@ -3067,14 +3067,14 @@ class APIKeyWithAuthorizations(google.protobuf.message.Message):
     def __init__(self, *, api_key: global___APIKey | None=..., authorizations: collections.abc.Iterable[global___AuthorizationDetails] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['api_key', b'api_key']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['api_key', b'api_key']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['api_key', b'api_key', 'authorizations', b'authorizations']) -> None:
+    def ClearField(self, field_name: typing.Literal['api_key', b'api_key', 'authorizations', b'authorizations']) -> None:
         ...
 global___APIKeyWithAuthorizations = APIKeyWithAuthorizations
 
-@typing_extensions.final
+@typing.final
 class ListKeysRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORG_ID_FIELD_NUMBER: builtins.int
@@ -3083,11 +3083,11 @@ class ListKeysRequest(google.protobuf.message.Message):
     def __init__(self, *, org_id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['org_id', b'org_id']) -> None:
+    def ClearField(self, field_name: typing.Literal['org_id', b'org_id']) -> None:
         ...
 global___ListKeysRequest = ListKeysRequest
 
-@typing_extensions.final
+@typing.final
 class ListKeysResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     API_KEYS_FIELD_NUMBER: builtins.int
@@ -3099,11 +3099,11 @@ class ListKeysResponse(google.protobuf.message.Message):
     def __init__(self, *, api_keys: collections.abc.Iterable[global___APIKeyWithAuthorizations] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['api_keys', b'api_keys']) -> None:
+    def ClearField(self, field_name: typing.Literal['api_keys', b'api_keys']) -> None:
         ...
 global___ListKeysResponse = ListKeysResponse
 
-@typing_extensions.final
+@typing.final
 class RotateKeyRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -3112,11 +3112,11 @@ class RotateKeyRequest(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___RotateKeyRequest = RotateKeyRequest
 
-@typing_extensions.final
+@typing.final
 class RotateKeyResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -3127,11 +3127,11 @@ class RotateKeyResponse(google.protobuf.message.Message):
     def __init__(self, *, id: builtins.str=..., key: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___RotateKeyResponse = RotateKeyResponse
 
-@typing_extensions.final
+@typing.final
 class CreateKeyFromExistingKeyAuthorizationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -3140,11 +3140,11 @@ class CreateKeyFromExistingKeyAuthorizationsRequest(google.protobuf.message.Mess
     def __init__(self, *, id: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id']) -> None:
         ...
 global___CreateKeyFromExistingKeyAuthorizationsRequest = CreateKeyFromExistingKeyAuthorizationsRequest
 
-@typing_extensions.final
+@typing.final
 class CreateKeyFromExistingKeyAuthorizationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ID_FIELD_NUMBER: builtins.int
@@ -3155,6 +3155,6 @@ class CreateKeyFromExistingKeyAuthorizationsResponse(google.protobuf.message.Mes
     def __init__(self, *, id: builtins.str=..., key: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['id', b'id', 'key', b'key']) -> None:
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'key', b'key']) -> None:
         ...
 global___CreateKeyFromExistingKeyAuthorizationsResponse = CreateKeyFromExistingKeyAuthorizationsResponse
