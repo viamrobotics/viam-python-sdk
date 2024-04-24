@@ -22,7 +22,8 @@ typecheck:
 
 _buf: clean
 	rm -rf src/viam/gen
-	buf generate -v buf.build/viamrobotics/api
+	chmod +x plugins/main.py
+	buf generate buf.build/viamrobotics/api
 	buf generate buf.build/viamrobotics/goutils
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/api
 	protol -e googl* --in-place -s _grpc.py -s _pb2.py -s _pb2.pyi -o src/viam/gen buf buf.build/viamrobotics/goutils
