@@ -6,12 +6,13 @@ from google.protobuf.duration_pb2 import Duration
 from grpclib import GRPCError
 from grpclib.testing import ChannelFor
 
-from viam.proto.common import AnalogStatus, DigitalInterruptStatus
 from viam.components.board import BoardClient, BoardStatus, create_status
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import (
+    AnalogStatus,
+    DigitalInterruptStatus,
     DoCommandRequest,
     DoCommandResponse,
     GetGeometriesRequest,
@@ -40,7 +41,7 @@ from viam.proto.component.board import (
     WriteAnalogResponse,
 )
 from viam.resource.manager import ResourceManager
-from viam.utils import dict_to_struct, struct_to_dict, message_to_struct
+from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
 from .mocks.components import GEOMETRIES, MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
@@ -385,6 +386,9 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
 
+            reader = await client.analog_reader_by_name("reader1")
+            assert reader.name == "reader1"
+
             names = await client.analog_reader_names()
             assert names == ["reader1"]
 
@@ -392,6 +396,9 @@ class TestClient:
     async def test_digital_interrupt_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
+
+            interrupt = await client.digital_interrupt_by_name("interrupt1")
+            assert interrupt.name == "interrupt1"
 
             names = await client.digital_interrupt_names()
             assert names == ["interrupt1"]

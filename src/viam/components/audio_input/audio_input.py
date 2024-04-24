@@ -6,10 +6,10 @@ from typing import Final, Optional
 from google.protobuf.duration_pb2 import Duration
 from typing_extensions import Self
 
-from viam.streams import StreamSource
 from viam.media.audio import Audio, AudioStream
 from viam.proto.component.audioinput import PropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
+from viam.streams import StreamSource
 
 from ..component_base import ComponentBase
 

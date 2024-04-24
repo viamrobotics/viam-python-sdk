@@ -2,7 +2,8 @@ from datetime import timedelta
 from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
-from grpclib.client import Channel, Stream as ClientStream
+from grpclib.client import Channel
+from grpclib.client import Stream as ClientStream
 
 from viam.logging import getLogger
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
@@ -27,8 +28,8 @@ from viam.proto.component.board import (
     StreamTicksResponse,
     WriteAnalogRequest,
 )
-from viam.streams import StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.streams import StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .board import Board, TickStream
@@ -166,14 +167,16 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = BoardServiceStub(channel)
-        self._analog_reader_names: Optional[List[str]] = None
-        self._digital_interrupt_names: Optional[List[str]] = None
+        self._analog_reader_names: List[str] = []
+        self._digital_interrupt_names: List[str] = []
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
+        self._analog_reader_names.append(name)
         return AnalogReaderClient(name, self)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
+        self._digital_interrupt_names.append(name)
         return DigitalInterruptClient(name, self)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:

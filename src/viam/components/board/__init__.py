@@ -1,7 +1,7 @@
 import asyncio
 
-from viam.proto.component.board import Status as BoardStatus
 from viam.proto.common import AnalogStatus, DigitalInterruptStatus
+from viam.proto.component.board import Status as BoardStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
 from viam.utils import message_to_struct
