@@ -2,10 +2,11 @@ from datetime import timedelta
 from typing import Any, Dict, List, Mapping, Optional
 
 from google.protobuf.duration_pb2 import Duration
-from grpclib.client import Channel, Stream as ClientStream
+from grpclib.client import Channel
+from grpclib.client import Stream as ClientStream
 
 from viam.logging import getLogger
-from viam.proto.common import BoardStatus, DoCommandRequest, DoCommandResponse, Geometry
+from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
@@ -23,14 +24,12 @@ from viam.proto.component.board import (
     SetPowerModeRequest,
     SetPWMFrequencyRequest,
     SetPWMRequest,
-    StatusRequest,
-    StatusResponse,
     StreamTicksRequest,
     StreamTicksResponse,
     WriteAnalogRequest,
 )
-from viam.streams import StreamWithIterator
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.streams import StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .board import Board, TickStream
@@ -165,17 +164,22 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     gRPC client for the Board component.
     """
 
+    _analog_reader_names: List[str]
+    _digital_interrupt_names: List[str]
+
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = BoardServiceStub(channel)
-        self._analog_reader_names: Optional[List[str]] = None
-        self._digital_interrupt_names: Optional[List[str]] = None
+        self._analog_reader_names = []
+        self._digital_interrupt_names = []
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
+        self._analog_reader_names.append(name)
         return AnalogReaderClient(name, self)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
+        self._digital_interrupt_names.append(name)
         return DigitalInterruptClient(name, self)
 
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
@@ -183,30 +187,13 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
 
     async def analog_reader_names(self) -> List[str]:
         if self._analog_reader_names is None:
-            status = await self.status()
-            names = [name for name in status.analogs.keys()]
-            self._analog_reader_names = names
+            return []
         return self._analog_reader_names
 
     async def digital_interrupt_names(self) -> List[str]:
         if self._digital_interrupt_names is None:
-            status = await self.status()
-            names = [name for name in status.digital_interrupts.keys()]
-            self._digital_interrupt_names = names
+            return []
         return self._digital_interrupt_names
-
-    async def status(
-        self,
-        *,
-        extra: Optional[Dict[str, Any]] = None,
-        timeout: Optional[float] = None,
-        **__,
-    ) -> BoardStatus:
-        if extra is None:
-            extra = {}
-        request = StatusRequest(name=self.name, extra=dict_to_struct(extra))
-        response: StatusResponse = await self.client.Status(request, timeout=timeout)
-        return response.status
 
     async def do_command(
         self,

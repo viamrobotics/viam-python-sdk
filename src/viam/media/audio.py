@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from viam.streams import Stream, StreamReader
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo
+from viam.streams import Stream, StreamReader
 
 
 @dataclass

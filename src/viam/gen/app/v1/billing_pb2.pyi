@@ -176,6 +176,9 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     DISCOUNT_AMOUNT_FIELD_NUMBER: builtins.int
     TOTAL_USAGE_WITH_DISCOUNT_FIELD_NUMBER: builtins.int
     TOTAL_USAGE_WITHOUT_DISCOUNT_FIELD_NUMBER: builtins.int
+    PER_MACHINE_USAGE_COST_FIELD_NUMBER: builtins.int
+    BINARY_DATA_CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
+    OTHER_CLOUD_STORAGE_USAGE_COST_FIELD_NUMBER: builtins.int
 
     @property
     def start_date(self) -> google.protobuf.timestamp_pb2.Timestamp:
@@ -192,14 +195,17 @@ class GetCurrentMonthUsageResponse(google.protobuf.message.Message):
     discount_amount: builtins.float
     total_usage_with_discount: builtins.float
     total_usage_without_discount: builtins.float
+    per_machine_usage_cost: builtins.float
+    binary_data_cloud_storage_usage_cost: builtins.float
+    other_cloud_storage_usage_cost: builtins.float
 
-    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=...) -> None:
+    def __init__(self, *, start_date: google.protobuf.timestamp_pb2.Timestamp | None=..., end_date: google.protobuf.timestamp_pb2.Timestamp | None=..., cloud_storage_usage_cost: builtins.float=..., data_upload_usage_cost: builtins.float=..., data_egres_usage_cost: builtins.float=..., remote_control_usage_cost: builtins.float=..., standard_compute_usage_cost: builtins.float=..., discount_amount: builtins.float=..., total_usage_with_discount: builtins.float=..., total_usage_without_discount: builtins.float=..., per_machine_usage_cost: builtins.float=..., binary_data_cloud_storage_usage_cost: builtins.float=..., other_cloud_storage_usage_cost: builtins.float=...) -> None:
         ...
 
     def HasField(self, field_name: typing_extensions.Literal['end_date', b'end_date', 'start_date', b'start_date']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'remote_control_usage_cost', b'remote_control_usage_cost', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
+    def ClearField(self, field_name: typing_extensions.Literal['binary_data_cloud_storage_usage_cost', b'binary_data_cloud_storage_usage_cost', 'cloud_storage_usage_cost', b'cloud_storage_usage_cost', 'data_egres_usage_cost', b'data_egres_usage_cost', 'data_upload_usage_cost', b'data_upload_usage_cost', 'discount_amount', b'discount_amount', 'end_date', b'end_date', 'other_cloud_storage_usage_cost', b'other_cloud_storage_usage_cost', 'per_machine_usage_cost', b'per_machine_usage_cost', 'remote_control_usage_cost', b'remote_control_usage_cost', 'standard_compute_usage_cost', b'standard_compute_usage_cost', 'start_date', b'start_date', 'total_usage_with_discount', b'total_usage_with_discount', 'total_usage_without_discount', b'total_usage_without_discount']) -> None:
         ...
 global___GetCurrentMonthUsageResponse = GetCurrentMonthUsageResponse
 

@@ -44,86 +44,17 @@ class ResourceName(google.protobuf.message.Message):
     TYPE_FIELD_NUMBER: builtins.int
     SUBTYPE_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    MACHINE_PART_ID_FIELD_NUMBER: builtins.int
     namespace: builtins.str
     type: builtins.str
     subtype: builtins.str
     name: builtins.str
-    machine_part_id: builtins.str
 
-    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=..., machine_part_id: builtins.str | None=...) -> None:
+    def __init__(self, *, namespace: builtins.str=..., type: builtins.str=..., subtype: builtins.str=..., name: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_machine_part_id', b'_machine_part_id', 'machine_part_id', b'machine_part_id']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['_machine_part_id', b'_machine_part_id', 'machine_part_id', b'machine_part_id', 'name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
-        ...
-
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_machine_part_id', b'_machine_part_id']) -> typing_extensions.Literal['machine_part_id'] | None:
+    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'namespace', b'namespace', 'subtype', b'subtype', 'type', b'type']) -> None:
         ...
 global___ResourceName = ResourceName
-
-@typing_extensions.final
-class BoardStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    @typing_extensions.final
-    class AnalogsEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-        KEY_FIELD_NUMBER: builtins.int
-        VALUE_FIELD_NUMBER: builtins.int
-        key: builtins.str
-
-        @property
-        def value(self) -> global___AnalogStatus:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: global___AnalogStatus | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
-
-    @typing_extensions.final
-    class DigitalInterruptsEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
-        KEY_FIELD_NUMBER: builtins.int
-        VALUE_FIELD_NUMBER: builtins.int
-        key: builtins.str
-
-        @property
-        def value(self) -> global___DigitalInterruptStatus:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: global___DigitalInterruptStatus | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
-            ...
-
-        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
-            ...
-    ANALOGS_FIELD_NUMBER: builtins.int
-    DIGITAL_INTERRUPTS_FIELD_NUMBER: builtins.int
-
-    @property
-    def analogs(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___AnalogStatus]:
-        ...
-
-    @property
-    def digital_interrupts(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___DigitalInterruptStatus]:
-        ...
-
-    def __init__(self, *, analogs: collections.abc.Mapping[builtins.str, global___AnalogStatus] | None=..., digital_interrupts: collections.abc.Mapping[builtins.str, global___DigitalInterruptStatus] | None=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['analogs', b'analogs', 'digital_interrupts', b'digital_interrupts']) -> None:
-        ...
-global___BoardStatus = BoardStatus
 
 @typing_extensions.final
 class AnalogStatus(google.protobuf.message.Message):

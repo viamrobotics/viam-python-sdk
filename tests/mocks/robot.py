@@ -27,6 +27,8 @@ from viam.proto.robot import (
     ResourceNamesResponse,
     ResourceRPCSubtypesRequest,
     ResourceRPCSubtypesResponse,
+    RestartModuleRequest,
+    RestartModuleResponse,
     RobotServiceBase,
     SendSessionHeartbeatRequest,
     SendSessionHeartbeatResponse,
@@ -50,6 +52,9 @@ class MockRobot(RobotServiceBase):
     def __init__(self):
         self.heartbeat_count = 0
         super().__init__()
+
+    async def RestartModule(self, stream: Stream[RestartModuleRequest, RestartModuleResponse]) -> None:
+        return None
 
     async def StartSession(self, stream: Stream[StartSessionRequest, StartSessionResponse]) -> None:
         request = await stream.recv_message()

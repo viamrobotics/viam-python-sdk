@@ -37,44 +37,65 @@ POWER_MODE_OFFLINE_DEEP: PowerMode.ValueType
 global___PowerMode = PowerMode
 
 @typing_extensions.final
-class StatusRequest(google.protobuf.message.Message):
+class Status(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    NAME_FIELD_NUMBER: builtins.int
-    EXTRA_FIELD_NUMBER: builtins.int
-    name: builtins.str
+
+    @typing_extensions.final
+    class AnalogsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> common.v1.common_pb2.AnalogStatus:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: common.v1.common_pb2.AnalogStatus | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+
+    @typing_extensions.final
+    class DigitalInterruptsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+
+        @property
+        def value(self) -> common.v1.common_pb2.DigitalInterruptStatus:
+            ...
+
+        def __init__(self, *, key: builtins.str=..., value: common.v1.common_pb2.DigitalInterruptStatus | None=...) -> None:
+            ...
+
+        def HasField(self, field_name: typing_extensions.Literal['value', b'value']) -> builtins.bool:
+            ...
+
+        def ClearField(self, field_name: typing_extensions.Literal['key', b'key', 'value', b'value']) -> None:
+            ...
+    ANALOGS_FIELD_NUMBER: builtins.int
+    DIGITAL_INTERRUPTS_FIELD_NUMBER: builtins.int
 
     @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional arguments to the method"""
-
-    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def analogs(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, common.v1.common_pb2.AnalogStatus]:
         ...
-
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
-        ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
-        ...
-global___StatusRequest = StatusRequest
-
-@typing_extensions.final
-class StatusResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    STATUS_FIELD_NUMBER: builtins.int
 
     @property
-    def status(self) -> common.v1.common_pb2.BoardStatus:
+    def digital_interrupts(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, common.v1.common_pb2.DigitalInterruptStatus]:
         ...
 
-    def __init__(self, *, status: common.v1.common_pb2.BoardStatus | None=...) -> None:
+    def __init__(self, *, analogs: collections.abc.Mapping[builtins.str, common.v1.common_pb2.AnalogStatus] | None=..., digital_interrupts: collections.abc.Mapping[builtins.str, common.v1.common_pb2.DigitalInterruptStatus] | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['status', b'status']) -> builtins.bool:
+    def ClearField(self, field_name: typing_extensions.Literal['analogs', b'analogs', 'digital_interrupts', b'digital_interrupts']) -> None:
         ...
-
-    def ClearField(self, field_name: typing_extensions.Literal['status', b'status']) -> None:
-        ...
-global___StatusResponse = StatusResponse
+global___Status = Status
 
 @typing_extensions.final
 class SetGPIORequest(google.protobuf.message.Message):

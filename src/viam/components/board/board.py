@@ -2,7 +2,6 @@ import abc
 from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.common import BoardStatus
 from viam.proto.component.board import PowerMode, StreamTicksResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.streams import Stream
@@ -342,23 +341,6 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
-        """
-        Return the current status of the board.
-
-        ::
-
-            my_board = Board.from_robot(robot=robot, name="my_board")
-
-            # Get the current status of the board.
-            status = await my_board.status()
-
-        Returns:
-            viam.proto.common.BoardStatus: The status.
-        """
-        ...
-
-    @abc.abstractmethod
     async def set_power_mode(
         self, mode: PowerMode.ValueType, duration: Optional[timedelta] = None, *, timeout: Optional[float] = None, **kwargs
     ):
@@ -396,9 +378,7 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def stream_ticks(
-        self, interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
-    ) -> TickStream:
+    async def stream_ticks(self, interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream:
         """
         Stream digital interrupt ticks.
 

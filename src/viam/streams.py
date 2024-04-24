@@ -7,7 +7,6 @@ else:
 
 from typing import Protocol, TypeVar
 
-
 StreamType = TypeVar("StreamType", covariant=True)
 
 

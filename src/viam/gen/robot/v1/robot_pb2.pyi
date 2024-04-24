@@ -741,6 +741,7 @@ class GetCloudMetadataResponse(google.protobuf.message.Message):
     MACHINE_ID_FIELD_NUMBER: builtins.int
     MACHINE_PART_ID_FIELD_NUMBER: builtins.int
     robot_part_id: builtins.str
+    'Deprecated: use machine_part_id field.'
     primary_org_id: builtins.str
     location_id: builtins.str
     machine_id: builtins.str
@@ -752,3 +753,33 @@ class GetCloudMetadataResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing_extensions.Literal['location_id', b'location_id', 'machine_id', b'machine_id', 'machine_part_id', b'machine_part_id', 'primary_org_id', b'primary_org_id', 'robot_part_id', b'robot_part_id']) -> None:
         ...
 global___GetCloudMetadataResponse = GetCloudMetadataResponse
+
+@typing_extensions.final
+class RestartModuleRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    MODULE_ID_FIELD_NUMBER: builtins.int
+    MODULE_NAME_FIELD_NUMBER: builtins.int
+    module_id: builtins.str
+    'ID is for registry modules, name for local modules'
+    module_name: builtins.str
+
+    def __init__(self, *, module_id: builtins.str=..., module_name: builtins.str=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing_extensions.Literal['id_or_name', b'id_or_name', 'module_id', b'module_id', 'module_name', b'module_name']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing_extensions.Literal['id_or_name', b'id_or_name', 'module_id', b'module_id', 'module_name', b'module_name']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing_extensions.Literal['id_or_name', b'id_or_name']) -> typing_extensions.Literal['module_id', 'module_name'] | None:
+        ...
+global___RestartModuleRequest = RestartModuleRequest
+
+@typing_extensions.final
+class RestartModuleResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___RestartModuleResponse = RestartModuleResponse

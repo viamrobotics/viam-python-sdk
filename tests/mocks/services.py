@@ -250,6 +250,8 @@ from viam.proto.app.mltraining import (
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
     MLTrainingServiceBase,
+    SubmitCustomTrainingJobRequest,
+    SubmitCustomTrainingJobResponse,
     SubmitTrainingJobRequest,
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
@@ -1007,6 +1009,9 @@ class MockMLTraining(MLTrainingServiceBase):
         self.model_type = request.model_type
         self.tags = request.tags
         await stream.send_message(SubmitTrainingJobResponse(id=self.job_id))
+
+    async def SubmitCustomTrainingJob(self, stream: Stream[SubmitCustomTrainingJobRequest, SubmitCustomTrainingJobResponse]) -> None:
+        return await super().SubmitCustomTrainingJob(stream)
 
     async def GetTrainingJob(self, stream: Stream[GetTrainingJobRequest, GetTrainingJobResponse]) -> None:
         request = await stream.recv_message()

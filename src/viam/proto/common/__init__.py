@@ -5,7 +5,6 @@ Do not edit manually!
 from ...gen.common.v1.common_pb2 import (
     ActuatorStatus,
     AnalogStatus,
-    BoardStatus,
     Capsule,
     DigitalInterruptStatus,
     DoCommandRequest,
@@ -38,7 +37,6 @@ from ...gen.common.v1.common_pb2 import (
 __all__ = [
     "ActuatorStatus",
     "AnalogStatus",
-    "BoardStatus",
     "Capsule",
     "DigitalInterruptStatus",
     "DoCommandRequest",

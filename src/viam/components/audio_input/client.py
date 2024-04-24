@@ -2,7 +2,6 @@ from typing import Any, AsyncIterator, Dict, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
-from viam.streams import Stream, StreamWithIterator
 from viam.media.audio import Audio
 from viam.proto.common import DoCommandRequest, DoCommandResponse, Geometry
 from viam.proto.component.audioinput import (
@@ -14,6 +13,7 @@ from viam.proto.component.audioinput import (
     SampleFormat,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
+from viam.streams import Stream, StreamWithIterator
 from viam.utils import ValueTypes, dict_to_struct, get_geometries, struct_to_dict
 
 from .audio_input import AudioInput

@@ -30,26 +30,13 @@ from viam.components.power_sensor import PowerSensor
 from viam.components.sensor import Sensor
 from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
-from viam.streams import StreamWithIterator
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, RawImage
-from viam.proto.common import (
-    AnalogStatus,
-    BoardStatus,
-    Capsule,
-    DigitalInterruptStatus,
-    Geometry,
-    GeoPoint,
-    Orientation,
-    Pose,
-    PoseInFrame,
-    ResponseMetadata,
-    Sphere,
-    Vector3,
-)
+from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
+from viam.streams import StreamWithIterator
 from viam.utils import SensorReading, ValueTypes
 
 GEOMETRIES = [
@@ -348,14 +335,6 @@ class MockBoard(Board):
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
-    async def status(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> BoardStatus:
-        self.extra = extra
-        self.timeout = timeout
-        return BoardStatus(
-            analogs={name: AnalogStatus(value=await analog.read()) for (name, analog) in self.analog_readers.items()},
-            digital_interrupts={name: DigitalInterruptStatus(value=await di.value()) for (name, di) in self.digital_interrupts.items()},
-        )
-
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         self.extra = extra
         self.timeout = timeout
@@ -376,9 +355,7 @@ class MockBoard(Board):
         self.analog_write_pin = pin
         self.analog_write_value = value
 
-    async def stream_ticks(
-        self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs
-    ):
+    async def stream_ticks(self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs):
         async def read() -> AsyncIterator[Tick]:
             yield Tick(pin_name=interrupts[0].name, high=True, time=1000)
 
