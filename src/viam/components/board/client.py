@@ -164,11 +164,14 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     gRPC client for the Board component.
     """
 
+    _analog_reader_names: List[str]
+    _digital_interrupt_names: List[str]
+
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = BoardServiceStub(channel)
-        self._analog_reader_names: List[str] = []
-        self._digital_interrupt_names: List[str] = []
+        self._analog_reader_names = []
+        self._digital_interrupt_names = []
         super().__init__(name)
 
     async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
