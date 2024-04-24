@@ -7,14 +7,10 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class ListStreamsRequest(google.protobuf.message.Message):
     """ListStreamsRequest requests all streams registered."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -23,7 +19,7 @@ class ListStreamsRequest(google.protobuf.message.Message):
         ...
 global___ListStreamsRequest = ListStreamsRequest
 
-@typing_extensions.final
+@typing.final
 class ListStreamsResponse(google.protobuf.message.Message):
     """A ListStreamsResponse details streams registered."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -36,11 +32,11 @@ class ListStreamsResponse(google.protobuf.message.Message):
     def __init__(self, *, names: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['names', b'names']) -> None:
+    def ClearField(self, field_name: typing.Literal['names', b'names']) -> None:
         ...
 global___ListStreamsResponse = ListStreamsResponse
 
-@typing_extensions.final
+@typing.final
 class AddStreamRequest(google.protobuf.message.Message):
     """A AddStreamRequest requests the given stream be added to the connection."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -50,11 +46,11 @@ class AddStreamRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
         ...
 global___AddStreamRequest = AddStreamRequest
 
-@typing_extensions.final
+@typing.final
 class AddStreamResponse(google.protobuf.message.Message):
     """AddStreamResponse is returned after a successful AddStreamRequest."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -63,7 +59,7 @@ class AddStreamResponse(google.protobuf.message.Message):
         ...
 global___AddStreamResponse = AddStreamResponse
 
-@typing_extensions.final
+@typing.final
 class RemoveStreamRequest(google.protobuf.message.Message):
     """A RemoveStreamRequest requests the given stream be removed from the connection."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -73,11 +69,11 @@ class RemoveStreamRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
         ...
 global___RemoveStreamRequest = RemoveStreamRequest
 
-@typing_extensions.final
+@typing.final
 class RemoveStreamResponse(google.protobuf.message.Message):
     """RemoveStreamResponse is returned after a successful RemoveStreamRequest."""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

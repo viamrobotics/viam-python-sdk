@@ -36,7 +36,7 @@ POSITION_TYPE_ANGLE_DEGREES: PositionType.ValueType
 'Return type for absolute encoders that report\ntheir position in degrees along the radial axis\n'
 global___PositionType = PositionType
 
-@typing_extensions.final
+@typing.final
 class GetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -54,17 +54,17 @@ class GetPositionRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., position_type: global___PositionType.ValueType | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_position_type', b'_position_type', 'extra', b'extra', 'position_type', b'position_type']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_position_type', b'_position_type', 'extra', b'extra', 'position_type', b'position_type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_position_type', b'_position_type', 'extra', b'extra', 'name', b'name', 'position_type', b'position_type']) -> None:
+    def ClearField(self, field_name: typing.Literal['_position_type', b'_position_type', 'extra', b'extra', 'name', b'name', 'position_type', b'position_type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_position_type', b'_position_type']) -> typing_extensions.Literal['position_type'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_position_type', b'_position_type']) -> typing.Literal['position_type'] | None:
         ...
 global___GetPositionRequest = GetPositionRequest
 
-@typing_extensions.final
+@typing.final
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
@@ -75,11 +75,11 @@ class GetPositionResponse(google.protobuf.message.Message):
     def __init__(self, *, value: builtins.float=..., position_type: global___PositionType.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['position_type', b'position_type', 'value', b'value']) -> None:
+    def ClearField(self, field_name: typing.Literal['position_type', b'position_type', 'value', b'value']) -> None:
         ...
 global___GetPositionResponse = GetPositionResponse
 
-@typing_extensions.final
+@typing.final
 class ResetPositionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -94,14 +94,14 @@ class ResetPositionRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___ResetPositionRequest = ResetPositionRequest
 
-@typing_extensions.final
+@typing.final
 class ResetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -109,7 +109,7 @@ class ResetPositionResponse(google.protobuf.message.Message):
         ...
 global___ResetPositionResponse = ResetPositionResponse
 
-@typing_extensions.final
+@typing.final
 class GetPropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -124,14 +124,14 @@ class GetPropertiesRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetPropertiesRequest = GetPropertiesRequest
 
-@typing_extensions.final
+@typing.final
 class GetPropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     TICKS_COUNT_SUPPORTED_FIELD_NUMBER: builtins.int
@@ -142,6 +142,6 @@ class GetPropertiesResponse(google.protobuf.message.Message):
     def __init__(self, *, ticks_count_supported: builtins.bool=..., angle_degrees_supported: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['angle_degrees_supported', b'angle_degrees_supported', 'ticks_count_supported', b'ticks_count_supported']) -> None:
+    def ClearField(self, field_name: typing.Literal['angle_degrees_supported', b'angle_degrees_supported', 'ticks_count_supported', b'ticks_count_supported']) -> None:
         ...
 global___GetPropertiesResponse = GetPropertiesResponse

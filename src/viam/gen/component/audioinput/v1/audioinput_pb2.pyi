@@ -32,7 +32,7 @@ SAMPLE_FORMAT_INT16_INTERLEAVED: SampleFormat.ValueType
 SAMPLE_FORMAT_FLOAT32_INTERLEAVED: SampleFormat.ValueType
 global___SampleFormat = SampleFormat
 
-@typing_extensions.final
+@typing.final
 class RecordRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -47,14 +47,14 @@ class RecordRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., duration: google.protobuf.duration_pb2.Duration | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['duration', b'duration']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['duration', b'duration']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['duration', b'duration', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['duration', b'duration', 'name', b'name']) -> None:
         ...
 global___RecordRequest = RecordRequest
 
-@typing_extensions.final
+@typing.final
 class AudioChunkInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     SAMPLE_FORMAT_FIELD_NUMBER: builtins.int
@@ -68,11 +68,11 @@ class AudioChunkInfo(google.protobuf.message.Message):
     def __init__(self, *, sample_format: global___SampleFormat.ValueType=..., channels: builtins.int=..., sampling_rate: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['channels', b'channels', 'sample_format', b'sample_format', 'sampling_rate', b'sampling_rate']) -> None:
+    def ClearField(self, field_name: typing.Literal['channels', b'channels', 'sample_format', b'sample_format', 'sampling_rate', b'sampling_rate']) -> None:
         ...
 global___AudioChunkInfo = AudioChunkInfo
 
-@typing_extensions.final
+@typing.final
 class AudioChunk(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_FIELD_NUMBER: builtins.int
@@ -85,11 +85,11 @@ class AudioChunk(google.protobuf.message.Message):
     def __init__(self, *, data: builtins.bytes=..., length: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data', b'data', 'length', b'length']) -> None:
+    def ClearField(self, field_name: typing.Literal['data', b'data', 'length', b'length']) -> None:
         ...
 global___AudioChunk = AudioChunk
 
-@typing_extensions.final
+@typing.final
 class ChunksRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -102,11 +102,11 @@ class ChunksRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., sample_format: global___SampleFormat.ValueType=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'sample_format', b'sample_format']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'sample_format', b'sample_format']) -> None:
         ...
 global___ChunksRequest = ChunksRequest
 
-@typing_extensions.final
+@typing.final
 class ChunksResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     INFO_FIELD_NUMBER: builtins.int
@@ -123,17 +123,17 @@ class ChunksResponse(google.protobuf.message.Message):
     def __init__(self, *, info: global___AudioChunkInfo | None=..., chunk: global___AudioChunk | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> None:
+    def ClearField(self, field_name: typing.Literal['chunk', b'chunk', 'info', b'info', 'type', b'type']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['type', b'type']) -> typing_extensions.Literal['info', 'chunk'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['type', b'type']) -> typing.Literal['info', 'chunk'] | None:
         ...
 global___ChunksResponse = ChunksResponse
 
-@typing_extensions.final
+@typing.final
 class PropertiesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -143,11 +143,11 @@ class PropertiesRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name']) -> None:
         ...
 global___PropertiesRequest = PropertiesRequest
 
-@typing_extensions.final
+@typing.final
 class PropertiesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CHANNEL_COUNT_FIELD_NUMBER: builtins.int
@@ -158,22 +158,22 @@ class PropertiesResponse(google.protobuf.message.Message):
     IS_FLOAT_FIELD_NUMBER: builtins.int
     IS_INTERLEAVED_FIELD_NUMBER: builtins.int
     channel_count: builtins.int
-
-    @property
-    def latency(self) -> google.protobuf.duration_pb2.Duration:
-        ...
     sample_rate: builtins.int
     sample_size: builtins.int
     is_big_endian: builtins.bool
     is_float: builtins.bool
     is_interleaved: builtins.bool
 
+    @property
+    def latency(self) -> google.protobuf.duration_pb2.Duration:
+        ...
+
     def __init__(self, *, channel_count: builtins.int=..., latency: google.protobuf.duration_pb2.Duration | None=..., sample_rate: builtins.int=..., sample_size: builtins.int=..., is_big_endian: builtins.bool=..., is_float: builtins.bool=..., is_interleaved: builtins.bool=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['latency', b'latency']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['latency', b'latency']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['channel_count', b'channel_count', 'is_big_endian', b'is_big_endian', 'is_float', b'is_float', 'is_interleaved', b'is_interleaved', 'latency', b'latency', 'sample_rate', b'sample_rate', 'sample_size', b'sample_size']) -> None:
+    def ClearField(self, field_name: typing.Literal['channel_count', b'channel_count', 'is_big_endian', b'is_big_endian', 'is_float', b'is_float', 'is_interleaved', b'is_interleaved', 'latency', b'latency', 'sample_rate', b'sample_rate', 'sample_size', b'sample_size']) -> None:
         ...
 global___PropertiesResponse = PropertiesResponse

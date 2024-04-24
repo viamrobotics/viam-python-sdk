@@ -6,14 +6,10 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class ShellRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -29,14 +25,14 @@ class ShellRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., data_in: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data_in', b'data_in', 'extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['data_in', b'data_in', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___ShellRequest = ShellRequest
 
-@typing_extensions.final
+@typing.final
 class ShellResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DATA_OUT_FIELD_NUMBER: builtins.int
@@ -49,6 +45,6 @@ class ShellResponse(google.protobuf.message.Message):
     def __init__(self, *, data_out: builtins.str=..., data_err: builtins.str=..., eof: builtins.bool=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['data_err', b'data_err', 'data_out', b'data_out', 'eof', b'eof']) -> None:
+    def ClearField(self, field_name: typing.Literal['data_err', b'data_err', 'data_out', b'data_out', 'eof', b'eof']) -> None:
         ...
 global___ShellResponse = ShellResponse

@@ -5,14 +5,10 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
-import sys
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class UploadFileRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -23,17 +19,17 @@ class UploadFileRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., chunk_data: builtins.bytes=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['chunk_data', b'chunk_data', 'data', b'data', 'name', b'name']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['chunk_data', b'chunk_data', 'data', b'data', 'name', b'name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['chunk_data', b'chunk_data', 'data', b'data', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['chunk_data', b'chunk_data', 'data', b'data', 'name', b'name']) -> None:
         ...
 
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['data', b'data']) -> typing_extensions.Literal['name', 'chunk_data'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['data', b'data']) -> typing.Literal['name', 'chunk_data'] | None:
         ...
 global___UploadFileRequest = UploadFileRequest
 
-@typing_extensions.final
+@typing.final
 class UploadFileResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -44,6 +40,6 @@ class UploadFileResponse(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., size: builtins.int=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['name', b'name', 'size', b'size']) -> None:
+    def ClearField(self, field_name: typing.Literal['name', b'name', 'size', b'size']) -> None:
         ...
 global___UploadFileResponse = UploadFileResponse

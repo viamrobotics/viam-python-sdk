@@ -119,8 +119,8 @@ def message_to_struct(message: Message) -> Struct:
     struct.update(
         MessageToDict(
             message,
-            including_default_value_fields=True,
-            preserving_proto_field_name=True,
+            True,
+            True,
         ),
     )
     return struct

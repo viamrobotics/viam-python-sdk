@@ -9,15 +9,10 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.struct_pb2
-import sys
 import typing
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class GetDetectionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -44,14 +39,14 @@ class GetDetectionsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'name', b'name', 'width', b'width']) -> None:
         ...
 global___GetDetectionsRequest = GetDetectionsRequest
 
-@typing_extensions.final
+@typing.final
 class GetDetectionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DETECTIONS_FIELD_NUMBER: builtins.int
@@ -63,11 +58,11 @@ class GetDetectionsResponse(google.protobuf.message.Message):
     def __init__(self, *, detections: collections.abc.Iterable[global___Detection] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
+    def ClearField(self, field_name: typing.Literal['detections', b'detections']) -> None:
         ...
 global___GetDetectionsResponse = GetDetectionsResponse
 
-@typing_extensions.final
+@typing.final
 class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -85,14 +80,14 @@ class GetDetectionsFromCameraRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name']) -> None:
         ...
 global___GetDetectionsFromCameraRequest = GetDetectionsFromCameraRequest
 
-@typing_extensions.final
+@typing.final
 class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     DETECTIONS_FIELD_NUMBER: builtins.int
@@ -104,11 +99,11 @@ class GetDetectionsFromCameraResponse(google.protobuf.message.Message):
     def __init__(self, *, detections: collections.abc.Iterable[global___Detection] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['detections', b'detections']) -> None:
+    def ClearField(self, field_name: typing.Literal['detections', b'detections']) -> None:
         ...
 global___GetDetectionsFromCameraResponse = GetDetectionsFromCameraResponse
 
-@typing_extensions.final
+@typing.final
 class Detection(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     X_MIN_FIELD_NUMBER: builtins.int
@@ -130,30 +125,30 @@ class Detection(google.protobuf.message.Message):
     def __init__(self, *, x_min: builtins.int | None=..., y_min: builtins.int | None=..., x_max: builtins.int | None=..., y_max: builtins.int | None=..., confidence: builtins.float=..., class_name: builtins.str=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
-        ...
-
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_max', b'_x_max']) -> typing_extensions.Literal['x_max'] | None:
+    def ClearField(self, field_name: typing.Literal['_x_max', b'_x_max', '_x_min', b'_x_min', '_y_max', b'_y_max', '_y_min', b'_y_min', 'class_name', b'class_name', 'confidence', b'confidence', 'x_max', b'x_max', 'x_min', b'x_min', 'y_max', b'y_max', 'y_min', b'y_min']) -> None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_x_min', b'_x_min']) -> typing_extensions.Literal['x_min'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_x_max', b'_x_max']) -> typing.Literal['x_max'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_max', b'_y_max']) -> typing_extensions.Literal['y_max'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_x_min', b'_x_min']) -> typing.Literal['x_min'] | None:
         ...
 
     @typing.overload
-    def WhichOneof(self, oneof_group: typing_extensions.Literal['_y_min', b'_y_min']) -> typing_extensions.Literal['y_min'] | None:
+    def WhichOneof(self, oneof_group: typing.Literal['_y_max', b'_y_max']) -> typing.Literal['y_max'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_y_min', b'_y_min']) -> typing.Literal['y_min'] | None:
         ...
 global___Detection = Detection
 
-@typing_extensions.final
+@typing.final
 class GetClassificationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -183,14 +178,14 @@ class GetClassificationsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., image: builtins.bytes=..., width: builtins.int=..., height: builtins.int=..., mime_type: builtins.str=..., n: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'n', b'n', 'name', b'name', 'width', b'width']) -> None:
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'height', b'height', 'image', b'image', 'mime_type', b'mime_type', 'n', b'n', 'name', b'name', 'width', b'width']) -> None:
         ...
 global___GetClassificationsRequest = GetClassificationsRequest
 
-@typing_extensions.final
+@typing.final
 class GetClassificationsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLASSIFICATIONS_FIELD_NUMBER: builtins.int
@@ -202,11 +197,11 @@ class GetClassificationsResponse(google.protobuf.message.Message):
     def __init__(self, *, classifications: collections.abc.Iterable[global___Classification] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['classifications', b'classifications']) -> None:
+    def ClearField(self, field_name: typing.Literal['classifications', b'classifications']) -> None:
         ...
 global___GetClassificationsResponse = GetClassificationsResponse
 
-@typing_extensions.final
+@typing.final
 class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -227,14 +222,14 @@ class GetClassificationsFromCameraRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., n: builtins.int=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'extra', b'extra', 'n', b'n', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'n', b'n', 'name', b'name']) -> None:
         ...
 global___GetClassificationsFromCameraRequest = GetClassificationsFromCameraRequest
 
-@typing_extensions.final
+@typing.final
 class GetClassificationsFromCameraResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     CLASSIFICATIONS_FIELD_NUMBER: builtins.int
@@ -246,11 +241,11 @@ class GetClassificationsFromCameraResponse(google.protobuf.message.Message):
     def __init__(self, *, classifications: collections.abc.Iterable[global___Classification] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['classifications', b'classifications']) -> None:
+    def ClearField(self, field_name: typing.Literal['classifications', b'classifications']) -> None:
         ...
 global___GetClassificationsFromCameraResponse = GetClassificationsFromCameraResponse
 
-@typing_extensions.final
+@typing.final
 class Classification(google.protobuf.message.Message):
     """the general form of the output from a classifier"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
@@ -264,11 +259,11 @@ class Classification(google.protobuf.message.Message):
     def __init__(self, *, class_name: builtins.str=..., confidence: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['class_name', b'class_name', 'confidence', b'confidence']) -> None:
+    def ClearField(self, field_name: typing.Literal['class_name', b'class_name', 'confidence', b'confidence']) -> None:
         ...
 global___Classification = Classification
 
-@typing_extensions.final
+@typing.final
 class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
@@ -288,14 +283,14 @@ class GetObjectPointCloudsRequest(google.protobuf.message.Message):
     def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., mime_type: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing_extensions.Literal['extra', b'extra']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['camera_name', b'camera_name', 'extra', b'extra', 'mime_type', b'mime_type', 'name', b'name']) -> None:
+    def ClearField(self, field_name: typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'mime_type', b'mime_type', 'name', b'name']) -> None:
         ...
 global___GetObjectPointCloudsRequest = GetObjectPointCloudsRequest
 
-@typing_extensions.final
+@typing.final
 class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     MIME_TYPE_FIELD_NUMBER: builtins.int
@@ -310,6 +305,6 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     def __init__(self, *, mime_type: builtins.str=..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing_extensions.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:
+    def ClearField(self, field_name: typing.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:
         ...
 global___GetObjectPointCloudsResponse = GetObjectPointCloudsResponse
