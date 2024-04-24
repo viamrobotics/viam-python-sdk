@@ -15,10 +15,6 @@ from grpclib import const
 from grpclib import server
 from grpclib import exceptions
 
-import logging
-
-LOGGER = logging.getLogger(__name__)
-
 
 class Method(NamedTuple):
     name: str
