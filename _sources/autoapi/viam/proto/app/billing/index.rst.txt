@@ -153,7 +153,7 @@ Classes
       
 
 
-.. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ...)
+.. py:class:: GetCurrentMonthUsageResponse(*, start_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., end_date: google.protobuf.timestamp_pb2.Timestamp | None = ..., cloud_storage_usage_cost: float = ..., data_upload_usage_cost: float = ..., data_egres_usage_cost: float = ..., remote_control_usage_cost: float = ..., standard_compute_usage_cost: float = ..., discount_amount: float = ..., total_usage_with_discount: float = ..., total_usage_without_discount: float = ..., per_machine_usage_cost: float = ..., binary_data_cloud_storage_usage_cost: float = ..., other_cloud_storage_usage_cost: float = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -208,6 +208,21 @@ Classes
       
 
    .. py:attribute:: total_usage_without_discount
+      :type: float
+
+      
+
+   .. py:attribute:: per_machine_usage_cost
+      :type: float
+
+      
+
+   .. py:attribute:: binary_data_cloud_storage_usage_cost
+      :type: float
+
+      
+
+   .. py:attribute:: other_cloud_storage_usage_cost
       :type: float
 
       

@@ -320,22 +320,6 @@ Attributes
       :rtype: List[str]
 
 
-   .. py:method:: status(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.proto.common.BoardStatus
-      :async:
-
-      Return the current status of the board.
-
-      ::
-
-          my_board = Board.from_robot(robot=robot, name="my_board")
-
-          # Get the current status of the board.
-          status = await my_board.status()
-
-      :returns: The status.
-      :rtype: viam.proto.common.BoardStatus
-
-
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]
       :async:
 

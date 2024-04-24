@@ -230,6 +230,12 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse" title="viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCloudMetadataResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest" title="viam.gen.robot.v1.robot_pb2.RestartModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RestartModuleRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.RestartModuleResponse" title="viam.gen.robot.v1.robot_pb2.RestartModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RestartModuleResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -379,6 +385,12 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___GetCloudMetadataResponse" title="viam.gen.robot.v1.robot_pb2.global___GetCloudMetadataResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetCloudMetadataResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___RestartModuleRequest" title="viam.gen.robot.v1.robot_pb2.global___RestartModuleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___RestartModuleRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.robot.v1.robot_pb2.global___RestartModuleResponse" title="viam.gen.robot.v1.robot_pb2.global___RestartModuleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___RestartModuleResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -1667,7 +1679,13 @@ shown below.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse.robot_part_id">
 <span class="sig-name descname"><span class="pre">robot_part_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse.robot_part_id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>use machine_part_id field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Deprecated</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.GetCloudMetadataResponse.primary_org_id">
@@ -1694,6 +1712,91 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___GetCloudMetadataResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetCloudMetadataResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___GetCloudMetadataResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">RestartModuleRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleRequest.module_id">
+<span class="sig-name descname"><span class="pre">module_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest.module_id" title="Permalink to this definition"></a></dt>
+<dd><p>ID is for registry modules, name for local modules</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleRequest.module_name">
+<span class="sig-name descname"><span class="pre">module_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest.module_name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">id_or_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'id_or_name'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">module_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'module_id'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">module_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'module_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">id_or_name</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'id_or_name'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">module_id</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">module_name</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___RestartModuleRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___RestartModuleRequest</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___RestartModuleRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.RestartModuleResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">RestartModuleResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.RestartModuleResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.robot.v1.robot_pb2.global___RestartModuleResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.robot.v1.robot_pb2.</span></span><span class="sig-name descname"><span class="pre">global___RestartModuleResponse</span></span><a class="headerlink" href="#viam.gen.robot.v1.robot_pb2.global___RestartModuleResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>

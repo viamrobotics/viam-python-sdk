@@ -76,7 +76,6 @@
 <li class="toctree-l6"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.Status"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.Status()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.SetGPIO"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.SetGPIO()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.GetGPIO"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.GetGPIO()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.BoardServiceBase.PWM"><code class="docutils literal notranslate"><span class="pre">BoardServiceBase.PWM()</span></code></a></li>
@@ -187,15 +186,21 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.SetPWMResponse"><code class="docutils literal notranslate"><span class="pre">SetPWMResponse</span></code></a></li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.StatusRequest"><code class="docutils literal notranslate"><span class="pre">StatusRequest</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.extra"><code class="docutils literal notranslate"><span class="pre">StatusRequest.extra</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.name"><code class="docutils literal notranslate"><span class="pre">StatusRequest.name</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusRequest.HasField"><code class="docutils literal notranslate"><span class="pre">StatusRequest.HasField()</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry.value"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry.value</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry.key"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.AnalogsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Status.AnalogsEntry.HasField()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.StatusResponse"><code class="docutils literal notranslate"><span class="pre">StatusResponse</span></code></a><ul>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusResponse.status"><code class="docutils literal notranslate"><span class="pre">StatusResponse.status</span></code></a></li>
-<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.StatusResponse.HasField"><code class="docutils literal notranslate"><span class="pre">StatusResponse.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.Status.DigitalInterruptsEntry"><code class="docutils literal notranslate"><span class="pre">Status.DigitalInterruptsEntry</span></code></a><ul>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.value"><code class="docutils literal notranslate"><span class="pre">Status.DigitalInterruptsEntry.value</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.key"><code class="docutils literal notranslate"><span class="pre">Status.DigitalInterruptsEntry.key</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.HasField"><code class="docutils literal notranslate"><span class="pre">Status.DigitalInterruptsEntry.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.Status.analogs"><code class="docutils literal notranslate"><span class="pre">Status.analogs</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.board.Status.digital_interrupts"><code class="docutils literal notranslate"><span class="pre">Status.digital_interrupts</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.board.StreamTicksRequest"><code class="docutils literal notranslate"><span class="pre">StreamTicksRequest</span></code></a><ul>
@@ -355,22 +360,19 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.SetPWMResponse" title="viam.proto.component.board.SetPWMResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPWMResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.StatusRequest" title="viam.proto.component.board.StatusRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StatusRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.Status" title="viam.proto.component.board.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.StatusResponse" title="viam.proto.component.board.StatusResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StatusResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.StreamTicksRequest" title="viam.proto.component.board.StreamTicksRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.StreamTicksRequest" title="viam.proto.component.board.StreamTicksRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.StreamTicksResponse" title="viam.proto.component.board.StreamTicksResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.StreamTicksResponse" title="viam.proto.component.board.StreamTicksResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamTicksResponse</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest" title="viam.proto.component.board.WriteAnalogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogRequest" title="viam.proto.component.board.WriteAnalogRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogRequest</span></code></a></p></td>
 <td><p>Analog Writer</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogResponse" title="viam.proto.component.board.WriteAnalogResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.board.WriteAnalogResponse" title="viam.proto.component.board.WriteAnalogResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WriteAnalogResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -381,11 +383,6 @@ Do not edit manually!</p>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
 <p>Helper class that provides a standard way to create an ABC using
 inheritance.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.board.BoardServiceBase.Status">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.StatusRequest" title="viam.gen.component.board.v1.board_pb2.StatusRequest"><span class="pre">component.board.v1.board_pb2.StatusRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.StatusResponse" title="viam.gen.component.board.v1.board_pb2.StatusResponse"><span class="pre">component.board.v1.board_pb2.StatusResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/board/v1/board_grpc.html#BoardServiceBase.Status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.board.BoardServiceBase.Status" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.board.BoardServiceBase.SetGPIO">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetGPIO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.SetGPIORequest" title="viam.gen.component.board.v1.board_pb2.SetGPIORequest"><span class="pre">component.board.v1.board_pb2.SetGPIORequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/board/v1/board_pb2/index.html#viam.gen.component.board.v1.board_pb2.SetGPIOResponse" title="viam.gen.component.board.v1.board_pb2.SetGPIOResponse"><span class="pre">component.board.v1.board_pb2.SetGPIOResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/board/v1/board_grpc.html#BoardServiceBase.SetGPIO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.board.BoardServiceBase.SetGPIO" title="Permalink to this definition"></a></dt>
@@ -1067,27 +1064,34 @@ shown below.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusRequest">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">StatusRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.StatusRequest" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analogs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AnalogStatus" title="viam.gen.common.v1.common_pb2.AnalogStatus"><span class="pre">viam.gen.common.v1.common_pb2.AnalogStatus</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">digital_interrupts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DigitalInterruptStatus" title="viam.gen.common.v1.common_pb2.DigitalInterruptStatus"><span class="pre">viam.gen.common.v1.common_pb2.DigitalInterruptStatus</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.Status" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.AnalogsEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AnalogsEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AnalogStatus" title="viam.gen.common.v1.common_pb2.AnalogStatus"><span class="pre">viam.gen.common.v1.common_pb2.AnalogStatus</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.Status.AnalogsEntry" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusRequest.extra">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.board.StatusRequest.extra" title="Permalink to this definition"></a></dt>
-<dd><p>Additional arguments to the method</p>
-</dd></dl>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.AnalogsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AnalogStatus" title="viam.gen.common.v1.common_pb2.AnalogStatus"><span class="pre">viam.gen.common.v1.common_pb2.AnalogStatus</span></a></em><a class="headerlink" href="#viam.proto.component.board.Status.AnalogsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusRequest.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.StatusRequest.name" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.AnalogsEntry.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.Status.AnalogsEntry.key" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusRequest.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.StatusRequest.HasField" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.AnalogsEntry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">value</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'value'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.Status.AnalogsEntry.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -1111,21 +1115,26 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusResponse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.board.</span></span><span class="sig-name descname"><span class="pre">StatusResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.BoardStatus" title="viam.gen.common.v1.common_pb2.BoardStatus"><span class="pre">viam.gen.common.v1.common_pb2.BoardStatus</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.StatusResponse" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.DigitalInterruptsEntry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DigitalInterruptsEntry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DigitalInterruptStatus" title="viam.gen.common.v1.common_pb2.DigitalInterruptStatus"><span class="pre">viam.gen.common.v1.common_pb2.DigitalInterruptStatus</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.board.Status.DigitalInterruptsEntry" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol
 compiler.  These generated types subclass Message and implement the methods
 shown below.</p>
 <dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusResponse.status">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.BoardStatus" title="viam.gen.common.v1.common_pb2.BoardStatus"><span class="pre">viam.gen.common.v1.common_pb2.BoardStatus</span></a></em><a class="headerlink" href="#viam.proto.component.board.StatusResponse.status" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.DigitalInterruptsEntry.value">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DigitalInterruptStatus" title="viam.gen.common.v1.common_pb2.DigitalInterruptStatus"><span class="pre">viam.gen.common.v1.common_pb2.DigitalInterruptStatus</span></a></em><a class="headerlink" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.value" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.DigitalInterruptsEntry.key">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.key" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.component.board.StatusResponse.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">status</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'status'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.StatusResponse.HasField" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.DigitalInterruptsEntry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">value</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'value'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.board.Status.DigitalInterruptsEntry.HasField" title="Permalink to this definition"></a></dt>
 <dd><p>Checks if a certain field is set for the message.</p>
 <p>For a oneof group, checks if any field inside is set. Note that if the
 field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
@@ -1145,6 +1154,18 @@ be raised.</p>
 </dd>
 </dl>
 </dd></dl>
+
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.analogs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analogs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.AnalogStatus" title="viam.gen.common.v1.common_pb2.AnalogStatus"><span class="pre">viam.gen.common.v1.common_pb2.AnalogStatus</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.board.Status.analogs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.board.Status.digital_interrupts">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">digital_interrupts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.MessageMap</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DigitalInterruptStatus" title="viam.gen.common.v1.common_pb2.DigitalInterruptStatus"><span class="pre">viam.gen.common.v1.common_pb2.DigitalInterruptStatus</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.component.board.Status.digital_interrupts" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
