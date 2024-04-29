@@ -1,6 +1,5 @@
 import asyncio
 
-from viam.proto.common import AnalogStatus, DigitalInterruptStatus
 from viam.proto.component.board import Status as BoardStatus
 from viam.proto.robot import Status
 from viam.resource.registry import Registry, ResourceRegistration
@@ -19,12 +18,12 @@ async def create_status(component: Board) -> Status:
     for x in analog_names:
         analog = await component.analog_reader_by_name(x)
         read = await analog.read()
-        analogs[x] = AnalogStatus(value=read)
+        analogs[x] = int(read)
 
     for y in digital_interrupt_names:
         digital_interrupt = await component.digital_interrupt_by_name(y)
         val = await digital_interrupt.value()
-        digital_interrupts[y] = DigitalInterruptStatus(value=val)
+        digital_interrupts[y] = val
 
     s = BoardStatus(analogs=analogs, digital_interrupts=digital_interrupts)
     return Status(name=Board.get_resource_name(component.name), status=message_to_struct(s))

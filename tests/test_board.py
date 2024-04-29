@@ -11,8 +11,6 @@ from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
 from viam.proto.common import (
-    AnalogStatus,
-    DigitalInterruptStatus,
     DoCommandRequest,
     DoCommandResponse,
     GetGeometriesRequest,
@@ -122,8 +120,8 @@ class TestBoard:
         assert status.name == MockBoard.get_resource_name(board.name)
         assert status.status == message_to_struct(
             BoardStatus(
-                analogs={"reader1": AnalogStatus(value=int(read))},
-                digital_interrupts={"interrupt1": DigitalInterruptStatus(value=val)},
+                analogs={"reader1": int(read)},
+                digital_interrupts={"interrupt1": val},
             )
         )
 
