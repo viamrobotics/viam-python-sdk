@@ -16,7 +16,7 @@ on:
 
 jobs:
   prepare:
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
       rc_version: ${{ steps.bump_version.outputs.rc_version }}
@@ -90,11 +90,11 @@ jobs:
     with:
       branch: rc-${{ needs.prepare.outputs.version }}
     needs: prepare
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
 
   release:
     needs: [prepare, build]
-    # if: github.repository_owner == 'viamrobotics'
+    if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
     steps:
