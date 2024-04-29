@@ -57,34 +57,6 @@ class ResourceName(google.protobuf.message.Message):
 global___ResourceName = ResourceName
 
 @typing.final
-class AnalogStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.int
-    "Current value of the analog reader of a robot's board"
-
-    def __init__(self, *, value: builtins.int=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['value', b'value']) -> None:
-        ...
-global___AnalogStatus = AnalogStatus
-
-@typing.final
-class DigitalInterruptStatus(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-    VALUE_FIELD_NUMBER: builtins.int
-    value: builtins.int
-    "Current value of the digital interrupt of a robot's board"
-
-    def __init__(self, *, value: builtins.int=...) -> None:
-        ...
-
-    def ClearField(self, field_name: typing.Literal['value', b'value']) -> None:
-        ...
-global___DigitalInterruptStatus = DigitalInterruptStatus
-
-@typing.final
 class Pose(google.protobuf.message.Message):
     """Pose is a combination of location and orientation.
     Location is expressed as distance which is represented by x , y, z coordinates. Orientation is expressed as an orientation vector which

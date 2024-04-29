@@ -10,12 +10,7 @@ from viam.components.board import BoardClient, BoardStatus, create_status
 from viam.components.board.service import BoardRPCService
 from viam.components.generic.service import GenericRPCService
 from viam.errors import ResourceNotFoundError
-from viam.proto.common import (
-    DoCommandRequest,
-    DoCommandResponse,
-    GetGeometriesRequest,
-    GetGeometriesResponse,
-)
+from viam.proto.common import DoCommandRequest, DoCommandResponse, GetGeometriesRequest, GetGeometriesResponse
 from viam.proto.component.board import (
     BoardServiceStub,
     GetDigitalInterruptValueRequest,
