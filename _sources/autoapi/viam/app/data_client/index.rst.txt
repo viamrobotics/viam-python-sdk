@@ -68,15 +68,6 @@ Attributes
 
       Class representing a piece of tabular data and associated metadata.
 
-      :param data: the requested data.
-      :type data: Mapping[str, Any]
-      :param metadata: the metadata from the request.
-      :type metadata: viam.proto.app.data.CaptureMetadata
-      :param time_requested: the time the data request was sent.
-      :type time_requested: datetime
-      :param time_received: the time the requested data was received.
-      :type time_received: datetime
-
       .. py:attribute:: data
          :type: Mapping[str, Any]
 
@@ -112,11 +103,6 @@ Attributes
 
 
       Class representing a piece of binary data and associated metadata.
-
-      :param data: the requested data.
-      :type data: bytes
-      :param metadata: the metadata from the request.
-      :type metadata: viam.proto.app.data.BinaryMetadata
 
       .. py:attribute:: data
          :type: bytes
@@ -154,7 +140,7 @@ Attributes
           last = None
           my_filter = Filter(component_name="left_motor")
           while True:
-              tabular_data, last = await data_client.tabular_data_by_filter(my_filter, last)
+              tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)
               if not tabular_data:
                   break
               my_data.extend(tabular_data)
@@ -200,7 +186,7 @@ Attributes
           last = None
           my_filter = Filter(component_name="camera")
           while True:
-              data, last = await data_client.binary_data_by_filter(my_filter, last)
+              data, count, last = await data_client.binary_data_by_filter(my_filter, last)
               if not data:
                   break
               my_data.extend(data)

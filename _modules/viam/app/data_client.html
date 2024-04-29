@@ -203,14 +203,7 @@
 
 <div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of tabular data and associated metadata.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            data (Mapping[str, Any]): the requested data.</span>
-<span class="sd">            metadata (viam.proto.app.data.CaptureMetadata): the metadata from the request.</span>
-<span class="sd">            time_requested (datetime): the time the data request was sent.</span>
-<span class="sd">            time_received (datetime): the time the requested data was received.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of tabular data and associated metadata.&quot;&quot;&quot;</span>
 
         <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The requested data&quot;&quot;&quot;</span>
@@ -235,12 +228,7 @@
     <span class="c1"># TODO (RSDK-6684): Revisit if this shadow type is necessary</span>
 <div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="nd">@dataclass</span>
     <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            data (bytes): the requested data.</span>
-<span class="sd">            metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.&quot;&quot;&quot;</span>
 
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The request data&quot;&quot;&quot;</span>
@@ -297,7 +285,7 @@
 <span class="sd">            last = None</span>
 <span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
 <span class="sd">            while True:</span>
-<span class="sd">                tabular_data, last = await data_client.tabular_data_by_filter(my_filter, last)</span>
+<span class="sd">                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)</span>
 <span class="sd">                if not tabular_data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(tabular_data)</span>
@@ -374,7 +362,7 @@
 <span class="sd">            last = None</span>
 <span class="sd">            my_filter = Filter(component_name=&quot;camera&quot;)</span>
 <span class="sd">            while True:</span>
-<span class="sd">                data, last = await data_client.binary_data_by_filter(my_filter, last)</span>
+<span class="sd">                data, count, last = await data_client.binary_data_by_filter(my_filter, last)</span>
 <span class="sd">                if not data:</span>
 <span class="sd">                    break</span>
 <span class="sd">                my_data.extend(data)</span>

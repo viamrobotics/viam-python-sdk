@@ -224,16 +224,6 @@
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularData</span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.TabularData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData" title="Permalink to this definition"></a></dt>
 <dd><p>Class representing a piece of tabular data and associated metadata.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – the requested data.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><em>viam.proto.app.data.CaptureMetadata</em></a>) – the metadata from the request.</p></li>
-<li><p><strong>time_requested</strong> (<em>datetime</em>) – the time the data request was sent.</p></li>
-<li><p><strong>time_received</strong> (<em>datetime</em>) – the time the requested data was received.</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData.data" title="Permalink to this definition"></a></dt>
@@ -276,14 +266,6 @@
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BinaryData</span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.BinaryData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData" title="Permalink to this definition"></a></dt>
 <dd><p>Class representing a piece of binary data and associated metadata.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> (<em>bytes</em>) – the requested data.</p></li>
-<li><p><strong>metadata</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryMetadata" title="viam.proto.app.data.BinaryMetadata"><em>viam.proto.app.data.BinaryMetadata</em></a>) – the metadata from the request.</p></li>
-</ul>
-</dd>
-</dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData.data" title="Permalink to this definition"></a></dt>
@@ -322,7 +304,7 @@ If the file is not empty, it will be overwritten.</p>
 <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">tabular_data</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="n">tabular_data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">tabular_data</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
@@ -367,7 +349,7 @@ If the file is not empty, it will be overwritten.</p>
 <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">data</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
         <span class="k">break</span>
     <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
