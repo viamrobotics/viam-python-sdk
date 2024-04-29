@@ -192,6 +192,7 @@ class DataClient:
         sort_order: Optional[Order.ValueType] = None,
         last: Optional[str] = None,
         count_only: bool = False,
+        include_internal_data: bool = False,
         dest: Optional[str] = None,
     ) -> Tuple[List[TabularData], int, str]:
         """Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
@@ -215,11 +216,13 @@ class DataClient:
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
                 data.
-            limit (int): The maximum number of entries to include in a page. Defaults to 50.
+            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.
             sort_order (viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the ID of the last-returned data.
                         If provided, the server will return the next data entries after the `last` ID.
             count_only (bool): Whether to return only the total count of entries.
+            include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
+                                          like cloud SLAM. Defaults to `False`
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
@@ -236,7 +239,7 @@ class DataClient:
             data_request.sort_order = sort_order
         if last:
             data_request.last = last
-        request = TabularDataByFilterRequest(data_request=data_request, count_only=count_only)
+        request = TabularDataByFilterRequest(data_request=data_request, count_only=count_only, include_internal_data=include_internal_data)
         response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
         data = [
             DataClient.TabularData(
@@ -289,7 +292,7 @@ class DataClient:
         Args:
             filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
                 data.
-            limit (int): The maximum number of entries to include in a page. Defaults to 50.
+            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.
             sort_order (viam.proto.app.data.Order): The desired sort order of the data.
             last (str): Optional string indicating the ID of the last-returned data.
                         If provided, the server will return the next data entries after the `last` ID.
