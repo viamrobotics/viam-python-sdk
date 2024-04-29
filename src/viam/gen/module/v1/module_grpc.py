@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from ... import app
@@ -32,6 +33,23 @@ class ModuleServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.module.v1.ModuleService/AddResource': grpclib.const.Handler(self.AddResource, grpclib.const.Cardinality.UNARY_UNARY, module.v1.module_pb2.AddResourceRequest, module.v1.module_pb2.AddResourceResponse), '/viam.module.v1.ModuleService/ReconfigureResource': grpclib.const.Handler(self.ReconfigureResource, grpclib.const.Cardinality.UNARY_UNARY, module.v1.module_pb2.ReconfigureResourceRequest, module.v1.module_pb2.ReconfigureResourceResponse), '/viam.module.v1.ModuleService/RemoveResource': grpclib.const.Handler(self.RemoveResource, grpclib.const.Cardinality.UNARY_UNARY, module.v1.module_pb2.RemoveResourceRequest, module.v1.module_pb2.RemoveResourceResponse), '/viam.module.v1.ModuleService/Ready': grpclib.const.Handler(self.Ready, grpclib.const.Cardinality.UNARY_UNARY, module.v1.module_pb2.ReadyRequest, module.v1.module_pb2.ReadyResponse), '/viam.module.v1.ModuleService/ValidateConfig': grpclib.const.Handler(self.ValidateConfig, grpclib.const.Cardinality.UNARY_UNARY, module.v1.module_pb2.ValidateConfigRequest, module.v1.module_pb2.ValidateConfigResponse)}
+
+class UnimplementedModuleServiceBase(ModuleServiceBase):
+
+    async def AddResource(self, stream: 'grpclib.server.Stream[module.v1.module_pb2.AddResourceRequest, module.v1.module_pb2.AddResourceResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def ReconfigureResource(self, stream: 'grpclib.server.Stream[module.v1.module_pb2.ReconfigureResourceRequest, module.v1.module_pb2.ReconfigureResourceResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def RemoveResource(self, stream: 'grpclib.server.Stream[module.v1.module_pb2.RemoveResourceRequest, module.v1.module_pb2.RemoveResourceResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def Ready(self, stream: 'grpclib.server.Stream[module.v1.module_pb2.ReadyRequest, module.v1.module_pb2.ReadyResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def ValidateConfig(self, stream: 'grpclib.server.Stream[module.v1.module_pb2.ValidateConfigRequest, module.v1.module_pb2.ValidateConfigResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class ModuleServiceStub:
 

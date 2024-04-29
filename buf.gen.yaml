@@ -2,7 +2,8 @@ version: v1
 plugins:
   - name: python
     out: ./src/viam/gen
-  - name: grpclib_python
+  - name: viam_grpc_python
     out: ./src/viam/gen
+    path: [python3, ./plugin/main.py]
   - name: mypy
     out: ./src/viam/gen
