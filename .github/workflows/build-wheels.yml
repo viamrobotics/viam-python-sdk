@@ -1,6 +1,11 @@
 name: Build Wheels
 
 on:
+  workflow_call:
+    inputs:
+      branch:
+        required: true
+        type: string
   workflow_dispatch:
 
 jobs:
@@ -31,8 +36,14 @@ jobs:
             ext: so
             whl: linux_armv7l
     steps:
-      - name: Checkout Code
+      - name: Checkout Code - Call
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+        if: ${{ inputs.branch }}
+      - name: Checkout Code - Dispatch
+        uses: actions/checkout@v4
+        if: ${{ !inputs.branch }}
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -56,10 +67,12 @@ jobs:
         run: poetry build -f wheel
 
       - name: Rename
-        run: mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.whl }}.whl
+        run: |
+          echo "WHL_NAME=viam_sdk-$(poetry run python -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl" >> $GITHUB_ENV
+          mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c 'import viam; print(viam.__version__)')-py3-none-${{ matrix.whl }}.whl
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist
+          name: ${{ env.WHL_NAME }}
+          path: dist/${{ env.WHL_NAME }}

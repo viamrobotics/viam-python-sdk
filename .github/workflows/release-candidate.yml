@@ -16,7 +16,7 @@ on:
 
 jobs:
   prepare:
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
     outputs:
       rc_version: ${{ steps.bump_version.outputs.rc_version }}
@@ -37,13 +37,13 @@ jobs:
         run: poetry install --all-extras
 
       - name: Clean Format Test
-        run: make clean better_imports format test
+        run: make clean format typecheck test
 
       - name: Current version
         id: current_version
         shell: bash
         run: |
-          echo "current_version=$(poetry version)" >> $GITHUB_OUTPUT
+          echo "current_version=$(poetry version -s)" >> $GITHUB_OUTPUT
 
       - name: Bump Version
         id: bump_version
@@ -86,82 +86,27 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
+    uses: ./.github/workflows/build-wheels.yml
+    with:
+      branch: rc-${{ needs.prepare.outputs.version }}
     needs: prepare
-    if: github.repository_owner == 'viamrobotics'
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - arch: macosx_x86_64
-            ext: dylib
-            whl: macosx_10_16_x86_64
-          - arch: macosx_arm64
-            ext: dylib
-            whl: macosx_11_0_arm64
-          - arch: linux_aarch64
-            ext: so
-            whl: manylinux2014_aarch64
-          - arch: linux_x86_64
-            ext: so
-            whl: manylinux2014_x86_64
-          - arch: musllinux_x86_64
-            ext: so
-            whl: musllinux_1_2_x86_64
-          - arch: linux_armv6l
-            ext: so
-            whl: linux_armv6l
-          - arch: linux_armv6l
-            ext: so
-            whl: linux_armv7l
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: rc-${{ needs.prepare.outputs.version }}
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-
-      - name: Install package
-        run: poetry install --all-extras
-
-      - name: Download binary
-        run: curl -sL -o src/viam/rpc/libviam_rust_utils.${{ matrix.ext }} https://github.com/viamrobotics/rust-utils/releases/latest/download/libviam_rust_utils-${{ matrix.arch }}.${{ matrix.ext }}
-
-      - name: HACK for arm7l
-        if: ${{ matrix.whl == 'linux_armv7l' }}
-        run: echo "This file enables arm7l support. PyPI doesn't allow for packages with the same hash, so this file must be added to differentiate this arm7l package from the arm6l package." > src/viam/arm7l.txt
-
-      - name: Build
-        run: poetry build -f wheel
-
-      - name: Rename
-        run: mv dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-any.whl dist/viam_sdk-$(poetry run python -c "import viam; print(viam.__version__)")-py3-none-${{ matrix.whl }}.whl
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist
-          path: dist
+    # if: github.repository_owner == 'viamrobotics'
 
   release:
     needs: [prepare, build]
-    if: github.repository_owner == 'viamrobotics'
+    # if: github.repository_owner == 'viamrobotics'
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
 
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ needs.prepare.outputs.rc_version }}
-          files: dist/*
+          files: dist/**
           draft: true
           prerelease: true
           fail_on_unmatched_files: true
