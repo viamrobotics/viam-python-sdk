@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.robot.v1.robot_grpc.RobotServiceBase
+   viam.gen.robot.v1.robot_grpc.UnimplementedRobotServiceBase
    viam.gen.robot.v1.robot_grpc.RobotServiceStub
 
 
@@ -117,6 +118,87 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedRobotServiceBase
+
+
+   Bases: :py:obj:`RobotServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetOperations(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetOperationsRequest, robot.v1.robot_pb2.GetOperationsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetSessions(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetSessionsRequest, robot.v1.robot_pb2.GetSessionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: ResourceNames(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceNamesRequest, robot.v1.robot_pb2.ResourceNamesResponse]) -> None
+      :async:
+
+
+   .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[robot.v1.robot_pb2.ResourceRPCSubtypesRequest, robot.v1.robot_pb2.ResourceRPCSubtypesResponse]) -> None
+      :async:
+
+
+   .. py:method:: CancelOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.CancelOperationRequest, robot.v1.robot_pb2.CancelOperationResponse]) -> None
+      :async:
+
+
+   .. py:method:: BlockForOperation(stream: grpclib.server.Stream[robot.v1.robot_pb2.BlockForOperationRequest, robot.v1.robot_pb2.BlockForOperationResponse]) -> None
+      :async:
+
+
+   .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[robot.v1.robot_pb2.DiscoverComponentsRequest, robot.v1.robot_pb2.DiscoverComponentsResponse]) -> None
+      :async:
+
+
+   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[robot.v1.robot_pb2.FrameSystemConfigRequest, robot.v1.robot_pb2.FrameSystemConfigResponse]) -> None
+      :async:
+
+
+   .. py:method:: TransformPose(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPoseRequest, robot.v1.robot_pb2.TransformPoseResponse]) -> None
+      :async:
+
+
+   .. py:method:: TransformPCD(stream: grpclib.server.Stream[robot.v1.robot_pb2.TransformPCDRequest, robot.v1.robot_pb2.TransformPCDResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetStatusRequest, robot.v1.robot_pb2.GetStatusResponse]) -> None
+      :async:
+
+
+   .. py:method:: StreamStatus(stream: grpclib.server.Stream[robot.v1.robot_pb2.StreamStatusRequest, robot.v1.robot_pb2.StreamStatusResponse]) -> None
+      :async:
+
+
+   .. py:method:: StopAll(stream: grpclib.server.Stream[robot.v1.robot_pb2.StopAllRequest, robot.v1.robot_pb2.StopAllResponse]) -> None
+      :async:
+
+
+   .. py:method:: StartSession(stream: grpclib.server.Stream[robot.v1.robot_pb2.StartSessionRequest, robot.v1.robot_pb2.StartSessionResponse]) -> None
+      :async:
+
+
+   .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[robot.v1.robot_pb2.SendSessionHeartbeatRequest, robot.v1.robot_pb2.SendSessionHeartbeatResponse]) -> None
+      :async:
+
+
+   .. py:method:: Log(stream: grpclib.server.Stream[robot.v1.robot_pb2.LogRequest, robot.v1.robot_pb2.LogResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetCloudMetadata(stream: grpclib.server.Stream[robot.v1.robot_pb2.GetCloudMetadataRequest, robot.v1.robot_pb2.GetCloudMetadataResponse]) -> None
+      :async:
+
+
+   .. py:method:: RestartModule(stream: grpclib.server.Stream[robot.v1.robot_pb2.RestartModuleRequest, robot.v1.robot_pb2.RestartModuleResponse]) -> None
+      :async:
 
 
 

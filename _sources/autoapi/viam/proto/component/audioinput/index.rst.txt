@@ -20,6 +20,7 @@ Classes
 
    viam.proto.component.audioinput.AudioInputServiceBase
    viam.proto.component.audioinput.AudioInputServiceStub
+   viam.proto.component.audioinput.UnimplementedAudioInputServiceBase
    viam.proto.component.audioinput.AudioChunk
    viam.proto.component.audioinput.AudioChunkInfo
    viam.proto.component.audioinput.ChunksRequest
@@ -70,6 +71,35 @@ Classes
 
 
 .. py:class:: AudioInputServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedAudioInputServiceBase
+
+
+   Bases: :py:obj:`AudioInputServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Chunks(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.ChunksRequest, component.audioinput.v1.audioinput_pb2.ChunksResponse]) -> None
+      :async:
+
+
+   .. py:method:: Properties(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.PropertiesRequest, component.audioinput.v1.audioinput_pb2.PropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: Record(stream: grpclib.server.Stream[component.audioinput.v1.audioinput_pb2.RecordRequest, google.api.httpbody_pb2.HttpBody]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

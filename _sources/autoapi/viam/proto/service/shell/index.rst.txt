@@ -20,6 +20,7 @@ Classes
 
    viam.proto.service.shell.ShellServiceBase
    viam.proto.service.shell.ShellServiceStub
+   viam.proto.service.shell.UnimplementedShellServiceBase
    viam.proto.service.shell.ShellRequest
    viam.proto.service.shell.ShellResponse
 
@@ -49,6 +50,23 @@ Classes
 
 
 .. py:class:: ShellServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedShellServiceBase
+
+
+   Bases: :py:obj:`ShellServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

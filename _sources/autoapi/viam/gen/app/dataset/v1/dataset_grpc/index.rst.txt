@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.app.dataset.v1.dataset_grpc.DatasetServiceBase
+   viam.gen.app.dataset.v1.dataset_grpc.UnimplementedDatasetServiceBase
    viam.gen.app.dataset.v1.dataset_grpc.DatasetServiceStub
 
 
@@ -52,6 +53,35 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedDatasetServiceBase
+
+
+   Bases: :py:obj:`DatasetServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: CreateDataset(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.CreateDatasetRequest, app.dataset.v1.dataset_pb2.CreateDatasetResponse]) -> None
+      :async:
+
+
+   .. py:method:: DeleteDataset(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.DeleteDatasetRequest, app.dataset.v1.dataset_pb2.DeleteDatasetResponse]) -> None
+      :async:
+
+
+   .. py:method:: RenameDataset(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.RenameDatasetRequest, app.dataset.v1.dataset_pb2.RenameDatasetResponse]) -> None
+      :async:
+
+
+   .. py:method:: ListDatasetsByOrganizationID(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDRequest, app.dataset.v1.dataset_pb2.ListDatasetsByOrganizationIDResponse]) -> None
+      :async:
+
+
+   .. py:method:: ListDatasetsByIDs(stream: grpclib.server.Stream[app.dataset.v1.dataset_pb2.ListDatasetsByIDsRequest, app.dataset.v1.dataset_pb2.ListDatasetsByIDsResponse]) -> None
+      :async:
 
 
 

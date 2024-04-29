@@ -20,6 +20,7 @@ Classes
 
    viam.proto.rpc.examples.echoresource.EchoResourceServiceBase
    viam.proto.rpc.examples.echoresource.EchoResourceServiceStub
+   viam.proto.rpc.examples.echoresource.UnimplementedEchoResourceServiceBase
    viam.proto.rpc.examples.echoresource.EchoResourceBiDiRequest
    viam.proto.rpc.examples.echoresource.EchoResourceBiDiResponse
    viam.proto.rpc.examples.echoresource.EchoResourceMultipleRequest
@@ -58,6 +59,27 @@ Classes
 
 
 .. py:class:: EchoResourceServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedEchoResourceServiceBase
+
+
+   Bases: :py:obj:`EchoResourceServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: EchoResource(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoResourceMultiple(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceMultipleResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoResourceBiDi(stream: grpclib.server.Stream[proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiRequest, proto.rpc.examples.echoresource.v1.echoresource_pb2.EchoResourceBiDiResponse]) -> None
+      :async:
 
 
 

@@ -20,6 +20,7 @@ Classes
 
    viam.proto.rpc.webrtc.signaling.SignalingServiceBase
    viam.proto.rpc.webrtc.signaling.SignalingServiceStub
+   viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase
    viam.proto.rpc.webrtc.signaling.AnswerRequest
    viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage
    viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage
@@ -78,6 +79,31 @@ Classes
 
 
 .. py:class:: SignalingServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedSignalingServiceBase
+
+
+   Bases: :py:obj:`SignalingServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Call(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallRequest, proto.rpc.webrtc.v1.signaling_pb2.CallResponse]) -> None
+      :async:
+
+
+   .. py:method:: CallUpdate(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest, proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse]) -> None
+      :async:
+
+
+   .. py:method:: Answer(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse, proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest]) -> None
+      :async:
+
+
+   .. py:method:: OptionalWebRTCConfig(stream: grpclib.server.Stream[proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest, proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse]) -> None
+      :async:
 
 
 

@@ -89,6 +89,13 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub"><code class="docutils literal notranslate"><span class="pre">SignalingServiceStub</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Call"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.Call()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.CallUpdate"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.CallUpdate()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Answer"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.Answer()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase.OptionalWebRTCConfig()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest"><code class="docutils literal notranslate"><span class="pre">AnswerRequest</span></code></a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.init"><code class="docutils literal notranslate"><span class="pre">AnswerRequest.init</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest.update"><code class="docutils literal notranslate"><span class="pre">AnswerRequest.update</span></code></a></li>
@@ -268,67 +275,70 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub" title="viam.proto.rpc.webrtc.signaling.SignalingServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest" title="viam.proto.rpc.webrtc.signaling.AnswerRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase" title="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedSignalingServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequest" title="viam.proto.rpc.webrtc.signaling.AnswerRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequest</span></code></a></p></td>
 <td><p>AnswerRequest is the SDP offer that the controlling side is making via the answering</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestDoneStage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestDoneStage</span></code></a></p></td>
 <td><p>AnswerRequestDoneStage indicates the controller is done responding with candidates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestErrorStage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestErrorStage</span></code></a></p></td>
 <td><p>AnswerRequestErrorStage indicates the exchange has failed with an error.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestInitStage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestInitStage</span></code></a></p></td>
 <td><p>AnswerRequestInitStage is the first and a one time stage that represents the</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestUpdateStage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerRequestUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerRequestUpdateStage</span></code></a></p></td>
 <td><p>AnswerRequestUpdateStage is multiply used to trickle in ICE candidates to</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse" title="viam.proto.rpc.webrtc.signaling.AnswerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponse" title="viam.proto.rpc.webrtc.signaling.AnswerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponse</span></code></a></p></td>
 <td><p>AnswerResponse is the SDP answer that an answerer responds with.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseDoneStage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseDoneStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseDoneStage</span></code></a></p></td>
 <td><p>AnswerResponseDoneStage indicates the answerer is done responding with candidates.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseErrorStage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseErrorStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseErrorStage</span></code></a></p></td>
 <td><p>AnswerResponseErrorStage indicates the exchange has failed with an error.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseInitStage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseInitStage</span></code></a></p></td>
 <td><p>AnswerResponseInitStage is the first and a one time stage that represents the</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseUpdateStage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.AnswerResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnswerResponseUpdateStage</span></code></a></p></td>
 <td><p>AnswerResponseUpdateStage is multiply used to trickle in ICE candidates to</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest" title="viam.proto.rpc.webrtc.signaling.CallRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallRequest" title="viam.proto.rpc.webrtc.signaling.CallRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallRequest</span></code></a></p></td>
 <td><p>CallRequest is the SDP offer that the controlling side is making.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse" title="viam.proto.rpc.webrtc.signaling.CallResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponse" title="viam.proto.rpc.webrtc.signaling.CallResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponse</span></code></a></p></td>
 <td><p>CallResponse is the SDP answer that the controlled side responds with.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage" title="viam.proto.rpc.webrtc.signaling.CallResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseInitStage</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseInitStage" title="viam.proto.rpc.webrtc.signaling.CallResponseInitStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseInitStage</span></code></a></p></td>
 <td><p>CallResponseInitStage is the first and a one time stage that represents</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseUpdateStage</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage" title="viam.proto.rpc.webrtc.signaling.CallResponseUpdateStage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallResponseUpdateStage</span></code></a></p></td>
 <td><p>CallResponseUpdateStage is multiply used to trickle in ICE candidates from</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest" title="viam.proto.rpc.webrtc.signaling.CallUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateRequest" title="viam.proto.rpc.webrtc.signaling.CallUpdateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateRequest</span></code></a></p></td>
 <td><p>CallUpdateRequest updates the call with additional info to the controlled side.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.CallUpdateResponse" title="viam.proto.rpc.webrtc.signaling.CallUpdateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CallUpdateResponse</span></code></a></p></td>
 <td><p>CallUpdateResponse contains nothing in response to a call update.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidate</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICECandidate" title="viam.proto.rpc.webrtc.signaling.ICECandidate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICECandidate</span></code></a></p></td>
 <td><p>ICECandidate represents an ICE candidate.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="viam.proto.rpc.webrtc.signaling.ICEServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICEServer</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.ICEServer" title="viam.proto.rpc.webrtc.signaling.ICEServer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ICEServer</span></code></a></p></td>
 <td><p>ICEServer describes an ICE server.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigRequest</span></code></a></p></td>
 <td><p>OptionalWebRTCConfigRequest is the request for getting an optional WebRTC config</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse" title="viam.proto.rpc.webrtc.signaling.OptionalWebRTCConfigResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OptionalWebRTCConfigResponse</span></code></a></p></td>
 <td><p>OptionalWebRTCConfigResponse contains the optional WebRTC config</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig" title="viam.proto.rpc.webrtc.signaling.WebRTCConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebRTCConfig</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.WebRTCConfig" title="viam.proto.rpc.webrtc.signaling.WebRTCConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WebRTCConfig</span></code></a></p></td>
 <td><p>WebRTCConfig represents parts of a WebRTC config.</p></td>
 </tr>
 </tbody>
@@ -370,6 +380,34 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.SignalingServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">SignalingServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#SignalingServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.webrtc.signaling.</span></span><span class="sig-name descname"><span class="pre">UnimplementedSignalingServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.rpc.webrtc.signaling.SignalingServiceBase" title="viam.proto.rpc.webrtc.signaling.SignalingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SignalingServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Call">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.Call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Call" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.CallUpdate">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CallUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallUpdateRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.CallUpdateResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.CallUpdate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.CallUpdate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Answer">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Answer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.AnswerResponse</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.AnswerRequest</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.Answer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.Answer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OptionalWebRTCConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.webrtc.v1.signaling_pb2.OptionalWebRTCConfigResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/webrtc/v1/signaling_grpc.html#UnimplementedSignalingServiceBase.OptionalWebRTCConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.webrtc.signaling.UnimplementedSignalingServiceBase.OptionalWebRTCConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.webrtc.signaling.AnswerRequest">

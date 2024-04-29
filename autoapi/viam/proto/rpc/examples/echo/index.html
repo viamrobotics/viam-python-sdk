@@ -86,6 +86,12 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoServiceStub"><code class="docutils literal notranslate"><span class="pre">EchoServiceStub</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedEchoServiceBase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.Echo"><code class="docutils literal notranslate"><span class="pre">UnimplementedEchoServiceBase.Echo()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoMultiple"><code class="docutils literal notranslate"><span class="pre">UnimplementedEchoServiceBase.EchoMultiple()</span></code></a></li>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoBiDi"><code class="docutils literal notranslate"><span class="pre">UnimplementedEchoServiceBase.EchoBiDi()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiRequest"><code class="docutils literal notranslate"><span class="pre">EchoBiDiRequest</span></code></a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiRequest.message"><code class="docutils literal notranslate"><span class="pre">EchoBiDiRequest.message</span></code></a></li>
 </ul>
@@ -180,22 +186,25 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoServiceStub" title="viam.proto.rpc.examples.echo.EchoServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiRequest" title="viam.proto.rpc.examples.echo.EchoBiDiRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoBiDiRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase" title="viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedEchoServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiRequest" title="viam.proto.rpc.examples.echo.EchoBiDiRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoBiDiRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiResponse" title="viam.proto.rpc.examples.echo.EchoBiDiResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoBiDiResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoBiDiResponse" title="viam.proto.rpc.examples.echo.EchoBiDiResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoBiDiResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoMultipleRequest" title="viam.proto.rpc.examples.echo.EchoMultipleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoMultipleRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoMultipleRequest" title="viam.proto.rpc.examples.echo.EchoMultipleRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoMultipleRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoMultipleResponse" title="viam.proto.rpc.examples.echo.EchoMultipleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoMultipleResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoMultipleResponse" title="viam.proto.rpc.examples.echo.EchoMultipleResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoMultipleResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoRequest" title="viam.proto.rpc.examples.echo.EchoRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoRequest" title="viam.proto.rpc.examples.echo.EchoRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoResponse" title="viam.proto.rpc.examples.echo.EchoResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoResponse" title="viam.proto.rpc.examples.echo.EchoResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -232,6 +241,29 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.EchoServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echo.</span></span><span class="sig-name descname"><span class="pre">EchoServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echo/v1/echo_grpc.html#EchoServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echo.EchoServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.echo.</span></span><span class="sig-name descname"><span class="pre">UnimplementedEchoServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echo/v1/echo_grpc.html#UnimplementedEchoServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.rpc.examples.echo.EchoServiceBase" title="viam.proto.rpc.examples.echo.EchoServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EchoServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.Echo">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Echo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echo/v1/echo_grpc.html#UnimplementedEchoServiceBase.Echo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.Echo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoMultiple">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoMultiple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echo/v1/echo_grpc.html#UnimplementedEchoServiceBase.EchoMultiple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoMultiple" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoBiDi">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EchoBiDi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/echo/v1/echo_grpc.html#UnimplementedEchoServiceBase.EchoBiDi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase.EchoBiDi" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.examples.echo.EchoBiDiRequest">

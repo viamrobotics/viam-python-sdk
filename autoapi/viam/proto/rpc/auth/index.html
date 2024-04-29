@@ -89,6 +89,14 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.rpc.auth.ExternalAuthServiceStub"><code class="docutils literal notranslate"><span class="pre">ExternalAuthServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedAuthServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedAuthServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedAuthServiceBase.Authenticate"><code class="docutils literal notranslate"><span class="pre">UnimplementedAuthServiceBase.Authenticate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedExternalAuthServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase.AuthenticateTo"><code class="docutils literal notranslate"><span class="pre">UnimplementedExternalAuthServiceBase.AuthenticateTo()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.rpc.auth.AuthenticateRequest"><code class="docutils literal notranslate"><span class="pre">AuthenticateRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.auth.AuthenticateRequest.credentials"><code class="docutils literal notranslate"><span class="pre">AuthenticateRequest.credentials</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.rpc.auth.AuthenticateRequest.entity"><code class="docutils literal notranslate"><span class="pre">AuthenticateRequest.entity</span></code></a></li>
@@ -179,6 +187,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.auth.ExternalAuthServiceStub" title="viam.proto.rpc.auth.ExternalAuthServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExternalAuthServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedAuthServiceBase" title="viam.proto.rpc.auth.UnimplementedAuthServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedAuthServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase" title="viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedExternalAuthServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.auth.AuthenticateRequest" title="viam.proto.rpc.auth.AuthenticateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthenticateRequest</span></code></a></p></td>
 <td><p>An AuthenticateRequest contains the credentials used to authenticate.</p></td>
 </tr>
@@ -241,6 +255,32 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.ExternalAuthServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">ExternalAuthServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#ExternalAuthServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.ExternalAuthServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.auth.UnimplementedAuthServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">UnimplementedAuthServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#UnimplementedAuthServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.UnimplementedAuthServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.rpc.auth.AuthServiceBase" title="viam.proto.rpc.auth.AuthServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.auth.UnimplementedAuthServiceBase.Authenticate">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Authenticate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.v1.auth_pb2.AuthenticateRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.v1.auth_pb2.AuthenticateResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#UnimplementedAuthServiceBase.Authenticate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.UnimplementedAuthServiceBase.Authenticate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.auth.</span></span><span class="sig-name descname"><span class="pre">UnimplementedExternalAuthServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#UnimplementedExternalAuthServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.rpc.auth.ExternalAuthServiceBase" title="viam.proto.rpc.auth.ExternalAuthServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExternalAuthServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase.AuthenticateTo">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AuthenticateTo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.v1.auth_pb2.AuthenticateToRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.v1.auth_pb2.AuthenticateToResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/proto/rpc/v1/auth_grpc.html#UnimplementedExternalAuthServiceBase.AuthenticateTo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase.AuthenticateTo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.auth.AuthenticateRequest">

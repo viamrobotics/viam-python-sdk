@@ -20,6 +20,7 @@ Classes
 
    viam.proto.service.generic.GenericServiceBase
    viam.proto.service.generic.GenericServiceStub
+   viam.proto.service.generic.UnimplementedGenericServiceBase
 
 
 
@@ -42,6 +43,19 @@ Classes
 
 
 .. py:class:: GenericServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedGenericServiceBase
+
+
+   Bases: :py:obj:`GenericServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

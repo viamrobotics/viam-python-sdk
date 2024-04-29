@@ -86,6 +86,10 @@
 </ul>
 </li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.FileUploadServiceStub"><code class="docutils literal notranslate"><span class="pre">FileUploadServiceStub</span></code></a></li>
+<li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedFileUploadServiceBase</span></code></a><ul>
+<li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase.UploadFile"><code class="docutils literal notranslate"><span class="pre">UnimplementedFileUploadServiceBase.UploadFile()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileRequest"><code class="docutils literal notranslate"><span class="pre">UploadFileRequest</span></code></a><ul>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileRequest.name"><code class="docutils literal notranslate"><span class="pre">UploadFileRequest.name</span></code></a></li>
 <li class="toctree-l11"><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileRequest.chunk_data"><code class="docutils literal notranslate"><span class="pre">UploadFileRequest.chunk_data</span></code></a></li>
@@ -166,10 +170,13 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.FileUploadServiceStub" title="viam.proto.rpc.examples.fileupload.FileUploadServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileRequest" title="viam.proto.rpc.examples.fileupload.UploadFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadFileRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase" title="viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedFileUploadServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileRequest" title="viam.proto.rpc.examples.fileupload.UploadFileRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadFileRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileResponse" title="viam.proto.rpc.examples.fileupload.UploadFileResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadFileResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.rpc.examples.fileupload.UploadFileResponse" title="viam.proto.rpc.examples.fileupload.UploadFileResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadFileResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -196,6 +203,19 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.rpc.examples.fileupload.FileUploadServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.fileupload.</span></span><span class="sig-name descname"><span class="pre">FileUploadServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/fileupload/v1/fileupload_grpc.html#FileUploadServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.fileupload.FileUploadServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.rpc.examples.fileupload.</span></span><span class="sig-name descname"><span class="pre">UnimplementedFileUploadServiceBase</span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/fileupload/v1/fileupload_grpc.html#UnimplementedFileUploadServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.rpc.examples.fileupload.FileUploadServiceBase" title="viam.proto.rpc.examples.fileupload.FileUploadServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase.UploadFile">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UploadFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileRequest</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">proto.rpc.examples.fileupload.v1.fileupload_pb2.UploadFileResponse</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../../_modules/viam/gen/proto/rpc/examples/fileupload/v1/fileupload_grpc.html#UnimplementedFileUploadServiceBase.UploadFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.rpc.examples.fileupload.UnimplementedFileUploadServiceBase.UploadFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.rpc.examples.fileupload.UploadFileRequest">

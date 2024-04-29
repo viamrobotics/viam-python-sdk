@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.component.testecho.v1.testecho_grpc.TestEchoServiceBase
+   viam.gen.component.testecho.v1.testecho_grpc.UnimplementedTestEchoServiceBase
    viam.gen.component.testecho.v1.testecho_grpc.TestEchoServiceStub
 
 
@@ -47,6 +48,31 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedTestEchoServiceBase
+
+
+   Bases: :py:obj:`TestEchoServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Echo(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoRequest, component.testecho.v1.testecho_pb2.EchoResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoMultiple(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoMultipleRequest, component.testecho.v1.testecho_pb2.EchoMultipleResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoBiDi(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.EchoBiDiRequest, component.testecho.v1.testecho_pb2.EchoBiDiResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.testecho.v1.testecho_pb2.StopRequest, component.testecho.v1.testecho_pb2.StopResponse]) -> None
+      :async:
 
 
 

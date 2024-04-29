@@ -84,6 +84,12 @@
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.stream.StreamServiceStub"><code class="docutils literal notranslate"><span class="pre">StreamServiceStub</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.stream.UnimplementedStreamServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedStreamServiceBase</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.stream.UnimplementedStreamServiceBase.ListStreams"><code class="docutils literal notranslate"><span class="pre">UnimplementedStreamServiceBase.ListStreams()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.stream.UnimplementedStreamServiceBase.AddStream"><code class="docutils literal notranslate"><span class="pre">UnimplementedStreamServiceBase.AddStream()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.stream.UnimplementedStreamServiceBase.RemoveStream"><code class="docutils literal notranslate"><span class="pre">UnimplementedStreamServiceBase.RemoveStream()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.stream.AddStreamRequest"><code class="docutils literal notranslate"><span class="pre">AddStreamRequest</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.stream.AddStreamRequest.name"><code class="docutils literal notranslate"><span class="pre">AddStreamRequest.name</span></code></a></li>
 </ul>
@@ -153,22 +159,25 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.StreamServiceStub" title="viam.proto.stream.StreamServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.AddStreamRequest" title="viam.proto.stream.AddStreamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddStreamRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.UnimplementedStreamServiceBase" title="viam.proto.stream.UnimplementedStreamServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedStreamServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.AddStreamRequest" title="viam.proto.stream.AddStreamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddStreamRequest</span></code></a></p></td>
 <td><p>A AddStreamRequest requests the given stream be added to the connection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.AddStreamResponse" title="viam.proto.stream.AddStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddStreamResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.AddStreamResponse" title="viam.proto.stream.AddStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AddStreamResponse</span></code></a></p></td>
 <td><p>AddStreamResponse is returned after a successful AddStreamRequest.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.ListStreamsRequest" title="viam.proto.stream.ListStreamsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListStreamsRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.ListStreamsRequest" title="viam.proto.stream.ListStreamsRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListStreamsRequest</span></code></a></p></td>
 <td><p>ListStreamsRequest requests all streams registered.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.ListStreamsResponse" title="viam.proto.stream.ListStreamsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListStreamsResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.ListStreamsResponse" title="viam.proto.stream.ListStreamsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListStreamsResponse</span></code></a></p></td>
 <td><p>A ListStreamsResponse details streams registered.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.RemoveStreamRequest" title="viam.proto.stream.RemoveStreamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveStreamRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.RemoveStreamRequest" title="viam.proto.stream.RemoveStreamRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveStreamRequest</span></code></a></p></td>
 <td><p>A RemoveStreamRequest requests the given stream be removed from the connection.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.stream.RemoveStreamResponse" title="viam.proto.stream.RemoveStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveStreamResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.stream.RemoveStreamResponse" title="viam.proto.stream.RemoveStreamResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RemoveStreamResponse</span></code></a></p></td>
 <td><p>RemoveStreamResponse is returned after a successful RemoveStreamRequest.</p></td>
 </tr>
 </tbody>
@@ -205,6 +214,29 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.stream.StreamServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.stream.</span></span><span class="sig-name descname"><span class="pre">StreamServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/gen/stream/v1/stream_grpc.html#StreamServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.stream.StreamServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.stream.UnimplementedStreamServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.stream.</span></span><span class="sig-name descname"><span class="pre">UnimplementedStreamServiceBase</span></span><a class="reference internal" href="../../../../_modules/viam/gen/stream/v1/stream_grpc.html#UnimplementedStreamServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.stream.UnimplementedStreamServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.stream.StreamServiceBase" title="viam.proto.stream.StreamServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.stream.UnimplementedStreamServiceBase.ListStreams">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListStreams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.ListStreamsRequest" title="viam.gen.stream.v1.stream_pb2.ListStreamsRequest"><span class="pre">stream.v1.stream_pb2.ListStreamsRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.ListStreamsResponse" title="viam.gen.stream.v1.stream_pb2.ListStreamsResponse"><span class="pre">stream.v1.stream_pb2.ListStreamsResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/stream/v1/stream_grpc.html#UnimplementedStreamServiceBase.ListStreams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.stream.UnimplementedStreamServiceBase.ListStreams" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.stream.UnimplementedStreamServiceBase.AddStream">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AddStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.AddStreamRequest" title="viam.gen.stream.v1.stream_pb2.AddStreamRequest"><span class="pre">stream.v1.stream_pb2.AddStreamRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.AddStreamResponse" title="viam.gen.stream.v1.stream_pb2.AddStreamResponse"><span class="pre">stream.v1.stream_pb2.AddStreamResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/stream/v1/stream_grpc.html#UnimplementedStreamServiceBase.AddStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.stream.UnimplementedStreamServiceBase.AddStream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.stream.UnimplementedStreamServiceBase.RemoveStream">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RemoveStream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.RemoveStreamRequest" title="viam.gen.stream.v1.stream_pb2.RemoveStreamRequest"><span class="pre">stream.v1.stream_pb2.RemoveStreamRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../gen/stream/v1/stream_pb2/index.html#viam.gen.stream.v1.stream_pb2.RemoveStreamResponse" title="viam.gen.stream.v1.stream_pb2.RemoveStreamResponse"><span class="pre">stream.v1.stream_pb2.RemoveStreamResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/gen/stream/v1/stream_grpc.html#UnimplementedStreamServiceBase.RemoveStream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.stream.UnimplementedStreamServiceBase.RemoveStream" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.stream.AddStreamRequest">

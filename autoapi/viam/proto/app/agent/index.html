@@ -83,6 +83,15 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.agent.AgentDeviceServiceStub"><code class="docutils literal notranslate"><span class="pre">AgentDeviceServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedAgentAppServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase.GetAgentConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedAgentAppServiceBase.GetAgentConfig()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase.UpdateAgentConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedAgentAppServiceBase.UpdateAgentConfig()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentDeviceServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedAgentDeviceServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentDeviceServiceBase.DeviceAgentConfig"><code class="docutils literal notranslate"><span class="pre">UnimplementedAgentDeviceServiceBase.DeviceAgentConfig()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.agent.AppAgentConfig"><code class="docutils literal notranslate"><span class="pre">AppAgentConfig</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.agent.AppAgentConfig.SubsystemConfigsEntry"><code class="docutils literal notranslate"><span class="pre">AppAgentConfig.SubsystemConfigsEntry</span></code></a><ul>
 <li class="toctree-l10"><a class="reference internal" href="#viam.proto.app.agent.AppAgentConfig.SubsystemConfigsEntry.value"><code class="docutils literal notranslate"><span class="pre">AppAgentConfig.SubsystemConfigsEntry.value</span></code></a></li>
@@ -250,6 +259,12 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.agent.AgentDeviceServiceStub" title="viam.proto.app.agent.AgentDeviceServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AgentDeviceServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase" title="viam.proto.app.agent.UnimplementedAgentAppServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedAgentAppServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.agent.UnimplementedAgentDeviceServiceBase" title="viam.proto.app.agent.UnimplementedAgentDeviceServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedAgentDeviceServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.agent.AppAgentConfig" title="viam.proto.app.agent.AppAgentConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AppAgentConfig</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -338,6 +353,37 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.agent.AgentDeviceServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.agent.</span></span><span class="sig-name descname"><span class="pre">AgentDeviceServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#AgentDeviceServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.AgentDeviceServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.agent.UnimplementedAgentAppServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.agent.</span></span><span class="sig-name descname"><span class="pre">UnimplementedAgentAppServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#UnimplementedAgentAppServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.agent.AgentAppServiceBase" title="viam.proto.app.agent.AgentAppServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AgentAppServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.agent.UnimplementedAgentAppServiceBase.GetAgentConfig">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetAgentConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.GetAgentConfigRequest" title="viam.gen.app.agent.v1.agent_pb2.GetAgentConfigRequest"><span class="pre">app.agent.v1.agent_pb2.GetAgentConfigRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.GetAgentConfigResponse" title="viam.gen.app.agent.v1.agent_pb2.GetAgentConfigResponse"><span class="pre">app.agent.v1.agent_pb2.GetAgentConfigResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#UnimplementedAgentAppServiceBase.GetAgentConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase.GetAgentConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.agent.UnimplementedAgentAppServiceBase.UpdateAgentConfig">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">UpdateAgentConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.UpdateAgentConfigRequest" title="viam.gen.app.agent.v1.agent_pb2.UpdateAgentConfigRequest"><span class="pre">app.agent.v1.agent_pb2.UpdateAgentConfigRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.UpdateAgentConfigResponse" title="viam.gen.app.agent.v1.agent_pb2.UpdateAgentConfigResponse"><span class="pre">app.agent.v1.agent_pb2.UpdateAgentConfigResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#UnimplementedAgentAppServiceBase.UpdateAgentConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.UnimplementedAgentAppServiceBase.UpdateAgentConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.agent.UnimplementedAgentDeviceServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.agent.</span></span><span class="sig-name descname"><span class="pre">UnimplementedAgentDeviceServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#UnimplementedAgentDeviceServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.UnimplementedAgentDeviceServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.agent.AgentDeviceServiceBase" title="viam.proto.app.agent.AgentDeviceServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AgentDeviceServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.agent.UnimplementedAgentDeviceServiceBase.DeviceAgentConfig">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeviceAgentConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigRequest" title="viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigRequest"><span class="pre">app.agent.v1.agent_pb2.DeviceAgentConfigRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/agent/v1/agent_pb2/index.html#viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigResponse" title="viam.gen.app.agent.v1.agent_pb2.DeviceAgentConfigResponse"><span class="pre">app.agent.v1.agent_pb2.DeviceAgentConfigResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/agent/v1/agent_grpc.html#UnimplementedAgentDeviceServiceBase.DeviceAgentConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.agent.UnimplementedAgentDeviceServiceBase.DeviceAgentConfig" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.agent.AppAgentConfig">

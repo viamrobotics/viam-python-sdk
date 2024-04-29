@@ -20,6 +20,7 @@ Classes
 
    viam.proto.rpc.examples.echo.EchoServiceBase
    viam.proto.rpc.examples.echo.EchoServiceStub
+   viam.proto.rpc.examples.echo.UnimplementedEchoServiceBase
    viam.proto.rpc.examples.echo.EchoBiDiRequest
    viam.proto.rpc.examples.echo.EchoBiDiResponse
    viam.proto.rpc.examples.echo.EchoMultipleRequest
@@ -58,6 +59,27 @@ Classes
 
 
 .. py:class:: EchoServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedEchoServiceBase
+
+
+   Bases: :py:obj:`EchoServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Echo(stream: grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoMultiple(stream: grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleResponse]) -> None
+      :async:
+
+
+   .. py:method:: EchoBiDi(stream: grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiResponse]) -> None
+      :async:
 
 
 

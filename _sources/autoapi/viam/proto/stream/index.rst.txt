@@ -20,6 +20,7 @@ Classes
 
    viam.proto.stream.StreamServiceBase
    viam.proto.stream.StreamServiceStub
+   viam.proto.stream.UnimplementedStreamServiceBase
    viam.proto.stream.AddStreamRequest
    viam.proto.stream.AddStreamResponse
    viam.proto.stream.ListStreamsRequest
@@ -58,6 +59,27 @@ Classes
 
 
 .. py:class:: StreamServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedStreamServiceBase
+
+
+   Bases: :py:obj:`StreamServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: ListStreams(stream: grpclib.server.Stream[stream.v1.stream_pb2.ListStreamsRequest, stream.v1.stream_pb2.ListStreamsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.AddStreamRequest, stream.v1.stream_pb2.AddStreamResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.RemoveStreamRequest, stream.v1.stream_pb2.RemoveStreamResponse]) -> None
+      :async:
 
 
 

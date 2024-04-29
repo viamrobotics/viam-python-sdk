@@ -20,6 +20,7 @@ Classes
 
    viam.proto.service.navigation.NavigationServiceBase
    viam.proto.service.navigation.NavigationServiceStub
+   viam.proto.service.navigation.UnimplementedNavigationServiceBase
    viam.proto.service.navigation.AddWaypointRequest
    viam.proto.service.navigation.AddWaypointResponse
    viam.proto.service.navigation.GetLocationRequest
@@ -109,6 +110,55 @@ Classes
 
 
 .. py:class:: NavigationServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedNavigationServiceBase
+
+
+   Bases: :py:obj:`NavigationServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetModeRequest, service.navigation.v1.navigation_pb2.GetModeResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetMode(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.SetModeRequest, service.navigation.v1.navigation_pb2.SetModeResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetLocation(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetLocationRequest, service.navigation.v1.navigation_pb2.GetLocationResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetWaypoints(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetWaypointsRequest, service.navigation.v1.navigation_pb2.GetWaypointsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.AddWaypointRequest, service.navigation.v1.navigation_pb2.AddWaypointResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveWaypoint(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.RemoveWaypointRequest, service.navigation.v1.navigation_pb2.RemoveWaypointResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetObstacles(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetObstaclesRequest, service.navigation.v1.navigation_pb2.GetObstaclesResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPaths(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPathsRequest, service.navigation.v1.navigation_pb2.GetPathsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[service.navigation.v1.navigation_pb2.GetPropertiesRequest, service.navigation.v1.navigation_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

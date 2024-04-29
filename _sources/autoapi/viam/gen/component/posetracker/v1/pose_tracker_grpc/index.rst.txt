@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.component.posetracker.v1.pose_tracker_grpc.PoseTrackerServiceBase
+   viam.gen.component.posetracker.v1.pose_tracker_grpc.UnimplementedPoseTrackerServiceBase
    viam.gen.component.posetracker.v1.pose_tracker_grpc.PoseTrackerServiceStub
 
 
@@ -42,6 +43,27 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedPoseTrackerServiceBase
+
+
+   Bases: :py:obj:`PoseTrackerServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetPoses(stream: grpclib.server.Stream[component.posetracker.v1.pose_tracker_pb2.GetPosesRequest, component.posetracker.v1.pose_tracker_pb2.GetPosesResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

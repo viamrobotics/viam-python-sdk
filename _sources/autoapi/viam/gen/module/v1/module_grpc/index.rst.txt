@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.module.v1.module_grpc.ModuleServiceBase
+   viam.gen.module.v1.module_grpc.UnimplementedModuleServiceBase
    viam.gen.module.v1.module_grpc.ModuleServiceStub
 
 
@@ -52,6 +53,35 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedModuleServiceBase
+
+
+   Bases: :py:obj:`ModuleServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: AddResource(stream: grpclib.server.Stream[module.v1.module_pb2.AddResourceRequest, module.v1.module_pb2.AddResourceResponse]) -> None
+      :async:
+
+
+   .. py:method:: ReconfigureResource(stream: grpclib.server.Stream[module.v1.module_pb2.ReconfigureResourceRequest, module.v1.module_pb2.ReconfigureResourceResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveResource(stream: grpclib.server.Stream[module.v1.module_pb2.RemoveResourceRequest, module.v1.module_pb2.RemoveResourceResponse]) -> None
+      :async:
+
+
+   .. py:method:: Ready(stream: grpclib.server.Stream[module.v1.module_pb2.ReadyRequest, module.v1.module_pb2.ReadyResponse]) -> None
+      :async:
+
+
+   .. py:method:: ValidateConfig(stream: grpclib.server.Stream[module.v1.module_pb2.ValidateConfigRequest, module.v1.module_pb2.ValidateConfigResponse]) -> None
+      :async:
 
 
 

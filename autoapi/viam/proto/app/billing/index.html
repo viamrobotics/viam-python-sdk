@@ -80,6 +80,13 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub"><code class="docutils literal notranslate"><span class="pre">BillingServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetCurrentMonthUsage"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetCurrentMonthUsage()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetOrgBillingInformation"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetOrgBillingInformation()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicesSummary"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetInvoicesSummary()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicePdf"><code class="docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase.GetInvoicePdf()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.occurred_at"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.occurred_at</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent.id"><code class="docutils literal notranslate"><span class="pre">BillableResourceEvent.id</span></code></a></li>
@@ -240,43 +247,46 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.BillingServiceStub" title="viam.proto.app.billing.BillingServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent" title="viam.proto.app.billing.BillableResourceEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillableResourceEvent</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.UnimplementedBillingServiceBase" title="viam.proto.app.billing.UnimplementedBillingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedBillingServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.BillableResourceEvent" title="viam.proto.app.billing.BillableResourceEvent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillableResourceEvent</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest" title="viam.proto.app.billing.GetCurrentMonthUsageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageRequest" title="viam.proto.app.billing.GetCurrentMonthUsageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="viam.proto.app.billing.GetCurrentMonthUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetCurrentMonthUsageResponse" title="viam.proto.app.billing.GetCurrentMonthUsageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetCurrentMonthUsageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfRequest" title="viam.proto.app.billing.GetInvoicePdfRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfRequest" title="viam.proto.app.billing.GetInvoicePdfRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfResponse" title="viam.proto.app.billing.GetInvoicePdfResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicePdfResponse" title="viam.proto.app.billing.GetInvoicePdfResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicePdfResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryRequest" title="viam.proto.app.billing.GetInvoicesSummaryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryRequest" title="viam.proto.app.billing.GetInvoicesSummaryRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetInvoicesSummaryResponse" title="viam.proto.app.billing.GetInvoicesSummaryResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInvoicesSummaryResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest" title="viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationRequest" title="viam.proto.app.billing.GetOrgBillingInformationRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.GetOrgBillingInformationResponse" title="viam.proto.app.billing.GetOrgBillingInformationResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetOrgBillingInformationResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.Invoice" title="viam.proto.app.billing.Invoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Invoice</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.Invoice" title="viam.proto.app.billing.Invoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Invoice</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary" title="viam.proto.app.billing.InvoiceSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvoiceSummary</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.InvoiceSummary" title="viam.proto.app.billing.InvoiceSummary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvoiceSummary</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodCard" title="viam.proto.app.billing.PaymentMethodCard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodCard</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodCard" title="viam.proto.app.billing.PaymentMethodCard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodCard</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType" title="viam.proto.app.billing.PaymentMethodType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.billing.PaymentMethodType" title="viam.proto.app.billing.PaymentMethodType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PaymentMethodType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -318,6 +328,34 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.billing.BillingServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">BillingServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#BillingServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.BillingServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.billing.</span></span><span class="sig-name descname"><span class="pre">UnimplementedBillingServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.billing.BillingServiceBase" title="viam.proto.app.billing.BillingServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BillingServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.GetCurrentMonthUsage">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetCurrentMonthUsage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageRequest" title="viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageRequest"><span class="pre">app.v1.billing_pb2.GetCurrentMonthUsageRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageResponse" title="viam.gen.app.v1.billing_pb2.GetCurrentMonthUsageResponse"><span class="pre">app.v1.billing_pb2.GetCurrentMonthUsageResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.GetCurrentMonthUsage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetCurrentMonthUsage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.GetOrgBillingInformation">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetOrgBillingInformation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetOrgBillingInformationRequest" title="viam.gen.app.v1.billing_pb2.GetOrgBillingInformationRequest"><span class="pre">app.v1.billing_pb2.GetOrgBillingInformationRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetOrgBillingInformationResponse" title="viam.gen.app.v1.billing_pb2.GetOrgBillingInformationResponse"><span class="pre">app.v1.billing_pb2.GetOrgBillingInformationResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.GetOrgBillingInformation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetOrgBillingInformation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicesSummary">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetInvoicesSummary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetInvoicesSummaryRequest" title="viam.gen.app.v1.billing_pb2.GetInvoicesSummaryRequest"><span class="pre">app.v1.billing_pb2.GetInvoicesSummaryRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetInvoicesSummaryResponse" title="viam.gen.app.v1.billing_pb2.GetInvoicesSummaryResponse"><span class="pre">app.v1.billing_pb2.GetInvoicesSummaryResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.GetInvoicesSummary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicesSummary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicePdf">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetInvoicePdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetInvoicePdfRequest" title="viam.gen.app.v1.billing_pb2.GetInvoicePdfRequest"><span class="pre">app.v1.billing_pb2.GetInvoicePdfRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/v1/billing_pb2/index.html#viam.gen.app.v1.billing_pb2.GetInvoicePdfResponse" title="viam.gen.app.v1.billing_pb2.GetInvoicePdfResponse"><span class="pre">app.v1.billing_pb2.GetInvoicePdfResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/v1/billing_grpc.html#UnimplementedBillingServiceBase.GetInvoicePdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.billing.UnimplementedBillingServiceBase.GetInvoicePdf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.billing.BillableResourceEvent">

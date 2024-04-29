@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.app.v1.end_user_grpc.EndUserServiceBase
+   viam.gen.app.v1.end_user_grpc.UnimplementedEndUserServiceBase
    viam.gen.app.v1.end_user_grpc.EndUserServiceStub
 
 
@@ -47,6 +48,31 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedEndUserServiceBase
+
+
+   Bases: :py:obj:`EndUserServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: IsLegalAccepted(stream: grpclib.server.Stream[app.v1.end_user_pb2.IsLegalAcceptedRequest, app.v1.end_user_pb2.IsLegalAcceptedResponse]) -> None
+      :async:
+
+
+   .. py:method:: AcceptLegal(stream: grpclib.server.Stream[app.v1.end_user_pb2.AcceptLegalRequest, app.v1.end_user_pb2.AcceptLegalResponse]) -> None
+      :async:
+
+
+   .. py:method:: RegisterAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.RegisterAuthApplicationRequest, app.v1.end_user_pb2.RegisterAuthApplicationResponse]) -> None
+      :async:
+
+
+   .. py:method:: UpdateAuthApplication(stream: grpclib.server.Stream[app.v1.end_user_pb2.UpdateAuthApplicationRequest, app.v1.end_user_pb2.UpdateAuthApplicationResponse]) -> None
+      :async:
 
 
 

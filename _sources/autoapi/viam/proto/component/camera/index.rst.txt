@@ -20,6 +20,7 @@ Classes
 
    viam.proto.component.camera.CameraServiceBase
    viam.proto.component.camera.CameraServiceStub
+   viam.proto.component.camera.UnimplementedCameraServiceBase
    viam.proto.component.camera.DistortionParameters
    viam.proto.component.camera.Format
    viam.proto.component.camera.GetImageRequest
@@ -88,6 +89,43 @@ Classes
 
 
 .. py:class:: CameraServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedCameraServiceBase
+
+
+   Bases: :py:obj:`CameraServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetImage(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImageRequest, component.camera.v1.camera_pb2.GetImageResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetImages(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetImagesRequest, component.camera.v1.camera_pb2.GetImagesResponse]) -> None
+      :async:
+
+
+   .. py:method:: RenderFrame(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.RenderFrameRequest, google.api.httpbody_pb2.HttpBody]) -> None
+      :async:
+
+
+   .. py:method:: GetPointCloud(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetPointCloudRequest, component.camera.v1.camera_pb2.GetPointCloudResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[component.camera.v1.camera_pb2.GetPropertiesRequest, component.camera.v1.camera_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

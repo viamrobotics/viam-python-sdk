@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.app.data.v1.data_grpc.DataServiceBase
+   viam.gen.app.data.v1.data_grpc.UnimplementedDataServiceBase
    viam.gen.app.data.v1.data_grpc.DataServiceStub
 
 
@@ -127,6 +128,95 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedDataServiceBase
+
+
+   Bases: :py:obj:`DataServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: TabularDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByFilterRequest, app.data.v1.data_pb2.TabularDataByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: TabularDataBySQL(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataBySQLRequest, app.data.v1.data_pb2.TabularDataBySQLResponse]) -> None
+      :async:
+
+
+   .. py:method:: TabularDataByMQL(stream: grpclib.server.Stream[app.data.v1.data_pb2.TabularDataByMQLRequest, app.data.v1.data_pb2.TabularDataByMQLResponse]) -> None
+      :async:
+
+
+   .. py:method:: BinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByFilterRequest, app.data.v1.data_pb2.BinaryDataByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: BinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.BinaryDataByIDsRequest, app.data.v1.data_pb2.BinaryDataByIDsResponse]) -> None
+      :async:
+
+
+   .. py:method:: DeleteTabularData(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteTabularDataRequest, app.data.v1.data_pb2.DeleteTabularDataResponse]) -> None
+      :async:
+
+
+   .. py:method:: DeleteBinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteBinaryDataByFilterRequest, app.data.v1.data_pb2.DeleteBinaryDataByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: DeleteBinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.DeleteBinaryDataByIDsRequest, app.data.v1.data_pb2.DeleteBinaryDataByIDsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddTagsToBinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddTagsToBinaryDataByIDsRequest, app.data.v1.data_pb2.AddTagsToBinaryDataByIDsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddTagsToBinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddTagsToBinaryDataByFilterRequest, app.data.v1.data_pb2.AddTagsToBinaryDataByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveTagsFromBinaryDataByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveTagsFromBinaryDataByIDsRequest, app.data.v1.data_pb2.RemoveTagsFromBinaryDataByIDsResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveTagsFromBinaryDataByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterRequest, app.data.v1.data_pb2.RemoveTagsFromBinaryDataByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: TagsByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.TagsByFilterRequest, app.data.v1.data_pb2.TagsByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddBoundingBoxToImageByID(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddBoundingBoxToImageByIDRequest, app.data.v1.data_pb2.AddBoundingBoxToImageByIDResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveBoundingBoxFromImageByID(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDRequest, app.data.v1.data_pb2.RemoveBoundingBoxFromImageByIDResponse]) -> None
+      :async:
+
+
+   .. py:method:: BoundingBoxLabelsByFilter(stream: grpclib.server.Stream[app.data.v1.data_pb2.BoundingBoxLabelsByFilterRequest, app.data.v1.data_pb2.BoundingBoxLabelsByFilterResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetDatabaseConnection(stream: grpclib.server.Stream[app.data.v1.data_pb2.GetDatabaseConnectionRequest, app.data.v1.data_pb2.GetDatabaseConnectionResponse]) -> None
+      :async:
+
+
+   .. py:method:: ConfigureDatabaseUser(stream: grpclib.server.Stream[app.data.v1.data_pb2.ConfigureDatabaseUserRequest, app.data.v1.data_pb2.ConfigureDatabaseUserResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddBinaryDataToDatasetByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.AddBinaryDataToDatasetByIDsRequest, app.data.v1.data_pb2.AddBinaryDataToDatasetByIDsResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveBinaryDataFromDatasetByIDs(stream: grpclib.server.Stream[app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsRequest, app.data.v1.data_pb2.RemoveBinaryDataFromDatasetByIDsResponse]) -> None
+      :async:
 
 
 

@@ -20,6 +20,7 @@ Classes
 
    viam.proto.app.billing.BillingServiceBase
    viam.proto.app.billing.BillingServiceStub
+   viam.proto.app.billing.UnimplementedBillingServiceBase
    viam.proto.app.billing.BillableResourceEvent
    viam.proto.app.billing.GetCurrentMonthUsageRequest
    viam.proto.app.billing.GetCurrentMonthUsageResponse
@@ -70,6 +71,31 @@ Classes
 
 
 .. py:class:: BillingServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedBillingServiceBase
+
+
+   Bases: :py:obj:`BillingServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetCurrentMonthUsage(stream: grpclib.server.Stream[app.v1.billing_pb2.GetCurrentMonthUsageRequest, app.v1.billing_pb2.GetCurrentMonthUsageResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetOrgBillingInformation(stream: grpclib.server.Stream[app.v1.billing_pb2.GetOrgBillingInformationRequest, app.v1.billing_pb2.GetOrgBillingInformationResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetInvoicesSummary(stream: grpclib.server.Stream[app.v1.billing_pb2.GetInvoicesSummaryRequest, app.v1.billing_pb2.GetInvoicesSummaryResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetInvoicePdf(stream: grpclib.server.Stream[app.v1.billing_pb2.GetInvoicePdfRequest, app.v1.billing_pb2.GetInvoicePdfResponse]) -> None
+      :async:
 
 
 

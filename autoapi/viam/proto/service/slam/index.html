@@ -94,6 +94,14 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceStub"><code class="docutils literal notranslate"><span class="pre">SLAMServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase.GetPosition()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPointCloudMap"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase.GetPointCloudMap()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetInternalState"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase.GetInternalState()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase.GetProperties()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase.DoCommand()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateRequest"><code class="docutils literal notranslate"><span class="pre">GetInternalStateRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateRequest.name"><code class="docutils literal notranslate"><span class="pre">GetInternalStateRequest.name</span></code></a></li>
 </ul>
@@ -205,37 +213,40 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.SLAMServiceStub" title="viam.proto.service.slam.SLAMServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateRequest" title="viam.proto.service.slam.GetInternalStateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase" title="viam.proto.service.slam.UnimplementedSLAMServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedSLAMServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateRequest" title="viam.proto.service.slam.GetInternalStateRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateResponse" title="viam.proto.service.slam.GetInternalStateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetInternalStateResponse" title="viam.proto.service.slam.GetInternalStateResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetInternalStateResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPointCloudMapRequest" title="viam.proto.service.slam.GetPointCloudMapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPointCloudMapRequest" title="viam.proto.service.slam.GetPointCloudMapRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPointCloudMapResponse" title="viam.proto.service.slam.GetPointCloudMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPointCloudMapResponse" title="viam.proto.service.slam.GetPointCloudMapResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPointCloudMapResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPositionRequest" title="viam.proto.service.slam.GetPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPositionRequest" title="viam.proto.service.slam.GetPositionRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPositionResponse" title="viam.proto.service.slam.GetPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPositionResponse" title="viam.proto.service.slam.GetPositionResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPositionResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPropertiesRequest" title="viam.proto.service.slam.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPropertiesRequest" title="viam.proto.service.slam.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPropertiesResponse" title="viam.proto.service.slam.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.GetPropertiesResponse" title="viam.proto.service.slam.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
 <td><p>Returns properties information for the named slam service</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.MappingMode" title="viam.proto.service.slam.MappingMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MappingMode</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.MappingMode" title="viam.proto.service.slam.MappingMode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MappingMode</span></code></a></p></td>
 <td><p>MappingMode represnts the various form of mapping and localizing SLAM can perform.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.SensorInfo" title="viam.proto.service.slam.SensorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorInfo</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.SensorInfo" title="viam.proto.service.slam.SensorInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.slam.SensorType" title="viam.proto.service.slam.SensorType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorType</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.slam.SensorType" title="viam.proto.service.slam.SensorType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -282,6 +293,39 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.service.slam.SLAMServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.slam.</span></span><span class="sig-name descname"><span class="pre">SLAMServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#SLAMServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.SLAMServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.slam.</span></span><span class="sig-name descname"><span class="pre">UnimplementedSLAMServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.service.slam.SLAMServiceBase" title="viam.proto.service.slam.SLAMServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SLAMServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPosition">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPosition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPositionRequest" title="viam.gen.service.slam.v1.slam_pb2.GetPositionRequest"><span class="pre">service.slam.v1.slam_pb2.GetPositionRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPositionResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPositionResponse"><span class="pre">service.slam.v1.slam_pb2.GetPositionResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase.GetPosition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPosition" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPointCloudMap">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPointCloudMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapRequest" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapRequest"><span class="pre">service.slam.v1.slam_pb2.GetPointCloudMapRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPointCloudMapResponse"><span class="pre">service.slam.v1.slam_pb2.GetPointCloudMapResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase.GetPointCloudMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetPointCloudMap" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase.GetInternalState">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetInternalState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetInternalStateRequest" title="viam.gen.service.slam.v1.slam_pb2.GetInternalStateRequest"><span class="pre">service.slam.v1.slam_pb2.GetInternalStateRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse" title="viam.gen.service.slam.v1.slam_pb2.GetInternalStateResponse"><span class="pre">service.slam.v1.slam_pb2.GetInternalStateResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase.GetInternalState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetInternalState" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase.GetProperties">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPropertiesRequest" title="viam.gen.service.slam.v1.slam_pb2.GetPropertiesRequest"><span class="pre">service.slam.v1.slam_pb2.GetPropertiesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/slam/v1/slam_pb2/index.html#viam.gen.service.slam.v1.slam_pb2.GetPropertiesResponse" title="viam.gen.service.slam.v1.slam_pb2.GetPropertiesResponse"><span class="pre">service.slam.v1.slam_pb2.GetPropertiesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase.GetProperties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.GetProperties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.slam.UnimplementedSLAMServiceBase.DoCommand">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/slam/v1/slam_grpc.html#UnimplementedSLAMServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.slam.UnimplementedSLAMServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.service.slam.GetInternalStateRequest">

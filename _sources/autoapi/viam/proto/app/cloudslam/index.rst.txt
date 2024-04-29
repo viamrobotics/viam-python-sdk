@@ -20,6 +20,7 @@ Classes
 
    viam.proto.app.cloudslam.CloudSLAMServiceBase
    viam.proto.app.cloudslam.CloudSLAMServiceStub
+   viam.proto.app.cloudslam.UnimplementedCloudSLAMServiceBase
    viam.proto.app.cloudslam.CaptureInterval
    viam.proto.app.cloudslam.EndStatus
    viam.proto.app.cloudslam.GetActiveMappingSessionsForRobotRequest
@@ -84,6 +85,39 @@ Classes
 
 
 .. py:class:: CloudSLAMServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedCloudSLAMServiceBase
+
+
+   Bases: :py:obj:`CloudSLAMServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: StartMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StartMappingSessionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetActiveMappingSessionsForRobot(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotRequest, app.cloudslam.v1.cloud_slam_pb2.GetActiveMappingSessionsForRobotResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetMappingSessionPointCloud(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionPointCloudResponse]) -> None
+      :async:
+
+
+   .. py:method:: ListMappingSessions(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsRequest, app.cloudslam.v1.cloud_slam_pb2.ListMappingSessionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: StopMappingSession(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionRequest, app.cloudslam.v1.cloud_slam_pb2.StopMappingSessionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetMappingSessionMetadataByID(stream: grpclib.server.Stream[app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDRequest, app.cloudslam.v1.cloud_slam_pb2.GetMappingSessionMetadataByIDResponse]) -> None
+      :async:
 
 
 

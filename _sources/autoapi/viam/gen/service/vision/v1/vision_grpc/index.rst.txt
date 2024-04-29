@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.service.vision.v1.vision_grpc.VisionServiceBase
+   viam.gen.service.vision.v1.vision_grpc.UnimplementedVisionServiceBase
    viam.gen.service.vision.v1.vision_grpc.VisionServiceStub
 
 
@@ -57,6 +58,39 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedVisionServiceBase
+
+
+   Bases: :py:obj:`VisionServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetDetectionsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectionsFromCameraRequest, service.vision.v1.vision_pb2.GetDetectionsFromCameraResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetDetections(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetDetectionsRequest, service.vision.v1.vision_pb2.GetDetectionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetClassificationsFromCamera(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsFromCameraRequest, service.vision.v1.vision_pb2.GetClassificationsFromCameraResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetClassifications(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetClassificationsRequest, service.vision.v1.vision_pb2.GetClassificationsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetObjectPointClouds(stream: grpclib.server.Stream[service.vision.v1.vision_pb2.GetObjectPointCloudsRequest, service.vision.v1.vision_pb2.GetObjectPointCloudsResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

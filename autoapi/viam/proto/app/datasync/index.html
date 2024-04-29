@@ -82,6 +82,12 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceStub"><code class="docutils literal notranslate"><span class="pre">DataSyncServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataSyncServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.DataCaptureUpload"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataSyncServiceBase.DataCaptureUpload()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.FileUpload"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataSyncServiceBase.FileUpload()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.StreamingDataCaptureUpload"><code class="docutils literal notranslate"><span class="pre">UnimplementedDataSyncServiceBase.StreamingDataCaptureUpload()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval"><code class="docutils literal notranslate"><span class="pre">CaptureInterval</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval.start"><code class="docutils literal notranslate"><span class="pre">CaptureInterval.start</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval.end"><code class="docutils literal notranslate"><span class="pre">CaptureInterval.end</span></code></a></li>
@@ -250,46 +256,49 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceStub" title="viam.proto.app.datasync.DataSyncServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSyncServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval" title="viam.proto.app.datasync.CaptureInterval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureInterval</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase" title="viam.proto.app.datasync.UnimplementedDataSyncServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedDataSyncServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.CaptureInterval" title="viam.proto.app.datasync.CaptureInterval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureInterval</span></code></a></p></td>
 <td><p>CaptureInterval specifies the start and end times of the data capture.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata" title="viam.proto.app.datasync.DataCaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureMetadata" title="viam.proto.app.datasync.DataCaptureMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureMetadata</span></code></a></p></td>
 <td><p>DataCaptureMetadata contains the metadata for data captured by collectors.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadMetadata" title="viam.proto.app.datasync.DataCaptureUploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadMetadata</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadMetadata" title="viam.proto.app.datasync.DataCaptureUploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadMetadata</span></code></a></p></td>
 <td><p>DataCaptureUploadMetadata contains the metadata for streaming binary (image + file) data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadRequest" title="viam.proto.app.datasync.DataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadRequest" title="viam.proto.app.datasync.DataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadRequest</span></code></a></p></td>
 <td><p>DataCaptureUploadRequest requests to upload the contents and metadata for tabular data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="viam.proto.app.datasync.DataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataCaptureUploadResponse" title="viam.proto.app.datasync.DataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataCaptureUploadResponse</span></code></a></p></td>
 <td><p>DataCaptureUploadResponse returns the file id of the uploaded contents and metadata for tabular data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataType" title="viam.proto.app.datasync.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.DataType" title="viam.proto.app.datasync.DataType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataType</span></code></a></p></td>
 <td><p>DataType specifies the type of data uploaded.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileData" title="viam.proto.app.datasync.FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileData</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileData" title="viam.proto.app.datasync.FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileData</span></code></a></p></td>
 <td><p>FileData contains the contents of binary (image + file) data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadRequest" title="viam.proto.app.datasync.FileUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadRequest" title="viam.proto.app.datasync.FileUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadRequest</span></code></a></p></td>
 <td><p>FileUploadRequest requests to upload the contents and metadata for binary (image + file) data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse" title="viam.proto.app.datasync.FileUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.FileUploadResponse" title="viam.proto.app.datasync.FileUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileUploadResponse</span></code></a></p></td>
 <td><p>FileUploadResponse returns the file id of the uploaded contents and metadata for binary (image + file) data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorData" title="viam.proto.app.datasync.SensorData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorData</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorData" title="viam.proto.app.datasync.SensorData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorData</span></code></a></p></td>
 <td><p>SensorData contains the contents and metadata for tabular data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata" title="viam.proto.app.datasync.SensorMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorMetadata</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.SensorMetadata" title="viam.proto.app.datasync.SensorMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SensorMetadata</span></code></a></p></td>
 <td><p>SensorMetadata contains the time the sensor data was requested and was received.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadRequest" title="viam.proto.app.datasync.StreamingDataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadRequest" title="viam.proto.app.datasync.StreamingDataCaptureUploadRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadRequest</span></code></a></p></td>
 <td><p>StreamingDataCaptureUploadRequest requests to upload the contents and metadata for streaming binary (image + file) data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="viam.proto.app.datasync.StreamingDataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.StreamingDataCaptureUploadResponse" title="viam.proto.app.datasync.StreamingDataCaptureUploadResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StreamingDataCaptureUploadResponse</span></code></a></p></td>
 <td><p>StreamingDataCaptureUploadResponse returns the file id of the uploaded contents and metadata for streaming binary (image + file) data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata" title="viam.proto.app.datasync.UploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.datasync.UploadMetadata" title="viam.proto.app.datasync.UploadMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UploadMetadata</span></code></a></p></td>
 <td><p>UploadMetadata contains the metadata for binary (image + file) data.</p></td>
 </tr>
 </tbody>
@@ -326,6 +335,29 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.datasync.DataSyncServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">DataSyncServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datasync/v1/data_sync_grpc.html#DataSyncServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datasync.DataSyncServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.UnimplementedDataSyncServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.datasync.</span></span><span class="sig-name descname"><span class="pre">UnimplementedDataSyncServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datasync/v1/data_sync_grpc.html#UnimplementedDataSyncServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.datasync.DataSyncServiceBase" title="viam.proto.app.datasync.DataSyncServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataSyncServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.UnimplementedDataSyncServiceBase.DataCaptureUpload">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DataCaptureUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest" title="viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest"><span class="pre">app.datasync.v1.data_sync_pb2.DataCaptureUploadRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse" title="viam.gen.app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse"><span class="pre">app.datasync.v1.data_sync_pb2.DataCaptureUploadResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datasync/v1/data_sync_grpc.html#UnimplementedDataSyncServiceBase.DataCaptureUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.DataCaptureUpload" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.UnimplementedDataSyncServiceBase.FileUpload">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">FileUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.FileUploadRequest" title="viam.gen.app.datasync.v1.data_sync_pb2.FileUploadRequest"><span class="pre">app.datasync.v1.data_sync_pb2.FileUploadRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.FileUploadResponse" title="viam.gen.app.datasync.v1.data_sync_pb2.FileUploadResponse"><span class="pre">app.datasync.v1.data_sync_pb2.FileUploadResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datasync/v1/data_sync_grpc.html#UnimplementedDataSyncServiceBase.FileUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.FileUpload" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.datasync.UnimplementedDataSyncServiceBase.StreamingDataCaptureUpload">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StreamingDataCaptureUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest" title="viam.gen.app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest"><span class="pre">app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/datasync/v1/data_sync_pb2/index.html#viam.gen.app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse" title="viam.gen.app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse"><span class="pre">app.datasync.v1.data_sync_pb2.StreamingDataCaptureUploadResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/datasync/v1/data_sync_grpc.html#UnimplementedDataSyncServiceBase.StreamingDataCaptureUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.datasync.UnimplementedDataSyncServiceBase.StreamingDataCaptureUpload" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.datasync.CaptureInterval">

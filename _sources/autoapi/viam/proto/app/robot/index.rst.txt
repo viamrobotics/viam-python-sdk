@@ -20,6 +20,7 @@ Classes
 
    viam.proto.app.robot.RobotServiceBase
    viam.proto.app.robot.RobotServiceStub
+   viam.proto.app.robot.UnimplementedRobotServiceBase
    viam.proto.app.robot.AgentInfo
    viam.proto.app.robot.AppValidationStatus
    viam.proto.app.robot.AuthConfig
@@ -89,6 +90,31 @@ Classes
 
 
 .. py:class:: RobotServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedRobotServiceBase
+
+
+   Bases: :py:obj:`RobotServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Config(stream: grpclib.server.Stream[app.v1.robot_pb2.ConfigRequest, app.v1.robot_pb2.ConfigResponse]) -> None
+      :async:
+
+
+   .. py:method:: Certificate(stream: grpclib.server.Stream[app.v1.robot_pb2.CertificateRequest, app.v1.robot_pb2.CertificateResponse]) -> None
+      :async:
+
+
+   .. py:method:: Log(stream: grpclib.server.Stream[app.v1.robot_pb2.LogRequest, app.v1.robot_pb2.LogResponse]) -> None
+      :async:
+
+
+   .. py:method:: NeedsRestart(stream: grpclib.server.Stream[app.v1.robot_pb2.NeedsRestartRequest, app.v1.robot_pb2.NeedsRestartResponse]) -> None
+      :async:
 
 
 

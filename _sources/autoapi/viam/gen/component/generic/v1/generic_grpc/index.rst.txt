@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.component.generic.v1.generic_grpc.GenericServiceBase
+   viam.gen.component.generic.v1.generic_grpc.UnimplementedGenericServiceBase
    viam.gen.component.generic.v1.generic_grpc.GenericServiceStub
 
 
@@ -37,6 +38,23 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedGenericServiceBase
+
+
+   Bases: :py:obj:`GenericServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

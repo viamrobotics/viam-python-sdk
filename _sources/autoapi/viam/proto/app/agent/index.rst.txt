@@ -22,6 +22,8 @@ Classes
    viam.proto.app.agent.AgentAppServiceStub
    viam.proto.app.agent.AgentDeviceServiceBase
    viam.proto.app.agent.AgentDeviceServiceStub
+   viam.proto.app.agent.UnimplementedAgentAppServiceBase
+   viam.proto.app.agent.UnimplementedAgentDeviceServiceBase
    viam.proto.app.agent.AppAgentConfig
    viam.proto.app.agent.AppSubsystemConfig
    viam.proto.app.agent.DeviceAgentConfigRequest
@@ -82,6 +84,36 @@ Classes
 
 
 .. py:class:: AgentDeviceServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedAgentAppServiceBase
+
+
+   Bases: :py:obj:`AgentAppServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.GetAgentConfigRequest, app.agent.v1.agent_pb2.GetAgentConfigResponse]) -> None
+      :async:
+
+
+   .. py:method:: UpdateAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.UpdateAgentConfigRequest, app.agent.v1.agent_pb2.UpdateAgentConfigResponse]) -> None
+      :async:
+
+
+
+.. py:class:: UnimplementedAgentDeviceServiceBase
+
+
+   Bases: :py:obj:`AgentDeviceServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: DeviceAgentConfig(stream: grpclib.server.Stream[app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse]) -> None
+      :async:
 
 
 

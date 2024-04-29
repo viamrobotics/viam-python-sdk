@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.provisioning.v1.provisioning_grpc.ProvisioningServiceBase
+   viam.gen.provisioning.v1.provisioning_grpc.UnimplementedProvisioningServiceBase
    viam.gen.provisioning.v1.provisioning_grpc.ProvisioningServiceStub
 
 
@@ -47,6 +48,31 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedProvisioningServiceBase
+
+
+   Bases: :py:obj:`ProvisioningServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetSmartMachineStatus(stream: grpclib.server.Stream[provisioning.v1.provisioning_pb2.GetSmartMachineStatusRequest, provisioning.v1.provisioning_pb2.GetSmartMachineStatusResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetNetworkCredentials(stream: grpclib.server.Stream[provisioning.v1.provisioning_pb2.SetNetworkCredentialsRequest, provisioning.v1.provisioning_pb2.SetNetworkCredentialsResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetSmartMachineCredentials(stream: grpclib.server.Stream[provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsRequest, provisioning.v1.provisioning_pb2.SetSmartMachineCredentialsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetNetworkList(stream: grpclib.server.Stream[provisioning.v1.provisioning_pb2.GetNetworkListRequest, provisioning.v1.provisioning_pb2.GetNetworkListResponse]) -> None
+      :async:
 
 
 

@@ -20,6 +20,7 @@ Classes
 
    viam.proto.service.mlmodel.MLModelServiceBase
    viam.proto.service.mlmodel.MLModelServiceStub
+   viam.proto.service.mlmodel.UnimplementedMLModelServiceBase
    viam.proto.service.mlmodel.File
    viam.proto.service.mlmodel.FlatTensor
    viam.proto.service.mlmodel.FlatTensorDataDouble
@@ -67,6 +68,23 @@ Classes
 
 
 .. py:class:: MLModelServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedMLModelServiceBase
+
+
+   Bases: :py:obj:`MLModelServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Infer(stream: grpclib.server.Stream[service.mlmodel.v1.mlmodel_pb2.InferRequest, service.mlmodel.v1.mlmodel_pb2.InferResponse]) -> None
+      :async:
+
+
+   .. py:method:: Metadata(stream: grpclib.server.Stream[service.mlmodel.v1.mlmodel_pb2.MetadataRequest, service.mlmodel.v1.mlmodel_pb2.MetadataResponse]) -> None
+      :async:
 
 
 

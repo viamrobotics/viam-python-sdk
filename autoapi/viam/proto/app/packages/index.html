@@ -85,6 +85,13 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.PackageServiceStub"><code class="docutils literal notranslate"><span class="pre">PackageServiceStub</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.CreatePackage"><code class="docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase.CreatePackage()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.DeletePackage"><code class="docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase.DeletePackage()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.GetPackage"><code class="docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase.GetPackage()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.ListPackages"><code class="docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase.ListPackages()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.app.packages.CreatePackageRequest"><code class="docutils literal notranslate"><span class="pre">CreatePackageRequest</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.CreatePackageRequest.info"><code class="docutils literal notranslate"><span class="pre">CreatePackageRequest.info</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.app.packages.CreatePackageRequest.contents"><code class="docutils literal notranslate"><span class="pre">CreatePackageRequest.contents</span></code></a></li>
@@ -229,40 +236,43 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageServiceStub" title="viam.proto.app.packages.PackageServiceStub"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageServiceStub</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.CreatePackageRequest" title="viam.proto.app.packages.CreatePackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreatePackageRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.UnimplementedPackageServiceBase" title="viam.proto.app.packages.UnimplementedPackageServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedPackageServiceBase</span></code></a></p></td>
+<td><p>Helper class that provides a standard way to create an ABC using</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.CreatePackageRequest" title="viam.proto.app.packages.CreatePackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreatePackageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.CreatePackageResponse" title="viam.proto.app.packages.CreatePackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreatePackageResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.CreatePackageResponse" title="viam.proto.app.packages.CreatePackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CreatePackageResponse</span></code></a></p></td>
 <td><p>Returns the package ID and version which are populated in GetPackageRequest and DeletePackageRequest to</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.DeletePackageRequest" title="viam.proto.app.packages.DeletePackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeletePackageRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.DeletePackageRequest" title="viam.proto.app.packages.DeletePackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeletePackageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.DeletePackageResponse" title="viam.proto.app.packages.DeletePackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeletePackageResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.DeletePackageResponse" title="viam.proto.app.packages.DeletePackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeletePackageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.FileInfo" title="viam.proto.app.packages.FileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileInfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.FileInfo" title="viam.proto.app.packages.FileInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.GetPackageRequest" title="viam.proto.app.packages.GetPackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPackageRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.GetPackageRequest" title="viam.proto.app.packages.GetPackageRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPackageRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse" title="viam.proto.app.packages.GetPackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPackageResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.GetPackageResponse" title="viam.proto.app.packages.GetPackageResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPackageResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesRequest" title="viam.proto.app.packages.ListPackagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesRequest" title="viam.proto.app.packages.ListPackagesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesResponse" title="viam.proto.app.packages.ListPackagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesResponse</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.ListPackagesResponse" title="viam.proto.app.packages.ListPackagesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ListPackagesResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.Package" title="viam.proto.app.packages.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.Package" title="viam.proto.app.packages.Package"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Package</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageInfo" title="viam.proto.app.packages.PackageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageInfo</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageInfo" title="viam.proto.app.packages.PackageInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageInfo</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageType" title="viam.proto.app.packages.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.app.packages.PackageType" title="viam.proto.app.packages.PackageType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageType</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -304,6 +314,34 @@ inheritance.</p>
 <dt class="sig sig-object py" id="viam.proto.app.packages.PackageServiceStub">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.packages.</span></span><span class="sig-name descname"><span class="pre">PackageServiceStub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.client.Channel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#PackageServiceStub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.PackageServiceStub" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.app.packages.UnimplementedPackageServiceBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.app.packages.</span></span><span class="sig-name descname"><span class="pre">UnimplementedPackageServiceBase</span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#UnimplementedPackageServiceBase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.UnimplementedPackageServiceBase" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#viam.proto.app.packages.PackageServiceBase" title="viam.proto.app.packages.PackageServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PackageServiceBase</span></code></a></p>
+<p>Helper class that provides a standard way to create an ABC using
+inheritance.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.packages.UnimplementedPackageServiceBase.CreatePackage">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CreatePackage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.CreatePackageRequest" title="viam.gen.app.packages.v1.packages_pb2.CreatePackageRequest"><span class="pre">app.packages.v1.packages_pb2.CreatePackageRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.CreatePackageResponse" title="viam.gen.app.packages.v1.packages_pb2.CreatePackageResponse"><span class="pre">app.packages.v1.packages_pb2.CreatePackageResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#UnimplementedPackageServiceBase.CreatePackage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.CreatePackage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.packages.UnimplementedPackageServiceBase.DeletePackage">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DeletePackage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.DeletePackageRequest" title="viam.gen.app.packages.v1.packages_pb2.DeletePackageRequest"><span class="pre">app.packages.v1.packages_pb2.DeletePackageRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.DeletePackageResponse" title="viam.gen.app.packages.v1.packages_pb2.DeletePackageResponse"><span class="pre">app.packages.v1.packages_pb2.DeletePackageResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#UnimplementedPackageServiceBase.DeletePackage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.DeletePackage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.packages.UnimplementedPackageServiceBase.GetPackage">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GetPackage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.GetPackageRequest" title="viam.gen.app.packages.v1.packages_pb2.GetPackageRequest"><span class="pre">app.packages.v1.packages_pb2.GetPackageRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.GetPackageResponse" title="viam.gen.app.packages.v1.packages_pb2.GetPackageResponse"><span class="pre">app.packages.v1.packages_pb2.GetPackageResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#UnimplementedPackageServiceBase.GetPackage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.GetPackage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.app.packages.UnimplementedPackageServiceBase.ListPackages">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ListPackages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.ListPackagesRequest" title="viam.gen.app.packages.v1.packages_pb2.ListPackagesRequest"><span class="pre">app.packages.v1.packages_pb2.ListPackagesRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/app/packages/v1/packages_pb2/index.html#viam.gen.app.packages.v1.packages_pb2.ListPackagesResponse" title="viam.gen.app.packages.v1.packages_pb2.ListPackagesResponse"><span class="pre">app.packages.v1.packages_pb2.ListPackagesResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/app/packages/v1/packages_grpc.html#UnimplementedPackageServiceBase.ListPackages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.app.packages.UnimplementedPackageServiceBase.ListPackages" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.app.packages.CreatePackageRequest">

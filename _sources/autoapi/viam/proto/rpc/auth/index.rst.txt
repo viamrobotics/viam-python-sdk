@@ -22,6 +22,8 @@ Classes
    viam.proto.rpc.auth.AuthServiceStub
    viam.proto.rpc.auth.ExternalAuthServiceBase
    viam.proto.rpc.auth.ExternalAuthServiceStub
+   viam.proto.rpc.auth.UnimplementedAuthServiceBase
+   viam.proto.rpc.auth.UnimplementedExternalAuthServiceBase
    viam.proto.rpc.auth.AuthenticateRequest
    viam.proto.rpc.auth.AuthenticateResponse
    viam.proto.rpc.auth.AuthenticateToRequest
@@ -70,6 +72,32 @@ Classes
 
 
 .. py:class:: ExternalAuthServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedAuthServiceBase
+
+
+   Bases: :py:obj:`AuthServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Authenticate(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]) -> None
+      :async:
+
+
+
+.. py:class:: UnimplementedExternalAuthServiceBase
+
+
+   Bases: :py:obj:`ExternalAuthServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: AuthenticateTo(stream: grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]) -> None
+      :async:
 
 
 

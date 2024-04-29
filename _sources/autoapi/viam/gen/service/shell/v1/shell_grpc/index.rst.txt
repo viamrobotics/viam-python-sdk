@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.service.shell.v1.shell_grpc.ShellServiceBase
+   viam.gen.service.shell.v1.shell_grpc.UnimplementedShellServiceBase
    viam.gen.service.shell.v1.shell_grpc.ShellServiceStub
 
 
@@ -37,6 +38,23 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedShellServiceBase
+
+
+   Bases: :py:obj:`ShellServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.service.sensors.v1.sensors_grpc.SensorsServiceBase
+   viam.gen.service.sensors.v1.sensors_grpc.UnimplementedSensorsServiceBase
    viam.gen.service.sensors.v1.sensors_grpc.SensorsServiceStub
 
 
@@ -42,6 +43,27 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedSensorsServiceBase
+
+
+   Bases: :py:obj:`SensorsServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetSensors(stream: grpclib.server.Stream[service.sensors.v1.sensors_pb2.GetSensorsRequest, service.sensors.v1.sensors_pb2.GetSensorsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetReadings(stream: grpclib.server.Stream[service.sensors.v1.sensors_pb2.GetReadingsRequest, service.sensors.v1.sensors_pb2.GetReadingsResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 

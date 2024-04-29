@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.component.motor.v1.motor_grpc.MotorServiceBase
+   viam.gen.component.motor.v1.motor_grpc.UnimplementedMotorServiceBase
    viam.gen.component.motor.v1.motor_grpc.MotorServiceStub
 
 
@@ -82,6 +83,59 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedMotorServiceBase
+
+
+   Bases: :py:obj:`MotorServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: SetPower(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.SetPowerRequest, component.motor.v1.motor_pb2.SetPowerResponse]) -> None
+      :async:
+
+
+   .. py:method:: GoFor(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GoForRequest, component.motor.v1.motor_pb2.GoForResponse]) -> None
+      :async:
+
+
+   .. py:method:: GoTo(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GoToRequest, component.motor.v1.motor_pb2.GoToResponse]) -> None
+      :async:
+
+
+   .. py:method:: ResetZeroPosition(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.ResetZeroPositionRequest, component.motor.v1.motor_pb2.ResetZeroPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GetPositionRequest, component.motor.v1.motor_pb2.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GetPropertiesRequest, component.motor.v1.motor_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.StopRequest, component.motor.v1.motor_pb2.StopResponse]) -> None
+      :async:
+
+
+   .. py:method:: IsPowered(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.IsPoweredRequest, component.motor.v1.motor_pb2.IsPoweredResponse]) -> None
+      :async:
+
+
+   .. py:method:: IsMoving(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.IsMovingRequest, component.motor.v1.motor_pb2.IsMovingResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

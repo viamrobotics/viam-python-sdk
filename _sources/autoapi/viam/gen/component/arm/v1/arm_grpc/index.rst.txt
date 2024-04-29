@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.component.arm.v1.arm_grpc.ArmServiceBase
+   viam.gen.component.arm.v1.arm_grpc.UnimplementedArmServiceBase
    viam.gen.component.arm.v1.arm_grpc.ArmServiceStub
 
 
@@ -72,6 +73,51 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedArmServiceBase
+
+
+   Bases: :py:obj:`ArmServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetEndPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetEndPositionRequest, component.arm.v1.arm_pb2.GetEndPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: MoveToPosition(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToPositionRequest, component.arm.v1.arm_pb2.MoveToPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.GetJointPositionsRequest, component.arm.v1.arm_pb2.GetJointPositionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: MoveToJointPositions(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.MoveToJointPositionsRequest, component.arm.v1.arm_pb2.MoveToJointPositionsResponse]) -> None
+      :async:
+
+
+   .. py:method:: Stop(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.StopRequest, component.arm.v1.arm_pb2.StopResponse]) -> None
+      :async:
+
+
+   .. py:method:: IsMoving(stream: grpclib.server.Stream[component.arm.v1.arm_pb2.IsMovingRequest, component.arm.v1.arm_pb2.IsMovingResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetKinematics(stream: grpclib.server.Stream[common.v1.common_pb2.GetKinematicsRequest, common.v1.common_pb2.GetKinematicsResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

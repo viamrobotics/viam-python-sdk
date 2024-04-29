@@ -20,6 +20,7 @@ Classes
 
    viam.proto.app.packages.PackageServiceBase
    viam.proto.app.packages.PackageServiceStub
+   viam.proto.app.packages.UnimplementedPackageServiceBase
    viam.proto.app.packages.CreatePackageRequest
    viam.proto.app.packages.CreatePackageResponse
    viam.proto.app.packages.DeletePackageRequest
@@ -69,6 +70,31 @@ Classes
 
 
 .. py:class:: PackageServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedPackageServiceBase
+
+
+   Bases: :py:obj:`PackageServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: CreatePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.CreatePackageRequest, app.packages.v1.packages_pb2.CreatePackageResponse]) -> None
+      :async:
+
+
+   .. py:method:: DeletePackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.DeletePackageRequest, app.packages.v1.packages_pb2.DeletePackageResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPackage(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.GetPackageRequest, app.packages.v1.packages_pb2.GetPackageResponse]) -> None
+      :async:
+
+
+   .. py:method:: ListPackages(stream: grpclib.server.Stream[app.packages.v1.packages_pb2.ListPackagesRequest, app.packages.v1.packages_pb2.ListPackagesResponse]) -> None
+      :async:
 
 
 

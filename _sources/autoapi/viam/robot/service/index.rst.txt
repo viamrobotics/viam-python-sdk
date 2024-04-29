@@ -32,14 +32,10 @@ Attributes
 .. py:class:: RobotService(manager: viam.resource.manager.ResourceManager)
 
 
-   Bases: :py:obj:`viam.proto.robot.RobotServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
+   Bases: :py:obj:`viam.proto.robot.UnimplementedRobotServiceBase`, :py:obj:`viam.resource.rpc_service_base.ResourceRPCServiceBase`
 
    Helper class that provides a standard way to create an ABC using
    inheritance.
-
-   .. py:method:: RestartModule(stream: grpclib.server.Stream[viam.proto.robot.RestartModuleRequest, viam.proto.robot.RestartModuleResponse]) -> None
-      :async:
-
 
    .. py:method:: ResourceNames(stream: grpclib.server.Stream[viam.proto.robot.ResourceNamesRequest, viam.proto.robot.ResourceNamesResponse]) -> None
       :async:
@@ -53,59 +49,7 @@ Attributes
       :async:
 
 
-   .. py:method:: GetOperations(stream: grpclib.server.Stream[viam.proto.robot.GetOperationsRequest, viam.proto.robot.GetOperationsResponse]) -> None
-      :async:
-
-
-   .. py:method:: ResourceRPCSubtypes(stream: grpclib.server.Stream[viam.proto.robot.ResourceRPCSubtypesRequest, viam.proto.robot.ResourceRPCSubtypesResponse]) -> None
-      :async:
-
-
-   .. py:method:: CancelOperation(stream: grpclib.server.Stream[viam.proto.robot.CancelOperationRequest, viam.proto.robot.CancelOperationResponse]) -> None
-      :async:
-
-
-   .. py:method:: BlockForOperation(stream: grpclib.server.Stream[viam.proto.robot.BlockForOperationRequest, viam.proto.robot.BlockForOperationResponse]) -> None
-      :async:
-
-
-   .. py:method:: FrameSystemConfig(stream: grpclib.server.Stream[viam.proto.robot.FrameSystemConfigRequest, viam.proto.robot.FrameSystemConfigResponse]) -> None
-      :async:
-
-
-   .. py:method:: TransformPose(stream: grpclib.server.Stream[viam.proto.robot.TransformPoseRequest, viam.proto.robot.TransformPoseResponse]) -> None
-      :async:
-
-
-   .. py:method:: DiscoverComponents(stream: grpclib.server.Stream[viam.proto.robot.DiscoverComponentsRequest, viam.proto.robot.DiscoverComponentsResponse]) -> None
-      :async:
-
-
    .. py:method:: StopAll(stream: grpclib.server.Stream[viam.proto.robot.StopAllRequest, viam.proto.robot.StopAllResponse]) -> None
-      :async:
-
-
-   .. py:method:: GetSessions(stream: grpclib.server.Stream[viam.proto.robot.GetSessionsRequest, viam.proto.robot.GetSessionsResponse]) -> None
-      :async:
-
-
-   .. py:method:: StartSession(stream: grpclib.server.Stream[viam.proto.robot.StartSessionRequest, viam.proto.robot.StartSessionResponse]) -> None
-      :async:
-
-
-   .. py:method:: SendSessionHeartbeat(stream: grpclib.server.Stream[viam.proto.robot.SendSessionHeartbeatRequest, viam.proto.robot.SendSessionHeartbeatResponse]) -> None
-      :async:
-
-
-   .. py:method:: TransformPCD(stream: grpclib.server.Stream[viam.proto.robot.TransformPCDRequest, viam.proto.robot.TransformPCDResponse]) -> None
-      :async:
-
-
-   .. py:method:: Log(stream: grpclib.server.Stream[viam.proto.robot.LogRequest, viam.proto.robot.LogResponse]) -> None
-      :async:
-
-
-   .. py:method:: GetCloudMetadata(stream: grpclib.server.Stream[viam.proto.robot.GetCloudMetadataRequest, viam.proto.robot.GetCloudMetadataResponse]) -> None
       :async:
 
 

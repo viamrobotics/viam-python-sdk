@@ -20,6 +20,7 @@ Classes
 
    viam.proto.component.sensor.SensorServiceBase
    viam.proto.component.sensor.SensorServiceStub
+   viam.proto.component.sensor.UnimplementedSensorServiceBase
 
 
 
@@ -52,6 +53,27 @@ Classes
 
 
 .. py:class:: SensorServiceStub(channel: grpclib.client.Channel)
+
+
+
+.. py:class:: UnimplementedSensorServiceBase
+
+
+   Bases: :py:obj:`SensorServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetReadings(stream: grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetGeometries(stream: grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]) -> None
+      :async:
 
 
 

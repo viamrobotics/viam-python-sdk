@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.stream.v1.stream_grpc.StreamServiceBase
+   viam.gen.stream.v1.stream_grpc.UnimplementedStreamServiceBase
    viam.gen.stream.v1.stream_grpc.StreamServiceStub
 
 
@@ -42,6 +43,27 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedStreamServiceBase
+
+
+   Bases: :py:obj:`StreamServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: ListStreams(stream: grpclib.server.Stream[stream.v1.stream_pb2.ListStreamsRequest, stream.v1.stream_pb2.ListStreamsResponse]) -> None
+      :async:
+
+
+   .. py:method:: AddStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.AddStreamRequest, stream.v1.stream_pb2.AddStreamResponse]) -> None
+      :async:
+
+
+   .. py:method:: RemoveStream(stream: grpclib.server.Stream[stream.v1.stream_pb2.RemoveStreamRequest, stream.v1.stream_pb2.RemoveStreamResponse]) -> None
+      :async:
 
 
 

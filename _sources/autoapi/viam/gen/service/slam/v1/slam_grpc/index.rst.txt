@@ -13,6 +13,7 @@ Classes
 .. autoapisummary::
 
    viam.gen.service.slam.v1.slam_grpc.SLAMServiceBase
+   viam.gen.service.slam.v1.slam_grpc.UnimplementedSLAMServiceBase
    viam.gen.service.slam.v1.slam_grpc.SLAMServiceStub
 
 
@@ -52,6 +53,35 @@ Classes
 
 
    .. py:method:: __mapping__() -> Dict[str, grpclib.const.Handler]
+
+
+
+.. py:class:: UnimplementedSLAMServiceBase
+
+
+   Bases: :py:obj:`SLAMServiceBase`
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+   .. py:method:: GetPosition(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPositionRequest, service.slam.v1.slam_pb2.GetPositionResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetPointCloudMap(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPointCloudMapRequest, service.slam.v1.slam_pb2.GetPointCloudMapResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetInternalState(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetInternalStateRequest, service.slam.v1.slam_pb2.GetInternalStateResponse]) -> None
+      :async:
+
+
+   .. py:method:: GetProperties(stream: grpclib.server.Stream[service.slam.v1.slam_pb2.GetPropertiesRequest, service.slam.v1.slam_pb2.GetPropertiesResponse]) -> None
+      :async:
+
+
+   .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
+      :async:
 
 
 
