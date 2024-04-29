@@ -113,14 +113,7 @@ class DataClient:
 
     @dataclass
     class TabularData:
-        """Class representing a piece of tabular data and associated metadata.
-
-        Args:
-            data (Mapping[str, Any]): the requested data.
-            metadata (viam.proto.app.data.CaptureMetadata): the metadata from the request.
-            time_requested (datetime): the time the data request was sent.
-            time_received (datetime): the time the requested data was received.
-        """
+        """Class representing a piece of tabular data and associated metadata."""
 
         data: Mapping[str, Any]
         """The requested data"""
@@ -145,12 +138,7 @@ class DataClient:
     # TODO (RSDK-6684): Revisit if this shadow type is necessary
     @dataclass
     class BinaryData:
-        """Class representing a piece of binary data and associated metadata.
-
-        Args:
-            data (bytes): the requested data.
-            metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.
-        """
+        """Class representing a piece of binary data and associated metadata."""
 
         data: bytes
         """The request data"""
@@ -207,7 +195,7 @@ class DataClient:
             last = None
             my_filter = Filter(component_name="left_motor")
             while True:
-                tabular_data, last = await data_client.tabular_data_by_filter(my_filter, last)
+                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)
                 if not tabular_data:
                     break
                 my_data.extend(tabular_data)
@@ -284,7 +272,7 @@ class DataClient:
             last = None
             my_filter = Filter(component_name="camera")
             while True:
-                data, last = await data_client.binary_data_by_filter(my_filter, last)
+                data, count, last = await data_client.binary_data_by_filter(my_filter, last)
                 if not data:
                     break
                 my_data.extend(data)
