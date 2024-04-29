@@ -195,7 +195,7 @@ class DataClient:
         dest: Optional[str] = None,
     ) -> Tuple[List[TabularData], int, str]:
         """Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-        as the second object in the returned tuple. If a destination is provided, the data will be saved to that file.
+        in the returned tuple. If a destination is provided, the data will be saved to that file.
         If the file is not empty, it will be overwritten.
 
         ::
@@ -265,7 +265,7 @@ class DataClient:
         dest: Optional[str] = None,
     ) -> Tuple[List[BinaryData], int, str]:
         """Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
-        as the second object in the returned tuple. If a destination is provided, the data will be saved to that file.
+        in the returned tuple. If a destination is provided, the data will be saved to that file.
         If the file is not empty, it will be overwritten.
 
         ::
