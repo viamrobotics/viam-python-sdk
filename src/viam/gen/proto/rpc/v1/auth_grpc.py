@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 import google.api.annotations_pb2
@@ -16,6 +17,11 @@ class AuthServiceBase(abc.ABC):
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/proto.rpc.v1.AuthService/Authenticate': grpclib.const.Handler(self.Authenticate, grpclib.const.Cardinality.UNARY_UNARY, proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse)}
 
+class UnimplementedAuthServiceBase(AuthServiceBase):
+
+    async def Authenticate(self, stream: 'grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateRequest, proto.rpc.v1.auth_pb2.AuthenticateResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class AuthServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -29,6 +35,11 @@ class ExternalAuthServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/proto.rpc.v1.ExternalAuthService/AuthenticateTo': grpclib.const.Handler(self.AuthenticateTo, grpclib.const.Cardinality.UNARY_UNARY, proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse)}
+
+class UnimplementedExternalAuthServiceBase(ExternalAuthServiceBase):
+
+    async def AuthenticateTo(self, stream: 'grpclib.server.Stream[proto.rpc.v1.auth_pb2.AuthenticateToRequest, proto.rpc.v1.auth_pb2.AuthenticateToResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class ExternalAuthServiceStub:
 

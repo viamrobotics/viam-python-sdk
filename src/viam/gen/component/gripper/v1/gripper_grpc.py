@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
@@ -37,6 +38,26 @@ class GripperServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.component.gripper.v1.GripperService/Open': grpclib.const.Handler(self.Open, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.OpenRequest, component.gripper.v1.gripper_pb2.OpenResponse), '/viam.component.gripper.v1.GripperService/Grab': grpclib.const.Handler(self.Grab, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.GrabRequest, component.gripper.v1.gripper_pb2.GrabResponse), '/viam.component.gripper.v1.GripperService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.StopRequest, component.gripper.v1.gripper_pb2.StopResponse), '/viam.component.gripper.v1.GripperService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.gripper.v1.gripper_pb2.IsMovingRequest, component.gripper.v1.gripper_pb2.IsMovingResponse), '/viam.component.gripper.v1.GripperService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.gripper.v1.GripperService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
+
+class UnimplementedGripperServiceBase(GripperServiceBase):
+
+    async def Open(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.OpenRequest, component.gripper.v1.gripper_pb2.OpenResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def Grab(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.GrabRequest, component.gripper.v1.gripper_pb2.GrabResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def Stop(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.StopRequest, component.gripper.v1.gripper_pb2.StopResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def IsMoving(self, stream: 'grpclib.server.Stream[component.gripper.v1.gripper_pb2.IsMovingRequest, component.gripper.v1.gripper_pb2.IsMovingResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class GripperServiceStub:
 

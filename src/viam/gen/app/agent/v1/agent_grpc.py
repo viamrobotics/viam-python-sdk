@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 import google.protobuf.duration_pb2
@@ -22,6 +23,14 @@ class AgentAppServiceBase(abc.ABC):
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.app.agent.v1.AgentAppService/GetAgentConfig': grpclib.const.Handler(self.GetAgentConfig, grpclib.const.Cardinality.UNARY_UNARY, app.agent.v1.agent_pb2.GetAgentConfigRequest, app.agent.v1.agent_pb2.GetAgentConfigResponse), '/viam.app.agent.v1.AgentAppService/UpdateAgentConfig': grpclib.const.Handler(self.UpdateAgentConfig, grpclib.const.Cardinality.UNARY_UNARY, app.agent.v1.agent_pb2.UpdateAgentConfigRequest, app.agent.v1.agent_pb2.UpdateAgentConfigResponse)}
 
+class UnimplementedAgentAppServiceBase(AgentAppServiceBase):
+
+    async def GetAgentConfig(self, stream: 'grpclib.server.Stream[app.agent.v1.agent_pb2.GetAgentConfigRequest, app.agent.v1.agent_pb2.GetAgentConfigResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def UpdateAgentConfig(self, stream: 'grpclib.server.Stream[app.agent.v1.agent_pb2.UpdateAgentConfigRequest, app.agent.v1.agent_pb2.UpdateAgentConfigResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
 class AgentAppServiceStub:
 
     def __init__(self, channel: grpclib.client.Channel) -> None:
@@ -36,6 +45,11 @@ class AgentDeviceServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.app.agent.v1.AgentDeviceService/DeviceAgentConfig': grpclib.const.Handler(self.DeviceAgentConfig, grpclib.const.Cardinality.UNARY_UNARY, app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse)}
+
+class UnimplementedAgentDeviceServiceBase(AgentDeviceServiceBase):
+
+    async def DeviceAgentConfig(self, stream: 'grpclib.server.Stream[app.agent.v1.agent_pb2.DeviceAgentConfigRequest, app.agent.v1.agent_pb2.DeviceAgentConfigResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class AgentDeviceServiceStub:
 

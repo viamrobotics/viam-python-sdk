@@ -122,6 +122,8 @@ def build_dirs(root: str, package: str, modules: List[str]):
             mod_name = f"viam.{PROTO_GEN_PACKAGE}.{package}.{imp}"
             module = importlib.import_module(mod_name)
             for name, _ in inspect.getmembers(module, check_class):
+                if name[0] == "_":
+                    continue
                 class_names.append(name)
 
             if class_names:

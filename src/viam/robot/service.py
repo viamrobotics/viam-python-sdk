@@ -6,47 +6,19 @@ from grpclib.server import Stream
 from viam import logging
 from viam.components.movement_sensor import MovementSensor
 from viam.components.sensor import Sensor
-from viam.errors import MethodNotImplementedError, ViamGRPCError
+from viam.errors import ViamGRPCError
 from viam.proto.common import ResourceName
 from viam.proto.robot import (
-    BlockForOperationRequest,
-    BlockForOperationResponse,
-    CancelOperationRequest,
-    CancelOperationResponse,
-    DiscoverComponentsRequest,
-    DiscoverComponentsResponse,
-    FrameSystemConfigRequest,
-    FrameSystemConfigResponse,
-    GetCloudMetadataRequest,
-    GetCloudMetadataResponse,
-    GetOperationsRequest,
-    GetOperationsResponse,
-    GetSessionsRequest,
-    GetSessionsResponse,
     GetStatusRequest,
     GetStatusResponse,
-    LogRequest,
-    LogResponse,
     ResourceNamesRequest,
     ResourceNamesResponse,
-    ResourceRPCSubtypesRequest,
-    ResourceRPCSubtypesResponse,
-    RestartModuleRequest,
-    RestartModuleResponse,
-    RobotServiceBase,
-    SendSessionHeartbeatRequest,
-    SendSessionHeartbeatResponse,
-    StartSessionRequest,
-    StartSessionResponse,
     Status,
     StopAllRequest,
     StopAllResponse,
     StreamStatusRequest,
     StreamStatusResponse,
-    TransformPCDRequest,
-    TransformPCDResponse,
-    TransformPoseRequest,
-    TransformPoseResponse,
+    UnimplementedRobotServiceBase,
 )
 from viam.resource.registry import Registry
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
@@ -55,7 +27,7 @@ from viam.utils import resource_names_for_resource, struct_to_dict
 LOGGER = logging.getLogger(__name__)
 
 
-class RobotService(RobotServiceBase, ResourceRPCServiceBase):
+class RobotService(UnimplementedRobotServiceBase, ResourceRPCServiceBase):
     def _generate_metadata(self) -> List[ResourceName]:
         md: Set[ResourceName] = set()
 
@@ -89,9 +61,6 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
             statuses = [s for s in statuses if s.name in resource_names]
         return statuses
 
-    async def RestartModule(self, stream: Stream[RestartModuleRequest, RestartModuleResponse]) -> None:
-        return None
-
     async def ResourceNames(self, stream: Stream[ResourceNamesRequest, ResourceNamesResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
@@ -118,27 +87,6 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
             response = StreamStatusResponse(status=status)
             await stream.send_message(response)
             await asyncio.sleep(interval)
-
-    async def GetOperations(self, stream: Stream[GetOperationsRequest, GetOperationsResponse]) -> None:
-        raise MethodNotImplementedError("GetOperations").grpc_error
-
-    async def ResourceRPCSubtypes(self, stream: Stream[ResourceRPCSubtypesRequest, ResourceRPCSubtypesResponse]) -> None:
-        raise MethodNotImplementedError("ResourceRPCSubtypes").grpc_error
-
-    async def CancelOperation(self, stream: Stream[CancelOperationRequest, CancelOperationResponse]) -> None:
-        raise MethodNotImplementedError("CancelOperation").grpc_error
-
-    async def BlockForOperation(self, stream: Stream[BlockForOperationRequest, BlockForOperationResponse]) -> None:
-        raise MethodNotImplementedError("BlockForOperation").grpc_error
-
-    async def FrameSystemConfig(self, stream: Stream[FrameSystemConfigRequest, FrameSystemConfigResponse]) -> None:
-        raise MethodNotImplementedError("FrameSystemConfig").grpc_error
-
-    async def TransformPose(self, stream: Stream[TransformPoseRequest, TransformPoseResponse]) -> None:
-        raise MethodNotImplementedError("TransformPose").grpc_error
-
-    async def DiscoverComponents(self, stream: Stream[DiscoverComponentsRequest, DiscoverComponentsResponse]) -> None:
-        raise MethodNotImplementedError("DiscoverComponents").grpc_error
 
     async def StopAll(self, stream: Stream[StopAllRequest, StopAllResponse]) -> None:
         request = await stream.recv_message()
@@ -167,21 +115,3 @@ class RobotService(RobotServiceBase, ResourceRPCServiceBase):
         if errors:
             raise ViamGRPCError(f'Failed to stop components named {", ".join(errors)}')
         await stream.send_message(StopAllResponse())
-
-    async def GetSessions(self, stream: Stream[GetSessionsRequest, GetSessionsResponse]) -> None:
-        raise MethodNotImplementedError("GetSessions").grpc_error
-
-    async def StartSession(self, stream: Stream[StartSessionRequest, StartSessionResponse]) -> None:
-        raise MethodNotImplementedError("StartSession").grpc_error
-
-    async def SendSessionHeartbeat(self, stream: Stream[SendSessionHeartbeatRequest, SendSessionHeartbeatResponse]) -> None:
-        raise MethodNotImplementedError("SendSessionHeartbeat").grpc_error
-
-    async def TransformPCD(self, stream: Stream[TransformPCDRequest, TransformPCDResponse]) -> None:
-        raise MethodNotImplementedError("TransformPCD").grpc_error
-
-    async def Log(self, stream: Stream[LogRequest, LogResponse]) -> None:
-        raise MethodNotImplementedError("Log").grpc_error
-
-    async def GetCloudMetadata(self, stream: Stream[GetCloudMetadataRequest, GetCloudMetadataResponse]) -> None:
-        raise MethodNotImplementedError("GetCloudMetadata").grpc_error

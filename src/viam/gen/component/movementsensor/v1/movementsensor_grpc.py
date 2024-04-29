@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
@@ -57,6 +58,41 @@ class MovementSensorServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.component.movementsensor.v1.MovementSensorService/GetLinearVelocity': grpclib.const.Handler(self.GetLinearVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetAngularVelocity': grpclib.const.Handler(self.GetAngularVelocity, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetCompassHeading': grpclib.const.Handler(self.GetCompassHeading, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetOrientation': grpclib.const.Handler(self.GetOrientation, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetPosition': grpclib.const.Handler(self.GetPosition, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, component.movementsensor.v1.movementsensor_pb2.GetPositionResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetAccuracy': grpclib.const.Handler(self.GetAccuracy, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetLinearAcceleration': grpclib.const.Handler(self.GetLinearAcceleration, grpclib.const.Cardinality.UNARY_UNARY, component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse), '/viam.component.movementsensor.v1.MovementSensorService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse), '/viam.component.movementsensor.v1.MovementSensorService/GetReadings': grpclib.const.Handler(self.GetReadings, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse)}
+
+class UnimplementedMovementSensorServiceBase(MovementSensorServiceBase):
+
+    async def GetLinearVelocity(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearVelocityResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetAngularVelocity(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityRequest, component.movementsensor.v1.movementsensor_pb2.GetAngularVelocityResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetCompassHeading(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingRequest, component.movementsensor.v1.movementsensor_pb2.GetCompassHeadingResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetOrientation(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetOrientationRequest, component.movementsensor.v1.movementsensor_pb2.GetOrientationResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetPosition(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPositionRequest, component.movementsensor.v1.movementsensor_pb2.GetPositionResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetProperties(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetPropertiesRequest, component.movementsensor.v1.movementsensor_pb2.GetPropertiesResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetAccuracy(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetAccuracyRequest, component.movementsensor.v1.movementsensor_pb2.GetAccuracyResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetLinearAcceleration(self, stream: 'grpclib.server.Stream[component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationRequest, component.movementsensor.v1.movementsensor_pb2.GetLinearAccelerationResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetReadings(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetReadingsRequest, common.v1.common_pb2.GetReadingsResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class MovementSensorServiceStub:
 

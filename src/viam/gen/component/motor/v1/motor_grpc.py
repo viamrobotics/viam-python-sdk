@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 from .... import common
@@ -57,6 +58,41 @@ class MotorServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/viam.component.motor.v1.MotorService/SetPower': grpclib.const.Handler(self.SetPower, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.SetPowerRequest, component.motor.v1.motor_pb2.SetPowerResponse), '/viam.component.motor.v1.MotorService/GoFor': grpclib.const.Handler(self.GoFor, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.GoForRequest, component.motor.v1.motor_pb2.GoForResponse), '/viam.component.motor.v1.MotorService/GoTo': grpclib.const.Handler(self.GoTo, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.GoToRequest, component.motor.v1.motor_pb2.GoToResponse), '/viam.component.motor.v1.MotorService/ResetZeroPosition': grpclib.const.Handler(self.ResetZeroPosition, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.ResetZeroPositionRequest, component.motor.v1.motor_pb2.ResetZeroPositionResponse), '/viam.component.motor.v1.MotorService/GetPosition': grpclib.const.Handler(self.GetPosition, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.GetPositionRequest, component.motor.v1.motor_pb2.GetPositionResponse), '/viam.component.motor.v1.MotorService/GetProperties': grpclib.const.Handler(self.GetProperties, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.GetPropertiesRequest, component.motor.v1.motor_pb2.GetPropertiesResponse), '/viam.component.motor.v1.MotorService/Stop': grpclib.const.Handler(self.Stop, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.StopRequest, component.motor.v1.motor_pb2.StopResponse), '/viam.component.motor.v1.MotorService/IsPowered': grpclib.const.Handler(self.IsPowered, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.IsPoweredRequest, component.motor.v1.motor_pb2.IsPoweredResponse), '/viam.component.motor.v1.MotorService/IsMoving': grpclib.const.Handler(self.IsMoving, grpclib.const.Cardinality.UNARY_UNARY, component.motor.v1.motor_pb2.IsMovingRequest, component.motor.v1.motor_pb2.IsMovingResponse), '/viam.component.motor.v1.MotorService/DoCommand': grpclib.const.Handler(self.DoCommand, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse), '/viam.component.motor.v1.MotorService/GetGeometries': grpclib.const.Handler(self.GetGeometries, grpclib.const.Cardinality.UNARY_UNARY, common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse)}
+
+class UnimplementedMotorServiceBase(MotorServiceBase):
+
+    async def SetPower(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.SetPowerRequest, component.motor.v1.motor_pb2.SetPowerResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GoFor(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.GoForRequest, component.motor.v1.motor_pb2.GoForResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GoTo(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.GoToRequest, component.motor.v1.motor_pb2.GoToResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def ResetZeroPosition(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.ResetZeroPositionRequest, component.motor.v1.motor_pb2.ResetZeroPositionResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetPosition(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.GetPositionRequest, component.motor.v1.motor_pb2.GetPositionResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetProperties(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.GetPropertiesRequest, component.motor.v1.motor_pb2.GetPropertiesResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def Stop(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.StopRequest, component.motor.v1.motor_pb2.StopResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def IsPowered(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.IsPoweredRequest, component.motor.v1.motor_pb2.IsPoweredResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def IsMoving(self, stream: 'grpclib.server.Stream[component.motor.v1.motor_pb2.IsMovingRequest, component.motor.v1.motor_pb2.IsMovingResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def DoCommand(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def GetGeometries(self, stream: 'grpclib.server.Stream[common.v1.common_pb2.GetGeometriesRequest, common.v1.common_pb2.GetGeometriesResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class MotorServiceStub:
 

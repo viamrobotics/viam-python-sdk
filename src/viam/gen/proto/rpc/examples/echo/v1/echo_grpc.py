@@ -2,6 +2,7 @@ import abc
 import typing
 import grpclib.const
 import grpclib.client
+import grpclib.exceptions
 if typing.TYPE_CHECKING:
     import grpclib.server
 import google.api.annotations_pb2
@@ -23,6 +24,17 @@ class EchoServiceBase(abc.ABC):
 
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {'/proto.rpc.examples.echo.v1.EchoService/Echo': grpclib.const.Handler(self.Echo, grpclib.const.Cardinality.UNARY_UNARY, proto.rpc.examples.echo.v1.echo_pb2.EchoRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoResponse), '/proto.rpc.examples.echo.v1.EchoService/EchoMultiple': grpclib.const.Handler(self.EchoMultiple, grpclib.const.Cardinality.UNARY_STREAM, proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleResponse), '/proto.rpc.examples.echo.v1.EchoService/EchoBiDi': grpclib.const.Handler(self.EchoBiDi, grpclib.const.Cardinality.STREAM_STREAM, proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiResponse)}
+
+class UnimplementedEchoServiceBase(EchoServiceBase):
+
+    async def Echo(self, stream: 'grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def EchoMultiple(self, stream: 'grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoMultipleResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
+
+    async def EchoBiDi(self, stream: 'grpclib.server.Stream[proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiRequest, proto.rpc.examples.echo.v1.echo_pb2.EchoBiDiResponse]') -> None:
+        raise grpclib.exceptions.GRPCError(grpclib.const.Status.UNIMPLEMENTED)
 
 class EchoServiceStub:
 
