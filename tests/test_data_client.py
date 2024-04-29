@@ -123,17 +123,21 @@ class TestClient:
     async def test_tabular_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            tabular_data = await client.tabular_data_by_filter(filter=FILTER)
+            tabular_data, count, last = await client.tabular_data_by_filter(filter=FILTER)
             assert tabular_data == TABULAR_RESPONSE
+            assert count == len(tabular_data)
+            assert last is not ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            binary_data = await client.binary_data_by_filter(filter=FILTER, include_file_data=INCLUDE_BINARY)
+            binary_data, count, last = await client.binary_data_by_filter(filter=FILTER, include_binary_data=INCLUDE_BINARY)
             assert service.include_binary == INCLUDE_BINARY
             assert binary_data == BINARY_RESPONSE
+            assert count == len(binary_data)
+            assert last is not ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio

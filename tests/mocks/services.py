@@ -786,7 +786,14 @@ class MockData(DataServiceBase):
                     time_received=datetime_to_timestamp(tabular_data.time_received),
                 )
             )
-        await stream.send_message(TabularDataByFilterResponse(data=tabular_response_structs, metadata=tabular_metadata))
+        await stream.send_message(
+            TabularDataByFilterResponse(
+                data=tabular_response_structs,
+                metadata=tabular_metadata,
+                count=len(tabular_response_structs),
+                last="LAST_TABULAR_DATA_PAGE_ID",
+            )
+        )
         self.was_tabular_data_requested = True
 
     async def BinaryDataByFilter(self, stream: Stream[BinaryDataByFilterRequest, BinaryDataByFilterResponse]) -> None:
@@ -798,7 +805,11 @@ class MockData(DataServiceBase):
         self.filter = request.data_request.filter
         self.include_binary = request.include_binary
         await stream.send_message(
-            BinaryDataByFilterResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+            BinaryDataByFilterResponse(
+                data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response],
+                count=len(self.binary_response),
+                last="LAST_BINARY_DATA_PAGE_ID",
+            )
         )
         self.was_binary_data_requested = True
 
