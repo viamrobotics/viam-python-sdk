@@ -166,7 +166,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f664c73b380&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f664c73b740&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f664c73b790&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f664c73b7e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f664c73b830&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f664c73b880&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f664c73b8d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f664c73b920&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f664c73b970&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f664c73b9c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f664c73ba10&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f664c73ba60&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f664c73bab0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f664c73bb00&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f664c73bb50&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fcf24fbb470&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fcf24fbb830&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fcf24fbb880&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fcf24fbb8d0&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fcf24fbb920&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fcf24fbb970&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fcf24fbb9c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fcf24fbba10&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fcf24fbba60&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fcf24fbbab0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fcf24fbbb00&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fcf24fbbb50&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fcf24fbbba0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fcf24fbbbf0&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fcf24fbbc40&gt;]
 </pre></div>
 </div>
 </div>
@@ -1044,19 +1044,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}
-method_name: &quot;IsPowered&quot;
-Time requested: 2022-01-01 01:01:01
-Time received: 2022-12-31 23:59:59
-
-{&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}
-location_id: &quot;loc-id&quot;
-Time requested: 2023-01-02 00:00:00
-Time received: 2023-03-04 00:00:00
-
-{&#39;Position&#39;: 0.0}
-Time requested: 2023-05-06 00:00:00
-Time received: 2023-07-08 00:00:00
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=method_name: &quot;IsPowered&quot;
+, time_requested=datetime.datetime(2022, 1, 1, 1, 1, 1), time_received=datetime.datetime(2022, 12, 31, 23, 59, 59)), DataClient.TabularData(data={&#39;IsPowered&#39;: False, &#39;PowerPct&#39;: 0.0}, metadata=location_id: &quot;loc-id&quot;
+, time_requested=datetime.datetime(2023, 1, 2, 0, 0), time_received=datetime.datetime(2023, 3, 4, 0, 0)), DataClient.TabularData(data={&#39;Position&#39;: 0.0}, metadata=, time_requested=datetime.datetime(2023, 5, 6, 0, 0), time_received=datetime.datetime(2023, 7, 8, 0, 0))]
+0
 </pre></div>
 </div>
 </div>

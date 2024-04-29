@@ -222,7 +222,7 @@
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><span class="pre">viam.proto.app.data.CaptureMetadata</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_requested</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_received</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.TabularData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TabularData</span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.TabularData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData" title="Permalink to this definition"></a></dt>
 <dd><p>Class representing a piece of tabular data and associated metadata.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -237,22 +237,26 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData.data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The requested data</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.metadata">
 <span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.CaptureMetadata" title="viam.proto.app.data.CaptureMetadata"><span class="pre">viam.proto.app.data.CaptureMetadata</span></a></em><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData.metadata" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The metadata associated with the data</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.time_requested">
 <span class="sig-name descname"><span class="pre">time_requested</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData.time_requested" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The time the data were requested</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.time_received">
 <span class="sig-name descname"><span class="pre">time_received</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.datetime</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.TabularData.time_received" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The time the data were received</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.TabularData.__str__">
@@ -270,7 +274,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BinaryData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryMetadata" title="viam.proto.app.data.BinaryMetadata"><span class="pre">viam.proto.app.data.BinaryMetadata</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.BinaryData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BinaryData</span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.BinaryData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData" title="Permalink to this definition"></a></dt>
 <dd><p>Class representing a piece of binary data and associated metadata.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -283,12 +287,14 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData.data">
 <span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData.data" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The request data</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData.metadata">
 <span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryMetadata" title="viam.proto.app.data.BinaryMetadata"><span class="pre">viam.proto.app.data.BinaryMetadata</span></a></em><a class="headerlink" href="#viam.app.data_client.DataClient.BinaryData.metadata" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The metadata associated with the data</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.BinaryData.__str__">
@@ -306,12 +312,20 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_filter">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData"><span class="pre">TabularData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_filter" title="Permalink to this definition"></a></dt>
-<dd><p>Filter and download tabular data.</p>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.data.Order.ValueType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData"><span class="pre">TabularData</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Filter and download tabular data. The data will be paginated into pages of <cite>limit</cite> items, and the pagination ID will be included
+in the returned tuple. If a destination is provided, the data will be saved to that file.
+If the file is not empty, it will be overwritten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
 
+<span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">)</span>
-<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">tabular_data</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tabular_data</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">tabular_data</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -319,11 +333,20 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – Optional <cite>Filter</cite> specifying tabular data to retrieve. No <cite>Filter</cite> implies all tabular
 data.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – The maximum number of entries to include in a page. Defaults to 50 if unspecified.</p></li>
+<li><p><strong>sort_order</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><em>viam.proto.app.data.Order</em></a>) – The desired sort order of the data.</p></li>
+<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
+If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
+<li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
+<li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
+like cloud SLAM. Defaults to <cite>False</cite></p></li>
 <li><p><strong>dest</strong> (<em>str</em>) – Optional filepath for writing retrieved data.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The tabular data.</p>
+<dd class="field-even"><p>The tabular data.
+int: The count (number of entries)
+str: The last-returned page ID.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData">TabularData</a>]</p>
@@ -333,35 +356,47 @@ data.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.binary_data_by_filter">
-<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData"><span class="pre">BinaryData</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_filter" title="Permalink to this definition"></a></dt>
-<dd><p>Filter and download binary data.</p>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_by_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><span class="pre">viam.proto.app.data.Filter</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">viam.proto.app.data.Order.ValueType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_binary_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_only</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData"><span class="pre">BinaryData</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_by_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_by_filter" title="Permalink to this definition"></a></dt>
+<dd><p>Filter and download binary data. The data will be paginated into pages of <cite>limit</cite> items, and the pagination ID will be included
+in the returned tuple. If a destination is provided, the data will be saved to that file.
+If the file is not empty, it will be overwritten.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
 
-<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_type</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
-<span class="n">binary_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">)</span>
+
+<span class="n">my_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">my_filter</span> <span class="o">=</span> <span class="n">Filter</span><span class="p">(</span><span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;camera&quot;</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">data</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">binary_data_by_filter</span><span class="p">(</span><span class="n">my_filter</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="n">my_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filter</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a><em>]</em>) – Optional <cite>Filter</cite> specifying binary data to retrieve. No <cite>Filter</cite> implies all
-binary data.</p></li>
-<li><p><strong>dest</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional filepath for writing retrieved data.</p></li>
-<li><p><strong>include_file_data</strong> (<em>bool</em>) – Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults
-to true (i.e., both the files’ data and metadata are returned).</p></li>
-<li><p><strong>num_files</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
-Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first <cite>num_files</cite> will be returned,
-whichever comes first.</p></li>
+<li><p><strong>filter</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Filter" title="viam.proto.app.data.Filter"><em>viam.proto.app.data.Filter</em></a>) – Optional <cite>Filter</cite> specifying tabular data to retrieve. No <cite>Filter</cite> implies all binary
+data.</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – The maximum number of entries to include in a page. Defaults to 50 if unspecified.</p></li>
+<li><p><strong>sort_order</strong> (<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.Order" title="viam.proto.app.data.Order"><em>viam.proto.app.data.Order</em></a>) – The desired sort order of the data.</p></li>
+<li><p><strong>last</strong> (<em>str</em>) – Optional string indicating the ID of the last-returned data.
+If provided, the server will return the next data entries after the <cite>last</cite> ID.</p></li>
+<li><p><strong>include_binary_data</strong> (<em>bool</em>) – Boolean specifying whether to actually include the binary file data with each retrieved file.
+Defaults to true (i.e., both the files’ data and metadata are returned).</p></li>
+<li><p><strong>count_only</strong> (<em>bool</em>) – Whether to return only the total count of entries.</p></li>
+<li><p><strong>include_internal_data</strong> (<em>bool</em>) – Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
+like cloud SLAM. Defaults to <cite>False</cite></p></li>
+<li><p><strong>dest</strong> (<em>str</em>) – Optional filepath for writing retrieved data.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – If <cite>num_files</cite> is less than 0.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The binary data.
+int: The count (number of entries)
+str: The last-returned page ID.</p>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The binary data.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData">BinaryData</a>]</p>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#viam.app.data_client.DataClient.BinaryData" title="viam.app.data_client.DataClient.BinaryData">BinaryData</a>]</p>
 </dd>
 </dl>
 </dd></dl>

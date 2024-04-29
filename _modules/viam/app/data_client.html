@@ -89,6 +89,7 @@
              
   <h1>Source code for viam.app.data_client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
@@ -123,6 +124,7 @@
     <span class="n">Filter</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionRequest</span><span class="p">,</span>
     <span class="n">GetDatabaseConnectionResponse</span><span class="p">,</span>
+    <span class="n">Order</span><span class="p">,</span>
     <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">,</span>
     <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">,</span>
     <span class="n">RemoveTagsFromBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -199,7 +201,8 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.TabularData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">TabularData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of tabular data and associated metadata.</span>
 
 <span class="sd">        Args:</span>
@@ -209,16 +212,17 @@
 <span class="sd">            time_received (datetime): the time the requested data was received.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">CaptureMetadata</span><span class="p">,</span> <span class="n">time_requested</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">time_received</span><span class="p">:</span> <span class="n">datetime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">time_requested</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">time_received</span> <span class="o">=</span> <span class="n">time_received</span>
-
         <span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The requested data&quot;&quot;&quot;</span>
+
         <span class="n">metadata</span><span class="p">:</span> <span class="n">CaptureMetadata</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The metadata associated with the data&quot;&quot;&quot;</span>
+
         <span class="n">time_requested</span><span class="p">:</span> <span class="n">datetime</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The time the data were requested&quot;&quot;&quot;</span>
+
         <span class="n">time_received</span><span class="p">:</span> <span class="n">datetime</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The time the data were received&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DataClient.TabularData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">Time requested: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_requested</span><span class="si">}</span><span class="se">\n</span><span class="s2">Time received: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_received</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span></div>
@@ -229,7 +233,8 @@
             <span class="k">return</span> <span class="kc">False</span></div></div>
 
     <span class="c1"># TODO (RSDK-6684): Revisit if this shadow type is necessary</span>
-<div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
+<div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="nd">@dataclass</span>
+    <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.</span>
 
 <span class="sd">        Args:</span>
@@ -237,12 +242,11 @@
 <span class="sd">            metadata (viam.proto.app.data.BinaryMetadata): the metadata from the request.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">BinaryMetadata</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-
         <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The request data&quot;&quot;&quot;</span>
+
         <span class="n">metadata</span><span class="p">:</span> <span class="n">BinaryMetadata</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The metadata associated with the data&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="DataClient.BinaryData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
             <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span></div>
@@ -274,47 +278,68 @@
 <div class="viewcode-block" id="DataClient.tabular_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Order</span><span class="o">.</span><span class="n">ValueType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">count_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">include_internal_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">TabularData</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data.</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">TabularData</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included</span>
+<span class="sd">        in the returned tuple. If a destination is provided, the data will be saved to that file.</span>
+<span class="sd">        If the file is not empty, it will be overwritten.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.proto.app.data import Filter</span>
 
+<span class="sd">            my_data = []</span>
+<span class="sd">            last = None</span>
 <span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
-<span class="sd">            tabular_data = await data_client.tabular_data_by_filter(my_filter)</span>
+<span class="sd">            while True:</span>
+<span class="sd">                tabular_data, last = await data_client.tabular_data_by_filter(my_filter, last)</span>
+<span class="sd">                if not tabular_data:</span>
+<span class="sd">                    break</span>
+<span class="sd">                my_data.extend(tabular_data)</span>
+
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular</span>
 <span class="sd">                data.</span>
+<span class="sd">            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.</span>
+<span class="sd">            sort_order (viam.proto.app.data.Order): The desired sort order of the data.</span>
+<span class="sd">            last (str): Optional string indicating the ID of the last-returned data.</span>
+<span class="sd">                        If provided, the server will return the next data entries after the `last` ID.</span>
+<span class="sd">            count_only (bool): Whether to return only the total count of entries.</span>
+<span class="sd">            include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,</span>
+<span class="sd">                                          like cloud SLAM. Defaults to `False`</span>
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[TabularData]: The tabular data.</span>
+<span class="sd">            int: The count (number of entries)</span>
+<span class="sd">            str: The last-returned page ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
-        <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="c1"># `DataRequest`s are limited to 100 pieces of data, so we loop through calls until</span>
-        <span class="c1"># we are certain we&#39;ve received everything.</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
-            <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">data</span> <span class="o">+=</span> <span class="p">[</span>
-                <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">(</span>
-                    <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
-                    <span class="n">response</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">struct</span><span class="o">.</span><span class="n">metadata_index</span><span class="p">],</span>
-                    <span class="n">struct</span><span class="o">.</span><span class="n">time_requested</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
-                    <span class="n">struct</span><span class="o">.</span><span class="n">time_received</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
-                <span class="p">)</span>
-                <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span>
-            <span class="p">]</span>
-            <span class="n">last</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
+        <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">sort_order</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">sort_order</span> <span class="o">=</span> <span class="n">sort_order</span>
+        <span class="k">if</span> <span class="n">last</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">last</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="n">count_only</span><span class="p">,</span> <span class="n">include_internal_data</span><span class="o">=</span><span class="n">include_internal_data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">(</span>
+                <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="o">.</span><span class="n">data</span><span class="p">),</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="n">struct</span><span class="o">.</span><span class="n">metadata_index</span><span class="p">],</span>
+                <span class="n">struct</span><span class="o">.</span><span class="n">time_requested</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
+                <span class="n">struct</span><span class="o">.</span><span class="n">time_received</span><span class="o">.</span><span class="n">ToDatetime</span><span class="p">(),</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span>
+        <span class="p">]</span>
 
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
@@ -323,59 +348,72 @@
                 <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write tabular data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">data</span></div>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span></div>
 
 <div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">include_file_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">num_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data.</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">limit</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sort_order</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Order</span><span class="o">.</span><span class="n">ValueType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">last</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">include_binary_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">count_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">include_internal_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">dest</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">],</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included</span>
+<span class="sd">        in the returned tuple. If a destination is provided, the data will be saved to that file.</span>
+<span class="sd">        If the file is not empty, it will be overwritten.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            from viam.proto.app.data import Filter</span>
 
-<span class="sd">            my_filter = Filter(component_type=&quot;camera&quot;)</span>
-<span class="sd">            binary_data = await data_client.binary_data_by_filter(my_filter)</span>
+
+<span class="sd">            my_data = []</span>
+<span class="sd">            last = None</span>
+<span class="sd">            my_filter = Filter(component_name=&quot;camera&quot;)</span>
+<span class="sd">            while True:</span>
+<span class="sd">                data, last = await data_client.binary_data_by_filter(my_filter, last)</span>
+<span class="sd">                if not data:</span>
+<span class="sd">                    break</span>
+<span class="sd">                my_data.extend(data)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter (Optional[viam.proto.app.data.Filter]): Optional `Filter` specifying binary data to retrieve. No `Filter` implies all</span>
-<span class="sd">                binary data.</span>
-<span class="sd">            dest (Optional[str]): Optional filepath for writing retrieved data.</span>
-<span class="sd">            include_file_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults</span>
-<span class="sd">                to true (i.e., both the files&#39; data and metadata are returned).</span>
-<span class="sd">            num_files (Optional[str]): Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.</span>
-<span class="sd">                Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,</span>
-<span class="sd">                whichever comes first.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            ValueError: If `num_files` is less than 0.</span>
+<span class="sd">            filter (viam.proto.app.data.Filter): Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary</span>
+<span class="sd">                data.</span>
+<span class="sd">            limit (int): The maximum number of entries to include in a page. Defaults to 50 if unspecified.</span>
+<span class="sd">            sort_order (viam.proto.app.data.Order): The desired sort order of the data.</span>
+<span class="sd">            last (str): Optional string indicating the ID of the last-returned data.</span>
+<span class="sd">                        If provided, the server will return the next data entries after the `last` ID.</span>
+<span class="sd">            include_binary_data (bool): Boolean specifying whether to actually include the binary file data with each retrieved file.</span>
+<span class="sd">                                        Defaults to true (i.e., both the files&#39; data and metadata are returned).</span>
+<span class="sd">            count_only (bool): Whether to return only the total count of entries.</span>
+<span class="sd">            include_internal_data (bool): Whether to return the internal data. Internal data is used for Viam-specific data ingestion,</span>
+<span class="sd">                                          like cloud SLAM. Defaults to `False`</span>
+<span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[BinaryData]: The binary data.</span>
+<span class="sd">            int: The count (number of entries)</span>
+<span class="sd">            str: The last-returned page ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">num_files</span> <span class="o">=</span> <span class="n">num_files</span> <span class="k">if</span> <span class="n">num_files</span> <span class="k">else</span> <span class="mi">10</span> <span class="k">if</span> <span class="n">include_file_data</span> <span class="k">else</span> <span class="mi">100</span>
-        <span class="k">if</span> <span class="n">num_files</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;num_files must be at least 0.&quot;</span><span class="p">)</span>
-        <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
-        <span class="n">limit</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">include_file_data</span> <span class="k">else</span> <span class="mi">100</span>
-        <span class="n">last</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="c1"># `DataRequest`s are limited in pieces of data, so we loop through calls until</span>
-        <span class="c1"># we are certain we&#39;ve received everything.</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">new_data</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_binary_data_by_filter</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="n">include_file_data</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">new_data</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="k">elif</span> <span class="n">num_files</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_files</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">+=</span> <span class="n">new_data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">num_files</span><span class="p">]</span>
-                <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">+=</span> <span class="n">new_data</span>
-                <span class="n">num_files</span> <span class="o">-=</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">num_files</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="k">break</span>
-
+        <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">limit</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="n">limit</span>
+        <span class="k">if</span> <span class="n">sort_order</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">sort_order</span> <span class="o">=</span> <span class="n">sort_order</span>
+        <span class="k">if</span> <span class="n">last</span><span class="p">:</span>
+            <span class="n">data_request</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">last</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByFilterRequest</span><span class="p">(</span>
+            <span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span>
+            <span class="n">include_binary</span><span class="o">=</span><span class="n">include_binary_data</span><span class="p">,</span>
+            <span class="n">count_only</span><span class="o">=</span><span class="n">count_only</span><span class="p">,</span>
+            <span class="n">include_internal_data</span><span class="o">=</span><span class="n">include_internal_data</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
@@ -384,13 +422,7 @@
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_binary_data_by_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">:</span> <span class="n">Filter</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">include_binary</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">last</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">BinaryData</span><span class="p">],</span> <span class="nb">str</span><span class="p">]:</span>
-        <span class="n">data_request</span> <span class="o">=</span> <span class="n">DataRequest</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="n">last</span><span class="p">)</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByFilterRequest</span><span class="p">(</span><span class="n">data_request</span><span class="o">=</span><span class="n">data_request</span><span class="p">,</span> <span class="n">count_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="n">include_binary</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">],</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span>
+        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span></div>
 
 <div class="viewcode-block" id="DataClient.binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_ids</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

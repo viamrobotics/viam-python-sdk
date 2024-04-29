@@ -63,7 +63,7 @@ Attributes
            asyncio.run(main())
 
 
-   .. py:class:: TabularData(data: Mapping[str, Any], metadata: viam.proto.app.data.CaptureMetadata, time_requested: datetime.datetime, time_received: datetime.datetime)
+   .. py:class:: TabularData
 
 
       Class representing a piece of tabular data and associated metadata.
@@ -80,22 +80,22 @@ Attributes
       .. py:attribute:: data
          :type: Mapping[str, Any]
 
-         
+         The requested data
 
       .. py:attribute:: metadata
          :type: viam.proto.app.data.CaptureMetadata
 
-         
+         The metadata associated with the data
 
       .. py:attribute:: time_requested
          :type: datetime.datetime
 
-         
+         The time the data were requested
 
       .. py:attribute:: time_received
          :type: datetime.datetime
 
-         
+         The time the data were received
 
       .. py:method:: __str__() -> str
 
@@ -108,7 +108,7 @@ Attributes
 
 
 
-   .. py:class:: BinaryData(data: bytes, metadata: viam.proto.app.data.BinaryMetadata)
+   .. py:class:: BinaryData
 
 
       Class representing a piece of binary data and associated metadata.
@@ -121,12 +121,12 @@ Attributes
       .. py:attribute:: data
          :type: bytes
 
-         
+         The request data
 
       .. py:attribute:: metadata
          :type: viam.proto.app.data.BinaryMetadata
 
-         
+         The metadata associated with the data
 
       .. py:method:: __str__() -> str
 
@@ -139,56 +139,96 @@ Attributes
 
 
 
-   .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None) -> List[TabularData]
+   .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[TabularData], int, str]
       :async:
 
-      Filter and download tabular data.
+      Filter and download tabular data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
+      in the returned tuple. If a destination is provided, the data will be saved to that file.
+      If the file is not empty, it will be overwritten.
 
       ::
 
           from viam.proto.app.data import Filter
 
+          my_data = []
+          last = None
           my_filter = Filter(component_name="left_motor")
-          tabular_data = await data_client.tabular_data_by_filter(my_filter)
+          while True:
+              tabular_data, last = await data_client.tabular_data_by_filter(my_filter, last)
+              if not tabular_data:
+                  break
+              my_data.extend(tabular_data)
+
 
       :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all tabular
                      data.
       :type filter: viam.proto.app.data.Filter
+      :param limit: The maximum number of entries to include in a page. Defaults to 50 if unspecified.
+      :type limit: int
+      :param sort_order: The desired sort order of the data.
+      :type sort_order: viam.proto.app.data.Order
+      :param last: Optional string indicating the ID of the last-returned data.
+                   If provided, the server will return the next data entries after the `last` ID.
+      :type last: str
+      :param count_only: Whether to return only the total count of entries.
+      :type count_only: bool
+      :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
+                                    like cloud SLAM. Defaults to `False`
+      :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
       :returns: The tabular data.
+                int: The count (number of entries)
+                str: The last-returned page ID.
       :rtype: List[TabularData]
 
 
-   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, dest: Optional[str] = None, include_file_data: bool = True, num_files: Optional[int] = None) -> List[BinaryData]
+   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, include_binary_data: bool = True, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[BinaryData], int, str]
       :async:
 
-      Filter and download binary data.
+      Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
+      in the returned tuple. If a destination is provided, the data will be saved to that file.
+      If the file is not empty, it will be overwritten.
 
       ::
 
           from viam.proto.app.data import Filter
 
-          my_filter = Filter(component_type="camera")
-          binary_data = await data_client.binary_data_by_filter(my_filter)
 
-      :param filter: Optional `Filter` specifying binary data to retrieve. No `Filter` implies all
-                     binary data.
-      :type filter: Optional[viam.proto.app.data.Filter]
+          my_data = []
+          last = None
+          my_filter = Filter(component_name="camera")
+          while True:
+              data, last = await data_client.binary_data_by_filter(my_filter, last)
+              if not data:
+                  break
+              my_data.extend(data)
+
+      :param filter: Optional `Filter` specifying tabular data to retrieve. No `Filter` implies all binary
+                     data.
+      :type filter: viam.proto.app.data.Filter
+      :param limit: The maximum number of entries to include in a page. Defaults to 50 if unspecified.
+      :type limit: int
+      :param sort_order: The desired sort order of the data.
+      :type sort_order: viam.proto.app.data.Order
+      :param last: Optional string indicating the ID of the last-returned data.
+                   If provided, the server will return the next data entries after the `last` ID.
+      :type last: str
+      :param include_binary_data: Boolean specifying whether to actually include the binary file data with each retrieved file.
+                                  Defaults to true (i.e., both the files' data and metadata are returned).
+      :type include_binary_data: bool
+      :param count_only: Whether to return only the total count of entries.
+      :type count_only: bool
+      :param include_internal_data: Whether to return the internal data. Internal data is used for Viam-specific data ingestion,
+                                    like cloud SLAM. Defaults to `False`
+      :type include_internal_data: bool
       :param dest: Optional filepath for writing retrieved data.
-      :type dest: Optional[str]
-      :param include_file_data: Boolean specifying whether to actually include the binary file data with each retrieved file. Defaults
-                                to true (i.e., both the files' data and metadata are returned).
-      :type include_file_data: bool
-      :param num_files: Number of binary data to return. Passing 0 returns all binary data matching the filter no matter.
-                        Defaults to 100 if no binary data is requested, otherwise 10. All binary data or the first `num_files` will be returned,
-                        whichever comes first.
-      :type num_files: Optional[str]
-
-      :raises ValueError: If `num_files` is less than 0.
+      :type dest: str
 
       :returns: The binary data.
+                int: The count (number of entries)
+                str: The last-returned page ID.
       :rtype: List[BinaryData]
 
 
