@@ -775,6 +775,10 @@ class MockData(DataServiceBase):
             await stream.send_message(TabularDataByFilterResponse(data=None))
             return
         self.filter = request.data_request.filter
+        self.order = request.data_request.sort_order
+        self.limit = request.data_request.limit
+        self.count_only = request.count_only
+        self.last = request.data_request.last
         tabular_response_structs = []
         tabular_metadata = [data.metadata for data in self.tabular_response]
         for idx, tabular_data in enumerate(self.tabular_response):
@@ -803,7 +807,12 @@ class MockData(DataServiceBase):
             await stream.send_message(BinaryDataByFilterResponse())
             return
         self.filter = request.data_request.filter
+        self.order = request.data_request.sort_order
+        self.limit = request.data_request.limit
         self.include_binary = request.include_binary
+        self.count_only = request.count_only
+        self.include_internal_data = request.include_internal_data
+        self.last = request.data_request.last
         await stream.send_message(
             BinaryDataByFilterResponse(
                 data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response],

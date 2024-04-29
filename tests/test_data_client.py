@@ -5,7 +5,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.data import Annotations, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter
+from viam.proto.app.data import Annotations, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
 from viam.utils import create_filter
 
 from .mocks.services import MockData
@@ -123,21 +123,52 @@ class TestClient:
     async def test_tabular_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            tabular_data, count, last = await client.tabular_data_by_filter(filter=FILTER)
+            sort_order = Order.ORDER_ASCENDING
+            limit = 100
+            last = "LAST_TABULAR_ID"
+            tabular_data, count, last_response = await client.tabular_data_by_filter(
+                filter=FILTER,
+                sort_order=sort_order,
+                limit=100,
+                last=last,
+                count_only=True,
+            )
+            assert service.filter == FILTER
+            assert service.order == sort_order
+            assert service.limit == limit
+            assert service.last == last
+            assert service.count_only is True
             assert tabular_data == TABULAR_RESPONSE
             assert count == len(tabular_data)
-            assert last != ""
+            assert last_response != ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
     async def test_binary_data_by_filter(self, service: MockData):
         async with ChannelFor([service]) as channel:
             client = DataClient(channel, DATA_SERVICE_METADATA)
-            binary_data, count, last = await client.binary_data_by_filter(filter=FILTER, include_binary_data=INCLUDE_BINARY)
+            sort_order = Order.ORDER_DESCENDING
+            limit = 25
+            last = "LAST_BINARY_ID"
+            binary_data, count, last_response = await client.binary_data_by_filter(
+                filter=FILTER,
+                include_binary_data=INCLUDE_BINARY,
+                sort_order=sort_order,
+                limit=limit,
+                count_only=False,
+                include_internal_data=True,
+                last=last,
+            )
+            assert service.filter == FILTER
+            assert service.order == sort_order
+            assert service.limit == limit
             assert service.include_binary == INCLUDE_BINARY
+            assert service.count_only is False
+            assert service.include_internal_data is True
+            assert service.last == last
             assert binary_data == BINARY_RESPONSE
             assert count == len(binary_data)
-            assert last != ""
+            assert last_response != ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
