@@ -126,7 +126,7 @@ class TestClient:
             tabular_data, count, last = await client.tabular_data_by_filter(filter=FILTER)
             assert tabular_data == TABULAR_RESPONSE
             assert count == len(tabular_data)
-            assert last is not ""
+            assert last != ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio
@@ -137,7 +137,7 @@ class TestClient:
             assert service.include_binary == INCLUDE_BINARY
             assert binary_data == BINARY_RESPONSE
             assert count == len(binary_data)
-            assert last is not ""
+            assert last != ""
             self.assert_filter(filter=service.filter)
 
     @pytest.mark.asyncio

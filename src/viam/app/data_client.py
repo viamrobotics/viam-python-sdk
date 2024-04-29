@@ -1,5 +1,5 @@
-from dataclasses import dataclass
 import warnings
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Any, List, Mapping, Optional, Sequence, Tuple
@@ -34,6 +34,7 @@ from viam.proto.app.data import (
     Filter,
     GetDatabaseConnectionRequest,
     GetDatabaseConnectionResponse,
+    Order,
     RemoveBinaryDataFromDatasetByIDsRequest,
     RemoveBoundingBoxFromImageByIDRequest,
     RemoveTagsFromBinaryDataByFilterRequest,
@@ -44,7 +45,6 @@ from viam.proto.app.data import (
     TabularDataByFilterResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
-    Order,
 )
 from viam.proto.app.dataset import (
     CreateDatasetRequest,
