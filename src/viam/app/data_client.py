@@ -188,7 +188,7 @@ class DataClient:
     async def tabular_data_by_filter(
         self,
         filter: Optional[Filter] = None,
-        limit: int = 50,
+        limit: Optional[int] = None,
         sort_order: Optional[Order.ValueType] = None,
         last: Optional[str] = None,
         count_only: bool = False,
@@ -229,9 +229,13 @@ class DataClient:
         """
         filter = filter if filter else Filter()
 
-        data_request = DataRequest(filter=filter, limit=limit, last=last if last else "")
+        data_request = DataRequest(filter=filter)
+        if limit:
+            data_request.limit = limit
         if sort_order:
             data_request.sort_order = sort_order
+        if last:
+            data_request.last = last
         request = TabularDataByFilterRequest(data_request=data_request, count_only=count_only)
         response: TabularDataByFilterResponse = await self._data_client.TabularDataByFilter(request, metadata=self._metadata)
         data = [
@@ -256,7 +260,7 @@ class DataClient:
     async def binary_data_by_filter(
         self,
         filter: Optional[Filter] = None,
-        limit: int = 50,
+        limit: Optional[int] = None,
         sort_order: Optional[Order.ValueType] = None,
         last: Optional[str] = None,
         include_binary_data: bool = True,
@@ -302,9 +306,13 @@ class DataClient:
             str: The last-returned page ID.
         """
 
-        data_request = DataRequest(filter=filter, limit=limit, last=last if last else "")
+        data_request = DataRequest(filter=filter)
+        if limit:
+            data_request.limit = limit
         if sort_order:
             data_request.sort_order = sort_order
+        if last:
+            data_request.last = last
         request = BinaryDataByFilterRequest(
             data_request=data_request,
             include_binary=include_binary_data,
