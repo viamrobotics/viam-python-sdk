@@ -4,7 +4,6 @@ isort:skip_file
 """
 import builtins
 import collections.abc
-from .... import common
 import google.protobuf.descriptor
 import google.protobuf.duration_pb2
 import google.protobuf.internal.containers
@@ -46,15 +45,9 @@ class Status(google.protobuf.message.Message):
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
+        value: builtins.int
 
-        @property
-        def value(self) -> common.v1.common_pb2.AnalogStatus:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: common.v1.common_pb2.AnalogStatus | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+        def __init__(self, *, key: builtins.str=..., value: builtins.int=...) -> None:
             ...
 
         def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
@@ -66,15 +59,9 @@ class Status(google.protobuf.message.Message):
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
+        value: builtins.int
 
-        @property
-        def value(self) -> common.v1.common_pb2.DigitalInterruptStatus:
-            ...
-
-        def __init__(self, *, key: builtins.str=..., value: common.v1.common_pb2.DigitalInterruptStatus | None=...) -> None:
-            ...
-
-        def HasField(self, field_name: typing.Literal['value', b'value']) -> builtins.bool:
+        def __init__(self, *, key: builtins.str=..., value: builtins.int=...) -> None:
             ...
 
         def ClearField(self, field_name: typing.Literal['key', b'key', 'value', b'value']) -> None:
@@ -83,14 +70,14 @@ class Status(google.protobuf.message.Message):
     DIGITAL_INTERRUPTS_FIELD_NUMBER: builtins.int
 
     @property
-    def analogs(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, common.v1.common_pb2.AnalogStatus]:
+    def analogs(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.int]:
         ...
 
     @property
-    def digital_interrupts(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, common.v1.common_pb2.DigitalInterruptStatus]:
+    def digital_interrupts(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.int]:
         ...
 
-    def __init__(self, *, analogs: collections.abc.Mapping[builtins.str, common.v1.common_pb2.AnalogStatus] | None=..., digital_interrupts: collections.abc.Mapping[builtins.str, common.v1.common_pb2.DigitalInterruptStatus] | None=...) -> None:
+    def __init__(self, *, analogs: collections.abc.Mapping[builtins.str, builtins.int] | None=..., digital_interrupts: collections.abc.Mapping[builtins.str, builtins.int] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing.Literal['analogs', b'analogs', 'digital_interrupts', b'digital_interrupts']) -> None:

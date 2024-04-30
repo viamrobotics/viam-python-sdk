@@ -4,9 +4,7 @@ Do not edit manually!
 """
 from ...gen.common.v1.common_pb2 import (
     ActuatorStatus,
-    AnalogStatus,
     Capsule,
-    DigitalInterruptStatus,
     DoCommandRequest,
     DoCommandResponse,
     GeometriesInFrame,
@@ -36,9 +34,7 @@ from ...gen.common.v1.common_pb2 import (
 
 __all__ = [
     "ActuatorStatus",
-    "AnalogStatus",
     "Capsule",
-    "DigitalInterruptStatus",
     "DoCommandRequest",
     "DoCommandResponse",
     "GeoObstacle",

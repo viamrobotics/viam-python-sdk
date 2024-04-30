@@ -3,11 +3,44 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
 import google.protobuf.struct_pb2
+import google.protobuf.timestamp_pb2
+import sys
 import typing
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _CopyFilesSourceType:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _CopyFilesSourceTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_CopyFilesSourceType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    COPY_FILES_SOURCE_TYPE_UNSPECIFIED: _CopyFilesSourceType.ValueType
+    COPY_FILES_SOURCE_TYPE_SINGLE_FILE: _CopyFilesSourceType.ValueType
+    COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY: _CopyFilesSourceType.ValueType
+    COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES: _CopyFilesSourceType.ValueType
+
+class CopyFilesSourceType(_CopyFilesSourceType, metaclass=_CopyFilesSourceTypeEnumTypeWrapper):
+    """CopyFilesSourceType indicates what will be copied. It's important
+    to disambiguate the single directory case from the multiple files
+    case in order to indicate that the user's intent is to copy a directory
+    into a single location which may result in a new top-level directory versus
+    the cause of multiples files that always go into the existing target destination.
+    """
+COPY_FILES_SOURCE_TYPE_UNSPECIFIED: CopyFilesSourceType.ValueType
+COPY_FILES_SOURCE_TYPE_SINGLE_FILE: CopyFilesSourceType.ValueType
+COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY: CopyFilesSourceType.ValueType
+COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES: CopyFilesSourceType.ValueType
+global___CopyFilesSourceType = CopyFilesSourceType
 
 @typing.final
 class ShellRequest(google.protobuf.message.Message):
@@ -48,3 +81,227 @@ class ShellResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['data_err', b'data_err', 'data_out', b'data_out', 'eof', b'eof']) -> None:
         ...
 global___ShellResponse = ShellResponse
+
+@typing.final
+class FileData(google.protobuf.message.Message):
+    """FileData contains partial (sometimes complete) information about a File.
+    When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+    it MUST initially contain its name, size, and is_dir. Depending on whether
+    preservation is in use, the mod_time and mode fields may be initially set
+    as well. On all transmissions, data and eof must be set. Because files are
+    sent one-by-one, it is currently permitted to exclude the initially set fields.
+    If this ever changes, a new scheme should be used for identifying files (like a number)
+    in order to reduce data transmission while allowing out-of-order transfers.
+    eof must be true and its own message once no more data is to be sent for this file.
+    """
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    SIZE_FIELD_NUMBER: builtins.int
+    IS_DIR_FIELD_NUMBER: builtins.int
+    DATA_FIELD_NUMBER: builtins.int
+    EOF_FIELD_NUMBER: builtins.int
+    MOD_TIME_FIELD_NUMBER: builtins.int
+    MODE_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    size: builtins.int
+    is_dir: builtins.bool
+    data: builtins.bytes
+    eof: builtins.bool
+    mode: builtins.int
+
+    @property
+    def mod_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """Note(erd): maybe support access time in the future if needed"""
+
+    def __init__(self, *, name: builtins.str=..., size: builtins.int=..., is_dir: builtins.bool=..., data: builtins.bytes=..., eof: builtins.bool=..., mod_time: google.protobuf.timestamp_pb2.Timestamp | None=..., mode: builtins.int | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['_mod_time', b'_mod_time', '_mode', b'_mode', 'mod_time', b'mod_time', 'mode', b'mode']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_mod_time', b'_mod_time', '_mode', b'_mode', 'data', b'data', 'eof', b'eof', 'is_dir', b'is_dir', 'mod_time', b'mod_time', 'mode', b'mode', 'name', b'name', 'size', b'size']) -> None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_mod_time', b'_mod_time']) -> typing.Literal['mod_time'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_mode', b'_mode']) -> typing.Literal['mode'] | None:
+        ...
+global___FileData = FileData
+
+@typing.final
+class CopyFilesToMachineRequestMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    SOURCE_TYPE_FIELD_NUMBER: builtins.int
+    DESTINATION_FIELD_NUMBER: builtins.int
+    PRESERVE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name is the service name.'
+    source_type: global___CopyFilesSourceType.ValueType
+    'source_type is the type of files that will be transmitted in this request stream.'
+    destination: builtins.str
+    'destination is where the files should be placed. The receiver can choose to\n    reasonably modify this destination based on its implementation semantics.\n    '
+    preserve: builtins.bool
+    'preserve indicates the the receiver should use the metadata in the file to reflect\n    the same state in its filesystem as applicable.\n    '
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., source_type: global___CopyFilesSourceType.ValueType=..., destination: builtins.str=..., preserve: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['destination', b'destination', 'extra', b'extra', 'name', b'name', 'preserve', b'preserve', 'source_type', b'source_type']) -> None:
+        ...
+global___CopyFilesToMachineRequestMetadata = CopyFilesToMachineRequestMetadata
+
+@typing.final
+class CopyFilesToMachineRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    METADATA_FIELD_NUMBER: builtins.int
+    FILE_DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def metadata(self) -> global___CopyFilesToMachineRequestMetadata:
+        """metadata is sent first and only once."""
+
+    @property
+    def file_data(self) -> global___FileData:
+        """file_data is sent only after metadata. All data MUST be sent
+        in order per-file.
+        """
+
+    def __init__(self, *, metadata: global___CopyFilesToMachineRequestMetadata | None=..., file_data: global___FileData | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['file_data', b'file_data', 'metadata', b'metadata', 'request', b'request']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['file_data', b'file_data', 'metadata', b'metadata', 'request', b'request']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['request', b'request']) -> typing.Literal['metadata', 'file_data'] | None:
+        ...
+global___CopyFilesToMachineRequest = CopyFilesToMachineRequest
+
+@typing.final
+class CopyFilesToMachineResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ACK_LAST_FILE_FIELD_NUMBER: builtins.int
+    ack_last_file: builtins.bool
+    'value does not matter here but responses must be sent after every\n    file has been received.\n    '
+
+    def __init__(self, *, ack_last_file: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['ack_last_file', b'ack_last_file']) -> None:
+        ...
+global___CopyFilesToMachineResponse = CopyFilesToMachineResponse
+
+@typing.final
+class CopyFilesFromMachineRequestMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    PATHS_FIELD_NUMBER: builtins.int
+    ALLOW_RECURSION_FIELD_NUMBER: builtins.int
+    PRESERVE_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name is the service name.'
+    allow_recursion: builtins.bool
+    'allow_recursion indicates if directories should be recursed into. If\n    a directory is encountered and this is false, an error MUST occur.\n    '
+    preserve: builtins.bool
+    "preserve indicates the the receiver should provide the metadata in the file\n    to reflect the same state in the sender's filesystem as applicable.\n    "
+
+    @property
+    def paths(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """paths are the paths to copy from and send back over the wire."""
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., paths: collections.abc.Iterable[builtins.str] | None=..., allow_recursion: builtins.bool=..., preserve: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['allow_recursion', b'allow_recursion', 'extra', b'extra', 'name', b'name', 'paths', b'paths', 'preserve', b'preserve']) -> None:
+        ...
+global___CopyFilesFromMachineRequestMetadata = CopyFilesFromMachineRequestMetadata
+
+@typing.final
+class CopyFilesFromMachineRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    METADATA_FIELD_NUMBER: builtins.int
+    ACK_LAST_FILE_FIELD_NUMBER: builtins.int
+    ack_last_file: builtins.bool
+    'ack_last_file is sent only after metadata and after each file has been received.\n    The value does not matter.\n    '
+
+    @property
+    def metadata(self) -> global___CopyFilesFromMachineRequestMetadata:
+        """metadata is sent first and only once."""
+
+    def __init__(self, *, metadata: global___CopyFilesFromMachineRequestMetadata | None=..., ack_last_file: builtins.bool=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['ack_last_file', b'ack_last_file', 'metadata', b'metadata', 'request', b'request']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['ack_last_file', b'ack_last_file', 'metadata', b'metadata', 'request', b'request']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['request', b'request']) -> typing.Literal['metadata', 'ack_last_file'] | None:
+        ...
+global___CopyFilesFromMachineRequest = CopyFilesFromMachineRequest
+
+@typing.final
+class CopyFilesFromMachineResponseMetadata(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    SOURCE_TYPE_FIELD_NUMBER: builtins.int
+    source_type: global___CopyFilesSourceType.ValueType
+    'source_type is the type of files that will be transmitted in this response stream.'
+
+    def __init__(self, *, source_type: global___CopyFilesSourceType.ValueType=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['source_type', b'source_type']) -> None:
+        ...
+global___CopyFilesFromMachineResponseMetadata = CopyFilesFromMachineResponseMetadata
+
+@typing.final
+class CopyFilesFromMachineResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    METADATA_FIELD_NUMBER: builtins.int
+    FILE_DATA_FIELD_NUMBER: builtins.int
+
+    @property
+    def metadata(self) -> global___CopyFilesFromMachineResponseMetadata:
+        """metadata is sent first and only once."""
+
+    @property
+    def file_data(self) -> global___FileData:
+        """file_data is sent only after metadata. All data MUST be sent
+        in order per-file.
+        """
+
+    def __init__(self, *, metadata: global___CopyFilesFromMachineResponseMetadata | None=..., file_data: global___FileData | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['file_data', b'file_data', 'metadata', b'metadata', 'response', b'response']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['file_data', b'file_data', 'metadata', b'metadata', 'response', b'response']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['response', b'response']) -> typing.Literal['metadata', 'file_data'] | None:
+        ...
+global___CopyFilesFromMachineResponse = CopyFilesFromMachineResponse
