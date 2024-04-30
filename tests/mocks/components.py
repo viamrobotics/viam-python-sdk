@@ -32,9 +32,7 @@ from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
 from viam.proto.common import (
-    AnalogStatus,
     Capsule,
-    DigitalInterruptStatus,
     Geometry,
     GeoPoint,
     Orientation,
