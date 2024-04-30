@@ -31,17 +31,7 @@ from viam.components.servo import Servo
 from viam.errors import ResourceNotFoundError
 from viam.media.audio import Audio, AudioStream
 from viam.media.video import CameraMimeType, NamedImage, ViamImage
-from viam.proto.common import (
-    Capsule,
-    Geometry,
-    GeoPoint,
-    Orientation,
-    Pose,
-    PoseInFrame,
-    ResponseMetadata,
-    Sphere,
-    Vector3,
-)
+from viam.proto.common import Capsule, Geometry, GeoPoint, Orientation, Pose, PoseInFrame, ResponseMetadata, Sphere, Vector3
 from viam.proto.component.audioinput import AudioChunk, AudioChunkInfo, SampleFormat
 from viam.proto.component.board import PowerMode
 from viam.proto.component.encoder import PositionType
