@@ -356,6 +356,7 @@ class Board(ComponentBase):
 
         Args:
             mode (PowerMode): The desired power mode.
+            duration (Optional[timedelta]): Requested duration to stay in power mode.
         """
         ...
 
