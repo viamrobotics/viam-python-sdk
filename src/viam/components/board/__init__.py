@@ -18,7 +18,7 @@ async def create_status(component: Board) -> Status:
     for x in analog_names:
         analog = await component.analog_reader_by_name(x)
         read = await analog.read()
-        analogs[x] = int(read)
+        analogs[x] = read
 
     for y in digital_interrupt_names:
         digital_interrupt = await component.digital_interrupt_by_name(y)
