@@ -30,9 +30,6 @@ jobs:
         env:
           BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
 
-      - name: Generate better imports
-        run: make better_imports
-
       - name: Format
         run: make format
 
