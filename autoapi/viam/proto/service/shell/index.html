@@ -85,6 +85,8 @@
 <li class="toctree-l7"><a class="reference internal" href="#classes">Classes</a><ul>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase.Shell"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase.Shell()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase.CopyFilesToMachine"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase.CopyFilesToMachine()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase.CopyFilesFromMachine"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase.CopyFilesFromMachine()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase.DoCommand()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceBase.__mapping__"><code class="docutils literal notranslate"><span class="pre">ShellServiceBase.__mapping__()</span></code></a></li>
 </ul>
@@ -92,7 +94,69 @@
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.ShellServiceStub"><code class="docutils literal notranslate"><span class="pre">ShellServiceStub</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase"><code class="docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase.Shell"><code class="docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase.Shell()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesToMachine"><code class="docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase.CopyFilesToMachine()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesFromMachine"><code class="docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase.CopyFilesFromMachine()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase.DoCommand"><code class="docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase.DoCommand()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.metadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest.metadata</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.ack_last_file"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest.ack_last_file</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.HasField"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.paths"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.paths</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.extra"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.name"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.allow_recursion"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.allow_recursion</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.preserve"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.preserve</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.HasField"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.metadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse.metadata</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.file_data"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse.file_data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.HasField"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.WhichOneof"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponseMetadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponseMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponseMetadata.source_type"><code class="docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponseMetadata.source_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesSourceType"><code class="docutils literal notranslate"><span class="pre">CopyFilesSourceType</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest.metadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest.metadata</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest.file_data"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest.file_data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest.HasField"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest.WhichOneof"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest.WhichOneof()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.extra"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.name"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.source_type"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.source_type</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.destination"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.destination</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.preserve"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.preserve</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.HasField"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineResponse"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineResponse</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineResponse.ack_last_file"><code class="docutils literal notranslate"><span class="pre">CopyFilesToMachineResponse.ack_last_file</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.FileData"><code class="docutils literal notranslate"><span class="pre">FileData</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.mod_time"><code class="docutils literal notranslate"><span class="pre">FileData.mod_time</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.name"><code class="docutils literal notranslate"><span class="pre">FileData.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.size"><code class="docutils literal notranslate"><span class="pre">FileData.size</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.is_dir"><code class="docutils literal notranslate"><span class="pre">FileData.is_dir</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.data"><code class="docutils literal notranslate"><span class="pre">FileData.data</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.eof"><code class="docutils literal notranslate"><span class="pre">FileData.eof</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.mode"><code class="docutils literal notranslate"><span class="pre">FileData.mode</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.HasField"><code class="docutils literal notranslate"><span class="pre">FileData.HasField()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.service.shell.FileData.WhichOneof"><code class="docutils literal notranslate"><span class="pre">FileData.WhichOneof()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.service.shell.ShellRequest"><code class="docutils literal notranslate"><span class="pre">ShellRequest</span></code></a><ul>
@@ -173,10 +237,37 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.UnimplementedShellServiceBase" title="viam.proto.service.shell.UnimplementedShellServiceBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnimplementedShellServiceBase</span></code></a></p></td>
 <td><p>Helper class that provides a standard way to create an ABC using</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.ShellRequest" title="viam.proto.service.shell.ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequest" title="viam.proto.service.shell.CopyFilesFromMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.ShellResponse" title="viam.proto.service.shell.ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata" title="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponse" title="viam.proto.service.shell.CopyFilesFromMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesFromMachineResponseMetadata" title="viam.proto.service.shell.CopyFilesFromMachineResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponseMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesSourceType" title="viam.proto.service.shell.CopyFilesSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesSourceType</span></code></a></p></td>
+<td><p>CopyFilesSourceType indicates what will be copied. It's important</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequest" title="viam.proto.service.shell.CopyFilesToMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata" title="viam.proto.service.shell.CopyFilesToMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.CopyFilesToMachineResponse" title="viam.proto.service.shell.CopyFilesToMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.FileData" title="viam.proto.service.shell.FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileData</span></code></a></p></td>
+<td><p>FileData contains partial (sometimes complete) information about a File.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.service.shell.ShellRequest" title="viam.proto.service.shell.ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.service.shell.ShellResponse" title="viam.proto.service.shell.ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -190,6 +281,16 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.shell.ShellServiceBase.Shell">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Shell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.ShellRequest" title="viam.gen.service.shell.v1.shell_pb2.ShellRequest"><span class="pre">service.shell.v1.shell_pb2.ShellRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.ShellResponse" title="viam.gen.service.shell.v1.shell_pb2.ShellResponse"><span class="pre">service.shell.v1.shell_pb2.ShellResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#ShellServiceBase.Shell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.ShellServiceBase.Shell" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.ShellServiceBase.CopyFilesToMachine">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CopyFilesToMachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest"><span class="pre">service.shell.v1.shell_pb2.CopyFilesToMachineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse"><span class="pre">service.shell.v1.shell_pb2.CopyFilesToMachineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#ShellServiceBase.CopyFilesToMachine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.ShellServiceBase.CopyFilesToMachine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.ShellServiceBase.CopyFilesFromMachine">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CopyFilesFromMachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest"><span class="pre">service.shell.v1.shell_pb2.CopyFilesFromMachineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse"><span class="pre">service.shell.v1.shell_pb2.CopyFilesFromMachineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#ShellServiceBase.CopyFilesFromMachine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.ShellServiceBase.CopyFilesFromMachine" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -221,9 +322,496 @@ inheritance.</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesToMachine">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CopyFilesToMachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest"><span class="pre">service.shell.v1.shell_pb2.CopyFilesToMachineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse"><span class="pre">service.shell.v1.shell_pb2.CopyFilesToMachineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#UnimplementedShellServiceBase.CopyFilesToMachine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesToMachine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesFromMachine">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CopyFilesFromMachine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest"><span class="pre">service.shell.v1.shell_pb2.CopyFilesFromMachineRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/service/shell/v1/shell_pb2/index.html#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse"><span class="pre">service.shell.v1.shell_pb2.CopyFilesFromMachineResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#UnimplementedShellServiceBase.CopyFilesFromMachine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.UnimplementedShellServiceBase.CopyFilesFromMachine" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.service.shell.UnimplementedShellServiceBase.DoCommand">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoCommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandRequest" title="viam.gen.common.v1.common_pb2.DoCommandRequest"><span class="pre">common.v1.common_pb2.DoCommandRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.DoCommandResponse" title="viam.gen.common.v1.common_pb2.DoCommandResponse"><span class="pre">common.v1.common_pb2.DoCommandResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/service/shell/v1/shell_grpc.html#UnimplementedShellServiceBase.DoCommand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.service.shell.UnimplementedShellServiceBase.DoCommand" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesFromMachineRequestMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ack_last_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequest.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesFromMachineRequestMetadata</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequest.ack_last_file">
+<span class="sig-name descname"><span class="pre">ack_last_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.ack_last_file" title="Permalink to this definition"></a></dt>
+<dd><p>ack_last_file is sent only after metadata and after each file has been received.
+The value does not matter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">ack_last_file</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'ack_last_file'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ack_last_file</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineRequestMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_recursion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.paths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.paths" title="Permalink to this definition"></a></dt>
+<dd><p>paths are the paths to copy from and send back over the wire.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.name" title="Permalink to this definition"></a></dt>
+<dd><p>name is the service name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.allow_recursion">
+<span class="sig-name descname"><span class="pre">allow_recursion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.allow_recursion" title="Permalink to this definition"></a></dt>
+<dd><p>allow_recursion indicates if directories should be recursed into. If
+a directory is encountered and this is false, an error MUST occur.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.preserve">
+<span class="sig-name descname"><span class="pre">preserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.preserve" title="Permalink to this definition"></a></dt>
+<dd><p>preserve indicates the the receiver should provide the metadata in the file
+to reflect the same state in the sender’s filesystem as applicable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineRequestMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesFromMachineResponseMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___FileData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponse.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesFromMachineResponseMetadata</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponse.file_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___FileData</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.file_data" title="Permalink to this definition"></a></dt>
+<dd><p>file_data is sent only after metadata. All data MUST be sent
+in order per-file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">file_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'file_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">response</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'response'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponse.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">response</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'response'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">file_data</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponse.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponseMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineResponseMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesSourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponseMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesFromMachineResponseMetadata.source_type">
+<span class="sig-name descname"><span class="pre">source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesSourceType</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesFromMachineResponseMetadata.source_type" title="Permalink to this definition"></a></dt>
+<dd><p>source_type is the type of files that will be transmitted in this response stream.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesSourceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesSourceType</span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesSourceType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_CopyFilesSourceType</span></code></p>
+<p>CopyFilesSourceType indicates what will be copied. It’s important
+to disambiguate the single directory case from the multiple files
+case in order to indicate that the user’s intent is to copy a directory
+into a single location which may result in a new top-level directory versus
+the cause of multiples files that always go into the existing target destination.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesToMachineRequestMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___FileData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequest.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesToMachineRequestMetadata</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequest.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequest.file_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___FileData</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequest.file_data" title="Permalink to this definition"></a></dt>
+<dd><p>file_data is sent only after metadata. All data MUST be sent
+in order per-file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">file_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'file_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">file_data</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineRequestMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesSourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.name" title="Permalink to this definition"></a></dt>
+<dd><p>name is the service name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.source_type">
+<span class="sig-name descname"><span class="pre">source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesSourceType</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.source_type" title="Permalink to this definition"></a></dt>
+<dd><p>source_type is the type of files that will be transmitted in this request stream.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.destination">
+<span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.destination" title="Permalink to this definition"></a></dt>
+<dd><p>destination is where the files should be placed. The receiver can choose to
+reasonably modify this destination based on its implementation semantics.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.preserve">
+<span class="sig-name descname"><span class="pre">preserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.preserve" title="Permalink to this definition"></a></dt>
+<dd><p>preserve indicates the the receiver should use the metadata in the file to reflect
+the same state in its filesystem as applicable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineRequestMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineRequestMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ack_last_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.CopyFilesToMachineResponse.ack_last_file">
+<span class="sig-name descname"><span class="pre">ack_last_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.CopyFilesToMachineResponse.ack_last_file" title="Permalink to this definition"></a></dt>
+<dd><p>value does not matter here but responses must be sent after every
+file has been received.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.service.shell.</span></span><span class="sig-name descname"><span class="pre">FileData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eof</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.service.shell.FileData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>FileData contains partial (sometimes complete) information about a File.
+When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+it MUST initially contain its name, size, and is_dir. Depending on whether
+preservation is in use, the mod_time and mode fields may be initially set
+as well. On all transmissions, data and eof must be set. Because files are
+sent one-by-one, it is currently permitted to exclude the initially set fields.
+If this ever changes, a new scheme should be used for identifying files (like a number)
+in order to reduce data transmission while allowing out-of-order transfers.
+eof must be true and its own message once no more data is to be sent for this file.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.mod_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mod_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.mod_time" title="Permalink to this definition"></a></dt>
+<dd><p>maybe support access time in the future if needed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Note(erd)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.size" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.is_dir">
+<span class="sig-name descname"><span class="pre">is_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.is_dir" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.eof">
+<span class="sig-name descname"><span class="pre">eof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.eof" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.service.shell.FileData.mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mod_time'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mode'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'mod_time'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'mode'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.service.shell.FileData.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.service.shell.FileData.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mod_time'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">mod_time</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.proto.service.shell.FileData.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mode'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">mode</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

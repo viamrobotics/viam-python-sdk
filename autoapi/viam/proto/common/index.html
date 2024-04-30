@@ -73,17 +73,9 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.ActuatorStatus.is_moving"><code class="docutils literal notranslate"><span class="pre">ActuatorStatus.is_moving</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.AnalogStatus"><code class="docutils literal notranslate"><span class="pre">AnalogStatus</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.AnalogStatus.value"><code class="docutils literal notranslate"><span class="pre">AnalogStatus.value</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.Capsule"><code class="docutils literal notranslate"><span class="pre">Capsule</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Capsule.radius_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.radius_mm</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Capsule.length_mm"><code class="docutils literal notranslate"><span class="pre">Capsule.length_mm</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus.value"><code class="docutils literal notranslate"><span class="pre">DigitalInterruptStatus.value</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.DoCommandRequest"><code class="docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a><ul>
@@ -301,13 +293,7 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.ActuatorStatus" title="viam.proto.common.ActuatorStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ActuatorStatus</span></code></a></p></td>
 <td><p>ActuatorStatus is a generic status for resources that only need to return actuator status.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.AnalogStatus" title="viam.proto.common.AnalogStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AnalogStatus</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
-<td><p>Abstract base class for protocol messages.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DigitalInterruptStatus" title="viam.proto.common.DigitalInterruptStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DigitalInterruptStatus</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Capsule" title="viam.proto.common.Capsule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capsule</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandRequest" title="viam.proto.common.DoCommandRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandRequest</span></code></a></p></td>
@@ -400,22 +386,6 @@ Do not edit manually!</p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.common.AnalogStatus">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">AnalogStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.AnalogStatus" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.common.AnalogStatus.value">
-<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.AnalogStatus.value" title="Permalink to this definition"></a></dt>
-<dd><p>Current value of the analog reader of a robot’s board</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.Capsule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">Capsule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_mm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.Capsule" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -432,22 +402,6 @@ shown below.</p>
 <dt class="sig sig-object py" id="viam.proto.common.Capsule.length_mm">
 <span class="sig-name descname"><span class="pre">length_mm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.common.Capsule.length_mm" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.common.DigitalInterruptStatus">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">DigitalInterruptStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.DigitalInterruptStatus" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>Abstract base class for protocol messages.</p>
-<p>Protocol message classes are almost always generated by the protocol
-compiler.  These generated types subclass Message and implement the methods
-shown below.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="viam.proto.common.DigitalInterruptStatus.value">
-<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.proto.common.DigitalInterruptStatus.value" title="Permalink to this definition"></a></dt>
-<dd><p>Current value of the digital interrupt of a robot’s board</p>
-</dd></dl>
 
 </dd></dl>
 

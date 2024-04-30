@@ -32,6 +32,16 @@ Classes
       :async:
 
 
+   .. py:method:: CopyFilesToMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesToMachineRequest, service.shell.v1.shell_pb2.CopyFilesToMachineResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
+   .. py:method:: CopyFilesFromMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesFromMachineRequest, service.shell.v1.shell_pb2.CopyFilesFromMachineResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: DoCommand(stream: grpclib.server.Stream[common.v1.common_pb2.DoCommandRequest, common.v1.common_pb2.DoCommandResponse]) -> None
       :abstractmethod:
       :async:
@@ -50,6 +60,14 @@ Classes
    inheritance.
 
    .. py:method:: Shell(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.ShellRequest, service.shell.v1.shell_pb2.ShellResponse]) -> None
+      :async:
+
+
+   .. py:method:: CopyFilesToMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesToMachineRequest, service.shell.v1.shell_pb2.CopyFilesToMachineResponse]) -> None
+      :async:
+
+
+   .. py:method:: CopyFilesFromMachine(stream: grpclib.server.Stream[service.shell.v1.shell_pb2.CopyFilesFromMachineRequest, service.shell.v1.shell_pb2.CopyFilesFromMachineResponse]) -> None
       :async:
 
 

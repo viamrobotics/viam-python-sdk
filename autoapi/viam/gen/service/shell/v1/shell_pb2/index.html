@@ -98,10 +98,37 @@ isort:skip_file</p>
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h3>
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.ShellRequest" title="viam.gen.service.shell.v1.shell_pb2.ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellRequest</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesSourceType</span></code></a></p></td>
+<td><p>CopyFilesSourceType indicates what will be copied. It's important</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.ShellRequest" title="viam.gen.service.shell.v1.shell_pb2.ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellRequest</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.ShellResponse" title="viam.gen.service.shell.v1.shell_pb2.ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.ShellResponse" title="viam.gen.service.shell.v1.shell_pb2.ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShellResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.FileData" title="viam.gen.service.shell.v1.shell_pb2.FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileData</span></code></a></p></td>
+<td><p>FileData contains partial (sometimes complete) information about a File.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineRequestMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesToMachineResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequestMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponseMetadata</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CopyFilesFromMachineResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
 </tbody>
@@ -114,10 +141,49 @@ isort:skip_file</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.DESCRIPTOR" title="viam.gen.service.shell.v1.shell_pb2.DESCRIPTOR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DESCRIPTOR</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___ShellRequest" title="viam.gen.service.shell.v1.shell_pb2.global___ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ShellRequest</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_UNSPECIFIED" title="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_UNSPECIFIED"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COPY_FILES_SOURCE_TYPE_UNSPECIFIED</span></code></a></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___ShellResponse" title="viam.gen.service.shell.v1.shell_pb2.global___ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ShellResponse</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_FILE" title="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_FILE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COPY_FILES_SOURCE_TYPE_SINGLE_FILE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY" title="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES" title="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesSourceType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesSourceType</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___ShellRequest" title="viam.gen.service.shell.v1.shell_pb2.global___ShellRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ShellRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___ShellResponse" title="viam.gen.service.shell.v1.shell_pb2.global___ShellResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___ShellResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___FileData" title="viam.gen.service.shell.v1.shell_pb2.global___FileData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___FileData</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequestMetadata" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesToMachineRequestMetadata</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesToMachineRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesToMachineResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequestMetadata" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequestMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesFromMachineRequestMetadata</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequest" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesFromMachineRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponseMetadata" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponseMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesFromMachineResponseMetadata</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponse" title="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CopyFilesFromMachineResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -125,6 +191,42 @@ isort:skip_file</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.DESCRIPTOR">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">DESCRIPTOR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.descriptor.FileDescriptor</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.DESCRIPTOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesSourceType</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">_CopyFilesSourceType</span></code></p>
+<p>CopyFilesSourceType indicates what will be copied. It’s important
+to disambiguate the single directory case from the multiple files
+case in order to indicate that the user’s intent is to copy a directory
+into a single location which may result in a new top-level directory versus
+the cause of multiples files that always go into the existing target destination.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_UNSPECIFIED">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">COPY_FILES_SOURCE_TYPE_UNSPECIFIED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType"><span class="pre">CopyFilesSourceType</span></a></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_UNSPECIFIED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_FILE">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">COPY_FILES_SOURCE_TYPE_SINGLE_FILE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType"><span class="pre">CopyFilesSourceType</span></a></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_FILE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType"><span class="pre">CopyFilesSourceType</span></a></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_SINGLE_DIRECTORY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType" title="viam.gen.service.shell.v1.shell_pb2.CopyFilesSourceType"><span class="pre">CopyFilesSourceType</span></a></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.COPY_FILES_SOURCE_TYPE_MULTIPLE_FILES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesSourceType">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesSourceType</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesSourceType" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
@@ -209,6 +311,512 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___ShellResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___ShellResponse</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___ShellResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">FileData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eof</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mod_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>FileData contains partial (sometimes complete) information about a File.
+When transmitting FileData with CopyFilesToMachine and CopyFilesFromMachine,
+it MUST initially contain its name, size, and is_dir. Depending on whether
+preservation is in use, the mod_time and mode fields may be initially set
+as well. On all transmissions, data and eof must be set. Because files are
+sent one-by-one, it is currently permitted to exclude the initially set fields.
+If this ever changes, a new scheme should be used for identifying files (like a number)
+in order to reduce data transmission while allowing out-of-order transfers.
+eof must be true and its own message once no more data is to be sent for this file.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.mod_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mod_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.timestamp_pb2.Timestamp</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.mod_time" title="Permalink to this definition"></a></dt>
+<dd><p>maybe support access time in the future if needed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Note(erd)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.name" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.size">
+<span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.size" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.is_dir">
+<span class="sig-name descname"><span class="pre">is_dir</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.is_dir" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.data">
+<span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bytes</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.eof">
+<span class="sig-name descname"><span class="pre">eof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.eof" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.mode" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mod_time'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">_mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mode'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'mod_time'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'mode'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.FileData.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mod_time</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mod_time'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">mod_time</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.FileData.WhichOneof" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">_mode</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'_mode'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">mode</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___FileData">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___FileData</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___FileData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineRequestMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesSourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.name" title="Permalink to this definition"></a></dt>
+<dd><p>name is the service name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.source_type">
+<span class="sig-name descname"><span class="pre">source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesSourceType</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.source_type" title="Permalink to this definition"></a></dt>
+<dd><p>source_type is the type of files that will be transmitted in this request stream.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.destination">
+<span class="sig-name descname"><span class="pre">destination</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.destination" title="Permalink to this definition"></a></dt>
+<dd><p>destination is where the files should be placed. The receiver can choose to
+reasonably modify this destination based on its implementation semantics.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.preserve">
+<span class="sig-name descname"><span class="pre">preserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.preserve" title="Permalink to this definition"></a></dt>
+<dd><p>preserve indicates the the receiver should use the metadata in the file to reflect
+the same state in its filesystem as applicable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequestMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequestMetadata">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesToMachineRequestMetadata</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesToMachineRequestMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___FileData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesToMachineRequestMetadata</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.file_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___FileData</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.file_data" title="Permalink to this definition"></a></dt>
+<dd><p>file_data is sent only after metadata. All data MUST be sent
+in order per-file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">file_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'file_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">file_data</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesToMachineRequest</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesToMachineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ack_last_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse.ack_last_file">
+<span class="sig-name descname"><span class="pre">ack_last_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesToMachineResponse.ack_last_file" title="Permalink to this definition"></a></dt>
+<dd><p>value does not matter here but responses must be sent after every
+file has been received.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesToMachineResponse</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesToMachineResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineRequestMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_recursion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preserve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.paths">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedScalarFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.paths" title="Permalink to this definition"></a></dt>
+<dd><p>paths are the paths to copy from and send back over the wire.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.name" title="Permalink to this definition"></a></dt>
+<dd><p>name is the service name.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.allow_recursion">
+<span class="sig-name descname"><span class="pre">allow_recursion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.allow_recursion" title="Permalink to this definition"></a></dt>
+<dd><p>allow_recursion indicates if directories should be recursed into. If
+a directory is encountered and this is false, an error MUST occur.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.preserve">
+<span class="sig-name descname"><span class="pre">preserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.preserve" title="Permalink to this definition"></a></dt>
+<dd><p>preserve indicates the the receiver should provide the metadata in the file
+to reflect the same state in the sender’s filesystem as applicable.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequestMetadata.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequestMetadata">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesFromMachineRequestMetadata</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequestMetadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesFromMachineRequestMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ack_last_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesFromMachineRequestMetadata</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.ack_last_file">
+<span class="sig-name descname"><span class="pre">ack_last_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.ack_last_file" title="Permalink to this definition"></a></dt>
+<dd><p>ack_last_file is sent only after metadata and after each file has been received.
+The value does not matter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">ack_last_file</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'ack_last_file'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">request</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'request'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ack_last_file</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineRequest.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesFromMachineRequest</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineResponseMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesSourceType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata.source_type">
+<span class="sig-name descname"><span class="pre">source_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesSourceType</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponseMetadata.source_type" title="Permalink to this definition"></a></dt>
+<dd><p>source_type is the type of files that will be transmitted in this response stream.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponseMetadata">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesFromMachineResponseMetadata</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponseMetadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">CopyFilesFromMachineResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___CopyFilesFromMachineResponseMetadata</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___FileData</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.metadata">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___CopyFilesFromMachineResponseMetadata</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.metadata" title="Permalink to this definition"></a></dt>
+<dd><p>metadata is sent first and only once.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.file_data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">file_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___FileData</span></em><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.file_data" title="Permalink to this definition"></a></dt>
+<dd><p>file_data is sent only after metadata. All data MUST be sent
+in order per-file.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">file_data</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'file_data'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'metadata'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">response</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'response'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.WhichOneof">
+<span class="sig-name descname"><span class="pre">WhichOneof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oneof_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">response</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'response'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">metadata</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">file_data</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.CopyFilesFromMachineResponse.WhichOneof" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the name of the field that is set inside a oneof group.</p>
+<p>If no field is set, returns None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>oneof_group</strong> (<em>str</em>) – the name of the oneof group to check.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The name of the group that is set, or None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str or None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.shell.v1.shell_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CopyFilesFromMachineResponse</span></span><a class="headerlink" href="#viam.gen.service.shell.v1.shell_pb2.global___CopyFilesFromMachineResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
