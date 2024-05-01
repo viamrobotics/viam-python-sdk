@@ -1023,6 +1023,7 @@ class MockMLTraining(MLTrainingServiceBase):
     async def SubmitTrainingJob(self, stream: Stream[SubmitTrainingJobRequest, SubmitTrainingJobResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
+        self.dataset_id = request.dataset_id
         self.org_id = request.organization_id
         self.model_name = request.model_name
         self.model_version = request.model_version
@@ -1031,7 +1032,14 @@ class MockMLTraining(MLTrainingServiceBase):
         await stream.send_message(SubmitTrainingJobResponse(id=self.job_id))
 
     async def SubmitCustomTrainingJob(self, stream: Stream[SubmitCustomTrainingJobRequest, SubmitCustomTrainingJobResponse]) -> None:
-        return await super().SubmitCustomTrainingJob(stream)
+        request = await stream.recv_message()
+        assert request is not None
+        self.dataset_id = request.dataset_id
+        self.registry_item_id = request.registry_item_id
+        self.org_id = request.organization_id
+        self.model_name = request.model_name
+        self.model_version = request.model_version
+        await stream.send_message(SubmitCustomTrainingJobResponse(id=self.job_id))
 
     async def GetTrainingJob(self, stream: Stream[GetTrainingJobRequest, GetTrainingJobResponse]) -> None:
         request = await stream.recv_message()
@@ -1055,7 +1063,10 @@ class MockMLTraining(MLTrainingServiceBase):
     async def DeleteCompletedTrainingJob(
         self, stream: Stream[DeleteCompletedTrainingJobRequest, DeleteCompletedTrainingJobResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_id = request.id
+        await stream.send_message(DeleteCompletedTrainingJobResponse())
 
 
 class MockBilling(BillingServiceBase):

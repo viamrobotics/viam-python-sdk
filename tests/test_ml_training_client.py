@@ -13,8 +13,11 @@ ML_TRAINING_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 ID = "id"
 TRAINING_JOB_ID = "training-job-id"
 CANCEL_ID = "cancel-id"
+DELETE_ID = "delete-id"
 JOB_ID = "job-id"
 ORG_ID = "org-id"
+DATASET_ID = "dataset-id"
+REGISTRY_ITEM_ID = "registry-item-id"
 MODEL_ID = "model-id"
 MODEL_NAME = "model-name"
 MODEL_VERSION = "model-version"
@@ -66,7 +69,21 @@ class TestClient:
 
     @pytest.mark.asyncio
     async def test_submit_training_job(self, service: MockMLTraining):
-        assert True
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            id = await client.submit_training_job(
+                org_id=ORG_ID, dataset_id=DATASET_ID, model_name=MODEL_NAME, model_version=MODEL_VERSION, model_type=MODEL_TYPE, tags=TAGS
+            )
+            assert id == JOB_ID
+
+    @pytest.mark.asyncio
+    async def test_custom_submit_training_job(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            id = await client.submit_custom_training_job(
+                org_id=ORG_ID, dataset_id=DATASET_ID, registry_item_id=REGISTRY_ITEM_ID, model_name=MODEL_NAME, model_version=MODEL_VERSION
+            )
+            assert id == JOB_ID
 
     @pytest.mark.asyncio
     async def test_get_training_job(self, service: MockMLTraining):
@@ -85,3 +102,10 @@ class TestClient:
             assert training_jobs[0] == TRAINING_METADATA
             assert service.training_status == TRAINING_STATUS
             assert service.org_id == ORG_ID
+
+    @pytest.mark.asyncio
+    async def test_delete_completed_training_job(self, service: MockMLTraining):
+        async with ChannelFor([service]) as channel:
+            client = MLTrainingClient(channel, ML_TRAINING_SERVICE_METADATA)
+            await client.delete_completed_training_job(DELETE_ID)
+            assert service.delete_id == DELETE_ID
