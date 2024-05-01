@@ -735,7 +735,8 @@ class DataClient:
         return response.hostname
 
     async def configure_database_user(self, organization_id: str, password: str) -> None:
-        """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the password of the existing database user.
+        """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
+        password of the existing database user.
 
         Args:
             organization_id (str): The ID of the organization.
