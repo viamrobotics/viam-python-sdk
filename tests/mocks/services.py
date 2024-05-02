@@ -916,7 +916,11 @@ class MockData(DataServiceBase):
         await stream.send_message(GetDatabaseConnectionResponse(hostname=self.hostname_response))
 
     async def ConfigureDatabaseUser(self, stream: Stream[ConfigureDatabaseUserRequest, ConfigureDatabaseUserResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.password = request.password
+        await stream.send_message(ConfigureDatabaseUserResponse())
 
     async def AddBinaryDataToDatasetByIDs(
         self, stream: Stream[AddBinaryDataToDatasetByIDsRequest, AddBinaryDataToDatasetByIDsResponse]
