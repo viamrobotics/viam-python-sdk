@@ -753,6 +753,7 @@ class MockData(DataServiceBase):
     def __init__(
         self,
         tabular_response: List[DataClient.TabularData],
+        tabular_query_response: List[Dict[str, ValueTypes]],
         binary_response: List[DataClient.BinaryData],
         delete_remove_response: int,
         tags_response: List[str],
@@ -760,6 +761,7 @@ class MockData(DataServiceBase):
         hostname_response: str,
     ):
         self.tabular_response = tabular_response
+        self.tabular_query_response = tabular_query_response
         self.binary_response = binary_response
         self.delete_remove_response = delete_remove_response
         self.tags_response = tags_response
@@ -941,10 +943,20 @@ class MockData(DataServiceBase):
         await stream.send_message(RemoveBinaryDataFromDatasetByIDsResponse())
 
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.sql_query = request.sql_query
+        await stream.send_message(TabularDataBySQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
+        self.was_tabular_data_requested = True
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.organization_id = request.organization_id
+        self.mql_binary = request.mql_binary
+        await stream.send_message(TabularDataByMQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
+        self.was_tabular_data_requested = True
 
 
 class MockDataset(DatasetServiceBase):

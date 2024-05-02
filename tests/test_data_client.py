@@ -70,6 +70,8 @@ BBOX = BoundingBox(
     y_max_normalized=0.3,
 )
 BBOXES = [BBOX]
+SQL_QUERY = "sql_query"
+MQL_BINARY = [b"mql_binary"]
 TABULAR_DATA = {"key": "value"}
 TABULAR_METADATA = CaptureMetadata(
     organization_id=ORG_ID,
@@ -97,6 +99,9 @@ BINARY_METADATA = BinaryMetadata(
 )
 
 TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START_DATETIME, END_DATETIME)]
+TABULAR_QUERY_RESPONSE = [
+    {"key1": 1, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": 1}},
+]
 BINARY_RESPONSE = [DataClient.BinaryData(BINARY_DATA, BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
@@ -110,6 +115,7 @@ DATA_SERVICE_METADATA = {"authorization": f"Bearer {AUTH_TOKEN}"}
 def service() -> MockData:
     return MockData(
         tabular_response=TABULAR_RESPONSE,
+        tabular_query_response=TABULAR_QUERY_RESPONSE,
         binary_response=BINARY_RESPONSE,
         delete_remove_response=DELETE_REMOVE_RESPONSE,
         tags_response=TAGS_RESPONSE,
@@ -142,6 +148,20 @@ class TestClient:
             assert count == len(tabular_data)
             assert last_response != ""
             self.assert_filter(filter=service.filter)
+
+    @pytest.mark.asyncio
+    async def test_tabular_data_by_sql(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            response = await client.tabular_data_by_sql(ORG_ID, SQL_QUERY)
+            assert response == TABULAR_QUERY_RESPONSE
+
+    @pytest.mark.asyncio
+    async def test_tabular_data_by_mql(self, service: MockData):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            response = await client.tabular_data_by_mql(ORG_ID, MQL_BINARY)
+            assert response == TABULAR_QUERY_RESPONSE
 
     @pytest.mark.asyncio
     async def test_binary_data_by_filter(self, service: MockData):
