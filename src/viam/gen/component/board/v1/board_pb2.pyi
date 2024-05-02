@@ -321,12 +321,18 @@ global___ReadAnalogReaderRequest = ReadAnalogReaderRequest
 class ReadAnalogReaderResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VALUE_FIELD_NUMBER: builtins.int
+    MIN_RANGE_FIELD_NUMBER: builtins.int
+    MAX_RANGE_FIELD_NUMBER: builtins.int
+    STEP_SIZE_FIELD_NUMBER: builtins.int
     value: builtins.int
+    min_range: builtins.float
+    max_range: builtins.float
+    step_size: builtins.float
 
-    def __init__(self, *, value: builtins.int=...) -> None:
+    def __init__(self, *, value: builtins.int=..., min_range: builtins.float=..., max_range: builtins.float=..., step_size: builtins.float=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['value', b'value']) -> None:
+    def ClearField(self, field_name: typing.Literal['max_range', b'max_range', 'min_range', b'min_range', 'step_size', b'step_size', 'value', b'value']) -> None:
         ...
 global___ReadAnalogReaderResponse = ReadAnalogReaderResponse
 
