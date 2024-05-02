@@ -254,11 +254,39 @@ class DataClient:
         return data, response.count, response.last
 
     async def tabular_data_by_sql(self, organization_id: str, sql_query: str) -> List[Dict[str, ValueTypes]]:
+        """Obtain unified tabular data and metadata, queried with SQL.
+
+        ::
+
+            data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="<sql-query>")
+
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+            sql_query (str): The SQL query to run.
+
+        Returns:
+            List[Dict[str, ValueTypes]]: An array of data objects.
+        """
         request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
         response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
         return [struct_to_dict(struct) for struct in response.data]
 
-    async def tabular_data_by_mql(self, organization_id: str, mql_binary: bytes) -> List[Dict[str, ValueTypes]]:
+    async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
+        """Obtain unified tabular data and metadata, queried with MQL.
+
+        ::
+
+            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[<mql-bytes-1>, <mql-bytes-2>])
+
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+            mql_binary (List[bytes]):The MQL query to run as a list of BSON documents.
+
+        Returns:
+            List[Dict[str, ValueTypes]]: An array of data objects.
+        """
         request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
         response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
         return [struct_to_dict(struct) for struct in response.data]
@@ -723,7 +751,7 @@ class DataClient:
             filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
                 return.
 
-        Returns:
+        Returns:<
             List[str]: The list of bounding box labels.
         """
         filter = filter if filter else Filter()
