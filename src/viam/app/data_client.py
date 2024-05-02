@@ -751,7 +751,7 @@ class DataClient:
             filter (viam.proto.app.data.Filter): `Filter` specifying data to retrieve from. If no `Filter` is provided, all labels will
                 return.
 
-        Returns:<
+        Returns:
             List[str]: The list of bounding box labels.
         """
         filter = filter if filter else Filter()
