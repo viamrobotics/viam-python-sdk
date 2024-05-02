@@ -22,7 +22,6 @@ LOCATION_ID = "location_id"
 LOCATION_IDS = [LOCATION_ID]
 ORG_ID = "organization_id"
 ORG_IDS = [ORG_ID]
-PASSWORD = "password"
 MIME_TYPE = "mime_type"
 MIME_TYPES = [MIME_TYPE]
 URI = "some.robot.uri"
