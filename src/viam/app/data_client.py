@@ -23,7 +23,6 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
-    ConfigureDatabaseUserRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -734,16 +733,9 @@ class DataClient:
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
         return response.hostname
 
+    # TODO(RSDK-5569): implement
     async def configure_database_user(self, organization_id: str, password: str) -> None:
-        """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
-        password of the existing database user.
-
-        Args:
-            organization_id (str): The ID of the organization.
-            password (str): The password of the user.
-        """
-        request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
-        await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
+        raise NotImplementedError()
 
     async def create_dataset(self, name: str, organization_id: str) -> str:
         """Create a new dataset.
