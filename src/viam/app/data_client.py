@@ -2,7 +2,7 @@ import warnings
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Any, List, Mapping, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Tuple
 
 from google.protobuf.struct_pb2 import Struct
 from grpclib.client import Channel, Stream
@@ -23,6 +23,7 @@ from viam.proto.app.data import (
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
+    ConfigureDatabaseUserRequest,
     DataRequest,
     DataServiceStub,
     DeleteBinaryDataByFilterRequest,
@@ -43,6 +44,10 @@ from viam.proto.app.data import (
     RemoveTagsFromBinaryDataByIDsResponse,
     TabularDataByFilterRequest,
     TabularDataByFilterResponse,
+    TabularDataByMQLRequest,
+    TabularDataByMQLResponse,
+    TabularDataBySQLRequest,
+    TabularDataBySQLResponse,
     TagsByFilterRequest,
     TagsByFilterResponse,
 )
@@ -73,7 +78,7 @@ from viam.proto.app.datasync import (
     StreamingDataCaptureUploadResponse,
     UploadMetadata,
 )
-from viam.utils import create_filter, datetime_to_timestamp, struct_to_dict
+from viam.utils import ValueTypes, create_filter, datetime_to_timestamp, struct_to_dict
 
 LOGGER = logging.getLogger(__name__)
 
@@ -247,6 +252,44 @@ class DataClient:
             except Exception as e:
                 LOGGER.error(f"Failed to write tabular data to file {dest}", exc_info=e)
         return data, response.count, response.last
+
+    async def tabular_data_by_sql(self, organization_id: str, sql_query: str) -> List[Dict[str, ValueTypes]]:
+        """Obtain unified tabular data and metadata, queried with SQL.
+
+        ::
+
+            data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="<sql-query>")
+
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+            sql_query (str): The SQL query to run.
+
+        Returns:
+            List[Dict[str, ValueTypes]]: An array of data objects.
+        """
+        request = TabularDataBySQLRequest(organization_id=organization_id, sql_query=sql_query)
+        response: TabularDataBySQLResponse = await self._data_client.TabularDataBySQL(request, metadata=self._metadata)
+        return [struct_to_dict(struct) for struct in response.data]
+
+    async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
+        """Obtain unified tabular data and metadata, queried with MQL.
+
+        ::
+
+            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[<mql-bytes-1>, <mql-bytes-2>])
+
+
+        Args:
+            organization_id (str): The ID of the organization that owns the data.
+            mql_binary (List[bytes]):The MQL query to run as a list of BSON documents.
+
+        Returns:
+            List[Dict[str, ValueTypes]]: An array of data objects.
+        """
+        request = TabularDataByMQLRequest(organization_id=organization_id, mql_binary=mql_binary)
+        response: TabularDataByMQLResponse = await self._data_client.TabularDataByMQL(request, metadata=self._metadata)
+        return [struct_to_dict(struct) for struct in response.data]
 
     async def binary_data_by_filter(
         self,
@@ -733,9 +776,16 @@ class DataClient:
         response: GetDatabaseConnectionResponse = await self._data_client.GetDatabaseConnection(request, metadata=self._metadata)
         return response.hostname
 
-    # TODO(RSDK-5569): implement
     async def configure_database_user(self, organization_id: str, password: str) -> None:
-        raise NotImplementedError()
+        """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
+        password of the existing database user.
+
+        Args:
+            organization_id (str): The ID of the organization.
+            password (str): The password of the user.
+        """
+        request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
+        await self._data_client.ConfigureDatabaseUser(request, metadata=self._metadata)
 
     async def create_dataset(self, name: str, organization_id: str) -> str:
         """Create a new dataset.
