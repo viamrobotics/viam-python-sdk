@@ -23,12 +23,6 @@ class TestMLModel:
         resp = await self.mlmodel.metadata()
         assert resp == MockMLModel.META
 
-    @pytest.mark.asyncio
-    async def do_command(self):
-        command = {"command": "args"}
-        resp = await self.mlmodel.do_command(command)
-        assert resp == {"command": command}
-
 
 class TestService:
     @classmethod

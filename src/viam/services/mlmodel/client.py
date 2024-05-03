@@ -27,8 +27,3 @@ class MLModelClient(MLModel, ReconfigurableResourceRPCClientBase):
         request = MetadataRequest(name=self.name)
         response: MetadataResponse = await self.client.Metadata(request)
         return response.metadata
-
-    async def do_command(self, command: Mapping[str, ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, ValueTypes]:
-        request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
-        response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
-        return struct_to_dict(response.result)
