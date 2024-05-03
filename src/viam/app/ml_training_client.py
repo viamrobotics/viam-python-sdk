@@ -3,15 +3,19 @@ from typing import List, Mapping, Optional
 from grpclib.client import Channel
 
 from viam import logging
-from viam.proto.app.data import Filter
 from viam.proto.app.mltraining import (
     CancelTrainingJobRequest,
+    DeleteCompletedTrainingJobRequest,
     GetTrainingJobRequest,
     GetTrainingJobResponse,
     ListTrainingJobsRequest,
     ListTrainingJobsResponse,
     MLTrainingServiceStub,
     ModelType,
+    SubmitCustomTrainingJobRequest,
+    SubmitCustomTrainingJobResponse,
+    SubmitTrainingJobRequest,
+    SubmitTrainingJobResponse,
     TrainingJobMetadata,
     TrainingStatus,
 )
@@ -66,13 +70,62 @@ class MLTrainingClient:
     async def submit_training_job(
         self,
         org_id: str,
+        dataset_id: str,
         model_name: str,
         model_version: str,
-        model_type: ModelType,
+        model_type: ModelType.ValueType,
         tags: List[str],
-        filter: Optional[Filter] = None,
     ) -> str:
-        raise NotImplementedError()
+        """Submit a training job.
+
+        Args:
+            org_id (str): the id of the org to submit the training job to
+            dataset_id (str): the id of the dataset
+            model_name (str): the model name
+            model_version (str): the model version
+            model_type (ModelType.ValueType): the model type
+            tags (List[str]): the tags
+
+        Returns:
+            str: the id of the training job
+        """
+
+        request = SubmitTrainingJobRequest(
+            dataset_id=dataset_id,
+            organization_id=org_id,
+            model_name=model_name,
+            model_version=model_version,
+            model_type=model_type,
+            tags=tags,
+        )
+        response: SubmitTrainingJobResponse = await self._ml_training_client.SubmitTrainingJob(request, metadata=self._metadata)
+        return response.id
+
+    async def submit_custom_training_job(
+        self, org_id: str, dataset_id: str, registry_item_id: str, model_name: str, model_version: str
+    ) -> str:
+        """Submit a custom training job.
+
+        Args:
+            org_id (str): the id of the org to submit the training job to
+            dataset_id (str): the id of the dataset
+            registry_item_id (List[str]): the id of the registry item
+            model_name (str): the model name
+            model_version (str): the model version
+
+        Returns:
+            str: the id of the training job
+        """
+
+        request = SubmitCustomTrainingJobRequest(
+            dataset_id=dataset_id,
+            registry_item_id=registry_item_id,
+            organization_id=org_id,
+            model_name=model_name,
+            model_version=model_version,
+        )
+        response: SubmitCustomTrainingJobResponse = await self._ml_training_client.SubmitCustomTrainingJob(request, metadata=self._metadata)
+        return response.id
 
     async def get_training_job(self, id: str) -> TrainingJobMetadata:
         """Gets training job data.
@@ -83,7 +136,7 @@ class MLTrainingClient:
                 id="INSERT YOUR JOB ID")
 
         Args:
-            id (str): id of the requested training job.
+            id (str): the id of the requested training job.
 
         Returns:
             viam.proto.app.mltraining.TrainingJobMetadata: training job data.
@@ -140,3 +193,12 @@ class MLTrainingClient:
 
         request = CancelTrainingJobRequest(id=id)
         await self._ml_training_client.CancelTrainingJob(request, metadata=self._metadata)
+
+    async def delete_completed_training_job(self, id: str) -> None:
+        """Delete a completed training job from the database, whether the job succeeded or failed
+        Args:
+            id (str): the id of the training job
+        """
+
+        request = DeleteCompletedTrainingJobRequest(id=id)
+        await self._ml_training_client.DeleteCompletedTrainingJob(request, metadata=self._metadata)

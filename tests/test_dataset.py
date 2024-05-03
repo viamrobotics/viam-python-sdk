@@ -57,3 +57,11 @@ class TestClient:
             datasets = await client.list_datasets_by_organization_id(ORG_ID)
             assert service.org_id == ORG_ID
             assert datasets == DATASETS
+
+    @pytest.mark.asyncio
+    async def test_rename_dataset(self, service: MockDataset):
+        async with ChannelFor([service]) as channel:
+            client = DataClient(channel, DATA_SERVICE_METADATA)
+            await client.rename_dataset(ID, NAME)
+            assert service.id == ID
+            assert service.name == NAME
