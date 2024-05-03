@@ -93,15 +93,19 @@
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
 <span class="kn">from</span> <span class="nn">viam</span> <span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">Filter</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app.mltraining</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CancelTrainingJobRequest</span><span class="p">,</span>
+    <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">,</span>
     <span class="n">GetTrainingJobRequest</span><span class="p">,</span>
     <span class="n">GetTrainingJobResponse</span><span class="p">,</span>
     <span class="n">ListTrainingJobsRequest</span><span class="p">,</span>
     <span class="n">ListTrainingJobsResponse</span><span class="p">,</span>
     <span class="n">MLTrainingServiceStub</span><span class="p">,</span>
     <span class="n">ModelType</span><span class="p">,</span>
+    <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">,</span>
+    <span class="n">SubmitCustomTrainingJobResponse</span><span class="p">,</span>
+    <span class="n">SubmitTrainingJobRequest</span><span class="p">,</span>
+    <span class="n">SubmitTrainingJobResponse</span><span class="p">,</span>
     <span class="n">TrainingJobMetadata</span><span class="p">,</span>
     <span class="n">TrainingStatus</span><span class="p">,</span>
 <span class="p">)</span>
@@ -156,13 +160,62 @@
 <div class="viewcode-block" id="MLTrainingClient.submit_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_training_job</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">model_type</span><span class="p">:</span> <span class="n">ModelType</span><span class="p">,</span>
+        <span class="n">model_type</span><span class="p">:</span> <span class="n">ModelType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span>
         <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
-        <span class="nb">filter</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Filter</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a training job.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): the id of the org to submit the training job to</span>
+<span class="sd">            dataset_id (str): the id of the dataset</span>
+<span class="sd">            model_name (str): the model name</span>
+<span class="sd">            model_version (str): the model version</span>
+<span class="sd">            model_type (ModelType.ValueType): the model type</span>
+<span class="sd">            tags (List[str]): the tags</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the id of the training job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitTrainingJobRequest</span><span class="p">(</span>
+            <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+            <span class="n">model_version</span><span class="o">=</span><span class="n">model_version</span><span class="p">,</span>
+            <span class="n">model_type</span><span class="o">=</span><span class="n">model_type</span><span class="p">,</span>
+            <span class="n">tags</span><span class="o">=</span><span class="n">tags</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">SubmitTrainingJobResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">SubmitTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="MLTrainingClient.submit_custom_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.submit_custom_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">submit_custom_training_job</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">registry_item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Submit a custom training job.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): the id of the org to submit the training job to</span>
+<span class="sd">            dataset_id (str): the id of the dataset</span>
+<span class="sd">            registry_item_id (List[str]): the id of the registry item</span>
+<span class="sd">            model_name (str): the model name</span>
+<span class="sd">            model_version (str): the model version</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: the id of the training job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">SubmitCustomTrainingJobRequest</span><span class="p">(</span>
+            <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+            <span class="n">registry_item_id</span><span class="o">=</span><span class="n">registry_item_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
+            <span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+            <span class="n">model_version</span><span class="o">=</span><span class="n">model_version</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">SubmitCustomTrainingJobResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">SubmitCustomTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div>
 
 <div class="viewcode-block" id="MLTrainingClient.get_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.get_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TrainingJobMetadata</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets training job data.</span>
@@ -173,7 +226,7 @@
 <span class="sd">                id=&quot;INSERT YOUR JOB ID&quot;)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            id (str): id of the requested training job.</span>
+<span class="sd">            id (str): the id of the requested training job.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.mltraining.TrainingJobMetadata: training job data.</span>
@@ -229,7 +282,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">CancelTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">CancelTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">CancelTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MLTrainingClient.delete_completed_training_job"><a class="viewcode-back" href="../../../autoapi/viam/app/ml_training_client/index.html#viam.app.ml_training_client.MLTrainingClient.delete_completed_training_job">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_completed_training_job</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a completed training job from the database, whether the job succeeded or failed</span>
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): the id of the training job</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteCompletedTrainingJobRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ml_training_client</span><span class="o">.</span><span class="n">DeleteCompletedTrainingJob</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

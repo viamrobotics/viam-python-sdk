@@ -63,9 +63,46 @@ Attributes
        if __name__ == '__main__':
            asyncio.run(main())
 
-   .. py:method:: submit_training_job(org_id: str, model_name: str, model_version: str, model_type: viam.proto.app.mltraining.ModelType, tags: List[str], filter: Optional[viam.proto.app.data.Filter] = None) -> str
-      :abstractmethod:
+   .. py:method:: submit_training_job(org_id: str, dataset_id: str, model_name: str, model_version: str, model_type: viam.proto.app.mltraining.ModelType.ValueType, tags: List[str]) -> str
       :async:
+
+      Submit a training job.
+
+      :param org_id: the id of the org to submit the training job to
+      :type org_id: str
+      :param dataset_id: the id of the dataset
+      :type dataset_id: str
+      :param model_name: the model name
+      :type model_name: str
+      :param model_version: the model version
+      :type model_version: str
+      :param model_type: the model type
+      :type model_type: ModelType.ValueType
+      :param tags: the tags
+      :type tags: List[str]
+
+      :returns: the id of the training job
+      :rtype: str
+
+
+   .. py:method:: submit_custom_training_job(org_id: str, dataset_id: str, registry_item_id: str, model_name: str, model_version: str) -> str
+      :async:
+
+      Submit a custom training job.
+
+      :param org_id: the id of the org to submit the training job to
+      :type org_id: str
+      :param dataset_id: the id of the dataset
+      :type dataset_id: str
+      :param registry_item_id: the id of the registry item
+      :type registry_item_id: List[str]
+      :param model_name: the model name
+      :type model_name: str
+      :param model_version: the model version
+      :type model_version: str
+
+      :returns: the id of the training job
+      :rtype: str
 
 
    .. py:method:: get_training_job(id: str) -> viam.proto.app.mltraining.TrainingJobMetadata
@@ -78,7 +115,7 @@ Attributes
           job_metadata = await ml_training_client.get_training_job(
               id="INSERT YOUR JOB ID")
 
-      :param id: id of the requested training job.
+      :param id: the id of the requested training job.
       :type id: str
 
       :returns: training job data.
@@ -121,6 +158,14 @@ Attributes
       :type id: str
 
       :raises GRPCError: if no training job exists with the given id.
+
+
+   .. py:method:: delete_completed_training_job(id: str) -> None
+      :async:
+
+      Delete a completed training job from the database, whether the job succeeded or failed
+      :param id: the id of the training job
+      :type id: str
 
 
 
