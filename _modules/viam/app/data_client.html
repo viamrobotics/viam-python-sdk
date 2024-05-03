@@ -92,7 +92,7 @@
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
 
 <span class="kn">from</span> <span class="nn">google.protobuf.struct_pb2</span> <span class="kn">import</span> <span class="n">Struct</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span><span class="p">,</span> <span class="n">Stream</span>
@@ -113,6 +113,7 @@
     <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
     <span class="n">CaptureMetadata</span><span class="p">,</span>
+    <span class="n">ConfigureDatabaseUserRequest</span><span class="p">,</span>
     <span class="n">DataRequest</span><span class="p">,</span>
     <span class="n">DataServiceStub</span><span class="p">,</span>
     <span class="n">DeleteBinaryDataByFilterRequest</span><span class="p">,</span>
@@ -133,6 +134,10 @@
     <span class="n">RemoveTagsFromBinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">TabularDataByFilterRequest</span><span class="p">,</span>
     <span class="n">TabularDataByFilterResponse</span><span class="p">,</span>
+    <span class="n">TabularDataByMQLRequest</span><span class="p">,</span>
+    <span class="n">TabularDataByMQLResponse</span><span class="p">,</span>
+    <span class="n">TabularDataBySQLRequest</span><span class="p">,</span>
+    <span class="n">TabularDataBySQLResponse</span><span class="p">,</span>
     <span class="n">TagsByFilterRequest</span><span class="p">,</span>
     <span class="n">TagsByFilterResponse</span><span class="p">,</span>
 <span class="p">)</span>
@@ -163,7 +168,7 @@
     <span class="n">StreamingDataCaptureUploadResponse</span><span class="p">,</span>
     <span class="n">UploadMetadata</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">create_filter</span><span class="p">,</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -337,6 +342,44 @@
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write tabular data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">last</span></div>
+
+<div class="viewcode-block" id="DataClient.tabular_data_by_sql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_sql">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sql_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with SQL.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            data = await data_client.tabular_data_by_sql(org_id=&quot;&lt;your-org-id&gt;&quot;, sql_query=&quot;&lt;sql-query&gt;&quot;)</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">            sql_query (str): The SQL query to run.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, ValueTypes]]: An array of data objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataBySQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="n">sql_query</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataBySQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataBySQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="DataClient.tabular_data_by_mql"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.tabular_data_by_mql">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">tabular_data_by_mql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mql_binary</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">bytes</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[&lt;mql-bytes-1&gt;, &lt;mql-bytes-2&gt;])</span>
+
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">            mql_binary (List[bytes]):The MQL query to run as a list of BSON documents.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[Dict[str, ValueTypes]]: An array of data objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">TabularDataByMQLRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="n">mql_binary</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">TabularDataByMQLResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">TabularDataByMQL</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">struct_to_dict</span><span class="p">(</span><span class="n">struct</span><span class="p">)</span> <span class="k">for</span> <span class="n">struct</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="DataClient.binary_data_by_filter"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.binary_data_by_filter">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">binary_data_by_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -823,9 +866,16 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDatabaseConnectionResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">GetDatabaseConnection</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">hostname</span></div>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
 <div class="viewcode-block" id="DataClient.configure_database_user"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.configure_database_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">configure_database_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure a database user for the Viam organization&#39;s MongoDB Atlas Data Federation instance. It can also be used to reset the</span>
+<span class="sd">        password of the existing database user.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">            password (str): The password of the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ConfigureDatabaseUserRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">ConfigureDatabaseUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.create_dataset"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.create_dataset">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new dataset.</span>

@@ -170,6 +170,44 @@ Attributes
       :rtype: List[TabularData]
 
 
+   .. py:method:: tabular_data_by_sql(organization_id: str, sql_query: str) -> List[Dict[str, viam.utils.ValueTypes]]
+      :async:
+
+      Obtain unified tabular data and metadata, queried with SQL.
+
+      ::
+
+          data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="<sql-query>")
+
+
+      :param organization_id: The ID of the organization that owns the data.
+      :type organization_id: str
+      :param sql_query: The SQL query to run.
+      :type sql_query: str
+
+      :returns: An array of data objects.
+      :rtype: List[Dict[str, ValueTypes]]
+
+
+   .. py:method:: tabular_data_by_mql(organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, viam.utils.ValueTypes]]
+      :async:
+
+      Obtain unified tabular data and metadata, queried with MQL.
+
+      ::
+
+          data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[<mql-bytes-1>, <mql-bytes-2>])
+
+
+      :param organization_id: The ID of the organization that owns the data.
+      :type organization_id: str
+      :param mql_binary: The MQL query to run as a list of BSON documents.
+      :type mql_binary: List[bytes]
+
+      :returns: An array of data objects.
+      :rtype: List[Dict[str, ValueTypes]]
+
+
    .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, include_binary_data: bool = True, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[BinaryData], int, str]
       :async:
 
@@ -593,8 +631,15 @@ Attributes
 
 
    .. py:method:: configure_database_user(organization_id: str, password: str) -> None
-      :abstractmethod:
       :async:
+
+      Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
+      password of the existing database user.
+
+      :param organization_id: The ID of the organization.
+      :type organization_id: str
+      :param password: The password of the user.
+      :type password: str
 
 
    .. py:method:: create_dataset(name: str, organization_id: str) -> str

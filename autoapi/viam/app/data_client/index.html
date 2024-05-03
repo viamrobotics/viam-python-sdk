@@ -85,6 +85,8 @@
 </ul>
 </li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_filter()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_sql"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_sql()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.tabular_data_by_mql"><code class="docutils literal notranslate"><span class="pre">DataClient.tabular_data_by_mql()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.binary_data_by_filter"><code class="docutils literal notranslate"><span class="pre">DataClient.binary_data_by_filter()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.binary_data_by_ids"><code class="docutils literal notranslate"><span class="pre">DataClient.binary_data_by_ids()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.app.data_client.DataClient.delete_tabular_data"><code class="docutils literal notranslate"><span class="pre">DataClient.delete_tabular_data()</span></code></a></li>
@@ -332,6 +334,52 @@ str: The last-returned page ID.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData">TabularData</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_sql">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_sql" title="Permalink to this definition"></a></dt>
+<dd><p>Obtain unified tabular data and metadata, queried with SQL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_sql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="s2">&quot;&lt;sql-query&gt;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.</p></li>
+<li><p><strong>sql_query</strong> (<em>str</em>) – The SQL query to run.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array of data objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, ValueTypes]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_mql">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_mql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_mql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_mql" title="Permalink to this definition"></a></dt>
+<dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">mql</span><span class="o">-</span><span class="nb">bytes</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">mql</span><span class="o">-</span><span class="nb">bytes</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.</p></li>
+<li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>bytes</em><em>]</em>) – The MQL query to run as a list of BSON documents.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An array of data objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict[str, ValueTypes]]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -812,8 +860,18 @@ return.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.configure_database_user">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_database_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.configure_database_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.configure_database_user" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_database_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.configure_database_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.configure_database_user" title="Permalink to this definition"></a></dt>
+<dd><p>Configure a database user for the Viam organization’s MongoDB Atlas Data Federation instance. It can also be used to reset the
+password of the existing database user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.create_dataset">
