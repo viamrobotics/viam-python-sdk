@@ -310,7 +310,6 @@ class TestClient:
             assert service.organization_id == ORG_ID
             assert service.password == PASSWORD
 
-
     @pytest.mark.asyncio
     async def test_add_binary_data_to_dataset_by_ids(self, service: MockData):
         async with ChannelFor([service]) as channel:
