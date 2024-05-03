@@ -945,18 +945,12 @@ class MockData(DataServiceBase):
     async def TabularDataBySQL(self, stream: Stream[TabularDataBySQLRequest, TabularDataBySQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
-        self.sql_query = request.sql_query
         await stream.send_message(TabularDataBySQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
-        self.was_tabular_data_requested = True
 
     async def TabularDataByMQL(self, stream: Stream[TabularDataByMQLRequest, TabularDataByMQLResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
-        self.organization_id = request.organization_id
-        self.mql_binary = request.mql_binary
         await stream.send_message(TabularDataByMQLResponse(data=[dict_to_struct(dict) for dict in self.tabular_query_response]))
-        self.was_tabular_data_requested = True
 
 
 class MockDataset(DatasetServiceBase):
