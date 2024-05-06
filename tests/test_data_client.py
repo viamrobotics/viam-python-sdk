@@ -103,7 +103,7 @@ TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START
 TABULAR_QUERY_RESPONSE = [
     {"key1": 1, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": 1}},
 ]
-BINARY_RESPONSE = [BinaryData(data=BINARY_DATA, metadata=BINARY_METADATA)]
+BINARY_RESPONSE = [BinaryData(binary=BINARY_DATA, metadata=BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
 HOSTNAME_RESPONSE = "host"
