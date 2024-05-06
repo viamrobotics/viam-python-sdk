@@ -212,30 +212,6 @@ Classes
       :rtype: Metadata
 
 
-   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
-      :async:
-
-      Send/receive arbitrary commands.
-
-      ::
-
-          motion = MotionClient.from_robot(robot, "builtin")
-
-          my_command = {
-            "cmnd": "dosomething",
-            "someparameter": 52
-          }
-
-          # Can be used with any resource, using the motion service as an example
-          await motion.do_command(command=my_command)
-
-      :param command: The command to execute
-      :type command: Dict[str, ValueTypes]
-
-      :returns: Result of the executed command
-      :rtype: Dict[str, ValueTypes]
-
-
    .. py:method:: from_robot(robot: viam.robot.client.RobotClient, name: str) -> typing_extensions.Self
       :classmethod:
 
@@ -263,6 +239,31 @@ Classes
 
       :returns: The service, if it exists on the robot
       :rtype: Self
+
+
+   .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **kwargs) -> Mapping[str, viam.utils.ValueTypes]
+      :abstractmethod:
+      :async:
+
+      Send/receive arbitrary commands.
+
+      ::
+
+          motion = MotionClient.from_robot(robot, "builtin")
+
+          my_command = {
+            "cmnd": "dosomething",
+            "someparameter": 52
+          }
+
+          # Can be used with any resource, using the motion service as an example
+          await motion.do_command(command=my_command)
+
+      :param command: The command to execute
+      :type command: Dict[str, ValueTypes]
+
+      :returns: Result of the executed command
+      :rtype: Dict[str, ValueTypes]
 
 
    .. py:method:: get_resource_name(name: str) -> viam.proto.common.ResourceName
