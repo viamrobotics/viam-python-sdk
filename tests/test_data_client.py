@@ -5,7 +5,7 @@ from google.protobuf.timestamp_pb2 import Timestamp
 from grpclib.testing import ChannelFor
 
 from viam.app.data_client import DataClient
-from viam.proto.app.data import Annotations, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
+from viam.proto.app.data import Annotations, BinaryData, BinaryID, BinaryMetadata, BoundingBox, CaptureMetadata, Filter, Order
 from viam.utils import create_filter
 
 from .mocks.services import MockData
@@ -103,7 +103,7 @@ TABULAR_RESPONSE = [DataClient.TabularData(TABULAR_DATA, TABULAR_METADATA, START
 TABULAR_QUERY_RESPONSE = [
     {"key1": 1, "key2": "2", "key3": [1, 2, 3], "key4": {"key4sub1": 1}},
 ]
-BINARY_RESPONSE = [DataClient.BinaryData(BINARY_DATA, BINARY_METADATA)]
+BINARY_RESPONSE = [BinaryData(data=BINARY_DATA, metadata=BINARY_METADATA)]
 DELETE_REMOVE_RESPONSE = 1
 TAGS_RESPONSE = ["tag"]
 HOSTNAME_RESPONSE = "host"
