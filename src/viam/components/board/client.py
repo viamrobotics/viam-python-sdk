@@ -37,7 +37,7 @@ from .board import Board, TickStream
 LOGGER = getLogger(__name__)
 
 
-class AnalogReaderClient(Board.AnalogReader):
+class AnalogClient(Board.Analog):
     def __init__(self, name: str, board: "BoardClient"):
         self.board = board
         super().__init__(name)
@@ -54,6 +54,17 @@ class AnalogReaderClient(Board.AnalogReader):
         request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
         response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request, timeout=timeout)
         return response.value
+
+    async def write(
+        self,
+        value: int,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        request = WriteAnalogRequest(name=self.board.name, pin=self.name, value=value, extra=dict_to_struct(kwargs))
+        await self.board.client.WriteAnalog(request, timeout=timeout)
 
 
 class DigitalInterruptClient(Board.DigitalInterrupt):

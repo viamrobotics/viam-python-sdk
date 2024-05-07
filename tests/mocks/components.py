@@ -229,7 +229,7 @@ class MockBase(Base):
         return {"command": command}
 
 
-class MockAnalogReader(Board.AnalogReader):
+class MockAnalog(Board.Analog):
     def __init__(self, name: str, value: int):
         self.value = value
         self.timeout: Optional[float] = None
@@ -239,6 +239,11 @@ class MockAnalogReader(Board.AnalogReader):
         self.extra = extra
         self.timeout = timeout
         return self.value
+
+    async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+        self.extra = kwargs
+        self.timeout = timeout
+        self.value = value
 
 
 class MockDigitalInterrupt(Board.DigitalInterrupt):
@@ -300,22 +305,22 @@ class MockBoard(Board):
     def __init__(
         self,
         name: str,
-        analog_readers: Dict[str, Board.AnalogReader],
+        analogs: Dict[str, Board.Analog],
         digital_interrupts: Dict[str, Board.DigitalInterrupt],
         gpio_pins: Dict[str, Board.GPIOPin],
     ):
-        self.analog_readers = analog_readers
+        self.analogs = analogs
         self.digital_interrupts = digital_interrupts
         self.geometries = GEOMETRIES
         self.gpios = gpio_pins
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
+    async def analog_by_name(self, name: str) -> Board.Analog:
         try:
-            return self.analog_readers[name]
+            return self.analogs[name]
         except KeyError:
-            raise ResourceNotFoundError("Board.AnalogReader", name)
+            raise ResourceNotFoundError("Board.Analog", name)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         try:
@@ -329,8 +334,8 @@ class MockBoard(Board):
         except KeyError:
             raise ResourceNotFoundError("Board.GPIOPin", name)
 
-    async def analog_reader_names(self) -> List[str]:
-        return [key for key in self.analog_readers.keys()]
+    async def analog_names(self) -> List[str]:
+        return [key for key in self.analogs.keys()]
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
@@ -349,11 +354,6 @@ class MockBoard(Board):
         self.timeout = timeout
         self.power_mode = mode
         self.power_mode_duration = duration
-
-    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
-        self.timeout = timeout
-        self.analog_write_pin = pin
-        self.analog_write_value = value
 
     async def stream_ticks(self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs):
         async def read() -> AsyncIterator[Tick]:

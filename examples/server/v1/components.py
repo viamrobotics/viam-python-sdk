@@ -227,13 +227,16 @@ class ExampleBase(Base):
         return GEOMETRIES
 
 
-class ExampleAnalogReader(Board.AnalogReader):
+class ExampleAnalog(Board.Analog):
     def __init__(self, name: str, value: int):
         self.value = value
         super().__init__(name)
 
     async def read(self, extra: Optional[Dict[str, Any]] = None, **kwargs) -> int:
         return self.value
+
+    async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float], **kwargs):
+        self.value = value
 
 
 class ExampleDigitalInterrupt(Board.DigitalInterrupt):
@@ -275,20 +278,20 @@ class ExampleBoard(Board):
     def __init__(
         self,
         name: str,
-        analog_readers: Dict[str, Board.AnalogReader],
+        analogs: Dict[str, Board.Analog],
         digital_interrupts: Dict[str, Board.DigitalInterrupt],
         gpio_pins: Dict[str, Board.GPIOPin],
     ):
-        self.analog_readers = analog_readers
+        self.analogs = analogs
         self.digital_interrupts = digital_interrupts
         self.gpios = gpio_pins
         super().__init__(name)
 
-    async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
+    async def analog_reader_by_name(self, name: str) -> Board.Analog:
         try:
-            return self.analog_readers[name]
+            return self.analogs[name]
         except KeyError:
-            raise ResourceNotFoundError("Board.AnalogReader", name)
+            raise ResourceNotFoundError("Board.Analog", name)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         try:
@@ -303,7 +306,7 @@ class ExampleBoard(Board):
             raise ResourceNotFoundError("Board.GPIOPin", name)
 
     async def analog_reader_names(self) -> List[str]:
-        return [key for key in self.analog_readers.keys()]
+        return [key for key in self.analogs.keys()]
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]

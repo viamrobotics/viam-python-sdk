@@ -15,7 +15,7 @@ TickStream = Stream[Tick]
 class Board(ComponentBase):
     """
     Board represents a physical general purpose compute board that contains various
-    components such as analog readers, and digital interrupts.
+    components such as analog readers/writers, and digital interrupts.
 
     This acts as an abstract base class for any drivers representing specific
     board implementations. This cannot be used on its own. If the ``__init__()`` function is
@@ -30,13 +30,13 @@ class Board(ComponentBase):
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, "board"
     )
 
-    class AnalogReader:
+    class Analog:
         """
-        AnalogReader represents an analog pin reader that resides on a Board.
+        AnalogReader represents an analog pin reader or writer that resides on a Board.
         """
 
         name: str
-        """The name of the analog reader"""
+        """The name of the analog pin"""
 
         def __init__(self, name: str):
             self.name = name
@@ -44,17 +44,11 @@ class Board(ComponentBase):
         @abc.abstractmethod
         async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
             """
-            Read the current value.
+            Read the current value from a reader.
 
             ::
 
                 my_board = Board.from_robot(robot=robot, name="my_board")
-
-                # Get the GPIOPin with pin number 15.
-                pin = await my_board.gpio_pin_by_name(name="15")
-
-                # Get if it is true or false that the pin is set to high.
-                duty_cycle = await pin.get_pwm()
 
                 # Get the AnalogReader "my_example_analog_reader".
                 reader = await my_board.analog_reader_by_name(
@@ -62,10 +56,26 @@ class Board(ComponentBase):
 
                 # Get the value of the digital signal "my_example_analog_reader" has most
                 # recently measured.
-                reading = reader.read()
+                reading = await reader.read()
 
             Returns:
                 int: The current value.
+            """
+            ...
+
+        @abc.abstractmethod
+        async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
+            """
+            Write a value to the analog writer.
+
+            ::
+                my_board = Board.from_robot(robot=robot, name="my_board")
+
+                # Get the AnalogWriter "my_example_analog_reader".
+                writer = await my_board.analog_by_name(
+                    name="my_example_analog_writer")
+
+                await writer.write(42)
             """
             ...
 
@@ -246,22 +256,22 @@ class Board(ComponentBase):
             ...
 
     @abc.abstractmethod
-    async def analog_reader_by_name(self, name: str) -> AnalogReader:
+    async def analog_by_name(self, name: str) -> Analog:
         """
-        Get an AnalogReader by ``name``.
+        Get an Analog (reader or writer) by ``name``.
 
         ::
 
             my_board = Board.from_robot(robot=robot, name="my_board")
 
-            # Get the AnalogReader "my_example_analog_reader".
-            reader = await my_board.analog_reader_by_name(name="my_example_analog_reader")
+            # Get the Analog "my_example_analog_reader".
+            reader = await my_board.analog_by_name(name="my_example_analog_reader")
 
         Args:
             name (str): Name of the analog reader to be retrieved.
 
         Returns:
-            AnalogReader: The analog reader.
+            Analog: The analog reader or writer.
         """
         ...
 
@@ -307,19 +317,19 @@ class Board(ComponentBase):
         ...
 
     @abc.abstractmethod
-    async def analog_reader_names(self) -> List[str]:
+    async def analog_names(self) -> List[str]:
         """
-        Get the names of all known analog readers.
+        Get the names of all known analog readers and/or writers.
 
         ::
 
             my_board = Board.from_robot(robot=robot, name="my_board")
 
-            # Get the name of every AnalogReader configured on the board.
-            names = await my_board.analog_reader_names()
+            # Get the name of every Analog configured on the board.
+            names = await my_board.analog_names()
 
         Returns:
-            List[str]: The list of names of all known analog readers.
+            List[str]: The list of names of all known analog readers/writers.
         """
         ...
 
@@ -357,24 +367,6 @@ class Board(ComponentBase):
         Args:
             mode (PowerMode): The desired power mode.
             duration (Optional[timedelta]): Requested duration to stay in power mode.
-        """
-        ...
-
-    @abc.abstractmethod
-    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
-        """
-        Write an analog value to a pin on the board.
-
-        ::
-
-            my_board = Board.from_robot(robot=robot, name="my_board")
-
-            # Set pin 11 to value 48.
-            await my_board.write_analog(pin="11", value=48)
-
-        Args:
-            pin (str): The name of the pin.
-            value (int): The value to write.
         """
         ...
 
