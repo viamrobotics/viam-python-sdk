@@ -138,7 +138,7 @@ class TestBoard:
     async def test_write_analog(self, board: MockBoard):
         value = 10
         pin = "pin1"
-        writer = await board.analog_by_name(pin=pin, timeout=1.11)
+        writer = await board.analog_by_name(name=pin)
         await writer.write(value=value, timeout=1.11)
         assert board.timeout == loose_approx(1.11)
         assert board.analog_write_value == value
