@@ -241,7 +241,7 @@ class MockAnalog(Board.Analog):
         return self.value
 
     async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
-        self.extra = kwargs
+        self.extra = extra
         self.timeout = timeout
         self.value = value
 

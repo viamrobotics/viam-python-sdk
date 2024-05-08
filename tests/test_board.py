@@ -145,9 +145,9 @@ class TestBoard:
         pin = "writer1"
         writer = await board.analog_by_name(name=pin)
         await writer.write(value=value, timeout=1.11)
-        assert board.timeout == loose_approx(1.11)
-        assert board.analog_write_value == value
-        assert board.analog_write_pin == pin
+        assert writer.timeout == loose_approx(1.11)
+        assert writer.value == value
+        assert writer.name == pin
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard):
@@ -509,14 +509,14 @@ class TestGPIOPinClient:
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
-            pin = await client.analog_by_name("writer1")
+            writer = await client.analog_by_name("writer1")
             value = 42
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await pin.write(value, extra=extra)
-            mock_pin = cast(MockAnalog, board.analogs["writer1"])
-            assert mock_pin.name == "writer1"
-            assert mock_pin.value == 42
-            assert mock_pin.extra == extra
+            await writer.write(value, extra=extra)
+            mock_analog = cast(MockAnalog, board.analogs["writer1"])
+            assert mock_analog.name == "writer1"
+            assert mock_analog.value == 42
+            assert mock_analog.extra == extra
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
