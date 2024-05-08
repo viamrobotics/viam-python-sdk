@@ -504,12 +504,14 @@ class TestGPIOPinClient:
     async def test_write_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
-            pin = "pin1"
+            pin = await client.analog_by_name("pin1")
             value = 42
             extra = {"foo": "bar", "baz": [1, 2, 3]}
-            await client.write_analog(pin, value, extra=extra)
-            assert board.analog_write_pin == "pin1"
-            assert board.analog_write_value == 42
+            await pin.write(value, extra=extra)
+            mock_pin = cast(MockAnalog, board.gpios["pin1"])
+            assert mock_pin.name == "pin1"
+            assert mock_pin.value == 42
+            assert mock_pin.extra == extra
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
