@@ -51,7 +51,7 @@ class AnalogClient(Board.Analog):
     ) -> int:
         if extra is None:
             extra = {}
-        request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
+        request = ReadAnalogReaderRequest(board_name=self.board.name, analog_name=self.name, extra=dict_to_struct(extra))
         response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request, timeout=timeout)
         return response.value
 
@@ -175,19 +175,19 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     gRPC client for the Board component.
     """
 
-    _analog_reader_names: List[str]
+    _analog_names: List[str]
     _digital_interrupt_names: List[str]
 
     def __init__(self, name: str, channel: Channel):
         self.channel = channel
         self.client = BoardServiceStub(channel)
-        self._analog_reader_names = []
+        self._analog_names = []
         self._digital_interrupt_names = []
         super().__init__(name)
 
-    async def analog_reader_by_name(self, name: str) -> Board.AnalogReader:
-        self._analog_reader_names.append(name)
-        return AnalogReaderClient(name, self)
+    async def analog_by_name(self, name: str) -> Board.Analog:
+        self._analog_names.append(name)
+        return AnalogClient(name, self)
 
     async def digital_interrupt_by_name(self, name: str) -> Board.DigitalInterrupt:
         self._digital_interrupt_names.append(name)
@@ -196,10 +196,10 @@ class BoardClient(Board, ReconfigurableResourceRPCClientBase):
     async def gpio_pin_by_name(self, name: str) -> Board.GPIOPin:
         return GPIOPinClient(name, self)
 
-    async def analog_reader_names(self) -> List[str]:
-        if self._analog_reader_names is None:
+    async def analog_names(self) -> List[str]:
+        if self._analog_names is None:
             return []
-        return self._analog_reader_names
+        return self._analog_names
 
     async def digital_interrupt_names(self) -> List[str]:
         if self._digital_interrupt_names is None:

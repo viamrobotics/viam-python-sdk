@@ -37,15 +37,15 @@ from viam.resource.manager import ResourceManager
 from viam.utils import dict_to_struct, message_to_struct, struct_to_dict
 
 from . import loose_approx
-from .mocks.components import GEOMETRIES, MockAnalogReader, MockBoard, MockDigitalInterrupt, MockGPIOPin
+from .mocks.components import GEOMETRIES, MockAnalog, MockBoard, MockDigitalInterrupt, MockGPIOPin
 
 
 @pytest.fixture(scope="function")
 def board() -> MockBoard:
     return MockBoard(
         name="board",
-        analog_readers={
-            "reader1": MockAnalogReader("reader1", 3),
+        analogs={
+            "reader1": MockAnalog("reader1", 3),
         },
         digital_interrupts={
             "interrupt1": MockDigitalInterrupt("interrupt1"),
@@ -68,11 +68,11 @@ def generic_service(board: MockBoard) -> GenericRPCService:
 
 class TestBoard:
     @pytest.mark.asyncio
-    async def test_analog_reader_by_name(self, board: MockBoard):
+    async def test_analog_by_name(self, board: MockBoard):
         with pytest.raises(ResourceNotFoundError):
-            await board.analog_reader_by_name("does not exist")
+            await board.analog_by_name("does not exist")
 
-        reader = await board.analog_reader_by_name("reader1")
+        reader = await board.analog_by_name("reader1")
         assert reader.name == "reader1"
 
     @pytest.mark.asyncio
@@ -92,8 +92,8 @@ class TestBoard:
         assert pin.name == "pin1"
 
     @pytest.mark.asyncio
-    async def test_analog_reader_names(self, board: MockBoard):
-        names = await board.analog_reader_names()
+    async def test_reader_names(self, board: MockBoard):
+        names = await board.analog_names()
         assert names == ["reader1"]
 
     @pytest.mark.asyncio
@@ -110,7 +110,7 @@ class TestBoard:
     @pytest.mark.asyncio
     async def test_status(self, board: MockBoard):
         status = await create_status(board)
-        read = await board.analog_readers["reader1"].read()
+        read = await board.analogs["reader1"].read()
         val = await board.digital_interrupts["interrupt1"].value()
         assert status.name == MockBoard.get_resource_name(board.name)
         assert status.status == message_to_struct(
@@ -154,7 +154,7 @@ class TestBoard:
 
 class TestService:
     @pytest.mark.asyncio
-    async def test_read_analog_reader(self, board: MockBoard, service: BoardRPCService):
+    async def test_read_analog(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardServiceStub(channel)
 
@@ -167,7 +167,7 @@ class TestService:
             response: ReadAnalogReaderResponse = await client.ReadAnalogReader(request, timeout=4.4)
             assert response.value == 3
 
-            reader = cast(MockAnalogReader, board.analog_readers["reader1"])
+            reader = cast(MockAnalog, board.analogs["reader1"])
             assert reader.extra == extra
             assert reader.timeout == loose_approx(4.4)
 
@@ -336,16 +336,16 @@ class TestService:
 
 class TestClient:
     @pytest.mark.asyncio
-    async def test_analog_reader_by_name(self, board: MockBoard, service: BoardRPCService):
+    async def test_analog_by_name(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
 
-            reader = await client.analog_reader_by_name("does not exist")
+            reader = await client.analog_by_name("does not exist")
             assert reader.name == "does not exist"
             with pytest.raises(GRPCError, match=r".*Status.NOT_FOUND.*"):
                 await reader.read()
 
-            reader = await client.analog_reader_by_name("reader1")
+            reader = await client.analog_by_name("reader1")
             assert reader.name == "reader1"
 
     @pytest.mark.asyncio
@@ -375,14 +375,14 @@ class TestClient:
             assert pin.name == "pin1"
 
     @pytest.mark.asyncio
-    async def test_analog_reader_names(self, board: MockBoard, service: BoardRPCService):
+    async def test_analog_names(self, board: MockBoard, service: BoardRPCService):
         async with ChannelFor([service]) as channel:
             client = BoardClient(name=board.name, channel=channel)
 
-            reader = await client.analog_reader_by_name("reader1")
+            reader = await client.analog_by_name("reader1")
             assert reader.name == "reader1"
 
-            names = await client.analog_reader_names()
+            names = await client.analog_names()
             assert names == ["reader1"]
 
     @pytest.mark.asyncio
