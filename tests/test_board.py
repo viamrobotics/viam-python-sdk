@@ -517,7 +517,7 @@ class TestGPIOPinClient:
             mock_analog = cast(MockAnalog, board.analogs["writer1"])
             assert mock_analog.name == "writer1"
             assert mock_analog.value == 42
-            assert mock_analog.extra == extra
+            assert mock_analog.extra == dict_to_struct(extra)
 
     @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
