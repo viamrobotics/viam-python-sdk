@@ -51,7 +51,7 @@ class AnalogClient(Board.Analog):
     ) -> int:
         if extra is None:
             extra = {}
-        request = ReadAnalogReaderRequest(board_name=self.board.name, analog_name=self.name, extra=dict_to_struct(extra))
+        request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
         response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request, timeout=timeout)
         return response.value
 
