@@ -319,9 +319,10 @@ class TestService:
             request = WriteAnalogRequest(name=board.name, pin=pin, value=value)
             response: WriteAnalogResponse = await client.WriteAnalog(request, timeout=6.66)
             assert response == WriteAnalogResponse()
-            assert board.timeout == loose_approx(6.66)
-            assert board.analog_write_value == value
-            assert board.analog_write_pin == pin
+            mock_analog = cast(MockAnalog, board.analogs["writer1"])
+            assert mock_analog.timeout == loose_approx(6.66)
+            assert mock_analog.value == value
+            assert mock_analog.name == pin
 
     # @pytest.mark.asyncio
     async def test_stream_ticks(self, board: MockBoard, service: BoardRPCService):
