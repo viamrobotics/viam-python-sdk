@@ -14,12 +14,12 @@ from viam.proto.app.data import (
     AddBoundingBoxToImageByIDResponse,
     AddTagsToBinaryDataByFilterRequest,
     AddTagsToBinaryDataByIDsRequest,
+    BinaryData,
     BinaryDataByFilterRequest,
     BinaryDataByFilterResponse,
     BinaryDataByIDsRequest,
     BinaryDataByIDsResponse,
     BinaryID,
-    BinaryMetadata,
     BoundingBoxLabelsByFilterRequest,
     BoundingBoxLabelsByFilterResponse,
     CaptureMetadata,
@@ -137,25 +137,6 @@ class DataClient:
 
         def __eq__(self, other: object) -> bool:
             if isinstance(other, DataClient.TabularData):
-                return str(self) == str(other)
-            return False
-
-    # TODO (RSDK-6684): Revisit if this shadow type is necessary
-    @dataclass
-    class BinaryData:
-        """Class representing a piece of binary data and associated metadata."""
-
-        data: bytes
-        """The request data"""
-
-        metadata: BinaryMetadata
-        """The metadata associated with the data"""
-
-        def __str__(self) -> str:
-            return f"{self.data}\n{self.metadata}"
-
-        def __eq__(self, other: object) -> bool:
-            if isinstance(other, DataClient.BinaryData):
                 return str(self) == str(other)
             return False
 
@@ -335,7 +316,7 @@ class DataClient:
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[BinaryData]: The binary data.
+            List[viam.proto.app.data.BinaryData]: The binary data.
             int: The count (number of entries)
             str: The last-returned page ID.
         """
@@ -354,7 +335,7 @@ class DataClient:
             include_internal_data=include_internal_data,
         )
         response: BinaryDataByFilterResponse = await self._data_client.BinaryDataByFilter(request, metadata=self._metadata)
-        data = [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
+        data = list(response.data)
         if dest:
             try:
                 file = open(dest, "w")
@@ -401,7 +382,7 @@ class DataClient:
             GRPCError: If no `BinaryID` objects are provided.
 
         Returns:
-            List[BinaryData]: The binary data.
+            List[viam.proto.app.data.BinaryData]: The binary data.
         """
         request = BinaryDataByIDsRequest(binary_ids=binary_ids, include_binary=True)
         response: BinaryDataByIDsResponse = await self._data_client.BinaryDataByIDs(request, metadata=self._metadata)
@@ -412,7 +393,7 @@ class DataClient:
                 file.flush()
             except Exception as e:
                 LOGGER.error(f"Failed to write binary data to file {dest}", exc_info=e)
-        return [DataClient.BinaryData(data.binary, data.metadata) for data in response.data]
+        return list(response.data)
 
     async def delete_tabular_data(self, organization_id: str, delete_older_than_days: int) -> int:
         """Delete tabular data older than a specified number of days.

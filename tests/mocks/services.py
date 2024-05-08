@@ -754,7 +754,7 @@ class MockData(DataServiceBase):
         self,
         tabular_response: List[DataClient.TabularData],
         tabular_query_response: List[Dict[str, ValueTypes]],
-        binary_response: List[DataClient.BinaryData],
+        binary_response: List[BinaryData],
         delete_remove_response: int,
         tags_response: List[str],
         bbox_labels_response: List[str],
@@ -817,7 +817,7 @@ class MockData(DataServiceBase):
         self.last = request.data_request.last
         await stream.send_message(
             BinaryDataByFilterResponse(
-                data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response],
+                data=self.binary_response,
                 count=len(self.binary_response),
                 last="LAST_BINARY_DATA_PAGE_ID",
             )
@@ -829,7 +829,7 @@ class MockData(DataServiceBase):
         assert request is not None
         self.binary_ids = request.binary_ids
         await stream.send_message(
-            BinaryDataByIDsResponse(data=[BinaryData(binary=data.data, metadata=data.metadata) for data in self.binary_response])
+            BinaryDataByIDsResponse(data=self.binary_response)
         )
 
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
