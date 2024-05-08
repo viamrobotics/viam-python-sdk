@@ -104,12 +104,12 @@
     <span class="n">AddBoundingBoxToImageByIDResponse</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">AddTagsToBinaryDataByIDsRequest</span><span class="p">,</span>
+    <span class="n">BinaryData</span><span class="p">,</span>
     <span class="n">BinaryDataByFilterRequest</span><span class="p">,</span>
     <span class="n">BinaryDataByFilterResponse</span><span class="p">,</span>
     <span class="n">BinaryDataByIDsRequest</span><span class="p">,</span>
     <span class="n">BinaryDataByIDsResponse</span><span class="p">,</span>
     <span class="n">BinaryID</span><span class="p">,</span>
-    <span class="n">BinaryMetadata</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterRequest</span><span class="p">,</span>
     <span class="n">BoundingBoxLabelsByFilterResponse</span><span class="p">,</span>
     <span class="n">CaptureMetadata</span><span class="p">,</span>
@@ -227,25 +227,6 @@
 
 <div class="viewcode-block" id="DataClient.TabularData.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.TabularData.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">TabularData</span><span class="p">):</span>
-                <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">False</span></div></div>
-
-    <span class="c1"># TODO (RSDK-6684): Revisit if this shadow type is necessary</span>
-<div class="viewcode-block" id="DataClient.BinaryData"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData">[docs]</a>    <span class="nd">@dataclass</span>
-    <span class="k">class</span> <span class="nc">BinaryData</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Class representing a piece of binary data and associated metadata.&quot;&quot;&quot;</span>
-
-        <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The request data&quot;&quot;&quot;</span>
-
-        <span class="n">metadata</span><span class="p">:</span> <span class="n">BinaryMetadata</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The metadata associated with the data&quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="DataClient.BinaryData.__str__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData.__str__">[docs]</a>        <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">&quot;</span></div>
-
-<div class="viewcode-block" id="DataClient.BinaryData.__eq__"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.BinaryData.__eq__">[docs]</a>        <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">):</span>
                 <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div></div>
 
@@ -425,7 +406,7 @@
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[BinaryData]: The binary data.</span>
+<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data.</span>
 <span class="sd">            int: The count (number of entries)</span>
 <span class="sd">            str: The last-returned page ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -444,7 +425,7 @@
             <span class="n">include_internal_data</span><span class="o">=</span><span class="n">include_internal_data</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByFilterResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dest</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
@@ -491,7 +472,7 @@
 <span class="sd">            GRPCError: If no `BinaryID` objects are provided.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[BinaryData]: The binary data.</span>
+<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">BinaryDataByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">include_binary</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">BinaryDataByIDsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">BinaryDataByIDs</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
@@ -502,7 +483,7 @@
                 <span class="n">file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to write binary data to file </span><span class="si">{</span><span class="n">dest</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">e</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">DataClient</span><span class="o">.</span><span class="n">BinaryData</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.delete_tabular_data"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.delete_tabular_data">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_tabular_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">delete_older_than_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete tabular data older than a specified number of days.</span>

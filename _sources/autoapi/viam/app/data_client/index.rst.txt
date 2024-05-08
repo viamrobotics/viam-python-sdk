@@ -99,32 +99,6 @@ Attributes
 
 
 
-   .. py:class:: BinaryData
-
-
-      Class representing a piece of binary data and associated metadata.
-
-      .. py:attribute:: data
-         :type: bytes
-
-         The request data
-
-      .. py:attribute:: metadata
-         :type: viam.proto.app.data.BinaryMetadata
-
-         The metadata associated with the data
-
-      .. py:method:: __str__() -> str
-
-         Return str(self).
-
-
-      .. py:method:: __eq__(other: object) -> bool
-
-         Return self==value.
-
-
-
    .. py:method:: tabular_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[TabularData], int, str]
       :async:
 
@@ -208,7 +182,7 @@ Attributes
       :rtype: List[Dict[str, ValueTypes]]
 
 
-   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, include_binary_data: bool = True, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[BinaryData], int, str]
+   .. py:method:: binary_data_by_filter(filter: Optional[viam.proto.app.data.Filter] = None, limit: Optional[int] = None, sort_order: Optional[viam.proto.app.data.Order.ValueType] = None, last: Optional[str] = None, include_binary_data: bool = True, count_only: bool = False, include_internal_data: bool = False, dest: Optional[str] = None) -> Tuple[List[viam.proto.app.data.BinaryData], int, str]
       :async:
 
       Filter and download binary data. The data will be paginated into pages of `limit` items, and the pagination ID will be included
@@ -253,10 +227,10 @@ Attributes
       :returns: The binary data.
                 int: The count (number of entries)
                 str: The last-returned page ID.
-      :rtype: List[BinaryData]
+      :rtype: List[viam.proto.app.data.BinaryData]
 
 
-   .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[BinaryData]
+   .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
       :async:
 
       Filter and download binary data.
@@ -290,7 +264,7 @@ Attributes
       :raises GRPCError: If no `BinaryID` objects are provided.
 
       :returns: The binary data.
-      :rtype: List[BinaryData]
+      :rtype: List[viam.proto.app.data.BinaryData]
 
 
    .. py:method:: delete_tabular_data(organization_id: str, delete_older_than_days: int) -> int
