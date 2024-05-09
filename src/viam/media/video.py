@@ -7,7 +7,7 @@ from typing_extensions import Self
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
 
-from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_MAGIC_NUMBER
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 # Formats that are supported by PIL
 LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
@@ -168,10 +168,10 @@ def _getDimensionsFromJPEG(image: bytes) -> Tuple[int, int]:
             # End of image (EOI) marker
             break
 
-        length = int.from_bytes(image[offset : offset + 1])  # length of section
+        length = int.from_bytes(image[offset : offset + 1], byteorder="big")  # length of section
         if marker == 0xC0 or marker == 0xC2:
-            height = int.from_bytes(image[offset + 3 : offset + 5])
-            width = int.from_bytes(image[offset + 5 : offset + 7])
+            height = int.from_bytes(image[offset + 3 : offset + 5], byteorder="big")
+            width = int.from_bytes(image[offset + 5 : offset + 7], byteorder="big")
             return (width, height)
 
         offset += length
@@ -192,8 +192,8 @@ def _getDimensionsFromPNG(image: bytes) -> Tuple[int, int]:
     if chunk_type != "IHDR":
         ValueError("Invalid PNG: Invalid headers")
 
-    width = int.from_bytes(header[4:8])
-    height = int.from_bytes(header[8:])
+    width = int.from_bytes(header[4:8], byteorder="big")
+    height = int.from_bytes(header[8:], byteorder="big")
     return (width, height)
 
 
@@ -202,10 +202,10 @@ def _getDimensionsFromRGBA(image: bytes) -> Tuple[int, int]:
     # * Magic Number/Signature
     # * Width
     # * Height
-    header = image[:12]
+    header = image[:RGBA_HEADER_LENGTH]
     if header[:4] != RGBA_MAGIC_NUMBER:
         raise ValueError("Invalid Viam RGBA: Invalid headers")
 
-    width = int.from_bytes(header[4:8])
-    height = int.from_bytes(header[8:])
+    width = int.from_bytes(header[4:8], byteorder="big")
+    height = int.from_bytes(header[8:], byteorder="big")
     return (width, height)
