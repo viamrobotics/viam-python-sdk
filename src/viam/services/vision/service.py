@@ -16,7 +16,7 @@ from viam.proto.service.vision import (
     GetDetectionsResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
-    VisionServiceBase,
+    UnimplementedVisionServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -24,7 +24,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .vision import Vision
 
 
-class VisionRPCService(VisionServiceBase, ResourceRPCServiceBase):
+class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
     """
     gRPC service for a Vision service
     """

@@ -828,9 +828,7 @@ class MockData(DataServiceBase):
         request = await stream.recv_message()
         assert request is not None
         self.binary_ids = request.binary_ids
-        await stream.send_message(
-            BinaryDataByIDsResponse(data=self.binary_response)
-        )
+        await stream.send_message(BinaryDataByIDsResponse(data=self.binary_response))
 
     async def DeleteTabularData(self, stream: Stream[DeleteTabularDataRequest, DeleteTabularDataResponse]) -> None:
         request = await stream.recv_message()
