@@ -287,7 +287,7 @@ class ExampleBoard(Board):
         self.gpios = gpio_pins
         super().__init__(name)
 
-    async def analog_reader_by_name(self, name: str) -> Board.Analog:
+    async def analog_by_name(self, name: str) -> Board.Analog:
         try:
             return self.analogs[name]
         except KeyError:
@@ -305,16 +305,13 @@ class ExampleBoard(Board):
         except KeyError:
             raise ResourceNotFoundError("Board.GPIOPin", name)
 
-    async def analog_reader_names(self) -> List[str]:
+    async def analog_names(self) -> List[str]:
         return [key for key in self.analogs.keys()]
 
     async def digital_interrupt_names(self) -> List[str]:
         return [key for key in self.digital_interrupts.keys()]
 
     async def set_power_mode(self, **kwargs):
-        raise NotImplementedError()
-
-    async def write_analog(self, pin: str, value: int, *, timeout: Optional[float] = None, **kwargs):
         raise NotImplementedError()
 
     async def stream_ticks(self, interrupts: List[Board.DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream:
