@@ -4,6 +4,8 @@ Do not edit manually!
 """
 from ....gen.service.vision.v1.vision_grpc import UnimplementedVisionServiceBase, VisionServiceBase, VisionServiceStub
 from ....gen.service.vision.v1.vision_pb2 import (
+    CaptureAllFromCameraRequest,
+    CaptureAllFromCameraResponse,
     Classification,
     Detection,
     GetClassificationsFromCameraRequest,
@@ -16,12 +18,16 @@ from ....gen.service.vision.v1.vision_pb2 import (
     GetDetectionsResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
 )
 
 __all__ = [
     "UnimplementedVisionServiceBase",
     "VisionServiceBase",
     "VisionServiceStub",
+    "CaptureAllFromCameraRequest",
+    "CaptureAllFromCameraResponse",
     "Classification",
     "Detection",
     "GetClassificationsFromCameraRequest",
@@ -34,4 +40,6 @@ __all__ = [
     "GetDetectionsResponse",
     "GetObjectPointCloudsRequest",
     "GetObjectPointCloudsResponse",
+    "GetPropertiesRequest",
+    "GetPropertiesResponse",
 ]

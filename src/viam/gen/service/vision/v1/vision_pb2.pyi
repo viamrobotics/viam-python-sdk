@@ -5,6 +5,7 @@ isort:skip_file
 import builtins
 import collections.abc
 from .... import common
+from .... import component
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
@@ -308,3 +309,121 @@ class GetObjectPointCloudsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['mime_type', b'mime_type', 'objects', b'objects']) -> None:
         ...
 global___GetObjectPointCloudsResponse = GetObjectPointCloudsResponse
+
+@typing.final
+class GetPropertiesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        """Additional arguments to the method"""
+
+    def __init__(self, *, name: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['extra', b'extra', 'name', b'name']) -> None:
+        ...
+global___GetPropertiesRequest = GetPropertiesRequest
+
+@typing.final
+class CaptureAllFromCameraRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    NAME_FIELD_NUMBER: builtins.int
+    CAMERA_NAME_FIELD_NUMBER: builtins.int
+    RETURN_IMAGE_FIELD_NUMBER: builtins.int
+    RETURN_CLASSIFICATIONS_FIELD_NUMBER: builtins.int
+    RETURN_DETECTIONS_FIELD_NUMBER: builtins.int
+    RETURN_OBJECT_POINT_CLOUDS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    'name of the vision service'
+    camera_name: builtins.str
+    'name of camera source to use as input'
+    return_image: builtins.bool
+    'whether or not including the image in the response'
+    return_classifications: builtins.bool
+    'whether or not including classifications in the response'
+    return_detections: builtins.bool
+    'whether or not including detections in the response'
+    return_object_point_clouds: builtins.bool
+    'whether or not including pcd in the response'
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, name: builtins.str=..., camera_name: builtins.str=..., return_image: builtins.bool=..., return_classifications: builtins.bool=..., return_detections: builtins.bool=..., return_object_point_clouds: builtins.bool=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['camera_name', b'camera_name', 'extra', b'extra', 'name', b'name', 'return_classifications', b'return_classifications', 'return_detections', b'return_detections', 'return_image', b'return_image', 'return_object_point_clouds', b'return_object_point_clouds']) -> None:
+        ...
+global___CaptureAllFromCameraRequest = CaptureAllFromCameraRequest
+
+@typing.final
+class CaptureAllFromCameraResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IMAGE_FIELD_NUMBER: builtins.int
+    DETECTIONS_FIELD_NUMBER: builtins.int
+    CLASSIFICATIONS_FIELD_NUMBER: builtins.int
+    OBJECTS_FIELD_NUMBER: builtins.int
+    EXTRA_FIELD_NUMBER: builtins.int
+
+    @property
+    def image(self) -> component.camera.v1.camera_pb2.Image:
+        ...
+
+    @property
+    def detections(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Detection]:
+        ...
+
+    @property
+    def classifications(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Classification]:
+        ...
+
+    @property
+    def objects(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.PointCloudObject]:
+        ...
+
+    @property
+    def extra(self) -> google.protobuf.struct_pb2.Struct:
+        ...
+
+    def __init__(self, *, image: component.camera.v1.camera_pb2.Image | None=..., detections: collections.abc.Iterable[global___Detection] | None=..., classifications: collections.abc.Iterable[global___Classification] | None=..., objects: collections.abc.Iterable[common.v1.common_pb2.PointCloudObject] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['extra', b'extra', 'image', b'image']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['classifications', b'classifications', 'detections', b'detections', 'extra', b'extra', 'image', b'image', 'objects', b'objects']) -> None:
+        ...
+global___CaptureAllFromCameraResponse = CaptureAllFromCameraResponse
+
+@typing.final
+class GetPropertiesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    CLASSIFICATIONS_SUPPORTED_FIELD_NUMBER: builtins.int
+    DETECTIONS_SUPPORTED_FIELD_NUMBER: builtins.int
+    OBJECT_POINT_CLOUDS_SUPPORTED_FIELD_NUMBER: builtins.int
+    classifications_supported: builtins.bool
+    'whether or not classifactions are supported by the vision service'
+    detections_supported: builtins.bool
+    'whether or not detections are supported by the vision service'
+    object_point_clouds_supported: builtins.bool
+    'whether or not 3d segmentation is supported by the vision service'
+
+    def __init__(self, *, classifications_supported: builtins.bool=..., detections_supported: builtins.bool=..., object_point_clouds_supported: builtins.bool=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['classifications_supported', b'classifications_supported', 'detections_supported', b'detections_supported', 'object_point_clouds_supported', b'object_point_clouds_supported']) -> None:
+        ...
+global___GetPropertiesResponse = GetPropertiesResponse
