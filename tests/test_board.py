@@ -119,8 +119,7 @@ class TestBoard:
         assert status.name == MockBoard.get_resource_name(board.name)
         assert status.status == message_to_struct(
             BoardStatus(
-                analogs={"reader1": int(read1),
-                         "writer1": int(read2)},
+                analogs={"reader1": int(read1), "writer1": int(read2)},
                 digital_interrupts={"interrupt1": val},
             )
         )
