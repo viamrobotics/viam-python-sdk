@@ -34,7 +34,7 @@ Classes
    Bases: :py:obj:`viam.components.component_base.ComponentBase`
 
    Board represents a physical general purpose compute board that contains various
-   components such as analog readers, and digital interrupts.
+   components such as analog readers/writers, and digital interrupts.
 
    This acts as an abstract base class for any drivers representing specific
    board implementations. This cannot be used on its own. If the ``__init__()`` function is
@@ -44,31 +44,25 @@ Classes
 
        from viam.components.board import Board
 
-   .. py:class:: AnalogReader(name: str)
+   .. py:class:: Analog(name: str)
 
 
-      AnalogReader represents an analog pin reader that resides on a Board.
+      AnalogReader represents an analog pin reader or writer that resides on a Board.
 
       .. py:attribute:: name
          :type: str
 
-         The name of the analog reader
+         The name of the analog pin
 
       .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
          :abstractmethod:
          :async:
 
-         Read the current value.
+         Read the current value from the reader.
 
          ::
 
              my_board = Board.from_robot(robot=robot, name="my_board")
-
-             # Get the GPIOPin with pin number 15.
-             pin = await my_board.gpio_pin_by_name(name="15")
-
-             # Get if it is true or false that the pin is set to high.
-             duty_cycle = await pin.get_pwm()
 
              # Get the AnalogReader "my_example_analog_reader".
              reader = await my_board.analog_reader_by_name(
@@ -76,10 +70,26 @@ Classes
 
              # Get the value of the digital signal "my_example_analog_reader" has most
              # recently measured.
-             reading = reader.read()
+             reading = await reader.read()
 
          :returns: The current value.
          :rtype: int
+
+
+      .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+         :abstractmethod:
+         :async:
+
+         Write a value to the analog writer.
+
+         ::
+             my_board = Board.from_robot(robot=robot, name="my_board")
+
+             # Get the AnalogWriter "my_example_analog_writer".
+             writer = await my_board.analog_by_name(
+                 name="my_example_analog_writer")
+
+             await writer.write(42)
 
 
 
@@ -257,24 +267,24 @@ Classes
 
       
 
-   .. py:method:: analog_reader_by_name(name: str) -> AnalogReader
+   .. py:method:: analog_by_name(name: str) -> Analog
       :abstractmethod:
       :async:
 
-      Get an AnalogReader by ``name``.
+      Get an Analog (reader or writer) by ``name``.
 
       ::
 
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the AnalogReader "my_example_analog_reader".
-          reader = await my_board.analog_reader_by_name(name="my_example_analog_reader")
+          # Get the Analog "my_example_analog_reader".
+          reader = await my_board.analog_by_name(name="my_example_analog_reader")
 
       :param name: Name of the analog reader to be retrieved.
       :type name: str
 
-      :returns: The analog reader.
-      :rtype: AnalogReader
+      :returns: The analog reader or writer.
+      :rtype: Analog
 
 
    .. py:method:: digital_interrupt_by_name(name: str) -> DigitalInterrupt
@@ -318,20 +328,20 @@ Classes
       :rtype: GPIOPin
 
 
-   .. py:method:: analog_reader_names() -> List[str]
+   .. py:method:: analog_names() -> List[str]
       :abstractmethod:
       :async:
 
-      Get the names of all known analog readers.
+      Get the names of all known analog readers and/or writers.
 
       ::
 
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the name of every AnalogReader configured on the board.
-          names = await my_board.analog_reader_names()
+          # Get the name of every Analog configured on the board.
+          names = await my_board.analog_names()
 
-      :returns: The list of names of all known analog readers.
+      :returns: The list of names of all known analog readers/writers.
       :rtype: List[str]
 
 
@@ -369,25 +379,6 @@ Classes
       :type mode: PowerMode
       :param duration: Requested duration to stay in power mode.
       :type duration: Optional[timedelta]
-
-
-   .. py:method:: write_analog(pin: str, value: int, *, timeout: Optional[float] = None, **kwargs)
-      :abstractmethod:
-      :async:
-
-      Write an analog value to a pin on the board.
-
-      ::
-
-          my_board = Board.from_robot(robot=robot, name="my_board")
-
-          # Set pin 11 to value 48.
-          await my_board.write_analog(pin="11", value=48)
-
-      :param pin: The name of the pin.
-      :type pin: str
-      :param value: The value to write.
-      :type value: int
 
 
    .. py:method:: stream_ticks(interrupts: List[DigitalInterrupt], *, timeout: Optional[float] = None, **kwargs) -> TickStream

@@ -12,7 +12,7 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.board.client.AnalogReaderClient
+   viam.components.board.client.AnalogClient
    viam.components.board.client.DigitalInterruptClient
    viam.components.board.client.GPIOPinClient
    viam.components.board.client.BoardClient
@@ -32,27 +32,21 @@ Attributes
 
    
 
-.. py:class:: AnalogReaderClient(name: str, board: BoardClient)
+.. py:class:: AnalogClient(name: str, board: BoardClient)
 
 
-   Bases: :py:obj:`viam.components.board.board.Board.AnalogReader`
+   Bases: :py:obj:`viam.components.board.board.Board.Analog`
 
-   AnalogReader represents an analog pin reader that resides on a Board.
+   AnalogReader represents an analog pin reader or writer that resides on a Board.
 
    .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
       :async:
 
-      Read the current value.
+      Read the current value from the reader.
 
       ::
 
           my_board = Board.from_robot(robot=robot, name="my_board")
-
-          # Get the GPIOPin with pin number 15.
-          pin = await my_board.gpio_pin_by_name(name="15")
-
-          # Get if it is true or false that the pin is set to high.
-          duty_cycle = await pin.get_pwm()
 
           # Get the AnalogReader "my_example_analog_reader".
           reader = await my_board.analog_reader_by_name(
@@ -60,10 +54,25 @@ Attributes
 
           # Get the value of the digital signal "my_example_analog_reader" has most
           # recently measured.
-          reading = reader.read()
+          reading = await reader.read()
 
       :returns: The current value.
       :rtype: int
+
+
+   .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
+      :async:
+
+      Write a value to the analog writer.
+
+      ::
+          my_board = Board.from_robot(robot=robot, name="my_board")
+
+          # Get the AnalogWriter "my_example_analog_writer".
+          writer = await my_board.analog_by_name(
+              name="my_example_analog_writer")
+
+          await writer.write(42)
 
 
 
@@ -230,23 +239,23 @@ Attributes
 
    gRPC client for the Board component.
 
-   .. py:method:: analog_reader_by_name(name: str) -> viam.components.board.board.Board.AnalogReader
+   .. py:method:: analog_by_name(name: str) -> viam.components.board.board.Board.Analog
       :async:
 
-      Get an AnalogReader by ``name``.
+      Get an Analog (reader or writer) by ``name``.
 
       ::
 
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the AnalogReader "my_example_analog_reader".
-          reader = await my_board.analog_reader_by_name(name="my_example_analog_reader")
+          # Get the Analog "my_example_analog_reader".
+          reader = await my_board.analog_by_name(name="my_example_analog_reader")
 
       :param name: Name of the analog reader to be retrieved.
       :type name: str
 
-      :returns: The analog reader.
-      :rtype: AnalogReader
+      :returns: The analog reader or writer.
+      :rtype: Analog
 
 
    .. py:method:: digital_interrupt_by_name(name: str) -> viam.components.board.board.Board.DigitalInterrupt
@@ -288,19 +297,19 @@ Attributes
       :rtype: GPIOPin
 
 
-   .. py:method:: analog_reader_names() -> List[str]
+   .. py:method:: analog_names() -> List[str]
       :async:
 
-      Get the names of all known analog readers.
+      Get the names of all known analog readers and/or writers.
 
       ::
 
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the name of every AnalogReader configured on the board.
-          names = await my_board.analog_reader_names()
+          # Get the name of every Analog configured on the board.
+          names = await my_board.analog_names()
 
-      :returns: The list of names of all known analog readers.
+      :returns: The list of names of all known analog readers/writers.
       :rtype: List[str]
 
 
@@ -376,20 +385,6 @@ Attributes
 
    .. py:method:: write_analog(pin: str, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
-
-      Write an analog value to a pin on the board.
-
-      ::
-
-          my_board = Board.from_robot(robot=robot, name="my_board")
-
-          # Set pin 11 to value 48.
-          await my_board.write_analog(pin="11", value=48)
-
-      :param pin: The name of the pin.
-      :type pin: str
-      :param value: The value to write.
-      :type value: int
 
 
    .. py:method:: stream_ticks(interrupts: List[viam.components.board.board.Board.DigitalInterrupt], *, extra: Optional[Dict[str, Any]] = None, **__) -> viam.components.board.board.TickStream

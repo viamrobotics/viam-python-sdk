@@ -105,7 +105,7 @@
 <div class="viewcode-block" id="Board"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board">[docs]</a><span class="k">class</span> <span class="nc">Board</span><span class="p">(</span><span class="n">ComponentBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Board represents a physical general purpose compute board that contains various</span>
-<span class="sd">    components such as analog readers, and digital interrupts.</span>
+<span class="sd">    components such as analog readers/writers, and digital interrupts.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
 <span class="sd">    board implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
@@ -120,31 +120,25 @@
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_COMPONENT</span><span class="p">,</span> <span class="s2">&quot;board&quot;</span>
     <span class="p">)</span>
 
-<div class="viewcode-block" id="Board.AnalogReader"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader">[docs]</a>    <span class="k">class</span> <span class="nc">AnalogReader</span><span class="p">:</span>
+<div class="viewcode-block" id="Board.Analog"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Analog">[docs]</a>    <span class="k">class</span> <span class="nc">Analog</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        AnalogReader represents an analog pin reader that resides on a Board.</span>
+<span class="sd">        AnalogReader represents an analog pin reader or writer that resides on a Board.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The name of the analog reader&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The name of the analog pin&quot;&quot;&quot;</span>
 
         <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-<div class="viewcode-block" id="Board.AnalogReader.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.AnalogReader.read">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="Board.Analog.read"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Analog.read">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
         <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Read the current value.</span>
+<span class="sd">            Read the current value from the reader.</span>
 
 <span class="sd">            ::</span>
 
 <span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
-
-<span class="sd">                # Get the GPIOPin with pin number 15.</span>
-<span class="sd">                pin = await my_board.gpio_pin_by_name(name=&quot;15&quot;)</span>
-
-<span class="sd">                # Get if it is true or false that the pin is set to high.</span>
-<span class="sd">                duty_cycle = await pin.get_pwm()</span>
 
 <span class="sd">                # Get the AnalogReader &quot;my_example_analog_reader&quot;.</span>
 <span class="sd">                reader = await my_board.analog_reader_by_name(</span>
@@ -152,10 +146,26 @@
 
 <span class="sd">                # Get the value of the digital signal &quot;my_example_analog_reader&quot; has most</span>
 <span class="sd">                # recently measured.</span>
-<span class="sd">                reading = reader.read()</span>
+<span class="sd">                reading = await reader.read()</span>
 
 <span class="sd">            Returns:</span>
 <span class="sd">                int: The current value.</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Board.Analog.write"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.Analog.write">[docs]</a>        <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+        <span class="k">async</span> <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Write a value to the analog writer.</span>
+
+<span class="sd">            ::</span>
+<span class="sd">                my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
+
+<span class="sd">                # Get the AnalogWriter &quot;my_example_analog_writer&quot;.</span>
+<span class="sd">                writer = await my_board.analog_by_name(</span>
+<span class="sd">                    name=&quot;my_example_analog_writer&quot;)</span>
+
+<span class="sd">                await writer.write(42)</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 
@@ -335,23 +345,23 @@
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="o">...</span></div></div>
 
-<div class="viewcode-block" id="Board.analog_reader_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_reader_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogReader</span><span class="p">:</span>
+<div class="viewcode-block" id="Board.analog_by_name"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_by_name">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Analog</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get an AnalogReader by ``name``.</span>
+<span class="sd">        Get an Analog (reader or writer) by ``name``.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
 
-<span class="sd">            # Get the AnalogReader &quot;my_example_analog_reader&quot;.</span>
-<span class="sd">            reader = await my_board.analog_reader_by_name(name=&quot;my_example_analog_reader&quot;)</span>
+<span class="sd">            # Get the Analog &quot;my_example_analog_reader&quot;.</span>
+<span class="sd">            reader = await my_board.analog_by_name(name=&quot;my_example_analog_reader&quot;)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): Name of the analog reader to be retrieved.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            AnalogReader: The analog reader.</span>
+<span class="sd">            Analog: The analog reader or writer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -396,20 +406,20 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
-<div class="viewcode-block" id="Board.analog_reader_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_reader_names">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_reader_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="Board.analog_names"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.analog_names">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">analog_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the names of all known analog readers.</span>
+<span class="sd">        Get the names of all known analog readers and/or writers.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
 
-<span class="sd">            # Get the name of every AnalogReader configured on the board.</span>
-<span class="sd">            names = await my_board.analog_reader_names()</span>
+<span class="sd">            # Get the name of every Analog configured on the board.</span>
+<span class="sd">            names = await my_board.analog_names()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[str]: The list of names of all known analog readers.</span>
+<span class="sd">            List[str]: The list of names of all known analog readers/writers.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -447,24 +457,6 @@
 <span class="sd">        Args:</span>
 <span class="sd">            mode (PowerMode): The desired power mode.</span>
 <span class="sd">            duration (Optional[timedelta]): Requested duration to stay in power mode.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="o">...</span></div>
-
-<div class="viewcode-block" id="Board.write_analog"><a class="viewcode-back" href="../../../../autoapi/viam/components/board/index.html#viam.components.board.board.Board.write_analog">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">write_analog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pin</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Write an analog value to a pin on the board.</span>
-
-<span class="sd">        ::</span>
-
-<span class="sd">            my_board = Board.from_robot(robot=robot, name=&quot;my_board&quot;)</span>
-
-<span class="sd">            # Set pin 11 to value 48.</span>
-<span class="sd">            await my_board.write_analog(pin=&quot;11&quot;, value=48)</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            pin (str): The name of the pin.</span>
-<span class="sd">            value (int): The value to write.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
