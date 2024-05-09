@@ -165,7 +165,7 @@ def _getDimensionsFromJPEG(image: bytes) -> Tuple[int, int]:
             offset += 1
             continue
         if marker == 0xD9:
-            #  End of image (EOI) marker
+            # End of image (EOI) marker
             break
 
         length = int.from_bytes(image[offset : offset + 1])  # length of section
