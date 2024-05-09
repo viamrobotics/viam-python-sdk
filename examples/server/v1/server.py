@@ -6,7 +6,7 @@ from viam.proto.common import GeoPoint, Orientation, Vector3
 from viam.rpc.server import Server
 
 from .components import (
-    ExampleAnalogReader,
+    ExampleAnalog,
     ExampleArm,
     ExampleAudioInput,
     ExampleBase,
@@ -33,8 +33,8 @@ async def run(host: str, port: int, log_level: int):
     my_base = ExampleBase("base0")
     my_board = ExampleBoard(
         name="board",
-        analog_readers={
-            "reader1": ExampleAnalogReader("reader1", 3),
+        analogs={
+            "reader1": ExampleAnalog("reader1", 3),
         },
         digital_interrupts={
             "interrupt1": ExampleDigitalInterrupt("interrupt1"),
