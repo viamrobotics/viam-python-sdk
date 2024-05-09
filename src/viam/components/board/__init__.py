@@ -13,10 +13,10 @@ __all__ = ["Board"]
 
 
 async def create_status(component: Board) -> Status:
-    (analog_names, digital_interrupt_names) = await asyncio.gather(component.analog_reader_names(), component.digital_interrupt_names())
+    (analog_names, digital_interrupt_names) = await asyncio.gather(component.analog_names(), component.digital_interrupt_names())
     analogs, digital_interrupts = {}, {}
     for x in analog_names:
-        analog = await component.analog_reader_by_name(x)
+        analog = await component.analog_by_name(x)
         read = await analog.read()
         analogs[x] = read
 

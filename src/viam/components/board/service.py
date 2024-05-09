@@ -134,7 +134,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         name = request.board_name
         board = self.get_resource(name)
         try:
-            analog_reader = await board.analog_reader_by_name(request.analog_reader_name)
+            analog_reader = await board.analog_by_name(request.analog_reader_name)
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
@@ -176,8 +176,12 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         assert request is not None
         name = request.name
         board = self.get_resource(name)
+        try:
+            analog_writer = await board.analog_by_name(request.pin)
+        except ResourceNotFoundError as e:
+            raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await board.write_analog(pin=request.pin, value=request.value, timeout=timeout, metadata=stream.metadata)
+        await analog_writer.write(value=request.value, timeout=timeout, metadata=stream.metadata, extra=struct_to_dict(request.extra))
         response = WriteAnalogResponse()
         await stream.send_message(response)
 
