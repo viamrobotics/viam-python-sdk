@@ -71,7 +71,7 @@ class Board(ComponentBase):
             ::
                 my_board = Board.from_robot(robot=robot, name="my_board")
 
-                # Get the AnalogWriter "my_example_analog_reader".
+                # Get the AnalogWriter "my_example_analog_writer".
                 writer = await my_board.analog_by_name(
                     name="my_example_analog_writer")
 
