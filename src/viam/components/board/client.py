@@ -63,6 +63,8 @@ class AnalogClient(Board.Analog):
         timeout: Optional[float] = None,
         **kwargs,
     ):
+        if extra is None:
+            extra = {}
         request = WriteAnalogRequest(name=self.board.name, pin=self.name, value=value, extra=dict_to_struct(extra))
         await self.board.client.WriteAnalog(request, timeout=timeout)
 
