@@ -181,7 +181,7 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
         except ResourceNotFoundError as e:
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        await analog_writer.write(value=request.value, timeout=timeout, metadata=stream.metadata, extra=request.extra)
+        await analog_writer.write(value=request.value, timeout=timeout, metadata=stream.metadata, extra=struct_to_dict(request.extra))
         response = WriteAnalogResponse()
         await stream.send_message(response)
 

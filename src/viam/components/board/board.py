@@ -44,7 +44,7 @@ class Board(ComponentBase):
         @abc.abstractmethod
         async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
             """
-            Read the current value from a reader.
+            Read the current value from the reader.
 
             ::
 
