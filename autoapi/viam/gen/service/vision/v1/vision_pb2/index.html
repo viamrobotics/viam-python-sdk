@@ -134,6 +134,18 @@ isort:skip_file</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse" title="viam.gen.service.vision.v1.vision_pb2.GetObjectPointCloudsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetObjectPointCloudsResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest" title="viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest" title="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureAllFromCameraRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse" title="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CaptureAllFromCameraResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse" title="viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GetPropertiesResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -178,6 +190,18 @@ isort:skip_file</p>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.global___GetObjectPointCloudsResponse" title="viam.gen.service.vision.v1.vision_pb2.global___GetObjectPointCloudsResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetObjectPointCloudsResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesRequest" title="viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraRequest" title="viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureAllFromCameraRequest</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraResponse" title="viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___CaptureAllFromCameraResponse</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesResponse" title="viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">global___GetPropertiesResponse</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -748,6 +772,231 @@ shown below.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.global___GetObjectPointCloudsResponse">
 <span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetObjectPointCloudsResponse</span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.global___GetObjectPointCloudsResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetPropertiesRequest</span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">CaptureAllFromCameraRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_classifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_detections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_object_point_clouds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>name of the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.camera_name">
+<span class="sig-name descname"><span class="pre">camera_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.camera_name" title="Permalink to this definition"></a></dt>
+<dd><p>name of camera source to use as input</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_image">
+<span class="sig-name descname"><span class="pre">return_image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_image" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not including the image in the response</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_classifications">
+<span class="sig-name descname"><span class="pre">return_classifications</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_classifications" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not including classifications in the response</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_detections">
+<span class="sig-name descname"><span class="pre">return_detections</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_detections" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not including detections in the response</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_object_point_clouds">
+<span class="sig-name descname"><span class="pre">return_object_point_clouds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.return_object_point_clouds" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not including pcd in the response</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraRequest">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CaptureAllFromCameraRequest</span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraRequest" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">CaptureAllFromCameraResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../../../component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><span class="pre">viam.gen.component.camera.v1.camera_pb2.Image</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Detection</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifications</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PointCloudObject" title="viam.gen.common.v1.common_pb2.PointCloudObject"><span class="pre">viam.gen.common.v1.common_pb2.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.image">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../../component/camera/v1/camera_pb2/index.html#viam.gen.component.camera.v1.camera_pb2.Image" title="viam.gen.component.camera.v1.camera_pb2.Image"><span class="pre">viam.gen.component.camera.v1.camera_pb2.Image</span></a></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.image" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.detections">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">detections</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Detection</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.detections" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.classifications">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classifications</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Classification</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.classifications" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.objects">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../../common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.PointCloudObject" title="viam.gen.common.v1.common_pb2.PointCloudObject"><span class="pre">viam.gen.common.v1.common_pb2.PointCloudObject</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.objects" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.extra" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">image</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'image'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.CaptureAllFromCameraResponse.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">global___CaptureAllFromCameraResponse</span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.global___CaptureAllFromCameraResponse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">GetPropertiesResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifications_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detections_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_point_clouds_supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.classifications_supported">
+<span class="sig-name descname"><span class="pre">classifications_supported</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.classifications_supported" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not classifactions are supported by the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.detections_supported">
+<span class="sig-name descname"><span class="pre">detections_supported</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.detections_supported" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not detections are supported by the vision service</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.object_point_clouds_supported">
+<span class="sig-name descname"><span class="pre">object_point_clouds_supported</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.GetPropertiesResponse.object_point_clouds_supported" title="Permalink to this definition"></a></dt>
+<dd><p>whether or not 3d segmentation is supported by the vision service</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesResponse">
+<span class="sig-prename descclassname"><span class="pre">viam.gen.service.vision.v1.vision_pb2.</span></span><span class="sig-name descname"><span class="pre">global___GetPropertiesResponse</span></span><a class="headerlink" href="#viam.gen.service.vision.v1.vision_pb2.global___GetPropertiesResponse" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </section>
