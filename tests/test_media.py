@@ -21,39 +21,25 @@ class TestViamImage:
         assert pil_img.tobytes() == i.tobytes()
 
     def test_dimensions(self):
-        i = Image.new("RGBA", (100, 100), "#AABBCCDD")
+        WIDTH = 400
+        HEIGHT = 300
+        i = Image.new("RGBA", (WIDTH, HEIGHT), "#AABBCCDD")
 
         img1 = pil_to_viam_image(i, CameraMimeType.JPEG)
-        assert img1._image_decoded is False
-        assert img1._image is None
-        assert img1.width == 100
-        assert img1.height == 100
-        assert img1._image_decoded is True
-        assert img1._image is not None
+        assert img1.width == WIDTH
+        assert img1.height == HEIGHT
 
         img2 = pil_to_viam_image(i, CameraMimeType.PNG)
-        assert img2._image_decoded is False
-        assert img2._image is None
-        assert img2.width == 100
-        assert img2.height == 100
-        assert img2._image_decoded is True
-        assert img2._image is not None
+        assert img2.width == WIDTH
+        assert img2.height == HEIGHT
 
         img3 = pil_to_viam_image(i, CameraMimeType.VIAM_RGBA)
-        assert img3._image_decoded is False
-        assert img3._image is None
-        assert img3.width == 100
-        assert img3.height == 100
-        assert img3._image_decoded is True
-        assert img3._image is not None
+        assert img3.width == WIDTH
+        assert img3.height == HEIGHT
 
         img4 = ViamImage(b"data", CameraMimeType.PCD)
-        assert img4._image_decoded is False
-        assert img4._image is None
         assert img4.width is None
         assert img4.height is None
-        assert img4._image_decoded is True
-        assert img4._image is None
 
     def test_bytes_to_depth_array(self):
         with open(f"{os.path.dirname(__file__)}/../data/fakeDM.vnd.viam.dep", "rb") as depth_map:

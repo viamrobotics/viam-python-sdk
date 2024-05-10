@@ -1,15 +1,13 @@
 from array import array
 from enum import Enum
-from io import BytesIO
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple
 
-from PIL import Image, UnidentifiedImageError
 from typing_extensions import Self
 
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
 
-from .viam_rgba_plugin import RGBA_FORMAT_LABEL
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 # Formats that are supported by PIL
 LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
@@ -67,14 +65,13 @@ class ViamImage:
 
     _data: bytes
     _mime_type: CameraMimeType
-    _image: Optional[Image.Image] = None
-    _image_decoded = False
     _height: Optional[int] = None
     _width: Optional[int] = None
 
     def __init__(self, data: bytes, mime_type: CameraMimeType) -> None:
         self._data = data
         self._mime_type = mime_type
+        self._width, self._height = _getDimensions(data, mime_type)
 
     @property
     def data(self) -> bytes:
@@ -87,37 +84,13 @@ class ViamImage:
         return self._mime_type
 
     @property
-    def width(self) -> Union[int, None]:
+    def width(self) -> Optional[int]:
         """The width of the image"""
-        if self._width is not None:
-            return self._width
-
-        if not self._image_decoded:
-            try:
-                self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
-            except UnidentifiedImageError:
-                self._image = None
-            self._image_decoded = True
-        # If we have decoded the image and the image is not none, then set the width so we don't have to do this again
-        if self._image_decoded and self._image is not None:
-            self._width = self._image.width
         return self._width
 
     @property
-    def height(self) -> Union[int, None]:
+    def height(self) -> Optional[int]:
         """The height of the image"""
-        if self._height is not None:
-            return self._height
-
-        if not self._image_decoded:
-            try:
-                self._image = Image.open(BytesIO(self.data), formats=LIBRARY_SUPPORTED_FORMATS)
-            except UnidentifiedImageError:
-                self._image = None
-            self._image_decoded = True
-        # If we have decoded the image and the image is not none, then set the height so we don't have to do this again
-        if self._image_decoded and self._image is not None:
-            self._height = self._image.height
         return self._height
 
     def bytes_to_depth_array(self) -> List[List[int]]:
@@ -152,3 +125,87 @@ class NamedImage(ViamImage):
     def __init__(self, name: str, data: bytes, mime_type: CameraMimeType) -> None:
         self.name = name
         super().__init__(data, mime_type)
+
+
+def _getDimensions(image: bytes, mime_type: CameraMimeType) -> Tuple[Optional[int], Optional[int]]:
+    try:
+        if mime_type == CameraMimeType.JPEG:
+            return _getDimensionsFromJPEG(image)
+        if mime_type == CameraMimeType.PNG:
+            return _getDimensionsFromPNG(image)
+        if mime_type == CameraMimeType.VIAM_RGBA:
+            return _getDimensionsFromRGBA(image)
+    except ValueError:
+        return (None, None)
+    return (None, None)
+
+
+def _getDimensionsFromJPEG(image: bytes) -> Tuple[int, int]:
+    # JPEG Specification: https://www.w3.org/Graphics/JPEG/itu-t81.pdf
+    # Specification for markers: Table B.1
+
+    offset = 0
+    while offset < len(image):
+        while image[offset] == 0xFF:
+            # Skip all 0xFF bytes
+            offset += 1
+
+        marker = image[offset]
+        offset += 1
+        if marker == 0x01:
+            # Temporary/private use marker
+            offset += 1
+            continue
+        if marker in range(0xD0, 0xD7):
+            # Restart (RST) marker
+            offset += 1
+            continue
+        if marker == 0xD8:
+            # Start of image (SOI) marker
+            offset += 1
+            continue
+        if marker == 0xD9:
+            # End of image (EOI) marker
+            break
+
+        length = int.from_bytes(image[offset : offset + 1], byteorder="big")  # length of section
+        if marker == 0xC0 or marker == 0xC2:
+            height = int.from_bytes(image[offset + 3 : offset + 5], byteorder="big")
+            width = int.from_bytes(image[offset + 5 : offset + 7], byteorder="big")
+            return (width, height)
+
+        offset += length
+
+    raise ValueError("Invalid JPEG: Could not extract dimensions")
+
+
+def _getDimensionsFromPNG(image: bytes) -> Tuple[int, int]:
+    # PNG Specification: https://www.w3.org/TR/png/
+
+    # PNG will always start with this signature
+    signature = image[:8]
+    if signature != [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]:
+        ValueError("Invalid PNG: Invalid signature")
+
+    header = image[12:24]
+    chunk_type = header[:4].decode()
+    if chunk_type != "IHDR":
+        ValueError("Invalid PNG: Invalid headers")
+
+    width = int.from_bytes(header[4:8], byteorder="big")
+    height = int.from_bytes(header[8:], byteorder="big")
+    return (width, height)
+
+
+def _getDimensionsFromRGBA(image: bytes) -> Tuple[int, int]:
+    # Viam RGBA header comes in 3 4-byte chunks:
+    # * Magic Number/Signature
+    # * Width
+    # * Height
+    header = image[:RGBA_HEADER_LENGTH]
+    if header[:4] != RGBA_MAGIC_NUMBER:
+        raise ValueError("Invalid Viam RGBA: Invalid headers")
+
+    width = int.from_bytes(header[4:8], byteorder="big")
+    height = int.from_bytes(header[8:], byteorder="big")
+    return (width, height)
