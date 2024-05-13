@@ -117,8 +117,10 @@ from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
     RoverRentalRobot,
     SharedSecret,
+    ShareLocationRequest,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
+    UnshareLocationRequest,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
     UpdateLocationRequest,
@@ -911,13 +913,35 @@ class AppClient:
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
         return list(response.locations)
 
-    # TODO(RSDK-5569): implement
-    async def share_location(self):
-        raise NotImplementedError()
+    async def share_location(self, location_id: str, organization_id: Optional[str] = None) -> None:
+        """Share a location with an organization.
 
-    # TODO(RSDK-5569): implement
-    async def unshare_location(self):
-        raise NotImplementedError()
+        ::
+
+            await cloud.share_location("location-id", "organization-id")
+
+        Args:
+            location_id (str): The ID of the location.
+            organization_id (Optional[str]): The ID of the organization. Defaults to None.
+        """
+        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
+        request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
+        await self._app_client.ShareLocation(request, metadata=self._metadata)
+
+    async def unshare_location(self, location_id: str, organization_id: Optional[str] = None) -> None:
+        """Stop sharing a location with an organization.
+
+        ::
+
+            await cloud.unshare_location("location-id", "organization-id")
+
+        Args:
+            location_id (str): The ID of the location.
+            organization_id (Optional[str]): The ID of the organization. Defaults to None.
+        """
+        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
+        request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
+        await self._app_client.UnshareLocation(request, metadata=self._metadata)
 
     async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
         """Get a location's `LocationAuth` (location secret(s)).
