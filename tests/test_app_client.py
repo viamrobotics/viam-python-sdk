@@ -620,6 +620,13 @@ class TestClient:
             assert service.resource_id == ID
 
     @pytest.mark.asyncio
+    async def test_change_role(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.change_role(old_identity_id=ID, old_role=ROLE, old_resource_type=TYPE, old_resource_id=ID, new_identity_id=ID, new_role=ROLE, new_resource_type=TYPE, new_resource_id=ID)
+            assert service.change_role_called is True
+
+    @pytest.mark.asyncio
     async def test_check_permissions(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)

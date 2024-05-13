@@ -1484,7 +1484,10 @@ class MockApp(AppServiceBase):
         await stream.send_message(RemoveRoleResponse())
 
     async def ChangeRole(self, stream: Stream[ChangeRoleRequest, ChangeRoleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.change_role_called = True
+        await stream.send_message(ChangeRoleResponse())
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
         request = await stream.recv_message()
