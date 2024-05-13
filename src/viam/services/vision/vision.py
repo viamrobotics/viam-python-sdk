@@ -3,12 +3,64 @@ from typing import Any, Final, List, Mapping, Optional, Union
 
 from PIL import Image
 
-from viam.media.video import RawImage
+from viam.media.video import RawImage, ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
+
+class CaptureAllRequest:
+    """ 
+    CaptureAllRequest represents the collection of fields you can ask the 
+    CaptureAllFromCamera method to return. If you request something that the service
+    cannot provide, a warning message will be generated, and the service will not return the
+    requested thing.
+    """
+    def __init__(self, return_image=False, return_classifications=False, 
+                 return_detections=False, return_object_point_clouds=False):
+        """
+        Args:
+            return_image (bool): Return the image from the GetImage of the underlying camera.
+            Default is False.
+            return_classifications (bool): Return the classifications from GetClassifications. 
+            Default is False.
+            return_detections (bool): Return the detections from GetDetections. 
+            Default is False.
+            return_objet_point_clouds (bool): Return the point cloud objects from GetObjectPointClouds. 
+            Default is False.
+
+        Returns:
+            None
+        """
+        self.return_image: bool = return_image
+        self.return_classifications: bool = return_classifications
+        self.return_detections: bool = return_detections
+        self.return_object_point_clouds: bool = return_object_point_clouds
+
+class CaptureAllResult:
+    """ 
+    CaptureAllResult represents the collection of things that you have requested from the 
+    CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
+    returning the image on every call to a classifier/detector/etc would be costly and unnecessary. 
+    """
+    def __init__(self, image=None, classifications=None, detections=None, objects=None, extra=None):
+        """
+        Args:
+            image (ViamImage): The image from the GetImage request of the camera, if it was requested.
+            classifications (List[Classification]): The classifications from GetClassifications, if it was requested.
+            detections (List[Detection]): The detections from GetDetections, if it was requested.
+            objects (List[PointCloudObject]): the object point clouds from GetObjectPointClouds, if it was requested.
+            extra (dict): A catch all structure, usually for metadata, that a module writer might want to return.Default empty.
+
+        Returns:
+            None
+        """
+        self.image: ViamImage = image
+        self.detections: List[Detection] = detections
+        self.classifications: List[Classification] = classifications
+        self.objects: List[PointCloudObject] = objects
+        self.extra: dict = extra
 
 
 class Vision(ServiceBase):
@@ -16,13 +68,44 @@ class Vision(ServiceBase):
     Vision represents a Vision service.
 
     This acts as an abstract base class for any drivers representing specific
-    arm implementations. This cannot be used on its own. If the ``__init__()`` function is
+    vision implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
 
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
     )
+
+    @abc.abstractmethod
+    async def capture_all_from_camera(
+        self,
+        camera_name: str,
+        requests: CaptureAllRequest,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> CaptureAllResult:
+        """Get a list of detections in the next image given a camera and a detector
+
+        ::
+
+            camera_name = "cam1"
+
+            # Grab the detector you configured on your machine
+            my_detector = VisionClient.from_robot(robot, "my_detector")
+
+            # Get detections from the next image from the camera
+            detections = await my_detector.get_detections_from_camera(camera_name)
+
+        Args:
+            camera_name (str): The name of the camera to use for detection
+
+        Returns:
+            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
+            confidence score of the labels, around the found objects in the next 2D image
+            from the given camera, with the given detector applied to it.
+        """
+        ...
 
     @abc.abstractmethod
     async def get_detections_from_camera(

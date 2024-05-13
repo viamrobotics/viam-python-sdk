@@ -2,10 +2,13 @@ from io import BytesIO
 
 from grpclib.server import Stream
 from PIL import Image
+from google.protobuf.struct_pb2 import Struct
 
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, RawImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
 from viam.proto.service.vision import (
+    CaptureAllFromCameraRequest,
+    CaptureAllFromCameraResponse,
     GetClassificationsFromCameraRequest,
     GetClassificationsFromCameraResponse,
     GetClassificationsRequest,
@@ -16,12 +19,14 @@ from viam.proto.service.vision import (
     GetDetectionsResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     UnimplementedVisionServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .vision import Vision
+from .vision import Vision, CaptureAllRequest
 
 
 class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
@@ -30,6 +35,33 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
     """
 
     RESOURCE_TYPE = Vision
+
+    async def CaptureAllFromCamera(self, stream: Stream[CaptureAllFromCameraRequest, CaptureAllFromCameraResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        vision = self.get_resource(request.name)
+        capture_request = CaptureAllRequest(request.return_image, request.return_classifications, request.return_detections, request.return_object_point_clouds)
+        extra = struct_to_dict(request.extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        result = await vision.capture_all_from_camera(request.camera_name, capture_request, extra=extra, timeout=timeout)
+        # first, the image
+        img = None
+        if result.image is not None:
+            try:
+                fmt = result.image.mime_type.to_proto()
+                img_bytes = result.image.data
+                img = Image(source_name=request.name, format=fmt, image=img_bytes)
+            finally:
+                result.image.close()
+        # finally, extra
+            result_extra = Struct()
+            if result.extra is not None:
+                result_extra.update(result.extra)
+        response = CaptureAllFromCameraResponse(
+                image=img, detections=result.detections, 
+                classifications=result.classifications, objects=result.objects,
+                extra=result_extra)
+        await stream.send_message(response)
 
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
         request = await stream.recv_message()
