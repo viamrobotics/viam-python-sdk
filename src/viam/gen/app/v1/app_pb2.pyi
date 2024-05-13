@@ -2497,6 +2497,7 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     STATUSES_FIELD_NUMBER: builtins.int
     SEARCH_TERM_FIELD_NUMBER: builtins.int
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    PUBLIC_NAMESPACES_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     'The id of the organization to return registry items for.'
     search_term: builtins.str
@@ -2518,13 +2519,17 @@ class ListRegistryItemsRequest(google.protobuf.message.Message):
     def statuses(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___RegistryItemStatus.ValueType]:
         ...
 
-    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=...) -> None:
+    @property
+    def public_namespaces(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """One or more public namespaces to return results for."""
+
+    def __init__(self, *, organization_id: builtins.str | None=..., types: collections.abc.Iterable[app.packages.v1.packages_pb2.PackageType.ValueType] | None=..., visibilities: collections.abc.Iterable[global___Visibility.ValueType] | None=..., platforms: collections.abc.Iterable[builtins.str] | None=..., statuses: collections.abc.Iterable[global___RegistryItemStatus.ValueType] | None=..., search_term: builtins.str | None=..., page_token: builtins.str | None=..., public_namespaces: collections.abc.Iterable[builtins.str] | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'search_term', b'search_term']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
+    def ClearField(self, field_name: typing.Literal['_organization_id', b'_organization_id', '_page_token', b'_page_token', '_search_term', b'_search_term', 'organization_id', b'organization_id', 'page_token', b'page_token', 'platforms', b'platforms', 'public_namespaces', b'public_namespaces', 'search_term', b'search_term', 'statuses', b'statuses', 'types', b'types', 'visibilities', b'visibilities']) -> None:
         ...
 
     @typing.overload
