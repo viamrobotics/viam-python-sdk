@@ -36,6 +36,7 @@ from viam.proto.app import (
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
+    DeleteKeyRequest,
     DeleteLocationRequest,
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
@@ -120,6 +121,8 @@ from viam.proto.app import RegistryItemStatus, RemoveRoleRequest, ResendOrganiza
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
+    RotateKeyRequest,
+    RotateKeyResponse,
     RoverRentalRobot,
     SharedSecret,
     ShareLocationRequest,
@@ -1914,7 +1917,6 @@ class AppClient:
         description: str,
         models: Optional[List[Model]],
         entrypoint: str,
-        organization_id: Optional[str] = None,
         public: bool = False,
     ) -> str:
         """Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
@@ -2047,6 +2049,15 @@ class AppClient:
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
         return (response.key, response.id)
 
+    async def delete_key(self, id: str) -> None:
+        """Delete a API key.
+
+        Args:
+            id (str): The ID of the API key.
+        """
+        request = DeleteKeyRequest(id=id)
+        await self._app_client.DeleteKey(request, metadata=self._metadata)
+
     async def create_key_from_existing_key_authorizations(self, id: str) -> Tuple[str, str]:
         """Creates a new API key with an existing key's authorizations
 
@@ -2081,3 +2092,16 @@ class AppClient:
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
         return list(response.api_keys)
+
+    async def rotate_key(self, id: str) -> Tuple[str, str]:
+        """Rotate an API key.
+
+        Args:
+            id (str): The ID of the key to be rotated.
+
+        Returns:
+            Tuple[str, str]: A tuple with the key's ID and new key.
+        """
+        request = RotateKeyRequest(id=id)
+        response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)
+        return response.id, response.key
