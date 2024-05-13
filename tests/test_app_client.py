@@ -368,6 +368,22 @@ class TestClient:
             assert locations == locations
 
     @pytest.mark.asyncio
+    async def test_share_location(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.share_location(location_id=ID, organization_id=ID)
+            assert service.location_id == ID
+            assert service.organization_id == ID
+
+    @pytest.mark.asyncio
+    async def test_unshare_location(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.unshare_location(location_id=ID, organization_id=ID)
+            assert service.location_id == ID
+            assert service.organization_id == ID
+
+    @pytest.mark.asyncio
     async def test_location_auth(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
