@@ -3185,7 +3185,7 @@ Classes
 
 
 
-.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ...)
+.. py:class:: ListRegistryItemsRequest(*, organization_id: str | None = ..., types: collections.abc.Iterable[viam.gen.app.packages.v1.packages_pb2.PackageType.ValueType] | None = ..., visibilities: collections.abc.Iterable[global___Visibility] | None = ..., platforms: collections.abc.Iterable[str] | None = ..., statuses: collections.abc.Iterable[global___RegistryItemStatus] | None = ..., search_term: str | None = ..., page_token: str | None = ..., public_namespaces: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -3211,6 +3211,11 @@ Classes
    .. py:property:: statuses
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___RegistryItemStatus]
 
+
+   .. py:property:: public_namespaces
+      :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
+
+      One or more public namespaces to return results for.
 
    .. py:attribute:: organization_id
       :type: str
