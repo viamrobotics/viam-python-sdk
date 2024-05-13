@@ -1832,6 +1832,10 @@ class AppClient:
     ) -> None:
         """Update a registry item.
 
+        ::
+
+            await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
+
         Args:
             item_id (str): The ID of the registry item.
             type (PackageType.ValueType): The type of the item in the registry.
@@ -1881,6 +1885,10 @@ class AppClient:
 
     async def delete_registry_item(self, item_id: str) -> None:
         """Delete a registry item
+
+        ::
+
+            await cloud.delete_registry_item("item-id")
 
         Args:
             item_id (str): The ID of the registry item.
@@ -2052,6 +2060,10 @@ class AppClient:
     async def delete_key(self, id: str) -> None:
         """Delete a API key.
 
+        ::
+
+            await cloud.delete_key("key-id")
+
         Args:
             id (str): The ID of the API key.
         """
@@ -2063,7 +2075,7 @@ class AppClient:
 
         ::
 
-            api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(
+            api_key, api_key_id = await cloud.create_key_from_existing_key_authorizations(
                 id="INSERT YOUR API KEY ID")
 
         Args:
@@ -2084,7 +2096,7 @@ class AppClient:
 
         ::
 
-            keys = cloud.list_keys()
+            keys = await cloud.list_keys()
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""
@@ -2096,12 +2108,16 @@ class AppClient:
     async def rotate_key(self, id: str) -> Tuple[str, str]:
         """Rotate an API key.
 
+        ::
+
+            id, key = await cloud.rotate_key("key-id")
+
         Args:
             id (str): The ID of the key to be rotated.
 
         Returns:
-            Tuple[str, str]: A tuple with the key's ID and new key.
+            Tuple[str, str]: The API key and API key id
         """
         request = RotateKeyRequest(id=id)
         response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)
-        return response.id, response.key
+        return response.key, response.id
