@@ -239,7 +239,7 @@ class DataClient:
 
         ::
 
-            data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="<sql-query>")
+            data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="SELECT * FROM readings LIMIT 5")
 
 
         Args:
@@ -255,10 +255,14 @@ class DataClient:
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
         """Obtain unified tabular data and metadata, queried with MQL.
+        You must install the `pymongo` package and `import bson` to use the `tabular_data_by_mql` method.
 
         ::
 
-            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[<mql-bytes-1>, <mql-bytes-2>])
+            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
+                bson.encode({'$match': {'location_id': '<location-id>'} }),
+                bson.encode({ "$limit": 5 })
+            ])
 
 
         Args:
