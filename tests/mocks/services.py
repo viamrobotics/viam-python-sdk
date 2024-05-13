@@ -124,8 +124,10 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Organization,
+    OrganizationIdentity,
     OrganizationInvite,
     OrganizationMember,
+    OrgDetails,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ResendOrganizationInviteRequest,
@@ -1126,6 +1128,7 @@ class MockApp(AppServiceBase):
         robot_part: RobotPart,
         log_entry: LogEntry,
         id: str,
+        name: str,
         fragment: Fragment,
         available: bool,
         location_auth: LocationAuth,
@@ -1145,6 +1148,7 @@ class MockApp(AppServiceBase):
         self.robot_part = robot_part
         self.log_entry = log_entry
         self.id = id
+        self.name = name
         self.fragment = fragment
         self.available = available
         self.location_auth = location_auth
@@ -1160,10 +1164,14 @@ class MockApp(AppServiceBase):
         self.send_email_invite = False
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetUserIDByEmailResponse(user_id=self.id))
 
     async def CreateOrganization(self, stream: Stream[CreateOrganizationRequest, CreateOrganizationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CreateOrganizationResponse(organization=self.organizations[0]))
 
     async def ListOrganizations(self, stream: Stream[ListOrganizationsRequest, ListOrganizationsResponse]) -> None:
         request = await stream.recv_message()
@@ -1171,7 +1179,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListOrganizationsResponse(organizations=self.organizations))
 
     async def ListOrganizationsByUser(self, stream: Stream[ListOrganizationsByUserRequest, ListOrganizationsByUserResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListOrganizationsByUserResponse(orgs=[OrgDetails(org_id=self.id, org_name=self.name)]))
 
     async def GetOrganization(self, stream: Stream[GetOrganizationRequest, GetOrganizationResponse]) -> None:
         request = await stream.recv_message()
@@ -1556,7 +1566,11 @@ class MockApp(AppServiceBase):
     async def GetOrganizationsWithAccessToLocation(
         self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(
+            GetOrganizationsWithAccessToLocationResponse(organization_identities=[OrganizationIdentity(id=self.id, name=self.name)])
+        )
 
     async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
         raise NotImplementedError()

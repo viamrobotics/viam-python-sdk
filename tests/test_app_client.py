@@ -184,6 +184,7 @@ def service() -> MockApp:
         robot_part=ROBOT_PART,
         log_entry=LOG_ENTRY,
         id=ID,
+        name=NAME,
         fragment=FRAGMENT,
         available=AVAILABLE,
         location_auth=LOCATION_AUTH,
@@ -200,6 +201,36 @@ def service() -> MockApp:
 
 
 class TestClient:
+    @pytest.mark.asyncio
+    async def test_get_user_id_by_email(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            id = await client.get_user_id_by_email(EMAIL)
+            assert id == ID
+
+    @pytest.mark.asyncio
+    async def test_create_organization(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            org = await client.create_organization(NAME)
+            assert org == ORGANIZATION
+
+    @pytest.mark.asyncio
+    async def test_get_organizations_with_access_to_location(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            orgs = await client.get_organizations_with_access_to_location(ID)
+            assert orgs[0].name == NAME
+            assert orgs[0].id == ID
+
+    @pytest.mark.asyncio
+    async def test_list_organizations_by_user(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            orgs = await client.list_organizations_by_user(ID)
+            assert orgs[0].org_name == NAME
+            assert orgs[0].org_id == ID
+
     @pytest.mark.asyncio
     async def test_get_organization(self, service: MockApp):
         async with ChannelFor([service]) as channel:
@@ -257,9 +288,11 @@ class TestClient:
             assert service.remove_authorizations == AUTHORIZATIONS
 
     @pytest.mark.asyncio
-    # TODO(RSDK-5569): implement
     async def test_delete_organization(self, service: MockApp):
-        assert True
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.delete_organization(ID)
+            assert service.delete_org_called is True
 
     @pytest.mark.asyncio
     async def test_delete_organization_member(self, service: MockApp):
@@ -599,7 +632,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             url = await client.update_module(
-                module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT, organization_id=ID, public=PUBLIC
+                module_id=ID, url=URL, description=DESCRIPTION, models=MODELS, entrypoint=ENTRYPOINT, public=PUBLIC
             )
             assert url == URL
             assert service.module_id == ID

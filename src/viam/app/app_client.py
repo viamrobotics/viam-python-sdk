@@ -566,7 +566,7 @@ class AppClient:
             Organization: The created organization.
         """
         request = CreateOrganizationRequest(name=name)
-        response: CreateOrganizationResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
+        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
         return response.organization
 
     async def list_organizations(self) -> List[Organization]:
@@ -583,7 +583,7 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    async def get_organization_with_access_to_location(self, location_id: str) -> List[OrganizationIdentity]:
+    async def get_organizations_with_access_to_location(self, location_id: str) -> List[OrganizationIdentity]:
         """Get all organizations that have access to a location.
 
         ::
