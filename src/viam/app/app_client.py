@@ -13,6 +13,7 @@ from viam.proto.app import (
     AppServiceStub,
     Authorization,
     AuthorizedPermissions,
+    ChangeRoleRequest,
     CheckPermissionsRequest,
     CheckPermissionsResponse,
     CreateFragmentRequest,
@@ -1616,9 +1617,9 @@ class AppClient:
 
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
-            role (Union[Literal["owner"], Literal["operator"]]): The role to add.
-            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
-                Must match `resource_id`.
+            role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
+            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is added
+                to. Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
         Raises:
@@ -1633,6 +1634,53 @@ class AppClient:
         )
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
+
+    async def change_role(
+        self,
+        old_identity_id: str,
+        old_role: Union[Literal["owner"], Literal["operator"]],
+        old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        old_resource_id: str,
+        new_identity_id: str,
+        new_role: Union[Literal["owner"], Literal["operator"]],
+        new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        new_resource_id: str,
+    ) -> None:
+        """Changes a role to a new role.
+
+        ::
+
+            await cloud.change_role(
+                old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                old_role="operator",
+                old_resource_type="location",
+                old_resource_id="111ab12345",
+                new_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                new_role="owner",s
+                new_resource_type="organization",
+                new_resource_id="abc12345")
+
+        Args:
+            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
+            old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
+                added to. Must match `resource_id`.
+            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+
+            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
+            new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
+            new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+                Must match `resource_id`.
+            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+        """
+        old_authorization = await self._create_authorization(
+            identity_id=old_identity_id, identity_type="", role=old_role, resource_type=old_resource_type, resource_id=old_resource_id
+        )
+        new_authorization = await self._create_authorization(
+            identity_id=new_identity_id, identity_type="", role=new_role, resource_type=new_resource_type, resource_id=new_resource_id
+        )
+        request = ChangeRoleRequest(old_authorization=old_authorization, new_authorization=new_authorization)
+        await self._app_client.ChangeRole(request, metadata=self._metadata)
 
     async def list_authorizations(self, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
         """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
