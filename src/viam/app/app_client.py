@@ -29,6 +29,8 @@ from viam.proto.app import (
     CreateModuleResponse,
     CreateOrganizationInviteRequest,
     CreateOrganizationInviteResponse,
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
@@ -36,6 +38,7 @@ from viam.proto.app import (
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
     DeleteOrganizationMemberRequest,
+    DeleteOrganizationRequest,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -52,6 +55,8 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -64,6 +69,8 @@ from viam.proto.app import (
     GetRobotResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
+    GetUserIDByEmailRequest,
+    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
@@ -76,6 +83,8 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
+    ListOrganizationsByUserRequest,
+    ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
     ListRobotsRequest,
@@ -94,6 +103,7 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Organization,
+    OrganizationIdentity,
     OrganizationInvite,
     OrganizationMember,
     OrgDetails,
@@ -464,9 +474,39 @@ class AppClient:
             resource_id=auth._resource_id,
         )
 
-    # TODO(RSDK-5569): implement
+    async def get_user_id_by_email(self, email: str) -> str:
+        """Get the ID of a user by email.
+
+        ::
+
+            id = await cloud.get_user_id_by_email("youremail@email.com")`)
+
+        Args:
+            email (str): The email of the user.
+
+        Returns:
+            str: The ID of the user.
+        """
+        request = GetUserIDByEmailRequest(email=email)
+        response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
+        return response.user_id
+
     async def create_organization(self, name: str) -> Organization:
-        raise NotImplementedError()
+        """Create an organization.
+
+        ::
+
+            organization = await cloud.create_organization("name")
+
+        Args:
+            name (str): The name of the organization.
+
+        Returns:
+            Organization: The created organization.
+        """
+        request = CreateOrganizationRequest(name=name)
+        response: CreateOrganizationResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
+        return response.organization
 
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
@@ -482,9 +522,41 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    # TODO(RSDK-5569): implement
+    async def get_organization_with_access_to_location(self, location_id: str) -> List[OrganizationIdentity]:
+        """Get all organizations that have access to a location.
+
+        ::
+
+            org_list = await cloud.get_organization_with_access_to_location("location-id")
+
+        Args:
+            location_id (str): The ID of the location.
+
+        Returns:
+            List[viam.proto.app.OrganizationIdentity]: The list of organizations.
+        """
+        request = GetOrganizationsWithAccessToLocationRequest(location_id=location_id)
+        response: GetOrganizationsWithAccessToLocationResponse = await self._app_client.GetOrganizationsWithAccessToLocation(
+            request, metadata=self._metadata
+        )
+        return list(response.organization_identities)
+
     async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
-        raise NotImplementedError()
+        """List the organizations a user belongs to.
+
+        ::
+
+            org_list = await cloud.list_organizations_by_user("user-id")
+
+        Args:
+            user_id (str): The ID of the user
+
+        Returns:
+            List[OrgDetails]: The list of organizations.
+        """
+        request = ListOrganizationsByUserRequest(user_id=user_id)
+        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
+        return list(response.orgs)
 
     async def get_organization(self, org_id: Optional[str] = None) -> Organization:
         """Return details about the requested organization.
@@ -560,9 +632,18 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # TODO(RSDK-5569): implement
     async def delete_organization(self, org_id: Optional[str] = None) -> None:
-        raise NotImplementedError()
+        """Delete an organization
+
+        ::
+            await cloud.delete_organization("org-id")
+
+        Args:
+            org_id (Optional[str]): The ID of the organization. Defaults to None.
+        """
+        org_id = org_id if org_id is not None else await self._get_organization_id()
+        request = DeleteOrganizationRequest(organization_id=org_id)
+        await self._app_client.DeleteOrganization(request, metadata=self._metadata)
 
     async def list_organization_members(self) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
