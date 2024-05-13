@@ -260,7 +260,7 @@ class DataClient:
         ::
 
             data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
-                bson.encode({'$match': {'location_id': '<location-id>'} }),
+                bson.encode({ '$match': { 'location_id': '<location-id>' } }),
                 bson.encode({ "$limit": 5 })
             ])
 
