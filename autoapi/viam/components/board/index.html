@@ -579,13 +579,14 @@ When <code class="docutils literal notranslate"><span class="pre">frequency</spa
 <span class="n">di8</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;8&quot;</span><span class="p">))</span>
 <span class="n">di11</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">digital_interrupt_by_name</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;11&quot;</span><span class="p">))</span>
 
-<span class="n">Stream</span> <span class="n">ticks</span> <span class="kn">from</span> <span class="nn">pins</span> <span class="mi">8</span> <span class="ow">and</span> <span class="mf">11.</span>
-<span class="n">ticks</span> <span class="o">=</span> <span class="n">my_board</span><span class="o">.</span><span class="n">stream_ticks</span><span class="p">([</span><span class="n">di8</span><span class="p">,</span> <span class="n">di11</span><span class="p">])</span>
+<span class="c1"># Iterate over stream of ticks from pins 8 and 11.</span>
+<span class="k">async</span> <span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">my_board</span><span class="o">.</span><span class="n">stream_ticks</span><span class="p">([</span><span class="n">di8</span><span class="p">,</span> <span class="n">di11</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pin </span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">pin_name</span><span class="si">}</span><span class="s2"> changed to </span><span class="si">{</span><span class="s1">&#39;high&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">tick</span><span class="o">.</span><span class="n">high</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;low&#39;</span><span class="si">}</span><span class="s2"> at </span><span class="si">{</span><span class="n">tick</span><span class="o">.</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>interrupts</strong> (<em>List</em><em>[</em><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt" title="viam.components.board.Board.DigitalInterrupt"><em>DigitalInterrupt</em></a><em>]</em>) – list of digital interrupts to recieve ticks from.</p>
+<dd class="field-odd"><p><strong>interrupts</strong> (<em>List</em><em>[</em><a class="reference internal" href="#viam.components.board.Board.DigitalInterrupt" title="viam.components.board.Board.DigitalInterrupt"><em>DigitalInterrupt</em></a><em>]</em>) – list of digital interrupts to receive ticks from.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>stream of ticks.</p>

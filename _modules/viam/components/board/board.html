@@ -472,11 +472,13 @@
 <span class="sd">            di8 = await my_board.digital_interrupt_by_name(name=&quot;8&quot;))</span>
 <span class="sd">            di11 = await my_board.digital_interrupt_by_name(name=&quot;11&quot;))</span>
 
-<span class="sd">            Stream ticks from pins 8 and 11.</span>
-<span class="sd">            ticks = my_board.stream_ticks([di8, di11])</span>
+<span class="sd">            # Iterate over stream of ticks from pins 8 and 11.</span>
+<span class="sd">            async for tick in my_board.stream_ticks([di8, di11]):</span>
+<span class="sd">                print(f&quot;Pin {tick.pin_name} changed to {&#39;high&#39; if tick.high else &#39;low&#39;} at {tick.time}&quot;)</span>
+
 
 <span class="sd">        Args:</span>
-<span class="sd">            interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.</span>
+<span class="sd">            interrupts (List[DigitalInterrupt]) : list of digital interrupts to receive ticks from.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            TickStream: stream of ticks.</span>
