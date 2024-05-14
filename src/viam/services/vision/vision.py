@@ -5,7 +5,7 @@ from PIL import Image
 
 from viam.media.video import RawImage, ViamImage
 from viam.proto.common import PointCloudObject
-from viam.proto.service.vision import Classification, Detection
+from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
@@ -76,6 +76,39 @@ class Vision(ServiceBase):
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
     )
 
+    Properties: "TypeAlias" = GetPropertiesResponse
+    """
+    Properties is a class that states what features are supported on the associated vision service.
+    Currently, these are the following properties:
+    classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
+    detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
+    object_point_clouds_supported (bool): GetObjectPointClouds is implemented. 
+    """
+
+    @abc.abstractmethod
+    async def get_properties(
+            self,
+            *,
+            extra: Optional[Mapping[str, Any]] = None,
+            timeout: Optional[float] = None,
+    ) -> Properties:
+    """
+    Get info about what vision methods the vision service provides. Currently returns boolean values that
+    state whether the service implements the classification, detection, and/or 3D object segmentation methods.
+
+    ::
+        
+            # Grab the detector you configured on your machine
+            my_detector = VisionClient.from_robot(robot, "my_detector")
+            properties = await my_detector.get_properties()
+            properties.detections_supported      # returns True
+            properties.classifications_supported # returns False
+
+    Returns:
+        Properties: The properties of the vision service
+    """
+    ...
+
     @abc.abstractmethod
     async def capture_all_from_camera(
         self,
@@ -85,7 +118,8 @@ class Vision(ServiceBase):
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> CaptureAllResult:
-        """Get a list of detections in the next image given a camera and a detector
+        """Get the next image, detection, classifications, and objects all together,
+        given a camera and a detector. Used for visualization.
 
         ::
 
@@ -94,16 +128,17 @@ class Vision(ServiceBase):
             # Grab the detector you configured on your machine
             my_detector = VisionClient.from_robot(robot, "my_detector")
 
-            # Get detections from the next image from the camera
-            detections = await my_detector.get_detections_from_camera(camera_name)
+            # capture all from the next image from the camera
+            request = vision.CaptureAllRequest(return_image=True, return_detections=True)
+            result = await my_detector.capture_all_from_camera(camera_name, request)
 
         Args:
             camera_name (str): The name of the camera to use for detection
+            request (vision.CaptureAllRequest): What the vision service should return from CaptureAllFromCamera
 
         Returns:
-            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
-            confidence score of the labels, around the found objects in the next 2D image
-            from the given camera, with the given detector applied to it.
+            vision.CaptureAllResult: A class that stores all potential returns from the vision service. 
+            It can  return the image from the camera along with its associated detections, classifications, and objects, as well as any extra info the model may provide.
         """
         ...
 
