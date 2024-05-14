@@ -71,7 +71,6 @@ class Vision(ServiceBase):
     vision implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
-
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
     )
@@ -108,7 +107,7 @@ class Vision(ServiceBase):
         Properties: The properties of the vision service
     """
     ...
-
+    
     @abc.abstractmethod
     async def capture_all_from_camera(
         self,
