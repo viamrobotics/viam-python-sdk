@@ -6,6 +6,8 @@ from viam.errors import ViamError
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse, PointCloudObject
 from viam.proto.service.vision import (
+    CaptureAllFromCameraRequest,
+    CaptureAllFromCameraResponse,
     Classification,
     Detection,
     GetClassificationsFromCameraRequest,
@@ -18,12 +20,14 @@ from viam.proto.service.vision import (
     GetDetectionsResponse,
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
+    GetPropertiesRequest,
+    GetPropertiesResponse,
     VisionServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .vision import Vision
+from .vision import Vision, CaptureAllRequest, CaptureAllResult
 
 
 class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
@@ -38,6 +42,40 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         super().__init__(name)
         self.channel = channel
         self.client = VisionServiceStub(channel)
+
+    async def capture_all_from_camera(
+        self,
+        camera_name: str,
+        requests: CaptureAllRequest,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> CaptureAllResult:
+        if extra is None:
+            extra = {}
+        request = CaptureAllFromCameraRequest(
+                name=self.name, 
+                camera_name=camera_name, 
+                return_image=requests.return_image, 
+                return_classifications=requests.return_classifications, 
+                return_detections=requests.return_detections, 
+                return_object_point_clouds=requests.return_object_point_clouds, 
+                extra=dict_to_struct(extra),
+                )
+        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout)
+        result = vision.CaptureAllResult()
+        result.extra = struct_to_dict(response.extra)
+        if requests.return_image:
+            mime_type = CameraMimeType.from_proto(response.image.format)
+            img = ViamImage(response.image.image, mime_type)
+            result.image = img
+        if requests.return_classifications:
+            result.classifications = list(response.classifications)
+        if requests.return_detections:
+            result.detections = list(response.detections)
+        if requests.return_object_point_clouds:
+            result.objects = list(response.objects)
+        return result
 
     async def get_detections_from_camera(
         self,
@@ -134,6 +172,14 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         )
         response: GetObjectPointCloudsResponse = await self.client.GetObjectPointClouds(request, timeout=timeout)
         return list(response.objects)
+
+    async def get_properties(
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> Vision.Properties:
+        return await self.client.GetProperties(GetPropertiesRequest(name=self.name, extra=extra), timeout=timeout)
 
     async def do_command(
         self,

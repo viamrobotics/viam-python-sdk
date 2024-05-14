@@ -120,6 +120,21 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         response = GetObjectPointCloudsResponse(mime_type=CameraMimeType.PCD.value, objects=result)
         await stream.send_message(response)
 
+    async def GetProperties(self, stream: Stream[GetPropertiesRequest, GetPropertiesResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        vision = self.get_resource(name)
+        extra = struct_to_dict(request.extra)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        properties = await vision.get_properties(extra=extra, timeout=timeout)
+        response = GetPropertiesResponse(
+            classifications_supported=properties.classifications_supported,
+            detections_supported=properties.detections_supported,
+            object_point_clouds_supported=properties.object_point_clouds_supported,
+        )
+        await stream.send_message(response)
+
     async def DoCommand(self, stream: Stream[DoCommandRequest, DoCommandResponse]) -> None:
         request = await stream.recv_message()
         assert request is not None
