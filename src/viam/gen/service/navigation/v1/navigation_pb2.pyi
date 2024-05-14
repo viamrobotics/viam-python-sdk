@@ -317,10 +317,10 @@ class GetObstaclesResponse(google.protobuf.message.Message):
     OBSTACLES_FIELD_NUMBER: builtins.int
 
     @property
-    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]:
         """List of all known geometries"""
 
-    def __init__(self, *, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=...) -> None:
+    def __init__(self, *, obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=...) -> None:
         ...
 
     def ClearField(self, field_name: typing.Literal['obstacles', b'obstacles']) -> None:

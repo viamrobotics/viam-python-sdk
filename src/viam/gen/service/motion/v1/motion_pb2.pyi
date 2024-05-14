@@ -264,6 +264,7 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
     MOVEMENT_SENSOR_NAME_FIELD_NUMBER: builtins.int
     OBSTACLES_FIELD_NUMBER: builtins.int
     MOTION_CONFIGURATION_FIELD_NUMBER: builtins.int
+    BOUNDING_REGIONS_FIELD_NUMBER: builtins.int
     EXTRA_FIELD_NUMBER: builtins.int
     name: builtins.str
     'Name of the motion service'
@@ -283,7 +284,7 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
         """Name of the movement sensor which will be used to check robot location"""
 
     @property
-    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoObstacle]:
+    def obstacles(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]:
         """Obstacles to be considered for motion planning"""
 
     @property
@@ -291,16 +292,20 @@ class MoveOnGlobeRequest(google.protobuf.message.Message):
         """Optional set of motion configuration options"""
 
     @property
+    def bounding_regions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[common.v1.common_pb2.GeoGeometry]:
+        """Set of obstacles which the robot must remain within while navigating"""
+
+    @property
     def extra(self) -> google.protobuf.struct_pb2.Struct:
         """Additional arguments to the method"""
 
-    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoObstacle] | None=..., motion_configuration: global___MotionConfiguration | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, name: builtins.str=..., destination: common.v1.common_pb2.GeoPoint | None=..., heading: builtins.float | None=..., component_name: common.v1.common_pb2.ResourceName | None=..., movement_sensor_name: common.v1.common_pb2.ResourceName | None=..., obstacles: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., motion_configuration: global___MotionConfiguration | None=..., bounding_regions: collections.abc.Iterable[common.v1.common_pb2.GeoGeometry] | None=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
+    def ClearField(self, field_name: typing.Literal['_heading', b'_heading', '_motion_configuration', b'_motion_configuration', 'bounding_regions', b'bounding_regions', 'component_name', b'component_name', 'destination', b'destination', 'extra', b'extra', 'heading', b'heading', 'motion_configuration', b'motion_configuration', 'movement_sensor_name', b'movement_sensor_name', 'name', b'name', 'obstacles', b'obstacles']) -> None:
         ...
 
     @typing.overload

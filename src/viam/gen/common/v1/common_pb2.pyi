@@ -313,21 +313,19 @@ class GeoPoint(google.protobuf.message.Message):
 global___GeoPoint = GeoPoint
 
 @typing.final
-class GeoObstacle(google.protobuf.message.Message):
-    """GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-    captured in latitude and longitude.
-    """
+class GeoGeometry(google.protobuf.message.Message):
+    """GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     LOCATION_FIELD_NUMBER: builtins.int
     GEOMETRIES_FIELD_NUMBER: builtins.int
 
     @property
     def location(self) -> global___GeoPoint:
-        """Location of the obstacle"""
+        """Location of the geometry"""
 
     @property
     def geometries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]:
-        """Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location"""
+        """Geometries associated with the location, where embedded Pose data is with respect to the specified location"""
 
     def __init__(self, *, location: global___GeoPoint | None=..., geometries: collections.abc.Iterable[global___Geometry] | None=...) -> None:
         ...
@@ -337,7 +335,7 @@ class GeoObstacle(google.protobuf.message.Message):
 
     def ClearField(self, field_name: typing.Literal['geometries', b'geometries', 'location', b'location']) -> None:
         ...
-global___GeoObstacle = GeoObstacle
+global___GeoGeometry = GeoGeometry
 
 @typing.final
 class Transform(google.protobuf.message.Message):
@@ -389,7 +387,9 @@ class WorldState(google.protobuf.message.Message):
 
     @property
     def transforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]:
-        """a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional"""
+        """a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+        another, or to attach moving geometries to the frame system. This field is optional
+        """
 
     def __init__(self, *, obstacles: collections.abc.Iterable[global___GeometriesInFrame] | None=..., transforms: collections.abc.Iterable[global___Transform] | None=...) -> None:
         ...
