@@ -382,11 +382,13 @@ class Board(ComponentBase):
             di8 = await my_board.digital_interrupt_by_name(name="8"))
             di11 = await my_board.digital_interrupt_by_name(name="11"))
 
-            Stream ticks from pins 8 and 11.
-            ticks = my_board.stream_ticks([di8, di11])
+            # Iterate over stream of ticks from pins 8 and 11.
+            async for tick in my_board.stream_ticks([di8, di11]):
+                print(f"Pin {tick.pin_name} changed to {'high' if tick.high else 'low'} at {tick.time}")
+
 
         Args:
-            interrupts (List[DigitalInterrupt]) : list of digital interrupts to recieve ticks from.
+            interrupts (List[DigitalInterrupt]) : list of digital interrupts to receive ticks from.
 
         Returns:
             TickStream: stream of ticks.
