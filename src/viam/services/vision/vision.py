@@ -83,30 +83,6 @@ class Vision(ServiceBase):
     detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
     object_point_clouds_supported (bool): GetObjectPointClouds is implemented. 
     """
-
-    @abc.abstractmethod
-    async def get_properties(
-            self,
-            *,
-            extra: Optional[Mapping[str, Any]] = None,
-            timeout: Optional[float] = None,
-    ) -> Properties:
-    """
-    Get info about what vision methods the vision service provides. Currently returns boolean values that
-    state whether the service implements the classification, detection, and/or 3D object segmentation methods.
-
-    ::
-        
-            # Grab the detector you configured on your machine
-            my_detector = VisionClient.from_robot(robot, "my_detector")
-            properties = await my_detector.get_properties()
-            properties.detections_supported      # returns True
-            properties.classifications_supported # returns False
-
-    Returns:
-        Properties: The properties of the vision service
-    """
-    ...
     
     @abc.abstractmethod
     async def capture_all_from_camera(
@@ -308,3 +284,27 @@ class Vision(ServiceBase):
             List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata
         """
         ...
+
+    @abc.abstractmethod
+    async def get_properties(
+            self,
+            *,
+            extra: Optional[Mapping[str, Any]] = None,
+            timeout: Optional[float] = None,
+    ) -> Properties:
+    """
+    Get info about what vision methods the vision service provides. Currently returns boolean values that
+    state whether the service implements the classification, detection, and/or 3D object segmentation methods.
+
+    ::
+        
+            # Grab the detector you configured on your machine
+            my_detector = VisionClient.from_robot(robot, "my_detector")
+            properties = await my_detector.get_properties()
+            properties.detections_supported      # returns True
+            properties.classifications_supported # returns False
+
+    Returns:
+        Properties: The properties of the vision service
+    """
+    ...
