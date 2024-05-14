@@ -255,13 +255,13 @@ class DataClient:
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
         """Obtain unified tabular data and metadata, queried with MQL.
-        You must install the `pymongo` package and `import bson` to use the `tabular_data_by_mql` method.
+        You must `import bson` to create valid bson binary objects as input for the `tabular_data_by_mql` method.
 
         ::
 
             data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
-                bson.encode({ '$match': { 'location_id': '<location-id>' } }),
-                bson.encode({ "$limit": 5 })
+                bson.dumps({ '$match': { 'location_id': '<location-id>' } }),
+                bson.dumps({ "$limit": 5 })
             ])
 
 
