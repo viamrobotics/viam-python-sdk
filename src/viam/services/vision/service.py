@@ -37,7 +37,12 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         request = await stream.recv_message()
         assert request is not None
         vision = self.get_resource(request.name)
-        capture_request = CaptureAllRequest(request.return_image, request.return_classifications, request.return_detections, request.return_object_point_clouds)
+        capture_request = CaptureAllRequest(
+            request.return_image,
+            request.return_classifications,
+            request.return_detections,
+            request.return_object_point_clouds,
+        )
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.capture_all_from_camera(request.camera_name, capture_request, extra=extra, timeout=timeout)
@@ -55,7 +60,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
             if result.extra is not None:
                 result_extra.update(result.extra)
         response = CaptureAllFromCameraResponse(
-                image=img, detections=result.detections, 
+                image=img, detections=result.detections,
                 classifications=result.classifications, objects=result.objects,
                 extra=result_extra)
         await stream.send_message(response)

@@ -21,7 +21,6 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
     GetPropertiesRequest,
-    GetPropertiesResponse,
     VisionServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
@@ -54,16 +53,16 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = CaptureAllFromCameraRequest(
-                name=self.name, 
-                camera_name=camera_name, 
-                return_image=requests.return_image, 
-                return_classifications=requests.return_classifications, 
-                return_detections=requests.return_detections, 
-                return_object_point_clouds=requests.return_object_point_clouds, 
+                name=self.name,
+                camera_name=camera_name,
+                return_image=requests.return_image,
+                return_classifications=requests.return_classifications,
+                return_detections=requests.return_detections,
+                return_object_point_clouds=requests.return_object_point_clouds,
                 extra=dict_to_struct(extra),
                 )
-        response: GetDetectionsFromCameraResponse = await self.client.GetDetectionsFromCamera(request, timeout=timeout)
-        result = vision.CaptureAllResult()
+        response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout)
+        result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
         if requests.return_image:
             mime_type = CameraMimeType.from_proto(response.image.format)
