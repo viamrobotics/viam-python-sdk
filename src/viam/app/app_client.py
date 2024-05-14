@@ -1347,7 +1347,19 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
-    async def get_robot_api_keys(self, robot_id) -> List[APIKeyWithAuthorizations]:
+    async def get_robot_api_keys(self, robot_id: str) -> List[APIKeyWithAuthorizations]:
+        """Gets the Robot API Keys for the robot.
+
+        ::
+
+            await cloud.get_robot_api_keys(robot_id="robot-id")
+
+        Args:
+            robot_id (str): The ID of the robot
+
+        Returns:
+            List[APIKeyWithAuthorizations]: The list of API keys.
+        """
         request = GetRobotAPIKeysRequest(robot_id=robot_id)
         response: GetRobotAPIKeysResponse = await self._app_client.GetRobotAPIKeys(request, metadata=self._metadata)
         return list(response.api_keys)
