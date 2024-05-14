@@ -63,6 +63,8 @@ from viam.proto.app import (
     GetOrganizationsWithAccessToLocationResponse,
     GetRegistryItemRequest,
     GetRegistryItemResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -1345,6 +1347,11 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
+    async def get_robot_api_keys(self, robot_id) -> List[APIKeyWithAuthorizations]:
+        request = GetRobotAPIKeysRequest(robot_id=robot_id)
+        response: GetRobotAPIKeysResponse = await self._app_client.GetRobotAPIKeys(request, metadata=self._metadata)
+        return list(response.api_keys)
+
     async def mark_part_as_main(self, robot_part_id: str) -> None:
         """Mark a robot part as the main part of a robot.
 
@@ -1852,8 +1859,8 @@ class AppClient:
         visibilities: List[Visibility.ValueType],
         platforms: List[str],
         statuses: List[RegistryItemStatus.ValueType],
-        search_term: str,
-        page_token: str,
+        search_term: Optional[str] = None,
+        page_token: Optional[str] = None,
         organization_id: Optional[str] = None,
     ) -> List[RegistryItem]:
         """List the registry items in an organization.

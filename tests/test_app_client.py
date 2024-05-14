@@ -16,15 +16,19 @@ from viam.proto.app import (
     Model,
     Module,
     ModuleFileInfo,
+    ModuleMetadata,
     Organization,
     OrganizationInvite,
     OrganizationMember,
+    RegistryItem,
+    RegistryItemStatus,
     Robot,
     RobotPart,
     RobotPartHistoryEntry,
     RoverRentalRobot,
     Visibility,
 )
+from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry
 from viam.utils import datetime_to_timestamp, struct_to_dict
 
@@ -142,17 +146,37 @@ PERMISSION = AuthorizedPermissions(
     permissions=["control_robot"],
 )
 PERMISSIONS = [PERMISSION]
+VISIBILITY = Visibility.VISIBILITY_PUBLIC
 URL = "url"
 DESCRIPTION = "description"
+USAGE = 100
+MODULE_METADATA = ModuleMetadata()
 MODEL = "model"
 API = "api"
 MODELS = [Model(api=API, model=MODEL)]
 ENTRYPOINT = "entrypoint"
+PACKAGE_TYPE = PackageType.PACKAGE_TYPE_UNSPECIFIED
+STATUS = RegistryItemStatus.REGISTRY_ITEM_STATUS_UNSPECIFIED
+ITEM = RegistryItem(
+    item_id=ID,
+    organization_id=ID,
+    public_namespace=PUBLIC_NAMESPACE,
+    name=NAME,
+    type=PACKAGE_TYPE,
+    visibility=VISIBILITY,
+    url=URL,
+    description=DESCRIPTION,
+    total_robot_usage=USAGE,
+    total_external_robot_usage=USAGE,
+    total_organization_usage=USAGE,
+    total_external_organization_usage=USAGE,
+)
+ITEMS = [ITEM]
 MODULE = Module(
     module_id=ID,
     organization_id=ID,
     name=NAME,
-    visibility=Visibility.VISIBILITY_PUBLIC,
+    visibility=VISIBILITY,
     versions=None,
     url=URL,
     description=DESCRIPTION,
@@ -168,7 +192,6 @@ MEMBER = OrganizationMember(user_id=ID, emails=EMAILS, date_added=TIME)
 MEMBERS = [MEMBER]
 INVITE = OrganizationInvite(organization_id=ID, email=EMAIL, created_on=TIME)
 INVITES = [INVITE]
-VISIBILITY = Visibility.VISIBILITY_PUBLIC
 VERSION = "version"
 PLATFORM = "platform"
 MODULE_FILE_INFO = ModuleFileInfo(module_id=ID, version=VERSION, platform=PLATFORM)
@@ -197,6 +220,8 @@ def service() -> MockApp:
         rover_rental_robots=ROVER_RENTAL_ROBOTS,
         api_key=API_KEY,
         api_keys_with_authorizations=API_KEYS_WITH_AUTHORIZATIONS,
+        items=[ITEM],
+        package_type=PACKAGE_TYPE,
     )
 
 
@@ -495,6 +520,14 @@ class TestClient:
             assert service.robot_part_id == ID
 
     @pytest.mark.asyncio
+    async def test_get_robot_api_keys(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            keys = await client.get_robot_api_keys(ID)
+            assert keys[0].api_key == API_KEY_WITH_AUTHORIZATIONS.api_key
+            assert keys[0].authorizations[0] == AUTHORIZATION_DETAIL
+
+    @pytest.mark.asyncio
     async def test_mark_part_as_main(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
@@ -623,7 +656,16 @@ class TestClient:
     async def test_change_role(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.change_role(old_identity_id=ID, old_role=ROLE, old_resource_type=TYPE, old_resource_id=ID, new_identity_id=ID, new_role=ROLE, new_resource_type=TYPE, new_resource_id=ID)
+            await client.change_role(
+                old_identity_id=ID,
+                old_role=ROLE,
+                old_resource_type=TYPE,
+                old_resource_id=ID,
+                new_identity_id=ID,
+                new_role=ROLE,
+                new_resource_type=TYPE,
+                new_resource_id=ID,
+            )
             assert service.change_role_called is True
 
     @pytest.mark.asyncio
@@ -640,6 +682,52 @@ class TestClient:
             authorizations = await client.list_authorizations(resource_ids=IDS)
             assert service.resource_ids == IDS
             assert authorizations == AUTHORIZATIONS
+
+    @pytest.mark.asyncio
+    async def test_get_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            item = await client.get_registry_item(ID)
+            assert item.item_id == ITEM.item_id
+            assert item.name == ITEM.name
+            assert item.visibility == ITEM.visibility
+            assert item.total_robot_usage == ITEM.total_robot_usage
+
+    @pytest.mark.asyncio
+    async def test_create_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.create_registry_item(NAME, PACKAGE_TYPE, ID)
+            assert service.name == NAME
+            assert service.package_type == PACKAGE_TYPE
+            assert service.organization_id == ID
+
+    @pytest.mark.asyncio
+    async def test_update_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.update_registry_item(ID, PACKAGE_TYPE, DESCRIPTION, VISIBILITY)
+            assert service.id == ID
+            assert service.package_type == PACKAGE_TYPE
+            assert service.description == DESCRIPTION
+            assert service.visibility == VISIBILITY
+
+    @pytest.mark.asyncio
+    async def test_list_registry_items(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            items = await client.list_registry_items([PACKAGE_TYPE], [VISIBILITY], [PLATFORM], [STATUS])
+            assert items[0].item_id == ID
+            assert items[0].public_namespace == PUBLIC_NAMESPACE
+            assert items[0].total_external_organization_usage == USAGE
+
+    @pytest.mark.asyncio
+    async def test_delete_registry_item(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.delete_registry_item(ID)
+            assert service.id == ID
+            assert service.delete_item_called is True
 
     @pytest.mark.asyncio
     async def test_create_module(self, service: MockApp):
@@ -708,6 +796,14 @@ class TestClient:
             assert (API_KEY, ID) == api_key
 
     @pytest.mark.asyncio
+    async def test_delete_key(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            await client.delete_key(ID)
+            assert service.id == ID
+            assert service.delete_key_called is True
+
+    @pytest.mark.asyncio
     async def test_create_key_from_existing_key_authorizations(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
@@ -720,3 +816,11 @@ class TestClient:
             client = AppClient(channel, METADATA, ID)
             api_keys = await client.list_keys()
             assert api_keys == API_KEYS_WITH_AUTHORIZATIONS
+
+    @pytest.mark.asyncio
+    async def test_rotate_key(self, service: MockApp):
+        async with ChannelFor([service]) as channel:
+            client = AppClient(channel, METADATA, ID)
+            key, id = await client.rotate_key(ID)
+            assert key == API_KEY
+            assert id == ID

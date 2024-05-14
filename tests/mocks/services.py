@@ -128,6 +128,7 @@ from viam.proto.app import (
     OrganizationInvite,
     OrganizationMember,
     OrgDetails,
+    RegistryItem,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ResendOrganizationInviteRequest,
@@ -258,6 +259,7 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
 )
+from viam.proto.app.packages import PackageType
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -1141,6 +1143,8 @@ class MockApp(AppServiceBase):
         rover_rental_robots: List[RoverRentalRobot],
         api_key: str,
         api_keys_with_authorizations: List[APIKeyWithAuthorizations],
+        items: List[RegistryItem],
+        package_type: PackageType.ValueType,
     ):
         self.organizations = organizations
         self.location = location
@@ -1161,6 +1165,8 @@ class MockApp(AppServiceBase):
         self.rover_rental_robots = rover_rental_robots
         self.api_key = api_key
         self.api_keys_with_authorizations = api_keys_with_authorizations
+        self.items = items
+        self.package_type = package_type
         self.send_email_invite = False
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
@@ -1543,10 +1549,16 @@ class MockApp(AppServiceBase):
         await stream.send_message(CreateKeyResponse(key=self.api_key, id=self.id))
 
     async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotAPIKeysResponse(api_keys=self.api_keys_with_authorizations))
 
     async def DeleteKey(self, stream: Stream[DeleteKeyRequest, DeleteKeyResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.delete_key_called = True
+        await stream.send_message((DeleteKeyResponse()))
 
     async def ListKeys(self, stream: Stream[ListKeysRequest, ListKeysResponse]) -> None:
         request = await stream.recv_message()
@@ -1554,7 +1566,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListKeysResponse(api_keys=self.api_keys_with_authorizations))
 
     async def RotateKey(self, stream: Stream[RotateKeyRequest, RotateKeyResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(RotateKeyResponse(id=self.id, key=self.api_key))
 
     async def CreateKeyFromExistingKeyAuthorizations(
         self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
@@ -1564,7 +1578,12 @@ class MockApp(AppServiceBase):
         await stream.send_message(CreateKeyFromExistingKeyAuthorizationsResponse(key=self.api_key, id=self.id))
 
     async def CreateRegistryItem(self, stream: Stream[CreateRegistryItemRequest, CreateRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.package_type = request.type
+        self.organization_id = request.organization_id
+        await stream.send_message(CreateRegistryItemResponse())
 
     async def GetOrganizationsWithAccessToLocation(
         self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
@@ -1576,16 +1595,29 @@ class MockApp(AppServiceBase):
         )
 
     async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListRegistryItemsResponse(items=self.items))
 
     async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        self.package_type = request.type
+        self.description = request.description
+        self.visibility = request.visibility
+        await stream.send_message(UpdateRegistryItemResponse())
 
     async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_item_called = True
+        await stream.send_message(DeleteRegistryItemResponse())
 
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
 
 
 class MockGenericService(GenericService):
