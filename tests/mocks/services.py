@@ -1,12 +1,11 @@
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 import numpy as np
 from grpclib.server import Stream
 from numpy.typing import NDArray
-from PIL import Image
 
 from viam.app.data_client import DataClient
-from viam.media.video import RawImage
+from viam.media.video import ViamImage
 from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
@@ -364,7 +363,7 @@ class MockVision(Vision):
         return self.detections
 
     async def get_detections(
-        self, image: Union[Image.Image, RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, image: ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Detection]:
         self.extra = extra
         self.timeout = timeout
@@ -378,7 +377,7 @@ class MockVision(Vision):
         return self.classifications
 
     async def get_classifications(
-        self, image: Union[Image.Image, RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, image: ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Classification]:
         self.extra = extra
         self.timeout = timeout

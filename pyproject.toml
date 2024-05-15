@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "viam-sdk"
-version = "0.19.0"
+version = "0.21.0b2"
 description = "Viam Robotics Python SDK"
 authors = [ "Naveed <naveed@viam.com>" ]
 license = "Apache-2.0"
@@ -18,7 +18,6 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
   ]
   googleapis-common-protos = ">=1.60.0,<2"
   typing-extensions = ">=4.8.0,<5"
-  Pillow = ">=9.1.0,<11"
   protobuf = ">=4.24.3,<5"
   numpy = { version = ">=1.21,<2", optional = true }
 
@@ -50,6 +49,7 @@ include = ["LICENSE", "src/viam/rpc/libviam_rust_utils.*"]
     {version = "<1.25.0", python = "<3.9"},
     {version = ">=1.26.2", python = ">=3.9"},
   ]
+  Pillow = ">=9.1.0,<11"
   pyright = "^1.1.339"
 
   [tool.poetry.extras]

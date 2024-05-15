@@ -1,9 +1,7 @@
 import abc
-from typing import Any, Final, List, Mapping, Optional, Union
+from typing import Any, Final, List, Mapping, Optional
 
-from PIL import Image
-
-from viam.media.video import RawImage
+from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
@@ -47,6 +45,9 @@ class Vision(ServiceBase):
         Args:
             camera_name (str): The name of the camera to use for detection
 
+        Raises:
+            ViamError: Raised if given an image without a specified width and height
+
         Returns:
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
             confidence score of the labels, around the found objects in the next 2D image
@@ -57,7 +58,7 @@ class Vision(ServiceBase):
     @abc.abstractmethod
     async def get_detections(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -80,6 +81,9 @@ class Vision(ServiceBase):
 
         Args:
             image (Image | RawImage): The image to get detections from
+
+        Raises:
+            ViamError: Raised if given an image without a specified width and height
 
         Returns:
             List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the
@@ -122,7 +126,7 @@ class Vision(ServiceBase):
     @abc.abstractmethod
     async def get_classifications(
         self,
-        image: Union[Image.Image, RawImage],
+        image: ViamImage,
         count: int,
         *,
         extra: Optional[Mapping[str, Any]] = None,
