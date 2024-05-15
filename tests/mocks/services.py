@@ -6,7 +6,7 @@ from numpy.typing import NDArray
 from PIL import Image
 
 from viam.app.data_client import DataClient
-from viam.media.video import RawImage
+from viam.media.video import RawImage, ViamImage
 from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
@@ -327,7 +327,7 @@ from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
-from viam.services.vision import Vision
+from viam.services.vision import Vision, CaptureAllRequest, CaptureAllResult
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -341,6 +341,8 @@ class MockVision(Vision):
         classifications: List[Classification],
         segmenters: List[str],
         point_clouds: List[PointCloudObject],
+        image: ViamImage,
+        properties: Vision.Properties,
     ):
         self.detectors = detectors
         self.detections = detections
@@ -348,9 +350,39 @@ class MockVision(Vision):
         self.classifications = classifications
         self.segmenters = segmenters
         self.point_clouds = point_clouds
+        self.image = image
+        self.properties = properties
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
         super().__init__(name)
+
+    async def get_properties(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None,
+    ) -> Vision.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return self.properties
+
+    async def capture_all_from_camera(
+        self,
+        camera_name: str,
+        requests: CaptureAllRequest,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> CaptureAllResult:
+        self.extra = extra
+        self.timeout = timeout
+        result = CaptureAllResult()
+        if requests.return_image:
+            result.image = self.image
+        if requests.return_classifications:
+            result.classifications = self.classifications
+        if requests.return_detections:
+            result.detections = self.detections
+        if requests.return_object_point_clouds:
+            result.objects = self.point_clouds
+        return result
 
     async def get_detections_from_camera(
         self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
