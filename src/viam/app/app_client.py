@@ -117,9 +117,13 @@ from viam.proto.app import (
     OrganizationInvite,
     OrganizationMember,
     OrgDetails,
+    RegistryItem,
+    RegistryItemStatus,
+    RemoveRoleRequest,
+    ResendOrganizationInviteRequest,
+    ResendOrganizationInviteResponse,
+    Robot,
 )
-from viam.proto.app import RegistryItem as RegistryItemPB
-from viam.proto.app import RegistryItemStatus, RemoveRoleRequest, ResendOrganizationInviteRequest, ResendOrganizationInviteResponse, Robot
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
@@ -366,55 +370,6 @@ class RobotPartHistoryEntry:
             when=datetime_to_timestamp(self.when) if self.when else None,
             old=self.old.proto if self.old else None,
         )
-
-
-class RegistryItem:
-    """A class that mirros the `RegistryItem` proto message.
-
-    Use this class to make attributes of a `viam.proto.app.RegistryItem` more accessible and easier to read/interpret.
-    """
-
-    @classmethod
-    def from_proto(cls, registry_item: RegistryItemPB) -> Self:
-        """Create a `RegistryItem` from the .proto defined `RegistryItem`.
-
-        Args:
-            registry_item (viam.proto.app.RegistryItem): The object to copy from.
-
-        Returns:
-            RegistryItem: The `RegistryItem`.
-        """
-        self = cls()
-        self.item_id = registry_item.item_id
-        self.organization_id = registry_item.organization_id
-        self.public_namespace = registry_item.public_namespace
-        self.name = registry_item.name
-        self.type = registry_item.type
-        self.visibility = registry_item.visibility
-        self.url = registry_item.url
-        self.description = registry_item.description
-        self.total_robot_usage = registry_item.total_robot_usage
-        self.total_external_robot_usage = registry_item.total_external_robot_usage
-        self.total_organization_usage = registry_item.total_organization_usage
-        self.total_external_organization_usage = registry_item.total_external_organization_usage
-        self.created_at = registry_item.created_at.ToDatetime()
-        self.updated_at = registry_item.updated_at.ToDatetime()
-        return self
-
-    item_id: str
-    organization_id: str
-    public_namespace: str
-    name: str
-    type: PackageType
-    visibility: Visibility.ValueType
-    url: str
-    description: str
-    total_robot_usage: int
-    total_external_robot_usage: int
-    total_organization_usage: int
-    total_external_organization_usage: int
-    created_at: datetime
-    updated_at: datetime
 
 
 class APIKeyAuthorization:
@@ -1828,7 +1783,7 @@ class AppClient:
         """
         request = GetRegistryItemRequest(item_id=item_id)
         response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
-        return RegistryItem.from_proto(response.item)
+        return response.item
 
     async def create_registry_item(self, name: str, type: PackageType.ValueType, organization_id: Optional[str] = None) -> None:
         """Create a registry item
@@ -1900,7 +1855,7 @@ class AppClient:
             page_token=page_token if page_token is not None else "",
         )
         response: ListRegistryItemsResponse = await self._app_client.ListRegistryItems(request, metadata=self._metadata)
-        return [RegistryItem.from_proto(item) for item in response.items]
+        return list(response.items)
 
     async def delete_registry_item(self, item_id: str) -> None:
         """Delete a registry item
