@@ -47,7 +47,6 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         result = await vision.capture_all_from_camera(request.camera_name, capture_request, extra=extra, timeout=timeout)
-        # first, the image
         img = None
         if result.image is not None:
             try:
@@ -57,9 +56,12 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
             finally:
                 result.image.close()
         response = CaptureAllFromCameraResponse(
-                image=img, detections=result.detections,
-                classifications=result.classifications, objects=result.objects,
-                extra=dict_to_struct(result.extra))
+            image=img,
+            detections=result.detections,
+            classifications=result.classifications,
+            objects=result.objects,
+            extra=dict_to_struct(result.extra),
+        )
         await stream.send_message(response)
 
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
