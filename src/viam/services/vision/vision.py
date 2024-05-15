@@ -303,19 +303,19 @@ class Vision(ServiceBase):
             extra: Optional[Dict[str, Any]] = None,
             timeout: Optional[float] = None,
     ) -> Properties:
-    """
-    Get info about what vision methods the vision service provides. Currently returns boolean values that
-    state whether the service implements the classification, detection, and/or 3D object segmentation methods.
+        """
+        Get info about what vision methods the vision service provides. Currently returns boolean values that
+        state whether the service implements the classification, detection, and/or 3D object segmentation methods.
 
-    ::
-        
-            # Grab the detector you configured on your machine
-            my_detector = VisionClient.from_robot(robot, "my_detector")
-            properties = await my_detector.get_properties()
-            properties.detections_supported      # returns True
-            properties.classifications_supported # returns False
+        ::
+            
+                # Grab the detector you configured on your machine
+                my_detector = VisionClient.from_robot(robot, "my_detector")
+                properties = await my_detector.get_properties()
+                properties.detections_supported      # returns True
+                properties.classifications_supported # returns False
 
-    Returns:
-        Properties: The properties of the vision service
-    """
-    ...
+        Returns:
+            Properties: The properties of the vision service
+        """
+        ...
