@@ -58,10 +58,10 @@ class CaptureAllResult:
     def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
         """
         Args:
-            image (ViamImage): The image from the GetImage request of the camera, if it was requested.
-            classifications (List[Classification]): The classifications from GetClassifications, if it was requested.
-            detections (List[Detection]): The detections from GetDetections, if it was requested.
-            objects (List[PointCloudObject]): the object point clouds from GetObjectPointClouds, if it was requested.
+            image (ViamImage|None): The image from the GetImage request of the camera, if it was requested.
+            classifications (List[Classification]|None): The classifications from GetClassifications, if it was requested.
+            detections (List[Detection]|None): The detections from GetDetections, if it was requested.
+            objects (List[PointCloudObject]|None): the object point clouds from GetObjectPointClouds, if it was requested.
             extra (dict): A catch all structure, usually for metadata, that a module writer might want to return.Default empty.
 
         Returns:
