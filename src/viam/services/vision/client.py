@@ -30,6 +30,7 @@ from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .vision import Vision, CaptureAllRequest, CaptureAllResult
 
+
 class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     """
     Connect to the Vision service, which allows you to access various computer vision algorithms
@@ -175,7 +176,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = {},
+        extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> Vision.Properties:
         if extra is None:

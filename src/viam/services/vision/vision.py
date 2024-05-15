@@ -14,27 +14,27 @@ if sys.version_info >= (3, 10):
 else:
     from typing_extensions import TypeAlias
 
-
 from ..service_base import ServiceBase
 
+
 class CaptureAllRequest:
-    """ 
-    CaptureAllRequest represents the collection of fields you can ask the 
+    """
+    CaptureAllRequest represents the collection of fields you can ask the
     CaptureAllFromCamera method to return. If you request something that the service
     cannot provide, a warning message will be generated, and the service will not return the
     requested thing.
     """
-    def __init__(self, return_image=False, return_classifications=False, 
+    def __init__(self, return_image=False, return_classifications=False,
                  return_detections=False, return_object_point_clouds=False):
         """
         Args:
             return_image (bool): Return the image from the GetImage of the underlying camera.
             Default is False.
-            return_classifications (bool): Return the classifications from GetClassifications. 
+            return_classifications (bool): Return the classifications from GetClassifications.
             Default is False.
-            return_detections (bool): Return the detections from GetDetections. 
+            return_detections (bool): Return the detections from GetDetections.
             Default is False.
-            return_objet_point_clouds (bool): Return the point cloud objects from GetObjectPointClouds. 
+            return_objet_point_clouds (bool): Return the point cloud objects from GetObjectPointClouds.
             Default is False.
 
         Returns:
@@ -45,11 +45,12 @@ class CaptureAllRequest:
         self.return_detections: bool = return_detections
         self.return_object_point_clouds: bool = return_object_point_clouds
 
+
 class CaptureAllResult:
-    """ 
-    CaptureAllResult represents the collection of things that you have requested from the 
+    """
+    CaptureAllResult represents the collection of things that you have requested from the
     CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
-    returning the image on every call to a classifier/detector/etc would be costly and unnecessary. 
+    returning the image on every call to a classifier/detector/etc would be costly and unnecessary.
     """
     def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
         """
@@ -88,9 +89,9 @@ class Vision(ServiceBase):
     Currently, these are the following properties:
     classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
     detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
-    object_point_clouds_supported (bool): GetObjectPointClouds is implemented. 
+    object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
     """
-    
+
     @abc.abstractmethod
     async def capture_all_from_camera(
         self,
@@ -119,8 +120,9 @@ class Vision(ServiceBase):
             request (vision.CaptureAllRequest): What the vision service should return from CaptureAllFromCamera
 
         Returns:
-            vision.CaptureAllResult: A class that stores all potential returns from the vision service. 
-            It can  return the image from the camera along with its associated detections, classifications, and objects, as well as any extra info the model may provide.
+            vision.CaptureAllResult: A class that stores all potential returns from the vision service.
+            It can  return the image from the camera along with its associated detections, classifications,
+            and objects, as well as any extra info the model may provide.
         """
         ...
 
@@ -304,7 +306,6 @@ class Vision(ServiceBase):
         state whether the service implements the classification, detection, and/or 3D object segmentation methods.
 
         ::
-            
                 # Grab the detector you configured on your machine
                 my_detector = VisionClient.from_robot(robot, "my_detector")
                 properties = await my_detector.get_properties()
