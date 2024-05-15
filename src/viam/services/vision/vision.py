@@ -62,7 +62,7 @@ class CaptureAllResult:
             classifications (List[Classification]|None): The classifications from GetClassifications, if it was requested.
             detections (List[Detection]|None): The detections from GetDetections, if it was requested.
             objects (List[PointCloudObject]|None): the object point clouds from GetObjectPointClouds, if it was requested.
-            extra (dict): A catch all structure, usually for metadata, that a module writer might want to return.Default empty.
+            extra (dict): A catch all structure, usually for metadata, that a module writer might want to return. Default empty.
 
         Returns:
             None
@@ -104,7 +104,7 @@ class Vision(ServiceBase):
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> CaptureAllResult:
-        """Get the next image, detection, classifications, and objects all together,
+        """Get the next image, detections, classifications, and objects all together,
         given a camera and a detector. Used for visualization.
 
         ::
