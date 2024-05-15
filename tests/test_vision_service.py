@@ -153,7 +153,8 @@ class TestVision:
         extra = {"foo": "capture_all_from_camera"}
         requests = CaptureAllRequest(return_image=True, return_detections=True)
         response = await vision.capture_all_from_camera("fake-camera", requests, extra=extra)
-        assert response.image == VISION_IMAGE
+        assert response.image.data == VISION_IMAGE.data
+        assert response.image.mime_type == VISION_IMAGE.mime_type
         assert response.detections == DETECTIONS
         assert response.classifications is None
         assert response.objects is None
