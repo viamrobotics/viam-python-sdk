@@ -497,7 +497,7 @@ class AppClient:
 
         ::
 
-            id = await cloud.get_user_id_by_email("youremail@email.com")`)
+            id = await cloud.get_user_id_by_email("youremail@email.com")`
 
         Args:
             email (str): The email of the user.
@@ -1650,8 +1650,8 @@ class AppClient:
         Args:
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
-            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is added
-                to. Must match `resource_id`.
+            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
+                removed from. Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
         Raises:
@@ -1696,13 +1696,13 @@ class AppClient:
             old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
             old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
-                added to. Must match `resource_id`.
+                added to. Must match `old_resource_id`.
             old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
             new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
             new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
             new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
-                Must match `resource_id`.
+                Must match `new_resource_id`.
             new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
         """
         old_authorization = await self._create_authorization(
