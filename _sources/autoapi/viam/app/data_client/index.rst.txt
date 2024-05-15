@@ -151,7 +151,7 @@ Attributes
 
       ::
 
-          data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="<sql-query>")
+          data = await data_client.tabular_data_by_sql(org_id="<your-org-id>", sql_query="SELECT * FROM readings LIMIT 5")
 
 
       :param organization_id: The ID of the organization that owns the data.
@@ -169,13 +169,25 @@ Attributes
       Obtain unified tabular data and metadata, queried with MQL.
 
       ::
+          # using bson
+          import bson
+          tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
+              bson.dumps({ '$match': { 'location_id': '<location-id>' } }),
+              bson.dumps({ "$limit": 5 })
+          ])
 
-          data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[<mql-bytes-1>, <mql-bytes-2>])
+          # using pymongo
+          import bson
+          tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
+              bson.encode({ '$match': { 'location_id': '<location-id>' } }),
+              bson.encode({ "$limit": 5 })
+          ])
 
 
       :param organization_id: The ID of the organization that owns the data.
       :type organization_id: str
-      :param mql_binary: The MQL query to run as a list of BSON documents.
+      :param mql_binary: The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
+                         `pymongo` or `bson`.
       :type mql_binary: List[bytes]
 
       :returns: An array of data objects.

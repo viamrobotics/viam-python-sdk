@@ -329,7 +329,7 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            data = await data_client.tabular_data_by_sql(org_id=&quot;&lt;your-org-id&gt;&quot;, sql_query=&quot;&lt;sql-query&gt;&quot;)</span>
+<span class="sd">            data = await data_client.tabular_data_by_sql(org_id=&quot;&lt;your-org-id&gt;&quot;, sql_query=&quot;SELECT * FROM readings LIMIT 5&quot;)</span>
 
 
 <span class="sd">        Args:</span>
@@ -347,13 +347,25 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
 
 <span class="sd">        ::</span>
+<span class="sd">            # using bson</span>
+<span class="sd">            import bson</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[</span>
+<span class="sd">                bson.dumps({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;location-id&gt;&#39; } }),</span>
+<span class="sd">                bson.dumps({ &quot;$limit&quot;: 5 })</span>
+<span class="sd">            ])</span>
 
-<span class="sd">            data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[&lt;mql-bytes-1&gt;, &lt;mql-bytes-2&gt;])</span>
+<span class="sd">            # using pymongo</span>
+<span class="sd">            import bson</span>
+<span class="sd">            tabular_data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[</span>
+<span class="sd">                bson.encode({ &#39;$match&#39;: { &#39;location_id&#39;: &#39;&lt;location-id&gt;&#39; } }),</span>
+<span class="sd">                bson.encode({ &quot;$limit&quot;: 5 })</span>
+<span class="sd">            ])</span>
 
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
-<span class="sd">            mql_binary (List[bytes]):The MQL query to run as a list of BSON documents.</span>
+<span class="sd">            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like</span>
+<span class="sd">                `pymongo` or `bson`.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[Dict[str, ValueTypes]]: An array of data objects.</span>

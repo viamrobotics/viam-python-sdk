@@ -305,7 +305,7 @@ str: The last-returned page ID.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_sql">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sql_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_sql" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain unified tabular data and metadata, queried with SQL.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_sql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="s2">&quot;&lt;sql-query&gt;&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_sql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">sql_query</span><span class="o">=</span><span class="s2">&quot;SELECT * FROM readings LIMIT 5&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -328,14 +328,31 @@ str: The last-returned page ID.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_mql">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_mql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_mql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_mql" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span><span class="o">&lt;</span><span class="n">mql</span><span class="o">-</span><span class="nb">bytes</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">mql</span><span class="o">-</span><span class="nb">bytes</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">])</span>
-</pre></div>
-</div>
+<dl>
+<dt>::</dt><dd><p># using bson
+import bson
+tabular_data = await data_client.tabular_data_by_mql(org_id=”&lt;your-org-id&gt;”, mql_binary=[</p>
+<blockquote>
+<div><p>bson.dumps({ ‘$match’: { ‘location_id’: ‘&lt;location-id&gt;’ } }),
+bson.dumps({ “$limit”: 5 })</p>
+</div></blockquote>
+<p>])</p>
+<p># using pymongo
+import bson
+tabular_data = await data_client.tabular_data_by_mql(org_id=”&lt;your-org-id&gt;”, mql_binary=[</p>
+<blockquote>
+<div><p>bson.encode({ ‘$match’: { ‘location_id’: ‘&lt;location-id&gt;’ } }),
+bson.encode({ “$limit”: 5 })</p>
+</div></blockquote>
+<p>])</p>
+</dd>
+</dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.</p></li>
-<li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>bytes</em><em>]</em>) – The MQL query to run as a list of BSON documents.</p></li>
+<li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>bytes</em><em>]</em>) – The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
+<cite>pymongo</cite> or <cite>bson</cite>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
