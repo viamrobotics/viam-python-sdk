@@ -3,6 +3,7 @@ from google.protobuf.struct_pb2 import Struct
 
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.camera import Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,
@@ -55,14 +56,10 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
                 img = Image(source_name=request.name, format=fmt, image=img_bytes)
             finally:
                 result.image.close()
-        # finally, extra
-            result_extra = Struct()
-            if result.extra is not None:
-                result_extra.update(result.extra)
         response = CaptureAllFromCameraResponse(
                 image=img, detections=result.detections,
                 classifications=result.classifications, objects=result.objects,
-                extra=result_extra)
+                extra=dict_to_struct(result.extra))
         await stream.send_message(response)
 
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:

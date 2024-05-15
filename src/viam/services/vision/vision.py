@@ -1,10 +1,17 @@
 import abc
-from typing import Any, Final, List, Mapping, Optional
+import sys
+from typing import Any, Final, List, Mapping, Optional, Union
 
 from viam.media.video import ViamImage
 from viam.proto.common import PointCloudObject
 from viam.proto.service.vision import Classification, Detection, GetPropertiesResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
+
 
 from ..service_base import ServiceBase
 
@@ -42,7 +49,7 @@ class CaptureAllResult:
     CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
     returning the image on every call to a classifier/detector/etc would be costly and unnecessary. 
     """
-    def __init__(self, image=None, classifications=None, detections=None, objects=None, extra=None):
+    def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
         """
         Args:
             image (ViamImage): The image from the GetImage request of the camera, if it was requested.
@@ -54,10 +61,10 @@ class CaptureAllResult:
         Returns:
             None
         """
-        self.image: ViamImage = image
-        self.detections: List[Detection] = detections
-        self.classifications: List[Classification] = classifications
-        self.objects: List[PointCloudObject] = objects
+        self.image: Union[ViamImage, None] = image
+        self.detections: Union[List[Detection], None] = detections
+        self.classifications: Union[List[Classification], None] = classifications
+        self.objects: Union[List[PointCloudObject], None] = objects
         self.extra: dict = extra
 
 
@@ -293,7 +300,7 @@ class Vision(ServiceBase):
     async def get_properties(
             self,
             *,
-            extra: Optional[Mapping[str, Any]] = None,
+            extra: Optional[Dict[str, Any]] = None,
             timeout: Optional[float] = None,
     ) -> Properties:
     """

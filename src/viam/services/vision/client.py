@@ -1,4 +1,5 @@
-from typing import Any, List, Mapping, Optional
+from io import BytesIO
+from typing import Any, List, Mapping, Optional, Union, Dict
 
 from grpclib.client import Channel
 
@@ -21,13 +22,13 @@ from viam.proto.service.vision import (
     GetObjectPointCloudsRequest,
     GetObjectPointCloudsResponse,
     GetPropertiesRequest,
+    GetPropertiesResponse,
     VisionServiceStub,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
 from .vision import Vision, CaptureAllRequest, CaptureAllResult
-
 
 class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     """
@@ -175,10 +176,17 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> Vision.Properties:
-        return await self.client.GetProperties(GetPropertiesRequest(name=self.name, extra=extra), timeout=timeout)
+        if extra is None:
+            extra = {}
+        request = GetPropertiesRequest(
+            name=self.name,
+            extra=dict_to_struct(extra),
+        )
+        response : GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        return response
 
     async def do_command(
         self,
