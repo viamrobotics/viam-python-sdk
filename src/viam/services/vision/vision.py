@@ -300,7 +300,7 @@ class Vision(ServiceBase):
     async def get_properties(
             self,
             *,
-            extra: Optional[Dict[str, Any]] = None,
+            extra: Optional[Mapping[str, Any]] = None,
             timeout: Optional[float] = None,
     ) -> Properties:
         """
