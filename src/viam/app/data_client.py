@@ -274,7 +274,8 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like `pymongo` or `bson`.
+            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
+                `pymongo` or `bson`.
 
         Returns:
             List[Dict[str, ValueTypes]]: An array of data objects.
