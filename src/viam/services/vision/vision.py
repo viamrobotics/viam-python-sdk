@@ -1,6 +1,6 @@
 import abc
 import sys
-from typing import Any, Final, List, Mapping, Optional, Union, Dict
+from typing import Any, Final, List, Mapping, Optional, Union
 
 from PIL import Image
 
@@ -296,7 +296,7 @@ class Vision(ServiceBase):
     async def get_properties(
             self,
             *,
-            extra: Optional[Dict[str, Any]] = None,
+            extra: Optional[Mapping[str, Any]] = None,
             timeout: Optional[float] = None,
     ) -> Properties:
         """

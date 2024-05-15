@@ -1,5 +1,5 @@
 from io import BytesIO
-from typing import Any, List, Mapping, Optional, Union, Dict
+from typing import Any, List, Mapping, Optional, Union
 
 from grpclib.client import Channel
 
@@ -175,7 +175,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Dict[str, Any]] = None,
+        extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
     ) -> Vision.Properties:
         if extra is None:
