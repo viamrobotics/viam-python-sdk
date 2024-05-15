@@ -175,7 +175,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def get_properties(
         self,
         *,
-        extra: Optional[Mapping[str, Any]] = None,
+        extra: Optional[Mapping[str, Any]] = {},
         timeout: Optional[float] = None,
     ) -> Vision.Properties:
         if extra is None:
