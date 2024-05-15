@@ -217,11 +217,11 @@ class TestService:
                     extra=dict_to_struct(extra)
             )
             response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
-            assert response.image.image == VISION_IMAGE.data()
-            assert response.image.format == VISION_IMAGE.mime_type().to_proto()
-            assert response.detections is None
+            assert response.image.image == VISION_IMAGE.data
+            assert response.image.format == VISION_IMAGE.mime_type.to_proto()
             assert response.classifications == CLASSIFICATIONS
-            assert response.objects is None
+            assert response.detections == []
+            assert response.objects == []
             assert vision.extra == extra
 
     @pytest.mark.asyncio
@@ -335,7 +335,8 @@ class TestClient:
             extra = {"foo": "capture_all_from_camera"}
             requests = CaptureAllRequest(return_image=True, return_object_point_clouds=True)
             response = await client.capture_all_from_camera("fake-camera", requests, extra=extra)
-            assert response.image == VISION_IMAGE
+            assert response.image.data == VISION_IMAGE.data
+            assert response.image.mime_type == VISION_IMAGE.mime_type
             assert response.detections is None
             assert response.classifications is None
             assert response.objects == POINT_CLOUDS
