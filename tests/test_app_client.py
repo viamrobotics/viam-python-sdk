@@ -396,7 +396,7 @@ class TestClient:
     async def test_share_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.share_location(location_id=ID, organization_id=ID)
+            await client.share_location(organization_id=ID, location_id=ID)
             assert service.location_id == ID
             assert service.organization_id == ID
 
@@ -404,7 +404,7 @@ class TestClient:
     async def test_unshare_location(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.unshare_location(location_id=ID, organization_id=ID)
+            await client.unshare_location(organization_id=ID, location_id=ID)
             assert service.location_id == ID
             assert service.organization_id == ID
 
@@ -657,6 +657,7 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
             await client.change_role(
+                organization_id=ID,
                 old_identity_id=ID,
                 old_role=ROLE,
                 old_resource_type=TYPE,
@@ -697,7 +698,7 @@ class TestClient:
     async def test_create_registry_item(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            await client.create_registry_item(NAME, PACKAGE_TYPE, ID)
+            await client.create_registry_item(ID, NAME, PACKAGE_TYPE)
             assert service.name == NAME
             assert service.package_type == PACKAGE_TYPE
             assert service.organization_id == ID
@@ -716,7 +717,7 @@ class TestClient:
     async def test_list_registry_items(self, service: MockApp):
         async with ChannelFor([service]) as channel:
             client = AppClient(channel, METADATA, ID)
-            items = await client.list_registry_items([PACKAGE_TYPE], [VISIBILITY], [PLATFORM], [STATUS])
+            items = await client.list_registry_items(ID, [PACKAGE_TYPE], [VISIBILITY], [PLATFORM], [STATUS])
             assert items[0].item_id == ID
             assert items[0].public_namespace == PUBLIC_NAMESPACE
             assert items[0].total_external_organization_usage == USAGE

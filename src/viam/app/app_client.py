@@ -638,16 +638,15 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    async def delete_organization(self, org_id: Optional[str] = None) -> None:
+    async def delete_organization(self, org_id: str) -> None:
         """Delete an organization
 
         ::
             await cloud.delete_organization("org-id")
 
         Args:
-            org_id (Optional[str]): The ID of the organization. Defaults to None.
+            org_id (str): The ID of the organization.
         """
-        org_id = org_id if org_id is not None else await self._get_organization_id()
         request = DeleteOrganizationRequest(organization_id=org_id)
         await self._app_client.DeleteOrganization(request, metadata=self._metadata)
 
@@ -656,7 +655,7 @@ class AppClient:
 
         ::
 
-            member_list, invite_list = await cloud.list_organization_members()
+            member_list, invite_list = await cloud.list_organization_members("org-id")
 
         Args:
             org_id (str): The ID of the organization to list members of.
@@ -676,7 +675,7 @@ class AppClient:
 
         ::
 
-            await cloud.create_organization_invite("youremail@email.com")
+            await cloud.create_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
@@ -724,6 +723,7 @@ class AppClient:
             )
 
             update_invite = await cloud.update_organization_invite_authorizations(
+                org_id="org_id_123",
                 email="notarealemail@viam.com",
                 add_authorizations =[authorization_to_add]
             )
@@ -757,7 +757,7 @@ class AppClient:
             member_list, invite_list = await cloud.list_organization_members()
             first_user_id = member_list[0].user_id
 
-            await cloud.delete_organization_member(first_user_id)
+            await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
 
         Args:
             org_id (str): The ID of the org to remove the user from.
@@ -771,7 +771,7 @@ class AppClient:
 
         ::
 
-            await cloud.delete_organization_invite("youremail@email.com")
+            await cloud.delete_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
@@ -788,7 +788,7 @@ class AppClient:
 
         ::
 
-            await cloud.resend_organization_invite("youremail@email.com")
+            await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
@@ -806,8 +806,7 @@ class AppClient:
 
         ::
 
-            my_new_location = await cloud.create_location(name="Robotville",
-                                                          parent_location_id="111ab12345")
+            my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
 
         Args:
             org_id (str): The ID of the organization to create the location under.
@@ -910,7 +909,7 @@ class AppClient:
 
         ::
 
-            locations = await cloud.list_locations()
+            locations = await cloud.list_locations("org-id")
 
         Args:
             org_id (str): The ID of the org to list locations for.
@@ -922,33 +921,31 @@ class AppClient:
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
         return list(response.locations)
 
-    async def share_location(self, location_id: str, organization_id: Optional[str] = None) -> None:
+    async def share_location(self, organization_id: str, location_id: str) -> None:
         """Share a location with an organization.
 
         ::
 
-            await cloud.share_location("location-id", "organization-id")
+            await cloud.share_location("organization-id", "location-id")
 
         Args:
+            organization_id (str): The ID of the organization.
             location_id (str): The ID of the location.
-            organization_id (Optional[str]): The ID of the organization. Defaults to None.
         """
-        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
         request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
         await self._app_client.ShareLocation(request, metadata=self._metadata)
 
-    async def unshare_location(self, location_id: str, organization_id: Optional[str] = None) -> None:
+    async def unshare_location(self, organization_id: str, location_id: str) -> None:
         """Stop sharing a location with an organization.
 
         ::
 
-            await cloud.unshare_location("location-id", "organization-id")
+            await cloud.unshare_location("organization-id", "location-id")
 
         Args:
+            organization_id (str): The ID of the organization.
             location_id (str): The ID of the location.
-            organization_id (Optional[str]): The ID of the organization. Defaults to None.
         """
-        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
         request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
         await self._app_client.UnshareLocation(request, metadata=self._metadata)
 
@@ -1481,7 +1478,7 @@ class AppClient:
 
         ::
 
-            fragments_list = await cloud.list_fragments(show_public=False)
+            fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
 
         Args:
             org_id (str): The ID of the organization to list fragments for.
@@ -1523,8 +1520,7 @@ class AppClient:
 
         ::
 
-            new_fragment = await cloud.create_fragment(
-                name="cool_smart_machine_to_configure_several_of")
+            new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
         Args:
             org_id (str): The ID of the organization to create the ragment within.
@@ -1601,6 +1597,7 @@ class AppClient:
         ::
 
             await cloud.add_role(
+                org_id="org-id",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
@@ -1641,6 +1638,7 @@ class AppClient:
         ::
 
             await cloud.remove_role(
+                org_id="org-id",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
@@ -1670,6 +1668,7 @@ class AppClient:
 
     async def change_role(
         self,
+        organization_id: str,
         old_identity_id: str,
         old_role: Union[Literal["owner"], Literal["operator"]],
         old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
@@ -1684,6 +1683,7 @@ class AppClient:
         ::
 
             await cloud.change_role(
+                organization_id="organization-id",
                 old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 old_role="operator",
                 old_resource_type="location",
@@ -1694,6 +1694,7 @@ class AppClient:
                 new_resource_id="abc12345")
 
         Args:
+            organization_id (str): ID of the organization
             old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
             old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
@@ -1707,10 +1708,20 @@ class AppClient:
             new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
         """
         old_authorization = await self._create_authorization(
-            identity_id=old_identity_id, identity_type="", role=old_role, resource_type=old_resource_type, resource_id=old_resource_id
+            organization_id=organization_id,
+            identity_id=old_identity_id,
+            identity_type="",
+            role=old_role,
+            resource_type=old_resource_type,
+            resource_id=old_resource_id,
         )
         new_authorization = await self._create_authorization(
-            identity_id=new_identity_id, identity_type="", role=new_role, resource_type=new_resource_type, resource_id=new_resource_id
+            organization_id=organization_id,
+            identity_id=new_identity_id,
+            identity_type="",
+            role=new_role,
+            resource_type=new_resource_type,
+            resource_id=new_resource_id,
         )
         request = ChangeRoleRequest(old_authorization=old_authorization, new_authorization=new_authorization)
         await self._app_client.ChangeRole(request, metadata=self._metadata)
@@ -1722,6 +1733,7 @@ class AppClient:
         ::
 
             list_of_auths = await cloud.list_authorizations(
+                org_id="org-id",
                 resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
 
         Args:
@@ -1786,19 +1798,18 @@ class AppClient:
         response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
         return response.item
 
-    async def create_registry_item(self, name: str, type: PackageType.ValueType, organization_id: Optional[str] = None) -> None:
+    async def create_registry_item(self, organization_id: str, name: str, type: PackageType.ValueType) -> None:
         """Create a registry item
 
         ::
 
-            await cloud.create_registry_item("name", PackageType.PACKAGE_TYPE_ML_MODEL, "organization-id")
+            await cloud.create_registry_item("org-id", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
 
         Args:
+            organization_id (str): The organization to create the registry item under.
             name (str): The name of the registry item, which must be unique within your org.
             type (PackageType.ValueType): The type of the item in the registry.
-            organization_id (Optional[str]): The organization to create the registry item under. Defaults to None.
         """
-        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
         request = CreateRegistryItemRequest(organization_id=organization_id, name=name, type=type)
         await self._app_client.CreateRegistryItem(request, metadata=self._metadata)
 
@@ -1823,29 +1834,28 @@ class AppClient:
 
     async def list_registry_items(
         self,
+        organization_id: str,
         types: List[PackageType.ValueType],
         visibilities: List[Visibility.ValueType],
         platforms: List[str],
         statuses: List[RegistryItemStatus.ValueType],
         search_term: Optional[str] = None,
         page_token: Optional[str] = None,
-        organization_id: Optional[str] = None,
     ) -> List[RegistryItem]:
         """List the registry items in an organization.
 
         Args:
+            organization_id (str): The ID of the organization to return registry items for.
             types (List[PackageType.ValueType]): The types of registry items.
             visibilities (List[Visibility.ValueType]): The visibilities of registry items.
             platforms (List[str]): The platforms of registry items.
             statuses (List[RegistryItemStatus.ValueType]): The types of the items in the registry.
             search_term (Optional[str]): The search term of the registry items.
             page_token (Optional[str]): The page token of the registry items.
-            organization_id (Optional[str]): The ID of the organization to return registry items for. Defaults to None.
 
         Returns:
             List[RegistryItem]: The list of registry items.
         """
-        organization_id = organization_id if organization_id is not None else await self._get_organization_id()
         request = ListRegistryItemsRequest(
             organization_id=organization_id,
             types=types,
@@ -1876,7 +1886,7 @@ class AppClient:
 
         ::
 
-            new_module = await cloud.create_module(name="cool_new_hoverboard_module")
+            new_module = await cloud.create_module(org_id="org-id", name="cool_new_hoverboard_module")
             print("Module ID:", new_module[0])
 
         Args:
@@ -1988,7 +1998,7 @@ class AppClient:
 
         ::
 
-            modules_list = await cloud.list_modules()
+            modules_list = await cloud.list_modules("org-id")
 
         Args:
             org_id (str): The ID of the organization to list modules for.
