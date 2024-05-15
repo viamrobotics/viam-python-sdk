@@ -1,11 +1,11 @@
 from io import BytesIO
 
 from grpclib.server import Stream
-from PIL import Image
-from google.protobuf.struct_pb2 import Struct
+from PIL import Image as PILImage
 
 from viam.media.video import LIBRARY_SUPPORTED_FORMATS, CameraMimeType, RawImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
+from viam.proto.component.camera import Image
 from viam.proto.service.vision import (
     CaptureAllFromCameraRequest,
     CaptureAllFromCameraResponse,
@@ -58,14 +58,10 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
                 img = Image(source_name=request.name, format=fmt, image=img_bytes)
             finally:
                 result.image.close()
-        # finally, extra
-            result_extra = Struct()
-            if result.extra is not None:
-                result_extra.update(result.extra)
         response = CaptureAllFromCameraResponse(
                 image=img, detections=result.detections,
                 classifications=result.classifications, objects=result.objects,
-                extra=result_extra)
+                extra=dict_to_struct(result.extra))
         await stream.send_message(response)
 
     async def GetDetectionsFromCamera(self, stream: Stream[GetDetectionsFromCameraRequest, GetDetectionsFromCameraResponse]) -> None:
@@ -89,7 +85,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         if is_lazy or not (CameraMimeType.is_supported(mime_type)):
             image = RawImage(request.image, request.mime_type)
         else:
-            image = Image.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
+            image = PILImage.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
 
         result = await vision.get_detections(image, extra=extra, timeout=timeout)
         response = GetDetectionsResponse(detections=result)
@@ -118,7 +114,7 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         if is_lazy or not (CameraMimeType.is_supported(mime_type)):
             image = RawImage(request.image, request.mime_type)
         else:
-            image = Image.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
+            image = PILImage.open(BytesIO(request.image), formats=LIBRARY_SUPPORTED_FORMATS)
 
         result = await vision.get_classifications(image, request.n, extra=extra, timeout=timeout)
         response = GetClassificationsResponse(classifications=result)
