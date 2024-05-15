@@ -19,8 +19,8 @@ class CaptureAllRequest:
     """
     CaptureAllRequest represents the collection of fields you can ask the
     CaptureAllFromCamera method to return. If you request something that the service
-    cannot provide, a warning message will be generated, and the service will not return the
-    requested thing.
+    cannot provide, a warning message will be generated, and the service will return an empty
+    version of the requested thing.
     """
     def __init__(self, return_image=False, return_classifications=False,
                  return_detections=False, return_object_point_clouds=False):
