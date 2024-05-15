@@ -255,7 +255,6 @@ class DataClient:
 
     async def tabular_data_by_mql(self, organization_id: str, mql_binary: List[bytes]) -> List[Dict[str, ValueTypes]]:
         """Obtain unified tabular data and metadata, queried with MQL.
-        
         ::
             # using bson
             import bson
