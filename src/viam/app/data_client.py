@@ -258,14 +258,14 @@ class DataClient:
         ::
             # using bson
             import bson
-            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
+            tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
                 bson.dumps({ '$match': { 'location_id': '<location-id>' } }),
                 bson.dumps({ "$limit": 5 })
             ])
 
             # using pymongo
             import bson
-            data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
+            tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
                 bson.encode({ '$match': { 'location_id': '<location-id>' } }),
                 bson.encode({ "$limit": 5 })
             ])
@@ -273,7 +273,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
-            mql_binary (List[bytes]):The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like `pymongo` or `bson`.
+            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like `pymongo` or `bson`.
 
         Returns:
             List[Dict[str, ValueTypes]]: An array of data objects.
