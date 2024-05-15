@@ -49,6 +49,9 @@ class CaptureAllResult:
     CaptureAllResult represents the collection of things that you have requested from the
     CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
     returning the image on every call to a classifier/detector/etc would be costly and unnecessary.
+    The default result for each field is None rather than the empty list to distinguish between 
+    "there was no request for the classifier/detector to return a result" vs. 
+    "the classifier/detector was requested, but there were no results".
     """
     def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
         """
