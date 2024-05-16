@@ -13,6 +13,7 @@ from viam.proto.app import (
     AppServiceStub,
     Authorization,
     AuthorizedPermissions,
+    ChangeRoleRequest,
     CheckPermissionsRequest,
     CheckPermissionsResponse,
     CreateFragmentRequest,
@@ -29,13 +30,19 @@ from viam.proto.app import (
     CreateModuleResponse,
     CreateOrganizationInviteRequest,
     CreateOrganizationInviteResponse,
+    CreateOrganizationRequest,
+    CreateOrganizationResponse,
+    CreateRegistryItemRequest,
     CreateRobotPartSecretRequest,
     CreateRobotPartSecretResponse,
     DeleteFragmentRequest,
+    DeleteKeyRequest,
     DeleteLocationRequest,
     DeleteLocationSecretRequest,
     DeleteOrganizationInviteRequest,
     DeleteOrganizationMemberRequest,
+    DeleteOrganizationRequest,
+    DeleteRegistryItemRequest,
     DeleteRobotPartRequest,
     DeleteRobotPartSecretRequest,
     DeleteRobotRequest,
@@ -52,6 +59,12 @@ from viam.proto.app import (
     GetOrganizationNamespaceAvailabilityResponse,
     GetOrganizationRequest,
     GetOrganizationResponse,
+    GetOrganizationsWithAccessToLocationRequest,
+    GetOrganizationsWithAccessToLocationResponse,
+    GetRegistryItemRequest,
+    GetRegistryItemResponse,
+    GetRobotAPIKeysRequest,
+    GetRobotAPIKeysResponse,
     GetRobotPartHistoryRequest,
     GetRobotPartHistoryResponse,
     GetRobotPartLogsRequest,
@@ -64,6 +77,8 @@ from viam.proto.app import (
     GetRobotResponse,
     GetRoverRentalRobotsRequest,
     GetRoverRentalRobotsResponse,
+    GetUserIDByEmailRequest,
+    GetUserIDByEmailResponse,
     ListAuthorizationsRequest,
     ListAuthorizationsResponse,
     ListFragmentsRequest,
@@ -76,8 +91,12 @@ from viam.proto.app import (
     ListModulesResponse,
     ListOrganizationMembersRequest,
     ListOrganizationMembersResponse,
+    ListOrganizationsByUserRequest,
+    ListOrganizationsByUserResponse,
     ListOrganizationsRequest,
     ListOrganizationsResponse,
+    ListRegistryItemsRequest,
+    ListRegistryItemsResponse,
     ListRobotsRequest,
     ListRobotsResponse,
     Location,
@@ -94,9 +113,12 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Organization,
+    OrganizationIdentity,
     OrganizationInvite,
     OrganizationMember,
     OrgDetails,
+    RegistryItem,
+    RegistryItemStatus,
     RemoveRoleRequest,
     ResendOrganizationInviteRequest,
     ResendOrganizationInviteResponse,
@@ -105,10 +127,14 @@ from viam.proto.app import (
 from viam.proto.app import RobotPart as RobotPartPB
 from viam.proto.app import RobotPartHistoryEntry as RobotPartHistoryEntryPB
 from viam.proto.app import (
+    RotateKeyRequest,
+    RotateKeyResponse,
     RoverRentalRobot,
     SharedSecret,
+    ShareLocationRequest,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
+    UnshareLocationRequest,
     UpdateFragmentRequest,
     UpdateFragmentResponse,
     UpdateLocationRequest,
@@ -119,6 +145,7 @@ from viam.proto.app import (
     UpdateOrganizationInviteAuthorizationsResponse,
     UpdateOrganizationRequest,
     UpdateOrganizationResponse,
+    UpdateRegistryItemRequest,
     UpdateRobotPartRequest,
     UpdateRobotPartResponse,
     UpdateRobotRequest,
@@ -126,6 +153,7 @@ from viam.proto.app import (
     UploadModuleFileRequest,
     Visibility,
 )
+from viam.proto.app.packages import PackageType
 from viam.proto.common import LogEntry as LogEntryPB
 from viam.utils import datetime_to_timestamp, dict_to_struct, struct_to_dict
 
@@ -453,9 +481,39 @@ class AppClient:
             resource_id=auth._resource_id,
         )
 
-    # TODO(RSDK-5569): implement
+    async def get_user_id_by_email(self, email: str) -> str:
+        """Get the ID of a user by email.
+
+        ::
+
+            id = await cloud.get_user_id_by_email("youremail@email.com")
+
+        Args:
+            email (str): The email of the user.
+
+        Returns:
+            str: The ID of the user.
+        """
+        request = GetUserIDByEmailRequest(email=email)
+        response: GetUserIDByEmailResponse = await self._app_client.GetUserIDByEmail(request, metadata=self._metadata)
+        return response.user_id
+
     async def create_organization(self, name: str) -> Organization:
-        raise NotImplementedError()
+        """Create an organization.
+
+        ::
+
+            organization = await cloud.create_organization("name")
+
+        Args:
+            name (str): The name of the organization.
+
+        Returns:
+            Organization: The created organization.
+        """
+        request = CreateOrganizationRequest(name=name)
+        response: CreateOrganizationResponse = await self._app_client.CreateOrganization(request, metadata=self._metadata)
+        return response.organization
 
     async def list_organizations(self) -> List[Organization]:
         """List the organization(s) the user is an authorized owner of.
@@ -471,9 +529,41 @@ class AppClient:
         response: ListOrganizationsResponse = await self._app_client.ListOrganizations(request, metadata=self._metadata)
         return list(response.organizations)
 
-    # TODO(RSDK-5569): implement
+    async def get_organizations_with_access_to_location(self, location_id: str) -> List[OrganizationIdentity]:
+        """Get all organizations that have access to a location.
+
+        ::
+
+            org_list = await cloud.get_organization_with_access_to_location("location-id")
+
+        Args:
+            location_id (str): The ID of the location.
+
+        Returns:
+            List[viam.proto.app.OrganizationIdentity]: The list of organizations.
+        """
+        request = GetOrganizationsWithAccessToLocationRequest(location_id=location_id)
+        response: GetOrganizationsWithAccessToLocationResponse = await self._app_client.GetOrganizationsWithAccessToLocation(
+            request, metadata=self._metadata
+        )
+        return list(response.organization_identities)
+
     async def list_organizations_by_user(self, user_id: str) -> List[OrgDetails]:
-        raise NotImplementedError()
+        """List the organizations a user belongs to.
+
+        ::
+
+            org_list = await cloud.list_organizations_by_user("user-id")
+
+        Args:
+            user_id (str): The ID of the user
+
+        Returns:
+            List[OrgDetails]: The list of organizations.
+        """
+        request = ListOrganizationsByUserRequest(user_id=user_id)
+        response: ListOrganizationsByUserResponse = await self._app_client.ListOrganizationsByUser(request, metadata=self._metadata)
+        return list(response.orgs)
 
     async def get_organization(self, org_id: str) -> Organization:
         """Return details about the requested organization.
@@ -548,16 +638,24 @@ class AppClient:
         response: UpdateOrganizationResponse = await self._app_client.UpdateOrganization(request, metadata=self._metadata)
         return response.organization
 
-    # TODO(RSDK-5569): implement
     async def delete_organization(self, org_id: str) -> None:
-        raise NotImplementedError()
+        """Delete an organization
+
+        ::
+            await cloud.delete_organization("org-id")
+
+        Args:
+            org_id (str): The ID of the organization.
+        """
+        request = DeleteOrganizationRequest(organization_id=org_id)
+        await self._app_client.DeleteOrganization(request, metadata=self._metadata)
 
     async def list_organization_members(self, org_id: str) -> Tuple[List[OrganizationMember], List[OrganizationInvite]]:
         """List the members and invites of the currently authed-to organization.
 
         ::
 
-            member_list, invite_list = await cloud.list_organization_members()
+            member_list, invite_list = await cloud.list_organization_members("org-id")
 
         Args:
             org_id (str): The ID of the organization to list members of.
@@ -577,7 +675,7 @@ class AppClient:
 
         ::
 
-            await cloud.create_organization_invite("youremail@email.com")
+            await cloud.create_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
@@ -625,6 +723,7 @@ class AppClient:
             )
 
             update_invite = await cloud.update_organization_invite_authorizations(
+                org_id="org_id_123",
                 email="notarealemail@viam.com",
                 add_authorizations =[authorization_to_add]
             )
@@ -658,7 +757,7 @@ class AppClient:
             member_list, invite_list = await cloud.list_organization_members()
             first_user_id = member_list[0].user_id
 
-            await cloud.delete_organization_member(first_user_id)
+            await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
 
         Args:
             org_id (str): The ID of the org to remove the user from.
@@ -672,7 +771,7 @@ class AppClient:
 
         ::
 
-            await cloud.delete_organization_invite("youremail@email.com")
+            await cloud.delete_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
@@ -689,7 +788,7 @@ class AppClient:
 
         ::
 
-            await cloud.resend_organization_invite("youremail@email.com")
+            await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
@@ -707,8 +806,7 @@ class AppClient:
 
         ::
 
-            my_new_location = await cloud.create_location(name="Robotville",
-                                                          parent_location_id="111ab12345")
+            my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
 
         Args:
             org_id (str): The ID of the organization to create the location under.
@@ -811,7 +909,7 @@ class AppClient:
 
         ::
 
-            locations = await cloud.list_locations()
+            locations = await cloud.list_locations("org-id")
 
         Args:
             org_id (str): The ID of the org to list locations for.
@@ -823,13 +921,33 @@ class AppClient:
         response: ListLocationsResponse = await self._app_client.ListLocations(request, metadata=self._metadata)
         return list(response.locations)
 
-    # TODO(RSDK-5569): implement
-    async def share_location(self):
-        raise NotImplementedError()
+    async def share_location(self, organization_id: str, location_id: str) -> None:
+        """Share a location with an organization.
 
-    # TODO(RSDK-5569): implement
-    async def unshare_location(self):
-        raise NotImplementedError()
+        ::
+
+            await cloud.share_location("organization-id", "location-id")
+
+        Args:
+            organization_id (str): The ID of the organization.
+            location_id (str): The ID of the location.
+        """
+        request = ShareLocationRequest(location_id=location_id, organization_id=organization_id)
+        await self._app_client.ShareLocation(request, metadata=self._metadata)
+
+    async def unshare_location(self, organization_id: str, location_id: str) -> None:
+        """Stop sharing a location with an organization.
+
+        ::
+
+            await cloud.unshare_location("organization-id", "location-id")
+
+        Args:
+            organization_id (str): The ID of the organization.
+            location_id (str): The ID of the location.
+        """
+        request = UnshareLocationRequest(location_id=location_id, organization_id=organization_id)
+        await self._app_client.UnshareLocation(request, metadata=self._metadata)
 
     async def location_auth(self, location_id: Optional[str] = None) -> LocationAuth:
         """Get a location's `LocationAuth` (location secret(s)).
@@ -1176,6 +1294,23 @@ class AppClient:
         request = DeleteRobotPartRequest(part_id=robot_part_id)
         await self._app_client.DeleteRobotPart(request, metadata=self._metadata)
 
+    async def get_robot_api_keys(self, robot_id: str) -> List[APIKeyWithAuthorizations]:
+        """Gets the Robot API Keys for the robot.
+
+        ::
+
+            await cloud.get_robot_api_keys(robot_id="robot-id")
+
+        Args:
+            robot_id (str): The ID of the robot
+
+        Returns:
+            List[APIKeyWithAuthorizations]: The list of API keys.
+        """
+        request = GetRobotAPIKeysRequest(robot_id=robot_id)
+        response: GetRobotAPIKeysResponse = await self._app_client.GetRobotAPIKeys(request, metadata=self._metadata)
+        return list(response.api_keys)
+
     async def mark_part_as_main(self, robot_part_id: str) -> None:
         """Mark a robot part as the main part of a robot.
 
@@ -1343,7 +1478,7 @@ class AppClient:
 
         ::
 
-            fragments_list = await cloud.list_fragments(show_public=False)
+            fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
 
         Args:
             org_id (str): The ID of the organization to list fragments for.
@@ -1385,8 +1520,7 @@ class AppClient:
 
         ::
 
-            new_fragment = await cloud.create_fragment(
-                name="cool_smart_machine_to_configure_several_of")
+            new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
         Args:
             org_id (str): The ID of the organization to create the ragment within.
@@ -1463,6 +1597,7 @@ class AppClient:
         ::
 
             await cloud.add_role(
+                org_id="org-id",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
@@ -1503,6 +1638,7 @@ class AppClient:
         ::
 
             await cloud.remove_role(
+                org_id="org-id",
                 identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
                 role="owner",
                 resource_type="location",
@@ -1511,9 +1647,9 @@ class AppClient:
         Args:
             org_id (str): The ID of the organization the role exists in.
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
-            role (Union[Literal["owner"], Literal["operator"]]): The role to add.
-            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
-                Must match `resource_id`.
+            role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
+            resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
+                removed from. Must match `resource_id`.
             resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
 
         Raises:
@@ -1530,6 +1666,66 @@ class AppClient:
         request = RemoveRoleRequest(authorization=authorization)
         await self._app_client.RemoveRole(request, metadata=self._metadata)
 
+    async def change_role(
+        self,
+        organization_id: str,
+        old_identity_id: str,
+        old_role: Union[Literal["owner"], Literal["operator"]],
+        old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        old_resource_id: str,
+        new_identity_id: str,
+        new_role: Union[Literal["owner"], Literal["operator"]],
+        new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]],
+        new_resource_id: str,
+    ) -> None:
+        """Changes a role to a new role.
+
+        ::
+
+            await cloud.change_role(
+                organization_id="organization-id",
+                old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                old_role="operator",
+                old_resource_type="location",
+                old_resource_id="111ab12345",
+                new_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+                new_role="owner",s
+                new_resource_type="organization",
+                new_resource_id="abc12345")
+
+        Args:
+            organization_id (str): ID of the organization
+            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
+            old_role (Union[Literal["owner"], Literal["operator"]]): The role to be changed.
+            old_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is
+                added to. Must match `old_resource_id`.
+            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+
+            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).
+            new_role (Union[Literal["owner"], Literal["operator"]]): The new role.
+            new_resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
+                Must match `new_resource_id`.
+            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+        """
+        old_authorization = await self._create_authorization(
+            organization_id=organization_id,
+            identity_id=old_identity_id,
+            identity_type="",
+            role=old_role,
+            resource_type=old_resource_type,
+            resource_id=old_resource_id,
+        )
+        new_authorization = await self._create_authorization(
+            organization_id=organization_id,
+            identity_id=new_identity_id,
+            identity_type="",
+            role=new_role,
+            resource_type=new_resource_type,
+            resource_id=new_resource_id,
+        )
+        request = ChangeRoleRequest(old_authorization=old_authorization, new_authorization=new_authorization)
+        await self._app_client.ChangeRole(request, metadata=self._metadata)
+
     async def list_authorizations(self, org_id: str, resource_ids: Optional[List[str]] = None) -> List[Authorization]:
         """List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
         are provided, all resource authorizations within the organizations are returned.
@@ -1537,6 +1733,7 @@ class AppClient:
         ::
 
             list_of_auths = await cloud.list_authorizations(
+                org_id="org-id",
                 resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
 
         Args:
@@ -1584,12 +1781,112 @@ class AppClient:
         response: CheckPermissionsResponse = await self._app_client.CheckPermissions(request, metadata=self._metadata)
         return list(response.authorized_permissions)
 
+    async def get_registry_item(self, item_id: str) -> RegistryItem:
+        """Get registry item by ID.
+
+        ::
+
+            item = await cloud.get_registry_item("item-id")
+
+        Args:
+            item_id (str): The ID of the registry item.
+
+        Returns:
+            RegistryItem: The registry item.
+        """
+        request = GetRegistryItemRequest(item_id=item_id)
+        response: GetRegistryItemResponse = await self._app_client.GetRegistryItem(request, metadata=self._metadata)
+        return response.item
+
+    async def create_registry_item(self, organization_id: str, name: str, type: PackageType.ValueType) -> None:
+        """Create a registry item
+
+        ::
+
+            await cloud.create_registry_item("org-id", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
+
+        Args:
+            organization_id (str): The organization to create the registry item under.
+            name (str): The name of the registry item, which must be unique within your org.
+            type (PackageType.ValueType): The type of the item in the registry.
+        """
+        request = CreateRegistryItemRequest(organization_id=organization_id, name=name, type=type)
+        await self._app_client.CreateRegistryItem(request, metadata=self._metadata)
+
+    async def update_registry_item(
+        self, item_id: str, type: PackageType.ValueType, description: str, visibility: Visibility.ValueType
+    ) -> None:
+        """Update a registry item.
+
+        ::
+
+            await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
+
+        Args:
+            item_id (str): The ID of the registry item.
+            type (PackageType.ValueType): The type of the item in the registry.
+            description (str): The description of the registry item.
+            visibility (Visibility.ValueType): The visibility of the registry item.
+        """
+
+        request = UpdateRegistryItemRequest(item_id=item_id, type=type, description=description, visibility=visibility)
+        await self._app_client.UpdateRegistryItem(request, metadata=self._metadata)
+
+    async def list_registry_items(
+        self,
+        organization_id: str,
+        types: List[PackageType.ValueType],
+        visibilities: List[Visibility.ValueType],
+        platforms: List[str],
+        statuses: List[RegistryItemStatus.ValueType],
+        search_term: Optional[str] = None,
+        page_token: Optional[str] = None,
+    ) -> List[RegistryItem]:
+        """List the registry items in an organization.
+
+        Args:
+            organization_id (str): The ID of the organization to return registry items for.
+            types (List[PackageType.ValueType]): The types of registry items.
+            visibilities (List[Visibility.ValueType]): The visibilities of registry items.
+            platforms (List[str]): The platforms of registry items.
+            statuses (List[RegistryItemStatus.ValueType]): The types of the items in the registry.
+            search_term (Optional[str]): The search term of the registry items.
+            page_token (Optional[str]): The page token of the registry items.
+
+        Returns:
+            List[RegistryItem]: The list of registry items.
+        """
+        request = ListRegistryItemsRequest(
+            organization_id=organization_id,
+            types=types,
+            visibilities=visibilities,
+            platforms=platforms,
+            statuses=statuses,
+            search_term=search_term if search_term is not None else "",
+            page_token=page_token if page_token is not None else "",
+        )
+        response: ListRegistryItemsResponse = await self._app_client.ListRegistryItems(request, metadata=self._metadata)
+        return list(response.items)
+
+    async def delete_registry_item(self, item_id: str) -> None:
+        """Delete a registry item
+
+        ::
+
+            await cloud.delete_registry_item("item-id")
+
+        Args:
+            item_id (str): The ID of the registry item.
+        """
+        request = DeleteRegistryItemRequest(item_id=item_id)
+        await self._app_client.DeleteRegistryItem(request, metadata=self._metadata)
+
     async def create_module(self, org_id: str, name: str) -> Tuple[str, str]:
         """Create a module under the currently authed-to organization.
 
         ::
 
-            new_module = await cloud.create_module(name="cool_new_hoverboard_module")
+            new_module = await cloud.create_module(org_id="org-id", name="cool_new_hoverboard_module")
             print("Module ID:", new_module[0])
 
         Args:
@@ -1613,7 +1910,6 @@ class AppClient:
         description: str,
         models: Optional[List[Model]],
         entrypoint: str,
-        organization_id: Optional[str] = None,
         public: bool = False,
     ) -> str:
         """Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
@@ -1702,7 +1998,7 @@ class AppClient:
 
         ::
 
-            modules_list = await cloud.list_modules()
+            modules_list = await cloud.list_modules("org-id")
 
         Args:
             org_id (str): The ID of the organization to list modules for.
@@ -1749,12 +2045,25 @@ class AppClient:
         response: CreateKeyResponse = await self._app_client.CreateKey(request, metadata=self._metadata)
         return (response.key, response.id)
 
+    async def delete_key(self, id: str) -> None:
+        """Delete a API key.
+
+        ::
+
+            await cloud.delete_key("key-id")
+
+        Args:
+            id (str): The ID of the API key.
+        """
+        request = DeleteKeyRequest(id=id)
+        await self._app_client.DeleteKey(request, metadata=self._metadata)
+
     async def create_key_from_existing_key_authorizations(self, id: str) -> Tuple[str, str]:
         """Creates a new API key with an existing key's authorizations
 
         ::
 
-            api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(
+            api_key, api_key_id = await cloud.create_key_from_existing_key_authorizations(
                 id="INSERT YOUR API KEY ID")
 
         Args:
@@ -1775,7 +2084,7 @@ class AppClient:
 
         ::
 
-            keys = cloud.list_keys()
+            keys = await cloud.list_keys()
 
         Args:
             org_id (str): The ID of the organization to list API keys for.
@@ -1785,3 +2094,20 @@ class AppClient:
         request = ListKeysRequest(org_id=org_id)
         response: ListKeysResponse = await self._app_client.ListKeys(request, metadata=self._metadata)
         return list(response.api_keys)
+
+    async def rotate_key(self, id: str) -> Tuple[str, str]:
+        """Rotate an API key.
+
+        ::
+
+            id, key = await cloud.rotate_key("key-id")
+
+        Args:
+            id (str): The ID of the key to be rotated.
+
+        Returns:
+            Tuple[str, str]: The API key and API key id
+        """
+        request = RotateKeyRequest(id=id)
+        response: RotateKeyResponse = await self._app_client.RotateKey(request, metadata=self._metadata)
+        return response.key, response.id
