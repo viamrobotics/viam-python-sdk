@@ -4,7 +4,7 @@ from typing import Final, List, Optional
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, Subtype
 
 from ..service_base import ServiceBase
-from . import GeoObstacle, GeoPoint, MapType, Mode, Path, Waypoint
+from . import GeoGeometry, GeoPoint, MapType, Mode, Path, Waypoint
 
 
 class Navigation(ServiceBase):
@@ -67,7 +67,7 @@ class Navigation(ServiceBase):
         ...
 
     @abc.abstractmethod
-    async def get_obstacles(self, *, timeout: Optional[float]) -> List[GeoObstacle]:
+    async def get_obstacles(self, *, timeout: Optional[float]) -> List[GeoGeometry]:
         """
         Get an array or list of the obstacles currently in the service’s data storage.
         These are objects designated for the robot to avoid when navigating.
@@ -86,7 +86,7 @@ class Navigation(ServiceBase):
                 before calling a time-out and closing the underlying RPC call.
 
         Returns:
-            List[navigation.GeoObstacle]: A list comprised of each GeoObstacle in the service’s data storage.
+            List[navigation.GeoGeometry]: A list comprised of each GeoGeometry in the service’s data storage.
             These are objects designated for the robot to avoid when navigating.
         """
         ...

@@ -259,7 +259,7 @@ from viam.proto.app.mltraining import (
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
-    GeoObstacle,
+    GeoGeometry,
     GeoPoint,
     LogEntry,
     PointCloudObject,
@@ -531,6 +531,7 @@ class MockMotion(MotionServiceBase):
         self.obstacles = request.obstacles
         self.heading = request.heading
         self.configuration = request.motion_configuration
+        self.bounding_regions = request.bounding_regions
         self.extra = struct_to_dict(request.extra)
         self.timeout = stream.deadline.time_remaining() if stream.deadline else None
         self.execution_id = "some execution id"
@@ -659,7 +660,7 @@ class MockSLAM(SLAM):
 
 class MockNavigation(Navigation):
     LOCATION = GeoPoint(latitude=100.0, longitude=150.0)
-    OBSTACLES = [GeoObstacle(location=GeoPoint(latitude=200.0, longitude=250.0))]
+    OBSTACLES = [GeoGeometry(location=GeoPoint(latitude=200.0, longitude=250.0))]
     WAYPOINTS = [Waypoint(location=GeoPoint(latitude=300.0, longitude=350.0))]
     PATHS = [Path(destination_waypoint_id="foo", geopoints=[LOCATION])]
 
@@ -680,7 +681,7 @@ class MockNavigation(Navigation):
         self.timeout = timeout
         return self.LOCATION
 
-    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoObstacle]:
+    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoGeometry]:
         self.timeout = timeout
         return self.OBSTACLES
 

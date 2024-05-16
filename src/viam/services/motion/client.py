@@ -5,8 +5,8 @@ from grpclib.client import Channel
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
+    GeoGeometry,
     Geometry,
-    GeoObstacle,
     GeoPoint,
     Pose,
     PoseInFrame,
@@ -122,10 +122,11 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         component_name: ResourceName,
         destination: GeoPoint,
         movement_sensor_name: ResourceName,
-        obstacles: Optional[Sequence[GeoObstacle]] = None,
+        obstacles: Optional[Sequence[GeoGeometry]] = None,
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
+        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -162,8 +163,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 GeoPoint (lat, lng).
             movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check
                 the machine’s location.
-            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to consider when planning the motion of the component,
-                with each represented as a GeoObstacle. Default: None
+            obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,
+                with each represented as a GeoGeometry. Default: None
             heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report
                 at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
@@ -175,6 +176,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
+            bounding_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
                 the underlying RPC call.
@@ -193,6 +195,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             obstacles=obstacles,
             heading=heading,
             motion_configuration=configuration,
+            bounding_regions=bounding_regions,
             extra=dict_to_struct(extra),
         )
         response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)
