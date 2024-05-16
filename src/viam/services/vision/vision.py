@@ -77,7 +77,7 @@ class Vision(ServiceBase):
         timeout: Optional[float] = None,
     ) -> CaptureAllResult:
         """Get the next image, detections, classifications, and objects all together,
-        given a camera and a detector. Used for visualization.
+        given a camera name. Used for visualization.
 
         ::
 
