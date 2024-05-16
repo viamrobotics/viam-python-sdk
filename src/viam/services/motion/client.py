@@ -126,7 +126,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
         heading: Optional[float] = None,
         configuration: Optional[MotionConfiguration] = None,
         *,
-        boudning_regions: Optional[Sequence[GeoGeometry]] = None,
+        bounding_regions: Optional[Sequence[GeoGeometry]] = None,
         extra: Optional[Mapping[str, ValueTypes]] = None,
         timeout: Optional[float] = None,
     ) -> str:
@@ -176,7 +176,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
-            boudning_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
+            bounding_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating
             extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
             timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing
                 the underlying RPC call.
@@ -195,7 +195,7 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             obstacles=obstacles,
             heading=heading,
             motion_configuration=configuration,
-            bounding_regions=boudning_regions,
+            bounding_regions=bounding_regions,
             extra=dict_to_struct(extra),
         )
         response: MoveOnGlobeResponse = await self.client.MoveOnGlobe(request, timeout=timeout)

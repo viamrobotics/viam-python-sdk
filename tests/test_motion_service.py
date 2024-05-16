@@ -227,8 +227,8 @@ class TestClient:
                 obstacles,
                 heading=182,
                 configuration=MOTION_CONFIGURATION,
-                boudning_regions=bounding_regions,
                 extra=extra,
+                bounding_regions=bounding_regions,
                 timeout=timeout,
             )
             assert service.component_name == component_rn
