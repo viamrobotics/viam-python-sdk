@@ -23,7 +23,7 @@ from viam.proto.service.vision import (
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
 
-from .vision import Vision, CaptureAllRequest
+from .vision import Vision
 
 
 class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
@@ -37,15 +37,17 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         request = await stream.recv_message()
         assert request is not None
         vision = self.get_resource(request.name)
-        capture_request = CaptureAllRequest(
-            request.return_image,
-            request.return_classifications,
-            request.return_detections,
-            request.return_object_point_clouds,
-        )
         extra = struct_to_dict(request.extra)
         timeout = stream.deadline.time_remaining() if stream.deadline else None
-        result = await vision.capture_all_from_camera(request.camera_name, capture_request, extra=extra, timeout=timeout)
+        result = await vision.capture_all_from_camera(
+            request.camera_name,
+            return_image=request.return_image,
+            return_classifications=request.return_classifications,
+            return_detections=request.return_detections,
+            return_object_point_clouds=request.return_object_point_clouds,
+            extra=extra,
+            timeout=timeout,
+        )
         img = None
         if result.image is not None:
             fmt = result.image.mime_type.to_proto()

@@ -35,7 +35,6 @@ from viam.proto.service.vision import (
 )
 from viam.resource.manager import ResourceManager
 from viam.services.vision import (
-    CaptureAllRequest,
     Classification,
     Detection,
     Vision,
@@ -154,8 +153,12 @@ class TestVision:
     @pytest.mark.asyncio
     async def test_capture_all_from_camera(self, vision: MockVision):
         extra = {"foo": "capture_all_from_camera"}
-        requests = CaptureAllRequest(return_image=True, return_detections=True)
-        response = await vision.capture_all_from_camera("fake-camera", requests, extra=extra)
+        response = await vision.capture_all_from_camera(
+            "fake-camera",
+            return_image=True,
+            return_detections=True,
+            extra=extra,
+        )
         assert response.image.data == VISION_IMAGE.data
         assert response.image.mime_type == VISION_IMAGE.mime_type
         assert response.detections == DETECTIONS
@@ -333,8 +336,12 @@ class TestClient:
         async with ChannelFor([service]) as channel:
             client = VisionClient(VISION_SERVICE_NAME, channel)
             extra = {"foo": "capture_all_from_camera"}
-            requests = CaptureAllRequest(return_image=True, return_object_point_clouds=True)
-            response = await client.capture_all_from_camera("fake-camera", requests, extra=extra)
+            response = await client.capture_all_from_camera(
+                "fake-camera",
+                return_image=True,
+                return_object_point_clouds=True,
+                extra=extra,
+            )
             assert response.image.data == VISION_IMAGE.data
             assert response.image.mime_type == VISION_IMAGE.mime_type
             assert response.detections is None

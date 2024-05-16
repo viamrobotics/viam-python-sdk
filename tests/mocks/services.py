@@ -330,7 +330,7 @@ from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
-from viam.services.vision import Vision, CaptureAllRequest, CaptureAllResult
+from viam.services.vision import Vision, CaptureAllResult
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -369,7 +369,10 @@ class MockVision(Vision):
     async def capture_all_from_camera(
         self,
         camera_name: str,
-        requests: CaptureAllRequest,
+        return_image: bool = False,
+        return_classifications: bool = False,
+        return_detections: bool = False,
+        return_object_point_clouds: bool = False,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -377,13 +380,13 @@ class MockVision(Vision):
         self.extra = extra
         self.timeout = timeout
         result = CaptureAllResult()
-        if requests.return_image:
+        if return_image:
             result.image = self.image
-        if requests.return_classifications:
+        if return_classifications:
             result.classifications = self.classifications
-        if requests.return_detections:
+        if return_detections:
             result.detections = self.detections
-        if requests.return_object_point_clouds:
+        if return_object_point_clouds:
             result.objects = self.point_clouds
         return result
 

@@ -27,7 +27,7 @@ from viam.proto.service.vision import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .vision import Vision, CaptureAllRequest, CaptureAllResult
+from .vision import Vision, CaptureAllResult
 
 
 class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
@@ -46,7 +46,10 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
     async def capture_all_from_camera(
         self,
         camera_name: str,
-        requests: CaptureAllRequest,
+        return_image: bool = False,
+        return_classifications: bool = False,
+        return_detections: bool = False,
+        return_object_point_clouds: bool = False,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
@@ -56,24 +59,24 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         request = CaptureAllFromCameraRequest(
                 name=self.name,
                 camera_name=camera_name,
-                return_image=requests.return_image,
-                return_classifications=requests.return_classifications,
-                return_detections=requests.return_detections,
-                return_object_point_clouds=requests.return_object_point_clouds,
+                return_image=return_image,
+                return_classifications=return_classifications,
+                return_detections=return_detections,
+                return_object_point_clouds=return_object_point_clouds,
                 extra=dict_to_struct(extra),
                 )
         response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout)
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
-        if requests.return_image:
+        if return_image:
             mime_type = CameraMimeType.from_proto(response.image.format)
             img = ViamImage(response.image.image, mime_type)
             result.image = img
-        if requests.return_classifications:
+        if return_classifications:
             result.classifications = list(response.classifications)
-        if requests.return_detections:
+        if return_detections:
             result.detections = list(response.detections)
-        if requests.return_object_point_clouds:
+        if return_object_point_clouds:
             result.objects = list(response.objects)
         return result
 

@@ -15,35 +15,6 @@ else:
 from ..service_base import ServiceBase
 
 
-class CaptureAllRequest:
-    """
-    CaptureAllRequest represents the collection of fields you can ask the
-    CaptureAllFromCamera method to return. If you request something that the service
-    cannot provide, a warning message will be generated, and the service will return an empty
-    version of the requested thing.
-    """
-    def __init__(self, return_image=False, return_classifications=False,
-                 return_detections=False, return_object_point_clouds=False):
-        """
-        Args:
-            return_image (bool): Return the image from the GetImage of the underlying camera.
-            Default is False.
-            return_classifications (bool): Return the classifications from GetClassifications.
-            Default is False.
-            return_detections (bool): Return the detections from GetDetections.
-            Default is False.
-            return_objet_point_clouds (bool): Return the point cloud objects from GetObjectPointClouds.
-            Default is False.
-
-        Returns:
-            None
-        """
-        self.return_image: bool = return_image
-        self.return_classifications: bool = return_classifications
-        self.return_detections: bool = return_detections
-        self.return_object_point_clouds: bool = return_object_point_clouds
-
-
 class CaptureAllResult:
     """
     CaptureAllResult represents the collection of things that you have requested from the
@@ -97,7 +68,10 @@ class Vision(ServiceBase):
     async def capture_all_from_camera(
         self,
         camera_name: str,
-        requests: CaptureAllRequest,
+        return_image: bool = False,
+        return_classifications: bool = False,
+        return_detections: bool = False,
+        return_object_point_clouds: bool = False,
         *,
         extra: Optional[Mapping[str, Any]] = None,
         timeout: Optional[float] = None,
