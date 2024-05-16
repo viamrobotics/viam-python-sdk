@@ -54,7 +54,14 @@ Classes
 
          The name of the analog pin
 
-      .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int
+      .. py:attribute:: Value
+         :type: TypeAlias
+
+         Value contains the result of reading an analog reader. It contains the raw data read,
+         the reader's minimum and maximum possible values, and its step size (the minimum possible
+         change between values it can read).
+
+      .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value
          :abstractmethod:
          :async:
 
@@ -72,8 +79,8 @@ Classes
              # recently measured.
              reading = await reader.read()
 
-         :returns: The current value.
-         :rtype: int
+         :returns: The current value, including the min, max, and step_size of the reader.
+         :rtype: Value
 
 
       .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)

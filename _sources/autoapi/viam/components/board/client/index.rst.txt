@@ -39,7 +39,7 @@ Attributes
 
    AnalogReader represents an analog pin reader or writer that resides on a Board.
 
-   .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> int
+   .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.board.board.Board.Analog.Value
       :async:
 
       Read the current value from the reader.
@@ -56,8 +56,8 @@ Attributes
           # recently measured.
           reading = await reader.read()
 
-      :returns: The current value.
-      :rtype: int
+      :returns: The current value, including the min, max, and step_size of the reader.
+      :rtype: Value
 
 
    .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
