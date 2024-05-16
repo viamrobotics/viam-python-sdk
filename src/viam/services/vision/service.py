@@ -1,5 +1,4 @@
 from grpclib.server import Stream
-from google.protobuf.struct_pb2 import Struct
 
 from viam.media.video import CameraMimeType, ViamImage
 from viam.proto.common import DoCommandRequest, DoCommandResponse
@@ -49,12 +48,9 @@ class VisionRPCService(UnimplementedVisionServiceBase, ResourceRPCServiceBase):
         result = await vision.capture_all_from_camera(request.camera_name, capture_request, extra=extra, timeout=timeout)
         img = None
         if result.image is not None:
-            try:
-                fmt = result.image.mime_type.to_proto()
-                img_bytes = result.image.data
-                img = Image(source_name=request.name, format=fmt, image=img_bytes)
-            finally:
-                result.image.close()
+            fmt = result.image.mime_type.to_proto()
+            img_bytes = result.image.data
+            img = Image(source_name=request.camera_name, format=fmt, image=img_bytes)
         response = CaptureAllFromCameraResponse(
             image=img,
             detections=result.detections,

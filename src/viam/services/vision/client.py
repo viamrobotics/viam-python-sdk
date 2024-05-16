@@ -1,5 +1,4 @@
-from io import BytesIO
-from typing import Any, List, Mapping, Optional, Union
+from typing import Any, List, Mapping, Optional
 
 from grpclib.client import Channel
 
