@@ -19,7 +19,6 @@ from viam.proto.component.board import (
     PWMRequest,
     PWMResponse,
     ReadAnalogReaderRequest,
-    ReadAnalogReaderResponse,
     SetGPIORequest,
     SetPowerModeRequest,
     SetPWMFrequencyRequest,
@@ -52,10 +51,7 @@ class AnalogClient(Board.Analog):
         if extra is None:
             extra = {}
         request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
-        response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request, timeout=timeout)
-        result = self.Value(value=response.value, min_range=response.min_range,
-                            max_range=response.max_range, step_size=response.step_size)
-        return result
+        return await self.board.client.ReadAnalogReader(request, timeout=timeout)
 
     async def write(
         self,
