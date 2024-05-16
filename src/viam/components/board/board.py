@@ -38,11 +38,23 @@ class Board(ComponentBase):
         name: str
         """The name of the analog pin"""
 
+        class Value:
+            """
+            Data obtained from reading an analog pin. The value is the raw bits obtained, while the
+            range indicates indicates the what the extreme values indicate. The step_size is the
+            precision per bit of the reading. The value read, when interpreted in
+            volts/degrees/etc., is (min_range + value * step_size)
+            """
+            value: int
+            min_range: float
+            max_range: float
+            step_size: float
+
         def __init__(self, name: str):
             self.name = name
 
         @abc.abstractmethod
-        async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value:
             """
             Read the current value from the reader.
 
@@ -59,7 +71,7 @@ class Board(ComponentBase):
                 reading = await reader.read()
 
             Returns:
-                int: The current value.
+                Value: The current value, including the min, max, and step_size of the reader.
             """
             ...
 

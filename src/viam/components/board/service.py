@@ -139,7 +139,8 @@ class BoardRPCService(BoardServiceBase, ResourceRPCServiceBase[Board]):
             raise e.grpc_error
         timeout = stream.deadline.time_remaining() if stream.deadline else None
         value = await analog_reader.read(extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
-        response = ReadAnalogReaderResponse(value=value)
+        response = ReadAnalogReaderResponse(value=value.value, min_range=value.min_range,
+                                            max_range=value.max_range, step_size=value.step_size)
         await stream.send_message(response)
 
     async def GetDigitalInterruptValue(self, stream: Stream[GetDigitalInterruptValueRequest, GetDigitalInterruptValueResponse]) -> None:

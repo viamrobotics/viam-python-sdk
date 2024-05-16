@@ -48,12 +48,17 @@ class AnalogClient(Board.Analog):
         extra: Optional[Dict[str, Any]] = None,
         timeout: Optional[float] = None,
         **__,
-    ) -> int:
+    ) -> Board.Analog.Value:
         if extra is None:
             extra = {}
         request = ReadAnalogReaderRequest(board_name=self.board.name, analog_reader_name=self.name, extra=dict_to_struct(extra))
         response: ReadAnalogReaderResponse = await self.board.client.ReadAnalogReader(request, timeout=timeout)
-        return response.value
+        result = self.Value()
+        result.value = response.value
+        result.min_range = response.min_range
+        result.max_range = response.max_range
+        result.step_size = response.step_size
+        return result
 
     async def write(
         self,
