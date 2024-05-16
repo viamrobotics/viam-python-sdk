@@ -486,7 +486,7 @@ class AppClient:
 
         ::
 
-            id = await cloud.get_user_id_by_email("youremail@email.com")`
+            id = await cloud.get_user_id_by_email("youremail@email.com")
 
         Args:
             email (str): The email of the user.
