@@ -32,7 +32,7 @@ Classes
    viam.gen.common.v1.common_pb2.GeometriesInFrame
    viam.gen.common.v1.common_pb2.PointCloudObject
    viam.gen.common.v1.common_pb2.GeoPoint
-   viam.gen.common.v1.common_pb2.GeoObstacle
+   viam.gen.common.v1.common_pb2.GeoGeometry
    viam.gen.common.v1.common_pb2.Transform
    viam.gen.common.v1.common_pb2.WorldState
    viam.gen.common.v1.common_pb2.ActuatorStatus
@@ -72,7 +72,7 @@ Attributes
    viam.gen.common.v1.common_pb2.global___GeometriesInFrame
    viam.gen.common.v1.common_pb2.global___PointCloudObject
    viam.gen.common.v1.common_pb2.global___GeoPoint
-   viam.gen.common.v1.common_pb2.global___GeoObstacle
+   viam.gen.common.v1.common_pb2.global___GeoGeometry
    viam.gen.common.v1.common_pb2.global___Transform
    viam.gen.common.v1.common_pb2.global___WorldState
    viam.gen.common.v1.common_pb2.global___ActuatorStatus
@@ -551,23 +551,22 @@ Attributes
 
    
 
-.. py:class:: GeoObstacle(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-   captured in latitude and longitude.
+   GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
 
    .. py:property:: location
       :type: global___GeoPoint
 
-      Location of the obstacle
+      Location of the geometry
 
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
 
-      Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+      Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
    .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 
@@ -587,7 +586,7 @@ Attributes
 
 
 
-.. py:data:: global___GeoObstacle
+.. py:data:: global___GeoGeometry
 
    
 
@@ -668,7 +667,8 @@ Attributes
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
-      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+      another, or to attach moving geometries to the frame system. This field is optional
 
 
 .. py:data:: global___WorldState

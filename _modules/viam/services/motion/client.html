@@ -95,8 +95,8 @@
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DoCommandRequest</span><span class="p">,</span>
     <span class="n">DoCommandResponse</span><span class="p">,</span>
+    <span class="n">GeoGeometry</span><span class="p">,</span>
     <span class="n">Geometry</span><span class="p">,</span>
-    <span class="n">GeoObstacle</span><span class="p">,</span>
     <span class="n">GeoPoint</span><span class="p">,</span>
     <span class="n">Pose</span><span class="p">,</span>
     <span class="n">PoseInFrame</span><span class="p">,</span>
@@ -212,10 +212,11 @@
         <span class="n">component_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
         <span class="n">destination</span><span class="p">:</span> <span class="n">GeoPoint</span><span class="p">,</span>
         <span class="n">movement_sensor_name</span><span class="p">:</span> <span class="n">ResourceName</span><span class="p">,</span>
-        <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoObstacle</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">obstacles</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoGeometry</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">heading</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">configuration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MotionConfiguration</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
+        <span class="n">bounding_regions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeoGeometry</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ValueTypes</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -252,8 +253,8 @@
 <span class="sd">                GeoPoint (lat, lng).</span>
 <span class="sd">            movement_sensor_name (ResourceName): The ResourceName of the movement sensor that you want to use to check</span>
 <span class="sd">                the machine’s location.</span>
-<span class="sd">            obstacles (Optional[Sequence[GeoObstacle]]): Obstacles to consider when planning the motion of the component,</span>
-<span class="sd">                with each represented as a GeoObstacle. Default: None</span>
+<span class="sd">            obstacles (Optional[Sequence[GeoGeometry]]): Obstacles to consider when planning the motion of the component,</span>
+<span class="sd">                with each represented as a GeoGeometry. Default: None</span>
 <span class="sd">            heading (Optional[float]): The compass heading, in degrees, that the machine’s movement sensor should report</span>
 <span class="sd">                at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this</span>
@@ -265,6 +266,7 @@
 <span class="sd">                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
 <span class="sd">                - linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
 <span class="sd">                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
+<span class="sd">            bounding_regions (Optional[Sequence[GeoGeometry]]): Set of obstacles which the robot must remain within while navigating</span>
 <span class="sd">            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.</span>
 <span class="sd">            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing</span>
 <span class="sd">                the underlying RPC call.</span>
@@ -283,6 +285,7 @@
             <span class="n">obstacles</span><span class="o">=</span><span class="n">obstacles</span><span class="p">,</span>
             <span class="n">heading</span><span class="o">=</span><span class="n">heading</span><span class="p">,</span>
             <span class="n">motion_configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">,</span>
+            <span class="n">bounding_regions</span><span class="o">=</span><span class="n">bounding_regions</span><span class="p">,</span>
             <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">MoveOnGlobeResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">MoveOnGlobe</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>

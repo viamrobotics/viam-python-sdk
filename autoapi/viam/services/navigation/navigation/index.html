@@ -220,7 +220,7 @@ represented in a GeoPoint with latitude and longitude values.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.services.navigation.navigation.Navigation.get_obstacles">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obstacles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle"><span class="pre">viam.services.navigation.GeoObstacle</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_obstacles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_obstacles" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_obstacles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#viam.services.navigation.GeoGeometry" title="viam.services.navigation.GeoGeometry"><span class="pre">viam.services.navigation.GeoGeometry</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/viam/services/navigation/navigation.html#Navigation.get_obstacles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.services.navigation.navigation.Navigation.get_obstacles" title="Permalink to this definition"></a></dt>
 <dd><p>Get an array or list of the obstacles currently in the service’s data storage.
 These are objects designated for the robot to avoid when navigating.
 These include all transient obstacles which are discovered by the vision services configured for the navigation service,
@@ -237,11 +237,11 @@ in addition to the obstacles that are configured as a part of the service.</p>
 before calling a time-out and closing the underlying RPC call.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list comprised of each GeoObstacle in the service’s data storage.
+<dd class="field-even"><p>A list comprised of each GeoGeometry in the service’s data storage.
 These are objects designated for the robot to avoid when navigating.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoObstacle" title="viam.services.navigation.GeoObstacle">navigation.GeoObstacle</a>]</p>
+<dd class="field-odd"><p>List[<a class="reference internal" href="../index.html#viam.services.navigation.GeoGeometry" title="viam.services.navigation.GeoGeometry">navigation.GeoGeometry</a>]</p>
 </dd>
 </dl>
 </dd></dl>

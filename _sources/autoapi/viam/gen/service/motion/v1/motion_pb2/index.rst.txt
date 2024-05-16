@@ -457,7 +457,7 @@ Attributes
 
    
 
-.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoObstacle] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: MoveOnGlobeRequest(*, name: str = ..., destination: viam.gen.common.v1.common_pb2.GeoPoint | None = ..., heading: float | None = ..., component_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., movement_sensor_name: viam.gen.common.v1.common_pb2.ResourceName | None = ..., obstacles: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., motion_configuration: global___MotionConfiguration | None = ..., bounding_regions: collections.abc.Iterable[viam.gen.common.v1.common_pb2.GeoGeometry] | None = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -484,7 +484,7 @@ Attributes
       Name of the movement sensor which will be used to check robot location
 
    .. py:property:: obstacles
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoObstacle]
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
 
       Obstacles to be considered for motion planning
 
@@ -492,6 +492,11 @@ Attributes
       :type: global___MotionConfiguration
 
       Optional set of motion configuration options
+
+   .. py:property:: bounding_regions
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[viam.gen.common.v1.common_pb2.GeoGeometry]
+
+      Set of obstacles which the robot must remain within while navigating
 
    .. py:property:: extra
       :type: google.protobuf.struct_pb2.Struct

@@ -79,7 +79,7 @@ Classes
       :rtype: navigation.GeoPoint
 
 
-   .. py:method:: get_obstacles(*, timeout: Optional[float]) -> List[viam.services.navigation.GeoObstacle]
+   .. py:method:: get_obstacles(*, timeout: Optional[float]) -> List[viam.services.navigation.GeoGeometry]
       :abstractmethod:
       :async:
 
@@ -99,9 +99,9 @@ Classes
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: A list comprised of each GeoObstacle in the service’s data storage.
+      :returns: A list comprised of each GeoGeometry in the service’s data storage.
                 These are objects designated for the robot to avoid when navigating.
-      :rtype: List[navigation.GeoObstacle]
+      :rtype: List[navigation.GeoGeometry]
 
 
    .. py:method:: get_waypoints(*, timeout: Optional[float]) -> List[viam.services.navigation.Waypoint]

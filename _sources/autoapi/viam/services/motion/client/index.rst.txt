@@ -83,7 +83,7 @@ Classes
       :rtype: bool
 
 
-   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoObstacle]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
+   .. py:method:: move_on_globe(component_name: viam.proto.common.ResourceName, destination: viam.proto.common.GeoPoint, movement_sensor_name: viam.proto.common.ResourceName, obstacles: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, heading: Optional[float] = None, configuration: Optional[viam.proto.service.motion.MotionConfiguration] = None, *, bounding_regions: Optional[Sequence[viam.proto.common.GeoGeometry]] = None, extra: Optional[Mapping[str, viam.utils.ValueTypes]] = None, timeout: Optional[float] = None) -> str
       :async:
 
       Move a component to a specific latitude and longitude, using a ``MovementSensor`` to check the location.
@@ -122,8 +122,8 @@ Classes
                                    the machine’s location.
       :type movement_sensor_name: ResourceName
       :param obstacles: Obstacles to consider when planning the motion of the component,
-                        with each represented as a GeoObstacle. Default: None
-      :type obstacles: Optional[Sequence[GeoObstacle]]
+                        with each represented as a GeoGeometry. Default: None
+      :type obstacles: Optional[Sequence[GeoGeometry]]
       :param heading: The compass heading, in degrees, that the machine’s movement sensor should report
                       at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
       :type heading: Optional[float]
@@ -137,6 +137,8 @@ Classes
                             - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                             - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
       :type configuration: Optional[MotionConfiguration]
+      :param bounding_regions: Set of obstacles which the robot must remain within while navigating
+      :type bounding_regions: Optional[Sequence[GeoGeometry]]
       :param extra: Extra options to pass to the underlying RPC call.
       :type extra: Optional[Dict[str, Any]]
       :param timeout: An option to set how long to wait (in seconds) before calling a time-out and closing

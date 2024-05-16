@@ -23,7 +23,7 @@ Classes
 
 .. autoapisummary::
 
-   viam.services.navigation.GeoObstacle
+   viam.services.navigation.GeoGeometry
    viam.services.navigation.GeoPoint
    viam.services.navigation.MapType
    viam.services.navigation.Mode
@@ -34,23 +34,22 @@ Classes
 
 
 
-.. py:class:: GeoObstacle(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+.. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
 
-   GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-   captured in latitude and longitude.
+   GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
 
    .. py:property:: location
       :type: global___GeoPoint
 
-      Location of the obstacle
+      Location of the geometry
 
    .. py:property:: geometries
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
 
-      Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
+      Geometries associated with the location, where embedded Pose data is with respect to the specified location
 
    .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
 
@@ -220,7 +219,7 @@ Classes
       :rtype: navigation.GeoPoint
 
 
-   .. py:method:: get_obstacles(*, timeout: Optional[float] = None) -> List[viam.services.navigation.GeoObstacle]
+   .. py:method:: get_obstacles(*, timeout: Optional[float] = None) -> List[viam.services.navigation.GeoGeometry]
       :async:
 
       Get an array or list of the obstacles currently in the service’s data storage.
@@ -239,9 +238,9 @@ Classes
                       before calling a time-out and closing the underlying RPC call.
       :type timeout: Optional[float]
 
-      :returns: A list comprised of each GeoObstacle in the service’s data storage.
+      :returns: A list comprised of each GeoGeometry in the service’s data storage.
                 These are objects designated for the robot to avoid when navigating.
-      :rtype: List[navigation.GeoObstacle]
+      :rtype: List[navigation.GeoGeometry]
 
 
    .. py:method:: get_waypoints(*, timeout: Optional[float] = None) -> List[viam.services.navigation.Waypoint]

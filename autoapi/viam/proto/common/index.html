@@ -89,6 +89,12 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.DoCommandResponse.HasField"><code class="docutils literal notranslate"><span class="pre">DoCommandResponse.HasField()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoGeometry"><code class="docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoGeometry.location"><code class="docutils literal notranslate"><span class="pre">GeoGeometry.location</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoGeometry.geometries"><code class="docutils literal notranslate"><span class="pre">GeoGeometry.geometries</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoGeometry.HasField"><code class="docutils literal notranslate"><span class="pre">GeoGeometry.HasField()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a><ul>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.geometries"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.geometries</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeometriesInFrame.reference_frame"><code class="docutils literal notranslate"><span class="pre">GeometriesInFrame.reference_frame</span></code></a></li>
@@ -102,12 +108,6 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.label"><code class="docutils literal notranslate"><span class="pre">Geometry.label</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.HasField"><code class="docutils literal notranslate"><span class="pre">Geometry.HasField()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.Geometry.WhichOneof"><code class="docutils literal notranslate"><span class="pre">Geometry.WhichOneof()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoObstacle"><code class="docutils literal notranslate"><span class="pre">GeoObstacle</span></code></a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoObstacle.location"><code class="docutils literal notranslate"><span class="pre">GeoObstacle.location</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoObstacle.geometries"><code class="docutils literal notranslate"><span class="pre">GeoObstacle.geometries</span></code></a></li>
-<li class="toctree-l7"><a class="reference internal" href="#viam.proto.common.GeoObstacle.HasField"><code class="docutils literal notranslate"><span class="pre">GeoObstacle.HasField()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.proto.common.GeoPoint"><code class="docutils literal notranslate"><span class="pre">GeoPoint</span></code></a><ul>
@@ -302,14 +302,14 @@ Do not edit manually!</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.DoCommandResponse" title="viam.proto.common.DoCommandResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DoCommandResponse</span></code></a></p></td>
 <td><p>DoCommandResponse represents a generic DoCommand output</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoGeometry" title="viam.proto.common.GeoGeometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoGeometry</span></code></a></p></td>
+<td><p>GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeometriesInFrame" title="viam.proto.common.GeometriesInFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeometriesInFrame</span></code></a></p></td>
 <td><p>GeometriesinFrame contains the dimensions of a given geometry, pose of its center point, and the reference frame by which it was</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.Geometry" title="viam.proto.common.Geometry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geometry</span></code></a></p></td>
 <td><p>Geometry contains the dimensions of a given geometry and the pose of its center. The geometry is one of either a sphere or a box.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.common.GeoObstacle" title="viam.proto.common.GeoObstacle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoObstacle</span></code></a></p></td>
-<td><p>GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.common.GeoPoint" title="viam.proto.common.GeoPoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GeoPoint</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
@@ -481,6 +481,48 @@ be raised.</p>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.common.GeoGeometry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeoGeometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___GeoPoint</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeoGeometry" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.GeoGeometry.location">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___GeoPoint</span></em><a class="headerlink" href="#viam.proto.common.GeoGeometry.location" title="Permalink to this definition"></a></dt>
+<dd><p>Location of the geometry</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.common.GeoGeometry.geometries">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.GeoGeometry.geometries" title="Permalink to this definition"></a></dt>
+<dd><p>Geometries associated with the location, where embedded Pose data is with respect to the specified location</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.common.GeoGeometry.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">location</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'location'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GeoGeometry.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.common.GeometriesInFrame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeometriesInFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeometriesInFrame" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
@@ -572,49 +614,6 @@ be raised.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>ValueError</strong> – no group with the given name exists</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="viam.proto.common.GeoObstacle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.common.</span></span><span class="sig-name descname"><span class="pre">GeoObstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">global___GeoPoint</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geometries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.common.GeoObstacle" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
-<p>GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-captured in latitude and longitude.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.common.GeoObstacle.location">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">global___GeoPoint</span></em><a class="headerlink" href="#viam.proto.common.GeoObstacle.location" title="Permalink to this definition"></a></dt>
-<dd><p>Location of the obstacle</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="viam.proto.common.GeoObstacle.geometries">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geometries</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Geometry</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.GeoObstacle.geometries" title="Permalink to this definition"></a></dt>
-<dd><p>Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="viam.proto.common.GeoObstacle.HasField">
-<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">location</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'location'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.common.GeoObstacle.HasField" title="Permalink to this definition"></a></dt>
-<dd><p>Checks if a certain field is set for the message.</p>
-<p>For a oneof group, checks if any field inside is set. Note that if the
-field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
-be raised.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether a value has been set for the named field.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1380,7 +1379,8 @@ given reference frame and a new target reference frame.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="viam.proto.common.WorldState.transforms">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.internal.containers.RepeatedCompositeFieldContainer</span><span class="p"><span class="pre">[</span></span><span class="pre">global___Transform</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#viam.proto.common.WorldState.transforms" title="Permalink to this definition"></a></dt>
-<dd><p>a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional</p>
+<dd><p>a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+another, or to attach moving geometries to the frame system. This field is optional</p>
 </dd></dl>
 
 </dd></dl>

@@ -22,9 +22,9 @@ Classes
    viam.proto.common.Capsule
    viam.proto.common.DoCommandRequest
    viam.proto.common.DoCommandResponse
+   viam.proto.common.GeoGeometry
    viam.proto.common.GeometriesInFrame
    viam.proto.common.Geometry
-   viam.proto.common.GeoObstacle
    viam.proto.common.GeoPoint
    viam.proto.common.GetGeometriesRequest
    viam.proto.common.GetGeometriesResponse
@@ -147,6 +147,41 @@ Classes
 
 
 
+.. py:class:: GeoGeometry(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
+
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+   GeoGeometry contains information describing Geometry(s) that is located at a GeoPoint
+
+   .. py:property:: location
+      :type: global___GeoPoint
+
+      Location of the geometry
+
+   .. py:property:: geometries
+      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
+
+      Geometries associated with the location, where embedded Pose data is with respect to the specified location
+
+   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
 .. py:class:: GeometriesInFrame(*, reference_frame: str = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
 
 
@@ -225,42 +260,6 @@ Classes
       :rtype: str or None
 
       :raises ValueError: no group with the given name exists
-
-
-
-.. py:class:: GeoObstacle(*, location: global___GeoPoint | None = ..., geometries: collections.abc.Iterable[global___Geometry] | None = ...)
-
-
-   Bases: :py:obj:`google.protobuf.message.Message`
-
-   GeoObstacle contains information about the geometric structure of an obstacle and the location of the obstacle,
-   captured in latitude and longitude.
-
-   .. py:property:: location
-      :type: global___GeoPoint
-
-      Location of the obstacle
-
-   .. py:property:: geometries
-      :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geometry]
-
-      Geometries that describe the obstacle, where embedded Pose data is with respect to the specified location
-
-   .. py:method:: HasField(field_name: Literal[location, b'location']) -> bool
-
-      Checks if a certain field is set for the message.
-
-      For a oneof group, checks if any field inside is set. Note that if the
-      field_name is not defined in the message descriptor, :exc:`ValueError` will
-      be raised.
-
-      :param field_name: The name of the field to check for presence.
-      :type field_name: str
-
-      :returns: Whether a value has been set for the named field.
-      :rtype: bool
-
-      :raises ValueError: if the `field_name` is not a member of this message.
 
 
 
@@ -952,6 +951,7 @@ Classes
    .. py:property:: transforms
       :type: google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Transform]
 
-      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to another, or to attach moving geometries to the frame system. This field is optional
+      a list of Transforms, optionally with geometries. Used as supplemental transforms to transform a pose from one reference frame to
+      another, or to attach moving geometries to the frame system. This field is optional
 
 
