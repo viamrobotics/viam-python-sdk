@@ -1,4 +1,5 @@
 import abc
+from dataclasses import dataclass
 from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
@@ -38,17 +39,22 @@ class Board(ComponentBase):
         name: str
         """The name of the analog pin"""
 
+        @dataclass
         class Value:
             """
-            Data obtained from reading an analog pin. The value is the raw bits obtained, while the
-            range indicates indicates the what the extreme values indicate. The step_size is the
-            precision per bit of the reading. The value read, when interpreted in
-            volts/degrees/etc., is (min_range + value * step_size)
+            Data obtained from reading an analog pin.
             """
             value: int
+            """The raw bits from the analog reader"""
+
             min_range: float
+            """The minimum value the analog reader can output"""
+
             max_range: float
+            """The maximum value the analog reader can output"""
+
             step_size: float
+            """The precision per bit of the reading"""
 
         def __init__(self, name: str):
             self.name = name
