@@ -230,12 +230,12 @@ class MockBase(Base):
 
 
 class MockAnalog(Board.Analog):
-    def __init__(self, name: str, value: int):
-        self.value = value
+    def __init__(self, name: str, value: int, min_range: float, max_range: float, step_size: float):
+        self.value = self.Value(value=value, min_range=min_range, max_range=max_range, step_size=step_size)
         self.timeout: Optional[float] = None
         super().__init__(name)
 
-    async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+    async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Board.Analog.Value:
         self.extra = extra
         self.timeout = timeout
         return self.value

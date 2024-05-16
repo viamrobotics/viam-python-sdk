@@ -1,12 +1,18 @@
 import abc
 from datetime import timedelta
+import sys
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.component.board import PowerMode, StreamTicksResponse
+from viam.proto.component.board import PowerMode, StreamTicksResponse, ReadAnalogReaderResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 Tick = StreamTicksResponse
 TickStream = Stream[Tick]
@@ -38,11 +44,18 @@ class Board(ComponentBase):
         name: str
         """The name of the analog pin"""
 
+        Value: "TypeAlias" = ReadAnalogReaderResponse
+        """
+        Value contains the result of reading an analog reader. It contains the raw data read,
+        the reader's minimum and maximum possible values, and its step size (the minimum possible
+        change between values it can read).
+        """
+
         def __init__(self, name: str):
             self.name = name
 
         @abc.abstractmethod
-        async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> int:
+        async def read(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Value:
             """
             Read the current value from the reader.
 
@@ -59,7 +72,7 @@ class Board(ComponentBase):
                 reading = await reader.read()
 
             Returns:
-                int: The current value.
+                Value: The current value, including the min, max, and step_size of the reader.
             """
             ...
 
