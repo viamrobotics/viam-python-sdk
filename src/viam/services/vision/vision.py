@@ -87,12 +87,18 @@ class Vision(ServiceBase):
             my_detector = VisionClient.from_robot(robot, "my_detector")
 
             # capture all from the next image from the camera
-            request = vision.CaptureAllRequest(return_image=True, return_detections=True)
-            result = await my_detector.capture_all_from_camera(camera_name, request)
+            result = await my_detector.capture_all_from_camera(
+                camera_name,
+                return_image=True,
+                return_detections=True,
+            )
 
         Args:
             camera_name (str): The name of the camera to use for detection
-            request (vision.CaptureAllRequest): What the vision service should return from CaptureAllFromCamera
+            return_image (bool): Ask the vision service to return the camera's latest image
+            return_classifications (bool): Ask the vision service to return its latest classifications
+            return_detections (bool): Ask the vision service to return its latest detections
+            return_object_point_clouds (bool): Ask the vision service to return its latest 3D segmentations
 
         Returns:
             vision.CaptureAllResult: A class that stores all potential returns from the vision service.
