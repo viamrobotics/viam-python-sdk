@@ -1,13 +1,18 @@
 import abc
-from dataclasses import dataclass
 from datetime import timedelta
+import sys
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.component.board import PowerMode, StreamTicksResponse
+from viam.proto.component.board import PowerMode, StreamTicksResponse, ReadAnalogReaderResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.streams import Stream
 
 from ..component_base import ComponentBase
+
+if sys.version_info >= (3, 10):
+    from typing import TypeAlias
+else:
+    from typing_extensions import TypeAlias
 
 Tick = StreamTicksResponse
 TickStream = Stream[Tick]
@@ -39,22 +44,12 @@ class Board(ComponentBase):
         name: str
         """The name of the analog pin"""
 
-        @dataclass
-        class Value:
-            """
-            Data obtained from reading an analog pin.
-            """
-            value: int
-            """The raw bits from the analog reader"""
-
-            min_range: float
-            """The minimum value the analog reader can output"""
-
-            max_range: float
-            """The maximum value the analog reader can output"""
-
-            step_size: float
-            """The precision per bit of the reading"""
+        Value: "TypeAlias" = ReadAnalogReaderResponse
+        """
+        Value contains the result of reading an analog reader. It contains the raw data read,
+        the reader's minimum and maximum possible values, and its step size (the minimum possible
+        change between values it can read).
+        """
 
         def __init__(self, name: str):
             self.name = name
