@@ -45,8 +45,8 @@ def board() -> MockBoard:
     return MockBoard(
         name="board",
         analogs={
-            "reader1": MockAnalog("reader1", 3),
-            "writer1": MockAnalog("writer1", 5),
+            "reader1": MockAnalog("reader1", 3, 0.0, 1.0, 0.1),
+            "writer1": MockAnalog("writer1", 5, 0.0, 1.0, 0.1),
         },
         digital_interrupts={
             "interrupt1": MockDigitalInterrupt("interrupt1"),
@@ -119,7 +119,7 @@ class TestBoard:
         assert status.name == MockBoard.get_resource_name(board.name)
         assert status.status == message_to_struct(
             BoardStatus(
-                analogs={"reader1": int(read1), "writer1": int(read2)},
+                analogs={"reader1": int(read1.value), "writer1": int(read2.value)},
                 digital_interrupts={"interrupt1": val},
             )
         )
@@ -171,6 +171,9 @@ class TestService:
             request = ReadAnalogReaderRequest(board_name=board.name, analog_reader_name="reader1", extra=dict_to_struct(extra))
             response: ReadAnalogReaderResponse = await client.ReadAnalogReader(request, timeout=4.4)
             assert response.value == 3
+            assert response.min_range == 0.0
+            assert response.max_range == 1.0
+            assert response.step_size == pytest.approx(0.1)
 
             reader = cast(MockAnalog, board.analogs["reader1"])
             assert reader.extra == extra
