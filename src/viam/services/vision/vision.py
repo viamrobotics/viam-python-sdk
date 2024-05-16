@@ -59,9 +59,9 @@ class Vision(ServiceBase):
     """
     Properties is a class that states what features are supported on the associated vision service.
     Currently, these are the following properties:
-    classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
-    detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
-    object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
+    - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.
+    - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.
+    - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.
     """
 
     @abc.abstractmethod
