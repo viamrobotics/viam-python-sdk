@@ -25,7 +25,7 @@ from viam.proto.service.navigation import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from . import GeoObstacle, GeoPoint, MapType, Mode, Waypoint
+from . import GeoGeometry, GeoPoint, MapType, Mode, Waypoint
 from .navigation import Navigation
 
 
@@ -51,7 +51,7 @@ class NavigationClient(Navigation, ReconfigurableResourceRPCClientBase):
         response: GetLocationResponse = await self.client.GetLocation(request, timeout=timeout)
         return response.location
 
-    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoObstacle]:
+    async def get_obstacles(self, *, timeout: Optional[float] = None) -> List[GeoGeometry]:
         request = GetObstaclesRequest(name=self.name)
         response: GetObstaclesResponse = await self.client.GetObstacles(request, timeout=timeout)
         return list(response.obstacles)

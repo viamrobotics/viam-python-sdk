@@ -19,7 +19,7 @@ from viam.gen.service.motion.v1.motion_pb2 import (
     PlanStep,
     PlanWithStatus,
 )
-from viam.proto.common import GeoObstacle, GeoPoint, Pose, PoseInFrame, ResourceName
+from viam.proto.common import GeoGeometry, GeoPoint, Pose, PoseInFrame, ResourceName
 from viam.proto.service.motion import Constraints, LinearConstraint, MotionConfiguration, ObstacleDetector
 from viam.services.motion import MotionClient
 
@@ -197,7 +197,8 @@ class TestClient:
         component_rn = Base.get_resource_name("move_on_globe_base")
         movement_rn = ResourceName(namespace="rdk", type="component", subtype="movement_sensor", name="move_on_globe_ms")
         destination = GeoPoint(latitude=123, longitude=456)
-        obstacles = [GeoObstacle(location=GeoPoint(latitude=111, longitude=222))]
+        obstacles = [GeoGeometry(location=GeoPoint(latitude=111, longitude=222))]
+        bounding_regions = [GeoGeometry(location=GeoPoint(latitude=3, longitude=4))]
         async with ChannelFor([service]) as channel:
             client = MotionClient(MOTION_SERVICE_NAME, channel)
             execution_id = await client.move_on_globe(
@@ -227,6 +228,7 @@ class TestClient:
                 heading=182,
                 configuration=MOTION_CONFIGURATION,
                 extra=extra,
+                bounding_regions=bounding_regions,
                 timeout=timeout,
             )
             assert service.component_name == component_rn
@@ -235,6 +237,7 @@ class TestClient:
             assert service.obstacles == obstacles
             assert service.heading == 182
             assert service.configuration == MOTION_CONFIGURATION
+            assert service.bounding_regions == bounding_regions
             assert service.execution_id == execution_id
             assert service.extra == extra
             assert service.timeout == loose_approx(timeout)
