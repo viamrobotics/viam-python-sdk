@@ -5,8 +5,8 @@ from grpclib.client import Channel
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
-    Geometry,
     GeoGeometry,
+    Geometry,
     GeoPoint,
     Pose,
     PoseInFrame,
