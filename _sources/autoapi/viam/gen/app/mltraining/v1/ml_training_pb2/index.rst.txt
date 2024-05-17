@@ -259,7 +259,7 @@ Attributes
 
    
 
-.. py:class:: SubmitCustomTrainingJobRequest(*, dataset_id: str = ..., registry_item_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ...)
+.. py:class:: SubmitCustomTrainingJobRequest(*, dataset_id: str = ..., registry_item_id: str = ..., registry_item_version: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -276,6 +276,11 @@ Attributes
       
 
    .. py:attribute:: registry_item_id
+      :type: str
+
+      
+
+   .. py:attribute:: registry_item_version
       :type: str
 
       
@@ -425,7 +430,7 @@ Attributes
 
    
 
-.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ...)
+.. py:class:: TrainingJobMetadata(*, request: global___SubmitTrainingJobRequest | None = ..., id: str = ..., dataset_id: str = ..., organization_id: str = ..., model_name: str = ..., model_version: str = ..., model_type: global___ModelType = ..., model_framework: global___ModelFramework = ..., is_custom_job: bool = ..., registry_item_id: str = ..., registry_item_version: str = ..., status: global___TrainingStatus = ..., error_status: google.rpc.status_pb2.Status | None = ..., created_on: google.protobuf.timestamp_pb2.Timestamp | None = ..., last_modified: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_started: google.protobuf.timestamp_pb2.Timestamp | None = ..., training_ended: google.protobuf.timestamp_pb2.Timestamp | None = ..., synced_model_id: str = ..., tags: collections.abc.Iterable[str] | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -505,6 +510,11 @@ Attributes
       
 
    .. py:attribute:: registry_item_id
+      :type: str
+
+      
+
+   .. py:attribute:: registry_item_version
       :type: str
 
       
