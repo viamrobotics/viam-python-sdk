@@ -46,13 +46,21 @@ class FileInfo(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     NAME_FIELD_NUMBER: builtins.int
     SIZE_FIELD_NUMBER: builtins.int
+    IS_DIRECTORY_FIELD_NUMBER: builtins.int
     name: builtins.str
     size: builtins.int
+    is_directory: builtins.bool
 
-    def __init__(self, *, name: builtins.str=..., size: builtins.int=...) -> None:
+    def __init__(self, *, name: builtins.str=..., size: builtins.int=..., is_directory: builtins.bool | None=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['name', b'name', 'size', b'size']) -> None:
+    def HasField(self, field_name: typing.Literal['_is_directory', b'_is_directory', 'is_directory', b'is_directory']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['_is_directory', b'_is_directory', 'is_directory', b'is_directory', 'name', b'name', 'size', b'size']) -> None:
+        ...
+
+    def WhichOneof(self, oneof_group: typing.Literal['_is_directory', b'_is_directory']) -> typing.Literal['is_directory'] | None:
         ...
 global___FileInfo = FileInfo
 

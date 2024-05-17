@@ -1,9 +1,9 @@
 import abc
-from datetime import timedelta
 import sys
+from datetime import timedelta
 from typing import Any, Dict, Final, List, Optional
 
-from viam.proto.component.board import PowerMode, StreamTicksResponse, ReadAnalogReaderResponse
+from viam.proto.component.board import PowerMode, ReadAnalogReaderResponse, StreamTicksResponse
 from viam.resource.types import RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_COMPONENT, Subtype
 from viam.streams import Stream
 
