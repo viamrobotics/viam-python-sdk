@@ -353,9 +353,36 @@ Attributes
            asyncio.run(main())
 
 
-   .. py:method:: create_organization(name: str) -> viam.proto.app.Organization
-      :abstractmethod:
+   .. py:method:: get_user_id_by_email(email: str) -> str
       :async:
+
+      Get the ID of a user by email.
+
+      ::
+
+          id = await cloud.get_user_id_by_email("youremail@email.com")
+
+      :param email: The email of the user.
+      :type email: str
+
+      :returns: The ID of the user.
+      :rtype: str
+
+
+   .. py:method:: create_organization(name: str) -> viam.proto.app.Organization
+      :async:
+
+      Create an organization.
+
+      ::
+
+          organization = await cloud.create_organization("name")
+
+      :param name: The name of the organization.
+      :type name: str
+
+      :returns: The created organization.
+      :rtype: Organization
 
 
    .. py:method:: list_organizations() -> List[viam.proto.app.Organization]
@@ -371,19 +398,45 @@ Attributes
       :rtype: List[viam.proto.app.Organization]
 
 
-   .. py:method:: list_organizations_by_user(user_id: str) -> List[viam.proto.app.OrgDetails]
-      :abstractmethod:
+   .. py:method:: get_organizations_with_access_to_location(location_id: str) -> List[viam.proto.app.OrganizationIdentity]
       :async:
 
+      Get all organizations that have access to a location.
 
-   .. py:method:: get_organization(org_id: Optional[str] = None) -> viam.proto.app.Organization
+      ::
+
+          org_list = await cloud.get_organization_with_access_to_location("location-id")
+
+      :param location_id: The ID of the location.
+      :type location_id: str
+
+      :returns: The list of organizations.
+      :rtype: List[viam.proto.app.OrganizationIdentity]
+
+
+   .. py:method:: list_organizations_by_user(user_id: str) -> List[viam.proto.app.OrgDetails]
+      :async:
+
+      List the organizations a user belongs to.
+
+      ::
+
+          org_list = await cloud.list_organizations_by_user("user-id")
+
+      :param user_id: The ID of the user
+      :type user_id: str
+
+      :returns: The list of organizations.
+      :rtype: List[OrgDetails]
+
+
+   .. py:method:: get_organization(org_id: str) -> viam.proto.app.Organization
       :async:
 
       Return details about the requested organization.
 
-      :param org_id: ID of the organization to query. If None, defaults to the
-                     currently-authed org.
-      :type org_id: Optional[str]
+      :param org_id: The ID of the organization to query.
+      :type org_id: str
 
       :raises GRPCError: If the provided org_id is invalid, or not currently authed to.
 
@@ -411,11 +464,13 @@ Attributes
       :rtype: bool
 
 
-   .. py:method:: update_organization(name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None, cid: Optional[str] = None) -> viam.proto.app.Organization
+   .. py:method:: update_organization(org_id: str, name: Optional[str] = None, public_namespace: Optional[str] = None, region: Optional[str] = None, cid: Optional[str] = None) -> viam.proto.app.Organization
       :async:
 
       Updates organization details.
 
+      :param org_id: The ID of the organization to update.
+      :type org_id: str
       :param name: If provided, updates the org's name.
       :type name: Optional[str]
       :param public_namespace: If provided, sets the org's namespace if it hasn't already been set.
@@ -431,34 +486,46 @@ Attributes
       :rtype: viam.proto.app.Organization
 
 
-   .. py:method:: delete_organization(org_id: Optional[str] = None) -> None
-      :abstractmethod:
+   .. py:method:: delete_organization(org_id: str) -> None
       :async:
 
+      Delete an organization
 
-   .. py:method:: list_organization_members() -> Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
+      ::
+          await cloud.delete_organization("org-id")
+
+      :param org_id: The ID of the organization.
+      :type org_id: str
+
+
+   .. py:method:: list_organization_members(org_id: str) -> Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
       :async:
 
       List the members and invites of the currently authed-to organization.
 
       ::
 
-          member_list, invite_list = await cloud.list_organization_members()
+          member_list, invite_list = await cloud.list_organization_members("org-id")
+
+      :param org_id: The ID of the organization to list members of.
+      :type org_id: str
 
       :returns: A tuple containing two lists; the first
                 [0] of organization members, and the second [1] of organization invites.
       :rtype: Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]
 
 
-   .. py:method:: create_organization_invite(email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None, send_email_invite=True) -> viam.proto.app.OrganizationInvite
+   .. py:method:: create_organization_invite(org_id: str, email: str, authorizations: Optional[List[viam.proto.app.Authorization]] = None, send_email_invite=True) -> viam.proto.app.OrganizationInvite
       :async:
 
       Creates an organization invite and sends it via email.
 
       ::
 
-          await cloud.create_organization_invite("youremail@email.com")
+          await cloud.create_organization_invite("org-id", "youremail@email.com")
 
+      :param org_id: The ID of the organization to create an invite for.
+      :type org_id: str
       :param email: The email address to send the invite to.
       :type email: str
       :param authorizations: Specifications of the
@@ -474,7 +541,7 @@ Attributes
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
 
-   .. py:method:: update_organization_invite_authorizations(email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
+   .. py:method:: update_organization_invite_authorizations(org_id: str, email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
       :async:
 
       Update the authorizations attached to an organization invite that has already been created.
@@ -496,10 +563,13 @@ Attributes
           )
 
           update_invite = await cloud.update_organization_invite_authorizations(
+              org_id="org_id_123",
               email="notarealemail@viam.com",
               add_authorizations =[authorization_to_add]
           )
 
+      :param org_id: The ID of the organization that the invite is for.
+      :type org_id: str
       :param email: Email of the user the invite was sent to.
       :type email: str
       :param add_authorizations: Optional list of authorizations to add to the invite.
@@ -514,7 +584,7 @@ Attributes
       :rtype: viam.proto.app.OrganizationInvite
 
 
-   .. py:method:: delete_organization_member(user_id: str) -> None
+   .. py:method:: delete_organization_member(org_id: str, user_id: str) -> None
       :async:
 
       Remove a member from the organization.
@@ -524,52 +594,59 @@ Attributes
           member_list, invite_list = await cloud.list_organization_members()
           first_user_id = member_list[0].user_id
 
-          await cloud.delete_organization_member(first_user_id)
+          await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
 
+      :param org_id: The ID of the org to remove the user from.
+      :type org_id: str
       :param user_id: The ID of the user to remove.
       :type user_id: str
 
 
-   .. py:method:: delete_organization_invite(email: str) -> None
+   .. py:method:: delete_organization_invite(org_id: str, email: str) -> None
       :async:
 
       Deletes a pending organization invite.
 
       ::
 
-          await cloud.delete_organization_invite("youremail@email.com")
+          await cloud.delete_organization_invite("org-id", "youremail@email.com")
 
+      :param org_id: The ID of the organization that the invite to delete was for.
+      :type org_id: str
       :param email: The email address the pending invite was sent to.
       :type email: str
 
       :raises GRPCError: If no pending invite is associated with the provided email address.
 
 
-   .. py:method:: resend_organization_invite(email: str) -> viam.proto.app.OrganizationInvite
+   .. py:method:: resend_organization_invite(org_id: str, email: str) -> viam.proto.app.OrganizationInvite
       :async:
 
       Re-sends a pending organization invite email.
 
       ::
 
-          await cloud.resend_organization_invite("youremail@email.com")
+          await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
+      :param org_id: The ID of the organization that the invite to resend was for.
+      :type org_id: str
       :param email: The email address associated with the invite.
       :type email: str
 
       :raises GRPCError: If no pending invite is associated with the provided email address.
 
 
-   .. py:method:: create_location(name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
+   .. py:method:: create_location(org_id: str, name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
       :async:
 
       Create and name a location under the currently authed-to organization and the specified parent location.
 
       ::
 
-          my_new_location = await cloud.create_location(name="Robotville",
-                                                        parent_location_id="111ab12345")
+          my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
 
+      :param org_id: The ID of the organization to create the location under.
+      :type org_id: str
       :param name: Name of the location.
       :type name: str
       :param parent_location_id: Optional parent location to put the location under. Defaults to a root-level location if no
@@ -659,27 +736,50 @@ Attributes
       :raises GRPCError: If an invalid location ID is passed.
 
 
-   .. py:method:: list_locations() -> List[viam.proto.app.Location]
+   .. py:method:: list_locations(org_id: str) -> List[viam.proto.app.Location]
       :async:
 
       Get a list of all locations under the currently authed-to organization.
 
       ::
 
-          locations = await cloud.list_locations()
+          locations = await cloud.list_locations("org-id")
+
+      :param org_id: The ID of the org to list locations for.
+      :type org_id: str
 
       :returns: The list of locations.
       :rtype: List[viam.proto.app.Location]
 
 
-   .. py:method:: share_location()
-      :abstractmethod:
+   .. py:method:: share_location(organization_id: str, location_id: str) -> None
       :async:
 
+      Share a location with an organization.
 
-   .. py:method:: unshare_location()
-      :abstractmethod:
+      ::
+
+          await cloud.share_location("organization-id", "location-id")
+
+      :param organization_id: The ID of the organization.
+      :type organization_id: str
+      :param location_id: The ID of the location.
+      :type location_id: str
+
+
+   .. py:method:: unshare_location(organization_id: str, location_id: str) -> None
       :async:
+
+      Stop sharing a location with an organization.
+
+      ::
+
+          await cloud.unshare_location("organization-id", "location-id")
+
+      :param organization_id: The ID of the organization.
+      :type organization_id: str
+      :param location_id: The ID of the location.
+      :type location_id: str
 
 
    .. py:method:: location_auth(location_id: Optional[str] = None) -> viam.proto.app.LocationAuth
@@ -759,7 +859,7 @@ Attributes
       :rtype: viam.proto.app.Robot
 
 
-   .. py:method:: get_rover_rental_robots() -> List[viam.proto.app.RoverRentalRobot]
+   .. py:method:: get_rover_rental_robots(org_id: str) -> List[viam.proto.app.RoverRentalRobot]
       :async:
 
       Returns a list of rover rental robots within an org.
@@ -767,6 +867,9 @@ Attributes
       ::
 
           rental_robots = await cloud.get_rover_rental_robots()
+
+      :param org_id: The ID of the organization to list rover rental robots for.
+      :type org_id: str
 
       :returns: The list of rover rental robots.
       :rtype: List[viam.proto.app.RoverRentalRobot]
@@ -945,6 +1048,22 @@ Attributes
       :raises GRPCError: If an invalid robot part ID is passed.
 
 
+   .. py:method:: get_robot_api_keys(robot_id: str) -> List[viam.proto.app.APIKeyWithAuthorizations]
+      :async:
+
+      Gets the Robot API Keys for the robot.
+
+      ::
+
+          await cloud.get_robot_api_keys(robot_id="robot-id")
+
+      :param robot_id: The ID of the robot
+      :type robot_id: str
+
+      :returns: The list of API keys.
+      :rtype: List[APIKeyWithAuthorizations]
+
+
    .. py:method:: mark_part_as_main(robot_part_id: str) -> None
       :async:
 
@@ -1097,15 +1216,17 @@ Attributes
       :raises GRPCError: If an invalid robot ID is passed.
 
 
-   .. py:method:: list_fragments(show_public: bool = True) -> List[Fragment]
+   .. py:method:: list_fragments(org_id: str, show_public: bool = True) -> List[Fragment]
       :async:
 
       Get a list of fragments under the currently authed-to organization.
 
       ::
 
-          fragments_list = await cloud.list_fragments(show_public=False)
+          fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
 
+      :param org_id: The ID of the organization to list fragments for.
+      :type org_id: str
       :param show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                           return. If False, only private fragments will return. Defaults to True.
 
@@ -1134,16 +1255,17 @@ Attributes
       :rtype: viam.app.app_client.Fragment
 
 
-   .. py:method:: create_fragment(name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment
+   .. py:method:: create_fragment(org_id: str, name: str, config: Optional[Mapping[str, Any]] = None) -> Fragment
       :async:
 
       Create a new private fragment.
 
       ::
 
-          new_fragment = await cloud.create_fragment(
-              name="cool_smart_machine_to_configure_several_of")
+          new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
+      :param org_id: The ID of the organization to create the ragment within.
+      :type org_id: str
       :param name: Name of the fragment.
       :type name: str
       :param config: Optional Dictionary representation of new config to assign to specified fragment. Can be
@@ -1200,7 +1322,7 @@ Attributes
       :raises GRPCError: If an invalid fragment ID is passed.
 
 
-   .. py:method:: add_role(identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
+   .. py:method:: add_role(org_id: str, identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
       :async:
 
       Add a role under the currently authed-to organization.
@@ -1208,11 +1330,14 @@ Attributes
       ::
 
           await cloud.add_role(
+              org_id="org-id",
               identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
               role="owner",
               resource_type="location",
               resource_id="111ab12345")
 
+      :param org_id: The ID of the organization to create the role in.
+      :type org_id: str
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
       :param role: The role to add.
@@ -1226,7 +1351,7 @@ Attributes
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.
 
 
-   .. py:method:: remove_role(identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
+   .. py:method:: remove_role(org_id: str, identity_id: str, role: Union[Literal[owner], Literal[operator]], resource_type: Union[Literal[organization], Literal[location], Literal[robot]], resource_id: str) -> None
       :async:
 
       Remove a role under the currently authed-to organization.
@@ -1234,17 +1359,20 @@ Attributes
       ::
 
           await cloud.remove_role(
+              org_id="org-id",
               identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
               role="owner",
               resource_type="location",
               resource_id="111ab12345")
 
+      :param org_id: The ID of the organization the role exists in.
+      :type org_id: str
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
-      :param role: The role to add.
+      :param role: The role to remove.
       :type role: Union[Literal["owner"], Literal["operator"]]
-      :param resource_type: Type of the resource to add role to.
-                            Must match `resource_id`.
+      :param resource_type: Type of the resource the role is being
+                            removed from. Must match `resource_id`.
       :type resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
       :param resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
       :type resource_id: str
@@ -1252,7 +1380,47 @@ Attributes
       :raises GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.
 
 
-   .. py:method:: list_authorizations(resource_ids: Optional[List[str]] = None) -> List[viam.proto.app.Authorization]
+   .. py:method:: change_role(organization_id: str, old_identity_id: str, old_role: Union[Literal[owner], Literal[operator]], old_resource_type: Union[Literal[organization], Literal[location], Literal[robot]], old_resource_id: str, new_identity_id: str, new_role: Union[Literal[owner], Literal[operator]], new_resource_type: Union[Literal[organization], Literal[location], Literal[robot]], new_resource_id: str) -> None
+      :async:
+
+      Changes a role to a new role.
+
+      ::
+
+          await cloud.change_role(
+              organization_id="organization-id",
+              old_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+              old_role="operator",
+              old_resource_type="location",
+              old_resource_id="111ab12345",
+              new_identity_id="abc01234-0123-4567-ab12-a11a00a2aa22",
+              new_role="owner",s
+              new_resource_type="organization",
+              new_resource_id="abc12345")
+
+      :param organization_id: ID of the organization
+      :type organization_id: str
+      :param old_identity_id: ID of the entity the role belongs to (e.g., a user ID).
+      :type old_identity_id: str
+      :param old_role: The role to be changed.
+      :type old_role: Union[Literal["owner"], Literal["operator"]]
+      :param old_resource_type: Type of the resource the role is
+                                added to. Must match `old_resource_id`.
+      :type old_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :param old_resource_id: ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :type old_resource_id: str
+      :param new_identity_id: New ID of the entity the role blongs to (e.g., a user ID).
+      :type new_identity_id: str
+      :param new_role: The new role.
+      :type new_role: Union[Literal["owner"], Literal["operator"]]
+      :param new_resource_type: Type of the resource to add role to.
+                                Must match `new_resource_id`.
+      :type new_resource_type: Union[Literal["organization"], Literal["location"], Literal["robot"]]
+      :param new_resource_id: New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).
+      :type new_resource_id: str
+
+
+   .. py:method:: list_authorizations(org_id: str, resource_ids: Optional[List[str]] = None) -> List[viam.proto.app.Authorization]
       :async:
 
       List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs
@@ -1261,8 +1429,10 @@ Attributes
       ::
 
           list_of_auths = await cloud.list_authorizations(
+              org_id="org-id",
               resource_ids=["1a123456-x1yz-0ab0-a12xyzabc"])
 
+      :param org_id: The ID of the organization to list authorizations for.
       :param resource_ids: IDs of the resources to retrieve authorizations from.
                            If None, defaults to all resources.
       :type resource_ids: Optional[List[str]]
@@ -1301,16 +1471,107 @@ Attributes
       :rtype: List[viam.proto.app.AuthorizedPermissions]
 
 
-   .. py:method:: create_module(name: str) -> Tuple[str, str]
+   .. py:method:: get_registry_item(item_id: str) -> viam.proto.app.RegistryItem
+      :async:
+
+      Get registry item by ID.
+
+      ::
+
+          item = await cloud.get_registry_item("item-id")
+
+      :param item_id: The ID of the registry item.
+      :type item_id: str
+
+      :returns: The registry item.
+      :rtype: RegistryItem
+
+
+   .. py:method:: create_registry_item(organization_id: str, name: str, type: viam.proto.app.packages.PackageType.ValueType) -> None
+      :async:
+
+      Create a registry item
+
+      ::
+
+          await cloud.create_registry_item("org-id", "name", PackageType.PACKAGE_TYPE_ML_MODEL)
+
+      :param organization_id: The organization to create the registry item under.
+      :type organization_id: str
+      :param name: The name of the registry item, which must be unique within your org.
+      :type name: str
+      :param type: The type of the item in the registry.
+      :type type: PackageType.ValueType
+
+
+   .. py:method:: update_registry_item(item_id: str, type: viam.proto.app.packages.PackageType.ValueType, description: str, visibility: viam.proto.app.Visibility.ValueType) -> None
+      :async:
+
+      Update a registry item.
+
+      ::
+
+          await cloud.update_registry_item("item-id", PackageType.PACKAGE_TYPE_ML_TRAINING, "description", Visibility.VISIBILITY_PUBLIC)
+
+      :param item_id: The ID of the registry item.
+      :type item_id: str
+      :param type: The type of the item in the registry.
+      :type type: PackageType.ValueType
+      :param description: The description of the registry item.
+      :type description: str
+      :param visibility: The visibility of the registry item.
+      :type visibility: Visibility.ValueType
+
+
+   .. py:method:: list_registry_items(organization_id: str, types: List[viam.proto.app.packages.PackageType.ValueType], visibilities: List[viam.proto.app.Visibility.ValueType], platforms: List[str], statuses: List[viam.proto.app.RegistryItemStatus.ValueType], search_term: Optional[str] = None, page_token: Optional[str] = None) -> List[viam.proto.app.RegistryItem]
+      :async:
+
+      List the registry items in an organization.
+
+      :param organization_id: The ID of the organization to return registry items for.
+      :type organization_id: str
+      :param types: The types of registry items.
+      :type types: List[PackageType.ValueType]
+      :param visibilities: The visibilities of registry items.
+      :type visibilities: List[Visibility.ValueType]
+      :param platforms: The platforms of registry items.
+      :type platforms: List[str]
+      :param statuses: The types of the items in the registry.
+      :type statuses: List[RegistryItemStatus.ValueType]
+      :param search_term: The search term of the registry items.
+      :type search_term: Optional[str]
+      :param page_token: The page token of the registry items.
+      :type page_token: Optional[str]
+
+      :returns: The list of registry items.
+      :rtype: List[RegistryItem]
+
+
+   .. py:method:: delete_registry_item(item_id: str) -> None
+      :async:
+
+      Delete a registry item
+
+      ::
+
+          await cloud.delete_registry_item("item-id")
+
+      :param item_id: The ID of the registry item.
+      :type item_id: str
+
+
+   .. py:method:: create_module(org_id: str, name: str) -> Tuple[str, str]
       :async:
 
       Create a module under the currently authed-to organization.
 
       ::
 
-          new_module = await cloud.create_module(name="cool_new_hoverboard_module")
+          new_module = await cloud.create_module(org_id="org-id", name="cool_new_hoverboard_module")
           print("Module ID:", new_module[0])
 
+      :param org_id: The ID of the organization to create the module under.
+      :type org_id: str
       :param name: The name of the module. Must be unique within your organization.
       :type name: str
 
@@ -1320,7 +1581,7 @@ Attributes
       :rtype: Tuple[str, str]
 
 
-   .. py:method:: update_module(module_id: str, url: str, description: str, models: Optional[List[viam.proto.app.Model]], entrypoint: str, organization_id: Optional[str] = None, public: bool = False) -> str
+   .. py:method:: update_module(module_id: str, url: str, description: str, models: Optional[List[viam.proto.app.Model]], entrypoint: str, public: bool = False) -> str
       :async:
 
       Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.
@@ -1389,20 +1650,23 @@ Attributes
       :rtype: viam.proto.app.Module
 
 
-   .. py:method:: list_modules() -> List[viam.proto.app.Module]
+   .. py:method:: list_modules(org_id: str) -> List[viam.proto.app.Module]
       :async:
 
       List the modules under the currently authed-to organization.
 
       ::
 
-          modules_list = await cloud.list_modules()
+          modules_list = await cloud.list_modules("org-id")
+
+      :param org_id: The ID of the organization to list modules for.
+      :type org_id: str
 
       :returns: The list of modules.
       :rtype: List[viam.proto.app.Module]
 
 
-   .. py:method:: create_key(authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]
+   .. py:method:: create_key(org_id: str, authorizations: List[APIKeyAuthorization], name: Optional[str] = None) -> Tuple[str, str]
       :async:
 
       Creates a new API key.
@@ -1419,6 +1683,8 @@ Attributes
 
           api_key, api_key_id = cloud.create_key([auth], "my_key")
 
+      :param org_id: The ID of the organization to create the key for.
+      :type org_id: str
       :param authorizations: A list of authorizations to associate
                              with the key.
       :type authorizations: List[viam.proto.app.Authorization]
@@ -1431,6 +1697,19 @@ Attributes
       :rtype: Tuple[str, str]
 
 
+   .. py:method:: delete_key(id: str) -> None
+      :async:
+
+      Delete a API key.
+
+      ::
+
+          await cloud.delete_key("key-id")
+
+      :param id: The ID of the API key.
+      :type id: str
+
+
    .. py:method:: create_key_from_existing_key_authorizations(id: str) -> Tuple[str, str]
       :async:
 
@@ -1438,7 +1717,7 @@ Attributes
 
       ::
 
-          api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(
+          api_key, api_key_id = await cloud.create_key_from_existing_key_authorizations(
               id="INSERT YOUR API KEY ID")
 
       :param id: the ID of the API key to duplication authorizations from
@@ -1448,17 +1727,36 @@ Attributes
       :rtype: Tuple[str, str]
 
 
-   .. py:method:: list_keys() -> List[viam.proto.app.APIKeyWithAuthorizations]
+   .. py:method:: list_keys(org_id: str) -> List[viam.proto.app.APIKeyWithAuthorizations]
       :async:
 
       Lists all keys for the currently-authed-to org.
 
       ::
 
-          keys = cloud.list_keys()
+          keys = await cloud.list_keys()
+
+      :param org_id: The ID of the organization to list API keys for.
+      :type org_id: str
 
       :returns: The existing API keys and authorizations.
       :rtype: List[viam.proto.app.APIKeyWithAuthorizations]
+
+
+   .. py:method:: rotate_key(id: str) -> Tuple[str, str]
+      :async:
+
+      Rotate an API key.
+
+      ::
+
+          id, key = await cloud.rotate_key("key-id")
+
+      :param id: The ID of the key to be rotated.
+      :type id: str
+
+      :returns: The API key and API key id
+      :rtype: Tuple[str, str]
 
 
 

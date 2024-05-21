@@ -12,7 +12,6 @@ Classes
 
 .. autoapisummary::
 
-   viam.media.video.RawImage
    viam.media.video.CameraMimeType
    viam.media.video.ViamImage
    viam.media.video.NamedImage
@@ -25,61 +24,12 @@ Attributes
 
 .. autoapisummary::
 
-   viam.media.video.LAZY_SUFFIX
    viam.media.video.LIBRARY_SUPPORTED_FORMATS
 
-
-.. py:data:: LAZY_SUFFIX
-   :value: '+lazy'
-
-   
 
 .. py:data:: LIBRARY_SUPPORTED_FORMATS
 
    
-
-.. py:class:: RawImage
-
-
-   Bases: :py:obj:`NamedTuple`
-
-   **DEPRECATED** Use ``ViamImage`` instead
-
-   A raw bytes representation of an image.
-
-   A RawImage should be returned instead of a PIL Image instance under one of
-   the following conditions
-
-   1) The requested mime type has the LAZY_SUFFIX string appended to it
-   2) The requested mime type is not supported for decoding/encoding by Viam's
-   Python SDK
-
-   .. py:attribute:: data
-      :type: bytes
-
-      The raw data of the image
-
-   .. py:attribute:: mime_type
-      :type: str
-
-      The mimetype of the image
-
-   .. py:method:: close()
-
-      Close the image and release resources. For RawImage, this is a noop.
-
-
-   .. py:method:: bytes_to_depth_array() -> List[List[int]]
-
-      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
-      a standard representation.
-
-      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
-
-      :returns: The standard representation of the image.
-      :rtype: List[List[int]]
-
-
 
 .. py:class:: CameraMimeType
 
@@ -96,10 +46,6 @@ Attributes
    or repr(object).
    encoding defaults to sys.getdefaultencoding().
    errors defaults to 'strict'.
-
-   .. py:property:: with_lazy_suffix
-      :type: str
-
 
    .. py:attribute:: VIAM_RGBA
       :value: 'image/vnd.viam.rgba'
@@ -126,28 +72,8 @@ Attributes
 
       
 
-   .. py:attribute:: UNSUPPORTED
-      :value: 'unsupported'
-
-      
-
-   .. py:method:: from_lazy(value: str) -> Tuple[typing_extensions.Self, bool]
+   .. py:method:: from_string(value: str) -> typing_extensions.Self
       :classmethod:
-
-
-   .. py:method:: encode_image(image: Union[PIL.Image.Image, RawImage]) -> bytes
-
-
-   .. py:method:: is_supported(mime_type: str) -> bool
-      :classmethod:
-
-      Check if the provided mime_type is supported.
-
-      :param mime_type: The mime_type to check
-      :type mime_type: str
-
-      :returns: Whether the mime_type is supported
-      :rtype: bool
 
 
    .. py:method:: from_proto(format: viam.proto.component.camera.Format.ValueType) -> CameraMimeType
@@ -176,7 +102,7 @@ Attributes
 
    A native implementation of an image.
 
-   Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
+   Provides the raw data and the mime type.
 
    .. py:property:: data
       :type: bytes
@@ -188,22 +114,21 @@ Attributes
 
       The mime type of the image
 
-   .. py:property:: image
-      :type: Optional[PIL.Image.Image]
+   .. py:property:: width
+      :type: Optional[int]
 
-      The PIL.Image representation of the image. If the mime type is not supported, this will be None.
+      The width of the image
 
-   .. py:method:: close()
+   .. py:property:: height
+      :type: Optional[int]
 
-      Close the image and release resources.
-
+      The height of the image
 
    .. py:method:: bytes_to_depth_array() -> List[List[int]]
 
-      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
-      a standard representation.
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
 
-      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+      :raises NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.
 
       :returns: The standard representation of the image.
       :rtype: List[List[int]]
@@ -221,10 +146,5 @@ Attributes
       :type: str
 
       The name of the image
-
-   .. py:method:: close()
-
-      Close the image and release resources.
-
 
 

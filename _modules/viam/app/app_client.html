@@ -103,6 +103,7 @@
     <span class="n">AppServiceStub</span><span class="p">,</span>
     <span class="n">Authorization</span><span class="p">,</span>
     <span class="n">AuthorizedPermissions</span><span class="p">,</span>
+    <span class="n">ChangeRoleRequest</span><span class="p">,</span>
     <span class="n">CheckPermissionsRequest</span><span class="p">,</span>
     <span class="n">CheckPermissionsResponse</span><span class="p">,</span>
     <span class="n">CreateFragmentRequest</span><span class="p">,</span>
@@ -119,13 +120,19 @@
     <span class="n">CreateModuleResponse</span><span class="p">,</span>
     <span class="n">CreateOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">CreateOrganizationInviteResponse</span><span class="p">,</span>
+    <span class="n">CreateOrganizationRequest</span><span class="p">,</span>
+    <span class="n">CreateOrganizationResponse</span><span class="p">,</span>
+    <span class="n">CreateRegistryItemRequest</span><span class="p">,</span>
     <span class="n">CreateRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">CreateRobotPartSecretResponse</span><span class="p">,</span>
     <span class="n">DeleteFragmentRequest</span><span class="p">,</span>
+    <span class="n">DeleteKeyRequest</span><span class="p">,</span>
     <span class="n">DeleteLocationRequest</span><span class="p">,</span>
     <span class="n">DeleteLocationSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">DeleteOrganizationMemberRequest</span><span class="p">,</span>
+    <span class="n">DeleteOrganizationRequest</span><span class="p">,</span>
+    <span class="n">DeleteRegistryItemRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotPartRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotPartSecretRequest</span><span class="p">,</span>
     <span class="n">DeleteRobotRequest</span><span class="p">,</span>
@@ -142,6 +149,12 @@
     <span class="n">GetOrganizationNamespaceAvailabilityResponse</span><span class="p">,</span>
     <span class="n">GetOrganizationRequest</span><span class="p">,</span>
     <span class="n">GetOrganizationResponse</span><span class="p">,</span>
+    <span class="n">GetOrganizationsWithAccessToLocationRequest</span><span class="p">,</span>
+    <span class="n">GetOrganizationsWithAccessToLocationResponse</span><span class="p">,</span>
+    <span class="n">GetRegistryItemRequest</span><span class="p">,</span>
+    <span class="n">GetRegistryItemResponse</span><span class="p">,</span>
+    <span class="n">GetRobotAPIKeysRequest</span><span class="p">,</span>
+    <span class="n">GetRobotAPIKeysResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartHistoryRequest</span><span class="p">,</span>
     <span class="n">GetRobotPartHistoryResponse</span><span class="p">,</span>
     <span class="n">GetRobotPartLogsRequest</span><span class="p">,</span>
@@ -154,6 +167,8 @@
     <span class="n">GetRobotResponse</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsRequest</span><span class="p">,</span>
     <span class="n">GetRoverRentalRobotsResponse</span><span class="p">,</span>
+    <span class="n">GetUserIDByEmailRequest</span><span class="p">,</span>
+    <span class="n">GetUserIDByEmailResponse</span><span class="p">,</span>
     <span class="n">ListAuthorizationsRequest</span><span class="p">,</span>
     <span class="n">ListAuthorizationsResponse</span><span class="p">,</span>
     <span class="n">ListFragmentsRequest</span><span class="p">,</span>
@@ -166,8 +181,12 @@
     <span class="n">ListModulesResponse</span><span class="p">,</span>
     <span class="n">ListOrganizationMembersRequest</span><span class="p">,</span>
     <span class="n">ListOrganizationMembersResponse</span><span class="p">,</span>
+    <span class="n">ListOrganizationsByUserRequest</span><span class="p">,</span>
+    <span class="n">ListOrganizationsByUserResponse</span><span class="p">,</span>
     <span class="n">ListOrganizationsRequest</span><span class="p">,</span>
     <span class="n">ListOrganizationsResponse</span><span class="p">,</span>
+    <span class="n">ListRegistryItemsRequest</span><span class="p">,</span>
+    <span class="n">ListRegistryItemsResponse</span><span class="p">,</span>
     <span class="n">ListRobotsRequest</span><span class="p">,</span>
     <span class="n">ListRobotsResponse</span><span class="p">,</span>
     <span class="n">Location</span><span class="p">,</span>
@@ -184,9 +203,12 @@
     <span class="n">NewRobotRequest</span><span class="p">,</span>
     <span class="n">NewRobotResponse</span><span class="p">,</span>
     <span class="n">Organization</span><span class="p">,</span>
+    <span class="n">OrganizationIdentity</span><span class="p">,</span>
     <span class="n">OrganizationInvite</span><span class="p">,</span>
     <span class="n">OrganizationMember</span><span class="p">,</span>
     <span class="n">OrgDetails</span><span class="p">,</span>
+    <span class="n">RegistryItem</span><span class="p">,</span>
+    <span class="n">RegistryItemStatus</span><span class="p">,</span>
     <span class="n">RemoveRoleRequest</span><span class="p">,</span>
     <span class="n">ResendOrganizationInviteRequest</span><span class="p">,</span>
     <span class="n">ResendOrganizationInviteResponse</span><span class="p">,</span>
@@ -195,10 +217,14 @@
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPart</span> <span class="k">as</span> <span class="n">RobotPartPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="n">RobotPartHistoryEntry</span> <span class="k">as</span> <span class="n">RobotPartHistoryEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.proto.app</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">RotateKeyRequest</span><span class="p">,</span>
+    <span class="n">RotateKeyResponse</span><span class="p">,</span>
     <span class="n">RoverRentalRobot</span><span class="p">,</span>
     <span class="n">SharedSecret</span><span class="p">,</span>
+    <span class="n">ShareLocationRequest</span><span class="p">,</span>
     <span class="n">TailRobotPartLogsRequest</span><span class="p">,</span>
     <span class="n">TailRobotPartLogsResponse</span><span class="p">,</span>
+    <span class="n">UnshareLocationRequest</span><span class="p">,</span>
     <span class="n">UpdateFragmentRequest</span><span class="p">,</span>
     <span class="n">UpdateFragmentResponse</span><span class="p">,</span>
     <span class="n">UpdateLocationRequest</span><span class="p">,</span>
@@ -209,6 +235,7 @@
     <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span><span class="p">,</span>
     <span class="n">UpdateOrganizationRequest</span><span class="p">,</span>
     <span class="n">UpdateOrganizationResponse</span><span class="p">,</span>
+    <span class="n">UpdateRegistryItemRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotPartRequest</span><span class="p">,</span>
     <span class="n">UpdateRobotPartResponse</span><span class="p">,</span>
     <span class="n">UpdateRobotRequest</span><span class="p">,</span>
@@ -216,6 +243,7 @@
     <span class="n">UploadModuleFileRequest</span><span class="p">,</span>
     <span class="n">Visibility</span><span class="p">,</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">viam.proto.app.packages</span> <span class="kn">import</span> <span class="n">PackageType</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">LogEntry</span> <span class="k">as</span> <span class="n">LogEntryPB</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">datetime_to_timestamp</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
@@ -513,27 +541,15 @@
     <span class="n">_channel</span><span class="p">:</span> <span class="n">Channel</span>
     <span class="n">_organization_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="c1"># TODO(RSDK-5569): this method will no longer be reliable when we&#39;re not authing as an org.</span>
-    <span class="c1"># consider what assumptions we _can_ make (e.g., if `list_orgs` only returns a single org</span>
-    <span class="c1"># then we can probably still rely on it for org id?), and also update other APIs to ask for</span>
-    <span class="c1"># an org id (optionally?) instead of just assuming we&#39;ll get it from this method.</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_get_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_organization_id</span><span class="p">()</span>
-
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_request_organization_id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="n">organizations</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_organizations</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span> <span class="o">=</span> <span class="n">organizations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_organization_id</span>
-
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_authorization</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">identity_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">role</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;operator&quot;</span><span class="p">]],</span>
         <span class="n">resource_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]],</span>
         <span class="n">resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Authorization</span><span class="p">:</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">Authorization</span><span class="p">(</span>
             <span class="n">authorization_type</span><span class="o">=</span><span class="s2">&quot;role&quot;</span><span class="p">,</span>
             <span class="n">identity_id</span><span class="o">=</span><span class="n">identity_id</span><span class="p">,</span>
@@ -544,9 +560,10 @@
             <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth</span><span class="p">:</span> <span class="n">APIKeyAuthorization</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Authorization</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">auth</span><span class="p">:</span> <span class="n">APIKeyAuthorization</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Authorization</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new Authorization specifically for creating an API key.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">identity_id</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># setting `identity_id` when creating an API key results in an error</span>
             <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;api-key&quot;</span><span class="p">,</span>
             <span class="n">role</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_role</span><span class="p">,</span>  <span class="c1"># type: ignore -- Ignoring because this is technically a `string`</span>
@@ -554,9 +571,39 @@
             <span class="n">resource_id</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">_resource_id</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
+<div class="viewcode-block" id="AppClient.get_user_id_by_email"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_user_id_by_email">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_user_id_by_email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the ID of a user by email.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            id = await cloud.get_user_id_by_email(&quot;youremail@email.com&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            email (str): The email of the user.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The ID of the user.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetUserIDByEmailRequest</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetUserIDByEmailResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetUserIDByEmail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">user_id</span></div>
+
 <div class="viewcode-block" id="AppClient.create_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            organization = await cloud.create_organization(&quot;name&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): The name of the organization.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Organization: The created organization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOrganizationRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CreateOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">organization</span></div>
 
 <div class="viewcode-block" id="AppClient.list_organizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Organization</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the organization(s) the user is an authorized owner of.</span>
@@ -572,16 +619,47 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">organizations</span><span class="p">)</span></div>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
-<div class="viewcode-block" id="AppClient.list_organizations_by_user"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations_by_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations_by_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OrgDetails</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.get_organizations_with_access_to_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organizations_with_access_to_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organizations_with_access_to_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OrganizationIdentity</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get all organizations that have access to a location.</span>
 
-<div class="viewcode-block" id="AppClient.get_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
+<span class="sd">        ::</span>
+
+<span class="sd">            org_list = await cloud.get_organization_with_access_to_location(&quot;location-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            location_id (str): The ID of the location.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[viam.proto.app.OrganizationIdentity]: The list of organizations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationsWithAccessToLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationsWithAccessToLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganizationsWithAccessToLocation</span><span class="p">(</span>
+            <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">organization_identities</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.list_organizations_by_user"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organizations_by_user">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organizations_by_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">OrgDetails</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the organizations a user belongs to.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            org_list = await cloud.list_organizations_by_user(&quot;user-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            user_id (str): The ID of the user</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[OrgDetails]: The list of organizations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationsByUserRequest</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationsByUserResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizationsByUser</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">orgs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.get_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Organization</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return details about the requested organization.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            org_id (Optional[str]): ID of the organization to query. If None, defaults to the</span>
-<span class="sd">                currently-authed org.</span>
+<span class="sd">            org_id (str): The ID of the organization to query.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If the provided org_id is invalid, or not currently authed to.</span>
@@ -589,7 +667,6 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Organization: The requested organization.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">org_id</span> <span class="o">=</span> <span class="n">org_id</span> <span class="k">if</span> <span class="n">org_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetOrganizationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">organization</span></div>
@@ -620,6 +697,7 @@
 
 <div class="viewcode-block" id="AppClient.update_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">public_namespace</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">region</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -628,6 +706,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates organization details.</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to update.</span>
 <span class="sd">            name (Optional[str]): If provided, updates the org&#39;s name.</span>
 <span class="sd">            public_namespace (Optional[str]): If provided, sets the org&#39;s namespace if it hasn&#39;t already been set.</span>
 <span class="sd">            region (Optional[str]): If provided, updates the org&#39;s region.</span>
@@ -639,9 +718,8 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Organization: The updated organization.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationRequest</span><span class="p">(</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">public_namespace</span><span class="o">=</span><span class="n">public_namespace</span><span class="p">,</span>
             <span class="n">region</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
             <span class="n">cid</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span>
@@ -650,36 +728,47 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateOrganizationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">organization</span></div>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
-<div class="viewcode-block" id="AppClient.delete_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.delete_organization"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete an organization</span>
 
-<div class="viewcode-block" id="AppClient.list_organization_members"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organization_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organization_members</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrganizationMember</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">OrganizationInvite</span><span class="p">]]:</span>
+<span class="sd">        ::</span>
+<span class="sd">            await cloud.delete_organization(&quot;org-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganization</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.list_organization_members"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_organization_members">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_organization_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">OrganizationMember</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">OrganizationInvite</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the members and invites of the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            member_list, invite_list = await cloud.list_organization_members()</span>
+<span class="sd">            member_list, invite_list = await cloud.list_organization_members(&quot;org-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to list members of.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first</span>
 <span class="sd">            [0] of organization members, and the second [1] of organization invites.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationMembersRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListOrganizationMembersRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListOrganizationMembersResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListOrganizationMembers</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">members</span><span class="p">),</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">invites</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.create_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_organization_invite</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="kc">True</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates an organization invite and sends it via email.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.create_organization_invite(&quot;youremail@email.com&quot;)</span>
+<span class="sd">            await cloud.create_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create an invite for.</span>
 <span class="sd">            email (str): The email address to send the invite to.</span>
 <span class="sd">            authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the</span>
 <span class="sd">                authorizations to include in the invite. If not provided, full owner permissions will</span>
@@ -692,15 +781,15 @@
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if an invalid email is provided, or if the user is already a member of the org.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOrganizationInviteRequest</span><span class="p">(</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="n">send_email_invite</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="n">send_email_invite</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateOrganizationInviteResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">invite</span></div>
 
 <div class="viewcode-block" id="AppClient.update_organization_invite_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_organization_invite_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_organization_invite_authorizations</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">add_authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">remove_authorizations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -724,11 +813,13 @@
 <span class="sd">            )</span>
 
 <span class="sd">            update_invite = await cloud.update_organization_invite_authorizations(</span>
+<span class="sd">                org_id=&quot;org_id_123&quot;,</span>
 <span class="sd">                email=&quot;notarealemail@viam.com&quot;,</span>
 <span class="sd">                add_authorizations =[authorization_to_add]</span>
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization that the invite is for.</span>
 <span class="sd">            email (str): Email of the user the invite was sent to.</span>
 <span class="sd">            add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.</span>
 <span class="sd">            remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.</span>
@@ -740,16 +831,15 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.OrganizationInvite: The updated invite.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateOrganizationInviteAuthorizationsRequest</span><span class="p">(</span>
-            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">add_authorizations</span><span class="o">=</span><span class="n">add_authorizations</span><span class="p">,</span> <span class="n">remove_authorizations</span><span class="o">=</span><span class="n">remove_authorizations</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">add_authorizations</span><span class="o">=</span><span class="n">add_authorizations</span><span class="p">,</span> <span class="n">remove_authorizations</span><span class="o">=</span><span class="n">remove_authorizations</span>
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">UpdateOrganizationInviteAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateOrganizationInviteAuthorizations</span><span class="p">(</span>
             <span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">invite</span></div>
 
-<div class="viewcode-block" id="AppClient.delete_organization_member"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.delete_organization_member"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_member">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_member</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove a member from the organization.</span>
 
 <span class="sd">        ::</span>
@@ -757,59 +847,59 @@
 <span class="sd">            member_list, invite_list = await cloud.list_organization_members()</span>
 <span class="sd">            first_user_id = member_list[0].user_id</span>
 
-<span class="sd">            await cloud.delete_organization_member(first_user_id)</span>
+<span class="sd">            await cloud.delete_organization_member(org_id=&quot;org_id&quot;, user_id=first_user_id)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the org to remove the user from.</span>
 <span class="sd">            user_id (str): The ID of the user to remove.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationMemberRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationMemberRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganizationMember</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.delete_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.delete_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Deletes a pending organization invite.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.delete_organization_invite(&quot;youremail@email.com&quot;)</span>
+<span class="sd">            await cloud.delete_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization that the invite to delete was for.</span>
 <span class="sd">            email (str): The email address the pending invite was sent to.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no pending invite is associated with the provided email address.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.resend_organization_invite"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.resend_organization_invite">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">resend_organization_invite</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">email</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OrganizationInvite</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Re-sends a pending organization invite email.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            await cloud.resend_organization_invite(&quot;youremail@email.com&quot;)</span>
+<span class="sd">            await cloud.resend_organization_invite(&quot;org-id&quot;, &quot;youremail@email.com&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization that the invite to resend was for.</span>
 <span class="sd">            email (str): The email address associated with the invite.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If no pending invite is associated with the provided email address.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ResendOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ResendOrganizationInviteRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ResendOrganizationInviteResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ResendOrganizationInvite</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">invite</span></div>
 
-<div class="viewcode-block" id="AppClient.create_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.create_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Location</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create and name a location under the currently authed-to organization and the specified parent location.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            my_new_location = await cloud.create_location(name=&quot;Robotville&quot;,</span>
-<span class="sd">                                                          parent_location_id=&quot;111ab12345&quot;)</span>
+<span class="sd">            my_new_location = await cloud.create_location(org_id=&quot;org-id&quot;, name=&quot;Robotville&quot;, parent_location_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create the location under.</span>
 <span class="sd">            name (str): Name of the location.</span>
 <span class="sd">            parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no</span>
 <span class="sd">                location ID is provided.</span>
@@ -820,8 +910,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.proto.app.Location: The newly created location.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="o">=</span><span class="n">parent_location_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateLocationRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_location_id</span><span class="o">=</span><span class="n">parent_location_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateLocationResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">location</span></div>
 
@@ -905,28 +994,50 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_locations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_locations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.list_locations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_locations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of all locations under the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            locations = await cloud.list_locations()</span>
+<span class="sd">            locations = await cloud.list_locations(&quot;org-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the org to list locations for.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Location]: The list of locations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListLocationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListLocationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListLocationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListLocations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">locations</span><span class="p">)</span></div>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
-<div class="viewcode-block" id="AppClient.share_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.share_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">share_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<div class="viewcode-block" id="AppClient.share_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.share_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">share_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Share a location with an organization.</span>
 
-    <span class="c1"># TODO(RSDK-5569): implement</span>
-<div class="viewcode-block" id="AppClient.unshare_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.unshare_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unshare_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.share_location(&quot;organization-id&quot;, &quot;location-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">            location_id (str): The ID of the location.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ShareLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ShareLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.unshare_location"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.unshare_location">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">unshare_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Stop sharing a location with an organization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.unshare_location(&quot;organization-id&quot;, &quot;location-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">            location_id (str): The ID of the location.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UnshareLocationRequest</span><span class="p">(</span><span class="n">location_id</span><span class="o">=</span><span class="n">location_id</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UnshareLocation</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.location_auth"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.location_auth">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">location_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LocationAuth</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a location&#39;s `LocationAuth` (location secret(s)).</span>
@@ -1013,18 +1124,20 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">robot</span></div>
 
-<div class="viewcode-block" id="AppClient.get_rover_rental_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_rover_rental_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_rover_rental_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RoverRentalRobot</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.get_rover_rental_robots"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_rover_rental_robots">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_rover_rental_robots</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RoverRentalRobot</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a list of rover rental robots within an org.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            rental_robots = await cloud.get_rover_rental_robots()</span>
 
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to list rover rental robots for.</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRoverRentalRobotsRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRoverRentalRobotsRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetRoverRentalRobotsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRoverRentalRobots</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">robots</span><span class="p">)</span></div>
 
@@ -1271,6 +1384,23 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotPartRequest</span><span class="p">(</span><span class="n">part_id</span><span class="o">=</span><span class="n">robot_part_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobotPart</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="AppClient.get_robot_api_keys"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_robot_api_keys">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_robot_api_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyWithAuthorizations</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets the Robot API Keys for the robot.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.get_robot_api_keys(robot_id=&quot;robot-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            robot_id (str): The ID of the robot</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[APIKeyWithAuthorizations]: The list of API keys.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRobotAPIKeysRequest</span><span class="p">(</span><span class="n">robot_id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetRobotAPIKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRobotAPIKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="AppClient.mark_part_as_main"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.mark_part_as_main">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">mark_part_as_main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_part_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Mark a robot part as the main part of a robot.</span>
 
@@ -1433,22 +1563,22 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRobotRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">robot_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRobot</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.list_fragments"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_fragments">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_fragments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">show_public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Fragment</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a list of fragments under the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            fragments_list = await cloud.list_fragments(show_public=False)</span>
+<span class="sd">            fragments_list = await cloud.list_fragments(org_id=&quot;org-id&quot;, show_public=False)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to list fragments for.</span>
 <span class="sd">            show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will</span>
 <span class="sd">                return. If False, only private fragments will return. Defaults to True.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.app.app_client.Fragment]: The list of fragments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">show_public</span><span class="o">=</span><span class="n">show_public</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListFragmentsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">show_public</span><span class="o">=</span><span class="n">show_public</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListFragmentsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListFragments</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">fragment</span><span class="p">)</span> <span class="k">for</span> <span class="n">fragment</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">fragments</span><span class="p">]</span></div>
 
@@ -1475,15 +1605,15 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">fragment</span><span class="o">=</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.create_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
+<div class="viewcode-block" id="AppClient.create_fragment"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_fragment">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Fragment</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a new private fragment.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            new_fragment = await cloud.create_fragment(</span>
-<span class="sd">                name=&quot;cool_smart_machine_to_configure_several_of&quot;)</span>
+<span class="sd">            new_fragment = await cloud.create_fragment(org_id=&quot;org-id&quot;, name=&quot;cool_smart_machine_to_configure_several_of&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create the ragment within.</span>
 <span class="sd">            name (str): Name of the fragment.</span>
 <span class="sd">            config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be</span>
 <span class="sd">                assigned by updating the fragment.</span>
@@ -1494,8 +1624,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            viam.app.app_client.Fragment: The newly created fragment.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateFragmentRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateFragmentRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">if</span> <span class="n">config</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span> <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateFragmentResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateFragment</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">Fragment</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">fragment</span><span class="p">)</span></div>
 
@@ -1547,6 +1676,7 @@
 
 <div class="viewcode-block" id="AppClient.add_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.add_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">add_role</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">role</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;operator&quot;</span><span class="p">]],</span>
         <span class="n">resource_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]],</span>
@@ -1557,12 +1687,14 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.add_role(</span>
+<span class="sd">                org_id=&quot;org-id&quot;,</span>
 <span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
 <span class="sd">                role=&quot;owner&quot;,</span>
 <span class="sd">                resource_type=&quot;location&quot;,</span>
 <span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create the role in.</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
 <span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
 <span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
@@ -1573,6 +1705,7 @@
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID is passed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">identity_id</span><span class="o">=</span><span class="n">identity_id</span><span class="p">,</span>
             <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
@@ -1584,6 +1717,7 @@
 
 <div class="viewcode-block" id="AppClient.remove_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.remove_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_role</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
+        <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">role</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;operator&quot;</span><span class="p">]],</span>
         <span class="n">resource_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]],</span>
@@ -1594,22 +1728,25 @@
 <span class="sd">        ::</span>
 
 <span class="sd">            await cloud.remove_role(</span>
+<span class="sd">                org_id=&quot;org-id&quot;,</span>
 <span class="sd">                identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
 <span class="sd">                role=&quot;owner&quot;,</span>
 <span class="sd">                resource_type=&quot;location&quot;,</span>
 <span class="sd">                resource_id=&quot;111ab12345&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization the role exists in.</span>
 <span class="sd">            identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
-<span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to add.</span>
-<span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
-<span class="sd">                Must match `resource_id`.</span>
+<span class="sd">            role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to remove.</span>
+<span class="sd">            resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource the role is being</span>
+<span class="sd">                removed from. Must match `resource_id`.</span>
 <span class="sd">            resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: If either an invalid identity ID, role ID, resource type, or resource ID or is passed.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span>
             <span class="n">identity_id</span><span class="o">=</span><span class="n">identity_id</span><span class="p">,</span>
             <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
             <span class="n">role</span><span class="o">=</span><span class="n">role</span><span class="p">,</span>
@@ -1619,16 +1756,78 @@
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveRoleRequest</span><span class="p">(</span><span class="n">authorization</span><span class="o">=</span><span class="n">authorization</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RemoveRole</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resource_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.change_role"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.change_role">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">change_role</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">old_identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">old_role</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;operator&quot;</span><span class="p">]],</span>
+        <span class="n">old_resource_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]],</span>
+        <span class="n">old_resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">new_identity_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">new_role</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;owner&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;operator&quot;</span><span class="p">]],</span>
+        <span class="n">new_resource_type</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;organization&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">],</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;robot&quot;</span><span class="p">]],</span>
+        <span class="n">new_resource_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Changes a role to a new role.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.change_role(</span>
+<span class="sd">                organization_id=&quot;organization-id&quot;,</span>
+<span class="sd">                old_identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
+<span class="sd">                old_role=&quot;operator&quot;,</span>
+<span class="sd">                old_resource_type=&quot;location&quot;,</span>
+<span class="sd">                old_resource_id=&quot;111ab12345&quot;,</span>
+<span class="sd">                new_identity_id=&quot;abc01234-0123-4567-ab12-a11a00a2aa22&quot;,</span>
+<span class="sd">                new_role=&quot;owner&quot;,s</span>
+<span class="sd">                new_resource_type=&quot;organization&quot;,</span>
+<span class="sd">                new_resource_id=&quot;abc12345&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): ID of the organization</span>
+<span class="sd">            old_identity_id (str): ID of the entity the role belongs to (e.g., a user ID).</span>
+<span class="sd">            old_role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The role to be changed.</span>
+<span class="sd">            old_resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource the role is</span>
+<span class="sd">                added to. Must match `old_resource_id`.</span>
+<span class="sd">            old_resource_id (str): ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+
+<span class="sd">            new_identity_id (str): New ID of the entity the role blongs to (e.g., a user ID).</span>
+<span class="sd">            new_role (Union[Literal[&quot;owner&quot;], Literal[&quot;operator&quot;]]): The new role.</span>
+<span class="sd">            new_resource_type (Union[Literal[&quot;organization&quot;], Literal[&quot;location&quot;], Literal[&quot;robot&quot;]]): Type of the resource to add role to.</span>
+<span class="sd">                Must match `new_resource_id`.</span>
+<span class="sd">            new_resource_id (str): New ID of the resource the role applies to (i.e., either an organization, location, or robot ID).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">identity_id</span><span class="o">=</span><span class="n">old_identity_id</span><span class="p">,</span>
+            <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="n">old_role</span><span class="p">,</span>
+            <span class="n">resource_type</span><span class="o">=</span><span class="n">old_resource_type</span><span class="p">,</span>
+            <span class="n">resource_id</span><span class="o">=</span><span class="n">old_resource_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">new_authorization</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">identity_id</span><span class="o">=</span><span class="n">new_identity_id</span><span class="p">,</span>
+            <span class="n">identity_type</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">role</span><span class="o">=</span><span class="n">new_role</span><span class="p">,</span>
+            <span class="n">resource_type</span><span class="o">=</span><span class="n">new_resource_type</span><span class="p">,</span>
+            <span class="n">resource_id</span><span class="o">=</span><span class="n">new_resource_id</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ChangeRoleRequest</span><span class="p">(</span><span class="n">old_authorization</span><span class="o">=</span><span class="n">old_authorization</span><span class="p">,</span> <span class="n">new_authorization</span><span class="o">=</span><span class="n">new_authorization</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ChangeRole</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.list_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">resource_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Authorization</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List all authorizations under a specific resource (or resources) within the currently authed-to organization. If no resource IDs</span>
 <span class="sd">        are provided, all resource authorizations within the organizations are returned.</span>
 
 <span class="sd">        ::</span>
 
 <span class="sd">            list_of_auths = await cloud.list_authorizations(</span>
+<span class="sd">                org_id=&quot;org-id&quot;,</span>
 <span class="sd">                resource_ids=[&quot;1a123456-x1yz-0ab0-a12xyzabc&quot;])</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id: The ID of the organization to list authorizations for.</span>
 <span class="sd">            resource_ids (Optional[List[str]]): IDs of the resources to retrieve authorizations from.</span>
 <span class="sd">                If None, defaults to all resources.</span>
 
@@ -1638,8 +1837,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Authorization]: The list of authorizations.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListAuthorizationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">resource_ids</span><span class="o">=</span><span class="n">resource_ids</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListAuthorizationsRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">resource_ids</span><span class="o">=</span><span class="n">resource_ids</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListAuthorizationsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListAuthorizations</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">authorizations</span><span class="p">)</span></div>
 
@@ -1673,15 +1871,116 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">CheckPermissionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CheckPermissions</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">authorized_permissions</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.create_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.get_registry_item"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.get_registry_item">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_registry_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RegistryItem</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get registry item by ID.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            item = await cloud.get_registry_item(&quot;item-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item_id (str): The ID of the registry item.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            RegistryItem: The registry item.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">GetRegistryItemResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">item</span></div>
+
+<div class="viewcode-block" id="AppClient.create_registry_item"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_registry_item">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_registry_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">PackageType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a registry item</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.create_registry_item(&quot;org-id&quot;, &quot;name&quot;, PackageType.PACKAGE_TYPE_ML_MODEL)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The organization to create the registry item under.</span>
+<span class="sd">            name (str): The name of the registry item, which must be unique within your org.</span>
+<span class="sd">            type (PackageType.ValueType): The type of the item in the registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateRegistryItemRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.update_registry_item"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.update_registry_item">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">update_registry_item</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">type</span><span class="p">:</span> <span class="n">PackageType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">visibility</span><span class="p">:</span> <span class="n">Visibility</span><span class="o">.</span><span class="n">ValueType</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update a registry item.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.update_registry_item(&quot;item-id&quot;, PackageType.PACKAGE_TYPE_ML_TRAINING, &quot;description&quot;, Visibility.VISIBILITY_PUBLIC)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item_id (str): The ID of the registry item.</span>
+<span class="sd">            type (PackageType.ValueType): The type of the item in the registry.</span>
+<span class="sd">            description (str): The description of the registry item.</span>
+<span class="sd">            visibility (Visibility.ValueType): The visibility of the registry item.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="n">UpdateRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">type</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">visibility</span><span class="o">=</span><span class="n">visibility</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">UpdateRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.list_registry_items"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_registry_items">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_registry_items</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">organization_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">PackageType</span><span class="o">.</span><span class="n">ValueType</span><span class="p">],</span>
+        <span class="n">visibilities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Visibility</span><span class="o">.</span><span class="n">ValueType</span><span class="p">],</span>
+        <span class="n">platforms</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">statuses</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">RegistryItemStatus</span><span class="o">.</span><span class="n">ValueType</span><span class="p">],</span>
+        <span class="n">search_term</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">page_token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">RegistryItem</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;List the registry items in an organization.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            organization_id (str): The ID of the organization to return registry items for.</span>
+<span class="sd">            types (List[PackageType.ValueType]): The types of registry items.</span>
+<span class="sd">            visibilities (List[Visibility.ValueType]): The visibilities of registry items.</span>
+<span class="sd">            platforms (List[str]): The platforms of registry items.</span>
+<span class="sd">            statuses (List[RegistryItemStatus.ValueType]): The types of the items in the registry.</span>
+<span class="sd">            search_term (Optional[str]): The search term of the registry items.</span>
+<span class="sd">            page_token (Optional[str]): The page token of the registry items.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List[RegistryItem]: The list of registry items.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListRegistryItemsRequest</span><span class="p">(</span>
+            <span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span>
+            <span class="n">types</span><span class="o">=</span><span class="n">types</span><span class="p">,</span>
+            <span class="n">visibilities</span><span class="o">=</span><span class="n">visibilities</span><span class="p">,</span>
+            <span class="n">platforms</span><span class="o">=</span><span class="n">platforms</span><span class="p">,</span>
+            <span class="n">statuses</span><span class="o">=</span><span class="n">statuses</span><span class="p">,</span>
+            <span class="n">search_term</span><span class="o">=</span><span class="n">search_term</span> <span class="k">if</span> <span class="n">search_term</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span> <span class="k">if</span> <span class="n">page_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">ListRegistryItemsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListRegistryItems</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">items</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_registry_item"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_registry_item">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_registry_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a registry item</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_registry_item(&quot;item-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item_id (str): The ID of the registry item.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteRegistryItemRequest</span><span class="p">(</span><span class="n">item_id</span><span class="o">=</span><span class="n">item_id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteRegistryItem</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.create_module"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_module">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a module under the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            new_module = await cloud.create_module(name=&quot;cool_new_hoverboard_module&quot;)</span>
+<span class="sd">            new_module = await cloud.create_module(org_id=&quot;org-id&quot;, name=&quot;cool_new_hoverboard_module&quot;)</span>
 <span class="sd">            print(&quot;Module ID:&quot;, new_module[0])</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create the module under.</span>
 <span class="sd">            name (str): The name of the module. Must be unique within your organization.</span>
 
 <span class="sd">        Raises:</span>
@@ -1690,8 +1989,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[str, str]: A tuple containing the ID [0] of the new module and its URL [1].</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateModuleRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CreateModuleRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">module_id</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">url</span></div>
 
@@ -1702,7 +2000,6 @@
         <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">models</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Model</span><span class="p">]],</span>
         <span class="n">entrypoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">organization_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">public</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the documentation URL, description, models, entrypoint, and/or the visibility of a module.</span>
@@ -1786,24 +2083,26 @@
         <span class="n">response</span><span class="p">:</span> <span class="n">GetModuleResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">GetModule</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">module</span></div>
 
-<div class="viewcode-block" id="AppClient.list_modules"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Module</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.list_modules"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_modules">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_modules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Module</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;List the modules under the currently authed-to organization.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            modules_list = await cloud.list_modules()</span>
+<span class="sd">            modules_list = await cloud.list_modules(&quot;org-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to list modules for.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.Module]: The list of modules.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">organization_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
-        <span class="n">request</span> <span class="o">=</span> <span class="n">ListModulesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ListModulesRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListModulesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListModules</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">modules</span><span class="p">)</span></div>
 
     <span class="c1"># TODO(RSDK-5569): when user-based auth exists, make `name` default to `None` and let</span>
     <span class="c1"># app deal with setting a default.</span>
-<div class="viewcode-block" id="AppClient.create_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyAuthorization</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.create_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">authorizations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyAuthorization</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new API key.</span>
 
 <span class="sd">        ::</span>
@@ -1819,6 +2118,7 @@
 <span class="sd">            api_key, api_key_id = cloud.create_key([auth], &quot;my_key&quot;)</span>
 
 <span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to create the key for.</span>
 <span class="sd">            authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate</span>
 <span class="sd">                with the key.</span>
 <span class="sd">            name (Optional[str]): A name for the key. If None, defaults to the current timestamp.</span>
@@ -1830,17 +2130,30 @@
 <span class="sd">            Tuple[str, str]: The api key and api key ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span>
-        <span class="n">authorizations_pb</span> <span class="o">=</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authorizations</span><span class="p">]</span>
+        <span class="n">authorizations_pb</span> <span class="o">=</span> <span class="p">[</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_authorization_for_new_api_key</span><span class="p">(</span><span class="n">org_id</span><span class="p">,</span> <span class="n">auth</span><span class="p">)</span> <span class="k">for</span> <span class="n">auth</span> <span class="ow">in</span> <span class="n">authorizations</span><span class="p">]</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateKeyRequest</span><span class="p">(</span><span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations_pb</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">CreateKeyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">CreateKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.delete_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.delete_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">delete_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Delete a API key.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            await cloud.delete_key(&quot;key-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the API key.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">DeleteKeyRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">DeleteKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="AppClient.create_key_from_existing_key_authorizations"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.create_key_from_existing_key_authorizations">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">create_key_from_existing_key_authorizations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new API key with an existing key&#39;s authorizations</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            api_key, api_key_id = cloud.create_key_from_existing_key_authorizations(</span>
+<span class="sd">            api_key, api_key_id = await cloud.create_key_from_existing_key_authorizations(</span>
 <span class="sd">                id=&quot;INSERT YOUR API KEY ID&quot;)</span>
 
 <span class="sd">        Args:</span>
@@ -1856,19 +2169,38 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="AppClient.list_keys"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_keys">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyWithAuthorizations</span><span class="p">]:</span>
+<div class="viewcode-block" id="AppClient.list_keys"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.list_keys">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">list_keys</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">org_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">APIKeyWithAuthorizations</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Lists all keys for the currently-authed-to org.</span>
 
 <span class="sd">        ::</span>
 
-<span class="sd">            keys = cloud.list_keys()</span>
+<span class="sd">            keys = await cloud.list_keys()</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            org_id (str): The ID of the organization to list API keys for.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations.&quot;&quot;&quot;</span>
-        <span class="n">org_id</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_organization_id</span><span class="p">()</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ListKeysRequest</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">ListKeysResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">ListKeys</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">api_keys</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AppClient.rotate_key"><a class="viewcode-back" href="../../../autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.rotate_key">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">rotate_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Rotate an API key.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            id, key = await cloud.rotate_key(&quot;key-id&quot;)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            id (str): The ID of the key to be rotated.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple[str, str]: The API key and API key id</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">RotateKeyRequest</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">RotateKeyResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app_client</span><span class="o">.</span><span class="n">RotateKey</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">id</span></div></div>
 </pre></div>
 
            </div>

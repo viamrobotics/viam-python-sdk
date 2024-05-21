@@ -88,14 +88,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.vision.service</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<span></span><span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
 
-<span class="kn">from</span> <span class="nn">grpclib.server</span> <span class="kn">import</span> <span class="n">Stream</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">LIBRARY_SUPPORTED_FORMATS</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">RawImage</span>
+<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">ViamImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span>
+<span class="kn">from</span> <span class="nn">viam.proto.component.camera</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CaptureAllFromCameraRequest</span><span class="p">,</span>
+    <span class="n">CaptureAllFromCameraResponse</span><span class="p">,</span>
     <span class="n">GetClassificationsFromCameraRequest</span><span class="p">,</span>
     <span class="n">GetClassificationsFromCameraResponse</span><span class="p">,</span>
     <span class="n">GetClassificationsRequest</span><span class="p">,</span>
@@ -106,6 +106,8 @@
     <span class="n">GetDetectionsResponse</span><span class="p">,</span>
     <span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span>
     <span class="n">GetObjectPointCloudsResponse</span><span class="p">,</span>
+    <span class="n">GetPropertiesRequest</span><span class="p">,</span>
+    <span class="n">GetPropertiesResponse</span><span class="p">,</span>
     <span class="n">UnimplementedVisionServiceBase</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
@@ -120,6 +122,35 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">RESOURCE_TYPE</span> <span class="o">=</span> <span class="n">Vision</span>
+
+<div class="viewcode-block" id="VisionRPCService.CaptureAllFromCamera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.CaptureAllFromCamera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">CaptureAllFromCamera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">CaptureAllFromCameraRequest</span><span class="p">,</span> <span class="n">CaptureAllFromCameraResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">vision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">capture_all_from_camera</span><span class="p">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">camera_name</span><span class="p">,</span>
+            <span class="n">return_image</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_image</span><span class="p">,</span>
+            <span class="n">return_classifications</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_classifications</span><span class="p">,</span>
+            <span class="n">return_detections</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_detections</span><span class="p">,</span>
+            <span class="n">return_object_point_clouds</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">return_object_point_clouds</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">mime_type</span><span class="o">.</span><span class="n">to_proto</span><span class="p">()</span>
+            <span class="n">img_bytes</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">source_name</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">camera_name</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">fmt</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">img_bytes</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">CaptureAllFromCameraResponse</span><span class="p">(</span>
+            <span class="n">image</span><span class="o">=</span><span class="n">img</span><span class="p">,</span>
+            <span class="n">detections</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">detections</span><span class="p">,</span>
+            <span class="n">classifications</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">classifications</span><span class="p">,</span>
+            <span class="n">objects</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">objects</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionRPCService.GetDetectionsFromCamera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.GetDetectionsFromCamera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetDetectionsFromCamera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetDetectionsFromCameraRequest</span><span class="p">,</span> <span class="n">GetDetectionsFromCameraResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
@@ -138,11 +169,8 @@
         <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
 
-        <span class="n">mime_type</span><span class="p">,</span> <span class="n">is_lazy</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_lazy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">is_lazy</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span><span class="n">mime_type</span><span class="p">)):</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">RawImage</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="n">LIBRARY_SUPPORTED_FORMATS</span><span class="p">)</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">ViamImage</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_detections</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetDetectionsResponse</span><span class="p">(</span><span class="n">detections</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
@@ -167,11 +195,8 @@
         <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
 
-        <span class="n">mime_type</span><span class="p">,</span> <span class="n">is_lazy</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_lazy</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">is_lazy</span> <span class="ow">or</span> <span class="ow">not</span> <span class="p">(</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span><span class="n">mime_type</span><span class="p">)):</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">RawImage</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="n">LIBRARY_SUPPORTED_FORMATS</span><span class="p">)</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">ViamImage</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_classifications</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetClassificationsResponse</span><span class="p">(</span><span class="n">classifications</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
@@ -185,6 +210,21 @@
         <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_object_point_clouds</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">camera_name</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">GetObjectPointCloudsResponse</span><span class="p">(</span><span class="n">mime_type</span><span class="o">=</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionRPCService.GetProperties"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.GetProperties">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">GetProperties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">GetPropertiesRequest</span><span class="p">,</span> <span class="n">GetPropertiesResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">recv_message</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">request</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">vision</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_resource</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="n">timeout</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span><span class="o">.</span><span class="n">time_remaining</span><span class="p">()</span> <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">deadline</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">properties</span> <span class="o">=</span> <span class="k">await</span> <span class="n">vision</span><span class="o">.</span><span class="n">get_properties</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="n">extra</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">GetPropertiesResponse</span><span class="p">(</span>
+            <span class="n">classifications_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">classifications_supported</span><span class="p">,</span>
+            <span class="n">detections_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">detections_supported</span><span class="p">,</span>
+            <span class="n">object_point_clouds_supported</span><span class="o">=</span><span class="n">properties</span><span class="o">.</span><span class="n">object_point_clouds_supported</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="k">await</span> <span class="n">stream</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="VisionRPCService.DoCommand"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/service/index.html#viam.services.vision.service.VisionRPCService.DoCommand">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">DoCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">:</span> <span class="n">Stream</span><span class="p">[</span><span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

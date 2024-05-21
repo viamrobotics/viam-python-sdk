@@ -42,11 +42,11 @@ Classes
 
       
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.media.video.ViamImage
       :abstractmethod:
       :async:
 
-      Get the next image from the camera as an Image or RawImage.
+      Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
 
       NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
@@ -67,7 +67,7 @@ Classes
       :type mime_type: str
 
       :returns: The frame
-      :rtype: Image | RawImage
+      :rtype: ViamImage
 
 
    .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]

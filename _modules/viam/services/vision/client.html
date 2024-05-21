@@ -88,15 +88,16 @@
            <div itemprop="articleBody">
              
   <h1>Source code for viam.services.vision.client</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 
-<span class="kn">from</span> <span class="nn">viam.media.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">RawImage</span>
+<span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">ViamError</span>
+<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">CameraMimeType</span><span class="p">,</span> <span class="n">ViamImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">DoCommandRequest</span><span class="p">,</span> <span class="n">DoCommandResponse</span><span class="p">,</span> <span class="n">PointCloudObject</span>
 <span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CaptureAllFromCameraRequest</span><span class="p">,</span>
+    <span class="n">CaptureAllFromCameraResponse</span><span class="p">,</span>
     <span class="n">Classification</span><span class="p">,</span>
     <span class="n">Detection</span><span class="p">,</span>
     <span class="n">GetClassificationsFromCameraRequest</span><span class="p">,</span>
@@ -109,12 +110,14 @@
     <span class="n">GetDetectionsResponse</span><span class="p">,</span>
     <span class="n">GetObjectPointCloudsRequest</span><span class="p">,</span>
     <span class="n">GetObjectPointCloudsResponse</span><span class="p">,</span>
+    <span class="n">GetPropertiesRequest</span><span class="p">,</span>
+    <span class="n">GetPropertiesResponse</span><span class="p">,</span>
     <span class="n">VisionServiceStub</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_client_base</span> <span class="kn">import</span> <span class="n">ReconfigurableResourceRPCClientBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">ValueTypes</span><span class="p">,</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
 
-<span class="kn">from</span> <span class="nn">.vision</span> <span class="kn">import</span> <span class="n">Vision</span>
+<span class="kn">from</span> <span class="nn">.vision</span> <span class="kn">import</span> <span class="n">Vision</span><span class="p">,</span> <span class="n">CaptureAllResult</span>
 
 
 <div class="viewcode-block" id="VisionClient"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient">[docs]</a><span class="k">class</span> <span class="nc">VisionClient</span><span class="p">(</span><span class="n">Vision</span><span class="p">,</span> <span class="n">ReconfigurableResourceRPCClientBase</span><span class="p">):</span>
@@ -129,6 +132,43 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">VisionServiceStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+<div class="viewcode-block" id="VisionClient.capture_all_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.capture_all_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">capture_all_from_camera</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">return_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_classifications</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_detections</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_object_point_clouds</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CaptureAllResult</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">CaptureAllFromCameraRequest</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">camera_name</span><span class="o">=</span><span class="n">camera_name</span><span class="p">,</span>
+                <span class="n">return_image</span><span class="o">=</span><span class="n">return_image</span><span class="p">,</span>
+                <span class="n">return_classifications</span><span class="o">=</span><span class="n">return_classifications</span><span class="p">,</span>
+                <span class="n">return_detections</span><span class="o">=</span><span class="n">return_detections</span><span class="p">,</span>
+                <span class="n">return_object_point_clouds</span><span class="o">=</span><span class="n">return_object_point_clouds</span><span class="p">,</span>
+                <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+                <span class="p">)</span>
+        <span class="n">response</span><span class="p">:</span> <span class="n">CaptureAllFromCameraResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">CaptureAllFromCamera</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">CaptureAllResult</span><span class="p">()</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">extra</span> <span class="o">=</span> <span class="n">struct_to_dict</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">extra</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_image</span><span class="p">:</span>
+            <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">from_proto</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">ViamImage</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">img</span>
+        <span class="k">if</span> <span class="n">return_classifications</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">classifications</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">classifications</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_detections</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">detections</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_object_point_clouds</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">objects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span></div>
 
 <div class="viewcode-block" id="VisionClient.get_detections_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections_from_camera">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -145,7 +185,7 @@
 
 <div class="viewcode-block" id="VisionClient.get_detections"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_detections">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">],</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -153,17 +193,18 @@
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">):</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">mime_type</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
 
-        <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span>
-            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">image</span><span class="o">=</span><span class="n">mime_type</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">),</span>
-            <span class="n">width</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
-            <span class="n">height</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
-            <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
-            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
-        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;image </span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s2"> needs to have a specified width and height&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">request</span> <span class="o">=</span> <span class="n">GetDetectionsRequest</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
+                <span class="n">height</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
+                <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+            <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetDetectionsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetDetections</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">detections</span><span class="p">)</span></div>
 
@@ -183,7 +224,7 @@
 
 <div class="viewcode-block" id="VisionClient.get_classifications"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_classifications">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_classifications</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">],</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -191,13 +232,13 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">]:</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">):</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="p">[</span><span class="n">mime_type</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
 
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span>
+        <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">image</span><span class="o">.</span><span class="n">height</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ViamError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;image </span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s2"> needs to have a specified width and height&quot;</span><span class="p">)</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetClassificationsRequest</span><span class="p">(</span>
             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">image</span><span class="o">=</span><span class="n">mime_type</span><span class="o">.</span><span class="n">encode_image</span><span class="p">(</span><span class="n">image</span><span class="p">),</span>
+            <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
             <span class="n">width</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
             <span class="n">height</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
             <span class="n">mime_type</span><span class="o">=</span><span class="n">mime_type</span><span class="p">,</span>
@@ -224,6 +265,21 @@
         <span class="p">)</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">GetObjectPointCloudsResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetObjectPointClouds</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">objects</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VisionClient.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.get_properties">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vision</span><span class="o">.</span><span class="n">Properties</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">GetPropertiesRequest</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">extra</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">extra</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">response</span> <span class="p">:</span> <span class="n">GetPropertiesResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">GetProperties</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="VisionClient.do_command"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/index.html#viam.services.vision.client.VisionClient.do_command">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">do_command</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>

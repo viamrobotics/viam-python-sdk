@@ -1,0 +1,56 @@
+:py:mod:`viam.media.utils.pil`
+==============================
+
+.. py:module:: viam.media.utils.pil
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.utils.pil.viam_to_pil_image
+   viam.media.utils.pil.pil_to_viam_image
+
+
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   viam.media.utils.pil.LIBRARY_SUPPORTED_FORMATS
+
+
+.. py:data:: LIBRARY_SUPPORTED_FORMATS
+
+   
+
+.. py:function:: viam_to_pil_image(image: viam.media.video.ViamImage) -> PIL.Image.Image
+
+   Convert a ViamImage to a PIL.Image.
+
+   :param image: The image to convert.
+   :type image: ViamImage
+
+   :returns: The resulting PIL.Image
+   :rtype: Image.Image
+
+
+.. py:function:: pil_to_viam_image(image: PIL.Image.Image, mime_type: viam.media.video.CameraMimeType) -> viam.media.video.ViamImage
+
+   Convert a PIL.Image to a ViamImage.
+
+   :param image: The image to convert.
+   :type image: Image.Image
+   :param mime_type: The mime type to convert the image to.
+   :type mime_type: CameraMimeType
+
+   :returns: The resulting ViamImage
+   :rtype: ViamImage
+
+

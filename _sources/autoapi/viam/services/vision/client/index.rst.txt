@@ -30,6 +30,43 @@ Classes
 
       
 
+   .. py:method:: capture_all_from_camera(camera_name: str, return_image: bool = False, return_classifications: bool = False, return_detections: bool = False, return_object_point_clouds: bool = False, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.services.vision.vision.CaptureAllResult
+      :async:
+
+      Get the next image, detections, classifications, and objects all together,
+      given a camera name. Used for visualization.
+
+      ::
+
+          camera_name = "cam1"
+
+          # Grab the detector you configured on your machine
+          my_detector = VisionClient.from_robot(robot, "my_detector")
+
+          # capture all from the next image from the camera
+          result = await my_detector.capture_all_from_camera(
+              camera_name,
+              return_image=True,
+              return_detections=True,
+          )
+
+      :param camera_name: The name of the camera to use for detection
+      :type camera_name: str
+      :param return_image: Ask the vision service to return the camera's latest image
+      :type return_image: bool
+      :param return_classifications: Ask the vision service to return its latest classifications
+      :type return_classifications: bool
+      :param return_detections: Ask the vision service to return its latest detections
+      :type return_detections: bool
+      :param return_object_point_clouds: Ask the vision service to return its latest 3D segmentations
+      :type return_object_point_clouds: bool
+
+      :returns: A class that stores all potential returns from the vision service.
+                It can  return the image from the camera along with its associated detections, classifications,
+                and objects, as well as any extra info the model may provide.
+      :rtype: vision.CaptureAllResult
+
+
    .. py:method:: get_detections_from_camera(camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
@@ -48,13 +85,15 @@ Classes
       :param camera_name: The name of the camera to use for detection
       :type camera_name: str
 
+      :raises ViamError: Raised if given an image without a specified width and height
+
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
                 from the given camera, with the given detector applied to it.
       :rtype: List[viam.proto.service.vision.Detection]
 
 
-   .. py:method:: get_detections(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
+   .. py:method:: get_detections(image: viam.media.video.ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Detection]
       :async:
 
       Get a list of detections in the given image using the specified detector
@@ -75,6 +114,8 @@ Classes
 
       :param image: The image to get detections from
       :type image: Image | RawImage
+
+      :raises ViamError: Raised if given an image without a specified width and height
 
       :returns: A list of 2D bounding boxes, their labels, and the
                 confidence score of the labels, around the found objects in the next 2D image
@@ -107,7 +148,7 @@ Classes
       :rtype: List[viam.proto.service.vision.Classification]
 
 
-   .. py:method:: get_classifications(image: Union[viam.media.viam_rgba_plugin.Image.Image, viam.media.video.RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
+   .. py:method:: get_classifications(image: viam.media.video.ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> List[viam.proto.service.vision.Classification]
       :async:
 
       Get a list of classifications in the given image using the specified classifier
@@ -165,6 +206,23 @@ Classes
 
       :returns: The pointcloud objects with metadata
       :rtype: List[viam.proto.common.PointCloudObject]
+
+
+   .. py:method:: get_properties(*, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None) -> viam.services.vision.vision.Vision.Properties
+      :async:
+
+      Get info about what vision methods the vision service provides. Currently returns boolean values that
+      state whether the service implements the classification, detection, and/or 3D object segmentation methods.
+
+      ::
+              # Grab the detector you configured on your machine
+              my_detector = VisionClient.from_robot(robot, "my_detector")
+              properties = await my_detector.get_properties()
+              properties.detections_supported      # returns True
+              properties.classifications_supported # returns False
+
+      :returns: The properties of the vision service
+      :rtype: Properties
 
 
    .. py:method:: do_command(command: Mapping[str, viam.utils.ValueTypes], *, timeout: Optional[float] = None, **__) -> Mapping[str, viam.utils.ValueTypes]

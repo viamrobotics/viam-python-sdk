@@ -23,7 +23,6 @@ Classes
 
 .. autoapisummary::
 
-   viam.components.camera.RawImage
    viam.components.camera.ViamImage
    viam.components.camera.DistortionParameters
    viam.components.camera.IntrinsicParameters
@@ -32,55 +31,12 @@ Classes
 
 
 
-.. py:class:: RawImage
-
-
-   Bases: :py:obj:`NamedTuple`
-
-   **DEPRECATED** Use ``ViamImage`` instead
-
-   A raw bytes representation of an image.
-
-   A RawImage should be returned instead of a PIL Image instance under one of
-   the following conditions
-
-   1) The requested mime type has the LAZY_SUFFIX string appended to it
-   2) The requested mime type is not supported for decoding/encoding by Viam's
-   Python SDK
-
-   .. py:attribute:: data
-      :type: bytes
-
-      The raw data of the image
-
-   .. py:attribute:: mime_type
-      :type: str
-
-      The mimetype of the image
-
-   .. py:method:: close()
-
-      Close the image and release resources. For RawImage, this is a noop.
-
-
-   .. py:method:: bytes_to_depth_array() -> List[List[int]]
-
-      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
-      a standard representation.
-
-      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
-
-      :returns: The standard representation of the image.
-      :rtype: List[List[int]]
-
-
-
 .. py:class:: ViamImage(data: bytes, mime_type: CameraMimeType)
 
 
    A native implementation of an image.
 
-   Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.
+   Provides the raw data and the mime type.
 
    .. py:property:: data
       :type: bytes
@@ -92,22 +48,21 @@ Classes
 
       The mime type of the image
 
-   .. py:property:: image
-      :type: Optional[PIL.Image.Image]
+   .. py:property:: width
+      :type: Optional[int]
 
-      The PIL.Image representation of the image. If the mime type is not supported, this will be None.
+      The width of the image
 
-   .. py:method:: close()
+   .. py:property:: height
+      :type: Optional[int]
 
-      Close the image and release resources.
-
+      The height of the image
 
    .. py:method:: bytes_to_depth_array() -> List[List[int]]
 
-      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into
-      a standard representation.
+      Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.
 
-      :raises NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.
+      :raises NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.
 
       :returns: The standard representation of the image.
       :rtype: List[List[int]]
@@ -202,11 +157,11 @@ Classes
 
       
 
-   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> Union[PIL.Image.Image, viam.components.camera.RawImage]
+   .. py:method:: get_image(mime_type: str = '', *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> viam.media.video.ViamImage
       :abstractmethod:
       :async:
 
-      Get the next image from the camera as an Image or RawImage.
+      Get the next image from the camera as a ViamImage.
       Be sure to close the image when finished.
 
       NOTE: If the mime type is ``image/vnd.viam.dep`` you can use :func:`viam.media.video.ViamImage.bytes_to_depth_array`
@@ -227,7 +182,7 @@ Classes
       :type mime_type: str
 
       :returns: The frame
-      :rtype: Image | RawImage
+      :rtype: ViamImage
 
 
    .. py:method:: get_images(*, timeout: Optional[float] = None, **kwargs) -> Tuple[List[viam.media.video.NamedImage], viam.proto.common.ResponseMetadata]

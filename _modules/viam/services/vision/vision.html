@@ -89,16 +89,48 @@
              
   <h1>Source code for viam.services.vision.vision</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Final</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-
-<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">RawImage</span>
+<span class="kn">from</span> <span class="nn">viam.media.video</span> <span class="kn">import</span> <span class="n">ViamImage</span>
 <span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">PointCloudObject</span>
-<span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="n">Classification</span><span class="p">,</span> <span class="n">Detection</span>
+<span class="kn">from</span> <span class="nn">viam.proto.service.vision</span> <span class="kn">import</span> <span class="n">Classification</span><span class="p">,</span> <span class="n">Detection</span><span class="p">,</span> <span class="n">GetPropertiesResponse</span>
 <span class="kn">from</span> <span class="nn">viam.resource.types</span> <span class="kn">import</span> <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="n">Subtype</span>
 
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">TypeAlias</span>
+
 <span class="kn">from</span> <span class="nn">..service_base</span> <span class="kn">import</span> <span class="n">ServiceBase</span>
+
+
+<div class="viewcode-block" id="CaptureAllResult"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.CaptureAllResult">[docs]</a><span class="k">class</span> <span class="nc">CaptureAllResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    CaptureAllResult represents the collection of things that you have requested from the</span>
+<span class="sd">    CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,</span>
+<span class="sd">    returning the image on every call to a classifier/detector/etc would be costly and unnecessary.</span>
+<span class="sd">    The default result for each field is None rather than the empty list to distinguish between</span>
+<span class="sd">    &quot;there was no request for the classifier/detector to return a result&quot; vs.</span>
+<span class="sd">    &quot;the classifier/detector was requested, but there were no results&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">classifications</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">detections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">extra</span><span class="o">=</span><span class="p">{}):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            image (ViamImage|None): The image from the GetImage request of the camera, if it was requested.</span>
+<span class="sd">            classifications (List[Classification]|None): The classifications from GetClassifications, if it was requested.</span>
+<span class="sd">            detections (List[Detection]|None): The detections from GetDetections, if it was requested.</span>
+<span class="sd">            objects (List[PointCloudObject]|None): the object point clouds from GetObjectPointClouds, if it was requested.</span>
+<span class="sd">            extra (dict): A catch all structure, usually for metadata, that a module writer might want to return. Default empty.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ViamImage</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">detections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Detection</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">detections</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classifications</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Classification</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">classifications</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">PointCloudObject</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="n">objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extra</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">extra</span></div>
 
 
 <div class="viewcode-block" id="Vision"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision">[docs]</a><span class="k">class</span> <span class="nc">Vision</span><span class="p">(</span><span class="n">ServiceBase</span><span class="p">):</span>
@@ -106,13 +138,64 @@
 <span class="sd">    Vision represents a Vision service.</span>
 
 <span class="sd">    This acts as an abstract base class for any drivers representing specific</span>
-<span class="sd">    arm implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
+<span class="sd">    vision implementations. This cannot be used on its own. If the ``__init__()`` function is</span>
 <span class="sd">    overridden, it must call the ``super().__init__()`` function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Final</span> <span class="o">=</span> <span class="n">Subtype</span><span class="p">(</span>  <span class="c1"># pyright: ignore [reportIncompatibleVariableOverride]</span>
         <span class="n">RESOURCE_NAMESPACE_RDK</span><span class="p">,</span> <span class="n">RESOURCE_TYPE_SERVICE</span><span class="p">,</span> <span class="s2">&quot;vision&quot;</span>
     <span class="p">)</span>
+
+    <span class="n">Properties</span><span class="p">:</span> <span class="s2">&quot;TypeAlias&quot;</span> <span class="o">=</span> <span class="n">GetPropertiesResponse</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Properties is a class that states what features are supported on the associated vision service.</span>
+<span class="sd">    Currently, these are the following properties:</span>
+<span class="sd">    - classifications_supported (bool): GetClassifications and GetClassificationsFromCamera are implemented.</span>
+<span class="sd">    - detections_supported (bool): GetDetections and GetDetectionsFromCamera are implemented.</span>
+<span class="sd">    - object_point_clouds_supported (bool): GetObjectPointClouds is implemented.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Vision.capture_all_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision.capture_all_from_camera">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">capture_all_from_camera</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">camera_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">return_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_classifications</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_detections</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_object_point_clouds</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CaptureAllResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the next image, detections, classifications, and objects all together,</span>
+<span class="sd">        given a camera name. Used for visualization.</span>
+
+<span class="sd">        ::</span>
+
+<span class="sd">            camera_name = &quot;cam1&quot;</span>
+
+<span class="sd">            # Grab the detector you configured on your machine</span>
+<span class="sd">            my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+
+<span class="sd">            # capture all from the next image from the camera</span>
+<span class="sd">            result = await my_detector.capture_all_from_camera(</span>
+<span class="sd">                camera_name,</span>
+<span class="sd">                return_image=True,</span>
+<span class="sd">                return_detections=True,</span>
+<span class="sd">            )</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            camera_name (str): The name of the camera to use for detection</span>
+<span class="sd">            return_image (bool): Ask the vision service to return the camera&#39;s latest image</span>
+<span class="sd">            return_classifications (bool): Ask the vision service to return its latest classifications</span>
+<span class="sd">            return_detections (bool): Ask the vision service to return its latest detections</span>
+<span class="sd">            return_object_point_clouds (bool): Ask the vision service to return its latest 3D segmentations</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            vision.CaptureAllResult: A class that stores all potential returns from the vision service.</span>
+<span class="sd">            It can  return the image from the camera along with its associated detections, classifications,</span>
+<span class="sd">            and objects, as well as any extra info the model may provide.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Vision.get_detections_from_camera"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision.get_detections_from_camera">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections_from_camera</span><span class="p">(</span>
@@ -137,6 +220,9 @@
 <span class="sd">        Args:</span>
 <span class="sd">            camera_name (str): The name of the camera to use for detection</span>
 
+<span class="sd">        Raises:</span>
+<span class="sd">            ViamError: Raised if given an image without a specified width and height</span>
+
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
 <span class="sd">            confidence score of the labels, around the found objects in the next 2D image</span>
@@ -147,7 +233,7 @@
 <div class="viewcode-block" id="Vision.get_detections"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision.get_detections">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_detections</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">],</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -170,6 +256,9 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            image (Image | RawImage): The image to get detections from</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ViamError: Raised if given an image without a specified width and height</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.service.vision.Detection]: A list of 2D bounding boxes, their labels, and the</span>
@@ -212,7 +301,7 @@
 <div class="viewcode-block" id="Vision.get_classifications"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision.get_classifications">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_classifications</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">],</span>
+        <span class="n">image</span><span class="p">:</span> <span class="n">ViamImage</span><span class="p">,</span>
         <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -279,6 +368,29 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[viam.proto.common.PointCloudObject]: The pointcloud objects with metadata</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+<div class="viewcode-block" id="Vision.get_properties"><a class="viewcode-back" href="../../../../autoapi/viam/services/vision/vision/index.html#viam.services.vision.Vision.get_properties">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_properties</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="o">*</span><span class="p">,</span>
+            <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Properties</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get info about what vision methods the vision service provides. Currently returns boolean values that</span>
+<span class="sd">        state whether the service implements the classification, detection, and/or 3D object segmentation methods.</span>
+
+<span class="sd">        ::</span>
+<span class="sd">                # Grab the detector you configured on your machine</span>
+<span class="sd">                my_detector = VisionClient.from_robot(robot, &quot;my_detector&quot;)</span>
+<span class="sd">                properties = await my_detector.get_properties()</span>
+<span class="sd">                properties.detections_supported      # returns True</span>
+<span class="sd">                properties.classifications_supported # returns False</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Properties: The properties of the vision service</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>

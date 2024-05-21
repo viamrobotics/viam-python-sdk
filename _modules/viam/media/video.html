@@ -90,66 +90,17 @@
   <h1>Source code for viam.media.video</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
 <span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">UnidentifiedImageError</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
 <span class="kn">from</span> <span class="nn">viam.errors</span> <span class="kn">import</span> <span class="n">NotSupportedError</span>
 <span class="kn">from</span> <span class="nn">viam.proto.component.camera</span> <span class="kn">import</span> <span class="n">Format</span>
 
-<span class="kn">from</span> <span class="nn">.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">RGBA_FORMAT_LABEL</span>
-
-<span class="n">LAZY_SUFFIX</span> <span class="o">=</span> <span class="s2">&quot;+lazy&quot;</span>
+<span class="kn">from</span> <span class="nn">.viam_rgba_plugin</span> <span class="kn">import</span> <span class="n">RGBA_FORMAT_LABEL</span><span class="p">,</span> <span class="n">RGBA_HEADER_LENGTH</span><span class="p">,</span> <span class="n">RGBA_MAGIC_NUMBER</span>
 
 <span class="c1"># Formats that are supported by PIL</span>
 <span class="n">LIBRARY_SUPPORTED_FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="s2">&quot;PNG&quot;</span><span class="p">,</span> <span class="n">RGBA_FORMAT_LABEL</span><span class="p">]</span>
-
-
-<div class="viewcode-block" id="RawImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage">[docs]</a><span class="k">class</span> <span class="nc">RawImage</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;**DEPRECATED** Use ``ViamImage`` instead</span>
-
-<span class="sd">    A raw bytes representation of an image.</span>
-
-<span class="sd">    A RawImage should be returned instead of a PIL Image instance under one of</span>
-<span class="sd">    the following conditions</span>
-
-<span class="sd">    1) The requested mime type has the LAZY_SUFFIX string appended to it</span>
-<span class="sd">    2) The requested mime type is not supported for decoding/encoding by Viam&#39;s</span>
-<span class="sd">    Python SDK</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The raw data of the image&quot;&quot;&quot;</span>
-
-    <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;The mimetype of the image&quot;&quot;&quot;</span>
-
-<div class="viewcode-block" id="RawImage.close"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the image and release resources. For RawImage, this is a noop.&quot;&quot;&quot;</span>
-        <span class="k">return</span></div>
-
-<div class="viewcode-block" id="RawImage.bytes_to_depth_array"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.RawImage.bytes_to_depth_array">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_depth_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into</span>
-<span class="sd">        a standard representation.</span>
-
-<span class="sd">        Raises:</span>
-<span class="sd">            NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            List[List[int]]: The standard representation of the image.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">!=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="s2">&quot;Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()&quot;</span><span class="p">)</span>
-
-        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
-        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
-        <span class="n">depth_arr</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">24</span><span class="p">:])</span>
-        <span class="n">depth_arr</span><span class="o">.</span><span class="n">byteswap</span><span class="p">()</span>
-
-        <span class="n">depth_arr_2d</span> <span class="o">=</span> <span class="p">[[</span><span class="n">depth_arr</span><span class="p">[</span><span class="n">row</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">)]</span>
-        <span class="k">return</span> <span class="n">depth_arr_2d</span></div></div>
 
 
 <div class="viewcode-block" id="CameraMimeType"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType">[docs]</a><span class="k">class</span> <span class="nc">CameraMimeType</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">Enum</span><span class="p">):</span>
@@ -158,55 +109,10 @@
     <span class="n">JPEG</span> <span class="o">=</span> <span class="s2">&quot;image/jpeg&quot;</span>
     <span class="n">PNG</span> <span class="o">=</span> <span class="s2">&quot;image/png&quot;</span>
     <span class="n">PCD</span> <span class="o">=</span> <span class="s2">&quot;pointcloud/pcd&quot;</span>
-    <span class="n">UNSUPPORTED</span> <span class="o">=</span> <span class="s2">&quot;unsupported&quot;</span>
 
-<div class="viewcode-block" id="CameraMimeType.from_lazy"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_lazy">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_lazy</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Self</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-        <span class="n">is_lazy</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">LAZY_SUFFIX</span><span class="p">):</span>
-            <span class="n">mime_type</span> <span class="o">=</span> <span class="n">value</span><span class="p">[:</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">LAZY_SUFFIX</span><span class="p">))]</span>
-            <span class="n">is_lazy</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_lazy</span><span class="p">:</span>
-            <span class="n">mime_type</span> <span class="o">=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">UNSUPPORTED</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">cls</span><span class="p">(</span><span class="n">mime_type</span><span class="p">),</span> <span class="n">is_lazy</span><span class="p">)</span></div>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">with_lazy_suffix</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="si">}{</span><span class="n">LAZY_SUFFIX</span><span class="si">}</span><span class="s2">&quot;</span>
-
-<div class="viewcode-block" id="CameraMimeType.encode_image"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.encode_image">[docs]</a>    <span class="k">def</span> <span class="nf">encode_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">RawImage</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">data</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">LIBRARY_SUPPORTED_FORMATS</span><span class="p">:</span>
-            <span class="n">buf</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;RGBA&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;JPEG&quot;</span><span class="p">:</span>
-                <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
-            <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">buf</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot encode image to </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_should_be_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CameraMimeType</span><span class="o">.</span><span class="n">UNSUPPORTED</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PCD</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span>
-            <span class="bp">self</span>
-        <span class="p">)</span>
-
-<div class="viewcode-block" id="CameraMimeType.is_supported"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.is_supported">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">is_supported</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if the provided mime_type is supported.</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            mime_type (str): The mime_type to check</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            bool: Whether the mime_type is supported</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">mime_type</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">UNSUPPORTED</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="n">mime_type</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">cls</span><span class="p">)</span></div>
+<div class="viewcode-block" id="CameraMimeType.from_string"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CameraMimeType.from_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.from_proto">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_proto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CameraMimeType&quot;</span><span class="p">:</span>
@@ -223,9 +129,8 @@
             <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_DEPTH</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">,</span>
             <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_JPEG</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">,</span>
             <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_PNG</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PNG</span><span class="p">,</span>
-            <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">UNSUPPORTED</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">UNSUPPORTED</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">format</span><span class="p">,</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CameraMimeType.to_proto"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.CameraMimeType.to_proto">[docs]</a>    <span class="k">def</span> <span class="nf">to_proto</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Format</span><span class="o">.</span><span class="n">ValueType</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the mimetype in a proto enum.</span>
@@ -238,7 +143,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_RAW_DEPTH</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">JPEG</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_JPEG</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">PNG</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_PNG</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">UNSUPPORTED</span><span class="p">:</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">formats</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Format</span><span class="o">.</span><span class="n">FORMAT_UNSPECIFIED</span><span class="p">)</span></div></div>
 
@@ -246,17 +150,18 @@
 <div class="viewcode-block" id="ViamImage"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.ViamImage">[docs]</a><span class="k">class</span> <span class="nc">ViamImage</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A native implementation of an image.</span>
 
-<span class="sd">    Provides the raw data and the mime type, as well as lazily loading and caching the PIL.Image representation.</span>
+<span class="sd">    Provides the raw data and the mime type.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_data</span><span class="p">:</span> <span class="nb">bytes</span>
     <span class="n">_mime_type</span><span class="p">:</span> <span class="n">CameraMimeType</span>
-    <span class="n">_image</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">_image_decoded</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_height</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_width</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mime_type</span> <span class="o">=</span> <span class="n">mime_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="n">_getDimensions</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
@@ -268,54 +173,35 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;The mime type of the image&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mime_type</span>
 
-    <span class="nd">@mime_type</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">mime_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mime_type</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_image_decoded</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The width of the image&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">image</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;The PIL.Image representation of the image. If the mime type is not supported, this will be None.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">is_supported</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image_decoded</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">formats</span><span class="o">=</span><span class="n">LIBRARY_SUPPORTED_FORMATS</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">UnidentifiedImageError</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_image_decoded</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span>
-
-<div class="viewcode-block" id="ViamImage.close"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.ViamImage.close">[docs]</a>    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Close the image and release resources.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_image</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The height of the image&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span>
 
 <div class="viewcode-block" id="ViamImage.bytes_to_depth_array"><a class="viewcode-back" href="../../../autoapi/viam/media/video/index.html#viam.components.camera.ViamImage.bytes_to_depth_array">[docs]</a>    <span class="k">def</span> <span class="nf">bytes_to_depth_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into</span>
-<span class="sd">        a standard representation.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Decode the data of an image that has the custom depth MIME type ``image/vnd.viam.dep`` into a standard representation.</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            NotSupportedError: Raised if given an image that is not of MIME type `image/vnd.viam.dep`.</span>
+<span class="sd">            NotSupportedError: Raised if the image is not of MIME type `image/vnd.viam.dep`.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            List[List[int]]: The standard representation of the image.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">!=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mime_type</span> <span class="o">!=</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RAW_DEPTH</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">NotSupportedError</span><span class="p">(</span><span class="s2">&quot;Type must be `image/vnd.viam.dep` to use bytes_to_depth_array()&quot;</span><span class="p">)</span>
 
-        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
-        <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">16</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">16</span><span class="p">:</span><span class="mi">24</span><span class="p">],</span> <span class="s2">&quot;big&quot;</span><span class="p">)</span>
         <span class="n">depth_arr</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">24</span><span class="p">:])</span>
         <span class="n">depth_arr</span><span class="o">.</span><span class="n">byteswap</span><span class="p">()</span>
 
-        <span class="n">depth_arr_2d</span> <span class="o">=</span> <span class="p">[[</span><span class="n">depth_arr</span><span class="p">[</span><span class="n">row</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">)]</span>
+        <span class="n">depth_arr_2d</span> <span class="o">=</span> <span class="p">[[</span><span class="n">depth_arr</span><span class="p">[</span><span class="n">row</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_width</span> <span class="o">+</span> <span class="n">col</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_width</span><span class="p">)]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_height</span><span class="p">)]</span>
         <span class="k">return</span> <span class="n">depth_arr_2d</span></div></div>
 
 
@@ -329,6 +215,90 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">_getDimensions</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">mime_type</span><span class="p">:</span> <span class="n">CameraMimeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mime_type</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">JPEG</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_getDimensionsFromJPEG</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mime_type</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">PNG</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_getDimensionsFromPNG</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mime_type</span> <span class="o">==</span> <span class="n">CameraMimeType</span><span class="o">.</span><span class="n">VIAM_RGBA</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">_getDimensionsFromRGBA</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_getDimensionsFromJPEG</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="c1"># JPEG Specification: https://www.w3.org/Graphics/JPEG/itu-t81.pdf</span>
+    <span class="c1"># Specification for markers: Table B.1</span>
+
+    <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">offset</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">image</span><span class="p">[</span><span class="n">offset</span><span class="p">]</span> <span class="o">==</span> <span class="mh">0xFF</span><span class="p">:</span>
+            <span class="c1"># Skip all 0xFF bytes</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">marker</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="n">offset</span><span class="p">]</span>
+        <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>
+            <span class="c1"># Temporary/private use marker</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mh">0xD0</span><span class="p">,</span> <span class="mh">0xD7</span><span class="p">):</span>
+            <span class="c1"># Restart (RST) marker</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="o">==</span> <span class="mh">0xD8</span><span class="p">:</span>
+            <span class="c1"># Start of image (SOI) marker</span>
+            <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="o">==</span> <span class="mh">0xD9</span><span class="p">:</span>
+            <span class="c1"># End of image (EOI) marker</span>
+            <span class="k">break</span>
+
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">offset</span> <span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>  <span class="c1"># length of section</span>
+        <span class="k">if</span> <span class="n">marker</span> <span class="o">==</span> <span class="mh">0xC0</span> <span class="ow">or</span> <span class="n">marker</span> <span class="o">==</span> <span class="mh">0xC2</span><span class="p">:</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+        <span class="n">offset</span> <span class="o">+=</span> <span class="n">length</span>
+
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid JPEG: Could not extract dimensions&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_getDimensionsFromPNG</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="c1"># PNG Specification: https://www.w3.org/TR/png/</span>
+
+    <span class="c1"># PNG will always start with this signature</span>
+    <span class="n">signature</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">signature</span> <span class="o">!=</span> <span class="p">[</span><span class="mh">0x89</span><span class="p">,</span> <span class="mh">0x50</span><span class="p">,</span> <span class="mh">0x4E</span><span class="p">,</span> <span class="mh">0x47</span><span class="p">,</span> <span class="mh">0x0D</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">,</span> <span class="mh">0x1A</span><span class="p">,</span> <span class="mh">0x0A</span><span class="p">]:</span>
+        <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid PNG: Invalid signature&quot;</span><span class="p">)</span>
+
+    <span class="n">header</span> <span class="o">=</span> <span class="n">image</span><span class="p">[</span><span class="mi">12</span><span class="p">:</span><span class="mi">24</span><span class="p">]</span>
+    <span class="n">chunk_type</span> <span class="o">=</span> <span class="n">header</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">chunk_type</span> <span class="o">!=</span> <span class="s2">&quot;IHDR&quot;</span><span class="p">:</span>
+        <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid PNG: Invalid headers&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_getDimensionsFromRGBA</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="c1"># Viam RGBA header comes in 3 4-byte chunks:</span>
+    <span class="c1"># * Magic Number/Signature</span>
+    <span class="c1"># * Width</span>
+    <span class="c1"># * Height</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">image</span><span class="p">[:</span><span class="n">RGBA_HEADER_LENGTH</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">header</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">!=</span> <span class="n">RGBA_MAGIC_NUMBER</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Viam RGBA: Invalid headers&quot;</span><span class="p">)</span>
+
+    <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">8</span><span class="p">],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">8</span><span class="p">:],</span> <span class="n">byteorder</span><span class="o">=</span><span class="s2">&quot;big&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 </pre></div>
 
            </div>
