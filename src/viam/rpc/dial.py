@@ -74,6 +74,7 @@ class DialOptions:
 
     def __init__(
         self,
+        *,
         disable_webrtc: bool = False,
         auth_entity: Optional[str] = None,
         credentials: Optional[Credentials] = None,
