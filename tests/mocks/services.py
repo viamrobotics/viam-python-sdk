@@ -1,12 +1,11 @@
-from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, List, Mapping, Optional, Sequence
 
 import numpy as np
 from grpclib.server import Stream
 from numpy.typing import NDArray
-from PIL import Image
 
 from viam.app.data_client import DataClient
-from viam.media.video import RawImage
+from viam.media.video import ViamImage
 from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
@@ -124,8 +123,11 @@ from viam.proto.app import (
     NewRobotRequest,
     NewRobotResponse,
     Organization,
+    OrganizationIdentity,
     OrganizationInvite,
     OrganizationMember,
+    OrgDetails,
+    RegistryItem,
     RemoveRoleRequest,
     RemoveRoleResponse,
     ResendOrganizationInviteRequest,
@@ -256,6 +258,7 @@ from viam.proto.app.mltraining import (
     SubmitTrainingJobResponse,
     TrainingJobMetadata,
 )
+from viam.proto.app.packages import PackageType
 from viam.proto.common import (
     DoCommandRequest,
     DoCommandResponse,
@@ -327,7 +330,7 @@ from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
-from viam.services.vision import Vision
+from viam.services.vision import Vision, CaptureAllResult
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -341,6 +344,8 @@ class MockVision(Vision):
         classifications: List[Classification],
         segmenters: List[str],
         point_clouds: List[PointCloudObject],
+        image: ViamImage,
+        properties: Vision.Properties,
     ):
         self.detectors = detectors
         self.detections = detections
@@ -348,9 +353,42 @@ class MockVision(Vision):
         self.classifications = classifications
         self.segmenters = segmenters
         self.point_clouds = point_clouds
+        self.image = image
+        self.properties = properties
         self.extra: Optional[Mapping[str, Any]] = None
         self.timeout: Optional[float] = None
         super().__init__(name)
+
+    async def get_properties(
+        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None,
+    ) -> Vision.Properties:
+        self.extra = extra
+        self.timeout = timeout
+        return self.properties
+
+    async def capture_all_from_camera(
+        self,
+        camera_name: str,
+        return_image: bool = False,
+        return_classifications: bool = False,
+        return_detections: bool = False,
+        return_object_point_clouds: bool = False,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
+    ) -> CaptureAllResult:
+        self.extra = extra
+        self.timeout = timeout
+        result = CaptureAllResult()
+        if return_image:
+            result.image = self.image
+        if return_classifications:
+            result.classifications = self.classifications
+        if return_detections:
+            result.detections = self.detections
+        if return_object_point_clouds:
+            result.objects = self.point_clouds
+        return result
 
     async def get_detections_from_camera(
         self, camera_name: str, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
@@ -360,7 +398,7 @@ class MockVision(Vision):
         return self.detections
 
     async def get_detections(
-        self, image: Union[Image.Image, RawImage], *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, image: ViamImage, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Detection]:
         self.extra = extra
         self.timeout = timeout
@@ -374,7 +412,7 @@ class MockVision(Vision):
         return self.classifications
 
     async def get_classifications(
-        self, image: Union[Image.Image, RawImage], count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
+        self, image: ViamImage, count: int, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None
     ) -> List[Classification]:
         self.extra = extra
         self.timeout = timeout
@@ -1127,6 +1165,7 @@ class MockApp(AppServiceBase):
         robot_part: RobotPart,
         log_entry: LogEntry,
         id: str,
+        name: str,
         fragment: Fragment,
         available: bool,
         location_auth: LocationAuth,
@@ -1139,6 +1178,8 @@ class MockApp(AppServiceBase):
         rover_rental_robots: List[RoverRentalRobot],
         api_key: str,
         api_keys_with_authorizations: List[APIKeyWithAuthorizations],
+        items: List[RegistryItem],
+        package_type: PackageType.ValueType,
     ):
         self.organizations = organizations
         self.location = location
@@ -1146,6 +1187,7 @@ class MockApp(AppServiceBase):
         self.robot_part = robot_part
         self.log_entry = log_entry
         self.id = id
+        self.name = name
         self.fragment = fragment
         self.available = available
         self.location_auth = location_auth
@@ -1158,13 +1200,19 @@ class MockApp(AppServiceBase):
         self.rover_rental_robots = rover_rental_robots
         self.api_key = api_key
         self.api_keys_with_authorizations = api_keys_with_authorizations
+        self.items = items
+        self.package_type = package_type
         self.send_email_invite = False
 
     async def GetUserIDByEmail(self, stream: Stream[GetUserIDByEmailRequest, GetUserIDByEmailResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetUserIDByEmailResponse(user_id=self.id))
 
     async def CreateOrganization(self, stream: Stream[CreateOrganizationRequest, CreateOrganizationResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(CreateOrganizationResponse(organization=self.organizations[0]))
 
     async def ListOrganizations(self, stream: Stream[ListOrganizationsRequest, ListOrganizationsResponse]) -> None:
         request = await stream.recv_message()
@@ -1172,7 +1220,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListOrganizationsResponse(organizations=self.organizations))
 
     async def ListOrganizationsByUser(self, stream: Stream[ListOrganizationsByUserRequest, ListOrganizationsByUserResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListOrganizationsByUserResponse(orgs=[OrgDetails(org_id=self.id, org_name=self.name)]))
 
     async def GetOrganization(self, stream: Stream[GetOrganizationRequest, GetOrganizationResponse]) -> None:
         request = await stream.recv_message()
@@ -1475,7 +1525,10 @@ class MockApp(AppServiceBase):
         await stream.send_message(RemoveRoleResponse())
 
     async def ChangeRole(self, stream: Stream[ChangeRoleRequest, ChangeRoleResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.change_role_called = True
+        await stream.send_message(ChangeRoleResponse())
 
     async def ListAuthorizations(self, stream: Stream[ListAuthorizationsRequest, ListAuthorizationsResponse]) -> None:
         request = await stream.recv_message()
@@ -1531,10 +1584,16 @@ class MockApp(AppServiceBase):
         await stream.send_message(CreateKeyResponse(key=self.api_key, id=self.id))
 
     async def GetRobotAPIKeys(self, stream: Stream[GetRobotAPIKeysRequest, GetRobotAPIKeysResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRobotAPIKeysResponse(api_keys=self.api_keys_with_authorizations))
 
     async def DeleteKey(self, stream: Stream[DeleteKeyRequest, DeleteKeyResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.id
+        self.delete_key_called = True
+        await stream.send_message((DeleteKeyResponse()))
 
     async def ListKeys(self, stream: Stream[ListKeysRequest, ListKeysResponse]) -> None:
         request = await stream.recv_message()
@@ -1542,7 +1601,9 @@ class MockApp(AppServiceBase):
         await stream.send_message(ListKeysResponse(api_keys=self.api_keys_with_authorizations))
 
     async def RotateKey(self, stream: Stream[RotateKeyRequest, RotateKeyResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(RotateKeyResponse(id=self.id, key=self.api_key))
 
     async def CreateKeyFromExistingKeyAuthorizations(
         self, stream: Stream[CreateKeyFromExistingKeyAuthorizationsRequest, CreateKeyFromExistingKeyAuthorizationsResponse]
@@ -1552,24 +1613,46 @@ class MockApp(AppServiceBase):
         await stream.send_message(CreateKeyFromExistingKeyAuthorizationsResponse(key=self.api_key, id=self.id))
 
     async def CreateRegistryItem(self, stream: Stream[CreateRegistryItemRequest, CreateRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.name = request.name
+        self.package_type = request.type
+        self.organization_id = request.organization_id
+        await stream.send_message(CreateRegistryItemResponse())
 
     async def GetOrganizationsWithAccessToLocation(
         self, stream: Stream[GetOrganizationsWithAccessToLocationRequest, GetOrganizationsWithAccessToLocationResponse]
     ) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(
+            GetOrganizationsWithAccessToLocationResponse(organization_identities=[OrganizationIdentity(id=self.id, name=self.name)])
+        )
 
     async def ListRegistryItems(self, stream: Stream[ListRegistryItemsRequest, ListRegistryItemsResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(ListRegistryItemsResponse(items=self.items))
 
     async def UpdateRegistryItem(self, stream: Stream[UpdateRegistryItemRequest, UpdateRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.id = request.item_id
+        self.package_type = request.type
+        self.description = request.description
+        self.visibility = request.visibility
+        await stream.send_message(UpdateRegistryItemResponse())
 
     async def DeleteRegistryItem(self, stream: Stream[DeleteRegistryItemRequest, DeleteRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        self.delete_item_called = True
+        await stream.send_message(DeleteRegistryItemResponse())
 
     async def GetRegistryItem(self, stream: Stream[GetRegistryItemRequest, GetRegistryItemResponse]) -> None:
-        raise NotImplementedError()
+        request = await stream.recv_message()
+        assert request is not None
+        await stream.send_message(GetRegistryItemResponse(item=self.items[0]))
 
 
 class MockGenericService(GenericService):
