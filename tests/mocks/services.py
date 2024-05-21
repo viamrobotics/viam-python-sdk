@@ -330,7 +330,7 @@ from viam.services.mlmodel import File, LabelType, Metadata, MLModel, TensorInfo
 from viam.services.mlmodel.utils import flat_tensors_to_ndarrays, ndarrays_to_flat_tensors
 from viam.services.navigation import Navigation
 from viam.services.slam import SLAM
-from viam.services.vision import Vision, CaptureAllResult
+from viam.services.vision import CaptureAllResult, Vision
 from viam.utils import ValueTypes, datetime_to_timestamp, dict_to_struct, struct_to_dict
 
 
@@ -360,7 +360,10 @@ class MockVision(Vision):
         super().__init__(name)
 
     async def get_properties(
-        self, *, extra: Optional[Mapping[str, Any]] = None, timeout: Optional[float] = None,
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> Vision.Properties:
         self.extra = extra
         self.timeout = timeout

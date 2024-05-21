@@ -27,7 +27,7 @@ from viam.proto.service.vision import (
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
 from viam.utils import ValueTypes, dict_to_struct, struct_to_dict
 
-from .vision import Vision, CaptureAllResult
+from .vision import CaptureAllResult, Vision
 
 
 class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
@@ -57,14 +57,14 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
         if extra is None:
             extra = {}
         request = CaptureAllFromCameraRequest(
-                name=self.name,
-                camera_name=camera_name,
-                return_image=return_image,
-                return_classifications=return_classifications,
-                return_detections=return_detections,
-                return_object_point_clouds=return_object_point_clouds,
-                extra=dict_to_struct(extra),
-                )
+            name=self.name,
+            camera_name=camera_name,
+            return_image=return_image,
+            return_classifications=return_classifications,
+            return_detections=return_detections,
+            return_object_point_clouds=return_object_point_clouds,
+            extra=dict_to_struct(extra),
+        )
         response: CaptureAllFromCameraResponse = await self.client.CaptureAllFromCamera(request, timeout=timeout)
         result = CaptureAllResult()
         result.extra = struct_to_dict(response.extra)
@@ -188,7 +188,7 @@ class VisionClient(Vision, ReconfigurableResourceRPCClientBase):
             name=self.name,
             extra=dict_to_struct(extra),
         )
-        response : GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
+        response: GetPropertiesResponse = await self.client.GetProperties(request, timeout=timeout)
         return response
 
     async def do_command(

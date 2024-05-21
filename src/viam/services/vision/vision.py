@@ -24,6 +24,7 @@ class CaptureAllResult:
     "there was no request for the classifier/detector to return a result" vs.
     "the classifier/detector was requested, but there were no results".
     """
+
     def __init__(self, image=None, classifications=None, detections=None, objects=None, extra={}):
         """
         Args:
@@ -51,6 +52,7 @@ class Vision(ServiceBase):
     vision implementations. This cannot be used on its own. If the ``__init__()`` function is
     overridden, it must call the ``super().__init__()`` function.
     """
+
     SUBTYPE: Final = Subtype(  # pyright: ignore [reportIncompatibleVariableOverride]
         RESOURCE_NAMESPACE_RDK, RESOURCE_TYPE_SERVICE, "vision"
     )
@@ -283,10 +285,10 @@ class Vision(ServiceBase):
 
     @abc.abstractmethod
     async def get_properties(
-            self,
-            *,
-            extra: Optional[Mapping[str, Any]] = None,
-            timeout: Optional[float] = None,
+        self,
+        *,
+        extra: Optional[Mapping[str, Any]] = None,
+        timeout: Optional[float] = None,
     ) -> Properties:
         """
         Get info about what vision methods the vision service provides. Currently returns boolean values that

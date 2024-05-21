@@ -34,12 +34,7 @@ from viam.proto.service.vision import (
     VisionServiceStub,
 )
 from viam.resource.manager import ResourceManager
-from viam.services.vision import (
-    Classification,
-    Detection,
-    Vision,
-    VisionClient,
-)
+from viam.services.vision import Classification, Detection, Vision, VisionClient
 from viam.services.vision.service import VisionRPCService
 from viam.utils import dict_to_struct, struct_to_dict
 
@@ -215,11 +210,7 @@ class TestService:
             client = VisionServiceStub(channel)
             extra = {"foo": "capture_all_from_camera"}
             request = CaptureAllFromCameraRequest(
-                    name=vision.name,
-                    camera_name="fake-camera",
-                    return_image=True,
-                    return_classifications=True,
-                    extra=dict_to_struct(extra)
+                name=vision.name, camera_name="fake-camera", return_image=True, return_classifications=True, extra=dict_to_struct(extra)
             )
             response: CaptureAllFromCameraResponse = await client.CaptureAllFromCamera(request)
             assert response.image.image == VISION_IMAGE.data
