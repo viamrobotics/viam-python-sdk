@@ -26,8 +26,8 @@ Classes
    viam.services.vision.Classification
    viam.services.vision.Detection
    viam.services.vision.VisionClient
-   viam.services.vision.Vision
    viam.services.vision.CaptureAllResult
+   viam.services.vision.Vision
 
 
 
@@ -436,6 +436,17 @@ Classes
 
 
 
+.. py:class:: CaptureAllResult(image=None, classifications=None, detections=None, objects=None, extra={})
+
+
+   CaptureAllResult represents the collection of things that you have requested from the
+   CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
+   returning the image on every call to a classifier/detector/etc would be costly and unnecessary.
+   The default result for each field is None rather than the empty list to distinguish between
+   "there was no request for the classifier/detector to return a result" vs.
+   "the classifier/detector was requested, but there were no results".
+
+
 .. py:class:: Vision(name: str)
 
 
@@ -763,16 +774,5 @@ Classes
           await component.close()
 
 
-
-
-.. py:class:: CaptureAllResult(image=None, classifications=None, detections=None, objects=None, extra={})
-
-
-   CaptureAllResult represents the collection of things that you have requested from the
-   CaptureAllFromCamera method. This is used most often for visualization purposes, since normally,
-   returning the image on every call to a classifier/detector/etc would be costly and unnecessary.
-   The default result for each field is None rather than the empty list to distinguish between
-   "there was no request for the classifier/detector to return a result" vs.
-   "the classifier/detector was requested, but there were no results".
 
 
