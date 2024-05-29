@@ -19,6 +19,8 @@ from viam.proto.component.motor import (
     ResetZeroPositionResponse,
     SetPowerRequest,
     SetPowerResponse,
+    SetRPMRequest,
+    SetRPMResponse,
     StopRequest,
     StopResponse,
 )
@@ -63,6 +65,15 @@ class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
             request.rpm, request.position_revolutions, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata
         )
         await stream.send_message(GoToResponse())
+
+    async def SetRPM(self, stream: Stream[SetRPMRequest, SetRPMResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        name = request.name
+        motor = self.get_resource(name)
+        timeout = stream.deadline.time_remaining() if stream.deadline else None
+        await motor.set_rpm(request.rpm, extra=struct_to_dict(request.extra), timeout=timeout, metadata=stream.metadata)
+        await stream.send_message(SetRPMResponse())
 
     async def ResetZeroPosition(self, stream: Stream[ResetZeroPositionRequest, ResetZeroPositionResponse]) -> None:
         request = await stream.recv_message()

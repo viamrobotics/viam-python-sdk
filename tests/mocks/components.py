@@ -701,6 +701,18 @@ class MockMotor(Motor):
         self.extra = extra
         self.timeout = timeout
 
+    async def set_rpm(
+        self,
+        rpm: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        self.powered = rpm != 0
+        self.extra = extra
+        self.timeout = timeout
+
     async def reset_zero_position(
         self,
         offset: float,

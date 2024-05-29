@@ -592,6 +592,12 @@ class ExampleMotor(Motor):
             self.position += rps
         self.powered = False
 
+    async def set_rpm(self, rpm: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
+        if self.task:
+            self.task.cancel()
+        self.powered = True
+        self.task = asyncio.create_task(self.run_continuously(rpm))
+
     async def reset_zero_position(self, offset: float, extra: Optional[Dict[str, Any]] = None, **kwargs):
         if (self.position > 0 and offset > 0) or (self.position < 0 and offset < 0):
             self.position = offset
