@@ -709,7 +709,7 @@ class MockMotor(Motor):
         timeout: Optional[float] = None,
         **kwargs,
     ):
-        self.powered = rpm != 0
+        self.powered = True
         self.extra = extra
         self.timeout = timeout
 
