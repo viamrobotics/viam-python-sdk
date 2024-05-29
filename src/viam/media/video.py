@@ -7,10 +7,7 @@ from typing_extensions import Self
 from viam.errors import NotSupportedError
 from viam.proto.component.camera import Format
 
-from .viam_rgba_plugin import RGBA_FORMAT_LABEL, RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
-
-# Formats that are supported by PIL
-LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
+from .viam_rgba import RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 
 class CameraMimeType(str, Enum):
