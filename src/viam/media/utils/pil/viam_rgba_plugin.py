@@ -4,16 +4,7 @@ from PIL import Image
 from PIL.ImageFile import ImageFile, PyDecoder, PyEncoder, _safe_read  # type: ignore -- (njooma) this exists, manually checked
 from PIL.ImageFile import _save as image_save  # type: ignore -- (njooma) this exists, manually checked
 
-# Viam uses a special header prepended to raw RGBA data. The header is composed of a
-# 4-byte magic number followed by a 4-byte line of the width as a uint32 number
-# and another for the height. Credit to Ben Zotto for inventing this formulation
-# https://bzotto.medium.com/introducing-the-rgba-bitmap-file-format-4a8a94329e2c
-
-RGBA_MAGIC_NUMBER = bytes("RGBA", "utf-8")
-
-RGBA_FORMAT_LABEL = "VIAM_RGBA"
-
-RGBA_HEADER_LENGTH = 12
+from ...viam_rgba import RGBA_FORMAT_LABEL, RGBA_HEADER_LENGTH, RGBA_MAGIC_NUMBER
 
 
 def _accept(prefix: str):

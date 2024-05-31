@@ -371,6 +371,7 @@ class MockCamera(Camera):
             supports_pcd=False,
             intrinsic_parameters=IntrinsicParameters(width_px=1, height_px=2, focal_x_px=3, focal_y_px=4, center_x_px=5, center_y_px=6),
             distortion_parameters=DistortionParameters(model="no_distortion"),
+            mime_types=[CameraMimeType.PNG, CameraMimeType.JPEG],
         )
         self.timeout: Optional[float] = None
         ts = Timestamp()

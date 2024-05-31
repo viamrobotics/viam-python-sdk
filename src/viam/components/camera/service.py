@@ -88,6 +88,7 @@ class CameraRPCService(CameraServiceBase, ResourceRPCServiceBase[Camera]):
             supports_pcd=properties.supports_pcd,
             intrinsic_parameters=properties.intrinsic_parameters,
             distortion_parameters=properties.distortion_parameters,
+            mime_types=properties.mime_types,
         )
         await stream.send_message(response)
 

@@ -2,9 +2,8 @@ from io import BytesIO
 
 from PIL import Image
 
-from viam.media.video import CameraMimeType, ViamImage
-
-from ..viam_rgba_plugin import RGBA_FORMAT_LABEL
+from ....media.video import CameraMimeType, ViamImage
+from .viam_rgba_plugin import RGBA_FORMAT_LABEL
 
 # Formats that are supported by PIL
 LIBRARY_SUPPORTED_FORMATS = ["JPEG", "PNG", RGBA_FORMAT_LABEL]
