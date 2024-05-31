@@ -10,7 +10,7 @@ from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
     APIKeyWithAuthorizations,
-    AppServiceBase,
+    UnimplementedAppServiceBase,
     Authorization,
     ChangeRoleRequest,
     ChangeRoleResponse,
@@ -1159,7 +1159,7 @@ class MockBilling(BillingServiceBase):
         await stream.send_message(self.billing_info)
 
 
-class MockApp(AppServiceBase):
+class MockApp(UnimplementedAppServiceBase):
     def __init__(
         self,
         organizations: List[Organization],
