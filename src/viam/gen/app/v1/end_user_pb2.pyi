@@ -80,15 +80,15 @@ class RegisterAuthApplicationResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     APPLICATION_ID_FIELD_NUMBER: builtins.int
     APPLICATION_NAME_FIELD_NUMBER: builtins.int
-    SECRET_FIELD_NUMBER: builtins.int
+    CLIENT_SECRET_FIELD_NUMBER: builtins.int
     application_id: builtins.str
     application_name: builtins.str
-    secret: builtins.str
+    client_secret: builtins.str
 
-    def __init__(self, *, application_id: builtins.str=..., application_name: builtins.str=..., secret: builtins.str=...) -> None:
+    def __init__(self, *, application_id: builtins.str=..., application_name: builtins.str=..., client_secret: builtins.str=...) -> None:
         ...
 
-    def ClearField(self, field_name: typing.Literal['application_id', b'application_id', 'application_name', b'application_name', 'secret', b'secret']) -> None:
+    def ClearField(self, field_name: typing.Literal['application_id', b'application_id', 'application_name', b'application_name', 'client_secret', b'client_secret']) -> None:
         ...
 global___RegisterAuthApplicationResponse = RegisterAuthApplicationResponse
 
@@ -135,3 +135,47 @@ class UpdateAuthApplicationResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal['application_id', b'application_id', 'application_name', b'application_name']) -> None:
         ...
 global___UpdateAuthApplicationResponse = UpdateAuthApplicationResponse
+
+@typing.final
+class GetAuthApplicationRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ORG_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_ID_FIELD_NUMBER: builtins.int
+    org_id: builtins.str
+    application_id: builtins.str
+
+    def __init__(self, *, org_id: builtins.str=..., application_id: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['application_id', b'application_id', 'org_id', b'org_id']) -> None:
+        ...
+global___GetAuthApplicationRequest = GetAuthApplicationRequest
+
+@typing.final
+class GetAuthApplicationResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    APPLICATION_ID_FIELD_NUMBER: builtins.int
+    APPLICATION_NAME_FIELD_NUMBER: builtins.int
+    CLIENT_SECRET_FIELD_NUMBER: builtins.int
+    ORIGIN_URIS_FIELD_NUMBER: builtins.int
+    REDIRECT_URIS_FIELD_NUMBER: builtins.int
+    LOGOUT_URI_FIELD_NUMBER: builtins.int
+    application_id: builtins.str
+    application_name: builtins.str
+    client_secret: builtins.str
+    logout_uri: builtins.str
+
+    @property
+    def origin_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    @property
+    def redirect_uris(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        ...
+
+    def __init__(self, *, application_id: builtins.str=..., application_name: builtins.str=..., client_secret: builtins.str=..., origin_uris: collections.abc.Iterable[builtins.str] | None=..., redirect_uris: collections.abc.Iterable[builtins.str] | None=..., logout_uri: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['application_id', b'application_id', 'application_name', b'application_name', 'client_secret', b'client_secret', 'logout_uri', b'logout_uri', 'origin_uris', b'origin_uris', 'redirect_uris', b'redirect_uris']) -> None:
+        ...
+global___GetAuthApplicationResponse = GetAuthApplicationResponse

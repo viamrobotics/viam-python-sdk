@@ -20,6 +20,25 @@ else:
     import typing_extensions
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class _FragmentVisibility:
+    ValueType = typing.NewType('ValueType', builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _FragmentVisibilityEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_FragmentVisibility.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    FRAGMENT_VISIBILITY_UNSPECIFIED: _FragmentVisibility.ValueType
+    FRAGMENT_VISIBILITY_PRIVATE: _FragmentVisibility.ValueType
+    FRAGMENT_VISIBILITY_PUBLIC: _FragmentVisibility.ValueType
+    FRAGMENT_VISIBILITY_PUBLIC_UNLISTED: _FragmentVisibility.ValueType
+
+class FragmentVisibility(_FragmentVisibility, metaclass=_FragmentVisibilityEnumTypeWrapper):
+    ...
+FRAGMENT_VISIBILITY_UNSPECIFIED: FragmentVisibility.ValueType
+FRAGMENT_VISIBILITY_PRIVATE: FragmentVisibility.ValueType
+FRAGMENT_VISIBILITY_PUBLIC: FragmentVisibility.ValueType
+FRAGMENT_VISIBILITY_PUBLIC_UNLISTED: FragmentVisibility.ValueType
+global___FragmentVisibility = FragmentVisibility
+
 class _RegistryItemStatus:
     ValueType = typing.NewType('ValueType', builtins.int)
     V: typing_extensions.TypeAlias = ValueType
@@ -1619,6 +1638,7 @@ class Fragment(google.protobuf.message.Message):
     ROBOT_PART_COUNT_FIELD_NUMBER: builtins.int
     ORGANIZATION_COUNT_FIELD_NUMBER: builtins.int
     ONLY_USED_BY_OWNER_FIELD_NUMBER: builtins.int
+    VISIBILITY_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     organization_owner: builtins.str
@@ -1630,6 +1650,8 @@ class Fragment(google.protobuf.message.Message):
     'number of organizations using this fragment'
     only_used_by_owner: builtins.bool
     'whether the organization(s) using this fragment is the same as the fragment org'
+    visibility: global___FragmentVisibility.ValueType
+    'the visibility of a fragment; public, private or unlisted'
 
     @property
     def fragment(self) -> google.protobuf.struct_pb2.Struct:
@@ -1639,13 +1661,13 @@ class Fragment(google.protobuf.message.Message):
     def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., fragment: google.protobuf.struct_pb2.Struct | None=..., organization_owner: builtins.str=..., public: builtins.bool=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=..., organization_name: builtins.str=..., robot_part_count: builtins.int=..., organization_count: builtins.int=..., only_used_by_owner: builtins.bool=..., visibility: global___FragmentVisibility.ValueType=...) -> None:
         ...
 
     def HasField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count']) -> None:
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'fragment', b'fragment', 'id', b'id', 'name', b'name', 'only_used_by_owner', b'only_used_by_owner', 'organization_count', b'organization_count', 'organization_name', b'organization_name', 'organization_owner', b'organization_owner', 'public', b'public', 'robot_part_count', b'robot_part_count', 'visibility', b'visibility']) -> None:
         ...
 global___Fragment = Fragment
 
@@ -1654,13 +1676,18 @@ class ListFragmentsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     ORGANIZATION_ID_FIELD_NUMBER: builtins.int
     SHOW_PUBLIC_FIELD_NUMBER: builtins.int
+    FRAGMENT_VISIBILITY_FIELD_NUMBER: builtins.int
     organization_id: builtins.str
     show_public: builtins.bool
 
-    def __init__(self, *, organization_id: builtins.str=..., show_public: builtins.bool=...) -> None:
+    @property
+    def fragment_visibility(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[global___FragmentVisibility.ValueType]:
         ...
 
-    def ClearField(self, field_name: typing.Literal['organization_id', b'organization_id', 'show_public', b'show_public']) -> None:
+    def __init__(self, *, organization_id: builtins.str=..., show_public: builtins.bool=..., fragment_visibility: collections.abc.Iterable[global___FragmentVisibility.ValueType] | None=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['fragment_visibility', b'fragment_visibility', 'organization_id', b'organization_id', 'show_public', b'show_public']) -> None:
         ...
 global___ListFragmentsRequest = ListFragmentsRequest
 
@@ -1761,24 +1788,31 @@ class UpdateFragmentRequest(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     CONFIG_FIELD_NUMBER: builtins.int
     PUBLIC_FIELD_NUMBER: builtins.int
+    VISIBILITY_FIELD_NUMBER: builtins.int
     id: builtins.str
     name: builtins.str
     public: builtins.bool
+    visibility: global___FragmentVisibility.ValueType
 
     @property
     def config(self) -> google.protobuf.struct_pb2.Struct:
         ...
 
-    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=...) -> None:
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=..., config: google.protobuf.struct_pb2.Struct | None=..., public: builtins.bool | None=..., visibility: global___FragmentVisibility.ValueType | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['_public', b'_public', 'config', b'config', 'public', b'public']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'public', b'public', 'visibility', b'visibility']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['_public', b'_public', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public']) -> None:
+    def ClearField(self, field_name: typing.Literal['_public', b'_public', '_visibility', b'_visibility', 'config', b'config', 'id', b'id', 'name', b'name', 'public', b'public', 'visibility', b'visibility']) -> None:
         ...
 
+    @typing.overload
     def WhichOneof(self, oneof_group: typing.Literal['_public', b'_public']) -> typing.Literal['public'] | None:
+        ...
+
+    @typing.overload
+    def WhichOneof(self, oneof_group: typing.Literal['_visibility', b'_visibility']) -> typing.Literal['visibility'] | None:
         ...
 global___UpdateFragmentRequest = UpdateFragmentRequest
 
@@ -2301,6 +2335,27 @@ class MLModelMetadata(google.protobuf.message.Message):
 global___MLModelMetadata = MLModelMetadata
 
 @typing.final
+class MLTrainingVersion(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    VERSION_FIELD_NUMBER: builtins.int
+    CREATED_ON_FIELD_NUMBER: builtins.int
+    version: builtins.str
+
+    @property
+    def created_on(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        ...
+
+    def __init__(self, *, version: builtins.str=..., created_on: google.protobuf.timestamp_pb2.Timestamp | None=...) -> None:
+        ...
+
+    def HasField(self, field_name: typing.Literal['created_on', b'created_on']) -> builtins.bool:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['created_on', b'created_on', 'version', b'version']) -> None:
+        ...
+global___MLTrainingVersion = MLTrainingVersion
+
+@typing.final
 class MLTrainingMetadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     VERSIONS_FIELD_NUMBER: builtins.int
@@ -2312,10 +2367,10 @@ class MLTrainingMetadata(google.protobuf.message.Message):
     draft: builtins.bool
 
     @property
-    def versions(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    def versions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MLTrainingVersion]:
         """A list of package versions for ML training source distribution"""
 
-    def __init__(self, *, versions: collections.abc.Iterable[builtins.str] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., draft: builtins.bool=...) -> None:
+    def __init__(self, *, versions: collections.abc.Iterable[global___MLTrainingVersion] | None=..., model_type: app.mltraining.v1.ml_training_pb2.ModelType.ValueType=..., model_framework: app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType=..., draft: builtins.bool=...) -> None:
         ...
 
     def ClearField(self, field_name: typing.Literal['draft', b'draft', 'model_framework', b'model_framework', 'model_type', b'model_type', 'versions', b'versions']) -> None:
@@ -3033,6 +3088,36 @@ class DeleteKeyResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___DeleteKeyResponse = DeleteKeyResponse
+
+@typing.final
+class RenameKeyRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    name: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
+        ...
+global___RenameKeyRequest = RenameKeyRequest
+
+@typing.final
+class RenameKeyResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ID_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    id: builtins.str
+    name: builtins.str
+
+    def __init__(self, *, id: builtins.str=..., name: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['id', b'id', 'name', b'name']) -> None:
+        ...
+global___RenameKeyResponse = RenameKeyResponse
 
 @typing.final
 class AuthorizationDetails(google.protobuf.message.Message):
