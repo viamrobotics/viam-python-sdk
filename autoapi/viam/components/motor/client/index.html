@@ -76,6 +76,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.set_power"><code class="docutils literal notranslate"><span class="pre">MotorClient.set_power()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.go_for"><code class="docutils literal notranslate"><span class="pre">MotorClient.go_for()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.go_to"><code class="docutils literal notranslate"><span class="pre">MotorClient.go_to()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.set_rpm"><code class="docutils literal notranslate"><span class="pre">MotorClient.set_rpm()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.reset_zero_position"><code class="docutils literal notranslate"><span class="pre">MotorClient.reset_zero_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_position"><code class="docutils literal notranslate"><span class="pre">MotorClient.get_position()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.components.motor.client.MotorClient.get_properties"><code class="docutils literal notranslate"><span class="pre">MotorClient.get_properties()</span></code></a></li>
@@ -229,6 +230,24 @@ the motor towards the specified position.</p>
 <li><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should rotate (absolute value).</p></li>
 <li><p><strong>position_revolutions</strong> (<em>float</em>) – Target position relative to home/zero, in revolutions.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.components.motor.client.MotorClient.set_rpm">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_rpm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">__</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/viam/components/motor/client.html#MotorClient.set_rpm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.motor.client.MotorClient.set_rpm" title="Permalink to this definition"></a></dt>
+<dd><p>Spin the motor indefinitely at the specified speed, in revolutions per minute.
+Positive <code class="docutils literal notranslate"><span class="pre">rpm</span></code> will result in forward movement and negative <code class="docutils literal notranslate"><span class="pre">rpm</span></code> will result in backwards movement</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_motor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Spin the motor at 75 RPM.</span>
+<span class="k">await</span> <span class="n">my_motor</span><span class="o">.</span><span class="n">set_rpm</span><span class="p">(</span><span class="n">rpm</span><span class="o">=</span><span class="mi">75</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rpm</strong> (<em>float</em>) – Speed at which the motor should rotate.</p>
 </dd>
 </dl>
 </dd></dl>

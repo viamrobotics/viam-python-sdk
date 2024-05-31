@@ -85,6 +85,23 @@ Classes
       :type position_revolutions: float
 
 
+   .. py:method:: set_rpm(rpm: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
+      :async:
+
+      Spin the motor indefinitely at the specified speed, in revolutions per minute.
+      Positive ``rpm`` will result in forward movement and negative ``rpm`` will result in backwards movement
+
+      ::
+
+          my_motor = Motor.from_robot(robot=robot, name="my_motor")
+
+          # Spin the motor at 75 RPM.
+          await my_motor.set_rpm(rpm=75)
+
+      :param rpm: Speed at which the motor should rotate.
+      :type rpm: float
+
+
    .. py:method:: reset_zero_position(offset: float, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__)
       :async:
 
