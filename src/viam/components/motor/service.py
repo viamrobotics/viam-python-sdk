@@ -14,13 +14,13 @@ from viam.proto.component.motor import (
     IsMovingResponse,
     IsPoweredRequest,
     IsPoweredResponse,
-    UnimplementedMotorServiceBase,
     ResetZeroPositionRequest,
     ResetZeroPositionResponse,
     SetPowerRequest,
     SetPowerResponse,
     StopRequest,
     StopResponse,
+    UnimplementedMotorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
