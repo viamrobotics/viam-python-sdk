@@ -248,7 +248,7 @@ Classes
       Name of slam service
 
 
-.. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ..., component_reference: str = ..., extra: google.protobuf.struct_pb2.Struct | None = ...)
+.. py:class:: GetPositionResponse(*, pose: viam.gen.common.v1.common_pb2.Pose | None = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -264,17 +264,7 @@ Classes
 
       Current position of the specified component in the SLAM Map
 
-   .. py:property:: extra
-      :type: google.protobuf.struct_pb2.Struct
-
-      Additional information in the response
-
-   .. py:attribute:: component_reference
-      :type: str
-
-      This is usually the name of the camera that is in the SLAM config
-
-   .. py:method:: HasField(field_name: Literal[extra, b'extra', pose, b'pose']) -> bool
+   .. py:method:: HasField(field_name: Literal[pose, b'pose']) -> bool
 
       Checks if a certain field is set for the message.
 

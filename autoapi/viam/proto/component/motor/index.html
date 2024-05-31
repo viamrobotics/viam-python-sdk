@@ -86,6 +86,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.SetPower"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.SetPower()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GoFor"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GoFor()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GoTo"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GoTo()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.SetRPM"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.SetRPM()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.ResetZeroPosition"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.ResetZeroPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.MotorServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">MotorServiceBase.GetProperties()</span></code></a></li>
@@ -102,6 +103,7 @@
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.SetPower"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.SetPower()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GoFor"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GoFor()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GoTo"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GoTo()</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.SetRPM"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.SetRPM()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.ResetZeroPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.ResetZeroPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GetPosition"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GetPosition()</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GetProperties"><code class="docutils literal notranslate"><span class="pre">UnimplementedMotorServiceBase.GetProperties()</span></code></a></li>
@@ -185,6 +187,14 @@
 </ul>
 </li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetPowerResponse"><code class="docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest"><code class="docutils literal notranslate"><span class="pre">SetRPMRequest</span></code></a><ul>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest.extra"><code class="docutils literal notranslate"><span class="pre">SetRPMRequest.extra</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest.name"><code class="docutils literal notranslate"><span class="pre">SetRPMRequest.name</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest.rpm"><code class="docutils literal notranslate"><span class="pre">SetRPMRequest.rpm</span></code></a></li>
+<li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest.HasField"><code class="docutils literal notranslate"><span class="pre">SetRPMRequest.HasField()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.SetRPMResponse"><code class="docutils literal notranslate"><span class="pre">SetRPMResponse</span></code></a></li>
 <li class="toctree-l8"><a class="reference internal" href="#viam.proto.component.motor.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.is_powered"><code class="docutils literal notranslate"><span class="pre">Status.is_powered</span></code></a></li>
 <li class="toctree-l9"><a class="reference internal" href="#viam.proto.component.motor.Status.position"><code class="docutils literal notranslate"><span class="pre">Status.position</span></code></a></li>
@@ -320,6 +330,12 @@ Do not edit manually!</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.motor.SetPowerResponse" title="viam.proto.component.motor.SetPowerResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetPowerResponse</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.motor.SetRPMRequest" title="viam.proto.component.motor.SetRPMRequest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetRPMRequest</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#viam.proto.component.motor.SetRPMResponse" title="viam.proto.component.motor.SetRPMResponse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetRPMResponse</span></code></a></p></td>
+<td><p>Abstract base class for protocol messages.</p></td>
+</tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#viam.proto.component.motor.Status" title="viam.proto.component.motor.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p></td>
 <td><p>Abstract base class for protocol messages.</p></td>
 </tr>
@@ -350,6 +366,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.GoTo">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoTo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.GoToRequest" title="viam.gen.component.motor.v1.motor_pb2.GoToRequest"><span class="pre">component.motor.v1.motor_pb2.GoToRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.GoToResponse" title="viam.gen.component.motor.v1.motor_pb2.GoToResponse"><span class="pre">component.motor.v1.motor_pb2.GoToResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.GoTo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.GoTo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.MotorServiceBase.SetRPM">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetRPM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.SetRPMRequest" title="viam.gen.component.motor.v1.motor_pb2.SetRPMRequest"><span class="pre">component.motor.v1.motor_pb2.SetRPMRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.SetRPMResponse" title="viam.gen.component.motor.v1.motor_pb2.SetRPMResponse"><span class="pre">component.motor.v1.motor_pb2.SetRPMResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#MotorServiceBase.SetRPM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.MotorServiceBase.SetRPM" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -423,6 +444,11 @@ inheritance.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.proto.component.motor.UnimplementedMotorServiceBase.GoTo">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoTo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.GoToRequest" title="viam.gen.component.motor.v1.motor_pb2.GoToRequest"><span class="pre">component.motor.v1.motor_pb2.GoToRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.GoToResponse" title="viam.gen.component.motor.v1.motor_pb2.GoToResponse"><span class="pre">component.motor.v1.motor_pb2.GoToResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#UnimplementedMotorServiceBase.GoTo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.GoTo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.UnimplementedMotorServiceBase.SetRPM">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetRPM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">grpclib.server.Stream</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.SetRPMRequest" title="viam.gen.component.motor.v1.motor_pb2.SetRPMRequest"><span class="pre">component.motor.v1.motor_pb2.SetRPMRequest</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../../gen/component/motor/v1/motor_pb2/index.html#viam.gen.component.motor.v1.motor_pb2.SetRPMResponse" title="viam.gen.component.motor.v1.motor_pb2.SetRPMResponse"><span class="pre">component.motor.v1.motor_pb2.SetRPMResponse</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/viam/gen/component/motor/v1/motor_grpc.html#UnimplementedMotorServiceBase.SetRPM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.proto.component.motor.UnimplementedMotorServiceBase.SetRPM" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -937,6 +963,67 @@ be raised.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.proto.component.motor.SetPowerResponse">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">SetPowerResponse</span></span><a class="headerlink" href="#viam.proto.component.motor.SetPowerResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">SetRPMRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">google.protobuf.struct_pb2.Struct</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#viam.proto.component.motor.SetRPMRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
+<p>Abstract base class for protocol messages.</p>
+<p>Protocol message classes are almost always generated by the protocol
+compiler.  These generated types subclass Message and implement the methods
+shown below.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMRequest.extra">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extra</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">google.protobuf.struct_pb2.Struct</span></em><a class="headerlink" href="#viam.proto.component.motor.SetRPMRequest.extra" title="Permalink to this definition"></a></dt>
+<dd><p>Additional arguments to the method</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMRequest.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.proto.component.motor.SetRPMRequest.name" title="Permalink to this definition"></a></dt>
+<dd><p>Name of a motor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMRequest.rpm">
+<span class="sig-name descname"><span class="pre">rpm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#viam.proto.component.motor.SetRPMRequest.rpm" title="Permalink to this definition"></a></dt>
+<dd><p>Speed of motor travel in rotations per minute</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMRequest.HasField">
+<span class="sig-name descname"><span class="pre">HasField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">field_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="pre">extra</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">b'extra'</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#viam.proto.component.motor.SetRPMRequest.HasField" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if a certain field is set for the message.</p>
+<p>For a oneof group, checks if any field inside is set. Note that if the
+field_name is not defined in the message descriptor, <code class="xref py py-exc docutils literal notranslate"><span class="pre">ValueError</span></code> will
+be raised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>field_name</strong> (<em>str</em>) – The name of the field to check for presence.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether a value has been set for the named field.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if the <cite>field_name</cite> is not a member of this message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="viam.proto.component.motor.SetRPMResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.proto.component.motor.</span></span><span class="sig-name descname"><span class="pre">SetRPMResponse</span></span><a class="headerlink" href="#viam.proto.component.motor.SetRPMResponse" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">google.protobuf.message.Message</span></code></p>
 <p>Abstract base class for protocol messages.</p>
 <p>Protocol message classes are almost always generated by the protocol

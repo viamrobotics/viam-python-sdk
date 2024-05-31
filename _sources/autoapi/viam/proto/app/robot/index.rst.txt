@@ -1496,7 +1496,7 @@ Classes
 
 
 
-.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool | None = ...)
+.. py:class:: RobotConfig(*, cloud: global___CloudConfig | None = ..., remotes: collections.abc.Iterable[global___RemoteConfig] | None = ..., components: collections.abc.Iterable[global___ComponentConfig] | None = ..., processes: collections.abc.Iterable[global___ProcessConfig] | None = ..., services: collections.abc.Iterable[global___ServiceConfig] | None = ..., network: global___NetworkConfig | None = ..., auth: global___AuthConfig | None = ..., debug: bool | None = ..., modules: collections.abc.Iterable[global___ModuleConfig] | None = ..., disable_partial_start: bool | None = ..., packages: collections.abc.Iterable[global___PackageConfig] | None = ..., overwrite_fragment_status: collections.abc.Iterable[global___AppValidationStatus] | None = ..., enable_web_profile: bool = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -1562,7 +1562,7 @@ Classes
 
       Turns on pprof http server on localhost. By default false.
 
-   .. py:method:: HasField(field_name: Literal[_auth, b'_auth', _debug, b'_debug', _disable_partial_start, b'_disable_partial_start', _enable_web_profile, b'_enable_web_profile', _network, b'_network', auth, b'auth', cloud, b'cloud', debug, b'debug', disable_partial_start, b'disable_partial_start', enable_web_profile, b'enable_web_profile', network, b'network']) -> bool
+   .. py:method:: HasField(field_name: Literal[_auth, b'_auth', _debug, b'_debug', _disable_partial_start, b'_disable_partial_start', _network, b'_network', auth, b'auth', cloud, b'cloud', debug, b'debug', disable_partial_start, b'disable_partial_start', network, b'network']) -> bool
 
       Checks if a certain field is set for the message.
 
@@ -1582,7 +1582,6 @@ Classes
    .. py:method:: WhichOneof(oneof_group: Literal[_auth, b'_auth']) -> Literal[auth] | None
                   WhichOneof(oneof_group: Literal[_debug, b'_debug']) -> Literal[debug] | None
                   WhichOneof(oneof_group: Literal[_disable_partial_start, b'_disable_partial_start']) -> Literal[disable_partial_start] | None
-                  WhichOneof(oneof_group: Literal[_enable_web_profile, b'_enable_web_profile']) -> Literal[enable_web_profile] | None
                   WhichOneof(oneof_group: Literal[_network, b'_network']) -> Literal[network] | None
 
       Returns the name of the field that is set inside a oneof group.

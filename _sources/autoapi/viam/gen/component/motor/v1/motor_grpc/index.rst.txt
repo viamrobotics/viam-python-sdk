@@ -42,6 +42,11 @@ Classes
       :async:
 
 
+   .. py:method:: SetRPM(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.SetRPMRequest, component.motor.v1.motor_pb2.SetRPMResponse]) -> None
+      :abstractmethod:
+      :async:
+
+
    .. py:method:: ResetZeroPosition(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.ResetZeroPositionRequest, component.motor.v1.motor_pb2.ResetZeroPositionResponse]) -> None
       :abstractmethod:
       :async:
@@ -103,6 +108,10 @@ Classes
 
 
    .. py:method:: GoTo(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.GoToRequest, component.motor.v1.motor_pb2.GoToResponse]) -> None
+      :async:
+
+
+   .. py:method:: SetRPM(stream: grpclib.server.Stream[component.motor.v1.motor_pb2.SetRPMRequest, component.motor.v1.motor_pb2.SetRPMResponse]) -> None
       :async:
 
 

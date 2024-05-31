@@ -104,13 +104,13 @@
     <span class="n">IsMovingResponse</span><span class="p">,</span>
     <span class="n">IsPoweredRequest</span><span class="p">,</span>
     <span class="n">IsPoweredResponse</span><span class="p">,</span>
-    <span class="n">MotorServiceBase</span><span class="p">,</span>
     <span class="n">ResetZeroPositionRequest</span><span class="p">,</span>
     <span class="n">ResetZeroPositionResponse</span><span class="p">,</span>
     <span class="n">SetPowerRequest</span><span class="p">,</span>
     <span class="n">SetPowerResponse</span><span class="p">,</span>
     <span class="n">StopRequest</span><span class="p">,</span>
     <span class="n">StopResponse</span><span class="p">,</span>
+    <span class="n">UnimplementedMotorServiceBase</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">viam.resource.rpc_service_base</span> <span class="kn">import</span> <span class="n">ResourceRPCServiceBase</span>
 <span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">dict_to_struct</span><span class="p">,</span> <span class="n">struct_to_dict</span>
@@ -118,7 +118,7 @@
 <span class="kn">from</span> <span class="nn">.motor</span> <span class="kn">import</span> <span class="n">Motor</span>
 
 
-<div class="viewcode-block" id="MotorRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/service/index.html#viam.components.motor.service.MotorRPCService">[docs]</a><span class="k">class</span> <span class="nc">MotorRPCService</span><span class="p">(</span><span class="n">MotorServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">Motor</span><span class="p">]):</span>
+<div class="viewcode-block" id="MotorRPCService"><a class="viewcode-back" href="../../../../autoapi/viam/components/motor/service/index.html#viam.components.motor.service.MotorRPCService">[docs]</a><span class="k">class</span> <span class="nc">MotorRPCService</span><span class="p">(</span><span class="n">UnimplementedMotorServiceBase</span><span class="p">,</span> <span class="n">ResourceRPCServiceBase</span><span class="p">[</span><span class="n">Motor</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    gRPC Service for a Motor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
