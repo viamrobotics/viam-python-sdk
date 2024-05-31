@@ -10,7 +10,6 @@ from viam.app.data_client import DataClient
 from viam.proto.app import (
     AddRoleRequest,
     AddRoleResponse,
-    AppServiceBase,
     ChangeRoleRequest,
     ChangeRoleResponse,
     CheckPermissionsRequest,
@@ -130,6 +129,7 @@ from viam.proto.app import (
     ShareLocationResponse,
     TailRobotPartLogsRequest,
     TailRobotPartLogsResponse,
+    UnimplementedAppServiceBase,
     UnshareLocationRequest,
     UnshareLocationResponse,
     UpdateFragmentRequest,
@@ -337,7 +337,7 @@ class MockDataSync(DataSyncServiceBase):
         pass
 
 
-class MockApp(AppServiceBase):
+class MockApp(UnimplementedAppServiceBase):
     def __init__(self):
         self.organization = Organization(id="id", name="name", public_namespace="public_namespace", default_region="default_region")
         self.locations = [Location()]
