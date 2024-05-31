@@ -14,13 +14,13 @@ from viam.proto.component.motor import (
     IsMovingResponse,
     IsPoweredRequest,
     IsPoweredResponse,
-    MotorServiceBase,
     ResetZeroPositionRequest,
     ResetZeroPositionResponse,
     SetPowerRequest,
     SetPowerResponse,
     StopRequest,
     StopResponse,
+    UnimplementedMotorServiceBase,
 )
 from viam.resource.rpc_service_base import ResourceRPCServiceBase
 from viam.utils import dict_to_struct, struct_to_dict
@@ -28,7 +28,7 @@ from viam.utils import dict_to_struct, struct_to_dict
 from .motor import Motor
 
 
-class MotorRPCService(MotorServiceBase, ResourceRPCServiceBase[Motor]):
+class MotorRPCService(UnimplementedMotorServiceBase, ResourceRPCServiceBase[Motor]):
     """
     gRPC Service for a Motor
     """

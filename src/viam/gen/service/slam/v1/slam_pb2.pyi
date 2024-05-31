@@ -9,7 +9,6 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
-import google.protobuf.struct_pb2
 import sys
 import typing
 if sys.version_info >= (3, 10):
@@ -75,26 +74,18 @@ global___GetPositionRequest = GetPositionRequest
 class GetPositionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     POSE_FIELD_NUMBER: builtins.int
-    COMPONENT_REFERENCE_FIELD_NUMBER: builtins.int
-    EXTRA_FIELD_NUMBER: builtins.int
-    component_reference: builtins.str
-    'This is usually the name of the camera that is in the SLAM config'
 
     @property
     def pose(self) -> common.v1.common_pb2.Pose:
         """Current position of the specified component in the SLAM Map"""
 
-    @property
-    def extra(self) -> google.protobuf.struct_pb2.Struct:
-        """Additional information in the response"""
-
-    def __init__(self, *, pose: common.v1.common_pb2.Pose | None=..., component_reference: builtins.str=..., extra: google.protobuf.struct_pb2.Struct | None=...) -> None:
+    def __init__(self, *, pose: common.v1.common_pb2.Pose | None=...) -> None:
         ...
 
-    def HasField(self, field_name: typing.Literal['extra', b'extra', 'pose', b'pose']) -> builtins.bool:
+    def HasField(self, field_name: typing.Literal['pose', b'pose']) -> builtins.bool:
         ...
 
-    def ClearField(self, field_name: typing.Literal['component_reference', b'component_reference', 'extra', b'extra', 'pose', b'pose']) -> None:
+    def ClearField(self, field_name: typing.Literal['pose', b'pose']) -> None:
         ...
 global___GetPositionResponse = GetPositionResponse
 
