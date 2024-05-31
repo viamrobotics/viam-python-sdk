@@ -19,6 +19,7 @@ from viam.proto.component.motor import (
     MotorServiceStub,
     ResetZeroPositionRequest,
     SetPowerRequest,
+    SetRPMRequest,
     StopRequest,
 )
 from viam.resource.manager import ResourceManager
@@ -82,6 +83,17 @@ class TestMotor:
 
         await motor.go_to(-10, 50)
         assert await motor.get_position() == 50
+
+    @pytest.mark.asyncio
+    async def test_set_rpm(self, motor: MockMotor):
+        await motor.set_rpm(30, timeout=4.56)
+        assert motor.timeout == loose_approx(4.56)
+        moving = await motor.is_moving()
+        assert moving is True
+
+        await motor.set_rpm(-30)
+        moving = await motor.is_moving()
+        assert moving is True
 
     @pytest.mark.asyncio
     async def test_reset_zero(self, motor: MockMotor):
@@ -204,6 +216,22 @@ class TestService:
             request = GoToRequest(name=motor.name, rpm=-10, position_revolutions=50)
             await client.GoTo(request)
             assert motor.position == 50
+
+    @pytest.mark.asyncio
+    async def test_set_rpm(self, motor: MockMotor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotorServiceStub(channel)
+
+            request = SetRPMRequest(name=motor.name, rpm=30)
+            await client.SetRPM(request, timeout=4.56)
+            moving = await motor.is_moving()
+            assert moving is True
+            assert motor.timeout == loose_approx(4.56)
+
+            request = SetRPMRequest(name=motor.name, rpm=-10)
+            await client.SetRPM(request)
+            moving = await motor.is_moving()
+            assert moving is True
 
     @pytest.mark.asyncio
     async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):
@@ -339,6 +367,20 @@ class TestClient:
 
             await client.go_to(-10, 50)
             assert motor.position == 50
+
+    @pytest.mark.asyncio
+    async def test_set_rpm(self, motor: MockMotor, service: MotorRPCService):
+        async with ChannelFor([service]) as channel:
+            client = MotorClient(motor.name, channel)
+
+            await client.set_rpm(30, timeout=4.56)
+            moving = await motor.is_moving()
+            assert motor.timeout == loose_approx(4.56)
+            assert moving is True
+
+            await client.set_rpm(-10)
+            moving = await motor.is_moving()
+            assert moving is True
 
     @pytest.mark.asyncio
     async def test_reset_zero(self, motor: MockMotor, service: MotorRPCService):

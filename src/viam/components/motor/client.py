@@ -17,6 +17,7 @@ from viam.proto.component.motor import (
     MotorServiceStub,
     ResetZeroPositionRequest,
     SetPowerRequest,
+    SetRPMRequest,
     StopRequest,
 )
 from viam.resource.rpc_client_base import ReconfigurableResourceRPCClientBase
@@ -75,6 +76,19 @@ class MotorClient(Motor, ReconfigurableResourceRPCClientBase):
             extra = {}
         request = GoToRequest(name=self.name, rpm=rpm, position_revolutions=position_revolutions, extra=dict_to_struct(extra))
         await self.client.GoTo(request, timeout=timeout)
+
+    async def set_rpm(
+        self,
+        rpm: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **__,
+    ):
+        if extra is None:
+            extra = {}
+        request = SetRPMRequest(name=self.name, rpm=rpm, extra=dict_to_struct(extra))
+        await self.client.SetRPM(request, timeout=timeout)
 
     async def reset_zero_position(
         self,

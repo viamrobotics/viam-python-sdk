@@ -113,6 +113,31 @@ class Motor(ComponentBase):
         ...
 
     @abc.abstractmethod
+    async def set_rpm(
+        self,
+        rpm: float,
+        *,
+        extra: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
+        **kwargs,
+    ):
+        """
+        Spin the motor indefinitely at the specified speed, in revolutions per minute.
+        Positive ``rpm`` will result in forward movement and negative ``rpm`` will result in backwards movement
+
+        ::
+
+            my_motor = Motor.from_robot(robot=robot, name="my_motor")
+
+            # Spin the motor at 75 RPM.
+            await my_motor.set_rpm(rpm=75)
+
+        Args:
+            rpm (float): Speed at which the motor should rotate.
+        """
+        ...
+
+    @abc.abstractmethod
     async def reset_zero_position(
         self,
         offset: float,
