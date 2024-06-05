@@ -783,3 +783,19 @@ class RestartModuleResponse(google.protobuf.message.Message):
     def __init__(self) -> None:
         ...
 global___RestartModuleResponse = RestartModuleResponse
+
+@typing.final
+class ShutdownRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ShutdownRequest = ShutdownRequest
+
+@typing.final
+class ShutdownResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___ShutdownResponse = ShutdownResponse
