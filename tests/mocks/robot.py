@@ -29,7 +29,6 @@ from viam.proto.robot import (
     ResourceRPCSubtypesResponse,
     RestartModuleRequest,
     RestartModuleResponse,
-    RobotServiceBase,
     SendSessionHeartbeatRequest,
     SendSessionHeartbeatResponse,
     StartSessionRequest,
@@ -42,10 +41,11 @@ from viam.proto.robot import (
     TransformPCDResponse,
     TransformPoseRequest,
     TransformPoseResponse,
+    UnimplementedRobotServiceBase,
 )
 
 
-class MockRobot(RobotServiceBase):
+class MockRobot(UnimplementedRobotServiceBase):
     SESSION_ID = "sid"
     HEARTBEAT_INTERVAL = 2
 
