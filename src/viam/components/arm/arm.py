@@ -44,9 +44,6 @@ class Arm(ComponentBase):
             # Get the end position of the arm as a Pose.
             pos = await my_arm.get_end_position()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         Returns:
             Pose: A representation of the arm’s current position as a 6 DOF (six degrees of freedom) pose.
             The ``Pose`` is composed of values for location and orientation with respect to the origin.
@@ -78,11 +75,10 @@ class Arm(ComponentBase):
             await my_arm.move_to_position(pose=examplePose)
 
         Args:
-            pose (Pose): The destination ``Pose`` for the arm. The ``Pose`` is composed of values for location and orientation with respect to the origin.
+            pose (Pose): The destination ``Pose`` for the arm. The ``Pose`` is composed of values for location and orientation
+                with respect to the origin.
                 Location is expressed as distance, which is represented by x, y, and z coordinate values.
                 Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
-                extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-                timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         ...
 
@@ -115,8 +111,6 @@ class Arm(ComponentBase):
 
         Args:
             positions (JointPositions): The destination ``JointPositions`` for the arm.
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         ...
 
@@ -138,12 +132,10 @@ class Arm(ComponentBase):
             # Get the current position of each joint on the arm as JointPositions.
             pos = await my_arm.get_joint_positions()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         Returns:
             JointPositions: The current ``JointPositions`` for the arm.
-            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees) and translational values (mm).
+            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
+            and translational values (mm).
         """
         ...
 
@@ -165,9 +157,6 @@ class Arm(ComponentBase):
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         ...
 

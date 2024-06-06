@@ -35,9 +35,6 @@ class Gantry(ComponentBase):
             # Get the current positions of the axes of the gantry in millimeters.
             positions = await my_gantry.get_position()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         Returns:
             List[float]: A list of the position of the axes of the gantry in millimeters.
         """
@@ -73,8 +70,6 @@ class Gantry(ComponentBase):
         Args:
             positions (List[float]): A list of positions for the axes of the gantry to move to, in millimeters.
             speeds (List[float]): A list of speeds in millimeters per second for the gantry to move at respective to each axis.
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         ...
 
@@ -89,9 +84,6 @@ class Gantry(ComponentBase):
 
             await my_gantry.home()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         Returns:
             bool: Whether the gantry has run the homing sequence successfully.
         """
@@ -108,9 +100,6 @@ class Gantry(ComponentBase):
             # Get the lengths of the axes of the gantry in millimeters.
             lengths_mm = await my_gantry.get_lengths()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         Returns:
             List[float]: A list of the lengths of the axes of the gantry in millimeters.
         """
@@ -129,9 +118,6 @@ class Gantry(ComponentBase):
             # immediately.
             await my_gantry.stop()
 
-        Args:
-            extra (Optional[Dict[str, Any]]): Extra options to pass to the underlying RPC call.
-            timeout (Optional[float]): An option to set how long to wait (in seconds) before calling a time-out and closing the underlying RPC call.
         """
         ...
 
