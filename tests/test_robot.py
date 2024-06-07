@@ -613,7 +613,10 @@ class TestRobotClient:
     @pytest.mark.asyncio
     async def test_shutdown(self, service: RobotService):
         async with ChannelFor([service]) as channel:
-            shutdown_client_mock = lambda self: self._client.Shutdown(ShutdownRequest())
+
+            async def shutdown_client_mock(self):  
+                return await self._client.Shutdown(ShutdownRequest())
+            
             client = await RobotClient.with_channel(channel, RobotClient.Options())
 
             with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
