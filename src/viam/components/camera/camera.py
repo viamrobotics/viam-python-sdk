@@ -59,7 +59,7 @@ class Camera(ComponentBase):
             mime_type (str): The desired mime type of the image. This does not guarantee output type
 
         Returns:
-            ViamImage: The frame
+            ViamImage: The frame.
         """
         ...
 
@@ -77,8 +77,8 @@ class Camera(ComponentBase):
             timestamp = metadata.captured_at
 
         Returns:
-            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images returned from the
-                camera system, and the second [1] the metadata associated with this response.
+            Tuple[List[NamedImage], ResponseMetadata]: A tuple containing two values; the first [0] a list of images
+            returned from the camera system, and the second [1] the metadata associated with this response.
         """
         ...
 
@@ -108,8 +108,8 @@ class Camera(ComponentBase):
             points = np.asarray(pcd.points)
 
         Returns:
-            Tuple[bytes, str]: A tuple containing two values; the first [0] the pointcloud data, and the second [1] the mimetype of the
-                pointcloud (e.g. PCD).
+            Tuple[bytes, str]: A tuple containing two values; the first [0] the pointcloud data,
+            and the second [1] the mimetype of the pointcloud (for example, PCD).
         """
         ...
 
@@ -125,6 +125,6 @@ class Camera(ComponentBase):
             properties = await my_camera.get_properties()
 
         Returns:
-            Properties: The properties of the camera
+            Properties: The properties of the camera.
         """
         ...
