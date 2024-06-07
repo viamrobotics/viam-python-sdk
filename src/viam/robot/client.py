@@ -808,7 +808,6 @@ class RobotClient:
         except GRPCError as e:
             if e.status == Status.INTERNAL or e.status == Status.UNKNOWN:
                 LOGGER.info("robot shutdown successful")
-                pass
             elif e.status == Status.UNAVAILABLE:
                 LOGGER.warn("server unavailable, likely due to successful robot shutdown")
                 raise e
