@@ -313,12 +313,16 @@ async def _dial_direct(address: str, options: Optional[DialOptions] = None) -> C
     if insecure:
         ctx = None
     else:
-        ctx = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH)
+        is_local_host = host.startswith("localhost") or host.startswith("0.0.0.0") or host.startswith("127.")
+        if is_local_host:
+            ctx = ssl._create_unverified_context(purpose=ssl.Purpose.SERVER_AUTH)
+        else:
+            ctx = ssl.create_default_context(purpose=ssl.Purpose.SERVER_AUTH)
         ctx.minimum_version = ssl.TLSVersion.TLSv1_2
         ctx.set_ciphers("ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20")
         ctx.set_alpn_protocols(["h2"])
 
-        if options is not None and options.auth_entity and host != options.auth_entity:
+        if options is not None and options.auth_entity and host != options.auth_entity and options.credentials.type != "api-key":
             server_hostname = options.auth_entity
 
         # Test if downgrade is required.
