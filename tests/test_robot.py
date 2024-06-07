@@ -153,6 +153,7 @@ GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
     machine_part_id="the-machine-part-id",
 )
 
+
 @pytest.fixture(scope="function")
 def service() -> RobotService:
     resources = [
@@ -619,12 +620,12 @@ class TestRobotClient:
                 return response
 
             client = await RobotClient.with_channel(channel, RobotClient.Options())
+
             with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
-                   shutdown_mock.return_value = await shutdown_client_mock(client)
+                shutdown_mock.return_value = await shutdown_client_mock(client)
+                shutdown_response = await client.shutdown()
 
-                   shutdown_response = await client.shutdown()
-
-                   assert shutdown_response == ShutdownResponse()
-                   shutdown_mock.assert_called_once()
-
-                   await client.close()
+                assert shutdown_response == ShutdownResponse()
+                shutdown_mock.assert_called_once()
+                
+                await client.close()
