@@ -1,5 +1,6 @@
 import asyncio
 from typing import Any, Dict, List, Optional, Tuple
+from unittest import mock
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
@@ -151,9 +152,6 @@ GET_CLOUD_METADATA_RESPONSE = GetCloudMetadataResponse(
     machine_id="the-machine-id",
     machine_part_id="the-machine-part-id",
 )
-
-SHUTDOWN_RESPONSE = ShutdownResponse()
-
 
 @pytest.fixture(scope="function")
 def service() -> RobotService:
@@ -614,7 +612,19 @@ class TestRobotClient:
     @pytest.mark.asyncio
     async def test_shutdown(self, service: RobotService):
         async with ChannelFor([service]) as channel:
+
+            async def shutdown_client_mock(self):
+                self._client = RobotServiceStub(channel)
+                response = await self._client.Shutdown(ShutdownRequest())
+                return response
+
             client = await RobotClient.with_channel(channel, RobotClient.Options())
-            shutdown_response = await client.shutdown()
-            assert shutdown_response == SHUTDOWN_RESPONSE
-            await client.close()
+            with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
+                   shutdown_mock.return_value = await shutdown_client_mock(client)
+
+                   shutdown_response = await client.shutdown()
+
+                   assert shutdown_response == ShutdownResponse()
+                   shutdown_mock.assert_called_once()
+
+                   await client.close()

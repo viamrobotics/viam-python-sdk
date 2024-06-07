@@ -796,16 +796,24 @@ class RobotClient:
 
     async def shutdown(self):
         """
-        Shutdown shuts down the robot. update comment here
+        Shutdown shuts down the robot. May return DeadlineExceeded error if shutdown request times out,
+        or if robot server shuts down before having a chance to send a response. May return Unavailable error
+        if server is unavailable, or if robot server is in the process of shutting down when response is ready.
 
         """
         request = ShutdownRequest()
         try:
             await self._client.Shutdown(request)
+            LOGGER.info("robot shutdown successful")
         except GRPCError as e:
             if e.status == Status.INTERNAL or e.status == Status.UNKNOWN:
+                LOGGER.info("robot shutdown successful")
                 pass
-            elif e.status == Status.DEADLINE_EXCEEDED:
+            elif e.status == Status.UNAVAILABLE:
+                LOGGER.warn("server unavailable, likely due to successful robot shutdown")
                 raise e
-            # unfinishd logic
-            raise e
+            elif e.status == Status.DEADLINE_EXCEEDED:
+                LOGGER.warn("request timeout, robot shutdown may still be successful")
+                raise e
+            else:
+                raise e
