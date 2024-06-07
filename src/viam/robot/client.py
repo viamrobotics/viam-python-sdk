@@ -4,6 +4,7 @@ from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
+from grpclib import GRPCError, Status
 from grpclib.client import Channel
 from typing_extensions import Self
 
@@ -33,6 +34,7 @@ from viam.proto.robot import (
     ResourceNamesRequest,
     ResourceNamesResponse,
     RobotServiceStub,
+    ShutdownRequest,
     StopAllRequest,
     StopExtraParameters,
     TransformPoseRequest,
@@ -787,3 +789,23 @@ class RobotClient:
 
         request = GetCloudMetadataRequest()
         return await self._client.GetCloudMetadata(request)
+
+    ############
+    # Shutdown #
+    ############
+
+    async def shutdown(self):
+        """
+        Shutdown shuts down the robot. update comment here
+
+        """
+        request = ShutdownRequest()
+        try:
+            await self._client.Shutdown(request)
+        except GRPCError as e:
+            if e.status == Status.INTERNAL or e.status == Status.UNKNOWN:
+                pass
+            elif e.status == Status.DEADLINE_EXCEEDED:
+                raise e
+            # unfinishd logic
+            raise e
