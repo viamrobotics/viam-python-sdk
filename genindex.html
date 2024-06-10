@@ -11072,6 +11072,10 @@
 </li>
       <li><a href="autoapi/viam/gen/app/mltraining/v1/ml_training_pb2/index.html#viam.gen.app.mltraining.v1.ml_training_pb2.global___TrainingStatus">global___TrainingStatus (in module viam.gen.app.mltraining.v1.ml_training_pb2)</a>
 </li>
+      <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.global___TransferRegistryItemRequest">global___TransferRegistryItemRequest (in module viam.gen.app.v1.app_pb2)</a>
+</li>
+      <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.global___TransferRegistryItemResponse">global___TransferRegistryItemResponse (in module viam.gen.app.v1.app_pb2)</a>
+</li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.global___Transform">global___Transform (in module viam.gen.common.v1.common_pb2)</a>
 </li>
       <li><a href="autoapi/viam/gen/robot/v1/robot_pb2/index.html#viam.gen.robot.v1.robot_pb2.global___TransformPCDRequest">global___TransformPCDRequest (in module viam.gen.robot.v1.robot_pb2)</a>
@@ -13659,6 +13663,8 @@
 </li>
         <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.RegistryItem.item_id">(viam.gen.app.v1.app_pb2.RegistryItem attribute)</a>
 </li>
+        <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.TransferRegistryItemRequest.item_id">(viam.gen.app.v1.app_pb2.TransferRegistryItemRequest attribute)</a>
+</li>
         <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.UpdateRegistryItemRequest.item_id">(viam.gen.app.v1.app_pb2.UpdateRegistryItemRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.DeleteRegistryItemRequest.item_id">(viam.proto.app.DeleteRegistryItemRequest attribute)</a>
@@ -13666,6 +13672,8 @@
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.GetRegistryItemRequest.item_id">(viam.proto.app.GetRegistryItemRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.RegistryItem.item_id">(viam.proto.app.RegistryItem attribute)</a>
+</li>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.TransferRegistryItemRequest.item_id">(viam.proto.app.TransferRegistryItemRequest attribute)</a>
 </li>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.UpdateRegistryItemRequest.item_id">(viam.proto.app.UpdateRegistryItemRequest attribute)</a>
 </li>
@@ -17665,6 +17673,12 @@
 
       <ul>
         <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.ChangeRoleRequest.new_authorization">(viam.proto.app.ChangeRoleRequest property)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.TransferRegistryItemRequest.new_public_namespace">new_public_namespace (viam.gen.app.v1.app_pb2.TransferRegistryItemRequest attribute)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.TransferRegistryItemRequest.new_public_namespace">(viam.proto.app.TransferRegistryItemRequest attribute)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/app/app_client/index.html#viam.app.app_client.AppClient.new_robot">new_robot() (viam.app.app_client.AppClient method)</a>
@@ -23199,8 +23213,6 @@
         <li><a href="autoapi/viam/proto/service/motion/index.html#viam.proto.service.motion.PlanStatus.timestamp">(viam.proto.service.motion.PlanStatus property)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.AuthConfig.tls_auth_entities">tls_auth_entities (viam.gen.app.v1.robot_pb2.AuthConfig property)</a>
 
       <ul>
@@ -23213,6 +23225,8 @@
         <li><a href="autoapi/viam/proto/app/robot/index.html#viam.proto.app.robot.NetworkConfig.tls_cert_file">(viam.proto.app.robot.NetworkConfig attribute)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="autoapi/viam/gen/app/v1/robot_pb2/index.html#viam.gen.app.v1.robot_pb2.CertificateResponse.tls_certificate">tls_certificate (viam.gen.app.v1.robot_pb2.CertificateResponse attribute)</a>
 
       <ul>
@@ -23337,6 +23351,28 @@
 
       <ul>
         <li><a href="autoapi/viam/proto/app/mltraining/index.html#viam.proto.app.mltraining.TrainingStatus">(class in viam.proto.app.mltraining)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/app/v1/app_grpc/index.html#viam.gen.app.v1.app_grpc.AppServiceBase.TransferRegistryItem">TransferRegistryItem() (viam.gen.app.v1.app_grpc.AppServiceBase method)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/gen/app/v1/app_grpc/index.html#viam.gen.app.v1.app_grpc.UnimplementedAppServiceBase.TransferRegistryItem">(viam.gen.app.v1.app_grpc.UnimplementedAppServiceBase method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.AppServiceBase.TransferRegistryItem">(viam.proto.app.AppServiceBase method)</a>
+</li>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.UnimplementedAppServiceBase.TransferRegistryItem">(viam.proto.app.UnimplementedAppServiceBase method)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.TransferRegistryItemRequest">TransferRegistryItemRequest (class in viam.gen.app.v1.app_pb2)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.TransferRegistryItemRequest">(class in viam.proto.app)</a>
+</li>
+      </ul></li>
+      <li><a href="autoapi/viam/gen/app/v1/app_pb2/index.html#viam.gen.app.v1.app_pb2.TransferRegistryItemResponse">TransferRegistryItemResponse (class in viam.gen.app.v1.app_pb2)</a>
+
+      <ul>
+        <li><a href="autoapi/viam/proto/app/index.html#viam.proto.app.TransferRegistryItemResponse">(class in viam.proto.app)</a>
 </li>
       </ul></li>
       <li><a href="autoapi/viam/gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.Transform">Transform (class in viam.gen.common.v1.common_pb2)</a>
