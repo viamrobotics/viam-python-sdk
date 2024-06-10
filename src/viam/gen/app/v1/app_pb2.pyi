@@ -2639,6 +2639,29 @@ class DeleteRegistryItemResponse(google.protobuf.message.Message):
 global___DeleteRegistryItemResponse = DeleteRegistryItemResponse
 
 @typing.final
+class TransferRegistryItemRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    ITEM_ID_FIELD_NUMBER: builtins.int
+    NEW_PUBLIC_NAMESPACE_FIELD_NUMBER: builtins.int
+    item_id: builtins.str
+    new_public_namespace: builtins.str
+
+    def __init__(self, *, item_id: builtins.str=..., new_public_namespace: builtins.str=...) -> None:
+        ...
+
+    def ClearField(self, field_name: typing.Literal['item_id', b'item_id', 'new_public_namespace', b'new_public_namespace']) -> None:
+        ...
+global___TransferRegistryItemRequest = TransferRegistryItemRequest
+
+@typing.final
+class TransferRegistryItemResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(self) -> None:
+        ...
+global___TransferRegistryItemResponse = TransferRegistryItemResponse
+
+@typing.final
 class CreateModuleRequest(google.protobuf.message.Message):
     """Modules"""
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
