@@ -796,10 +796,13 @@ class RobotClient:
 
     async def shutdown(self):
         """
-        Shutdown shuts down the robot. May return DeadlineExceeded error if shutdown request times out,
-        or if robot server shuts down before having a chance to send a response. May return Unavailable error
-        if server is unavailable, or if robot server is in the process of shutting down when response is ready.
+        Shutdown shuts down the robot.
 
+        Raises:
+            GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
+              robot server shuts down before having a chance to send a response. Raised with
+              status Unavailable if server is unavailable, or if robot server is in the process of
+              shutting down when response is ready.
         """
         request = ShutdownRequest()
         try:
