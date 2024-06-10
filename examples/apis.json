@@ -14,10 +14,25 @@
   "gantry": { "func": "get_lengths" },
   "gripper": { "func": "is_moving" },
   "movement_sensor": { "func": "get_linear_acceleration" },
-  "input_controller": { "func": "get_controls" },
+  "input_controller": {
+    "func": "get_controls" ,
+    "fullImportText": "from viam.components.input import Controller",
+    "packageName": "viam.components.input",
+    "importName": "Controller"
+  },
   "audio": { "func": "get_properties" },
   "pose_tracker": { "func": "get_poses" },
   "power_sensor": { "func": "get_power" },
   "motion": { "func": "get_pose" },
-  "vision": { "func": "get_properties" }
+  "vision": { "func": "get_properties" },
+  "mlmodel": {
+    "fullImportText": "from viam.services.mlmodel import MLModelClient",
+    "packageName": "viam.services.mlmodel",
+    "importName": "MLModelClient"
+  },
+  "slam": {
+    "fullImportText": "from viam.services.slam import SLAMClient",
+    "packageName": "viam.services.slam",
+    "importName": "SLAMClient"
+  }
 }
