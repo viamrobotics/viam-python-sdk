@@ -1169,7 +1169,9 @@ class AppClient:
 
         return logs
 
-    async def _get_robot_part_logs(self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]) -> Tuple[List[LogEntry], str]:
+    async def _get_robot_part_logs(
+        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+    ) -> Tuple[List[LogEntry], str]:
         request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
