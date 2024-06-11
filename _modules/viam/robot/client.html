@@ -94,6 +94,7 @@
 <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
 
+<span class="kn">from</span> <span class="nn">grpclib</span> <span class="kn">import</span> <span class="n">GRPCError</span><span class="p">,</span> <span class="n">Status</span>
 <span class="kn">from</span> <span class="nn">grpclib.client</span> <span class="kn">import</span> <span class="n">Channel</span>
 <span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">Self</span>
 
@@ -123,6 +124,7 @@
     <span class="n">ResourceNamesRequest</span><span class="p">,</span>
     <span class="n">ResourceNamesResponse</span><span class="p">,</span>
     <span class="n">RobotServiceStub</span><span class="p">,</span>
+    <span class="n">ShutdownRequest</span><span class="p">,</span>
     <span class="n">StopAllRequest</span><span class="p">,</span>
     <span class="n">StopExtraParameters</span><span class="p">,</span>
     <span class="n">TransformPoseRequest</span><span class="p">,</span>
@@ -876,7 +878,37 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">request</span> <span class="o">=</span> <span class="n">GetCloudMetadataRequest</span><span class="p">()</span>
-        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetCloudMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">GetCloudMetadata</span><span class="p">(</span><span class="n">request</span><span class="p">)</span></div>
+
+    <span class="c1">############</span>
+    <span class="c1"># Shutdown #</span>
+    <span class="c1">############</span>
+
+<div class="viewcode-block" id="RobotClient.shutdown"><a class="viewcode-back" href="../../../autoapi/viam/robot/client/index.html#viam.robot.client.RobotClient.shutdown">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shutdown shuts down the robot.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if</span>
+<span class="sd">              robot server shuts down before having a chance to send a response. Raised with</span>
+<span class="sd">              status Unavailable if server is unavailable, or if robot server is in the process of</span>
+<span class="sd">              shutting down when response is ready.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">ShutdownRequest</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">Shutdown</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;robot shutdown successful&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">GRPCError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">INTERNAL</span> <span class="ow">or</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;robot shutdown successful&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">UNAVAILABLE</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;server unavailable, likely due to successful robot shutdown&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">e</span>
+            <span class="k">elif</span> <span class="n">e</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Status</span><span class="o">.</span><span class="n">DEADLINE_EXCEEDED</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;request timeout, robot shutdown may still be successful&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">e</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">e</span></div></div>
 </pre></div>
 
            </div>

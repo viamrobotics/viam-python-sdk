@@ -494,4 +494,15 @@ Attributes
       :rtype: viam.proto.robot.GetCloudMetadataResponse
 
 
+   .. py:method:: shutdown()
+      :async:
+
+      Shutdown shuts down the robot.
+
+      :raises GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
+          robot server shuts down before having a chance to send a response. Raised with
+          status Unavailable if server is unavailable, or if robot server is in the process of
+          shutting down when response is ready.
+
+
 

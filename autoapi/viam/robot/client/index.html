@@ -95,6 +95,7 @@
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.stop_all"><code class="docutils literal notranslate"><span class="pre">RobotClient.stop_all()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.log"><code class="docutils literal notranslate"><span class="pre">RobotClient.log()</span></code></a></li>
 <li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.get_cloud_metadata"><code class="docutils literal notranslate"><span class="pre">RobotClient.get_cloud_metadata()</span></code></a></li>
+<li class="toctree-l7"><a class="reference internal" href="#viam.robot.client.RobotClient.shutdown"><code class="docutils literal notranslate"><span class="pre">RobotClient.shutdown()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -700,6 +701,20 @@ keyed on the resource’s <code class="docutils literal notranslate"><span class
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference internal" href="../../proto/robot/index.html#viam.proto.robot.GetCloudMetadataResponse" title="viam.proto.robot.GetCloudMetadataResponse">viam.proto.robot.GetCloudMetadataResponse</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.robot.client.RobotClient.shutdown">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/robot/client.html#RobotClient.shutdown"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.robot.client.RobotClient.shutdown" title="Permalink to this definition"></a></dt>
+<dd><p>Shutdown shuts down the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>GRPCError</strong> – Raised with DeadlineExceeded status if shutdown request times out, or if
+robot server shuts down before having a chance to send a response. Raised with
+status Unavailable if server is unavailable, or if robot server is in the process of
+shutting down when response is ready.</p>
 </dd>
 </dl>
 </dd></dl>
