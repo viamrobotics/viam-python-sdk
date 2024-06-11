@@ -26,7 +26,7 @@ class Gantry(ComponentBase):
     @abc.abstractmethod
     async def get_position(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> List[float]:
         """
-        Get the position in millimeters.
+        Get the positions of the axes of the gantry in millimeters.
 
         ::
 
@@ -36,7 +36,7 @@ class Gantry(ComponentBase):
             positions = await my_gantry.get_position()
 
         Returns:
-            List[float]: The position of the axes.
+            List[float]: A list of the position of the axes of the gantry in millimeters.
         """
         ...
 
@@ -51,7 +51,7 @@ class Gantry(ComponentBase):
         **kwargs,
     ):
         """
-        Move the gantry to a new position at the requested speeds.
+        Move the axes of the gantry to the desired positions (mm) at the requested speeds (mm/sec).
 
         ::
 
@@ -68,15 +68,15 @@ class Gantry(ComponentBase):
                 positions=examplePositions, speeds=exampleSpeeds)
 
         Args:
-            positions (List[float]): List of positions for the axes to move to,
-                in millimeters.
+            positions (List[float]): A list of positions for the axes of the gantry to move to, in millimeters.
+            speeds (List[float]): A list of speeds in millimeters per second for the gantry to move at respective to each axis.
         """
         ...
 
     @abc.abstractmethod
     async def home(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs) -> bool:
         """
-        Home the gantry to find it's starting and ending positions
+        Run the homing sequence of the gantry to re-calibrate the axes with respect to the limit switches.
 
         ::
 
@@ -85,7 +85,7 @@ class Gantry(ComponentBase):
             await my_gantry.home()
 
         Returns:
-            bool : whether the gantry has run the homing sequence successfully
+            bool: Whether the gantry has run the homing sequence successfully.
         """
 
     @abc.abstractmethod
@@ -101,7 +101,7 @@ class Gantry(ComponentBase):
             lengths_mm = await my_gantry.get_lengths()
 
         Returns:
-            List[float]: The lengths of the axes.
+            List[float]: A list of the lengths of the axes of the gantry in millimeters.
         """
         ...
 

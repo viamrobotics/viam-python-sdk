@@ -75,12 +75,12 @@ class Encoder(ComponentBase):
             print("The encoder position is currently ", position[0], position[1])
 
         Args:
-            position_type (PositionType.ValueType): The desired output type of the position
+            position_type (PositionType.ValueType): The desired output type of the position.
 
         Returns:
-            Tuple[float, PositionType]: A tuple containing two values; the first [0] the Position of the encoder which can either be
-                ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
-                position the encoder returns (ticks or degrees).
+            Tuple[float, PositionType]: A tuple containing two values; the first [0] the Position of the encoder
+            which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
+            and the second [1] the type of position the encoder returns (ticks or degrees).
         """
         ...
 

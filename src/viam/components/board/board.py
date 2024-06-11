@@ -38,7 +38,7 @@ class Board(ComponentBase):
 
     class Analog:
         """
-        AnalogReader represents an analog pin reader or writer that resides on a Board.
+        Analog represents an analog pin reader or writer that resides on a Board.
         """
 
         name: str
@@ -63,7 +63,7 @@ class Board(ComponentBase):
 
                 my_board = Board.from_robot(robot=robot, name="my_board")
 
-                # Get the AnalogReader "my_example_analog_reader".
+                # Get the Analog "my_example_analog_reader".
                 reader = await my_board.analog_reader_by_name(
                     name="my_example_analog_reader")
 
@@ -79,16 +79,20 @@ class Board(ComponentBase):
         @abc.abstractmethod
         async def write(self, value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs):
             """
-            Write a value to the analog writer.
+            Write a value to the Analog writer.
 
             ::
+
                 my_board = Board.from_robot(robot=robot, name="my_board")
 
-                # Get the AnalogWriter "my_example_analog_writer".
+                # Get the Analog "my_example_analog_writer".
                 writer = await my_board.analog_by_name(
                     name="my_example_analog_writer")
 
                 await writer.write(42)
+
+            Args:
+                value (int): Value to write to the analog writer.
             """
             ...
 
@@ -100,7 +104,7 @@ class Board(ComponentBase):
         """
 
         name: str
-        """The name of the digital interrupt"""
+        """The name of the digital interrupt."""
 
         def __init__(self, name: str):
             self.name = name
@@ -130,11 +134,11 @@ class Board(ComponentBase):
 
     class GPIOPin:
         """
-        Abstract representation of an individual GPIO pin on a board
+        Abstract representation of an individual GPIO pin on a board.
         """
 
         name: str
-        """The name of the GPIO pin"""
+        """The name of the GPIO pin."""
 
         def __init__(self, name: str):
             self.name = name

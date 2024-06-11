@@ -35,7 +35,7 @@ class Arm(ComponentBase):
         **kwargs,
     ) -> Pose:
         """
-        Get the current position of the end of the arm expressed as a Pose.
+        Get the current position of the end of the arm expressed as a ``Pose``.
 
         ::
 
@@ -45,7 +45,10 @@ class Arm(ComponentBase):
             pos = await my_arm.get_end_position()
 
         Returns:
-            Pose: The location and orientation of the arm described as a Pose.
+            Pose: A representation of the arm’s current position as a 6 DOF (six degrees of freedom) pose.
+            The ``Pose`` is composed of values for location and orientation with respect to the origin.
+            Location is expressed as distance, which is represented by x, y, and z coordinate values.
+            Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
         """
         ...
 
@@ -72,7 +75,10 @@ class Arm(ComponentBase):
             await my_arm.move_to_position(pose=examplePose)
 
         Args:
-            pose (Pose): The destination Pose for the arm.
+            pose (Pose): The destination ``Pose`` for the arm. The ``Pose`` is composed of values for location and orientation
+                with respect to the origin.
+                Location is expressed as distance, which is represented by x, y, and z coordinate values.
+                Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.
         """
         ...
 
@@ -127,7 +133,9 @@ class Arm(ComponentBase):
             pos = await my_arm.get_joint_positions()
 
         Returns:
-            JointPositions: The current JointPositions for the arm.
+            JointPositions: The current ``JointPositions`` for the arm.
+            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)
+            and translational values (mm).
         """
         ...
 
@@ -148,6 +156,7 @@ class Arm(ComponentBase):
 
             # Stop all motion of the arm. It is assumed that the arm stops immediately.
             await my_arm.stop()
+
         """
         ...
 
@@ -193,7 +202,7 @@ class Arm(ComponentBase):
 
         Returns:
             Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the
-                file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra), and the second [1] value
-                represents the byte contents of the file.
+            file, either in URDF format or Viam's kinematic parameter format (spatial vector algebra), and the second [1] value
+            represents the byte contents of the file.
         """
         ...
