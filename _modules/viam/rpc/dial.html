@@ -403,12 +403,22 @@
     <span class="k">if</span> <span class="n">insecure</span><span class="p">:</span>
         <span class="n">ctx</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">create_default_context</span><span class="p">(</span><span class="n">purpose</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">Purpose</span><span class="o">.</span><span class="n">SERVER_AUTH</span><span class="p">)</span>
+        <span class="n">is_local_host</span> <span class="o">=</span> <span class="n">host</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="p">(</span><span class="n">host</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">host</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">host</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;127.&quot;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">is_local_host</span><span class="p">:</span>
+            <span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">_create_unverified_context</span><span class="p">(</span><span class="n">purpose</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">Purpose</span><span class="o">.</span><span class="n">SERVER_AUTH</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ctx</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">create_default_context</span><span class="p">(</span><span class="n">purpose</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">Purpose</span><span class="o">.</span><span class="n">SERVER_AUTH</span><span class="p">)</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">minimum_version</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">TLSVersion</span><span class="o">.</span><span class="n">TLSv1_2</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">set_ciphers</span><span class="p">(</span><span class="s2">&quot;ECDHE+AESGCM:ECDHE+CHACHA20:DHE+AESGCM:DHE+CHACHA20&quot;</span><span class="p">)</span>
         <span class="n">ctx</span><span class="o">.</span><span class="n">set_alpn_protocols</span><span class="p">([</span><span class="s2">&quot;h2&quot;</span><span class="p">])</span>
 
-        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span> <span class="ow">and</span> <span class="n">host</span> <span class="o">!=</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">options</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span>
+            <span class="ow">and</span> <span class="n">host</span> <span class="o">!=</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span>
+            <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="ow">and</span> <span class="n">options</span><span class="o">.</span><span class="n">credentials</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">&quot;api-key&quot;</span>
+        <span class="p">):</span>
             <span class="n">server_hostname</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_entity</span>
 
         <span class="c1"># Test if downgrade is required.</span>
