@@ -646,6 +646,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization.
+                You can obtain your organization ID from the Viam app's organization settings page.
         """
         request = DeleteOrganizationRequest(organization_id=org_id)
         await self._app_client.DeleteOrganization(request, metadata=self._metadata)
@@ -659,6 +660,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list members of.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             Tuple[List[viam.proto.app.OrganizationMember], List[viam.proto.app.OrganizationInvite]]: A tuple containing two lists; the first
@@ -679,6 +681,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create an invite for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address to send the invite to.
             authorizations (Optional[List[viam.proto.app.Authorization]]): Specifications of the
                 authorizations to include in the invite. If not provided, full owner permissions will
@@ -730,6 +733,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite is for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): Email of the user the invite was sent to.
             add_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to add to the invite.
             remove_authorizations (Optional[List[viam.proto.app.Authorization]]): Optional list of authorizations to remove from the invite.
@@ -761,6 +765,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to remove the user from.
+                You can obtain your organization ID from the Viam app's organization settings page.
             user_id (str): The ID of the user to remove.
         """
         request = DeleteOrganizationMemberRequest(organization_id=org_id, user_id=user_id)
@@ -775,6 +780,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization that the invite to delete was for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address the pending invite was sent to.
 
         Raises:
@@ -788,14 +794,18 @@ class AppClient:
 
         ::
 
-            await cloud.resend_organization_invite("org-id", "youremail@email.com")
+            org_invite = await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
         Args:
             org_id (str): The ID of the organization that the invite to resend was for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             email (str): The email address associated with the invite.
 
         Raises:
             GRPCError: If no pending invite is associated with the provided email address.
+
+        Returns:
+            viam.proto.app.OrganizationInvite: The organization invite sent.
         """
         request = ResendOrganizationInviteRequest(organization_id=org_id, email=email)
         response: ResendOrganizationInviteResponse = await self._app_client.ResendOrganizationInvite(request, metadata=self._metadata)
@@ -810,6 +820,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the location under.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): Name of the location.
             parent_location_id (Optional[str]): Optional parent location to put the location under. Defaults to a root-level location if no
                 location ID is provided.
@@ -913,6 +924,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the org to list locations for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.Location]: The list of locations.
@@ -1043,6 +1055,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list rover rental robots for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.RoverRentalRobot]: The list of rover rental robots.
@@ -1482,6 +1495,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list fragments for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                 return. If False, only private fragments will return. Defaults to True.
 
@@ -1523,7 +1537,8 @@ class AppClient:
             new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
         Args:
-            org_id (str): The ID of the organization to create the ragment within.
+            org_id (str): The ID of the organization to create the fragment within.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): Name of the fragment.
             config (Optional[Mapping[str, Any]]): Optional Dictionary representation of new config to assign to specified fragment. Can be
                 assigned by updating the fragment.
@@ -1605,6 +1620,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the role in.
+                You can obtain your organization ID from the Viam app's organization settings page.
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to add.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource to add role to.
@@ -1646,6 +1662,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization the role exists in.
+                You can obtain your organization ID from the Viam app's organization settings page.
             identity_id (str): ID of the entity the role belongs to (e.g., a user ID).
             role (Union[Literal["owner"], Literal["operator"]]): The role to remove.
             resource_type (Union[Literal["organization"], Literal["location"], Literal["robot"]]): Type of the resource the role is being
@@ -1891,6 +1908,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the module under.
+                You can obtain your organization ID from the Viam app's organization settings page.
             name (str): The name of the module. Must be unique within your organization.
 
         Raises:
@@ -2002,6 +2020,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list modules for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.Module]: The list of modules.
@@ -2029,6 +2048,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to create the key for.
+                You can obtain your organization ID from the Viam app's organization settings page.
             authorizations (List[viam.proto.app.Authorization]): A list of authorizations to associate
                 with the key.
             name (Optional[str]): A name for the key. If None, defaults to the current timestamp.
@@ -2088,6 +2108,7 @@ class AppClient:
 
         Args:
             org_id (str): The ID of the organization to list API keys for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             List[viam.proto.app.APIKeyWithAuthorizations]: The existing API keys and authorizations."""

@@ -200,8 +200,9 @@ class DataClient:
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[TabularData]: The tabular data.
-            int: The count (number of entries)
+            Tuple[List[TabularData], int, str]: A tuple containing the following:
+            List[TabularData]: The tabular data,
+            int: The count (number of entries),
             str: The last-returned page ID.
         """
         filter = filter if filter else Filter()
@@ -244,6 +245,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
+                You can obtain your organization ID from the Viam app's organization settings page.
             sql_query (str): The SQL query to run.
 
         Returns:
@@ -257,6 +259,7 @@ class DataClient:
         """Obtain unified tabular data and metadata, queried with MQL.
 
         ::
+
             # using bson
             import bson
             tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
@@ -274,6 +277,7 @@ class DataClient:
 
         Args:
             organization_id (str): The ID of the organization that owns the data.
+                You can obtain your organization ID from the Viam app's organization settings page.
             mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
                 `pymongo` or `bson`.
 
@@ -328,8 +332,9 @@ class DataClient:
             dest (str): Optional filepath for writing retrieved data.
 
         Returns:
-            List[viam.proto.app.data.BinaryData]: The binary data.
-            int: The count (number of entries)
+            Tuple[List[viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:
+            List[viam.proto.app.data.BinaryData]: The binary data,
+            int: The count (number of entries),
             str: The last-returned page ID.
         """
 
@@ -421,6 +426,7 @@ class DataClient:
 
         Args:
             organization_id (str): ID of organization to delete data from.
+                You can obtain your organization ID from the Viam app's organization settings page.
             delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
                 is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
 
@@ -554,7 +560,7 @@ class DataClient:
         await self._data_client.AddTagsToBinaryDataByFilter(request, metadata=self._metadata)
 
     async def remove_tags_from_binary_data_by_ids(self, tags: List[str], binary_ids: List[BinaryID]) -> int:
-        """Remove tags from binary.
+        """Remove tags from binary data by IDs.
 
         ::
 
@@ -691,7 +697,7 @@ class DataClient:
             GRPCError: If the X or Y values are outside of the [0, 1] range.
 
         Returns:
-            str: The bounding box ID
+            str: The bounding box ID.
         """
         request = AddBoundingBoxToImageByIDRequest(
             label=label,
@@ -724,7 +730,7 @@ class DataClient:
 
         Args:
             bbox_id (str): The ID of the bounding box to remove.
-            Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from
+            binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from.
         """
         request = RemoveBoundingBoxFromImageByIDRequest(bbox_id=bbox_id, binary_id=binary_id)
         await self._data_client.RemoveBoundingBoxFromImageByID(request, metadata=self._metadata)
@@ -761,6 +767,7 @@ class DataClient:
 
         Args:
             organization_id (str): Organization to retrieve the connection for.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             str: The hostname of the federated database.
@@ -773,8 +780,16 @@ class DataClient:
         """Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
         password of the existing database user.
 
+        ::
+
+            await data_client.configure_database_user(
+                organization_id="<your-org-id>",
+                password="your_password"
+            )
+
         Args:
             organization_id (str): The ID of the organization.
+                You can obtain your organization ID from the Viam app's organization settings page.
             password (str): The password of the user.
         """
         request = ConfigureDatabaseUserRequest(organization_id=organization_id, password=password)
@@ -794,6 +809,7 @@ class DataClient:
         Args:
             name (str): The name of the dataset being created.
             organization_id (str): The ID of the organization where the dataset is being created.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             str: The dataset ID of the created dataset.
@@ -813,7 +829,9 @@ class DataClient:
             print(datasets)
 
         Args:
-            ids (List[str]): The IDs of the datasets being called for.
+            ids (List[str]): The IDs of the datasets being called for. To retrieve these IDs,
+                navigate to your dataset's page in the Viam app,
+                click **...** in the left-hand menu, and click **Copy dataset ID**.
 
         Returns:
             Sequence[Dataset]: The list of datasets.
@@ -828,13 +846,14 @@ class DataClient:
 
         ::
 
-            datasets = await data_client.list_dataset_by_ids(
-                ids=["abcd-1234xyz-8765z-123abc"]
+            datasets = await data_client.list_dataset_by_organization_id(
+                organization_id=[""a12b3c4e-1234-1abc-ab1c-ab1c2d345abc""]
             )
             print(datasets)
 
         Args:
             organization_id (str): The ID of the organization.
+                You can obtain your organization ID from the Viam app's organization settings page.
 
         Returns:
             Sequence[Dataset]: The list of datasets in the organization.
@@ -908,7 +927,9 @@ class DataClient:
             )
 
         Args:
-            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.
+            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset. To retrieve these IDs,
+                navigate to your dataset's page in the Viam app,
+                click **...** in the left-hand menu, and click **Copy dataset ID**.
             dataset_id (str): The ID of the dataset to be added to.
         """
         request = AddBinaryDataToDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
@@ -944,7 +965,9 @@ class DataClient:
             )
 
         Args:
-            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.
+            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset. To retrieve these IDs,
+                navigate to your dataset's page in the Viam app,
+                click **...** in the left-hand menu, and click **Copy dataset ID**.
             dataset_id (str): The ID of the dataset to be removed from.
         """
         request = RemoveBinaryDataFromDatasetByIDsRequest(binary_ids=binary_ids, dataset_id=dataset_id)
@@ -964,7 +987,7 @@ class DataClient:
     ) -> str:
         """Upload binary sensor data.
 
-        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
         app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
 
         ::
@@ -987,10 +1010,10 @@ class DataClient:
         Args:
             binary_data (bytes): The data to be uploaded, represented in bytes.
             part_id (str): Part ID of the component used to capture the data.
-            component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
+            component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
-            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+            file_extension (str): The file extension of binary data including the period, for example .jpg, .png, .pcd.
                 The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
                 or .png extension will be saved to the images tab.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
@@ -1002,7 +1025,7 @@ class DataClient:
             GRPCError: If an invalid part ID is passed.
 
         Returns:
-            str: the file_id of the uploaded data.
+            str: The file_id of the uploaded data.
         """
         sensor_contents = SensorData(
             metadata=(
@@ -1043,7 +1066,7 @@ class DataClient:
     ) -> str:
         """Upload tabular sensor data.
 
-        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+        Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
         app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
         ::
@@ -1064,7 +1087,7 @@ class DataClient:
         Args:
             tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.
             part_id (str): Part ID of the component used to capture the data.
-            component_type (str): Type of the component used to capture the data (e.g., "movement_sensor").
+            component_type (str): Type of the component used to capture the data (for example, "movement_sensor").
             component_name (str): Name of the component used to capture the data.
             method_name (str): Name of the method used to capture the data.
             method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.
@@ -1080,7 +1103,7 @@ class DataClient:
                 data.
 
         Returns:
-            str: the file_id of the uploaded data.
+            str: The file_id of the uploaded data.
         """
         sensor_contents = []
         if data_request_times:
@@ -1157,7 +1180,7 @@ class DataClient:
             data (bytes): the data to be uploaded.
             part_id (str): Part ID of the resource associated with the file.
             file_ext (str): file extension type for the data. required for determining MIME type.
-            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
+            component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
@@ -1169,7 +1192,7 @@ class DataClient:
             GRPCError: If an invalid part ID is passed.
 
         Returns:
-            str: the file_id of the uploaded data.
+            str: The file_id of the uploaded data.
         """
 
         upload_metadata = UploadMetadata(
@@ -1228,7 +1251,7 @@ class DataClient:
         Args:
             part_id (str): Part ID of the resource associated with the file.
             data (bytes): Bytes representing file data to upload.
-            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
+            component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             file_name (Optional[str]): Optional name of the file. The empty string "" will be assigned as the file name if one isn't
@@ -1284,7 +1307,7 @@ class DataClient:
         Args:
             filepath (str): Absolute filepath of file to be uploaded.
             part_id (str): Part ID of the component associated with the file.
-            component_type (Optional[str]): Optional type of the component associated with the file (e.g., "movement_sensor").
+            component_type (Optional[str]): Optional type of the component associated with the file (for example, "movement_sensor").
             component_name (Optional[str]): Optional name of the component associated with the file.
             method_name (Optional[str]): Optional name of the method associated with the file.
             method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.
