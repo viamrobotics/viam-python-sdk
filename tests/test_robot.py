@@ -1,5 +1,6 @@
 import asyncio
 from typing import Any, Dict, List, Optional, Tuple
+from unittest import mock
 
 import pytest
 from google.protobuf.struct_pb2 import Struct, Value
@@ -39,6 +40,8 @@ from viam.proto.robot import (
     ResourceNamesRequest,
     ResourceNamesResponse,
     RobotServiceStub,
+    ShutdownRequest,
+    ShutdownResponse,
     Status,
     StopAllRequest,
     StopExtraParameters,
@@ -209,6 +212,12 @@ def service() -> RobotService:
         assert request is not None
         await stream.send_message(GET_CLOUD_METADATA_RESPONSE)
 
+    async def Shutdown(stream: Stream[ShutdownRequest, ShutdownResponse]) -> None:
+        request = await stream.recv_message()
+        assert request is not None
+        response = ShutdownResponse()
+        await stream.send_message(response)
+
     manager = ResourceManager(resources)
     service = RobotService(manager)
     service.FrameSystemConfig = Config
@@ -216,6 +225,7 @@ def service() -> RobotService:
     service.DiscoverComponents = DiscoverComponents
     service.GetOperations = GetOperations
     service.GetCloudMetadata = GetCloudMetadata
+    service.Shutdown = Shutdown
 
     return service
 
@@ -599,3 +609,21 @@ class TestRobotClient:
 
             await client.close()
             Registry._SUBTYPES[Arm.SUBTYPE].create_rpc_client = old_create_client
+
+    @pytest.mark.asyncio
+    async def test_shutdown(self, service: RobotService):
+        async with ChannelFor([service]) as channel:
+
+            async def shutdown_client_mock(self):
+                return await self._client.Shutdown(ShutdownRequest())
+
+            client = await RobotClient.with_channel(channel, RobotClient.Options())
+
+            with mock.patch("viam.robot.client.RobotClient.shutdown") as shutdown_mock:
+                shutdown_mock.return_value = await shutdown_client_mock(client)
+                shutdown_response = await client.shutdown()
+
+                assert shutdown_response == ShutdownResponse()
+                shutdown_mock.assert_called_once()
+
+                await client.close()

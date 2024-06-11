@@ -4,6 +4,7 @@ from datetime import datetime
 from threading import RLock
 from typing import Any, Dict, List, Optional, Union
 
+from grpclib import GRPCError, Status
 from grpclib.client import Channel
 from typing_extensions import Self
 
@@ -33,6 +34,7 @@ from viam.proto.robot import (
     ResourceNamesRequest,
     ResourceNamesResponse,
     RobotServiceStub,
+    ShutdownRequest,
     StopAllRequest,
     StopExtraParameters,
     TransformPoseRequest,
@@ -787,3 +789,33 @@ class RobotClient:
 
         request = GetCloudMetadataRequest()
         return await self._client.GetCloudMetadata(request)
+
+    ############
+    # Shutdown #
+    ############
+
+    async def shutdown(self):
+        """
+        Shutdown shuts down the robot.
+
+        Raises:
+            GRPCError: Raised with DeadlineExceeded status if shutdown request times out, or if
+              robot server shuts down before having a chance to send a response. Raised with
+              status Unavailable if server is unavailable, or if robot server is in the process of
+              shutting down when response is ready.
+        """
+        request = ShutdownRequest()
+        try:
+            await self._client.Shutdown(request)
+            LOGGER.info("robot shutdown successful")
+        except GRPCError as e:
+            if e.status == Status.INTERNAL or e.status == Status.UNKNOWN:
+                LOGGER.info("robot shutdown successful")
+            elif e.status == Status.UNAVAILABLE:
+                LOGGER.warn("server unavailable, likely due to successful robot shutdown")
+                raise e
+            elif e.status == Status.DEADLINE_EXCEEDED:
+                LOGGER.warn("request timeout, robot shutdown may still be successful")
+                raise e
+            else:
+                raise e
