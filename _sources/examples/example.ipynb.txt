@@ -1272,8 +1272,9 @@
    ],
    "source": [
     "from datetime import datetime\n",
+    "from viam.utils import create_filter\n",
     "\n",
-    "left_motor_filter = data_client.create_filter(\n",
+    "left_motor_filter = create_filter(\n",
     "    component_name=\"left_motor\", start_time=datetime(2023, 6, 5, 11), end_time=datetime(2023, 6, 5, 13, 30), tags=[\"speed_test_run\"]\n",
     ")\n",
     "\n",

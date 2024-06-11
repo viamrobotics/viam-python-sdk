@@ -166,7 +166,7 @@
 <span class="expanded">Hide code cell output</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7f306ced39c0&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7f306ced3d80&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7f306ced3dd0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7f306ced3e20&gt;, &lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7f306ced3e70&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7f306ced3ec0&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7f306ced3f10&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7f306ced3f60&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7f306ced3fb0&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7f306cec8040&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7f306cec8090&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7f306cec80e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7f306cec8130&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7f306cec8180&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7f306cec81d0&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;viam.proto.common.ResourceName rdk:component:camera/camera0 at 0x7fe15855f7e0&gt;, &lt;viam.proto.common.ResourceName rdk:component:pose_tracker/pose_tracker0 at 0x7fe15855fba0&gt;, &lt;viam.proto.common.ResourceName rdk:component:board/board at 0x7fe15855fbf0&gt;, &lt;viam.proto.common.ResourceName rdk:service:mlmodel/mlmodel0 at 0x7fe15855fc40&gt;, &lt;viam.proto.common.ResourceName rdk:component:motor/motor0 at 0x7fe15855fc90&gt;, &lt;viam.proto.common.ResourceName rdk:component:gantry/gantry0 at 0x7fe15855fce0&gt;, &lt;viam.proto.common.ResourceName rdk:component:base/base0 at 0x7fe15855fd30&gt;, &lt;viam.proto.common.ResourceName rdk:component:gripper/gripper0 at 0x7fe15855fd80&gt;, &lt;viam.proto.common.ResourceName rdk:component:encoder/encoder0 at 0x7fe15855fdd0&gt;, &lt;viam.proto.common.ResourceName rdk:component:arm/arm0 at 0x7fe15855fe20&gt;, &lt;viam.proto.common.ResourceName rdk:component:movement_sensor/movement_sensor0 at 0x7fe15855fe70&gt;, &lt;viam.proto.common.ResourceName rdk:component:sensor/sensor0 at 0x7fe15855fec0&gt;, &lt;viam.proto.common.ResourceName rdk:component:servo/servo0 at 0x7fe15855ff10&gt;, &lt;viam.proto.common.ResourceName rdk:service:slam/slam0 at 0x7fe15855ff60&gt;, &lt;viam.proto.common.ResourceName rdk:component:audio_input/audio_input0 at 0x7fe15855ffb0&gt;]
 </pre></div>
 </div>
 </div>
@@ -198,7 +198,7 @@
 <span class="expanded">Hide code cell outputs</span>
 </summary>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7f306cd172f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;viam.media.video.ViamImage at 0x7fe148fef080&gt;
 </pre></div>
 </div>
 </div>
@@ -1036,8 +1036,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">viam.utils</span> <span class="kn">import</span> <span class="n">create_filter</span>
 
-<span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">data_client</span><span class="o">.</span><span class="n">create_filter</span><span class="p">(</span>
+<span class="n">left_motor_filter</span> <span class="o">=</span> <span class="n">create_filter</span><span class="p">(</span>
     <span class="n">component_name</span><span class="o">=</span><span class="s2">&quot;left_motor&quot;</span><span class="p">,</span> <span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="n">end_time</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;speed_test_run&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 
