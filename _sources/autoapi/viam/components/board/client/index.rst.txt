@@ -37,7 +37,7 @@ Attributes
 
    Bases: :py:obj:`viam.components.board.board.Board.Analog`
 
-   AnalogReader represents an analog pin reader or writer that resides on a Board.
+   Analog represents an analog pin reader or writer that resides on a Board.
 
    .. py:method:: read(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> viam.components.board.board.Board.Analog.Value
       :async:
@@ -48,7 +48,7 @@ Attributes
 
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the AnalogReader "my_example_analog_reader".
+          # Get the Analog "my_example_analog_reader".
           reader = await my_board.analog_reader_by_name(
               name="my_example_analog_reader")
 
@@ -63,16 +63,20 @@ Attributes
    .. py:method:: write(value: int, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs)
       :async:
 
-      Write a value to the analog writer.
+      Write a value to the Analog writer.
 
       ::
+
           my_board = Board.from_robot(robot=robot, name="my_board")
 
-          # Get the AnalogWriter "my_example_analog_writer".
+          # Get the Analog "my_example_analog_writer".
           writer = await my_board.analog_by_name(
               name="my_example_analog_writer")
 
           await writer.write(42)
+
+      :param value: Value to write to the analog writer.
+      :type value: int
 
 
 
@@ -113,7 +117,7 @@ Attributes
 
    Bases: :py:obj:`viam.components.board.board.Board.GPIOPin`
 
-   Abstract representation of an individual GPIO pin on a board
+   Abstract representation of an individual GPIO pin on a board.
 
    .. py:method:: get(*, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **__) -> bool
       :async:

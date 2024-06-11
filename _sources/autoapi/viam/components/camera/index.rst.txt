@@ -181,7 +181,7 @@ Classes
       :param mime_type: The desired mime type of the image. This does not guarantee output type
       :type mime_type: str
 
-      :returns: The frame
+      :returns: The frame.
       :rtype: ViamImage
 
 
@@ -200,10 +200,8 @@ Classes
           img0 = images[0].image
           timestamp = metadata.captured_at
 
-      :returns:
-
-                A tuple containing two values; the first [0] a list of images returned from the
-                    camera system, and the second [1] the metadata associated with this response.
+      :returns: A tuple containing two values; the first [0] a list of images
+                returned from the camera system, and the second [1] the metadata associated with this response.
       :rtype: Tuple[List[NamedImage], ResponseMetadata]
 
 
@@ -231,10 +229,8 @@ Classes
           pcd = o3d.io.read_point_cloud("/tmp/pointcloud_data.pcd")
           points = np.asarray(pcd.points)
 
-      :returns:
-
-                A tuple containing two values; the first [0] the pointcloud data, and the second [1] the mimetype of the
-                    pointcloud (e.g. PCD).
+      :returns: A tuple containing two values; the first [0] the pointcloud data,
+                and the second [1] the mimetype of the pointcloud (for example, PCD).
       :rtype: Tuple[bytes, str]
 
 
@@ -250,7 +246,7 @@ Classes
 
           properties = await my_camera.get_properties()
 
-      :returns: The properties of the camera
+      :returns: The properties of the camera.
       :rtype: Properties
 
 

@@ -216,15 +216,12 @@ The position will be either in relative units (ticks away from a zero position) 
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>position_type</strong> (<em>PositionType.ValueType</em>) – The desired output type of the position</p>
+<dd class="field-odd"><p><strong>position_type</strong> (<em>PositionType.ValueType</em>) – The desired output type of the position.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A tuple containing two values; the first [0] the Position of the encoder which can either be</dt><dd><p>ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
-position the encoder returns (ticks or degrees).</p>
-</dd>
-</dl>
-</p>
+<dd class="field-even"><p>A tuple containing two values; the first [0] the Position of the encoder
+which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
+and the second [1] the type of position the encoder returns (ticks or degrees).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Tuple[float, <a class="reference internal" href="../../../gen/component/encoder/v1/encoder_pb2/index.html#viam.gen.component.encoder.v1.encoder_pb2.PositionType" title="viam.gen.component.encoder.v1.encoder_pb2.PositionType">PositionType</a>]</p>

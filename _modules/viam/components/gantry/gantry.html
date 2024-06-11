@@ -116,7 +116,7 @@
 <div class="viewcode-block" id="Gantry.get_position"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/index.html#viam.components.gantry.gantry.Gantry.get_position">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the position in millimeters.</span>
+<span class="sd">        Get the positions of the axes of the gantry in millimeters.</span>
 
 <span class="sd">        ::</span>
 
@@ -126,7 +126,7 @@
 <span class="sd">            positions = await my_gantry.get_position()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The position of the axes.</span>
+<span class="sd">            List[float]: A list of the position of the axes of the gantry in millimeters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -141,7 +141,7 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Move the gantry to a new position at the requested speeds.</span>
+<span class="sd">        Move the axes of the gantry to the desired positions (mm) at the requested speeds (mm/sec).</span>
 
 <span class="sd">        ::</span>
 
@@ -158,15 +158,15 @@
 <span class="sd">                positions=examplePositions, speeds=exampleSpeeds)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            positions (List[float]): List of positions for the axes to move to,</span>
-<span class="sd">                in millimeters.</span>
+<span class="sd">            positions (List[float]): A list of positions for the axes of the gantry to move to, in millimeters.</span>
+<span class="sd">            speeds (List[float]): A list of speeds in millimeters per second for the gantry to move at respective to each axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="Gantry.home"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/index.html#viam.components.gantry.gantry.Gantry.home">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Home the gantry to find it&#39;s starting and ending positions</span>
+<span class="sd">        Run the homing sequence of the gantry to re-calibrate the axes with respect to the limit switches.</span>
 
 <span class="sd">        ::</span>
 
@@ -175,7 +175,7 @@
 <span class="sd">            await my_gantry.home()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool : whether the gantry has run the homing sequence successfully</span>
+<span class="sd">            bool: Whether the gantry has run the homing sequence successfully.</span>
 <span class="sd">        &quot;&quot;&quot;</span></div>
 
 <div class="viewcode-block" id="Gantry.get_lengths"><a class="viewcode-back" href="../../../../autoapi/viam/components/gantry/index.html#viam.components.gantry.gantry.Gantry.get_lengths">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
@@ -191,7 +191,7 @@
 <span class="sd">            lengths_mm = await my_gantry.get_lengths()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[float]: The lengths of the axes.</span>
+<span class="sd">            List[float]: A list of the lengths of the axes of the gantry in millimeters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 

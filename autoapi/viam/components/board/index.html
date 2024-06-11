@@ -204,7 +204,7 @@ overridden, it must call the <code class="docutils literal notranslate"><span cl
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.board.Board.Analog">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Analog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.Analog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.Analog" title="Permalink to this definition"></a></dt>
-<dd><p>AnalogReader represents an analog pin reader or writer that resides on a Board.</p>
+<dd><p>Analog represents an analog pin reader or writer that resides on a Board.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.board.Board.Analog.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.board.Board.Analog.name" title="Permalink to this definition"></a></dt>
@@ -225,7 +225,7 @@ change between values it can read).</p>
 <dd><p>Read the current value from the reader.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
 
-<span class="c1"># Get the AnalogReader &quot;my_example_analog_reader&quot;.</span>
+<span class="c1"># Get the Analog &quot;my_example_analog_reader&quot;.</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_reader_by_name</span><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_example_analog_reader&quot;</span><span class="p">)</span>
 
@@ -247,15 +247,19 @@ change between values it can read).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.components.board.Board.Analog.write">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.Analog.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.Analog.write" title="Permalink to this definition"></a></dt>
-<dd><p>Write a value to the analog writer.</p>
-<dl>
-<dt>::</dt><dd><p>my_board = Board.from_robot(robot=robot, name=”my_board”)</p>
-<p># Get the AnalogWriter “my_example_analog_writer”.
-writer = await my_board.analog_by_name(</p>
-<blockquote>
-<div><p>name=”my_example_analog_writer”)</p>
-</div></blockquote>
-<p>await writer.write(42)</p>
+<dd><p>Write a value to the Analog writer.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">my_board</span> <span class="o">=</span> <span class="n">Board</span><span class="o">.</span><span class="n">from_robot</span><span class="p">(</span><span class="n">robot</span><span class="o">=</span><span class="n">robot</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_board&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the Analog &quot;my_example_analog_writer&quot;.</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="k">await</span> <span class="n">my_board</span><span class="o">.</span><span class="n">analog_by_name</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_example_analog_writer&quot;</span><span class="p">)</span>
+
+<span class="k">await</span> <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – Value to write to the analog writer.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -271,7 +275,7 @@ be added to modify what Value it ultimately returns.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.board.Board.DigitalInterrupt.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.board.Board.DigitalInterrupt.name" title="Permalink to this definition"></a></dt>
-<dd><p>The name of the digital interrupt</p>
+<dd><p>The name of the digital interrupt.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -305,11 +309,11 @@ which is based on the type of interrupt.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GPIOPin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/components/board/board.html#Board.GPIOPin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.components.board.Board.GPIOPin" title="Permalink to this definition"></a></dt>
-<dd><p>Abstract representation of an individual GPIO pin on a board</p>
+<dd><p>Abstract representation of an individual GPIO pin on a board.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.components.board.Board.GPIOPin.name">
 <span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#viam.components.board.Board.GPIOPin.name" title="Permalink to this definition"></a></dt>
-<dd><p>The name of the GPIO pin</p>
+<dd><p>The name of the GPIO pin.</p>
 </dd></dl>
 
 <dl class="py method">

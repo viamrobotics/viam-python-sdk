@@ -87,14 +87,12 @@ Classes
           position = await my_encoder.get_position(encoder.PositionTypeTicks)
           print("The encoder position is currently ", position[0], position[1])
 
-      :param position_type: The desired output type of the position
+      :param position_type: The desired output type of the position.
       :type position_type: PositionType.ValueType
 
-      :returns:
-
-                A tuple containing two values; the first [0] the Position of the encoder which can either be
-                    ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
-                    position the encoder returns (ticks or degrees).
+      :returns: A tuple containing two values; the first [0] the Position of the encoder
+                which can either be ticks since last zeroing for a relative encoder or degrees for an absolute encoder,
+                and the second [1] the type of position the encoder returns (ticks or degrees).
       :rtype: Tuple[float, PositionType]
 
 

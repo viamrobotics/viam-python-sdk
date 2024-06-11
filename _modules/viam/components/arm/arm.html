@@ -125,7 +125,7 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Pose</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get the current position of the end of the arm expressed as a Pose.</span>
+<span class="sd">        Get the current position of the end of the arm expressed as a ``Pose``.</span>
 
 <span class="sd">        ::</span>
 
@@ -135,7 +135,10 @@
 <span class="sd">            pos = await my_arm.get_end_position()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Pose: The location and orientation of the arm described as a Pose.</span>
+<span class="sd">            Pose: A representation of the arm’s current position as a 6 DOF (six degrees of freedom) pose.</span>
+<span class="sd">            The ``Pose`` is composed of values for location and orientation with respect to the origin.</span>
+<span class="sd">            Location is expressed as distance, which is represented by x, y, and z coordinate values.</span>
+<span class="sd">            Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -162,7 +165,10 @@
 <span class="sd">            await my_arm.move_to_position(pose=examplePose)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            pose (Pose): The destination Pose for the arm.</span>
+<span class="sd">            pose (Pose): The destination ``Pose`` for the arm. The ``Pose`` is composed of values for location and orientation</span>
+<span class="sd">                with respect to the origin.</span>
+<span class="sd">                Location is expressed as distance, which is represented by x, y, and z coordinate values.</span>
+<span class="sd">                Orientation is expressed as an orientation vector, which is represented by o_x, o_y, o_z, and theta values.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -217,7 +223,9 @@
 <span class="sd">            pos = await my_arm.get_joint_positions()</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            JointPositions: The current JointPositions for the arm.</span>
+<span class="sd">            JointPositions: The current ``JointPositions`` for the arm.</span>
+<span class="sd">            ``JointPositions`` can have one attribute, ``values``, a list of joint positions with rotational values (degrees)</span>
+<span class="sd">            and translational values (mm).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -238,6 +246,7 @@
 
 <span class="sd">            # Stop all motion of the arm. It is assumed that the arm stops immediately.</span>
 <span class="sd">            await my_arm.stop()</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
@@ -283,8 +292,8 @@
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Tuple[KinematicsFileFormat.ValueType, bytes]: A tuple containing two values; the first [0] value represents the format of the</span>
-<span class="sd">                file, either in URDF format or Viam&#39;s kinematic parameter format (spatial vector algebra), and the second [1] value</span>
-<span class="sd">                represents the byte contents of the file.</span>
+<span class="sd">            file, either in URDF format or Viam&#39;s kinematic parameter format (spatial vector algebra), and the second [1] value</span>
+<span class="sd">            represents the byte contents of the file.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div></div>
 </pre></div>
