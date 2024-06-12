@@ -23,7 +23,7 @@ def parse_model(orig: Union[str, Model]) -> Model:
     *family, name = match.groups()
     return Model(ModelFamily(*family), name)
 
-class EasyResource(ResourceBase):
+class EasyResource:
     """
     EasyResource is a mixin that ...
     See ...
