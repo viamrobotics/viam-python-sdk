@@ -113,7 +113,7 @@
 
 <div class="viewcode-block" id="PowerSensor.get_voltage"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_voltage">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_voltage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the voltage reading and bool IsAC</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the voltage reading of a specified device and whether it is AC or DC.</span>
 
 <span class="sd">        ::</span>
 
@@ -124,13 +124,14 @@
 <span class="sd">            print(&quot;The voltage is&quot;, voltage, &quot;V, Is AC:&quot;, is_ac)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[float, bool]: voltage (volts) and bool IsAC</span>
+<span class="sd">            Tuple[float, bool]: A float representing the voltage reading in V. A bool indicating whether the voltage is AC (`true`) or DC</span>
+<span class="sd">            (`false`).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="PowerSensor.get_current"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_current">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_current</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the current reading and bool IsAC</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the current of a specified device and whether it is AC or DC.</span>
 
 <span class="sd">        ::</span>
 
@@ -141,13 +142,14 @@
 <span class="sd">            print(&quot;The current is &quot;, current, &quot; A, Is AC: &quot;, is_ac)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Tuple[float, bool]: current (amperes) and bool IsAC</span>
+<span class="sd">            Tuple[float, bool]: A tuple which includes a float representing the current reading in amps, and a bool indicating whether the</span>
+<span class="sd">            current is AC (`true`) or DC (`false`).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="PowerSensor.get_power"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_power">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">get_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the power reading in watts</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the power reading in watts.</span>
 
 <span class="sd">        ::</span>
 
@@ -158,15 +160,15 @@
 <span class="sd">            print(&quot;The power is&quot;, power, &quot;Watts&quot;)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            float: power in watts</span>
+<span class="sd">            float: The power reading in watts.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="o">...</span></div>
 
 <div class="viewcode-block" id="PowerSensor.get_readings"><a class="viewcode-back" href="../../../../autoapi/viam/components/power_sensor/power_sensor/index.html#viam.components.power_sensor.PowerSensor.get_readings">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_readings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">extra</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SensorReading</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain the measurements/data specific to this sensor.</span>
-<span class="sd">        If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the measurements or readings that this power sensor provides. If a sensor is not configured correctly or fails to read a</span>
+<span class="sd">        piece of data, it will not appear in the readings dictionary.</span>
 
 <span class="sd">        ::</span>
 
