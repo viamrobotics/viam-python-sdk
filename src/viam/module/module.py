@@ -1,8 +1,9 @@
+import argparse
 import io
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
-from typing import List, Mapping, Optional, Sequence, Tuple
+from typing import List, Mapping, Optional, Sequence, Tuple, Union
 
 from grpclib.utils import _service_name
 from typing_extensions import Self
@@ -34,6 +35,13 @@ from .types import Reconfigurable, Stoppable
 
 LOGGER = logging.getLogger(__name__)
 
+def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line args. Used by the various `Module` entrypoints.
+    """
+    p = argparse.ArgumentParser(description="Start this viam python module")
+    p.add_argument('socket_path', help="path where this module will serve a unix socket")
+    return p.parse_args()
 
 class Module:
     _address: str
@@ -63,6 +71,27 @@ class Module:
         address = args[1]
         log_level = logging.DEBUG if (len(args) == 3 and "=debug" in args[2].lower()) else logging.INFO
         return cls(address, log_level=log_level)
+
+    @classmethod
+    async def run_with_models(cls, *models: Model):
+        """
+        Entrypoint ...
+        """
+        module = cls(parse_args().socket_path)
+        for model in models:
+            module.add_model_from_registry(model.SUBTYPE, model.MODEL)
+        await module.start()
+
+    @classmethod
+    async def run_from_registry(cls):
+        """
+        Entrypoint ...
+        """
+        module = cls(parse_args().socket_path)
+        for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
+            # todo: this would be cleaner if resource creator key becomes a tuple
+            module.add_model_from_registry(*key.split('/'))
+        await module.start()
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:
         # When a module is launched by viam-server, its stdout is not connected to a tty.  In

@@ -9,7 +9,7 @@ from .base import ResourceBase
 from .types import Model, ModelFamily, Subtype
 from .registry import Registry, ResourceCreatorRegistration
 
-modelRegex = re.compile(r"^([^:])+:([^:])+:([^:])+$")
+modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +31,10 @@ class EasyResource(ResourceBase):
     SUBTYPE: Subtype
     MODEL: Model
 
-    def __init_subclass__(cls, register=True, **kwargs) -> None:
+    def __init_subclass__(cls, register=True, **kwargs):
+        """
+        When you subclass this mixin, it parses cls.MODEL and registers cls in global registry.
+        """
         super().__init_subclass__(**kwargs)
         if not hasattr(cls, "MODEL"):
             raise ValueError("please define a MODEL like 'org:type:name' on your class, for example 'viam:camera:IMX219'")
@@ -46,7 +49,7 @@ class EasyResource(ResourceBase):
     @classmethod
     def new(cls, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         """
-        new() is passed to register_resource_creator; the default implementation calls reconfigure()
+        This is passed to register_resource_creator; the default implementation calls reconfigure()
         when an instance of your model is instantiated. You can override this in your subclass.
         """
         self = cls(config.name)
@@ -56,6 +59,10 @@ class EasyResource(ResourceBase):
 
     @classmethod
     def register(cls):
+        """
+        This adds the model to the global registry. It is called by __init_subclass__ and you typically
+        won't call it directly.
+        """
         logger.debug('registering %s %s', cls.SUBTYPE, cls.MODEL)
         Registry.register_resource_creator(cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new))
 
