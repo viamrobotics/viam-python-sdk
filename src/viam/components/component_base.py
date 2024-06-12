@@ -45,7 +45,8 @@ class ComponentBase(abc.ABC, ResourceBase):
 
     async def get_geometries(self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None) -> List[Geometry]:
         """
-        Get all geometries associated with the component, in their current configuration, in the `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
+        Get all geometries associated with the component, in their current configuration, in the
+        `frame <https://docs.viam.com/services/frame-system/>`__ of the component.
 
         ::
 
