@@ -1,5 +1,6 @@
 import argparse
 import io
+import logging as pylogging
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
@@ -41,6 +42,7 @@ def parse_args() -> argparse.Namespace:
     """
     p = argparse.ArgumentParser(description="Start this viam python module")
     p.add_argument('socket_path', help="path where this module will serve a unix socket")
+    p.add_argument('--log-level', type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
     return p.parse_args()
 
 class Module:
@@ -65,6 +67,7 @@ class Module:
         Returns:
             Module: a new Module instance
         """
+        # todo(review): change this to use parse_args()? makes life simpler below
         args = sys.argv
         if len(args) < 2:
             raise Exception("Need socket path as command line argument")
@@ -73,11 +76,12 @@ class Module:
         return cls(address, log_level=log_level)
 
     @classmethod
-    async def run_with_models(cls, *models: Model):
+    async def run_with_models(cls, *models: ResourceBase):
         """
         Entrypoint ...
         """
-        module = cls(parse_args().socket_path)
+        args = parse_args()
+        module = cls(args.socket_path, log_level=args.log_level)
         for model in models:
             module.add_model_from_registry(model.SUBTYPE, model.MODEL)
         await module.start()
@@ -87,9 +91,10 @@ class Module:
         """
         Entrypoint ...
         """
-        module = cls(parse_args().socket_path)
+        args = parse_args()
+        module = cls(args.socket_path, log_level=args.log_level)
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
-            # todo: this would be cleaner if resource creator key becomes a tuple
+            # todo(review): this would be cleaner if resource creator key became a tuple
             module.add_model_from_registry(*key.split('/'))
         await module.start()
 
