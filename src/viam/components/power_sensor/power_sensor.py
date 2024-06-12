@@ -68,7 +68,7 @@ class PowerSensor(ComponentBase):
             print("The power is", power, "Watts")
 
         Returns:
-            float: The measurement of the power, represented as a float.
+            float: The power reading in watts.
         """
         ...
 
