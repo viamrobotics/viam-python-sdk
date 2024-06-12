@@ -85,6 +85,7 @@ class PowerSensor(ComponentBase):
             readings = await my_power_sensor.get_readings()
 
         Returns:
-            Mapping[str, Any]: The measurements or readings that this power sensor provides.
+            Mapping[str, Any]: The readings for the PowerSensor. Can be of any type. Includes voltage in volts (float), current in
+                amperes (float), is_ac (bool), and power in watts (float).
         """
         ...
