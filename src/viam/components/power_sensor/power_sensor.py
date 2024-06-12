@@ -34,7 +34,8 @@ class PowerSensor(ComponentBase):
             print("The voltage is", voltage, "V, Is AC:", is_ac)
 
         Returns:
-            Tuple[float, bool]: A float representing the voltage reading in V. A bool indicating whether the voltage is AC (`true`) or DC (`false`).
+            Tuple[float, bool]: A float representing the voltage reading in V. A bool indicating whether the voltage is AC (`true`) or DC
+            (`false`).
         """
         ...
 
@@ -51,7 +52,8 @@ class PowerSensor(ComponentBase):
             print("The current is ", current, " A, Is AC: ", is_ac)
 
         Returns:
-            Tuple[float, bool]: A tuple which includes a float representing the current reading in amps, and a bool indicating whether the current is AC (`true`) or DC (`false`).
+            Tuple[float, bool]: A tuple which includes a float representing the current reading in amps, and a bool indicating whether the
+            current is AC (`true`) or DC (`false`).
         """
         ...
 
@@ -75,7 +77,8 @@ class PowerSensor(ComponentBase):
     async def get_readings(
         self, *, extra: Optional[Dict[str, Any]] = None, timeout: Optional[float] = None, **kwargs
     ) -> Mapping[str, SensorReading]:
-        """Get the measurements or readings that this power sensor provides. If a sensor is not configured to have a measurement or fails to read a piece of data, it will not appear in the readings dictionary.
+        """Get the measurements or readings that this power sensor provides. If a sensor is not configured correctly or fails to read a
+        piece of data, it will not appear in the readings dictionary.
 
         ::
 
