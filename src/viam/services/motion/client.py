@@ -99,10 +99,10 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints
                 expressed in the WorldState message.
             constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any
-                specified constraints
+                specified constraints.
 
         Returns:
-            bool: Whether the move was successful
+            bool: Whether the move was successful.
         """
         if extra is None:
             extra = {}
@@ -169,10 +169,12 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
                 at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this
                 motion service. This parameter and each of its fields are optional.
+
                 - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
-                    you want to use for transient obstacle avoidance.
-                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                you want to use for transient obstacle avoidance.
+
+                - position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.
+                - obstacle_polling_frequency_hz (float): The frequency in Hz to poll the vision service for new obstacles.
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                 - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                 - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
@@ -246,8 +248,10 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.
             configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.
                 This parameter and each of its fields are optional.
+
                 - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
-                    for transient obstacle avoidance.
+                for transient obstacle avoidance.
+
                 - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
                 - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
                 - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
@@ -341,8 +345,8 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
 
         Args:
             component_name (ResourceName): The component to stop
-            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution
-            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id
+            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution.
+            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id.
 
         Returns:
             ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus & replan history which matches the request
@@ -382,11 +386,11 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             resp = await motion.list_plan_statuses()
 
         Args:
-            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing
+            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing.
 
         Returns:
             ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the
-            associated IDs of all plans within the TTL ordered by timestamp in ascending order
+            associated IDs of all plans within the TTL ordered by timestamp in ascending order.
         """
         if extra is None:
             extra = {}
@@ -466,10 +470,10 @@ class MotionClient(ServiceClientBase, ReconfigurableResourceRPCClientBase):
             await motion.do_command(my_command)
 
         Args:
-            command (Dict[str, ValueTypes]): The command to execute
+            command (Dict[str, ValueTypes]): The command to execute.
 
         Returns:
-            Dict[str, ValueTypes]: Result of the executed command
+            Dict[str, ValueTypes]: Result of the executed command.
         """
         request = DoCommandRequest(name=self.name, command=dict_to_struct(command))
         response: DoCommandResponse = await self.client.DoCommand(request, timeout=timeout)
