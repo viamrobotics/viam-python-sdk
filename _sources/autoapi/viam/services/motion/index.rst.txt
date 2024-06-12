@@ -164,10 +164,10 @@ Classes
                           expressed in the WorldState message.
       :type world_state: viam.proto.common.WorldState
       :param constraints: When supplied, the motion service will create a plan that obeys any
-                          specified constraints
+                          specified constraints.
       :type constraints: viam.proto.service.motion.Constraints
 
-      :returns: Whether the move was successful
+      :returns: Whether the move was successful.
       :rtype: bool
 
 
@@ -217,10 +217,12 @@ Classes
       :type heading: Optional[float]
       :param configuration: The configuration you want to set across this machine for this
                             motion service. This parameter and each of its fields are optional.
+
                             - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair
-                                you want to use for transient obstacle avoidance.
-                            - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
-                            - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
+                            you want to use for transient obstacle avoidance.
+
+                            - position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.
+                            - obstacle_polling_frequency_hz (float): The frequency in Hz to poll the vision service for new obstacles.
                             - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
                             - linear_m_per_sec (float): Linear velocity this machine should target when moving.
                             - angular_degs_per_sec (float): Angular velocity this machine should target when turning.
@@ -275,8 +277,10 @@ Classes
       :type slam_service_name: ResourceName
       :param configuration: The configuration you want to set across this machine for this motion service.
                             This parameter and each of its fields are optional.
+
                             - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use
-                                for transient obstacle avoidance.
+                            for transient obstacle avoidance.
+
                             - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.
                             - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.
                             - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.
@@ -341,9 +345,9 @@ Classes
 
       :param component_name: The component to stop
       :type component_name: ResourceName
-      :param last_plan_only: If supplied, the response will only return the last plan for the component / execution
+      :param last_plan_only: If supplied, the response will only return the last plan for the component / execution.
       :type last_plan_only: Optional[bool]
-      :param execution_id: If supplied, the response will only return plans with the provided execution_id
+      :param execution_id: If supplied, the response will only return plans with the provided execution_id.
       :type execution_id: Optional[str]
 
       :returns: The current PlanWithStatus & replan history which matches the request
@@ -367,11 +371,11 @@ Classes
           # List the plan statuses of the motion service within the TTL
           resp = await motion.list_plan_statuses()
 
-      :param only_active_plans: If supplied, the response will filter out any plans that are not executing
+      :param only_active_plans: If supplied, the response will filter out any plans that are not executing.
       :type only_active_plans: Optional[bool]
 
       :returns: List of last known statuses with the
-                associated IDs of all plans within the TTL ordered by timestamp in ascending order
+                associated IDs of all plans within the TTL ordered by timestamp in ascending order.
       :rtype: ``ListPlanStatusesResponse`` (ListPlanStatusesResponse)
 
 
@@ -427,10 +431,10 @@ Classes
 
           await motion.do_command(my_command)
 
-      :param command: The command to execute
+      :param command: The command to execute.
       :type command: Dict[str, ValueTypes]
 
-      :returns: Result of the executed command
+      :returns: Result of the executed command.
       :rtype: Dict[str, ValueTypes]
 
 

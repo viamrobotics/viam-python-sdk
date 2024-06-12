@@ -290,8 +290,9 @@
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[TabularData]: The tabular data.</span>
-<span class="sd">            int: The count (number of entries)</span>
+<span class="sd">            Tuple[List[TabularData], int, str]: A tuple containing the following:</span>
+<span class="sd">            List[TabularData]: The tabular data,</span>
+<span class="sd">            int: The count (number of entries),</span>
 <span class="sd">            str: The last-returned page ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">filter</span> <span class="o">=</span> <span class="nb">filter</span> <span class="k">if</span> <span class="nb">filter</span> <span class="k">else</span> <span class="n">Filter</span><span class="p">()</span>
@@ -334,6 +335,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            sql_query (str): The SQL query to run.</span>
 
 <span class="sd">        Returns:</span>
@@ -347,6 +349,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Obtain unified tabular data and metadata, queried with MQL.</span>
 
 <span class="sd">        ::</span>
+
 <span class="sd">            # using bson</span>
 <span class="sd">            import bson</span>
 <span class="sd">            tabular_data = await data_client.tabular_data_by_mql(org_id=&quot;&lt;your-org-id&gt;&quot;, mql_binary=[</span>
@@ -364,6 +367,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization that owns the data.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            mql_binary (List[bytes]): The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like</span>
 <span class="sd">                `pymongo` or `bson`.</span>
 
@@ -418,8 +422,9 @@
 <span class="sd">            dest (str): Optional filepath for writing retrieved data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data.</span>
-<span class="sd">            int: The count (number of entries)</span>
+<span class="sd">            Tuple[List[viam.proto.app.data.BinaryData], int, str]: A tuple containing the following:</span>
+<span class="sd">            List[viam.proto.app.data.BinaryData]: The binary data,</span>
+<span class="sd">            int: The count (number of entries),</span>
 <span class="sd">            str: The last-returned page ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -511,6 +516,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): ID of organization to delete data from.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            delete_older_than_days (int): Delete data that was captured up to this many days ago. For example if `delete_older_than_days`</span>
 <span class="sd">                is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.</span>
 
@@ -644,7 +650,7 @@
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">AddTagsToBinaryDataByFilter</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DataClient.remove_tags_from_binary_data_by_ids"><a class="viewcode-back" href="../../../autoapi/viam/app/data_client/index.html#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">[docs]</a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">remove_tags_from_binary_data_by_ids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">binary_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BinaryID</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove tags from binary data by IDs.</span>
 
 <span class="sd">        ::</span>
 
@@ -781,7 +787,7 @@
 <span class="sd">            GRPCError: If the X or Y values are outside of the [0, 1] range.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: The bounding box ID</span>
+<span class="sd">            str: The bounding box ID.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBoundingBoxToImageByIDRequest</span><span class="p">(</span>
             <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">,</span>
@@ -814,7 +820,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            bbox_id (str): The ID of the bounding box to remove.</span>
-<span class="sd">            Binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from</span>
+<span class="sd">            binary_id (viam.proto.arr.data.BinaryID): Binary ID of the image to to remove the bounding box from.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBoundingBoxFromImageByIDRequest</span><span class="p">(</span><span class="n">bbox_id</span><span class="o">=</span><span class="n">bbox_id</span><span class="p">,</span> <span class="n">binary_id</span><span class="o">=</span><span class="n">binary_id</span><span class="p">)</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_client</span><span class="o">.</span><span class="n">RemoveBoundingBoxFromImageByID</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">)</span></div>
@@ -851,6 +857,7 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): Organization to retrieve the connection for.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The hostname of the federated database.</span>
@@ -863,8 +870,16 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Configure a database user for the Viam organization&#39;s MongoDB Atlas Data Federation instance. It can also be used to reset the</span>
 <span class="sd">        password of the existing database user.</span>
 
+<span class="sd">        ::</span>
+
+<span class="sd">            await data_client.configure_database_user(</span>
+<span class="sd">                organization_id=&quot;&lt;your-org-id&gt;&quot;,</span>
+<span class="sd">                password=&quot;your_password&quot;</span>
+<span class="sd">            )</span>
+
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 <span class="sd">            password (str): The password of the user.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">ConfigureDatabaseUserRequest</span><span class="p">(</span><span class="n">organization_id</span><span class="o">=</span><span class="n">organization_id</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
@@ -884,6 +899,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): The name of the dataset being created.</span>
 <span class="sd">            organization_id (str): The ID of the organization where the dataset is being created.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            str: The dataset ID of the created dataset.</span>
@@ -903,7 +919,9 @@
 <span class="sd">            print(datasets)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            ids (List[str]): The IDs of the datasets being called for.</span>
+<span class="sd">            ids (List[str]): The IDs of the datasets being called for. To retrieve these IDs,</span>
+<span class="sd">                navigate to your dataset&#39;s page in the Viam app,</span>
+<span class="sd">                click **...** in the left-hand menu, and click **Copy dataset ID**.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets.</span>
@@ -918,13 +936,14 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            datasets = await data_client.list_dataset_by_ids(</span>
-<span class="sd">                ids=[&quot;abcd-1234xyz-8765z-123abc&quot;]</span>
+<span class="sd">            datasets = await data_client.list_dataset_by_organization_id(</span>
+<span class="sd">                organization_id=[&quot;&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;&quot;]</span>
 <span class="sd">            )</span>
 <span class="sd">            print(datasets)</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            organization_id (str): The ID of the organization.</span>
+<span class="sd">                You can obtain your organization ID from the Viam app&#39;s organization settings page.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            Sequence[Dataset]: The list of datasets in the organization.</span>
@@ -998,7 +1017,9 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset.</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to add to dataset. To retrieve these IDs,</span>
+<span class="sd">                navigate to your dataset&#39;s page in the Viam app,</span>
+<span class="sd">                click **...** in the left-hand menu, and click **Copy dataset ID**.</span>
 <span class="sd">            dataset_id (str): The ID of the dataset to be added to.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">AddBinaryDataToDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
@@ -1034,7 +1055,9 @@
 <span class="sd">            )</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset.</span>
+<span class="sd">            binary_ids (List[BinaryID]): The IDs of binary data to remove from dataset. To retrieve these IDs,</span>
+<span class="sd">                navigate to your dataset&#39;s page in the Viam app,</span>
+<span class="sd">                click **...** in the left-hand menu, and click **Copy dataset ID**.</span>
 <span class="sd">            dataset_id (str): The ID of the dataset to be removed from.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">RemoveBinaryDataFromDatasetByIDsRequest</span><span class="p">(</span><span class="n">binary_ids</span><span class="o">=</span><span class="n">binary_ids</span><span class="p">,</span> <span class="n">dataset_id</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">)</span>
@@ -1054,7 +1077,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload binary sensor data.</span>
 
-<span class="sd">        Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
+<span class="sd">        Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to</span>
 <span class="sd">        app.viam.com. Binary data can be found under the &quot;Files&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        ::</span>
@@ -1077,10 +1100,10 @@
 <span class="sd">        Args:</span>
 <span class="sd">            binary_data (bytes): The data to be uploaded, represented in bytes.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
-<span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
-<span class="sd">            file_extension (str): The file extension of binary data including the period, e.g. .jpg, .png, .pcd.</span>
+<span class="sd">            file_extension (str): The file extension of binary data including the period, for example .jpg, .png, .pcd.</span>
 <span class="sd">                The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,</span>
 <span class="sd">                or .png extension will be saved to the images tab.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
@@ -1092,7 +1115,7 @@
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: the file_id of the uploaded data.</span>
+<span class="sd">            str: The file_id of the uploaded data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="n">SensorData</span><span class="p">(</span>
             <span class="n">metadata</span><span class="o">=</span><span class="p">(</span>
@@ -1133,7 +1156,7 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Upload tabular sensor data.</span>
 
-<span class="sd">        Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to</span>
+<span class="sd">        Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to</span>
 <span class="sd">        app.viam.com. Tabular data can be found under the &quot;Sensors&quot; subtab of the Data tab on app.viam.com.</span>
 
 <span class="sd">        ::</span>
@@ -1154,7 +1177,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            tabular_data (List[Mapping[str, Any]]): List of the data to be uploaded, represented tabularly as a collection of dictionaries.</span>
 <span class="sd">            part_id (str): Part ID of the component used to capture the data.</span>
-<span class="sd">            component_type (str): Type of the component used to capture the data (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (str): Type of the component used to capture the data (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (str): Name of the component used to capture the data.</span>
 <span class="sd">            method_name (str): Name of the method used to capture the data.</span>
 <span class="sd">            method_parameters (Optional[Mapping[str, Any]]): Optional dictionary of method parameters. No longer in active use.</span>
@@ -1170,7 +1193,7 @@
 <span class="sd">                data.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: the file_id of the uploaded data.</span>
+<span class="sd">            str: The file_id of the uploaded data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">sensor_contents</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">data_request_times</span><span class="p">:</span>
@@ -1247,7 +1270,7 @@
 <span class="sd">            data (bytes): the data to be uploaded.</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
 <span class="sd">            file_ext (str): file extension type for the data. required for determining MIME type.</span>
-<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>
@@ -1259,7 +1282,7 @@
 <span class="sd">            GRPCError: If an invalid part ID is passed.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            str: the file_id of the uploaded data.</span>
+<span class="sd">            str: The file_id of the uploaded data.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">upload_metadata</span> <span class="o">=</span> <span class="n">UploadMetadata</span><span class="p">(</span>
@@ -1318,7 +1341,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            part_id (str): Part ID of the resource associated with the file.</span>
 <span class="sd">            data (bytes): Bytes representing file data to upload.</span>
-<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            file_name (Optional[str]): Optional name of the file. The empty string &quot;&quot; will be assigned as the file name if one isn&#39;t</span>
@@ -1374,7 +1397,7 @@
 <span class="sd">        Args:</span>
 <span class="sd">            filepath (str): Absolute filepath of file to be uploaded.</span>
 <span class="sd">            part_id (str): Part ID of the component associated with the file.</span>
-<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (e.g., &quot;movement_sensor&quot;).</span>
+<span class="sd">            component_type (Optional[str]): Optional type of the component associated with the file (for example, &quot;movement_sensor&quot;).</span>
 <span class="sd">            component_name (Optional[str]): Optional name of the component associated with the file.</span>
 <span class="sd">            method_name (Optional[str]): Optional name of the method associated with the file.</span>
 <span class="sd">            method_parameters (Optional[str]): Optional dictionary of the method parameters. No longer in active use.</span>

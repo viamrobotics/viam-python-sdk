@@ -138,10 +138,11 @@ Attributes
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: The tabular data.
-                int: The count (number of entries)
+      :returns: A tuple containing the following:
+                List[TabularData]: The tabular data,
+                int: The count (number of entries),
                 str: The last-returned page ID.
-      :rtype: List[TabularData]
+      :rtype: Tuple[List[TabularData], int, str]
 
 
    .. py:method:: tabular_data_by_sql(organization_id: str, sql_query: str) -> List[Dict[str, viam.utils.ValueTypes]]
@@ -155,6 +156,7 @@ Attributes
 
 
       :param organization_id: The ID of the organization that owns the data.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
       :param sql_query: The SQL query to run.
       :type sql_query: str
@@ -169,6 +171,7 @@ Attributes
       Obtain unified tabular data and metadata, queried with MQL.
 
       ::
+
           # using bson
           import bson
           tabular_data = await data_client.tabular_data_by_mql(org_id="<your-org-id>", mql_binary=[
@@ -185,6 +188,7 @@ Attributes
 
 
       :param organization_id: The ID of the organization that owns the data.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
       :param mql_binary: The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
                          `pymongo` or `bson`.
@@ -236,10 +240,11 @@ Attributes
       :param dest: Optional filepath for writing retrieved data.
       :type dest: str
 
-      :returns: The binary data.
-                int: The count (number of entries)
+      :returns: A tuple containing the following:
+                List[viam.proto.app.data.BinaryData]: The binary data,
+                int: The count (number of entries),
                 str: The last-returned page ID.
-      :rtype: List[viam.proto.app.data.BinaryData]
+      :rtype: Tuple[List[viam.proto.app.data.BinaryData], int, str]
 
 
    .. py:method:: binary_data_by_ids(binary_ids: List[viam.proto.app.data.BinaryID], dest: Optional[str] = None) -> List[viam.proto.app.data.BinaryData]
@@ -294,6 +299,7 @@ Attributes
               org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
 
       :param organization_id: ID of organization to delete data from.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
       :param delete_older_than_days: Delete data that was captured up to this many days ago. For example if `delete_older_than_days`
                                      is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.
@@ -426,7 +432,7 @@ Attributes
    .. py:method:: remove_tags_from_binary_data_by_ids(tags: List[str], binary_ids: List[viam.proto.app.data.BinaryID]) -> int
       :async:
 
-      Remove tags from binary.
+      Remove tags from binary data by IDs.
 
       ::
 
@@ -549,7 +555,7 @@ Attributes
 
       :raises GRPCError: If the X or Y values are outside of the [0, 1] range.
 
-      :returns: The bounding box ID
+      :returns: The bounding box ID.
       :rtype: str
 
 
@@ -575,8 +581,8 @@ Attributes
 
       :param bbox_id: The ID of the bounding box to remove.
       :type bbox_id: str
-      :param Binary_id: Binary ID of the image to to remove the bounding box from
-      :type Binary_id: viam.proto.arr.data.BinaryID
+      :param binary_id: Binary ID of the image to to remove the bounding box from.
+      :type binary_id: viam.proto.arr.data.BinaryID
 
 
    .. py:method:: bounding_box_labels_by_filter(filter: Optional[viam.proto.app.data.Filter] = None) -> List[str]
@@ -610,6 +616,7 @@ Attributes
           data_client.get_database_connection(org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc")
 
       :param organization_id: Organization to retrieve the connection for.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
 
       :returns: The hostname of the federated database.
@@ -622,7 +629,15 @@ Attributes
       Configure a database user for the Viam organization's MongoDB Atlas Data Federation instance. It can also be used to reset the
       password of the existing database user.
 
+      ::
+
+          await data_client.configure_database_user(
+              organization_id="<your-org-id>",
+              password="your_password"
+          )
+
       :param organization_id: The ID of the organization.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
       :param password: The password of the user.
       :type password: str
@@ -644,6 +659,7 @@ Attributes
       :param name: The name of the dataset being created.
       :type name: str
       :param organization_id: The ID of the organization where the dataset is being created.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
 
       :returns: The dataset ID of the created dataset.
@@ -662,7 +678,9 @@ Attributes
           )
           print(datasets)
 
-      :param ids: The IDs of the datasets being called for.
+      :param ids: The IDs of the datasets being called for. To retrieve these IDs,
+                  navigate to your dataset's page in the Viam app,
+                  click **...** in the left-hand menu, and click **Copy dataset ID**.
       :type ids: List[str]
 
       :returns: The list of datasets.
@@ -676,12 +694,13 @@ Attributes
 
       ::
 
-          datasets = await data_client.list_dataset_by_ids(
-              ids=["abcd-1234xyz-8765z-123abc"]
+          datasets = await data_client.list_dataset_by_organization_id(
+              organization_id=[""a12b3c4e-1234-1abc-ab1c-ab1c2d345abc""]
           )
           print(datasets)
 
       :param organization_id: The ID of the organization.
+                              You can obtain your organization ID from the Viam app's organization settings page.
       :type organization_id: str
 
       :returns: The list of datasets in the organization.
@@ -752,7 +771,9 @@ Attributes
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
 
-      :param binary_ids: The IDs of binary data to add to dataset.
+      :param binary_ids: The IDs of binary data to add to dataset. To retrieve these IDs,
+                         navigate to your dataset's page in the Viam app,
+                         click **...** in the left-hand menu, and click **Copy dataset ID**.
       :type binary_ids: List[BinaryID]
       :param dataset_id: The ID of the dataset to be added to.
       :type dataset_id: str
@@ -789,7 +810,9 @@ Attributes
               dataset_id="abcd-1234xyz-8765z-123abc"
           )
 
-      :param binary_ids: The IDs of binary data to remove from dataset.
+      :param binary_ids: The IDs of binary data to remove from dataset. To retrieve these IDs,
+                         navigate to your dataset's page in the Viam app,
+                         click **...** in the left-hand menu, and click **Copy dataset ID**.
       :type binary_ids: List[BinaryID]
       :param dataset_id: The ID of the dataset to be removed from.
       :type dataset_id: str
@@ -800,7 +823,7 @@ Attributes
 
       Upload binary sensor data.
 
-      Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+      Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
       app.viam.com. Binary data can be found under the "Files" subtab of the Data tab on app.viam.com.
 
       ::
@@ -824,13 +847,13 @@ Attributes
       :type binary_data: bytes
       :param part_id: Part ID of the component used to capture the data.
       :type part_id: str
-      :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
+      :param component_type: Type of the component used to capture the data (for example, "movement_sensor").
       :type component_type: str
       :param component_name: Name of the component used to capture the data.
       :type component_name: str
       :param method_name: Name of the method used to capture the data.
       :type method_name: str
-      :param file_extension: The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+      :param file_extension: The file extension of binary data including the period, for example .jpg, .png, .pcd.
                              The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
                              or .png extension will be saved to the images tab.
       :type file_extension: str
@@ -844,7 +867,7 @@ Attributes
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: the file_id of the uploaded data.
+      :returns: The file_id of the uploaded data.
       :rtype: str
 
 
@@ -853,7 +876,7 @@ Attributes
 
       Upload tabular sensor data.
 
-      Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+      Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
       app.viam.com. Tabular data can be found under the "Sensors" subtab of the Data tab on app.viam.com.
 
       ::
@@ -875,7 +898,7 @@ Attributes
       :type tabular_data: List[Mapping[str, Any]]
       :param part_id: Part ID of the component used to capture the data.
       :type part_id: str
-      :param component_type: Type of the component used to capture the data (e.g., "movement_sensor").
+      :param component_type: Type of the component used to capture the data (for example, "movement_sensor").
       :type component_type: str
       :param component_name: Name of the component used to capture the data.
       :type component_name: str
@@ -895,7 +918,7 @@ Attributes
       :raises ValueError: If a list of `Timestamp` objects is provided and its length does not match the length of the list of tabular
           data.
 
-      :returns: the file_id of the uploaded data.
+      :returns: The file_id of the uploaded data.
       :rtype: str
 
 
@@ -926,7 +949,7 @@ Attributes
       :type part_id: str
       :param file_ext: file extension type for the data. required for determining MIME type.
       :type file_ext: str
-      :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
+      :param component_type: Optional type of the component associated with the file (for example, "movement_sensor").
       :type component_type: Optional[str]
       :param component_name: Optional name of the component associated with the file.
       :type component_name: Optional[str]
@@ -942,7 +965,7 @@ Attributes
 
       :raises GRPCError: If an invalid part ID is passed.
 
-      :returns: the file_id of the uploaded data.
+      :returns: The file_id of the uploaded data.
       :rtype: str
 
 
@@ -968,7 +991,7 @@ Attributes
       :type part_id: str
       :param data: Bytes representing file data to upload.
       :type data: bytes
-      :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
+      :param component_type: Optional type of the component associated with the file (for example, "movement_sensor").
       :type component_type: Optional[str]
       :param component_name: Optional name of the component associated with the file.
       :type component_name: Optional[str]
@@ -1011,7 +1034,7 @@ Attributes
       :type filepath: str
       :param part_id: Part ID of the component associated with the file.
       :type part_id: str
-      :param component_type: Optional type of the component associated with the file (e.g., "movement_sensor").
+      :param component_type: Optional type of the component associated with the file (for example, "movement_sensor").
       :type component_type: Optional[str]
       :param component_name: Optional name of the component associated with the file.
       :type component_name: Optional[str]

@@ -291,12 +291,13 @@ like cloud SLAM. Defaults to <cite>False</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The tabular data.
-int: The count (number of entries)
+<dd class="field-even"><p>A tuple containing the following:
+List[TabularData]: The tabular data,
+int: The count (number of entries),
 str: The last-returned page ID.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData">TabularData</a>]</p>
+<dd class="field-odd"><p>Tuple[List[<a class="reference internal" href="#viam.app.data_client.DataClient.TabularData" title="viam.app.data_client.DataClient.TabularData">TabularData</a>], int, str]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -311,7 +312,8 @@ str: The last-returned page ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 <li><p><strong>sql_query</strong> (<em>str</em>) – The SQL query to run.</p></li>
 </ul>
 </dd>
@@ -328,29 +330,26 @@ str: The last-returned page ID.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_by_mql">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_by_mql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mql_binary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">viam.utils.ValueTypes</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_by_mql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_by_mql" title="Permalink to this definition"></a></dt>
 <dd><p>Obtain unified tabular data and metadata, queried with MQL.</p>
-<dl>
-<dt>::</dt><dd><p># using bson
-import bson
-tabular_data = await data_client.tabular_data_by_mql(org_id=”&lt;your-org-id&gt;”, mql_binary=[</p>
-<blockquote>
-<div><p>bson.dumps({ ‘$match’: { ‘location_id’: ‘&lt;location-id&gt;’ } }),
-bson.dumps({ “$limit”: 5 })</p>
-</div></blockquote>
-<p>])</p>
-<p># using pymongo
-import bson
-tabular_data = await data_client.tabular_data_by_mql(org_id=”&lt;your-org-id&gt;”, mql_binary=[</p>
-<blockquote>
-<div><p>bson.encode({ ‘$match’: { ‘location_id’: ‘&lt;location-id&gt;’ } }),
-bson.encode({ “$limit”: 5 })</p>
-</div></blockquote>
-<p>])</p>
-</dd>
-</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># using bson</span>
+<span class="kn">import</span> <span class="nn">bson</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;location-id&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+<span class="p">])</span>
+
+<span class="c1"># using pymongo</span>
+<span class="kn">import</span> <span class="nn">bson</span>
+<span class="n">tabular_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">tabular_data_by_mql</span><span class="p">(</span><span class="n">org_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span> <span class="n">mql_binary</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s1">&#39;$match&#39;</span><span class="p">:</span> <span class="p">{</span> <span class="s1">&#39;location_id&#39;</span><span class="p">:</span> <span class="s1">&#39;&lt;location-id&gt;&#39;</span> <span class="p">}</span> <span class="p">}),</span>
+    <span class="n">bson</span><span class="o">.</span><span class="n">encode</span><span class="p">({</span> <span class="s2">&quot;$limit&quot;</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+<span class="p">])</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization that owns the data.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 <li><p><strong>mql_binary</strong> (<em>List</em><em>[</em><em>bytes</em><em>]</em>) – The MQL query to run as a list of BSON queries. You can encode your bson queries using a library like
 <cite>pymongo</cite> or <cite>bson</cite>.</p></li>
 </ul>
@@ -401,12 +400,13 @@ like cloud SLAM. Defaults to <cite>False</cite></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The binary data.
-int: The count (number of entries)
+<dd class="field-even"><p>A tuple containing the following:
+List[viam.proto.app.data.BinaryData]: The binary data,
+int: The count (number of entries),
 str: The last-returned page ID.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryData" title="viam.proto.app.data.BinaryData">viam.proto.app.data.BinaryData</a>]</p>
+<dd class="field-odd"><p>Tuple[List[<a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryData" title="viam.proto.app.data.BinaryData">viam.proto.app.data.BinaryData</a>], int, str]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -469,7 +469,8 @@ str: The last-returned page ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>organization_id</strong> (<em>str</em>) – ID of organization to delete data from.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – ID of organization to delete data from.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 <li><p><strong>delete_older_than_days</strong> (<em>int</em>) – Delete data that was captured up to this many days ago. For example if <cite>delete_older_than_days</cite>
 is 10, this deletes any data that was captured up to 10 days ago. If it is 0, all existing data is deleted.</p></li>
 </ul>
@@ -620,7 +621,7 @@ tagged.</p></li>
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tags_from_binary_data_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">binary_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/data/index.html#viam.proto.app.data.BinaryID" title="viam.proto.app.data.BinaryID"><span class="pre">viam.proto.app.data.BinaryID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.remove_tags_from_binary_data_by_ids"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.remove_tags_from_binary_data_by_ids" title="Permalink to this definition"></a></dt>
-<dd><p>Remove tags from binary.</p>
+<dd><p>Remove tags from binary data by IDs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">viam.proto.app.data</span> <span class="kn">import</span> <span class="n">BinaryID</span>
 
 <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tag1&quot;</span><span class="p">,</span> <span class="s2">&quot;tag2&quot;</span><span class="p">]</span>
@@ -757,7 +758,7 @@ return.</p>
 <dd class="field-even"><p><strong>GRPCError</strong> – If the X or Y values are outside of the [0, 1] range.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The bounding box ID</p>
+<dd class="field-odd"><p>The bounding box ID.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
@@ -787,7 +788,7 @@ return.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>bbox_id</strong> (<em>str</em>) – The ID of the bounding box to remove.</p></li>
-<li><p><strong>Binary_id</strong> (<em>viam.proto.arr.data.BinaryID</em>) – Binary ID of the image to to remove the bounding box from</p></li>
+<li><p><strong>binary_id</strong> (<em>viam.proto.arr.data.BinaryID</em>) – Binary ID of the image to to remove the bounding box from.</p></li>
 </ul>
 </dd>
 </dl>
@@ -827,7 +828,8 @@ return.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – Organization to retrieve the connection for.</p>
+<dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – Organization to retrieve the connection for.
+You can obtain your organization ID from the Viam app’s organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The hostname of the federated database.</p>
@@ -843,10 +845,17 @@ return.</p>
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">configure_database_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.configure_database_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.configure_database_user" title="Permalink to this definition"></a></dt>
 <dd><p>Configure a database user for the Viam organization’s MongoDB Atlas Data Federation instance. It can also be used to reset the
 password of the existing database user.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">configure_database_user</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="s2">&quot;&lt;your-org-id&gt;&quot;</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;your_password&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 <li><p><strong>password</strong> (<em>str</em>) – The password of the user.</p></li>
 </ul>
 </dd>
@@ -868,7 +877,8 @@ password of the existing database user.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>name</strong> (<em>str</em>) – The name of the dataset being created.</p></li>
-<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization where the dataset is being created.</p></li>
+<li><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization where the dataset is being created.
+You can obtain your organization ID from the Viam app’s organization settings page.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -892,7 +902,9 @@ password of the existing database user.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The IDs of the datasets being called for.</p>
+<dd class="field-odd"><p><strong>ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The IDs of the datasets being called for. To retrieve these IDs,
+navigate to your dataset’s page in the Viam app,
+click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset ID</strong>.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of datasets.</p>
@@ -907,15 +919,16 @@ password of the existing database user.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.list_datasets_by_organization_id">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">list_datasets_by_organization_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">organization_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../proto/app/dataset/index.html#viam.proto.app.dataset.Dataset" title="viam.proto.app.dataset.Dataset"><span class="pre">viam.proto.app.dataset.Dataset</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.list_datasets_by_organization_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.list_datasets_by_organization_id" title="Permalink to this definition"></a></dt>
 <dd><p>Get the datasets in an organization.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_ids</span><span class="p">(</span>
-    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;abcd-1234xyz-8765z-123abc&quot;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="k">await</span> <span class="n">data_client</span><span class="o">.</span><span class="n">list_dataset_by_organization_id</span><span class="p">(</span>
+    <span class="n">organization_id</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&quot;</span><span class="n">a12b3c4e</span><span class="o">-</span><span class="mi">1234</span><span class="o">-</span><span class="mi">1</span><span class="n">abc</span><span class="o">-</span><span class="n">ab1c</span><span class="o">-</span><span class="n">ab1c2d345abc</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.</p>
+<dd class="field-odd"><p><strong>organization_id</strong> (<em>str</em>) – The ID of the organization.
+You can obtain your organization ID from the Viam app’s organization settings page.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The list of datasets in the organization.</p>
@@ -993,7 +1006,9 @@ password of the existing database user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – The IDs of binary data to add to dataset.</p></li>
+<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – The IDs of binary data to add to dataset. To retrieve these IDs,
+navigate to your dataset’s page in the Viam app,
+click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset ID</strong>.</p></li>
 <li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset to be added to.</p></li>
 </ul>
 </dd>
@@ -1031,7 +1046,9 @@ password of the existing database user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – The IDs of binary data to remove from dataset.</p></li>
+<li><p><strong>binary_ids</strong> (<em>List</em><em>[</em><a class="reference internal" href="../../gen/app/data/v1/data_pb2/index.html#viam.gen.app.data.v1.data_pb2.BinaryID" title="viam.gen.app.data.v1.data_pb2.BinaryID"><em>BinaryID</em></a><em>]</em>) – The IDs of binary data to remove from dataset. To retrieve these IDs,
+navigate to your dataset’s page in the Viam app,
+click <strong>…</strong> in the left-hand menu, and click <strong>Copy dataset ID</strong>.</p></li>
 <li><p><strong>dataset_id</strong> (<em>str</em>) – The ID of the dataset to be removed from.</p></li>
 </ul>
 </dd>
@@ -1042,7 +1059,7 @@ password of the existing database user.</p>
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.binary_data_capture_upload">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">binary_data_capture_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binary_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bytes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.binary_data_capture_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.binary_data_capture_upload" title="Permalink to this definition"></a></dt>
 <dd><p>Upload binary sensor data.</p>
-<p>Upload binary data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+<p>Upload binary data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
 app.viam.com. Binary data can be found under the “Files” subtab of the Data tab on app.viam.com.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -1065,10 +1082,10 @@ app.viam.com. Binary data can be found under the “Files” subtab of the Data 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>binary_data</strong> (<em>bytes</em>) – The data to be uploaded, represented in bytes.</p></li>
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the component used to capture the data.</p></li>
-<li><p><strong>component_type</strong> (<em>str</em>) – Type of the component used to capture the data (e.g., “movement_sensor”).</p></li>
+<li><p><strong>component_type</strong> (<em>str</em>) – Type of the component used to capture the data (for example, “movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>str</em>) – Name of the component used to capture the data.</p></li>
 <li><p><strong>method_name</strong> (<em>str</em>) – Name of the method used to capture the data.</p></li>
-<li><p><strong>file_extension</strong> (<em>str</em>) – The file extension of binary data including the period, e.g. .jpg, .png, .pcd.
+<li><p><strong>file_extension</strong> (<em>str</em>) – The file extension of binary data including the period, for example .jpg, .png, .pcd.
 The backend will route the binary to its corresponding mime type based on this extension. Files with a .jpeg, .jpg,
 or .png extension will be saved to the images tab.</p></li>
 <li><p><strong>method_parameters</strong> (<em>Optional</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Optional dictionary of method parameters. No longer in active use.</p></li>
@@ -1081,7 +1098,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid part ID is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the file_id of the uploaded data.</p>
+<dd class="field-odd"><p>The file_id of the uploaded data.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
@@ -1093,7 +1110,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dt class="sig sig-object py" id="viam.app.data_client.DataClient.tabular_data_capture_upload">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tabular_data_capture_upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tabular_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">part_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">component_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method_parameters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_request_times</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">datetime.datetime</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../../../../_modules/viam/app/data_client.html#DataClient.tabular_data_capture_upload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.app.data_client.DataClient.tabular_data_capture_upload" title="Permalink to this definition"></a></dt>
 <dd><p>Upload tabular sensor data.</p>
-<p>Upload tabular data collected on a robot through a specific component (e.g., a motor) along with the relevant metadata to
+<p>Upload tabular data collected on a robot through a specific component (for example, a motor) along with the relevant metadata to
 app.viam.com. Tabular data can be found under the “Sensors” subtab of the Data tab on app.viam.com.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time_requested</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">time_received</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -1114,7 +1131,7 @@ app.viam.com. Tabular data can be found under the “Sensors” subtab of the Da
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tabular_data</strong> (<em>List</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – List of the data to be uploaded, represented tabularly as a collection of dictionaries.</p></li>
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the component used to capture the data.</p></li>
-<li><p><strong>component_type</strong> (<em>str</em>) – Type of the component used to capture the data (e.g., “movement_sensor”).</p></li>
+<li><p><strong>component_type</strong> (<em>str</em>) – Type of the component used to capture the data (for example, “movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>str</em>) – Name of the component used to capture the data.</p></li>
 <li><p><strong>method_name</strong> (<em>str</em>) – Name of the method used to capture the data.</p></li>
 <li><p><strong>method_parameters</strong> (<em>Optional</em><em>[</em><em>Mapping</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em><em>]</em>) – Optional dictionary of method parameters. No longer in active use.</p></li>
@@ -1133,7 +1150,7 @@ data.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the file_id of the uploaded data.</p>
+<dd class="field-odd"><p>The file_id of the uploaded data.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
@@ -1166,7 +1183,7 @@ data.</p></li>
 <li><p><strong>data</strong> (<em>bytes</em>) – the data to be uploaded.</p></li>
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the resource associated with the file.</p></li>
 <li><p><strong>file_ext</strong> (<em>str</em>) – file extension type for the data. required for determining MIME type.</p></li>
-<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (e.g., “movement_sensor”).</p></li>
+<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (for example, “movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component associated with the file.</p></li>
 <li><p><strong>method_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method associated with the file.</p></li>
 <li><p><strong>method_parameters</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional dictionary of the method parameters. No longer in active use.</p></li>
@@ -1179,7 +1196,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd class="field-even"><p><strong>GRPCError</strong> – If an invalid part ID is passed.</p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the file_id of the uploaded data.</p>
+<dd class="field-odd"><p>The file_id of the uploaded data.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>str</p>
@@ -1207,7 +1224,7 @@ denoting the times this data was requested[0] by the robot and received[1] from 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the resource associated with the file.</p></li>
 <li><p><strong>data</strong> (<em>bytes</em>) – Bytes representing file data to upload.</p></li>
-<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (e.g., “movement_sensor”).</p></li>
+<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (for example, “movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component associated with the file.</p></li>
 <li><p><strong>method_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method associated with the file.</p></li>
 <li><p><strong>file_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the file. The empty string “” will be assigned as the file name if one isn’t
@@ -1248,7 +1265,7 @@ provided. Files with a .jpeg, .jpg, or .png extension will be saved to the image
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filepath</strong> (<em>str</em>) – Absolute filepath of file to be uploaded.</p></li>
 <li><p><strong>part_id</strong> (<em>str</em>) – Part ID of the component associated with the file.</p></li>
-<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (e.g., “movement_sensor”).</p></li>
+<li><p><strong>component_type</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional type of the component associated with the file (for example, “movement_sensor”).</p></li>
 <li><p><strong>component_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the component associated with the file.</p></li>
 <li><p><strong>method_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional name of the method associated with the file.</p></li>
 <li><p><strong>method_parameters</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – Optional dictionary of the method parameters. No longer in active use.</p></li>

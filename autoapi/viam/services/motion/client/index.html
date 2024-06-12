@@ -204,11 +204,11 @@ observed.</p></li>
 <li><p><strong>world_state</strong> (<a class="reference internal" href="../../../proto/common/index.html#viam.proto.common.WorldState" title="viam.proto.common.WorldState"><em>viam.proto.common.WorldState</em></a>) – When supplied, the motion service will create a plan that obeys any constraints
 expressed in the WorldState message.</p></li>
 <li><p><strong>constraints</strong> (<a class="reference internal" href="../../../proto/service/motion/index.html#viam.proto.service.motion.Constraints" title="viam.proto.service.motion.Constraints"><em>viam.proto.service.motion.Constraints</em></a>) – When supplied, the motion service will create a plan that obeys any
-specified constraints</p></li>
+specified constraints.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Whether the move was successful</p>
+<dd class="field-even"><p>Whether the move was successful.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>bool</p>
@@ -254,14 +254,14 @@ with each represented as a GeoGeometry. Default: None</p></li>
 <li><p><strong>heading</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em>) – The compass heading, in degrees, that the machine’s movement sensor should report
 at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</p></li>
 <li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MotionConfiguration" title="viam.gen.service.motion.v1.motion_pb2.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this
-motion service. This parameter and each of its fields are optional.
-- obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</p>
-<blockquote>
-<div><p>you want to use for transient obstacle avoidance.</p>
-</div></blockquote>
+motion service. This parameter and each of its fields are optional.</p>
 <ul>
-<li><p>position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</p></li>
-<li><p>obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</p></li>
+<li><p>obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</p></li>
+</ul>
+<p>you want to use for transient obstacle avoidance.</p>
+<ul>
+<li><p>position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.</p></li>
+<li><p>obstacle_polling_frequency_hz (float): The frequency in Hz to poll the vision service for new obstacles.</p></li>
 <li><p>plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</p></li>
 <li><p>linear_m_per_sec (float): Linear velocity this machine should target when moving.</p></li>
 <li><p>angular_degs_per_sec (float): Angular velocity this machine should target when turning.</p></li>
@@ -314,11 +314,11 @@ generated during the <code class="docutils literal notranslate"><span class="pre
 <li><p><strong>destination</strong> (<a class="reference internal" href="../../../components/arm/index.html#viam.components.arm.Pose" title="viam.components.arm.Pose"><em>Pose</em></a>) – The destination, which can be any Pose with respect to the SLAM map’s origin.</p></li>
 <li><p><strong>slam_service_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The ResourceName of the SLAM service from which the SLAM map is requested.</p></li>
 <li><p><strong>configuration</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="../../../gen/service/motion/v1/motion_pb2/index.html#viam.gen.service.motion.v1.motion_pb2.MotionConfiguration" title="viam.gen.service.motion.v1.motion_pb2.MotionConfiguration"><em>MotionConfiguration</em></a><em>]</em>) – <p>The configuration you want to set across this machine for this motion service.
-This parameter and each of its fields are optional.
-- obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</p>
-<blockquote>
-<div><p>for transient obstacle avoidance.</p>
-</div></blockquote>
+This parameter and each of its fields are optional.</p>
+<ul>
+<li><p>obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</p></li>
+</ul>
+<p>for transient obstacle avoidance.</p>
 <ul>
 <li><p>position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</p></li>
 <li><p>obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</p></li>
@@ -384,8 +384,8 @@ RPC call.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>component_name</strong> (<a class="reference internal" href="../../../gen/common/v1/common_pb2/index.html#viam.gen.common.v1.common_pb2.ResourceName" title="viam.gen.common.v1.common_pb2.ResourceName"><em>ResourceName</em></a>) – The component to stop</p></li>
-<li><p><strong>last_plan_only</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will only return the last plan for the component / execution</p></li>
-<li><p><strong>execution_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – If supplied, the response will only return plans with the provided execution_id</p></li>
+<li><p><strong>last_plan_only</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will only return the last plan for the component / execution.</p></li>
+<li><p><strong>execution_id</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – If supplied, the response will only return plans with the provided execution_id.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -414,11 +414,11 @@ conditions since the motion service initialized:</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>only_active_plans</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will filter out any plans that are not executing</p>
+<dd class="field-odd"><p><strong>only_active_plans</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em>) – If supplied, the response will filter out any plans that are not executing.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>List of last known statuses with the
-associated IDs of all plans within the TTL ordered by timestamp in ascending order</p>
+associated IDs of all plans within the TTL ordered by timestamp in ascending order.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">ListPlanStatusesResponse</span></code> (ListPlanStatusesResponse)</p>
@@ -482,10 +482,10 @@ calculating pose.</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute</p>
+<dd class="field-odd"><p><strong>command</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>ValueTypes</em><em>]</em>) – The command to execute.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Result of the executed command</p>
+<dd class="field-even"><p>Result of the executed command.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict[str, ValueTypes]</p>

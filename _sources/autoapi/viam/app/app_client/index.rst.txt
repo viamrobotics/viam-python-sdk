@@ -495,6 +495,7 @@ Attributes
           await cloud.delete_organization("org-id")
 
       :param org_id: The ID of the organization.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
 
@@ -508,6 +509,7 @@ Attributes
           member_list, invite_list = await cloud.list_organization_members("org-id")
 
       :param org_id: The ID of the organization to list members of.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
       :returns: A tuple containing two lists; the first
@@ -525,6 +527,7 @@ Attributes
           await cloud.create_organization_invite("org-id", "youremail@email.com")
 
       :param org_id: The ID of the organization to create an invite for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param email: The email address to send the invite to.
       :type email: str
@@ -569,6 +572,7 @@ Attributes
           )
 
       :param org_id: The ID of the organization that the invite is for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param email: Email of the user the invite was sent to.
       :type email: str
@@ -597,6 +601,7 @@ Attributes
           await cloud.delete_organization_member(org_id="org_id", user_id=first_user_id)
 
       :param org_id: The ID of the org to remove the user from.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param user_id: The ID of the user to remove.
       :type user_id: str
@@ -612,6 +617,7 @@ Attributes
           await cloud.delete_organization_invite("org-id", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to delete was for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param email: The email address the pending invite was sent to.
       :type email: str
@@ -626,14 +632,18 @@ Attributes
 
       ::
 
-          await cloud.resend_organization_invite("org-id", "youremail@email.com")
+          org_invite = await cloud.resend_organization_invite("org-id", "youremail@email.com")
 
       :param org_id: The ID of the organization that the invite to resend was for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param email: The email address associated with the invite.
       :type email: str
 
       :raises GRPCError: If no pending invite is associated with the provided email address.
+
+      :returns: The organization invite sent.
+      :rtype: viam.proto.app.OrganizationInvite
 
 
    .. py:method:: create_location(org_id: str, name: str, parent_location_id: Optional[str] = None) -> viam.proto.app.Location
@@ -646,6 +656,7 @@ Attributes
           my_new_location = await cloud.create_location(org_id="org-id", name="Robotville", parent_location_id="111ab12345")
 
       :param org_id: The ID of the organization to create the location under.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param name: Name of the location.
       :type name: str
@@ -746,6 +757,7 @@ Attributes
           locations = await cloud.list_locations("org-id")
 
       :param org_id: The ID of the org to list locations for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
       :returns: The list of locations.
@@ -869,6 +881,7 @@ Attributes
           rental_robots = await cloud.get_rover_rental_robots()
 
       :param org_id: The ID of the organization to list rover rental robots for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
       :returns: The list of rover rental robots.
@@ -1226,6 +1239,7 @@ Attributes
           fragments_list = await cloud.list_fragments(org_id="org-id", show_public=False)
 
       :param org_id: The ID of the organization to list fragments for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param show_public: Optional boolean specifying whether or not to only show public fragments. If True, only public fragments will
                           return. If False, only private fragments will return. Defaults to True.
@@ -1264,7 +1278,8 @@ Attributes
 
           new_fragment = await cloud.create_fragment(org_id="org-id", name="cool_smart_machine_to_configure_several_of")
 
-      :param org_id: The ID of the organization to create the ragment within.
+      :param org_id: The ID of the organization to create the fragment within.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param name: Name of the fragment.
       :type name: str
@@ -1337,6 +1352,7 @@ Attributes
               resource_id="111ab12345")
 
       :param org_id: The ID of the organization to create the role in.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
@@ -1366,6 +1382,7 @@ Attributes
               resource_id="111ab12345")
 
       :param org_id: The ID of the organization the role exists in.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param identity_id: ID of the entity the role belongs to (e.g., a user ID).
       :type identity_id: str
@@ -1571,6 +1588,7 @@ Attributes
           print("Module ID:", new_module[0])
 
       :param org_id: The ID of the organization to create the module under.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param name: The name of the module. Must be unique within your organization.
       :type name: str
@@ -1660,6 +1678,7 @@ Attributes
           modules_list = await cloud.list_modules("org-id")
 
       :param org_id: The ID of the organization to list modules for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
       :returns: The list of modules.
@@ -1684,6 +1703,7 @@ Attributes
           api_key, api_key_id = cloud.create_key([auth], "my_key")
 
       :param org_id: The ID of the organization to create the key for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
       :param authorizations: A list of authorizations to associate
                              with the key.
@@ -1737,6 +1757,7 @@ Attributes
           keys = await cloud.list_keys()
 
       :param org_id: The ID of the organization to list API keys for.
+                     You can obtain your organization ID from the Viam app's organization settings page.
       :type org_id: str
 
       :returns: The existing API keys and authorizations.

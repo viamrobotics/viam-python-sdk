@@ -3583,7 +3583,7 @@ Classes
    shown below.
 
 
-.. py:class:: MLModelMetadata(*, versions: collections.abc.Iterable[str] | None = ...)
+.. py:class:: MLModelMetadata(*, versions: collections.abc.Iterable[str] | None = ..., model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ...)
 
 
    Bases: :py:obj:`google.protobuf.message.Message`
@@ -3598,6 +3598,16 @@ Classes
       :type: google.protobuf.internal.containers.RepeatedScalarFieldContainer[str]
 
       A list of package versions for a ML model
+
+   .. py:attribute:: model_type
+      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType
+
+      
+
+   .. py:attribute:: model_framework
+      :type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType
+
+      
 
 
 .. py:class:: MLTrainingMetadata(*, versions: collections.abc.Iterable[global___MLTrainingVersion] | None = ..., model_type: viam.gen.app.mltraining.v1.ml_training_pb2.ModelType.ValueType = ..., model_framework: viam.gen.app.mltraining.v1.ml_training_pb2.ModelFramework.ValueType = ..., draft: bool = ...)

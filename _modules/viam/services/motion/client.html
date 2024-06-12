@@ -189,10 +189,10 @@
 <span class="sd">            world_state (viam.proto.common.WorldState): When supplied, the motion service will create a plan that obeys any constraints</span>
 <span class="sd">                expressed in the WorldState message.</span>
 <span class="sd">            constraints (viam.proto.service.motion.Constraints): When supplied, the motion service will create a plan that obeys any</span>
-<span class="sd">                specified constraints</span>
+<span class="sd">                specified constraints.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: Whether the move was successful</span>
+<span class="sd">            bool: Whether the move was successful.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -259,10 +259,12 @@
 <span class="sd">                at the destination point. Range: [0-360) 0: North, 90: East, 180: South, 270: West. Default: None</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this</span>
 <span class="sd">                motion service. This parameter and each of its fields are optional.</span>
+
 <span class="sd">                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair</span>
-<span class="sd">                    you want to use for transient obstacle avoidance.</span>
-<span class="sd">                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
-<span class="sd">                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
+<span class="sd">                you want to use for transient obstacle avoidance.</span>
+
+<span class="sd">                - position_polling_frequency_hz (float): The frequency in Hz to poll the position of the machine.</span>
+<span class="sd">                - obstacle_polling_frequency_hz (float): The frequency in Hz to poll the vision service for new obstacles.</span>
 <span class="sd">                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
 <span class="sd">                - linear_m_per_sec (float): Linear velocity this machine should target when moving.</span>
 <span class="sd">                - angular_degs_per_sec (float): Angular velocity this machine should target when turning.</span>
@@ -336,8 +338,10 @@
 <span class="sd">            slam_service_name (ResourceName): The ResourceName of the SLAM service from which the SLAM map is requested.</span>
 <span class="sd">            configuration (Optional[MotionConfiguration]): The configuration you want to set across this machine for this motion service.</span>
 <span class="sd">                This parameter and each of its fields are optional.</span>
+
 <span class="sd">                - obstacle_detectors (Iterable[ObstacleDetector]): The names of each vision service and camera resource pair you want to use</span>
-<span class="sd">                    for transient obstacle avoidance.</span>
+<span class="sd">                for transient obstacle avoidance.</span>
+
 <span class="sd">                - position_polling_frequency_hz (float): The frequency in hz to poll the position of the machine.</span>
 <span class="sd">                - obstacle_polling_frequency_hz (float): The frequency in hz to poll the vision service for new obstacles.</span>
 <span class="sd">                - plan_deviation_m (float): The distance in meters that the machine can deviate from the motion plan.</span>
@@ -431,8 +435,8 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            component_name (ResourceName): The component to stop</span>
-<span class="sd">            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution</span>
-<span class="sd">            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id</span>
+<span class="sd">            last_plan_only (Optional[bool]): If supplied, the response will only return the last plan for the component / execution.</span>
+<span class="sd">            execution_id (Optional[str]): If supplied, the response will only return plans with the provided execution_id.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ``GetPlanResponse`` (GetPlanResponse): The current PlanWithStatus &amp; replan history which matches the request</span>
@@ -472,11 +476,11 @@
 <span class="sd">            resp = await motion.list_plan_statuses()</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing</span>
+<span class="sd">            only_active_plans (Optional[bool]):  If supplied, the response will filter out any plans that are not executing.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            ``ListPlanStatusesResponse`` (ListPlanStatusesResponse): List of last known statuses with the</span>
-<span class="sd">            associated IDs of all plans within the TTL ordered by timestamp in ascending order</span>
+<span class="sd">            associated IDs of all plans within the TTL ordered by timestamp in ascending order.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">extra</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">extra</span> <span class="o">=</span> <span class="p">{}</span>
@@ -556,10 +560,10 @@
 <span class="sd">            await motion.do_command(my_command)</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            command (Dict[str, ValueTypes]): The command to execute</span>
+<span class="sd">            command (Dict[str, ValueTypes]): The command to execute.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Dict[str, ValueTypes]: Result of the executed command</span>
+<span class="sd">            Dict[str, ValueTypes]: Result of the executed command.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">DoCommandRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">dict_to_struct</span><span class="p">(</span><span class="n">command</span><span class="p">))</span>
         <span class="n">response</span><span class="p">:</span> <span class="n">DoCommandResponse</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">DoCommand</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
