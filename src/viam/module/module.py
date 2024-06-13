@@ -106,7 +106,6 @@ class Module:
         args = _parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
-            # todo(review): this would be cleaner if resource creator key became a tuple
             module.add_model_from_registry(*key.split('/'))  # pyright: ignore [reportArgumentType]
         await module.start()
 
