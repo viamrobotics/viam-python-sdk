@@ -14,7 +14,7 @@ modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 logger = logging.getLogger(__name__)
 
 
-def parse_model(orig: Union[str, Model]) -> Model:
+def _parse_model(orig: Union[str, Model]) -> Model:
     "take a model or string and turn it into a Model"
     if isinstance(orig, Model):
         return orig
@@ -50,7 +50,7 @@ class EasyResource:
         super().__init_subclass__(**kwargs)
         if not hasattr(cls, "MODEL"):
             raise ValueError("please define a MODEL like 'org:type:name' on your class, for example 'viam:camera:IMX219'")
-        cls.MODEL = parse_model(cls.MODEL)
+        cls.MODEL = _parse_model(cls.MODEL)
         if register:
             cls.register()
 

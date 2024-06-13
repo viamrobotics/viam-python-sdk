@@ -2,7 +2,7 @@ import pytest
 
 from viam.components.generic import Generic
 from viam.proto.app.robot import ComponentConfig
-from viam.resource.easy_resource import parse_model, EasyResource
+from viam.resource.easy_resource import _parse_model, EasyResource
 from viam.resource.registry import Registry
 from viam.resource.types import Model, ModelFamily
 
@@ -17,10 +17,10 @@ def clear_registry(monkeypatch):
 class TestEasyResource:
     def test_parse_model(self):
         model = Model(ModelFamily('viam', 'type'), 'name')
-        assert parse_model('viam:type:name') == model
-        assert parse_model(model) == model
+        assert _parse_model('viam:type:name') == model
+        assert _parse_model(model) == model
         with pytest.raises(ValueError):
-            parse_model('not parseable')
+            _parse_model('not parseable')
 
     def test_subclass(self, clear_registry):
         class SubclassTest(Generic, EasyResource):

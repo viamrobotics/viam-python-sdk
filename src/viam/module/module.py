@@ -37,7 +37,7 @@ from .types import Reconfigurable, Stoppable
 LOGGER = logging.getLogger(__name__)
 
 
-def parse_module_args() -> argparse.Namespace:
+def _parse_module_args() -> argparse.Namespace:
     """
     Parse command-line args. Used by the various `Module` entrypoints.
     """
@@ -83,7 +83,7 @@ class Module:
         Module entrypoint that takes a list of ResourceBase subclasses.
         In most cases you'll want to use run_from_registry instead (see below).
         """
-        args = parse_module_args()
+        args = _parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for model in models:
             # todo(review): the pyright ignore below is for ResourceBase.MODEL. Is this not a required field? Should I not rely on it?
@@ -96,7 +96,7 @@ class Module:
         Module entrypoint that automatically includes all the resources you've created in your program.
         For usage, see the bottom of examples/easy_resource/main.py.
         """
-        args = parse_module_args()
+        args = _parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             # todo(review): this would be cleaner if resource creator key became a tuple
