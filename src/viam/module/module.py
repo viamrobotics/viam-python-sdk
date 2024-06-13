@@ -4,7 +4,7 @@ import logging as pylogging
 import sys
 from inspect import iscoroutinefunction
 from threading import Lock
-from typing import List, Mapping, Optional, Sequence, Tuple, Union
+from typing import List, Mapping, Optional, Sequence, Tuple
 
 from grpclib.utils import _service_name
 from typing_extensions import Self
@@ -36,6 +36,7 @@ from .types import Reconfigurable, Stoppable
 
 LOGGER = logging.getLogger(__name__)
 
+
 def parse_module_args() -> argparse.Namespace:
     """
     Parse command-line args. Used by the various `Module` entrypoints.
@@ -44,6 +45,7 @@ def parse_module_args() -> argparse.Namespace:
     p.add_argument('socket_path', help="path where this module will serve a unix socket")
     p.add_argument('--log-level', type=lambda name: pylogging._nameToLevel[name.upper()], default=logging.INFO)
     return p.parse_args()
+
 
 class Module:
     _address: str
@@ -78,24 +80,27 @@ class Module:
     @classmethod
     async def run_with_models(cls, *models: ResourceBase):
         """
-        Entrypoint ...
+        Module entrypoint that takes a list of ResourceBase subclasses.
+        In most cases you'll want to use run_from_registry instead (see below).
         """
         args = parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for model in models:
-            module.add_model_from_registry(model.SUBTYPE, model.MODEL)
+            # todo(review): the pyright ignore below is for ResourceBase.MODEL. Is this not a required field? Should I not rely on it?
+            module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
         await module.start()
 
     @classmethod
     async def run_from_registry(cls):
         """
-        Entrypoint ...
+        Module entrypoint that automatically includes all the resources you've created in your program.
+        For usage, see the bottom of examples/easy_resource/main.py.
         """
         args = parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             # todo(review): this would be cleaner if resource creator key became a tuple
-            module.add_model_from_registry(*key.split('/'))
+            module.add_model_from_registry(*key.split('/'))  # pyright: ignore [reportArgumentType]
         await module.start()
 
     def __init__(self, address: str, *, log_level: int = logging.INFO) -> None:

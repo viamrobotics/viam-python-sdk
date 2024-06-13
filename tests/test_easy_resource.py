@@ -6,11 +6,13 @@ from viam.resource.easy_resource import parse_model, EasyResource
 from viam.resource.registry import Registry
 from viam.resource.types import Model, ModelFamily
 
+
 @pytest.fixture
 def clear_registry(monkeypatch):
     "helper to patch registry global state for duration of test"
     monkeypatch.setattr(Registry, '_SUBTYPES', {})
     monkeypatch.setattr(Registry, '_RESOURCES', {})
+
 
 class TestEasyResource:
     def test_parse_model(self):

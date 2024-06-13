@@ -13,6 +13,7 @@ modelRegex = re.compile(r"^([^:]+):([^:]+):([^:]+)$")
 
 logger = logging.getLogger(__name__)
 
+
 def parse_model(orig: Union[str, Model]) -> Model:
     "take a model or string and turn it into a Model"
     if isinstance(orig, Model):
@@ -23,10 +24,21 @@ def parse_model(orig: Union[str, Model]) -> Model:
     *family, name = match.groups()
     return Model(ModelFamily(*family), name)
 
+
 class EasyResource:
     """
-    EasyResource is a mixin that ...
-    See ...
+    EasyResource is a mixin that simplifies the process of creating Viam modules (extension programs)
+    and resources (the resource classes provided by those extension programs).
+
+    Basic usage:
+
+    class MyModel(Sensor, EasyResource):
+        MODEL = "my-org:sensor:my-sensor"
+
+        async def get_readings(self, **kwargs):
+            return {"ok": True}
+
+    See examples/easy_resource/main.py for extended usage.
     """
     SUBTYPE: Subtype
     MODEL: Model
@@ -64,7 +76,9 @@ class EasyResource:
         won't call it directly.
         """
         logger.debug('registering %s %s', cls.SUBTYPE, cls.MODEL)
-        Registry.register_resource_creator(cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new))
+        # note: this would pass if EasyResource inherited ResourceBase, but that crashes in the mro() walk in ResourceManager.register.
+        Registry.register_resource_creator(
+            cls.SUBTYPE, cls.MODEL, ResourceCreatorRegistration(cls.new))  # pyright: ignore [reportArgumentType]
 
     def reconfigure(self, config: ComponentConfig, dependencies: Mapping[ResourceName, ResourceBase]):
         logger.debug('reconfigure %s %s', self.SUBTYPE, self.MODEL)
