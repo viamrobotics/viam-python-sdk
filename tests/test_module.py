@@ -1,3 +1,5 @@
+import logging
+import sys
 from unittest import mock
 
 import pytest
@@ -5,6 +7,7 @@ from grpclib.testing import ChannelFor
 
 from viam.errors import GRPCError
 from viam.module import Module
+from viam.module.module import parse_module_args
 from viam.module.service import ModuleRPCService
 from viam.proto.app.robot import ComponentConfig
 from viam.proto.module import (
@@ -294,6 +297,18 @@ class TestModule:
         )
         response = await module.validate_config(req)
         assert response.dependencies == []
+
+    def test_parse_module_args(self, monkeypatch):
+        monkeypatch.setattr(sys, 'argv', ['./main.py', 'socketpath'])
+        args = parse_module_args()
+        assert args.socket_path == 'socketpath'
+        assert args.log_level == logging.INFO
+        monkeypatch.setattr(sys, 'argv', ['./main.py', 'socketpath', '--log-level', 'debug'])
+        args = parse_module_args()
+        assert args.log_level == logging.DEBUG
+        monkeypatch.setattr(sys, 'argv', ['./main.py', 'socketpath', '--log-level', 'unknown'])
+        with pytest.raises(KeyError):
+            parse_module_args()
 
 
 class TestService:

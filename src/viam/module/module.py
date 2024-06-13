@@ -36,7 +36,7 @@ from .types import Reconfigurable, Stoppable
 
 LOGGER = logging.getLogger(__name__)
 
-def parse_args() -> argparse.Namespace:
+def parse_module_args() -> argparse.Namespace:
     """
     Parse command-line args. Used by the various `Module` entrypoints.
     """
@@ -67,7 +67,7 @@ class Module:
         Returns:
             Module: a new Module instance
         """
-        # todo(review): change this to use parse_args()? makes life simpler below
+        # todo(review): change this to use parse_module_args()? makes life simpler below
         args = sys.argv
         if len(args) < 2:
             raise Exception("Need socket path as command line argument")
@@ -80,7 +80,7 @@ class Module:
         """
         Entrypoint ...
         """
-        args = parse_args()
+        args = parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for model in models:
             module.add_model_from_registry(model.SUBTYPE, model.MODEL)
@@ -91,7 +91,7 @@ class Module:
         """
         Entrypoint ...
         """
-        args = parse_args()
+        args = parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             # todo(review): this would be cleaner if resource creator key became a tuple
