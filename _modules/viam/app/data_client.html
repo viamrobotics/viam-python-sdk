@@ -265,11 +265,11 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
 <span class="sd">            my_data = []</span>
 <span class="sd">            last = None</span>
-<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
 <span class="sd">            while True:</span>
 <span class="sd">                tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)</span>
 <span class="sd">                if not tabular_data:</span>
@@ -395,12 +395,12 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
 
 <span class="sd">            my_data = []</span>
 <span class="sd">            last = None</span>
-<span class="sd">            my_filter = Filter(component_name=&quot;camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;camera&quot;)</span>
 <span class="sd">            while True:</span>
 <span class="sd">                data, count, last = await data_client.binary_data_by_filter(my_filter, last)</span>
 <span class="sd">                if not data:</span>
@@ -507,9 +507,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
 <span class="sd">            days_of_data_to_delete = 10</span>
 <span class="sd">            tabular_data = await data_client.delete_tabular_data(</span>
 <span class="sd">                org_id=&quot;a12b3c4e-1234-1abc-ab1c-ab1c2d345abc&quot;, days_of_data_to_delete)</span>
@@ -536,9 +536,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;left_motor&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;left_motor&quot;)</span>
 <span class="sd">            res = await data_client.delete_binary_data_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
@@ -631,9 +631,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;my_camera&quot;)</span>
 <span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
 <span class="sd">            res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)</span>
 
@@ -697,9 +697,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;my_camera&quot;)</span>
 <span class="sd">            tags = [&quot;tag1&quot;, &quot;tag2&quot;]</span>
 <span class="sd">            res = await data_client.remove_tags_from_binary_data_by_filter(tags, my_filter)</span>
 
@@ -726,9 +726,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;my_camera&quot;)</span>
 <span class="sd">            tags = await data_client.tags_by_filter(my_filter)</span>
 
 <span class="sd">        Args:</span>
@@ -830,9 +830,9 @@
 
 <span class="sd">        ::</span>
 
-<span class="sd">            from viam.proto.app.data import Filter</span>
+<span class="sd">            from viam.utils import create_filter</span>
 
-<span class="sd">            my_filter = Filter(component_name=&quot;my_camera&quot;)</span>
+<span class="sd">            my_filter = create_filter(component_name=&quot;my_camera&quot;)</span>
 <span class="sd">            bounding_box_labels = await data_client.bounding_box_labels_by_filter(</span>
 <span class="sd">                my_filter)</span>
 
