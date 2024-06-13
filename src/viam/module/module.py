@@ -86,7 +86,8 @@ class Module:
         args = _parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
         for model in models:
-            # todo(review): the pyright ignore below is for ResourceBase.MODEL. Is this not a required field? Should I not rely on it?
+            if not hasattr(model, 'MODEL'):
+                raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
             module.add_model_from_registry(model.SUBTYPE, model.MODEL)  # pyright: ignore [reportAttributeAccessIssue]
         await module.start()
 
