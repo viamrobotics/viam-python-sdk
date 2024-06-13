@@ -325,14 +325,12 @@ class ExampleBoard(Board):
 class ExampleCamera(Camera):
     def __init__(self, name: str):
         p = Path(__file__)
-        img = Image.open(p.parent.absolute().joinpath("viam.webp"))
+        img = Image.open(p.parent.absolute().joinpath("viam.jpeg"))
         buf = BytesIO()
         img.copy().save(buf, format="JPEG")
         self.image = ViamImage(buf.getvalue(), CameraMimeType.JPEG)
+        img.close()
         super().__init__(name)
-
-    def __del__(self):
-        self.image.close()
 
     async def get_image(self, mime_type: str = "", extra: Optional[Dict[str, Any]] = None, **kwargs) -> ViamImage:
         return self.image
