@@ -69,7 +69,6 @@ class Module:
         Returns:
             Module: a new Module instance
         """
-        # todo(review): change this to use parse_module_args()? makes life simpler below
         args = sys.argv
         if len(args) < 2:
             raise Exception("Need socket path as command line argument")
