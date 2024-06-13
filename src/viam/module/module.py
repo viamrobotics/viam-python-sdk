@@ -80,7 +80,7 @@ class Module:
     @classmethod
     async def run_with_models(cls, *models: ResourceBase):
         """
-        Module entrypoint that takes a list of ResourceBase subclasses.
+        Module entrypoint that takes a list of ResourceBase implementations.
         In most cases you'll want to use run_from_registry instead (see below).
         """
         args = _parse_module_args()
@@ -95,7 +95,13 @@ class Module:
     async def run_from_registry(cls):
         """
         Module entrypoint that automatically includes all the resources you've created in your program.
-        For usage, see the bottom of examples/easy_resource/main.py.
+
+        Example:
+
+        if __name__ == '__main__':
+            asyncio.run(Module.run_from_registry())
+
+        Full example at examples/easy_resource/main.py.
         """
         args = _parse_module_args()
         module = cls(args.socket_path, log_level=args.log_level)
