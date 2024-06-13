@@ -175,11 +175,11 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
             my_data = []
             last = None
-            my_filter = Filter(component_name="left_motor")
+            my_filter = create_filter(component_name="left_motor")
             while True:
                 tabular_data, count, last = await data_client.tabular_data_by_filter(my_filter, last)
                 if not tabular_data:
@@ -305,12 +305,12 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
 
             my_data = []
             last = None
-            my_filter = Filter(component_name="camera")
+            my_filter = create_filter(component_name="camera")
             while True:
                 data, count, last = await data_client.binary_data_by_filter(my_filter, last)
                 if not data:
@@ -417,9 +417,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="left_motor")
+            my_filter = create_filter(component_name="left_motor")
             days_of_data_to_delete = 10
             tabular_data = await data_client.delete_tabular_data(
                 org_id="a12b3c4e-1234-1abc-ab1c-ab1c2d345abc", days_of_data_to_delete)
@@ -446,9 +446,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="left_motor")
+            my_filter = create_filter(component_name="left_motor")
             res = await data_client.delete_binary_data_by_filter(my_filter)
 
         Args:
@@ -541,9 +541,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="my_camera")
+            my_filter = create_filter(component_name="my_camera")
             tags = ["tag1", "tag2"]
             res = await data_client.add_tags_to_binary_data_by_filter(tags, my_filter)
 
@@ -607,9 +607,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="my_camera")
+            my_filter = create_filter(component_name="my_camera")
             tags = ["tag1", "tag2"]
             res = await data_client.remove_tags_from_binary_data_by_filter(tags, my_filter)
 
@@ -636,9 +636,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="my_camera")
+            my_filter = create_filter(component_name="my_camera")
             tags = await data_client.tags_by_filter(my_filter)
 
         Args:
@@ -740,9 +740,9 @@ class DataClient:
 
         ::
 
-            from viam.proto.app.data import Filter
+            from viam.utils import create_filter
 
-            my_filter = Filter(component_name="my_camera")
+            my_filter = create_filter(component_name="my_camera")
             bounding_box_labels = await data_client.bounding_box_labels_by_filter(
                 my_filter)
 
