@@ -80,7 +80,7 @@ class Encoder(ComponentBase):
 
         Returns:
             Tuple[float,
-            `PositionType.ValueType <https://python.viam.dev/autoapi/viam/gen/component/encoder/v1/\
+            `PositionType.ValueType <https://python.viam.dev/autoapi/viam/gen/component/encoder/v1/
             encoder_pb2/index.html#viam.gen.component.encoder.v1.encoder_pb2.PositionType>`__]:
             A tuple containing two values; the first [0] the position of the encoder which can either be
             ticks since last zeroing for a relative encoder or degrees for an absolute encoder, and the second [1] the type of
