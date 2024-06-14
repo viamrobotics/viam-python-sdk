@@ -693,6 +693,9 @@ class AppClient:
 
         Raises:
             GRPCError: if an invalid email is provided, or if the user is already a member of the org.
+
+        Returns:
+            OrganizationInvite: The organization invite.
         """
         request = CreateOrganizationInviteRequest(
             organization_id=org_id, email=email, authorizations=authorizations, send_email_invite=send_email_invite
