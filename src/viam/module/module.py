@@ -69,12 +69,8 @@ class Module:
         Returns:
             Module: a new Module instance
         """
-        args = sys.argv
-        if len(args) < 2:
-            raise Exception("Need socket path as command line argument")
-        address = args[1]
-        log_level = logging.DEBUG if (len(args) == 3 and "=debug" in args[2].lower()) else logging.INFO
-        return cls(address, log_level=log_level)
+        args = _parse_module_args()
+        return cls(args.socket_path, log_level=args.log_level)
 
     @classmethod
     async def run_with_models(cls, *models: ResourceBase):
@@ -82,8 +78,7 @@ class Module:
         Module entrypoint that takes a list of ResourceBase implementations.
         In most cases you'll want to use run_from_registry instead (see below).
         """
-        args = _parse_module_args()
-        module = cls(args.socket_path, log_level=args.log_level)
+        module = cls.from_args()
         for model in models:
             if not hasattr(model, 'MODEL'):
                 raise TypeError(f"missing MODEL field on {model}. Resource implementations must define MODEL")
@@ -102,8 +97,7 @@ class Module:
 
         Full example at examples/easy_resource/main.py.
         """
-        args = _parse_module_args()
-        module = cls(args.socket_path, log_level=args.log_level)
+        module = cls.from_args()
         for key in Registry.REGISTERED_RESOURCE_CREATORS().keys():
             module.add_model_from_registry(*key.split('/'))  # pyright: ignore [reportArgumentType]
         await module.start()
