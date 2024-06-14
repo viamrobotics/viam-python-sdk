@@ -35,7 +35,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: poetry
-          cache-dependency-path:
+          cache-dependency-path: |
             requirements-test.txt
 
       - name: Fix Poetry
