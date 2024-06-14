@@ -783,6 +783,9 @@
 
 <span class="sd">        Raises:</span>
 <span class="sd">            GRPCError: if an invalid email is provided, or if the user is already a member of the org.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            OrganizationInvite: The organization invite.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">request</span> <span class="o">=</span> <span class="n">CreateOrganizationInviteRequest</span><span class="p">(</span>
             <span class="n">organization_id</span><span class="o">=</span><span class="n">org_id</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">authorizations</span><span class="o">=</span><span class="n">authorizations</span><span class="p">,</span> <span class="n">send_email_invite</span><span class="o">=</span><span class="n">send_email_invite</span>

@@ -275,6 +275,9 @@ Module Contents
 
       :raises GRPCError: if an invalid email is provided, or if the user is already a member of the org.
 
+      :returns: The organization invite.
+      :rtype: OrganizationInvite
+
 
 
    .. py:method:: update_organization_invite_authorizations(org_id: str, email: str, add_authorizations: Optional[List[viam.proto.app.Authorization]] = None, remove_authorizations: Optional[List[viam.proto.app.Authorization]] = None) -> viam.proto.app.OrganizationInvite
