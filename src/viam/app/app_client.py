@@ -1122,7 +1122,7 @@ class AppClient:
         robot_part_id: str,
         filter: Optional[str] = None,
         dest: Optional[str] = None,
-        errors_only: bool = True,
+        log_levels: List[str] = [],
         num_log_entries: int = 100,
     ) -> List[LogEntry]:
         """Get the logs associated with a robot part.
@@ -1137,7 +1137,7 @@ class AppClient:
             filter (Optional[str]): Only include logs with messages that contain the string `filter`. Defaults to empty string "" (i.e., no
                 filter).
             dest (Optional[str]): Optional filepath to write the log entries to.
-            errors_only (bool): Boolean specifying whether or not to only include error logs. Defaults to True.
+            log_levels (List[str]): List of log levels for which entries should be returned. Defaults to empty list, which returns all logs.
             num_log_entries (int): Number of log entries to return. Passing 0 returns all logs. Defaults to 100. All logs or the first
                 `num_log_entries` logs will be returned, whichever comes first.
 
@@ -1150,13 +1150,12 @@ class AppClient:
         if num_log_entries < 0:
             raise ValueError("'num_log_entries must be at least 0.")
         logs_left = num_log_entries
-        errors_only = errors_only if errors_only else True
         page_token = ""
         logs = []
 
         while True:
             new_logs, next_page_token = await self._get_robot_part_logs(
-                robot_part_id=robot_part_id, filter=filter if filter else "", errors_only=errors_only, page_token=page_token
+                robot_part_id=robot_part_id, filter=filter if filter else "", page_token=page_token, log_levels=log_levels
             )
             if num_log_entries != 0 and len(new_logs) > logs_left:
                 logs += new_logs[0:logs_left]
@@ -1183,8 +1182,10 @@ class AppClient:
 
         return logs
 
-    async def _get_robot_part_logs(self, robot_part_id: str, filter: str, errors_only: bool, page_token: str) -> Tuple[List[LogEntry], str]:
-        request = GetRobotPartLogsRequest(id=robot_part_id, errors_only=errors_only, filter=filter, page_token=page_token)
+    async def _get_robot_part_logs(
+        self, robot_part_id: str, filter: str, page_token: str, log_levels: List[str]
+    ) -> Tuple[List[LogEntry], str]:
+        request = GetRobotPartLogsRequest(id=robot_part_id, filter=filter, page_token=page_token, levels=log_levels)
         response: GetRobotPartLogsResponse = await self._app_client.GetRobotPartLogs(request, metadata=self._metadata)
         return [LogEntry.from_proto(log) for log in response.logs], response.next_page_token
 
