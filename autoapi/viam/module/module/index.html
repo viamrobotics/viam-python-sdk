@@ -262,6 +262,8 @@
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.parent"><code class="docutils literal notranslate"><span class="pre">Module.parent</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.server"><code class="docutils literal notranslate"><span class="pre">Module.server</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.from_args"><code class="docutils literal notranslate"><span class="pre">Module.from_args()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.run_with_models"><code class="docutils literal notranslate"><span class="pre">Module.run_with_models()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.run_from_registry"><code class="docutils literal notranslate"><span class="pre">Module.run_from_registry()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.start"><code class="docutils literal notranslate"><span class="pre">Module.start()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.stop"><code class="docutils literal notranslate"><span class="pre">Module.stop()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#viam.module.module.Module.set_ready"><code class="docutils literal notranslate"><span class="pre">Module.set_ready()</span></code></a></li>
@@ -1012,14 +1014,14 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.module.module.Registry.register_resource_creator">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Registry.register_resource_creator" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_resource_creator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Subtype" title="viam.resource.types.Subtype"><span class="pre">viam.resource.types.Subtype</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.Model" title="viam.resource.types.Model"><span class="pre">viam.resource.types.Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">registration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.register_resource_creator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Registry.register_resource_creator" title="Permalink to this definition"></a></dt>
 <dd><p>Register a specific <code class="docutils literal notranslate"><span class="pre">Model</span></code> and validator function for the specific resource <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> with the Registry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>subtype</strong> (<a class="reference internal" href="#viam.module.module.Subtype" title="viam.module.module.Subtype"><em>Subtype</em></a>) – The Subtype of the resource</p></li>
 <li><p><strong>model</strong> (<a class="reference internal" href="#viam.module.module.Model" title="viam.module.module.Model"><em>Model</em></a>) – The Model of the resource</p></li>
-<li><p><strong>registration</strong> (<a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><em>ResourceCreatorRegistration</em></a>) – The registration functions of the model</p></li>
+<li><p><strong>registration</strong> (<a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><em>ResourceCreatorRegistration</em></a>) – The registration functions of the model</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1112,7 +1114,7 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 
 <dl class="py method">
 <dt class="sig sig-object py" id="viam.module.module.Registry.REGISTERED_RESOURCE_CREATORS">
-<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCE_CREATORS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCE_CREATORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Registry.REGISTERED_RESOURCE_CREATORS" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">REGISTERED_RESOURCE_CREATORS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration"><span class="pre">ResourceCreatorRegistration</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../_modules/viam/resource/registry.html#Registry.REGISTERED_RESOURCE_CREATORS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Registry.REGISTERED_RESOURCE_CREATORS" title="Permalink to this definition"></a></dt>
 <dd><p>The dictionary of all registered resources
 - Key: subtype/model
 - Value: The ResourceCreatorRegistration for the resource</p>
@@ -1121,7 +1123,7 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 <dd class="field-odd"><p>All registered resources</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="../../resource/registry/index.html#viam.resource.registry.ResourceCreatorRegistration" title="viam.resource.registry.ResourceCreatorRegistration">ResourceCreatorRegistration</a>]</p>
+<dd class="field-even"><p>Mapping[str, <a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ResourceCreatorRegistration" title="viam.resource.easy_resource.ResourceCreatorRegistration">ResourceCreatorRegistration</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1140,11 +1142,11 @@ resource using <code class="docutils literal notranslate"><span class="pre">Regi
 
 <dl class="py class">
 <dt class="sig sig-object py" id="viam.module.module.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.module.module.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_family</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.ModelFamily" title="viam.resource.types.ModelFamily"><span class="pre">ModelFamily</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Model" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">viam.module.module.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_family</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ModelFamily" title="viam.resource.easy_resource.ModelFamily"><span class="pre">ModelFamily</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/resource/types.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Model" title="Permalink to this definition"></a></dt>
 <dd><p>Represents a specific model within a family of models</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="viam.module.module.Model.model_family">
-<span class="sig-name descname"><span class="pre">model_family</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../resource/types/index.html#viam.resource.types.ModelFamily" title="viam.resource.types.ModelFamily"><span class="pre">ModelFamily</span></a></em><a class="headerlink" href="#viam.module.module.Model.model_family" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">model_family</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../resource/easy_resource/index.html#viam.resource.easy_resource.ModelFamily" title="viam.resource.easy_resource.ModelFamily"><span class="pre">ModelFamily</span></a></em><a class="headerlink" href="#viam.module.module.Model.model_family" title="Permalink to this definition"></a></dt>
 <dd><p>The family to which this model belongs</p>
 </dd></dl>
 
@@ -2131,6 +2133,33 @@ to start modules with a “log-level” commandline argument.</p>
 <dd class="field-odd"><p><a class="reference internal" href="#viam.module.module.Module" title="viam.module.module.Module">Module</a></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.module.module.Module.run_with_models">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_with_models</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../../resource/base/index.html#viam.resource.base.ResourceBase" title="viam.resource.base.ResourceBase"><span class="pre">viam.resource.base.ResourceBase</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/module.html#Module.run_with_models"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Module.run_with_models" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Module entrypoint that takes a list of ResourceBase implementations.
+In most cases you’ll want to use run_from_registry instead (see below).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="viam.module.module.Module.run_from_registry">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run_from_registry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/viam/module/module.html#Module.run_from_registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#viam.module.module.Module.run_from_registry" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Async<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>Module entrypoint that automatically includes all the resources you’ve created in your program.</p>
+<p>Example:</p>
+<dl class="simple">
+<dt>if __name__ == ‘__main__’:</dt><dd><p>asyncio.run(Module.run_from_registry())</p>
+</dd>
+</dl>
+<p>Full example at examples/easy_resource/main.py.</p>
 </dd></dl>
 
 <dl class="py method">

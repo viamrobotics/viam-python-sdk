@@ -54,6 +54,34 @@ Package Contents
 
 
 
+   .. py:method:: run_with_models(*models: viam.resource.base.ResourceBase)
+      :classmethod:
+
+      :async:
+
+
+      Module entrypoint that takes a list of ResourceBase implementations.
+      In most cases you'll want to use run_from_registry instead (see below).
+
+
+
+   .. py:method:: run_from_registry()
+      :classmethod:
+
+      :async:
+
+
+      Module entrypoint that automatically includes all the resources you've created in your program.
+
+      Example:
+
+      if __name__ == '__main__':
+          asyncio.run(Module.run_from_registry())
+
+      Full example at examples/easy_resource/main.py.
+
+
+
    .. py:method:: start()
       :async:
 

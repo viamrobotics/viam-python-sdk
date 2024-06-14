@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>viam.resource.easy_resource &mdash; Viam Python SDK  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Viam Python SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/example.html">Example usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../conduct.html">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://docs.viam.com">Full Viam Docs</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/components/index.html">viam.components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/services/index.html">viam.services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/robot/index.html">viam.robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/app/index.html">viam.app</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/resource/index.html">viam.resource</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/module/index.html">viam.module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/media/index.html">viam.media</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/rpc/index.html">viam.rpc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../autoapi/viam/proto/index.html">viam.proto</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Viam Python SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">viam.resource.easy_resource</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for viam.resource.easy_resource</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span> <span class="nn">viam.proto.app.robot</span> <span class="kn">import</span> <span class="n">ComponentConfig</span>
+<span class="kn">from</span> <span class="nn">viam.proto.common</span> <span class="kn">import</span> <span class="n">ResourceName</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">ResourceBase</span>
+<span class="kn">from</span> <span class="nn">.types</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">ModelFamily</span><span class="p">,</span> <span class="n">Subtype</span>
+<span class="kn">from</span> <span class="nn">.registry</span> <span class="kn">import</span> <span class="n">Registry</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span>
+
+<span class="n">modelRegex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([^:]+):([^:]+):([^:]+)$&quot;</span><span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_parse_model</span><span class="p">(</span><span class="n">orig</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Model</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Model</span><span class="p">:</span>
+    <span class="s2">&quot;take a model or string and turn it into a Model&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">orig</span><span class="p">,</span> <span class="n">Model</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">orig</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">modelRegex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">orig</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MODEL </span><span class="si">{</span><span class="n">orig</span><span class="si">}</span><span class="s2"> doesn&#39;t match expected format &#39;org:type:name&#39;&quot;</span><span class="p">)</span>
+    <span class="o">*</span><span class="n">family</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">ModelFamily</span><span class="p">(</span><span class="o">*</span><span class="n">family</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="EasyResource"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource">[docs]</a><span class="k">class</span> <span class="nc">EasyResource</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    EasyResource is a mixin that simplifies the process of creating Viam modules (extension programs)</span>
+<span class="sd">    and resources (the resource classes provided by those extension programs).</span>
+
+<span class="sd">    Basic usage:</span>
+
+<span class="sd">    class MyModel(Sensor, EasyResource):</span>
+<span class="sd">        MODEL = &quot;my-org:sensor:my-sensor&quot;</span>
+
+<span class="sd">        async def get_readings(self, **kwargs):</span>
+<span class="sd">            return {&quot;ok&quot;: True}</span>
+
+<span class="sd">    See examples/easy_resource/main.py for extended usage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">SUBTYPE</span><span class="p">:</span> <span class="n">Subtype</span>
+    <span class="n">MODEL</span><span class="p">:</span> <span class="n">Model</span>
+
+<div class="viewcode-block" id="EasyResource.__init_subclass__"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.__init_subclass__">[docs]</a>    <span class="k">def</span> <span class="nf">__init_subclass__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">register</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When you subclass this mixin, it parses cls.MODEL and registers cls in global registry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__init_subclass__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;MODEL&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;please define a MODEL like &#39;org:type:name&#39; on your class, for example &#39;viam:camera:IMX219&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span> <span class="o">=</span> <span class="n">_parse_model</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">register</span><span class="p">:</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">register</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># note: this mirrors the constructor for ComponentBase and ServiceBase.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+<div class="viewcode-block" id="EasyResource.new"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.new">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is passed to register_resource_creator; the default implementation calls reconfigure()</span>
+<span class="sd">        when an instance of your model is instantiated. You can override this in your subclass.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;created </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="EasyResource.register"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.register">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This adds the model to the global registry. It is called by __init_subclass__ and you typically</span>
+<span class="sd">        won&#39;t call it directly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;registering </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span>
+        <span class="c1"># note: We could fix this pyright-ignore if EasyResource inherited ResourceBase, but that crashes in the mro()</span>
+        <span class="c1"># walk in ResourceManager.register.</span>
+        <span class="n">Registry</span><span class="o">.</span><span class="n">register_resource_creator</span><span class="p">(</span>
+            <span class="bp">cls</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">MODEL</span><span class="p">,</span> <span class="n">ResourceCreatorRegistration</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">new</span><span class="p">))</span>  <span class="c1"># pyright: ignore [reportArgumentType]</span></div>
+
+<div class="viewcode-block" id="EasyResource.reconfigure"><a class="viewcode-back" href="../../../autoapi/viam/resource/easy_resource/index.html#viam.resource.easy_resource.EasyResource.reconfigure">[docs]</a>    <span class="k">def</span> <span class="nf">reconfigure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">ComponentConfig</span><span class="p">,</span> <span class="n">dependencies</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ResourceName</span><span class="p">,</span> <span class="n">ResourceBase</span><span class="p">]):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;reconfigure </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUBTYPE</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">MODEL</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022-2023, Viam Inc.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
