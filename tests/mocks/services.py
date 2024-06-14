@@ -1388,6 +1388,7 @@ class MockApp(UnimplementedAppServiceBase):
         self.robot_part_id = request.id
         self.filter = request.filter
         self.errors_only = request.errors_only
+        self.levels = request.levels
         await stream.send_message(GetRobotPartLogsResponse(logs=[self.log_entry]))
 
     async def TailRobotPartLogs(self, stream: Stream[TailRobotPartLogsRequest, TailRobotPartLogsResponse]) -> None:
